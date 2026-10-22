@@ -1,4 +1,6 @@
-# THE REBUILT ATHLETE / SPEED FIRST. DISTANCE EARNED.
+# THE REBUILT ATHLETE / THE FIVE · SPEED FIRST
+
+**Reusable FORM training cycle:** **THE FIVE · Speed First**. A 12-week 5K-focused speed-development framework with a separately authored entry week when appropriate. *Speed first. Distance earned.* remains its coaching proposition. Naming the repeatable program does not establish race readiness or publish unreviewed training weeks.
 
 **Study:** FORM Human Performance Study 002  
 **Authored:** 22 October 2026  
@@ -24,7 +26,13 @@ The eventual mile and 5K race abilities are more closely related on standard end
 
 **Descent Into Ruin:** Garmin FIT recorded a 5:59.5 mile, 800 m in 2:52.7 / 2:57.2, 400 m in 1:22.3 / 1:22.1 / 1:22.4 / 1:26.7; fast work 2.99 mi in 17:23, about 5:49/mi excluding recoveries. Main work felt fluid and controlled, with a high recorded HR. The final 400 was interrupted by a late start and trying to film, not an evidenced fitness fade. Moving-work mechanics were about 1.54 m step length, 179 spm and 213 ms ground contact. This supports speed access in short / broken efforts, not continuous 5K or mile race readiness. The Saturday October 24 Alo easy 5K is the immediate recovery/social session.
 
+### October 22 · Athlete-reported recovery and joy
+
+Following the morning Descent Into Ruin speed practice, Brice described feeling notably stronger, more solid, lighter and very comfortable digestively after a later carbohydrate-and-protein meal. He also described happiness in his body and pleasure in relaxed, socially supported movement. The precise food amounts and day's intake chronology are preserved in private athlete observations, not duplicated into public study storytelling. This is a useful fuel-tolerance and athletic-wellbeing observation, not evidence that a single food caused the entire response or that immediate body-composition change occurred. Future matched post-track days can help establish repeatability while protecting sufficient all-day nutrition.
+
 ### Entry Week · October 19–25
+
+**Monday October 19 / actual iRUN 8 × 800 m (Garmin-derived backfill):** Activity 24784881231 is preserved in the earlier supplied seven-FIT analysis and lap-evidence CSV, not merely a coach recollection. Eight Garmin 0.50–0.52 mi work laps: **3:22, 3:09, 3:04, 3:09, 3:09, 3:05, 3:07, 3:10**. Combined work **4.07 mi in 25:16, approximately 6:12/mi**, excluding recovery; device-recorded recovery elapsed times were about **85–96 seconds**, consistent with Brice's reported 1:35. Work-lap average HR rose from 144 to 176 bpm; total session max HR 185. The last lap did not show a large collapse, but cardiovascular cost increased. The original dated FORM prescription was **4 × 4 minutes**, which differs from this real iRUN workout. Preserve both the written prescription and actual workout evidence without creating a retroactive completed-app receipt. The group context (Jacob and Quinn) comes from athlete report, not from the FIT. Individual per-rep stride length and ground contact time were **not** present in the retained lap evidence; do not invent mechanical values. The earlier parsed source is `rebuilt_athlete_2026-10-19_evidence.md` and `rebuilt_athlete_lap_evidence.csv`.
 
 **Week 1 in FORM** is the shared entry period for Brice, Tinius, David Morales, Kevin Helle and Sam Reyes. Coach reports David, Kevin, Tinius and Brice attended the October 22 *Descent Into Ruin* practice; Sam did not. Only Brice's actual Garmin metrics have been verified in this study. The group attendance is recorded privately as coach-reported, not a copied FIT activity or a completed session. Saturday October 24 is an easy 5K at 8:00/mi or slower (4:58/km or slower for Tinius). **FORM Week 2 is the October 26–November 1 first speed-progression week**; all original workout dates remain intact.
 
@@ -44,15 +52,15 @@ Mileage bands are **planning envelopes, not minimums or weekly targets**. A 16�
 
 | Day | Role | Training example (private coach planning, not an app prescription) |
 | --- | --- | --- |
-| **Monday evening · iRUN** | Shared group outing, mainly easy initially | Structured easy time and a few relaxed strides. Any future speed sessions are separately coach-authorized, not inherited from a group workout |
-| Tuesday | Strength and/or easy aerobic support | Upper strength emphasis; optional 30–45 min easy HR-guided run |
-| Wednesday | Recovery / short easy / lower-body support | Yoga and mobility; lower-body lifting planned so Thursday track mechanics are not compromised |
+| **Monday evening · iRUN** | Actual group workout, often intervals | Backfill each actual iRUN workout and athlete evidence when available. The currently published 40 min easy + 4 strides is an independent fallback, **not** an account of the iRUN group workout and not a second session to stack. Coach reviews Monday/Thursday combined load and Sunday Forge legs |
+| Tuesday | Upper Detail / easy aerobic support | Shoulder width, rear delts, back, arms and core in Forge; any running stays genuinely easy |
+| Wednesday | Easy aerobic running | 35 min relaxed running and mobility, no substantial leg lifting ahead of Thursday speed |
 | **Thursday morning · FORM Track** | Weekly quality-session anchor | Short-to-long speed-development sequence, one primary hard run in the week. Different targets for each athlete sharing the same track |
-| Friday | Strength / no run | Upper-body strength or mobility |
+| Friday | THE FRAME · Muscle Beach | Barbell/pull-up upper body, no heavy leg work after Thursday track |
 | Saturday | Social easy / aerobic extension | Comfortable 5–8 miles as part of the week's real load; no forced long-run target |
-| Sunday | Flexible recovery and strength | Planned lower-body training or rest, distributed to avoid soreness before Monday quality |
+| Sunday morning | THE CHASSIS · Muscle Beach | Controlled barbell legs, glutes, hamstrings and trunk, with 3 reps in reserve; assess impact on Monday iRUN |
 
-The goal is roughly **3–5 runs each week**, normally **one genuine high-intensity session** initially. The two group gatherings need not both be demanding. Later controlled aerobic development can sometimes take the second quality slot after a coach review; not automatically every Thursday. Keep the existing Forge physique program as the strength source, and arrange **two upper / two lower or lower-accessory doses** around actual run load; do not add a second high-fatigue leg day solely to fill a schedule.
+The goal is roughly **3–5 runs each week**, with one primary Thursday speed session **and a possible second demanding Monday iRUN workout**. Neither group workout is automatically free of training cost. A Monday interval session requires reviewing Thursday targets, easy mileage and Sunday's lower Forge prescription; coach authors one definitive workout per date instead of making the athlete choose conditional alternatives. The updated Forge strength source is **Bridge Season · Muscle Beach** (Tuesday Upper Detail, Friday Frame, Sunday Chassis); it is code-authored, and a signed-in Forge assignment/device installation remains unverified. Weekly 20–30 miles is a planning envelope, not a minimum.
 
 ### Running intensity boundaries
 
