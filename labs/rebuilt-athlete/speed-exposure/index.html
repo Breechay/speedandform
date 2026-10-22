@@ -50,7 +50,7 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <p class="intro">The question is simple: does faster running become more available, cost less, and last longer? The measures below separate what we know from what still needs evidence.</p>
 </section>
 <div class="signals" aria-label="Speed study measurement sequence">
- <div><small>01 / Speed exposure</small><strong>17:04.9</strong><span>Oct 18 faster work, timed by lap</span></div>
+ <div><small>01 / Speed exposure</small><strong>17:23</strong><span>Oct 22 · 2.99 miles fast work, Garmin FIT</span></div>
  <div><small>02 / Aerobic cost</small><strong>52</strong><span>Latest Garmin VO₂ estimate; matched-pace HR pending</span></div>
  <div><small>03 / Mechanics</small><strong>217 <em>ms</em></strong><span>Oct 18 track GCT; compare at similar speeds later</span></div>
  <div><small>04 / Durability</small><strong>3 <em>mi</em></strong><span>Oct 10 consecutive full-mile averages faster than 7:42</span></div>
@@ -64,19 +64,31 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 </nav>
 <section class="panel" id="speed" aria-labelledby="speed-title">
 <p class="smallcaps">01 / Volume of pace exposure</p><h2 id="speed-title">How many minutes live at each speed?</h2>
-<p class="quiet">Fifteen-second pace bins, measured by the average pace of each known rep or whole-mile lap. Each qualifying segment contributes its <em>entire</em> recorded duration to its mean-pace bin. This is not a second-by-second pace histogram. A complete histogram awaits original activity files.</p>
+<p class="quiet">Fifteen-second bands grouped by the average pace of each known work repetition or full-mile lap. Each whole segment contributes its duration to one pace band; this is not second-by-second residency. Oct 22 FIT sample-based estimates are separately shown below. Other runs need their original recordings for comparable sample histograms.</p>
 <div class="numbers">
-<div class="num"><small>Oct 18 / track work</small><strong>17:04.9</strong><span class="quiet">8 documented efforts</span></div>
-<div class="num"><small>Oct 18 / average 5:xx</small><strong>3:05.1</strong><span class="quiet">2 repetitions</span></div>
-<div class="num"><small>Oct 18 / average 6:xx</small><strong>13:59.8</strong><span class="quiet">6 repetitions</span></div>
+<div class="num"><small>Oct 22 / timed work</small><strong>17:23</strong><span class="quiet">Seven FIT work laps, 2.99 miles</span></div>
+<div class="num"><small>Oct 22 / work average</small><strong>5:49</strong><span class="quiet">min/mi, recoveries excluded</span></div>
+<div class="num"><small>Oct 22 / faster than 6:00</small><strong>10:49</strong><span class="quiet">Estimated 11-second smoothed speed samples</span></div>
 </div>
-<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="track" aria-pressed="false">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="true">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
+<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="track22" aria-pressed="false">Oct 22 track</button><button class="scope" data-scope="track" aria-pressed="false">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="true">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
 <div class="bars" id="exposure-bars" role="img" aria-label="Bar chart of accumulated recorded interval duration by the average pace of each lap"><div class="barrow"><span class="range">7:28–7:42</span><div class="rail"><span class="fill" style="width:98.32%"></span></div><span class="val">15:17.0</span></div><div class="barrow"><span class="range">7:13–7:27</span><div class="rail"><span class="fill" style="width:46.85%"></span></div><span class="val">7:17.0</span></div><div class="barrow"><span class="range">6:58–7:12</span><div class="rail"><span class="fill" style="width:90.60%"></span></div><span class="val">14:05.0</span></div><div class="barrow"><span class="range">6:43–6:57</span><div class="rail"><span class="fill" style="width:43.74%"></span></div><span class="val">6:48.0</span></div><div class="barrow"><span class="range">6:28–6:42</span><div class="rail"><span class="fill" style="width:42.89%"></span></div><span class="val">6:40.0</span></div><div class="barrow"><span class="range">6:13–6:27</span><div class="rail"><span class="fill" style="width:0%"></span></div><span class="val">—</span></div><div class="barrow"><span class="range">5:58–6:12</span><div class="rail"><span class="fill" style="width:100.00%"></span></div><span class="val">15:32.7</span></div><div class="barrow"><span class="range">5:43–5:57</span><div class="rail"><span class="fill five" style="width:9.89%"></span></div><span class="val">1:32.2</span></div><div class="barrow"><span class="range">5:28–5:42</span><div class="rail"><span class="fill five" style="width:0%"></span></div><span class="val">—</span></div></div><div class="axis" id="bar-axis"><span>0</span><span>Minutes at lap-average pace</span><span id="max-axis">16</span></div>
 <div class="fineprint" id="scope-note">All documented whole-mile averages from October 10, 13 and 17 plus the October 18 timed track repetitions. These are selected known segments, not full raw-activity time-in-zone totals.</div>
+<div class="tile" id="fit-samples-20261022" style="margin-top:24px">
+<h3>Oct 22 · Estimated time within pace bands</h3>
+<p class="quiet">Original Garmin FIT enhanced-speed samples during the seven work laps only. Centered 11-second rolling median within each rep; recovery laps excluded. Estimated sample durations differ from the lap-average chart. GPS pace can oscillate near starts and stops.</p>
+<div class="repsummary" aria-label="Estimated Oct 22 pace-band time">
+<div><b>Faster than 5:30/mi</b><strong>2:04</strong><small>Smoothed sample estimate</small></div>
+<div><b>5:30–5:44/mi</b><strong>3:51</strong><small>Smoothed sample estimate</small></div>
+<div><b>5:45–5:59/mi</b><strong>4:54</strong><small>Smoothed sample estimate</small></div>
+<div><b>6:00–6:14/mi</b><strong>5:33</strong><small>Smoothed sample estimate</small></div>
+<div><b>6:15/mi or slower</b><strong>1:01</strong><small>Includes rep-edge transition samples</small></div>
+</div>
+<p class="fineprint">Sum: 17:23; around 10:49 faster than 6:00/mi. These bins are not proof of sustained uninterrupted running at any one instantaneous pace.</p>
+</div>
 <div class="repsummary" aria-label="Sustained segment evidence">
  <div><b>Five short reps</b><strong>7:41.5</strong><small>Oct 18 · about 400 m each, 5:57–6:05/mi averages</small></div>
  <div><b>Three longer reps</b><strong>9:23.4</strong><small>Oct 18 · about 800 m each, 6:04–6:12/mi averages</small></div>
- <div><b>Full-mile laps</b><strong>7 recorded</strong><small>Oct 10, 13 and 17 · mixed outings/work; not all intervals</small></div>
+ <div><b>Full-mile laps</b><strong>8 recorded</strong><small>Oct 10, 13, 17 and 22 · mixed outings/work; not all intervals</small></div>
 </div><h3>Where this block starts</h3>
 <p class="quiet">October 10 is the first reported freer-running moment with Matt while Adrian rode the bike. The 3-mile outing averaged 7:18/mi and the full-mile splits were 7:37, 7:17 and 7:00. October 12–18 is the existing block's entry week. October 13 includes 3 × 1 mile at 7:05, 6:40 and 6:48. October 17 adds one 7:40 full-mile lap during the 7-mile Palm Beach run. Those events appear in the wider chart view, but do not establish second-by-second time at pace. Two known full-mile lap averages fall within the proposed 7:42–7:20 aerobic development corridor: Oct 10 at 7:37 and Oct 17 at 7:40. That is 2 miles and about 15:17 of lap-average exposure, not yet low-aerobic evidence.</p>
 <p class="quiet"><a href="../SPEED-EXPOSURE-LEDGER-20261018.md">Read the full evidence ledger</a> · The two other prior track sessions still need their exact athlete recordings. No invented reps have been added.</p>
@@ -106,7 +118,7 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <div class="tile"><h3>Late-run stability</h3><p class="quiet">Pending time-series evidence for how HR, pace and mechanics change from the early to late parts of comparably paced runs. Planned field: pace/HR decoupling, with stops and sensor transitions explicitly screened.</p></div>
 <div class="tile"><h3>Recovery durability</h3><p class="quiet">Record tibial/lower-limb response, all-over fatigue, hydration and sleep over the next 24–48 hours when reported. Increased fast minutes do not automatically imply capacity for increased volume or intensity.</p></div>
 </div>
-<h3>The retirement rule for 7:42–7:20</h3><p class="quiet">When the corridor becomes reliably low-aerobic in comparable conditions, with relaxed perceived effort, stable control and acceptable recovery, we can stop tracking it as a special <em>speed</em> milestone and retain it under ordinary aerobic mileage. There is no preset number of minutes at which this happens.</p>
+<h3>Oct 22 · Smooth speed, distracted finish</h3><p class="quiet">The FIT records one mile in 5:59.5, two 800 m repetitions in 2:52.7 and 2:57.2, and four 400 m repetitions in 1:22.3, 1:22.1, 1:22.4 and 1:26.7. Athlete report: the first warm-up stride felt forced, but the workout felt smooth and controlled. The 185 bpm heart-rate maximum describes cardiovascular demand, not mechanical grinding. The final 400 included a late start and distraction while trying to film, not a reported fatigue fade. Quinn, Jacob and Kevin were part of the group environment that helped settle pacing and rhythm.</p><h3>The retirement rule for 7:42–7:20</h3><p class="quiet">When the corridor becomes reliably low-aerobic in comparable conditions, with relaxed perceived effort, stable control and acceptable recovery, we can stop tracking it as a special <em>speed</em> milestone and retain it under ordinary aerobic mileage. There is no preset number of minutes at which this happens.</p>
 </section>
 </main>
 <footer class="foot">Part of <a href="/labs/rebuilt-athlete/">FORM Study 002 · The Rebuilt Athlete</a>. Study records are observational, not new prescriptions. Garmin and athlete-reported data are identified separately. Science context: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11052887/">running-economy training meta-analysis (2024)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11889008/">durability and lactate-threshold study (2025)</a>. The underlying data are incomplete; figures are revised when original activity files arrive.</footer>
@@ -115,6 +127,13 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 (function(){
 "use strict";
 var reps=[
+{date:"Oct 22",type:"track22",pace:360,seconds:359.548},
+{date:"Oct 22",type:"track22",pace:347.5,seconds:172.741},
+{date:"Oct 22",type:"track22",pace:356.6,seconds:177.231},
+{date:"Oct 22",type:"track22",pace:331.1,seconds:82.290},
+{date:"Oct 22",type:"track22",pace:330.2,seconds:82.056},
+{date:"Oct 22",type:"track22",pace:331.6,seconds:82.423},
+{date:"Oct 22",type:"track22",pace:349,seconds:86.740},
 {date:"Oct 18",type:"track",pace:357,seconds:92.2},
 {date:"Oct 18",type:"track",pace:360,seconds:91.6},
 {date:"Oct 18",type:"track",pace:361,seconds:92.4},
@@ -143,9 +162,9 @@ var observations=[
 ];
 function fmt(s){var m=Math.floor(s/60),ss=s-m*60;return m+":"+ss.toFixed(1).padStart(4,"0")}
 function init(){document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",String(t===b))});document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!==b.dataset.panel})})});document.querySelectorAll("[data-scope]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-scope]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});renderBars(b.dataset.scope)})});document.querySelectorAll("[data-metric]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-metric]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});drawMechanics(b.dataset.metric)})});renderBars("all");drawMechanics("gct");var initial=window.location.hash.slice(1);if(["speed","aerobic","mechanics","durability"].includes(initial)){var button=document.querySelector(".tab[data-panel=\""+initial+"\"]");if(button){button.click()}}}
-function renderBars(scope){var entries=reps.filter(function(d){return scope==="all"||(scope==="track"&&d.type==="track")||(scope==="road"&&d.type==="road")}),values=bands.map(function(b){return entries.filter(function(r){return r.pace>=b.lo&&r.pace<=b.hi}).reduce(function(s,v){return s+v.seconds},0)}),max=Math.max(60,...values);var el=document.getElementById("exposure-bars");el.textContent="";
+function renderBars(scope){var entries=reps.filter(function(d){return scope==="all"||(scope==="track22"&&d.type==="track22")||(scope==="track"&&d.type==="track")||(scope==="road"&&d.type==="road")}),values=bands.map(function(b){return entries.filter(function(r){return r.pace>=b.lo&&r.pace<=b.hi}).reduce(function(s,v){return s+v.seconds},0)}),max=Math.max(60,...values);var el=document.getElementById("exposure-bars");el.textContent="";
 bands.forEach(function(b,i){var v=values[i],row=document.createElement("div");row.className="barrow";var caption=document.createElement("span");caption.className="range";caption.textContent=b.label;var rail=document.createElement("div");rail.className="rail";var fill=document.createElement("span");fill.className="fill"+(b.lo<360?" five":"");fill.style.width=String(v?Math.max(0.5,v/max*100):0)+"%";rail.append(fill);var val=document.createElement("span");val.className="val";val.textContent=v?fmt(v):"—";row.append(caption,rail,val);el.append(row)});
-document.getElementById("max-axis").textContent=Math.ceil(max/60)+"m";document.getElementById("scope-note").textContent=scope==="track"?"Only October 18 timed work reps, sorted by their Garmin lap-average pace. Recovery is excluded.":scope==="road"?"Known full-mile laps from October 10, October 13 and October 17. Do not confuse their average-pace duration with exact time at that instantaneous speed.": "All documented complete-mile averages and October 18 timed repetitions. This is an incomplete observed subset of the block, not total training time in these pace bins.";
+document.getElementById("max-axis").textContent=Math.ceil(max/60)+"m";document.getElementById("scope-note").textContent=scope==="track22"?"October 22 FIT: seven timed work laps grouped by lap-average pace, recovery excluded. See sample estimates below.":scope==="track"?"Only October 18 timed work reps, sorted by their Garmin lap-average pace. Recovery is excluded.":scope==="road"?"Known full-mile laps from October 10, October 13 and October 17. Do not confuse their average-pace duration with exact time at that instantaneous speed.": "Selected complete-mile average segments and October 18 plus October 22 timed reps. This is not total raw pace residency across every run.";
 }
 function drawMechanics(metric){var svg=document.getElementById("mechanics-plot");while(svg.firstChild)svg.removeChild(svg.firstChild);var NS="http://www.w3.org/2000/svg";
 function node(tag,attrs,txt){var el=document.createElementNS(NS,tag);Object.keys(attrs).forEach(function(k){el.setAttribute(k,attrs[k])});if(txt!==undefined)el.textContent=txt;svg.append(el);return el}
