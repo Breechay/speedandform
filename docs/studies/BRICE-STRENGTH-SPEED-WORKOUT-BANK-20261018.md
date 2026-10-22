@@ -2,6 +2,24 @@
 
 **Draft for athlete review · October 18, 2026. Not an assigned FORM Athlete System workout.** This document is a bank of executable options to reconcile with the existing 2026-10-13 Rebuilt Athlete running block and the current FORGE strength assignment; it does not rewrite backend prescriptions, Garmin workouts, scheduled sessions or live website content.
 
+## October 22 · COACH DECISION — supersedes the unassigned weekly strength menu below
+
+**New owning Forge blueprint:** [Brice · Bridge Season / Muscle Beach](https://github.com/Breechay/FORM-iOS/blob/main/docs/coaching/BRICE_MUSCLE_BEACH_BRIDGE_PHASE01_20261022.md), native program ID `breechay_muscle_beach_bridge_v1` (new version, not an overwrite of Breechay Sculpt Phase 2).
+
+**Weekly order:** **Tuesday Upper Detail** (back, rear delts, lateral delts, arms, antirotation); **Friday morning THE FRAME** (Muscle Beach pull-ups + barbell upper body); **Sunday morning THE CHASSIS** (barbell front squats, RDL, glute hip thrust, supported split squats, restrained calf, carry). Monday iRUN is the potentially hard group workout, Wednesday easy, Thursday FORM Track speed, Saturday easy aerobic. No double full-upper Saturday session, no heavy Monday hinge, no Thursday lifting. Actual iRUN workout requires its own coach review, since the independently authored 40-minute easy session is only the fallback.
+
+**This Friday, October 23:** The Frame, controlled (~40–50 min). Pull-ups 3×4–8; incline barbell press 3×6–8; strict pronated barbell row 2×6–8; military press 2×6–8; dumbbell rear-delt raise 2×12–20; shrugs 2×10–15; hanging knee raise 2×8–12.
+
+**This Sunday, October 25:** The Chassis, low-to-moderate load (~35–50 min): front squat 3×5, barbell RDL 2×6–8, hip thrust 2×8–10, supported split squat 2×6–8/side, standing calf raise 1×10–12, suitcase carry 2×30 sec/side. **Three reps in reserve on legs**; no obligatory 5×5, heavy deadlift or Olympic cleans. Sunday-before-Monday iRUN is the main paired recovery check.
+
+**Tuesday:** Upper Detail: chest-supported row 2×8–12, lateral raises 2×12–20, rear-delt flies 3×12–20, incline curls 2×10–15, DB triceps extensions 2×10–15, Pallof press 2×10–12 per side.
+
+**Native status:** This is the new coach-approved programming design. Native source must be merged, built and made accessible to Brice's Forge identity before the new program appears as a selectable/assigned Week; the current installed Forge selection and completed workouts are not verified. The dated FORM running sessions remain as authored. Do not mark a run, lift or clinical clearance completed from the decision. Older strength bank entries remain as research history.
+
+**Cross-app rule:** Every material running or Forge change must review the other app's seven-day workload and record the coach disposition; see [paired-review standard](https://github.com/Breechay/FORM-iOS/blob/main/docs/FORM_FORGE_COUPLED_TRAINING_REVIEW_20261022.md).
+
+---
+
 ## Latest athlete decision · October 18, 11 AM Miami time
 
 This **supersedes the provisional hard-run week below** for current planning: Brice may skip iRun on Monday October 19, is not committing to a social workout or fast running, and wants to see how his lower limbs recover after 37.52 miles and the October 18 track session. The first few days should offer **rest, a reduced-load day, easy treadmill running by time and genuinely low HR, or modest upper-body strength**, based on his actual recovery. No mileage debt, no forced treadmill double, and no automatic speed exposure; ease is a legitimate training choice. Track and heavier lower strength return only after a fresh recovery review. The user said "may" and "maybe": do not convert those into a definitive cancellation of all sessions or a new strict scheduled plan. iRun is an optional social opportunity, not the week's committed key workout.
