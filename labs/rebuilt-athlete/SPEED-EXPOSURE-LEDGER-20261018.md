@@ -86,3 +86,51 @@ The user identifies the October 10 **run with Matt, while Adrian followed on a b
 The graphical study workbench now lives at [Speed Exposure](speed-exposure/index.html). Its views cover documented duration in 15-second **lap-average pace** bins, aerobic cost and Garmin VO₂ max estimate, stride length/ground-contact time alongside pace, and durability with continuous versus repeated exposures. It does not pretend to reconstruct FIT speed histograms, physiological lactate thresholds or same-day tissue adaptation from current incomplete data.
 
 **Research context:** A 2024 systematic review and meta-analysis supports some improvements in running economy from high-load strength training and plyometrics, with speed-dependent effects (https://pmc.ncbi.nlm.nih.gov/articles/PMC11052887/). A 2025 recreational-runner study found LT1 running speed deteriorated after 90 min of low-intensity running, supporting durability as distinct from rested fitness (https://pmc.ncbi.nlm.nih.gov/articles/PMC11889008/). Neither study establishes a universal adaptation dose such as 30 cumulative minutes at a particular pace. The dashboard does not override FORM Athlete System prescriptions or medical return-to-running guidance.
+
+
+## October 22 · Original Garmin FIT, Descent Into Ruin
+
+**Source:** Athlete-uploaded ZIP on October 22, Garmin activity 24812863860_ACTIVITY.fit. This entry is a selected study observation, not a submitted FORM completion or a new live training prescription.
+
+### Recorded fast work, recoveries excluded
+
+| Rep | Duration | Distance | Lap average |
+| --- | ---: | ---: | ---: |
+| Mile | 5:59.548 | 1609.34 m | 5:59.5/mi |
+| 800m 1 | 2:52.741 | 800 m | 5:47.5/mi |
+| 800m 2 | 2:57.231 | 800 m | 5:56.6/mi |
+| 400m 1 | 1:22.290 | 400 m | 5:31.1/mi |
+| 400m 2 | 1:22.056 | 400 m | 5:30.2/mi |
+| 400m 3 | 1:22.423 | 400 m | 5:31.6/mi |
+| 400m 4 | 1:26.740 | 400 m | 5:49.0/mi |
+| **Total work** | **17:23.029** | **4809.34 m (2.99 mi)** | **5:49/mi** |
+
+### Estimated time within instantaneous speed bands
+
+This is a **different measurement** from categorizing whole reps by their average pace. Garmin FIT enhanced-speed records were restricted to the seven work-lap boundaries. Within each lap, a centered rolling median of eleven consecutive speed samples (approximately 11 seconds for one-second records) was applied. Each result contributes elapsed time to the next sample, capped by that work lap's end. Recovery/pause laps were excluded. Pace transitions, GPS noise and choice of smoothing window make these estimates approximate.
+
+| Smoothed speed sample band | Estimated time |
+| --- | ---: |
+| Faster than 5:30/mi | 2:04 |
+| 5:30–5:44/mi | 3:51 |
+| 5:45–5:59/mi | 4:54 |
+| 6:00–6:14/mi | 5:33 |
+| 6:15/mi or slower | 1:01 |
+| **Total sampled work time** | **17:23** |
+
+Estimated sampled time **faster than 6:00/mi: 10:49**. These results do not imply 10:49 of uninterrupted sub-6:00 running. Work-lap averages are independently calculated from elapsed time and distance, and are the more robust measure of sustained rep execution.
+
+### Athlete explanation and comparison to prior runs
+
+- The first warm-up stride felt like grinding or forcing the pace, around 7:00/mi. Subsequent strides loosened, and the main workout felt controlled and smooth, despite a recorded session HR maximum of 185 bpm.
+- The fourth 400m was affected by a late start and trying to film with sweaty hands. This explains the 1:26.7 split in the athlete's account; it must **not** be labeled a late-workout fitness fade.
+- Quinn, Jacob and Kevin were present. Group rhythm assisted pacing. The social environment is context, not proof of lower physiological load.
+- Oct 17: seven outdoor miles, 55:21 (7:54/mi overall), including a 7:40 full-mile average. Exact speed-bin time absent.
+- Oct 18: 60:31 aerobic treadmill, average HR 113; 17:04.9 of separately timed faster track work from verified screenshots. Original speed trace absent here.
+- Oct 19: iRUN group intervals reported; full trace not available in this ledger.
+- Oct 21: 6.05 miles in 50:07 (8:17/mi) after strength; no original detailed trace available here.
+- Oct 22: 17:23 of fast work in broken track repetitions at 5:49/mi average, excluding recoveries. This is not three uninterrupted miles at 5:49.
+- Recovery-first decision: no running on Oct 23; easy Alo social 5K Oct 24, with future Monday iRUN and Thursday FORM Track as preferred, coach-reviewed quality opportunities rather than automatic demands.
+
+**Limit:** Faster rep time and a good mechanical feeling do not prove improvement in running economy, tibial load tolerance, lower cardiac cost at matched pace, or readiness for an automatic mileage increase. Other recent runs remain summary/lap-level evidence unless their original recordings are supplied.
+
