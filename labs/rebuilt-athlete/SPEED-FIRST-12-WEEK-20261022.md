@@ -38,10 +38,10 @@ Mileage bands are **planning envelopes, not minimums or weekly targets**. A 16�
 
 | Day | Role | Training example (private coach planning, not an app prescription) |
 | --- | --- | --- |
-| **Monday evening · iRUN** | Main group speed development for most weeks | Intervals chosen for this particular week; stay in your own effort/pacing envelope rather than racing faster training partners |
+| **Monday evening · iRUN** | Shared group outing, mainly easy initially | Structured easy time and a few relaxed strides. Any future speed sessions are separately coach-authorized, not inherited from a group workout |
 | Tuesday | Strength and/or easy aerobic support | Upper strength emphasis; optional 30–45 min easy HR-guided run |
 | Wednesday | Recovery / short easy / lower-body support | Yoga and mobility; lower-body lifting planned so Thursday track mechanics are not compromised |
-| **Thursday morning · FORM Track** | Group practice, technical rhythm and sometimes aerobic support | Often a genuinely easy run with a few relaxed strides, not automatically a second hard workout |
+| **Thursday morning · FORM Track** | Weekly quality-session anchor | Short-to-long speed-development sequence, one primary hard run in the week. Different targets for each athlete sharing the same track |
 | Friday | Strength / no run | Upper-body strength or mobility |
 | Saturday | Social easy / aerobic extension | Comfortable 5–8 miles as part of the week's real load; no forced long-run target |
 | Sunday | Flexible recovery and strength | Planned lower-body training or rest, distributed to avoid soreness before Monday quality |
@@ -57,24 +57,24 @@ The goal is roughly **3–5 runs each week**, normally **one genuine high-intens
 
 ## The 12-week work map
 
-**Status of all rows below:** Coached design references for the study. Later workout details require actual week-by-week coach authorization in the Athlete System. “Group easy” is an intentional session, not a failed speed workout. Week 1's Thursday session is a proposed standard, not a compulsory test.
+**Status:** Week 1 is published in Brice's FORM Athlete System as of October 22, subject to coach-owned subsequent review. Weeks 2–12 are study reference sessions awaiting separate coach authorization. “Group easy” is an intentional session, not a failed speed workout. The Thursday work is a routine anchor, not permission to run hard on tired or symptomatic legs.
 
-| Week | Dates | Monday iRUN / prime slot | Thursday FORM Track / secondary slot | Review |
+| Week | Dates | Monday iRUN · Group presence | Thursday FORM Track · Session anchor | Review |
 | --- | --- | --- | --- | --- |
-| **1** | Oct 26–Nov 1 | Group easy 35–45 min + 4 × 15 sec relaxed strides | **The Fifth Circle:** 5 × 600 m in 2:05–2:08 (2:00 jog recovery), then 4 × 200 m in 40–41 sec (200 m walk/jog). With 15–20 min warm-up and 10–15 min cooldown | Monitor response to Oct 22 speed and Oct 24 Alo 5K before confirming |
-| **2** | Nov 2–8 | 8 × 200 m relaxed in about 40–43 sec, full 200 m walk/jog | 35–45 min easy group + 4 short relaxed strides | Speed produced without forcing |
-| **3** | Nov 9–15 | 6 × 400 m in about 82–86 sec, 2:00 easy recovery | 35–45 min truly easy in the group | Consistency over the six reps |
-| **4** | Nov 16–22 | 6 × 200 m in about 42–44 sec with full easy recovery | 30–40 min easy; absorb | **Gate 1:** mechanics, lower-leg response, consistency; no automatic pace upgrade |
-| **5** | Nov 23–29 | 4 × 600 m in about 2:05–2:10, 2:30 recovery | 35–45 min easy + 4 × 15 sec strides | Repeat fast rhythm in longer reps |
-| **6** | Nov 30–Dec 6 | 4 × 800 m in about 2:54–3:00, 3:00 recovery | 35–45 min easy group practice | Cost across repetitions |
-| **7** | Dec 7–13 | 5 × 800 m in about 2:54–3:00, 2:30–3:00 recovery | 2 × 8 min controlled steady, 3:00 jog; RPE no higher than about 5–6 | First meaningful longer aerobic support |
-| **8** | Dec 14–20 | 5 × 400 m in about 82–86 sec, 2:00 easy recovery | 30–40 min easy | **Gate 2:** repeatability, HR by matched pace, next-day tolerance |
-| **9** | Dec 21–27 | 4 × 800 m in about 2:50–2:56, 3:00 easy recovery | 35–45 min easy with relaxed strides | Bridge toward 5K-specific endurance |
-| **10** | Dec 28–Jan 3 | 3 × 1000 m in about 3:38–3:45, 3:00 recovery | 2 × 10 min controlled steady, 3:00 jog; conversationally controlled effort | Holding form over longer repetitions |
-| **11** | Jan 4–10 | 4 × 1000 m in about 3:38–3:45, 3:00 recovery | 35–45 min genuinely easy group | Repeatability without accumulated grinding |
-| **12** | Jan 11–17 | 6 × 200 m in about 40–42 sec with full recovery | Controlled 1600 m reference effort, even paced and not all-out, within a normal track warm-up/cooldown | **Gate 3:** compare mechanics, internal cost, even pacing and bone response; decide next study block |
+| **1** | Oct 26–Nov 1 | 40 min easy together + 4 × 15 sec strides | **The Fifth Circle:** 5 × 600 m in 2:05–2:08 (2:00 easy jog), then 4 × 200 m in 40–41 sec (200 m walk/jog). Warm up 20 min and cool down 15 min | First week confirmed in FORM on Oct 22; monitor actual lower-leg response before track |
+| **2** | Nov 2–8 | 35–45 min easy group run | **8 × 200 m relaxed**, approximately 40–43 sec with full 200 m walk/jog recovery | Speed without pressing for a faster final rep |
+| **3** | Nov 9–15 | 35–45 min easy group run | **5 × 400 m** in roughly 82–86 sec with 2:00 easy jog | Reproduce the first rep without grinding |
+| **4** | Nov 16–22 | 30–40 min easy group | **6 × 200 m** relaxed in roughly 42–44 sec with generous easy recovery | **Gate 1:** deload and mechanics; no automatic pace upgrade |
+| **5** | Nov 23–29 | 40 min easy group with relaxed strides | **4 × 600 m** in roughly 2:05–2:10 with 2:30 easy recovery | Repeat longer, smooth efforts |
+| **6** | Nov 30–Dec 6 | 35–45 min easy group | **4 × 800 m** in roughly 2:54–3:00 with 3:00 recovery | Last rep mechanics and next-day response |
+| **7** | Dec 7–13 | 35–45 min easy group, optional separate aerobic support reviewed by coach | **5 × 800 m** in roughly 2:54–3:00 with 2:30–3:00 recovery | Speed endurance without two hard days |
+| **8** | Dec 14–20 | 30–40 min easy group | **5 × 400 m** in roughly 82–86 sec with 2:00 recovery | **Gate 2:** review quality, cost and durability |
+| **9** | Dec 21–27 | 40 min easy group | **4 × 800 m** in roughly 2:50–2:56 with 3:00 recovery | Bridge toward longer 5K-supporting efforts |
+| **10** | Dec 28–Jan 3 | 35–45 min easy group | **3 × 1000 m** in roughly 3:38–3:45 with 3:00 recovery | Longer intervals with relaxed control |
+| **11** | Jan 4–10 | 35–45 min easy group | **4 × 1000 m** in roughly 3:38–3:45 with 3:00 recovery | Repeatability at similar cost |
+| **12** | Jan 11–17 | 35 min easy group | Controlled, evenly paced **1600 m reference**, not an all-out mile race; warm up and cool down normally | **Gate 3:** choose next 5K-focused development cycle |
 
-The paces are **provisional reference ranges**, not guarantees or pace tests that must be completed regardless of symptoms. They are intentionally slower than the eventual 74.6-sec mile and 79.6-sec 5K 400 m race demands. The October 22 short 400 m performances are evidence that brief speed exists; the greater need is repeatability and carrying a coherent movement pattern for longer. Do not turn each Monday into a competition with Quinn and Jacob.
+All Monday and Thursday rows after Week 1 are **study reference sessions awaiting weekly coach review**, not athlete-facing alternative workouts or automatic live FORM assignments. If the group plans change, the coach publishes one real prescription for that date. **The group is shared; the pace belongs to each athlete.** Friday/Saturday/Sunday mileage and any lower-body strength need their own athlete-owned allocation. Kevin is marathon-completion oriented: his long aerobic outings require a separate foundation and are not copied from Brice or Tinius.
 
 ### Volume distribution examples, not prescriptions
 
