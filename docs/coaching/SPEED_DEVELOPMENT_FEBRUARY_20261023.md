@@ -15,33 +15,33 @@ For **Brice, Tinius, Sam Reyes and David Morales**, January 31 is a milestone, n
 | W16 · Feb 4 | **4×60m + 8×200m** | 60m progressive, walk back; 200m 39–41s per rep, 2:00 recovery; WU20 · CD15 | Feb 6 **10 mi easy** | **16 km easy** |
 | W17 · Feb 11 | **2×15 min** | Controlled threshold RPE 6–7; 3:00 easy recovery; WU20 · CD15 | Feb 13 **10 mi easy** | **16 km easy** |
 | W18 · Feb 18 | **4×60m + 6×400m** | 60m progressive, walk back; 400m 80–84s per rep, 2:00 recovery; WU20 · CD15 | Feb 20 **12 mi easy** | **19.3 km easy** |
-| W19 · Feb 25 | **1 mi** | Timed even-effort mile benchmark; record time, four 400m splits, RPE; WU20 · CD15 | Feb 27 **8 mi easy** | **12.9 km easy** |
+| W19 · Feb 25 | **1600m** | Timed even-effort 1600m benchmark; record time, four 400m splits, RPE; WU20 · CD15 | Feb 27 **8 mi easy** | **12.9 km easy** |
 
 Mon provisional: **40 min + 4 strides** (replace with actual coached iRUN when posted); Wed **35 min easy**; Thurs same exact shared prescription and targets; Sat RPE 2–3, no fast finish, 8:00/mi or slower (Tinius 4:58/km or slower). Track efforts stay 60m / 200m / 400m for everybody. Neither WU nor CD double-counts the main prescribed session.
 
-**Why these four:** W16 emphasizes fast mechanics in short repeats with ample recovery. W17 keeps threshold endurance present. W18 extends speed into repeated 400m while Saturday reaches one 12-mile aerobic outing after two tens. W19 measures an actual continuous mile and cuts Saturday mileage for recovery. The 60m exposures are controlled progressive accelerations, **not all-out 60m sprints**.
+**Why these four:** W16 emphasizes fast mechanics in short repeats with ample recovery. W17 keeps threshold endurance present. W18 extends speed into repeated 400m while Saturday reaches one 12-mile aerobic outing after two tens. W19 measures a continuous 1600m track effort and cuts Saturday mileage for recovery. The 60m exposures are controlled progressive accelerations, **not all-out 60m sprints**.
 
 ## Long-run safety and total-week coherence
 
 Twelve miles in a week with only four runs can make a disproportionate share of total running. That does not invalidate Brice's preference for occasional 12–18mi outings, but **old healthy long-run capacity is not a current weekly-volume baseline**, especially after the April tibial fracture. Before publishing W18, inspect completed four-week mileage, preceding 10mi tolerance, the actual iRUN Monday dose, Thursday quality, symptoms after impact and Forge leg loading. If a change is needed, the coach authors a **new single definite Saturday session**; do not place conditional recovery language on the athlete Week page.
 
-This four-week extension is a proposal, not proof each athlete is ready for 12 miles or a hard mile benchmark. The 8-mile final Saturday follows the Thursday assessment and is not a racing taper for an unregistered event.
+This four-week extension is a proposal, not proof each athlete is ready for 12 miles or a hard 1600m benchmark. The 8-mile final Saturday follows the Thursday 1600m assessment and is not a racing taper for an unregistered event.
 
 ## February gate and likely longer development horizon
 
-- **Track measures:** completed repeat splits, how repeatable they are, and end-of-session effort in matching W5/W11 400m sessions; February 6×400 form and cost; February 25 mile time, 400m pacing and RPE.
+- **Track measures:** completed repeat splits, how repeatable they are, and end-of-session effort in matching W5/W11 400m sessions; February 6×400 form and cost; February 25 1600m time, 400m pacing and RPE.
 - **Durability:** completed Saturday mileage and response over the next 24–48 hours; effort and technique on a comparable route and surface; only compare stride length/contact across matched paces/conditions.
-- **Reality check:** sub-17:00 for 5K requires about **5:28/mi** sustained (roughly 81.6s/400m); sub-5:00 mile requires about **74.8s/400m** sustained. Intervals near those splits **do not** prove the race is attainable yet.
+- **Reality check:** sub-17:00 for 5K requires about **5:28/mi** sustained (roughly 81.6s/400m); sub-5:00 mile requires about **74.8s/400m** sustained. Intervals near those splits **do not** prove the race is attainable yet. The 1600m track distance is 9.34m shorter than an official mile (1609.34m); report it as a 1600m benchmark, never as a mile PB.
 - **Next decision:** February 28 is a coaching gate. Consider a **12–16-week March–June 2027** mile/5K-specific block after analyzing the benchmark and the intact weekly load. Progress may take longer; no finish time is promised by February.
 
 ## Dossier copy · proposed, not published
 
 | Athlete | Goal / headline | Focus (plain athlete-facing English) | Next gate |
 | --- | --- | --- | --- |
-| Brice | Speed development · sub-5 mile and sub-17 5K are personal ambitions | **Build faster mechanics, then hold that speed longer. Keep endurance with easy long runs.** | Feb 25 · 1-mile benchmark |
-| Tinius | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1-mile benchmark |
-| Sam | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1-mile benchmark |
-| David | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1-mile benchmark |
+| Brice | Speed development · sub-5 mile and sub-17 5K are personal ambitions | **Build faster mechanics, then hold that speed longer. Keep endurance with easy long runs.** | Feb 25 · 1600m benchmark |
+| Tinius | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
+| Sam | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
+| David | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
 | Kevin | First marathon · completion | **Build Saturday long runs for your first marathon. Thursday track adds strength and variety.** | Jan 16 · 16-mi long run; Jan 31 event status requires verification |
 
 The currently active block goals for David and Tinius incorrectly copy Brice's *sub-5 mile · 16:35 5K* label. Do not interpret that as their individual goal. Sam and David currently have no dossier focus; Kevin also has none. Replace these by signed-in coach-owned focus/block updates and verify each athlete feed. Kevin's **Marathon endurance** type label remains appropriate beginner language. On the speed cohort, name program by agreed identity, but session labels remain plain numerical instructions.
