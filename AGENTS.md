@@ -1,5 +1,7 @@
 # Start here: Speed & Form
 
+> **Athlete plan release gate (Oct 23):** Before calling a training change live, follow [the athlete-facing quality standard](docs/coaching/FORM_ATHLETE_RELEASE_QUALITY_STANDARD_2026-10-23.md), run [the publication SQL audit](docs/coaching/FORM_ATHLETE_RELEASE_QA_2026-10-23.sql) against the live active blocks, confirm database pace/interval constraints and read back the exact latest prescription. "Zero findings" covers the named audit categories only; signed-in phone QA and Apple distribution remain separate.
+
 > **Athlete-facing words and privacy (Oct 23, 2026):** FORM Week/Dossier/website athlete copy uses plain English. No private `coach_note`, coach gates, internal recovery decisions, intake/admin history, `HM durability`, `durable 10K`, or copied race time goals on athlete pages. Never publish a personal performance target merely because the athlete joins a shared Thursday workout. The race-optional cohort program is `Speed Development`: practice short fast running, keep most miles easy, and gradually hold speed longer. Thursday Week rows must expose sets, rep distance, splits and recovery without needing a tap. Private analysis stays in private coach records. The server athlete feed strips `coach_note`, and native Week must not render it even if sent. Data published and an App Store build released are separate facts.
 
 ## FORM ↔ Forge paired training review
