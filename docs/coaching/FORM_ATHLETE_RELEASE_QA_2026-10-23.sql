@@ -53,6 +53,13 @@ with current_sessions as (
   from current_sessions s
   where s.title ~* '(HM durability|durable 10K|conditional A.goal|5K development)'
   union all
+  select 'COPY','WEEK_TITLE_COMMENTARY',s.slug,s.scheduled_on,s.title,
+         'Title should name the prescribed work, not solo/controlled or coaching-phase commentary'
+  from current_sessions s
+  where s.title ~* '(^|[^[:alnum:]])(solo|controlled)([^[:alnum:]]|$)'
+     or s.title ~* '(if[[:space:]]+(recovered|absorbed|ready)|or[[:space:]]+rest)'
+     or s.title ~* '[·—–][[:space:]]*[^·—–]*(goal[- ]pace[[:space:]]+(repeat|maintenance|rhythm)|race[- ]goal[[:space:]]+rhythm|repeatability|controlled[[:space:]]+rhythm)'
+  union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
          'Track workout needs an authored Week preview with sets and rests'
   from current_sessions s where (s.title ilike 'THE FIFTH CIRCLE%' or s.title ilike 'FORM Track%')

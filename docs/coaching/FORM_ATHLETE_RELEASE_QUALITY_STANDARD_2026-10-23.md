@@ -12,6 +12,19 @@ A runner should understand the day without knowing coaching terminology:
 
 Do not show coach notes, administrative change history, uncertainty about intake, recovery forks, labels like "HM durability," or another athlete's goals. Speed Development is a race-optional program for short fast running, mostly easy running, then holding speed longer.
 
+## Week title law · October 23, 2026
+Applies to every athlete, including individualized Race Pace Durability assignments and other FORM programs.
+
+**The title is the prescription, not a coach's commentary.** Name the actual distance, duration, repeats and session type. The Week row must also expose any prescribed pace, rep time and recovery from typed components or a concise authored preview.
+
+- Keep: `4 mi continuous at goal pace`, `20 min continuous`, `3 × 1 mi at race pace`, `13 mi easy`.
+- Reject title suffixes such as `solo`, `controlled`, `goal-pace maintenance`, `solo goal-pace repeat`, `controlled rhythm`, `controlled repeatability` or `race-goal rhythm`. These describe coaching intent or circumstances rather than the action.
+- Never put `if recovered`, `if absorbed`, `if ready`, `or rest` or alternate-session forks in the title.
+- Keep a genuinely prescribed logistical instruction (such as the order of unpaced and partner-paced segments), safety cap or technique cue in the session details when necessary. Do not delete it from the prescription just to satisfy title style.
+- Keep private rationale and coaching review out of athlete-facing Week copy. Do not replace a precise session with a generic label or change distance, pace, structure, recovery, date or progression during a copy pass.
+
+The release SQL audit reports familiar commentary patterns as `COPY / WEEK_TITLE_COMMENTARY`. A COPY finding must be resolved in the owning versioned session before publishing. New authors and automation should construct clean titles at source; the client must not silently sanitize titles while leaving stale data behind.
+
 ## The failure that changed this standard
 Elijah's October 22, 2026 session showed "5 mi easy" while a previous version still contained 6 × 1 minute at 5:55–6:05/mi with 90 seconds recovery. The app displayed the pace faithfully but did not check that it contradicted the easy label. It was corrected with version 4: one continuous 5 mi easy run, 8:00/mi or slower. Earlier versions and any historical evidence remain intact.
 
