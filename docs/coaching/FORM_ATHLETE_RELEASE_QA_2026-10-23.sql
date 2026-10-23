@@ -24,6 +24,13 @@ with current_sessions as (
     and not (c.duration_seconds is not null and c.duration_seconds<=30
              and coalesce(c.repeat_count,1)<=10 and coalesce(c.recovery_seconds,0)>=30)
   union all
+  select 'BLOCK','EASY_LONG_REPEATS',s.slug,s.scheduled_on,s.title,
+         'Repeated fast-length pickups are labeled an easy run'
+  from current_sessions s join public.planned_session_components c on c.version_id=s.version_id
+  where s.title ~* '(^|[^[:alnum:]])easy([^[:alnum:]]|$)' and c.role='work'
+    and c.shape='repetitions' and coalesce(c.repeat_count,0)>=3
+    and coalesce(c.duration_seconds,0)>=45 and coalesce(c.recovery_seconds,0)>0
+  union all
   select 'BLOCK','EASY_FAST_HEADER',s.slug,s.scheduled_on,s.title,
          'Session header pace conflicts with easy-day floor'
   from current_sessions s
