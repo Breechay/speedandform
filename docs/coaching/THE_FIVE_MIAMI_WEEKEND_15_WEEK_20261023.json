@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-23.2-proposed",
+  "version": "2026-10-23.3-proposed",
   "name": "THE FIVE · FORM Thursday + iRUN · Miami Weekend",
   "start": "2026-10-19",
   "end": "2027-01-31",
@@ -16,24 +16,34 @@
     "david",
     "kevin"
   ],
-  "protocol": "Group Monday iRUN is the recurring anchor. Until each Monday group workout is posted, the definitive athlete-facing prescription is 40 min easy plus 4 strides (30 min easy in last 2 weeks). The coach replaces it with a specific group workout version before participation, instead of stacking the two. Thursday quality alternates speed and progressively longer threshold. Athletes share structure but not inferred individual threshold pace. Individual weekend aerobic: Kevin marathon-specific, four others 5K-focused; no invented Miami Half entries.",
-  "pacing": "Easy 8:00/mi or slower for Brice, Sam, David, Kevin; Tinius 4:58/km or slower. Threshold controlled 6/10 RPE, short phrases; no universal pace implied. Speed repetitions RPE 6-7, not forced fixed race splits.",
+  "protocol": "Priorities: mile speed first, 5K speed endurance second, 10K durability third. All five athletes share identical Thursday work/splits, with Week14 Kevin taper exception. Six threshold Thursdays unchanged. Six future speed Thursdays add small controlled acceleration exposures and specific repeat targets; Week5 and Week11 5×400m are a comparable benchmark with the same 2:00 recovery. Monday iRUN is coach-reviewed against each Thursday and Forge; no automatic stacking.",
+  "pacing": "Easy 8:00/mi or slower for Brice, Sam, David, Kevin; 4:58/km or slower for Tinius. Threshold effort RPE 6–7 where no numeric target exists. Thursday speed targets are shared coach-authored starting bands anchored to October 29 600m/200m prescription, not inferred personal PBs. Track reps display in m for everyone; Tinius and Simon use km outside track reps.",
   "kevinSafety": "Six miles published on October 31 is not evidence of prior long-run capacity. The proposed progression peaks at 16 miles on January 16 (15 days before race day), then tapers to 8 miles January 23 and 2 miles January 30. This pattern remains provisional until Kevin's running history, injury status, fueling practice and adaptation are reviewed. A 16-mile long run by itself does not establish readiness for a first 26.2-mile marathon; the race-day assignment stays a coach-held draft until evidence and actual registration support release.",
-  "week2": "Preserve the already published Fifth Circle on October 29, Week 2 easy Monday/Wednesday/Saturday versions, portraits and completions.",
+  "week2": "Preserve the October 29 5×600m (2:05–2:08) + 4×200m (40–41s) prescription and existing completions; athlete-facing label should be 5×600m + 4×200m without THE FIFTH CIRCLE, pending copy-only view fix.",
   "weeks": [
     {
       "week": 3,
       "kind": "speed",
-      "title": "8 × 200m · relaxed turnover",
+      "title": "4×60m + 6×200m",
       "parts": [
         {
-          "n": 8,
-          "d": 0.2,
-          "rec": 90,
+          "n": 4,
+          "d": 0.06,
+          "rec": 120,
           "rpe": 6
+        },
+        {
+          "n": 6,
+          "d": 0.2,
+          "rec": 120,
+          "rpe": 7,
+          "targetSeconds": [
+            40,
+            42
+          ]
         }
       ],
-      "work": "8 × 200m at controlled fast rhythm; 90 sec walk/jog between reps.",
+      "work": "20 min WU. 4×60m progressive accelerations with full walk-back recovery. 6×200m in 40–42 sec with 2:00 walk/jog recovery. 15 min CD.",
       "start": "2026-11-02",
       "monMinutes": 40,
       "monStrides": 4,
@@ -45,7 +55,7 @@
     {
       "week": 4,
       "kind": "threshold",
-      "title": "Threshold 01 · 2 × 10 min",
+      "title": "2×10 min",
       "parts": [
         {
           "n": 2,
@@ -66,16 +76,26 @@
     {
       "week": 5,
       "kind": "speed",
-      "title": "5 × 400m · even rhythm",
+      "title": "4×60m + 5×400m",
       "parts": [
+        {
+          "n": 4,
+          "d": 0.06,
+          "rec": 120,
+          "rpe": 6
+        },
         {
           "n": 5,
           "d": 0.4,
           "rec": 120,
-          "rpe": 6
+          "rpe": 7,
+          "targetSeconds": [
+            82,
+            86
+          ]
         }
       ],
-      "work": "5 × 400m smooth and repeatable; 2 min easy walk/jog between.",
+      "work": "20 min WU. 4×60m progressive accelerations with full walk-back recovery. 5×400m in 82–86 sec with 2:00 walk/jog recovery. 15 min CD.",
       "start": "2026-11-16",
       "monMinutes": 40,
       "monStrides": 4,
@@ -87,7 +107,7 @@
     {
       "week": 6,
       "kind": "threshold",
-      "title": "Threshold 02 · 2 × 12 min",
+      "title": "2×12 min",
       "parts": [
         {
           "n": 2,
@@ -108,16 +128,26 @@
     {
       "week": 7,
       "kind": "speed",
-      "title": "6 × 600m · controlled repeatability",
+      "title": "4×60m + 6×600m",
       "parts": [
+        {
+          "n": 4,
+          "d": 0.06,
+          "rec": 120,
+          "rpe": 6
+        },
         {
           "n": 6,
           "d": 0.6,
           "rec": 150,
-          "rpe": 6
+          "rpe": 7,
+          "targetSeconds": [
+            125,
+            128
+          ]
         }
       ],
-      "work": "6 × 600m smooth 5K-development repetitions; 2:30 easy jog between.",
+      "work": "20 min WU. 4×60m progressive accelerations with full walk-back recovery. 6×600m in 2:05–2:08 with 2:30 easy jog recovery. 15 min CD.",
       "start": "2026-11-30",
       "monMinutes": 40,
       "monStrides": 4,
@@ -129,7 +159,7 @@
     {
       "week": 8,
       "kind": "threshold",
-      "title": "Threshold 03 · 2 × 15 min",
+      "title": "2×15 min",
       "parts": [
         {
           "n": 2,
@@ -150,16 +180,26 @@
     {
       "week": 9,
       "kind": "speed",
-      "title": "4 × 800m · hold the movement",
+      "title": "4×60m + 4×800m",
       "parts": [
+        {
+          "n": 4,
+          "d": 0.06,
+          "rec": 120,
+          "rpe": 6
+        },
         {
           "n": 4,
           "d": 0.8,
           "rec": 180,
-          "rpe": 6
+          "rpe": 7,
+          "targetSeconds": [
+            172,
+            176
+          ]
         }
       ],
-      "work": "4 × 800m at controlled 5K-development effort; 3 min easy jog between.",
+      "work": "20 min WU. 4×60m progressive accelerations with full walk-back recovery. 4×800m in 2:52–2:56 with 3:00 easy jog recovery. 15 min CD.",
       "start": "2026-12-14",
       "monMinutes": 40,
       "monStrides": 4,
@@ -171,7 +211,7 @@
     {
       "week": 10,
       "kind": "threshold",
-      "title": "Threshold 04 · 25 min continuous",
+      "title": "25 min",
       "parts": [
         {
           "t": 1500,
@@ -190,16 +230,26 @@
     {
       "week": 11,
       "kind": "speed",
-      "title": "4 × 1000m · speed endurance",
+      "title": "4×60m + 5×400m",
       "parts": [
         {
           "n": 4,
-          "d": 1,
-          "rec": 180,
-          "rpe": 7
+          "d": 0.06,
+          "rec": 120,
+          "rpe": 6
+        },
+        {
+          "n": 5,
+          "d": 0.4,
+          "rec": 120,
+          "rpe": 7,
+          "targetSeconds": [
+            80,
+            84
+          ]
         }
       ],
-      "work": "4 × 1000m strong and smooth; 3 min easy jog between.",
+      "work": "20 min WU. 4×60m progressive accelerations with full walk-back recovery. 5×400m in 80–84 sec with 2:00 walk/jog recovery. 15 min CD.",
       "start": "2026-12-28",
       "monMinutes": 40,
       "monStrides": 4,
@@ -211,7 +261,7 @@
     {
       "week": 12,
       "kind": "threshold",
-      "title": "Threshold 05 · 20 + 8 min",
+      "title": "20 + 8 min",
       "parts": [
         {
           "t": 1200,
@@ -234,28 +284,42 @@
     {
       "week": 13,
       "kind": "speed",
-      "title": "3 × 1200m · relaxed extension",
+      "title": "2×1200m + 4×200m",
       "parts": [
         {
-          "n": 3,
+          "n": 2,
           "d": 1.2,
           "rec": 180,
-          "rpe": 7
+          "rpe": 7,
+          "targetSeconds": [
+            261,
+            266
+          ]
+        },
+        {
+          "n": 4,
+          "d": 0.2,
+          "recDistanceMeters": 200,
+          "rpe": 7,
+          "targetSeconds": [
+            39,
+            41
+          ]
         }
       ],
-      "work": "3 × 1200m in a repeatable, relaxed 5K-development rhythm; 3 min easy jog between.",
+      "work": "20 min WU. 2×1200m in 4:21–4:26 with 3:00 easy jog between. Then 4×200m in 39–41 sec with 200m walk/jog recovery. 15 min CD.",
       "start": "2027-01-11",
       "monMinutes": 40,
       "monStrides": 4,
       "wedMinutes": 35,
       "satMiles": 10,
       "kevinSatMiles": 16,
-      "notes": "Approved October 23 target: Jan 16 10 mi for Brice, Sam and David; Tinius 16 km. Four new immutable session revisions needed via authenticated coach workflow; Kevin 16 mi and all Thursdays unchanged."
+      "notes": "Approved Jan16 Sat: Brice/Sam/David 10 mi, Tinius 16 km, Kevin 16 mi unchanged; Week13 Thursday target now 2×1200m+4×200m for all five. Coach-authenticated immutable revisions required; do not bypass RLS or mix proposed with live."
     },
     {
       "week": 14,
       "kind": "threshold",
-      "title": "Threshold 06 · 20 + 12 min",
+      "title": "20 + 12 min",
       "parts": [
         {
           "t": 1200,
@@ -278,7 +342,7 @@
     {
       "week": 15,
       "kind": "taper",
-      "title": "Race-week rhythm · 20 min + 4 strides",
+      "title": "20 min + 4 strides",
       "parts": [
         {
           "t": 1200,
@@ -301,5 +365,5 @@
       "notes": "Miami race weekend: Saturday is only a 2-mile easy shakeout; Sunday January 31 closes the program. Kevin's 26.2-mile race is an unpublished coach draft pending readiness/registration."
     }
   ],
-  "publicationStatus": "PENDING coach-authenticated publication. Production is still 9 mi Brice/Sam/David and 14.5 km Tinius. Kevin unchanged at 16 mi. Thursdays unchanged. Do not merge without four coach-authored revisions and production feed readback."
+  "publicationStatus": "PENDING AUTHENTICATED COACH PUBLICATION. All five athletes currently retain prior published Thursday prescriptions and the four speed-cohort Jan16 Saturdays are still 9 mi / 14.5 km. This proposal revises six Thursday speed prescriptions (30 athlete sessions) plus four Jan16 Saturdays, preserves thresholds and Kevin's long run. Do not merge or call live before immutable new revisions and athlete-feed readback."
 }
