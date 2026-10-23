@@ -1,6 +1,6 @@
-# Speed Reserve · February 2027 development extension (working name)
+# Speed Reserve · February 2027 development extension
 
-**Status:** coach-approved *direction* for design, but **PROPOSED ONLY**. No four-week February sessions, dossier revisions, or app title rename have been published. The name *Speed Reserve* is a suggestion awaiting Brice's choice. The current published season still ends January 31, 2027. See [the exact extension manifest](SPEED_DEVELOPMENT_FEBRUARY_20261023.json).
+**Status:** coach-approved *direction* for design, but **PROPOSED ONLY**. No four-week February sessions, dossier revisions, or app title rename have been published. **Speed Reserve is the owner-approved name (October 23).** Athlete-facing block renaming still awaits authenticated coach publication. The current published season still ends January 31, 2027. See [the exact extension manifest](SPEED_DEVELOPMENT_FEBRUARY_20261023.json) and [the program description](SPEED_RESERVE_PROGRAM_20261023.md).
 
 ## Why continue after Miami weekend
 
@@ -52,7 +52,7 @@ The currently active block goals for David and Tinius incorrectly copy Brice's *
 
 ## Publication gates
 
-1. Confirm the final program name before retitling athlete blocks; *Speed Reserve* is a working proposal.
+1. Use the approved name **Speed Reserve** for the four speed athletes when publishing; Kevin remains **Marathon endurance**. Read [program description](SPEED_RESERVE_PROGRAM_20261023.md).
 2. Coach-author 4×4 new weekly schedules as immutable versions under each of the four correct athlete identities, and extend their active block through February 28 without extending Kevin's.
 3. Keep four cohort athletes' Thursday prescription identical. Confirm Tinius in km and everyone else miles by default. Every track rep remains in meters.
 4. Author dossier focus and goal corrections with real coach authentication; preserve version history and do not expose private coach notes.
