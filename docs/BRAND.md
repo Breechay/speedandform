@@ -4,6 +4,12 @@
 
 Before composing any public marketing page or the shared menu, obey [the public copy law](editorial/PUBLIC_COPY_LAW_2026-10-19.md). It supersedes older promotional page tours. A section earns its existence through a real photograph, source fact, or functional action, not a subtitle or explanatory kicker. Preserve necessary business details, user-facing controls and legal terms. Public pages do not narrate the kit.
 
+## FORM Running app material reference · October 23, 2026
+
+The native **Running app** now has an app-only theme design candidate: Bone / Quiet Clay, Clay / Stronger Signature, and Charcoal / After Dark. The public reference at `/brand/app/` documents the eight source colors, the shared semantic surface roles and theme-specific state treatments in Filing, Dossier and Plan. Quiet Clay alone has a 4 pt clay marker outside the current-week row; Signature uses a clay-filled selected row; After Dark uses warm charcoal insets and sunset selection. Filing inset controls are distinctly brighter than the light paper canvas.
+
+**Scope:** These colors do **not** change the house website palette, the Strength app, photography, athlete records or coaching prescriptions. The linked iOS implementation is a candidate in FORM-iOS PR #83 and needs Xcode/device QA before being described as live. The page's demonstration screens are illustrative, not published athlete dossiers.
+
 ## Current website visual direction · October 19, 2026
 
 **Later October 19 owner refinement (supersedes old web swatches below):** The public website uses pure ink `#0B0B0B`, graphite `#1A1A1A`, and bone `#F4F2EC`. No midnight blue, blue-black or blue-grey interface palette. Photographs may remain original full color or true monochrome. Native applications are a separate design pass.
