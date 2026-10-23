@@ -16,6 +16,8 @@ An image upload is **not** an athlete portrait publication. The portrait is comp
 | `/assets/athletes/<slug>-<revision>.jpg` | One permitted site-hosted image location. The website is the file host; Supabase is the identity and visibility source. |
 | `athletes.portrait_path` + private `athlete-portraits` bucket | Legacy private coach portrait fallback. Never treat this as publication to the native Dossier or public athlete roster. |
 
+**Privacy boundary:** `visible = false` removes a profile from the public directory; it does **not** make a site-hosted photo URL private. Only place images approved for public hosting under `/assets/athletes/`. Keep restricted/private coaching images in private storage until an authenticated delivery flow exists for them.
+
 The Coach Console first reads `collective_people.avatar_path` **by `athlete_id`**, with the legacy private signed portrait as fallback. The native app must follow the same identity relationship. Do not create a second manual avatar map, use a name lookup, or silently turn a private photo into a public profile.
 
 ## Required release sequence
@@ -42,7 +44,7 @@ node scripts/verify-athlete-portrait.cjs \
   --visibility public
 ```
 
-Use `--visibility private` when the coach does not approve public listing. The command is read-only. It exits non-zero on missing or mismatched Supabase identity, incorrect visibility, bad account ownership, missing public directory entry, HTTP 404 or non-image content. It cannot verify visual crop quality, identity likeness, consent documentation, or physical-device display; those remain actual release checks.
+Use `--visibility private` when the coach does not approve public listing **but has separately approved the image being hosted at a publicly accessible URL**. Otherwise retain a private-bucket portrait and do not run this public-site publication workflow. The command is read-only. It exits non-zero on missing or mismatched Supabase identity, incorrect visibility, bad account ownership, missing public directory entry, HTTP 404 or non-image content. It cannot verify visual crop quality, identity likeness, consent documentation, or physical-device display; those remain actual release checks.
 
 ## Avoid the October 23 failure modes
 
