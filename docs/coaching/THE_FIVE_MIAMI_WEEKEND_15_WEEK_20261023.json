@@ -1,0 +1,304 @@
+{
+  "version": "2026-10-23.1",
+  "name": "THE FIVE · FORM Thursday + iRUN · Miami Weekend",
+  "start": "2026-10-19",
+  "end": "2027-01-31",
+  "seasonWeeks": 15,
+  "entryWeek": 1,
+  "publishedExistingWeeks": [
+    1,
+    2
+  ],
+  "athletes": [
+    "brice",
+    "tinius",
+    "sam-reyes",
+    "david",
+    "kevin"
+  ],
+  "protocol": "Group Monday iRUN is the recurring anchor. Until each Monday group workout is posted, the definitive athlete-facing prescription is 40 min easy plus 4 strides (30 min easy in last 2 weeks). The coach replaces it with a specific group workout version before participation, instead of stacking the two. Thursday quality alternates speed and progressively longer threshold. Athletes share structure but not inferred individual threshold pace. Individual weekend aerobic: Kevin marathon-specific, four others 5K-focused; no invented Miami Half entries.",
+  "pacing": "Easy 8:00/mi or slower for Brice, Sam, David, Kevin; Tinius 4:58/km or slower. Threshold controlled 6/10 RPE, short phrases; no universal pace implied. Speed repetitions RPE 6-7, not forced fixed race splits.",
+  "kevinSafety": "Six miles published on October 31 is not evidence of long-run baseline. Conservative progression culminates in 16-mile Jan16 easy long run, which by itself is not proof of first-marathon readiness. Race-day 26.2-mile session remains a coach-held draft pending actual entry, long-run history, fueling and recovery confirmation.",
+  "week2": "Preserve the already published Fifth Circle on October 29, Week 2 easy Monday/Wednesday/Saturday versions, portraits and completions.",
+  "weeks": [
+    {
+      "week": 3,
+      "kind": "speed",
+      "title": "8 × 200m · relaxed turnover",
+      "parts": [
+        {
+          "n": 8,
+          "d": 0.2,
+          "rec": 90,
+          "rpe": 6
+        }
+      ],
+      "work": "8 × 200m at controlled fast rhythm; 90 sec walk/jog between reps.",
+      "start": "2026-11-02",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 6,
+      "kevinSatMiles": 7,
+      "notes": null
+    },
+    {
+      "week": 4,
+      "kind": "threshold",
+      "title": "Threshold 01 · 2 × 10 min",
+      "parts": [
+        {
+          "n": 2,
+          "t": 600,
+          "rec": 180,
+          "rpe": 6
+        }
+      ],
+      "work": "2 × 10 min steady threshold by breathing and control; 3 min easy jog between.",
+      "start": "2026-11-09",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 7,
+      "kevinSatMiles": 8,
+      "notes": null
+    },
+    {
+      "week": 5,
+      "kind": "speed",
+      "title": "5 × 400m · even rhythm",
+      "parts": [
+        {
+          "n": 5,
+          "d": 0.4,
+          "rec": 120,
+          "rpe": 6
+        }
+      ],
+      "work": "5 × 400m smooth and repeatable; 2 min easy walk/jog between.",
+      "start": "2026-11-16",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 7,
+      "kevinSatMiles": 6,
+      "notes": null
+    },
+    {
+      "week": 6,
+      "kind": "threshold",
+      "title": "Threshold 02 · 2 × 12 min",
+      "parts": [
+        {
+          "n": 2,
+          "t": 720,
+          "rec": 180,
+          "rpe": 6
+        }
+      ],
+      "work": "2 × 12 min controlled threshold; 3 min easy jog between.",
+      "start": "2026-11-23",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 6,
+      "kevinSatMiles": 9,
+      "notes": "Thanksgiving Thursday: coach confirm physical venue/session before attendance."
+    },
+    {
+      "week": 7,
+      "kind": "speed",
+      "title": "6 × 600m · controlled repeatability",
+      "parts": [
+        {
+          "n": 6,
+          "d": 0.6,
+          "rec": 150,
+          "rpe": 6
+        }
+      ],
+      "work": "6 × 600m smooth 5K-development repetitions; 2:30 easy jog between.",
+      "start": "2026-11-30",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 8,
+      "kevinSatMiles": 10,
+      "notes": null
+    },
+    {
+      "week": 8,
+      "kind": "threshold",
+      "title": "Threshold 03 · 2 × 15 min",
+      "parts": [
+        {
+          "n": 2,
+          "t": 900,
+          "rec": 180,
+          "rpe": 6
+        }
+      ],
+      "work": "2 × 15 min threshold at a controlled, repeatable effort; 3 min easy jog between.",
+      "start": "2026-12-07",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 8,
+      "kevinSatMiles": 8,
+      "notes": null
+    },
+    {
+      "week": 9,
+      "kind": "speed",
+      "title": "4 × 800m · hold the movement",
+      "parts": [
+        {
+          "n": 4,
+          "d": 0.8,
+          "rec": 180,
+          "rpe": 6
+        }
+      ],
+      "work": "4 × 800m at controlled 5K-development effort; 3 min easy jog between.",
+      "start": "2026-12-14",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 6,
+      "kevinSatMiles": 11,
+      "notes": null
+    },
+    {
+      "week": 10,
+      "kind": "threshold",
+      "title": "Threshold 04 · 25 min continuous",
+      "parts": [
+        {
+          "t": 1500,
+          "rpe": 6
+        }
+      ],
+      "work": "25 min continuous threshold at an even controlled effort.",
+      "start": "2026-12-21",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 8,
+      "kevinSatMiles": 12,
+      "notes": "Christmas Eve Thursday: verify group venue/host logistics."
+    },
+    {
+      "week": 11,
+      "kind": "speed",
+      "title": "4 × 1000m · speed endurance",
+      "parts": [
+        {
+          "n": 4,
+          "d": 1,
+          "rec": 180,
+          "rpe": 7
+        }
+      ],
+      "work": "4 × 1000m strong and smooth; 3 min easy jog between.",
+      "start": "2026-12-28",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 9,
+      "kevinSatMiles": 9,
+      "notes": "New Year's Eve Thursday: verify group venue/host logistics."
+    },
+    {
+      "week": 12,
+      "kind": "threshold",
+      "title": "Threshold 05 · 20 + 8 min",
+      "parts": [
+        {
+          "t": 1200,
+          "rpe": 6
+        },
+        {
+          "t": 480,
+          "rpe": 6
+        }
+      ],
+      "work": "20 min controlled threshold, 3 min easy jog, then 8 min at the same steady threshold effort.",
+      "start": "2027-01-04",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 7,
+      "kevinSatMiles": 13,
+      "notes": null
+    },
+    {
+      "week": 13,
+      "kind": "speed",
+      "title": "3 × 1200m · relaxed extension",
+      "parts": [
+        {
+          "n": 3,
+          "d": 1.2,
+          "rec": 180,
+          "rpe": 7
+        }
+      ],
+      "work": "3 × 1200m in a repeatable, relaxed 5K-development rhythm; 3 min easy jog between.",
+      "start": "2027-01-11",
+      "monMinutes": 40,
+      "monStrides": 4,
+      "wedMinutes": 35,
+      "satMiles": 9,
+      "kevinSatMiles": 14,
+      "notes": null
+    },
+    {
+      "week": 14,
+      "kind": "threshold",
+      "title": "Threshold 06 · 20 + 12 min",
+      "parts": [
+        {
+          "t": 1200,
+          "rpe": 6
+        },
+        {
+          "t": 720,
+          "rpe": 6
+        }
+      ],
+      "work": "20 min controlled threshold, 3 min easy jog, then 12 min steady threshold.",
+      "start": "2027-01-18",
+      "monMinutes": 30,
+      "monStrides": 0,
+      "wedMinutes": 25,
+      "satMiles": 8,
+      "kevinSatMiles": 16,
+      "notes": null
+    },
+    {
+      "week": 15,
+      "kind": "taper",
+      "title": "Race-week rhythm · 20 min + 4 strides",
+      "parts": [
+        {
+          "t": 1200,
+          "rpe": 2
+        },
+        {
+          "n": 4,
+          "t": 15,
+          "rec": 60,
+          "rpe": 4
+        }
+      ],
+      "work": "20 min easy then 4 × 15 sec smooth relaxed strides, full easy walking recovery.",
+      "start": "2027-01-25",
+      "monMinutes": 30,
+      "monStrides": 0,
+      "wedMinutes": 25,
+      "satMiles": 6,
+      "kevinSatMiles": 10,
+      "notes": "Miami race-weekend ends Jan 31. No assumed half-marathon entry."
+    }
+  ]
+}
