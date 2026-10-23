@@ -1795,6 +1795,42 @@
       "used_on": [
         "/photos/"
       ]
+    },
+    {
+      "id": "bw-track-runner-midstride",
+      "title": "Mid-stride at practice",
+      "kind": "track",
+      "captured": null,
+      "setting": "track",
+      "light": "unverified",
+      "tone": "black-and-white",
+      "people": "visible in photograph",
+      "orientation": "landscape",
+      "width": 1545,
+      "height": 1018,
+      "focal": {
+        "x": 0.5,
+        "y": 0.45
+      },
+      "alt": "Black-and-white photograph of a runner moving down the track in mid-stride.",
+      "uses": [
+        "card",
+        "story",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/marcus-track-600.webp",
+        "1200": "/media/library/marcus-track-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-10-21",
+        "sha256": "e1b5d2b188a23def0ff1eca9274e9d39485002f2152077f407a5caaa7c20b533",
+        "notes": "Checksum is of the published 1200px WebP derivative. Camera original and full-resolution export were not available for this catalogue pass."
+      },
+      "tags": [],
+      "used_on": [
+        "/photos/"
+      ]
     }
   ]
 }
