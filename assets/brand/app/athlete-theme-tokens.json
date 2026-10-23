@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "FORM Running athlete appearance",
+  "status": "proposed native themes; awaiting Xcode and device approval",
+  "scope": "Speed & Form: Running athlete Dossier, Plan, Week and Filing. Not the public website or Strength app.",
+  "base": {
+    "bone": "#EEECE5",
+    "chalk": "#F8F6F0",
+    "charcoal": "#242321",
+    "graphite": "#68635D",
+    "trackClay": "#974F3E",
+    "sunset": "#E6B58D",
+    "dusk": "#717D88",
+    "stone": "#D4CEC3"
+  },
+  "themes": {
+    "quietClay": {
+      "canvas": "#EEECE5",
+      "raised": "#F8F6F0",
+      "ink": "#242321",
+      "secondary": "#68635D",
+      "accent": "#974F3E",
+      "selection": "#E8E1D7",
+      "action": "#242321",
+      "actionInk": "#F8F6F0",
+      "currentWeekLeftRail": "4pt clay, exclusive",
+      "filing": "chalk cards, light input wells, charcoal action"
+    },
+    "signatureClay": {
+      "canvas": "#EDE9E2",
+      "raised": "#F8F6F0",
+      "ink": "#242321",
+      "secondary": "#68635D",
+      "accent": "#974F3E",
+      "selection": "#974F3E",
+      "action": "#974F3E",
+      "actionInk": "#F8F6F0",
+      "currentWeekLeftRail": "none; clay-filled current week",
+      "filing": "chalk cards, light input wells, clay action"
+    },
+    "afterDark": {
+      "canvas": "#242321",
+      "raised": "#302E2A",
+      "ink": "#F8F6F0",
+      "secondary": "#C6BEB6",
+      "accent": "#E6B58D",
+      "selection": "#45362F",
+      "action": "#F8F6F0",
+      "actionInk": "#242321",
+      "currentWeekLeftRail": "none; warm inset and hairline",
+      "filing": "raised charcoal cards, sunset focus, chalk action"
+    }
+  },
+  "behavior": {
+    "choice": "three circular swatches in athlete Dossier",
+    "preview": "immediate with reduced-motion fallback",
+    "persistence": "on device, not account synchronized",
+    "photography": "no theme tint; original full-color or true monochrome",
+    "data": "training prescriptions and private coach data unaffected"
+  }
+}
