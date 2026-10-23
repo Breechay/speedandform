@@ -1,0 +1,162 @@
+{
+  "version": "2026-10-23.1-proposed",
+  "workingProgramName": "Speed Reserve",
+  "nameStatus": "Working name for Brice's review, not approved athlete-facing or published",
+  "status": "PROPOSED, NOT IN FORM ATHLETE SYSTEM",
+  "sourceSeason": "docs/coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.json",
+  "trainingQuestion": "Can the cohort increase accessible fast mechanics and sustain them over a mile/5K while maintaining relaxed aerobic durability?",
+  "scope": {
+    "athletes": [
+      "brice",
+      "tinius",
+      "sam-reyes",
+      "david"
+    ],
+    "exclude": [
+      "kevin"
+    ],
+    "reasonKevin": "First marathon January 31; post-event recovery/readiness and continuing goals must be independently reviewed.",
+    "start": "2027-02-01",
+    "end": "2027-02-28",
+    "weekNumbers": [
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "unitPolicy": {
+    "default": "mi",
+    "kilometersOnly": [
+      "tinius",
+      "simon"
+    ],
+    "trackRepetitions": "m",
+    "paceDisplay": "per-mile default; per-km for Tinius and Simon",
+    "neverConvertTrackDistancesToKm": true
+  },
+  "sharedProgram": {
+    "monday": "40 min easy + 4 strides as a provisional on-calendar session; actual Monday iRUN workout is not known until posted",
+    "wednesday": "35 min easy",
+    "thursday": "identical work and targets for all four speed athletes",
+    "saturday": "easy RPE 2–3, 8:00/mi or slower (4:58/km or slower for Tinius); no pace finish",
+    "weeks": [
+      {
+        "week": 16,
+        "start": "2027-02-01",
+        "thursday": "2027-02-04",
+        "saturday": "2027-02-06",
+        "kind": "speed",
+        "title": "4×60m + 8×200m",
+        "parts": [
+          {
+            "n": 4,
+            "distanceMeters": 60,
+            "recovery": "walk back",
+            "effort": "progressive, not maximal"
+          },
+          {
+            "n": 8,
+            "distanceMeters": 200,
+            "targetSeconds": [
+              39,
+              41
+            ],
+            "recoverySeconds": 120
+          }
+        ],
+        "warmupMinutes": 20,
+        "cooldownMinutes": 15,
+        "thursdayDetails": "60m progressive, walk back; 200m 39–41s per repetition, 2:00 walk/jog.",
+        "saturdayMiles": 10,
+        "tiniusSaturdayKm": 16
+      },
+      {
+        "week": 17,
+        "start": "2027-02-08",
+        "thursday": "2027-02-11",
+        "saturday": "2027-02-13",
+        "kind": "threshold",
+        "title": "2×15 min",
+        "parts": [
+          {
+            "n": 2,
+            "durationSeconds": 900,
+            "effort": "controlled threshold, RPE 6–7",
+            "recoverySeconds": 180
+          }
+        ],
+        "warmupMinutes": 20,
+        "cooldownMinutes": 15,
+        "thursdayDetails": "3:00 easy jog between 15-minute efforts; controlled threshold RPE 6–7, not a guessed pace.",
+        "saturdayMiles": 10,
+        "tiniusSaturdayKm": 16
+      },
+      {
+        "week": 18,
+        "start": "2027-02-15",
+        "thursday": "2027-02-18",
+        "saturday": "2027-02-20",
+        "kind": "speed",
+        "title": "4×60m + 6×400m",
+        "parts": [
+          {
+            "n": 4,
+            "distanceMeters": 60,
+            "recovery": "walk back",
+            "effort": "progressive, not maximal"
+          },
+          {
+            "n": 6,
+            "distanceMeters": 400,
+            "targetSeconds": [
+              80,
+              84
+            ],
+            "recoverySeconds": 120
+          }
+        ],
+        "warmupMinutes": 20,
+        "cooldownMinutes": 15,
+        "thursdayDetails": "60m progressive, walk back; 400m 80–84s per repetition, 2:00 walk/jog.",
+        "saturdayMiles": 12,
+        "tiniusSaturdayKm": 19.3
+      },
+      {
+        "week": 19,
+        "start": "2027-02-22",
+        "thursday": "2027-02-25",
+        "saturday": "2027-02-27",
+        "kind": "assessment",
+        "title": "1 mi",
+        "parts": [
+          {
+            "n": 1,
+            "distanceMiles": 1,
+            "effort": "best even effort, record 400m splits, RPE and next-day response"
+          }
+        ],
+        "warmupMinutes": 20,
+        "cooldownMinutes": 15,
+        "thursdayDetails": "Timed 1-mile assessment at an even best effort. Record time, 400m splits and finish RPE.",
+        "saturdayMiles": 8,
+        "tiniusSaturdayKm": 12.9
+      }
+    ]
+  },
+  "coachGates": [
+    "Before assigning each week, record the actual Monday iRUN work and adjust the canonical session if it is hard; do not double-dose a placeholder.",
+    "Review all four athletes' completed weekly distance and Saturday dose before promoting to 12 mi / 19.3 km; adjust privately, then publish one definite athlete-facing prescription.",
+    "Especially for Brice, confirm treating-clinician limits and next-day response after speed and long runs given April 2026 tibial shaft fracture.",
+    "Review the paired Forge heavy-leg schedule, especially Tinius's old Thursday-lower conflict.",
+    "At Week19 1-mile assessment, record total time, every 400m split, RPE, next-day tissue response and conditions; no made-up PB or sub-5 assertion.",
+    "Do not inherit Brice's sub-5-mile or 16:35 5K target into Sam, David or Tinius goals without individual verification.",
+    "Append immutable coach-authored revisions to four active blocks and their February session lists. Read back signed-in athlete feeds; do not use admin SQL bypassing RLS.",
+    "February sessions are not live just because this file exists; Kevin ends his 15-week first-marathon cycle January 31 unless a separate coach decision is authored."
+  ],
+  "progressReview": {
+    "endDate": "2027-02-28",
+    "evidence": "W5 vs W11 5×400 rep splits/RPE, February 6×400 quality, Feb25 1mi time and splits, Saturday tolerance, aerobic load and matched-condition mechanics",
+    "nextBlock": "March–June: select a further 12–16-week mile/5K-specific build from the gate results, not from a prediction of readiness."
+  }
+}
