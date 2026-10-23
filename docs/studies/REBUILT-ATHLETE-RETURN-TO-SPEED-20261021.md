@@ -4,6 +4,24 @@
 **Study:** FORM Study 002, [The Rebuilt Athlete](../../labs/rebuilt-athlete/index.html)  
 **Status:** coaching interpretation and current-phase direction, not an independent running prescription.
 
+## October 23 coaching revision · supersedes the dated October 21 direction
+
+The October 21 decision below is preserved as the **history of that day's recovery-first proposal**, not today's active prescription. Brice explicitly authorized a shared Monday iRUN/Thursday track speed-development season on October 22–23. The FORM Athlete System now has a **15-week October 19–January 31 speed calendar** for Brice, Tinius, Sam, David and Kevin, although the new six-Thursday quality prescriptions and January 16 10-mile correction are **staged in draft PR #348 and are not yet live**. Kevin's Saturday goal is first-marathon completion; he is not assumed to share Brice's personal mile/5K targets.
+
+**Current individual goals, long-range rather than February promises:**
+- **Comfortable 6:00/mi running:** make this controlled and repeatable as Brice's running chassis rebuilds.
+- **5K under 17:00:** requires about 5:28/mi average; 16:35 is an older faster stretch goal, not an established present ability.
+- **1 mile under 5:00:** requires about 74.8 seconds/400m across a continuous mile; track repetitions slower than this are speed *development*, not proof of sub-5 race fitness.
+- **Preserve easy aerobic durability:** ten-mile Saturdays are an early support goal; occasional 12 miles can belong after current weekly load and lower-leg response support it. Historical ability to enjoy 16–18-mile outings does not automatically establish 2026/27 impact tolerance.
+
+**Coaching model:** raise the accessible speed ceiling with controlled 60–200m mechanics work and 400–800m measured repetition quality; extend it into 600–1200m and continuous mile/5K demand; keep threshold present so endurance is not traded away. Faster technique means better coordinated, repeatable running under similar conditions, **not forced overstriding** or treating an isolated cadence, stride length or contact-time watch number as causal.
+
+**Calendar:** January 31 becomes a **milestone**, not a finish, for Brice, Tinius, Sam and David. A separately staged **February 1–28 four-week extension (Weeks16–19)** proposes shared Thursdays 4×60m+8×200m, 2×15min threshold, 4×60m+6×400m and a timed 1mi assessment February 25. Easy Saturdays propose **10, 10, 12, 8 miles** (Tinius **16, 16, 19.3, 12.9 km**). That 12-mile goal and mile test are **coach-gated proposals, not published sessions or evidence of readiness**. Kevin's post-marathon weeks are not assigned automatically. See [February coaching extension](../coaching/SPEED_DEVELOPMENT_FEBRUARY_20261023.md) and [15-week current plan](../coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.md).
+
+**February 28 evidence gate:** compare the Week5/11 5×400 splits and end-session cost, collect February 6×400 quality, record the February 25 timed mile with four 400m splits, RPE, surface and next-day leg response, and compare actual easy long-run completion and total weekly load. If tolerated, plan the **next 12–16 weeks (March–June 2027)** around the measured gap to sub-17 5K and sub-5 mile. The calendar creates a meaningful checkpoint; it cannot predict when those times will arrive. Review Monday's posted iRUN work, Sunday Forge lower-body loading and April tibial fracture history in the coach record before every quality progression.
+
+**Study evidence boundary:** new schedules are plans, not completed running data or public Garmin evidence. Keep source FIT files, leg responses, medical history and daily detail in Brice's private longitudinal record; the public Study 002 may describe the coaching direction without implying a new race result or a verified February assignment.
+
 ## The direction
 
 Brice's next performance targets are a **sub-5:00 mile** and a **10K at 6:00/mi** (approximately 37:17). The earlier marathon and the 2025 VO₂ max peak are historical evidence, not present training targets. He prefers **no structured speed block before 2027**, with no urgency to return to racing. The current emphasis is complete lower-leg recovery, repeatable running, and sufficient strength, food, sleep and mobility to keep training sustainable.
