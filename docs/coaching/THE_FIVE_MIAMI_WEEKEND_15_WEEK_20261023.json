@@ -18,7 +18,7 @@
   ],
   "protocol": "Group Monday iRUN is the recurring anchor. Until each Monday group workout is posted, the definitive athlete-facing prescription is 40 min easy plus 4 strides (30 min easy in last 2 weeks). The coach replaces it with a specific group workout version before participation, instead of stacking the two. Thursday quality alternates speed and progressively longer threshold. Athletes share structure but not inferred individual threshold pace. Individual weekend aerobic: Kevin marathon-specific, four others 5K-focused; no invented Miami Half entries.",
   "pacing": "Easy 8:00/mi or slower for Brice, Sam, David, Kevin; Tinius 4:58/km or slower. Threshold controlled 6/10 RPE, short phrases; no universal pace implied. Speed repetitions RPE 6-7, not forced fixed race splits.",
-  "kevinSafety": "Six miles published on October 31 is not evidence of long-run baseline. Conservative progression culminates in 16-mile Jan16 easy long run, which by itself is not proof of first-marathon readiness. Race-day 26.2-mile session remains a coach-held draft pending actual entry, long-run history, fueling and recovery confirmation.",
+  "kevinSafety": "Six miles published on October 31 is not evidence of prior long-run capacity. The proposed progression peaks at 16 miles on January 16 (15 days before race day), then tapers to 8 miles January 23 and 2 miles January 30. This pattern remains provisional until Kevin's running history, injury status, fueling practice and adaptation are reviewed. A 16-mile long run by itself does not establish readiness for a first 26.2-mile marathon; the race-day assignment stays a coach-held draft until evidence and actual registration support release.",
   "week2": "Preserve the already published Fifth Circle on October 29, Week 2 easy Monday/Wednesday/Saturday versions, portraits and completions.",
   "weeks": [
     {
@@ -249,7 +249,7 @@
       "monStrides": 4,
       "wedMinutes": 35,
       "satMiles": 9,
-      "kevinSatMiles": 14,
+      "kevinSatMiles": 16,
       "notes": null
     },
     {
@@ -272,7 +272,7 @@
       "monStrides": 0,
       "wedMinutes": 25,
       "satMiles": 8,
-      "kevinSatMiles": 16,
+      "kevinSatMiles": 8,
       "notes": null
     },
     {
