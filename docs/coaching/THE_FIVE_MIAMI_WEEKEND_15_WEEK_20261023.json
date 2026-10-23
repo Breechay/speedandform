@@ -363,7 +363,7 @@
       "wedMinutes": 25,
       "satMiles": 2,
       "kevinSatMiles": 2,
-      "notes": "Miami race weekend: Saturday is only a 2-mile easy shakeout; Sunday January 31 closes the program. Kevin's 26.2-mile race is an unpublished coach draft pending readiness/registration."
+      "notes": "Miami race weekend: Saturday is a 2-mile easy shakeout. January 31 ends Kevin's currently authored marathon calendar and marks a milestone for the four speed athletes, whose separate February extension remains proposed. Kevin's 26.2-mile race is an unpublished coach draft pending readiness/registration."
     }
   ],
   "publicationStatus": "PENDING AUTHENTICATED COACH PUBLICATION. All five athletes currently retain prior published Thursday prescriptions and the four speed-cohort Jan16 Saturdays are still 9 mi / 14.5 km. This proposal revises six Thursday speed prescriptions (30 athlete sessions) plus four Jan16 Saturdays, preserves thresholds and Kevin's long run. Do not merge or call live before immutable new revisions and athlete-feed readback.",
@@ -382,6 +382,30 @@
     "Threshold prescription components remain unchanged in Weeks4,6,8,10,12,14; Kevin Week14 exception remains",
     "No Monday iRUN, Wednesday, Forge or other Saturday changes",
     "Four Jan16 Saturday changes exactly: three at 10mi and Tinius at 16km; Kevin remains 16mi",
-    "One immutable version per existing session through authenticated coach workflow; preserve historic versions, coach-private notes and verify athlete feed"
-  ]
+    "One immutable version per existing session through authenticated coach workflow; preserve historic versions, coach-private notes and verify athlete feed",
+    "Brice's personal sub-5/5K time goals must not be copied into Sam, Tinius or David dossier; Kevin's first-marathon focus stays separate"
+  ],
+  "extension": {
+    "status": "proposed_not_live",
+    "athletes": [
+      "brice",
+      "tinius",
+      "sam-reyes",
+      "david"
+    ],
+    "exclude": [
+      "kevin"
+    ],
+    "start": "2027-02-01",
+    "end": "2027-02-28",
+    "weekNumbers": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "details": "docs/coaching/SPEED_DEVELOPMENT_FEBRUARY_20261023.json",
+    "workingName": "Speed Reserve (owner decision pending)",
+    "publicationRequirement": "Coach-authored active block extension, session revisions and athlete-feed readback required"
+  }
 }
