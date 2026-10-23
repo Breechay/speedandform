@@ -55,8 +55,22 @@ with current_sessions as (
   union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
          'Track workout needs an authored Week preview with sets and rests'
-  from current_sessions s where s.title ilike 'THE FIFTH CIRCLE%'
+  from current_sessions s where (s.title ilike 'THE FIFTH CIRCLE%' or s.title ilike 'FORM Track%')
     and coalesce(s.details,'') not like 'Week: %'
+  union all
+  select 'BLOCK','THE_FIVE_WEEK_EMPTY',a.slug,w.starts_on,
+         'Week ' || w.week_number::text,
+         'A visible future week has no published sessions'
+  from public.training_weeks w
+  join public.training_blocks b on b.id=w.block_id
+  join public.athletes a on a.id=b.athlete_id
+  where b.status='active' and b.starts_on='2026-10-19'
+    and a.slug in ('brice','david','sam-reyes','tinius','kevin')
+    and w.starts_on >= current_date
+    and not exists (
+      select 1 from public.planned_sessions ps
+      where ps.week_id=w.id and ps.state='published'
+    )
 )
 select severity,code,slug,scheduled_on,title,detail from issues
 order by case severity when 'BLOCK' then 1 else 2 end,slug,scheduled_on,code;
