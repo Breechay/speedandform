@@ -314,7 +314,8 @@
       "wedMinutes": 35,
       "satMiles": 10,
       "kevinSatMiles": 16,
-      "notes": "Approved Jan16 Sat: Brice/Sam/David 10 mi, Tinius 16 km, Kevin 16 mi unchanged; Week13 Thursday target now 2×1200m+4×200m for all five. Coach-authenticated immutable revisions required; do not bypass RLS or mix proposed with live."
+      "notes": "Approved Jan16 Sat: Brice/Sam/David 10 mi, Tinius 16 km, Kevin 16 mi unchanged; Week13 Thursday target now 2×1200m+4×200m for all five. Coach-authenticated immutable revisions required; do not bypass RLS or mix proposed with live.",
+      "tiniusSatKm": 16
     },
     {
       "week": 14,
@@ -365,5 +366,22 @@
       "notes": "Miami race weekend: Saturday is only a 2-mile easy shakeout; Sunday January 31 closes the program. Kevin's 26.2-mile race is an unpublished coach draft pending readiness/registration."
     }
   ],
-  "publicationStatus": "PENDING AUTHENTICATED COACH PUBLICATION. All five athletes currently retain prior published Thursday prescriptions and the four speed-cohort Jan16 Saturdays are still 9 mi / 14.5 km. This proposal revises six Thursday speed prescriptions (30 athlete sessions) plus four Jan16 Saturdays, preserves thresholds and Kevin's long run. Do not merge or call live before immutable new revisions and athlete-feed readback."
+  "publicationStatus": "PENDING AUTHENTICATED COACH PUBLICATION. All five athletes currently retain prior published Thursday prescriptions and the four speed-cohort Jan16 Saturdays are still 9 mi / 14.5 km. This proposal revises six Thursday speed prescriptions (30 athlete sessions) plus four Jan16 Saturdays, preserves thresholds and Kevin's long run. Do not merge or call live before immutable new revisions and athlete-feed readback.",
+  "unitPolicy": {
+    "default": "mi",
+    "kilometerOnly": [
+      "tinius",
+      "simon"
+    ],
+    "trackRepetitions": "m",
+    "note": "A 10 mi cohort Saturday explicitly maps to 16 km for Tinius in Week13; do not round automatically or switch Sam, Brice, David, or Kevin to km."
+  },
+  "coachPublicationChecks": [
+    "Five active cohort athletes and 5/5 identical Thursday doses for Weeks3,5,7,9,11,13",
+    "Only Tinius and Simon in km for non-track distances; 60m/200m/400m/600m/800m/1200m displayed in meters for all",
+    "Threshold prescription components remain unchanged in Weeks4,6,8,10,12,14; Kevin Week14 exception remains",
+    "No Monday iRUN, Wednesday, Forge or other Saturday changes",
+    "Four Jan16 Saturday changes exactly: three at 10mi and Tinius at 16km; Kevin remains 16mi",
+    "One immutable version per existing session through authenticated coach workflow; preserve historic versions, coach-private notes and verify athlete feed"
+  ]
 }
