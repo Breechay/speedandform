@@ -1,5 +1,8 @@
 # FORM Thursday · Shared Speed Development Cohort
 
+> **October 23 live-season supersession:** Shared cohort now runs **15 FORM weeks from October 19 through January 31, 2027**, with all five athletes' weeks populated, not the older January 17 terminus. Canonical updated spine: [THE FIVE · Miami Season](THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.md). Monday iRUN is a shared meet-up; its currently authored easy practice is rewritten only after the actual group workout is known. Thursday thresholds alternate with speed sessions; six threshold steps are **2×10, 2×12, 2×15, 25 continuous, 20+8, 20+12**. Kevin has an independent Saturday distance progression, an early marathon taper and a coach-held unpublished January 31 race draft. This supersedes the earlier twelve-week seasonal dates below while preserving original coaching decisions as history.
+
+
 **Coach operating decision:** 22 October 2026
 **Current block:** October 19–25, 2026 entry week, followed by October 26–January 17 speed development; Kevin's separate marathon-completion block extends through January 31, 2027.
 **Owner:** FORM Athlete System. This document is an editorial cohort standard, not a second independently writable plan.
