@@ -1,6 +1,6 @@
 {
   "version": "2026-10-23.3-proposed",
-  "name": "THE FIVE · FORM Thursday + iRUN · Miami Weekend",
+  "name": "FORM Thursday + iRUN · Miami Season",
   "start": "2026-10-19",
   "end": "2027-01-31",
   "seasonWeeks": 15,
@@ -405,7 +405,11 @@
       19
     ],
     "details": "docs/coaching/SPEED_DEVELOPMENT_FEBRUARY_20261023.json",
-    "workingName": "Speed Reserve (owner decision pending)",
-    "publicationRequirement": "Coach-authored active block extension, session revisions and athlete-feed readback required"
-  }
+    "publicationRequirement": "Coach-authored active block extension, session revisions and athlete-feed readback required",
+    "approvedName": "Speed Reserve",
+    "nameApprovedOn": "2026-10-23"
+  },
+  "speedCohortName": "Speed Reserve",
+  "speedCohortDescription": "Speed Reserve is a running development program for runners who want to become faster over the mile and 5K without giving up their endurance. We use short track repetitions to improve speed and coordination, longer repetitions and controlled sustained running to help that speed last, and easy long runs to maintain endurance. The group shares Thursday track workouts, while each runner has their own goals and long-run distances.",
+  "kevinBlockName": "Marathon endurance"
 }
