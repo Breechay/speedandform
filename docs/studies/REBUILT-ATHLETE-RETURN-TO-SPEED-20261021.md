@@ -4,9 +4,9 @@
 **Study:** FORM Study 002, [The Rebuilt Athlete](../../labs/rebuilt-athlete/index.html)  
 **Status:** coaching interpretation and current-phase direction, not an independent running prescription.
 
-## October 23 coaching revision · supersedes the dated October 21 direction
+## October 23 coaching revision · Speed Reserve (supersedes October 21)
 
-The October 21 decision below is preserved as the **history of that day's recovery-first proposal**, not today's active prescription. Brice explicitly authorized a shared Monday iRUN/Thursday track speed-development season on October 22–23. The FORM Athlete System now has a **15-week October 19–January 31 speed calendar** for Brice, Tinius, Sam, David and Kevin, although the new six-Thursday quality prescriptions and January 16 10-mile correction are **staged in draft PR #348 and are not yet live**. Kevin's Saturday goal is first-marathon completion; he is not assumed to share Brice's personal mile/5K targets.
+The October 21 decision below is preserved as the **history of that day's recovery-first proposal**, not today's active prescription. Brice explicitly authorized a shared Monday iRUN/Thursday track speed-development season on October 22–23 and approved its name **Speed Reserve** on October 23. The final description is in [Speed Reserve](../coaching/SPEED_RESERVE_PROGRAM_20261023.md). The FORM Athlete System now has a **15-week October 19–January 31 speed calendar** for Brice, Tinius, Sam, David and Kevin, although the new six-Thursday quality prescriptions and January 16 10-mile correction are **staged in draft PR #348 and are not yet live**. Kevin's Saturday goal is first-marathon completion; he is not assumed to share Brice's personal mile/5K targets.
 
 **Current individual goals, long-range rather than February promises:**
 - **Comfortable 6:00/mi running:** make this controlled and repeatable as Brice's running chassis rebuilds.
