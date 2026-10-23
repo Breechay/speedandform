@@ -128,17 +128,17 @@
         "thursday": "2027-02-25",
         "saturday": "2027-02-27",
         "kind": "assessment",
-        "title": "1 mi",
+        "title": "1600m",
         "parts": [
           {
             "n": 1,
-            "distanceMiles": 1,
-            "effort": "best even effort, record 400m splits, RPE and next-day response"
+            "distanceMeters": 1600,
+            "effort": "best even effort; record four 400m splits, RPE and next-day response"
           }
         ],
         "warmupMinutes": 20,
         "cooldownMinutes": 15,
-        "thursdayDetails": "Timed 1-mile assessment at an even best effort. Record time, 400m splits and finish RPE.",
+        "thursdayDetails": "Timed 1600m assessment at an even best effort. Record time, 400m splits and finish RPE; not an official mile time.",
         "saturdayMiles": 8,
         "tiniusSaturdayKm": 12.9
       }
@@ -149,14 +149,14 @@
     "Review all four athletes' completed weekly distance and Saturday dose before promoting to 12 mi / 19.3 km; adjust privately, then publish one definite athlete-facing prescription.",
     "Especially for Brice, confirm treating-clinician limits and next-day response after speed and long runs given April 2026 tibial shaft fracture.",
     "Review the paired Forge heavy-leg schedule, especially Tinius's old Thursday-lower conflict.",
-    "At Week19 1-mile assessment, record total time, every 400m split, RPE, next-day tissue response and conditions; no made-up PB or sub-5 assertion.",
+    "At Week19 1600m assessment, record total time, every 400m split, RPE, next-day tissue response and conditions; do not record a 1600m test as an official 1609.34m mile PB or sub-5 mile.",
     "Do not inherit Brice's sub-5-mile or 16:35 5K target into Sam, David or Tinius goals without individual verification.",
     "Append immutable coach-authored revisions to four active blocks and their February session lists. Read back signed-in athlete feeds; do not use admin SQL bypassing RLS.",
     "February sessions are not live just because this file exists; Kevin ends his 15-week first-marathon cycle January 31 unless a separate coach decision is authored."
   ],
   "progressReview": {
     "endDate": "2027-02-28",
-    "evidence": "W5 vs W11 5×400 rep splits/RPE, February 6×400 quality, Feb25 1mi time and splits, Saturday tolerance, aerobic load and matched-condition mechanics",
+    "evidence": "W5 vs W11 5×400 rep splits/RPE, February 6×400 quality, Feb25 1600m time and splits, Saturday tolerance, aerobic load and matched-condition mechanics",
     "nextBlock": "March–June: select a further 12–16-week mile/5K-specific build from the gate results, not from a prediction of readiness."
   }
 }
