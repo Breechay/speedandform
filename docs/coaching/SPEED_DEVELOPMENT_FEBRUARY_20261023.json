@@ -1,7 +1,5 @@
 {
   "version": "2026-10-23.1-proposed",
-  "workingProgramName": "Speed Reserve",
-  "nameStatus": "Working name for Brice's review, not approved athlete-facing or published",
   "status": "PROPOSED, NOT IN FORM ATHLETE SYSTEM",
   "sourceSeason": "docs/coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.json",
   "trainingQuestion": "Can the cohort increase accessible fast mechanics and sustain them over a mile/5K while maintaining relaxed aerobic durability?",
@@ -158,5 +156,10 @@
     "endDate": "2027-02-28",
     "evidence": "W5 vs W11 5×400 rep splits/RPE, February 6×400 quality, Feb25 1600m time and splits, Saturday tolerance, aerobic load and matched-condition mechanics",
     "nextBlock": "March–June: select a further 12–16-week mile/5K-specific build from the gate results, not from a prediction of readiness."
-  }
+  },
+  "programName": "Speed Reserve",
+  "nameApprovedOn": "2026-10-23",
+  "programDescription": "Speed Reserve is a running development program for runners who want to become faster over the mile and 5K without giving up their endurance. We use short track repetitions to improve speed and coordination, longer repetitions and controlled sustained running to help that speed last, and easy long runs to maintain endurance. The group shares Thursday track workouts, while each runner has their own goals and long-run distances.",
+  "shortDescription": "Get faster over short distances, learn to hold that speed longer, and keep your endurance.",
+  "namePublicationStatus": "Approved by Brice; not yet applied to signed-in athlete block/Dossier"
 }
