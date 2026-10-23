@@ -707,14 +707,43 @@ const PORTRAIT_SIGNED_FOR = 3600;
 const PORTRAIT_RESIGN_WITHIN = 300;
 const signedPortraits = new Map();
 
+const SITE_PORTRAIT_PATH = /^\/[A-Za-z0-9/_.-]+\.(?:jpg|jpeg|png|webp)$/i;
+const publicSitePortrait = (path) =>
+  typeof path === 'string' && SITE_PORTRAIT_PATH.test(path)
+    ? new URL(path, 'https://speedandform.com').href
+    : null;
+
 export async function signPortraits(athletes) {
+  // The canonical FORM/Dossier portrait is collective_people.avatar_path.
+  // The coach Console uses the same athlete_id lookup; the older private
+  // athletes.portrait_path remains a fallback for unpublished portraits.
+  const athleteIds = [...new Set(athletes.map((athlete) => athlete.id).filter(Boolean))];
+  const publishedByAthlete = new Map();
+  if (athleteIds.length) {
+    const { data, error } = await supabase.from('collective_people')
+      .select('athlete_id,avatar_path').in('athlete_id', athleteIds);
+    if (error) {
+      // A coach without Collective publisher access can still use private
+      // portraits. Do not infer an identity by name or reveal private fields.
+      console.warn('Collective portrait lookup unavailable; retaining private fallback');
+    } else {
+      for (const person of data || []) {
+        const url = publicSitePortrait(person.avatar_path);
+        if (person.athlete_id && url) publishedByAthlete.set(person.athlete_id, url);
+      }
+    }
+  }
+
   const now = Date.now();
   const fresh = (path) => {
     const held = signedPortraits.get(path);
     return held && held.expires - now > PORTRAIT_RESIGN_WITHIN * 1000 ? held.url : null;
   };
-  const paths = [...new Set(athletes.map((athlete) => athlete.portrait_path).filter(Boolean))];
-  const wanted = paths.filter((path) => !fresh(path));
+  const privatePaths = [...new Set(athletes
+    .filter((athlete) => !publishedByAthlete.has(athlete.id))
+    .map((athlete) => athlete.portrait_path)
+    .filter((path) => path && !publicSitePortrait(path)))];
+  const wanted = privatePaths.filter((path) => !fresh(path));
   if (wanted.length) {
     const { data, error } = await supabase.storage.from('athlete-portraits')
       .createSignedUrls(wanted, PORTRAIT_SIGNED_FOR);
@@ -724,14 +753,17 @@ export async function signPortraits(athletes) {
       });
     }
   }
-  const byPath = new Map(paths.map((path) => [path, fresh(path)]).filter(([, url]) => url));
-  // A pointer that exists and could not be signed is not the same state as no
-  // photograph. The monogram is drawn for both, but only one of them is a fault.
-  return athletes.map((athlete) => ({
-    ...athlete,
-    portraitUrl: athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null,
-    portraitUnreachable: Boolean(athlete.portrait_path) && !byPath.get(athlete.portrait_path)
-  }));
+  const byPath = new Map(privatePaths.map((path) => [path, fresh(path)]).filter(([, url]) => url));
+  return athletes.map((athlete) => {
+    const canonical = publishedByAthlete.get(athlete.id);
+    const fallback = publicSitePortrait(athlete.portrait_path)
+      || (athlete.portrait_path ? byPath.get(athlete.portrait_path) || null : null);
+    return {
+      ...athlete,
+      portraitUrl: canonical || fallback,
+      portraitUnreachable: Boolean(athlete.portrait_path) && !canonical && !fallback
+    };
+  });
 }
 
 // A standing fact, written the way a judgment is written: sourced, dated, and

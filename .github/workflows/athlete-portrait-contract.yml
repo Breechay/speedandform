@@ -1,0 +1,38 @@
+name: FORM athlete portrait contract
+
+on:
+  pull_request:
+    paths:
+      - 'private/data.js'
+      - 'scripts/verify-athlete-portrait.cjs'
+      - 'tests/athlete-portrait-contract.cjs'
+      - 'assets/athletes/**'
+      - 'netlify.toml'
+      - '.github/workflows/athlete-portrait-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'private/data.js'
+      - 'scripts/verify-athlete-portrait.cjs'
+      - 'tests/athlete-portrait-contract.cjs'
+      - 'assets/athletes/**'
+      - 'netlify.toml'
+      - '.github/workflows/athlete-portrait-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify image mapping, identity and failure paths
+        run: node tests/athlete-portrait-contract.cjs
