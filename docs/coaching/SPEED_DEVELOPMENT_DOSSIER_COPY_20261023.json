@@ -1,0 +1,207 @@
+{
+  "version": "2026-10-23.1-proposed",
+  "status": "NOT LIVE — authenticated coach revision required",
+  "nameDecision": {
+    "currentLiveSpeedBlock": "THE FIVE · FORM Thursday / Miami Season",
+    "approvedName": "Speed Reserve",
+    "approvedOn": "2026-10-23",
+    "approved": true,
+    "appDisplayPendingCoachPublication": true,
+    "kevinException": "Keep Kevin's first-marathon block named Marathon endurance; he shares Thursday only."
+  },
+  "authoringRules": [
+    "Personal time goals belong only to athletes who directly adopted them. Shared Thursday workouts are not consent to copy targets.",
+    "Only Tinius and Simon use km for non-track distances; all others miles; track repetitions always meters.",
+    "Goal and focus strings are plain language. Never prepend repeated category/date/name or decorative workout labels.",
+    "Active gate is next actual uncompleted checkpoint on the athlete's calendar; never mark a planned test completed.",
+    "Preserve old goal/focus revisions and Tinius archived half-marathon data; fix active block projection without destroying history.",
+    "Append active coach-authored focus and training block revisions through authenticated access with feed readback. Do not write through an unauthenticated admin session."
+  ],
+  "athletes": [
+    {
+      "slug": "brice",
+      "cohort": "speed",
+      "unit": "mi",
+      "blockEndsProposed": "2027-02-28",
+      "goalLabel": "Sub-17 5K · Sub-5 mile",
+      "goalStatement": "Develop short-distance speed and carry it farther while keeping easy endurance; 6:00/mi should become comfortable.",
+      "focus": "Build faster mechanics, then hold that speed longer. Keep endurance with easy long runs.",
+      "nextGate": {
+        "date": "2026-11-19",
+        "label": "5×400m",
+        "status": "planned"
+      },
+      "gateLadder": [
+        {
+          "date": "2026-11-19",
+          "session": "5×400m",
+          "kind": "checkpoint A",
+          "measure": "five rep splits and RPE; 2:00 recovery"
+        },
+        {
+          "date": "2026-12-31",
+          "session": "5×400m",
+          "kind": "checkpoint B",
+          "measure": "five rep splits and RPE; 2:00 recovery; compare against Nov19"
+        },
+        {
+          "date": "2027-02-25",
+          "session": "1600m",
+          "kind": "assessment",
+          "measure": "four 400m splits, finish RPE and time; not official 1-mile PB"
+        }
+      ]
+    },
+    {
+      "slug": "tinius",
+      "cohort": "speed",
+      "unit": "km",
+      "blockEndsProposed": "2027-02-28",
+      "goalLabel": "Speed development",
+      "goalStatement": "Develop repeatable short-distance speed and maintain easy endurance. Personal race time goals have not been verified.",
+      "focus": "Get quicker over short distances and carry that speed farther. Keep long runs easy.",
+      "nextGate": {
+        "date": "2026-11-19",
+        "label": "5×400m",
+        "status": "planned"
+      },
+      "gateLadder": [
+        {
+          "date": "2026-11-19",
+          "session": "5×400m",
+          "kind": "checkpoint A",
+          "measure": "five rep splits and RPE; 2:00 recovery"
+        },
+        {
+          "date": "2026-12-31",
+          "session": "5×400m",
+          "kind": "checkpoint B",
+          "measure": "five rep splits and RPE; 2:00 recovery; compare against Nov19"
+        },
+        {
+          "date": "2027-02-25",
+          "session": "1600m",
+          "kind": "assessment",
+          "measure": "four 400m splits, finish RPE and time; not official 1-mile PB"
+        }
+      ]
+    },
+    {
+      "slug": "sam-reyes",
+      "cohort": "speed",
+      "unit": "mi",
+      "blockEndsProposed": "2027-02-28",
+      "goalLabel": "Speed development",
+      "goalStatement": "Develop repeatable short-distance speed and maintain easy endurance. Personal race time goals have not been verified.",
+      "focus": "Get quicker over short distances and carry that speed farther. Keep long runs easy.",
+      "nextGate": {
+        "date": "2026-11-19",
+        "label": "5×400m",
+        "status": "planned"
+      },
+      "gateLadder": [
+        {
+          "date": "2026-11-19",
+          "session": "5×400m",
+          "kind": "checkpoint A",
+          "measure": "five rep splits and RPE; 2:00 recovery"
+        },
+        {
+          "date": "2026-12-31",
+          "session": "5×400m",
+          "kind": "checkpoint B",
+          "measure": "five rep splits and RPE; 2:00 recovery; compare against Nov19"
+        },
+        {
+          "date": "2027-02-25",
+          "session": "1600m",
+          "kind": "assessment",
+          "measure": "four 400m splits, finish RPE and time; not official 1-mile PB"
+        }
+      ]
+    },
+    {
+      "slug": "david",
+      "cohort": "speed",
+      "unit": "mi",
+      "blockEndsProposed": "2027-02-28",
+      "goalLabel": "Speed development",
+      "goalStatement": "Develop repeatable short-distance speed and maintain easy endurance. Personal race time goals have not been verified.",
+      "focus": "Get quicker over short distances and carry that speed farther. Keep long runs easy.",
+      "nextGate": {
+        "date": "2026-11-19",
+        "label": "5×400m",
+        "status": "planned"
+      },
+      "gateLadder": [
+        {
+          "date": "2026-11-19",
+          "session": "5×400m",
+          "kind": "checkpoint A",
+          "measure": "five rep splits and RPE; 2:00 recovery"
+        },
+        {
+          "date": "2026-12-31",
+          "session": "5×400m",
+          "kind": "checkpoint B",
+          "measure": "five rep splits and RPE; 2:00 recovery; compare against Nov19"
+        },
+        {
+          "date": "2027-02-25",
+          "session": "1600m",
+          "kind": "assessment",
+          "measure": "four 400m splits, finish RPE and time; not official 1-mile PB"
+        }
+      ]
+    },
+    {
+      "slug": "kevin",
+      "cohort": "first_marathon",
+      "unit": "mi",
+      "blockEndsProposed": "2027-01-31",
+      "goalLabel": "First marathon · completion",
+      "goalStatement": "Build running consistency and Saturday endurance toward completing a first marathon. Thursday track provides shared speed and strength work, not a separate race-time target.",
+      "focus": "Build Saturday long runs for your first marathon. Thursday track adds strength and variety.",
+      "nextGate": {
+        "date": "2026-10-31",
+        "label": "6 mi Saturday",
+        "status": "planned; verify completion"
+      },
+      "gateLadder": [
+        {
+          "date": "2026-10-31",
+          "session": "6 mi",
+          "kind": "next Saturday long run",
+          "measure": "actual distance, effort, recovery; planned not completed"
+        },
+        {
+          "date": "2027-01-16",
+          "session": "16 mi",
+          "kind": "proposed peak long run",
+          "measure": "completed progression, fueling and coach readiness review"
+        },
+        {
+          "date": "2027-01-31",
+          "session": "Marathon",
+          "kind": "candidate event",
+          "measure": "entry and readiness unverified; unpublished draft"
+        }
+      ]
+    }
+  ],
+  "feedChecks": {
+    "privateNotesNeverExposed": true,
+    "activeBlockMarkRequired": true,
+    "noFabricatedRaceEntries": true,
+    "studyIsNotPrescription": true,
+    "approvalAndAthleteReadbackRequired": true
+  },
+  "programCopy": {
+    "category": "Speed development",
+    "short": "Get faster over short distances, learn to hold that speed longer, and keep your endurance.",
+    "description": "Speed Reserve is a running development program for runners who want to become faster over the mile and 5K without giving up their endurance. We use short track repetitions to improve speed and coordination, longer repetitions and controlled sustained running to help that speed last, and easy long runs to maintain endurance. The group shares Thursday track workouts, while each runner has their own goals and long-run distances.",
+    "meaning": "Speed reserve means having more speed available than you need for a particular pace. Building that extra range can make the pace you want to sustain less demanding. But raw speed is only half the work: the plan also develops the ability to maintain it. The aim is repeatable faster running, not simply a quick interval or a hard session every day.",
+    "forWhom": "For runners who already run consistently and want structured speed development for the mile, 5K, or faster everyday running. You do not need a race booked. New or returning runners need an individual review before receiving the same work. Kevin joins the shared Thursday track sessions but remains on his own first-marathon endurance plan.",
+    "source": "docs/coaching/SPEED_RESERVE_PROGRAM_20261023.md"
+  }
+}
