@@ -2,11 +2,12 @@
   "version": "2026-10-23.1-proposed",
   "status": "NOT LIVE — authenticated coach revision required",
   "nameDecision": {
-    "current": "THE FIVE · FORM Thursday / Miami Season",
-    "suggested": "Speed Reserve",
-    "approved": false,
-    "fallbackDisplay": "Speed development",
-    "note": "Do not rename athlete blocks until Brice chooses the program name."
+    "currentLiveSpeedBlock": "THE FIVE · FORM Thursday / Miami Season",
+    "approvedName": "Speed Reserve",
+    "approvedOn": "2026-10-23",
+    "approved": true,
+    "appDisplayPendingCoachPublication": true,
+    "kevinException": "Keep Kevin's first-marathon block named Marathon endurance; he shares Thursday only."
   },
   "authoringRules": [
     "Personal time goals belong only to athletes who directly adopted them. Shared Thursday workouts are not consent to copy targets.",
@@ -194,5 +195,13 @@
     "noFabricatedRaceEntries": true,
     "studyIsNotPrescription": true,
     "approvalAndAthleteReadbackRequired": true
+  },
+  "programCopy": {
+    "category": "Speed development",
+    "short": "Get faster over short distances, learn to hold that speed longer, and keep your endurance.",
+    "description": "Speed Reserve is a running development program for runners who want to become faster over the mile and 5K without giving up their endurance. We use short track repetitions to improve speed and coordination, longer repetitions and controlled sustained running to help that speed last, and easy long runs to maintain endurance. The group shares Thursday track workouts, while each runner has their own goals and long-run distances.",
+    "meaning": "Speed reserve means having more speed available than you need for a particular pace. Building that extra range can make the pace you want to sustain less demanding. But raw speed is only half the work: the plan also develops the ability to maintain it. The aim is repeatable faster running, not simply a quick interval or a hard session every day.",
+    "forWhom": "For runners who already run consistently and want structured speed development for the mile, 5K, or faster everyday running. You do not need a race booked. New or returning runners need an individual review before receiving the same work. Kevin joins the shared Thursday track sessions but remains on his own first-marathon endurance plan.",
+    "source": "docs/coaching/SPEED_RESERVE_PROGRAM_20261023.md"
   }
 }
