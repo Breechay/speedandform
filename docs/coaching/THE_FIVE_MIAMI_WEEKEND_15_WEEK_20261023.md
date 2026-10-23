@@ -1,6 +1,6 @@
 # THE FIVE · Miami Season | FORM Running + iRUN
 
-**Canon:** 2026-10-23.1; active athlete season October 19, 2026 to January 31, 2027, **15 FORM Weeks including the October 19–25 entry week**. This document is the human-readable companion to [the exact machine-authored manifest](THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.json) and **the live coach-authored planned session versions** in FORM Athlete System. The earlier 12-week Speed First document is the originating design; this 15-week season supersedes its end date and incomplete authoring inventory.
+**Proposed revision:** 2026-10-23.2, pending coach-authenticated publication. **Current live canon is 2026-10-23.1.** Active athlete season October 19, 2026 to January 31, 2027, **15 FORM Weeks including the October 19–25 entry week**. This document is the human-readable companion to [the exact machine-authored manifest](THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.json) and, once the publication gate is satisfied, **the live coach-authored planned session versions** in FORM Athlete System. The earlier 12-week Speed First document is the originating design; this 15-week season supersedes its end date and incomplete authoring inventory.
 
 **Participants at publication:** Brice, Tinius, Sam Reyes, David Morales, and Kevin Helle. Participation in iRUN or FORM Thursday is not a race registration, verified session completion or medical clearance.
 
@@ -11,7 +11,14 @@
 - **Monday evening · iRUN:** currently assigned 40 min easy + 4 × 15 sec relaxed strides, with the exception of 30 min easy on the final two Mondays. This is the single **currently published** Monday prescription. Once the real iRUN workout is available, the coach reads its dose, reauthors that Monday’s FORM session **before the workout**, and reviews Thursday and surrounding Forge lower-body work. **Do not execute a hard iRUN workout and also do the easy fallback.** Historical October 19 iRUN was 8 × 800m Garmin-derived, not a prediction of future Mondays.
 - **Wednesday:** 35 min easy; final two weeks 25 min easy. Easy means 8:00/mi or slower for the mile-based athletes, 4:58/km or slower for Tinius. There is **no 5:51/mi easy pace** prescribed.
 - **Thursday · FORM Track:** quality anchor alternating 5K-speed development and controlled threshold. **Coach-confirmed group standard (October 23):** Brice, Tinius, Sam, David and Kevin share the same Thursday session structure and authored targets because the coach assesses the group at roughly the same speed level. Do not silently individualize or dilute Thursday based only on a different race goal. Threshold remains controlled RPE 6–7 where no numeric pace was authored; do not invent one. Kevin's Week 14 easy marathon taper is the intentional exception. Warm-up 20 min and cool-down 15 min, except the final taper session.
-- **Saturday:** genuinely easy aerobic durability, individualized. **Coach-approved cohort envelope (Oct 23): 6–10 miles** for Brice, Sam, David and Tinius (show Tinius about **10–16 km**); Kevin is excluded and retains his first-marathon-specific progression, fueling practice and readiness checks. The published 6–9 mile ladder already falls inside this envelope. An actual 10-mile future Saturday must be issued as a new coach-authored version; do not silently overwrite the currently published 9-mile days. The 2-mile/3.2 km final-season closeout is an intentional exception. Friday upper and Sunday moderate legs in Brice’s Forge design, Tinius’s Thursday-lower Forge conflict, and Kevin’s lower-body recovery plan require paired coach review whenever Monday/Thursday/Saturday change.
+- **Saturday:** genuinely easy aerobic durability, individualized. **Coach-approved cohort envelope (Oct 23): 6–10 miles** for Brice, Sam, David and Tinius (show Tinius about **10–16 km**); Kevin is excluded and retains his first-marathon-specific progression, fueling practice and readiness checks. **Approved January 16 Week 13 target:** 10 mi for Brice, Sam and David; 16 km for Tinius. Production remains 9 mi / 14.5 km until four immutable coach-authored versions are issued and read back. Do not overwrite historical versions. The 2-mile/3.2 km final-season closeout is an intentional exception. Friday upper and Sunday moderate legs in Brice’s Forge design, Tinius’s Thursday-lower Forge conflict, and Kevin’s lower-body recovery plan require paired coach review whenever Monday/Thursday/Saturday change.
+
+## Week 13 publishing gate (coach-approved target; not live)
+
+- **Saturday, January 16, 2027:** Brice, Sam Reyes, David Morales 9 → **10 mi easy** (8:00/mi or slower); Tinius 14.5 → **16 km easy** (4:58/km or slower). Preserve no fast finish and RPE 2–3.
+- **Kevin:** his 16-mi marathon endurance with fueling remains unchanged.
+- **All Thursdays:** no prescription change. No other Monday, Wednesday, Saturday, or Forge edits.
+- **Publication:** four new immutable revisions through authenticated coach authoring, preserving session IDs and historical revisions; verify version increments and all five athlete feeds. This management SQL connection lacks `auth.uid()` and cannot substitute for coach identity. Merge this proposed manifest into main only after verified live publication.
 
 ## Live 15-week session spine
 
@@ -29,7 +36,7 @@
 | 10 | 2026-12-21 | Threshold 04 / 25 min continuous | 8 mi (12.9 km) | 12 mi |
 | 11 | 2026-12-28 | 4 × 1000m / speed endurance | 9 mi (14.5 km) | 9 mi |
 | 12 | 2027-01-04 | Threshold 05 / 20 + 8 min | 7 mi (11.3 km) | 13 mi |
-| 13 | 2027-01-11 | 3 × 1200m / relaxed extension | 9 mi (14.5 km) | 16 mi |
+| 13 | 2027-01-11 | 3 × 1200m / relaxed extension | **10 mi (16 km) proposed** | **16 mi unchanged** |
 | 14 | 2027-01-18 | Threshold 06 / 20 + 12 min | 8 mi (12.9 km) | 8 mi |
 | 15 | 2027-01-25 | Race-week rhythm / 20 min + 4 strides | 2 mi (3.2 km) | 2 mi |
 
