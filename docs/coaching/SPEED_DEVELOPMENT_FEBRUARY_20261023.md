@@ -36,13 +36,17 @@ This four-week extension is a proposal, not proof each athlete is ready for 12 m
 
 ## Dossier copy · proposed, not published
 
+The exact per-athlete proposed fields and chronological gates are in [the dossier copy manifest](SPEED_DEVELOPMENT_DOSSIER_COPY_20261023.json). It is a publication payload for a signed-in coach, **not** evidence that any live Dossier field changed.
+
 | Athlete | Goal / headline | Focus (plain athlete-facing English) | Next gate |
 | --- | --- | --- | --- |
-| Brice | Speed development · sub-5 mile and sub-17 5K are personal ambitions | **Build faster mechanics, then hold that speed longer. Keep endurance with easy long runs.** | Feb 25 · 1600m benchmark |
-| Tinius | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
-| Sam | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
-| David | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Feb 25 · 1600m benchmark |
-| Kevin | First marathon · completion | **Build Saturday long runs for your first marathon. Thursday track adds strength and variety.** | Jan 16 · 16-mi long run; Jan 31 event status requires verification |
+| Brice | Speed development · sub-5 mile and sub-17 5K are personal ambitions | **Build faster mechanics, then hold that speed longer. Keep endurance with easy long runs.** | Nov 19 · 5×400m checkpoint A |
+| Tinius | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Nov 19 · 5×400m checkpoint A |
+| Sam | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Nov 19 · 5×400m checkpoint A |
+| David | Speed development (individual time targets not verified) | **Get quicker over short distances and carry that speed farther. Keep long runs easy.** | Nov 19 · 5×400m checkpoint A |
+| Kevin | First marathon · completion | **Build Saturday long runs for your first marathon. Thursday track adds strength and variety.** | Oct 31 · 6-mi Saturday (planned; confirm actual completion) |
+
+The next gate shown in the Dossier **as of October 23** is November 19 (5×400m checkpoint A), followed by December 31 (5×400m checkpoint B) and the February 25 1600m benchmark. After each checkpoint is filed, the next gate advances by actual calendar date and coaching evidence; it never infers a completion. Kevin's next gate is his upcoming completed Saturday long run, beginning October 31 at 6 miles, not automatically his eventual 16-mile peak.
 
 The currently active block goals for David and Tinius incorrectly copy Brice's *sub-5 mile · 16:35 5K* label. Do not interpret that as their individual goal. Sam and David currently have no dossier focus; Kevin also has none. Replace these by signed-in coach-owned focus/block updates and verify each athlete feed. Kevin's **Marathon endurance** type label remains appropriate beginner language. On the speed cohort, name program by agreed identity, but session labels remain plain numerical instructions.
 
