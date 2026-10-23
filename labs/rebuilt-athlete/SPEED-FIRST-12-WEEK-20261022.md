@@ -1,4 +1,7 @@
 # THE REBUILT ATHLETE / THE FIVE · SPEED FIRST
+> **October 23 superseding live season:** THE FIVE now runs as a **15-week** FORM + iRUN season from **October 19, 2026 through January 31, 2027** with all five athletes' Weeks 1–15 authored and the January 31 Miami weekend as the common endpoint. This 12-week document remains the original development-cycle design and historical source, **not the current complete live season**. Read the [15-week operating program](../../docs/coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.md) and [machine-authored session manifest](../../docs/coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.json) for Thursday threshold progression (2×10 → 2×12 → 2×15 → 25 continuous → 20+8 → 20+12), Monday iRUN, all fifteen calendar weeks and Kevin's separately reviewed marathon-distance work. No race entry is inferred for the speed cohort, and Kevin's race-day slot remains a draft pending registration and readiness.
+
+
 
 **Reusable FORM training cycle:** **THE FIVE · Speed First**. A 12-week 5K-focused speed-development framework with a separately authored entry week when appropriate. *Speed first. Distance earned.* remains its coaching proposition. Naming the repeatable program does not establish race readiness or publish unreviewed training weeks.
 
