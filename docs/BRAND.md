@@ -6,7 +6,7 @@ Before composing any public marketing page or the shared menu, obey [the public 
 
 ## FORM Running app material reference · October 23, 2026
 
-The native **Running app** now has an app-only theme design candidate: Bone / Quiet Clay, Clay / Stronger Signature, and Charcoal / After Dark. The public reference at `/brand/app/` documents the eight source colors, the shared semantic surface roles and theme-specific state treatments in Filing, Dossier and Plan. Quiet Clay alone has a 4 pt clay marker outside the current-week row; Signature uses a clay-filled selected row; After Dark uses warm charcoal insets and sunset selection. Filing inset controls are distinctly brighter than the light paper canvas.
+The native **Running app** now has an app-only theme design candidate: Bone / Quiet Clay, Clay / Stronger Signature, and Charcoal / After Dark. The public reference at `/brand/app/` documents the eight source colors, the shared semantic surface roles and theme-specific state treatments in Filing, Dossier and Plan. Quiet Clay uses a lifted chalk-white current-week card without a side marker; Signature uses a clay-filled selected row; After Dark uses warm charcoal insets and sunset selection. Filing inset controls are distinctly brighter than the light paper canvas.
 
 **Scope:** These colors do **not** change the house website palette, the Strength app, photography, athlete records or coaching prescriptions. The linked iOS implementation is a candidate in FORM-iOS PR #83 and needs Xcode/device QA before being described as live. The page's demonstration screens are illustrative, not published athlete dossiers.
 

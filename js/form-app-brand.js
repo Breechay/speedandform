@@ -8,7 +8,7 @@
   if (!board || !caption || options.length !== 3) return;
 
   const captions = {
-    quiet: "Bone / Quiet Clay. A fine clay rail marks the current week.",
+    quiet: "Bone / Quiet Clay. A lifted chalk card marks the current week.",
     signature: "Clay / Stronger Signature. The current week and primary action fill with clay.",
     dark: "Charcoal / After Dark. Sunset details sit on raised charcoal; the primary action turns chalk."
   };

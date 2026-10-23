@@ -86,7 +86,7 @@ body.fa-brand { margin:0; background:#0B0B0B; color:#F4F2EC; -webkit-font-smooth
 .fa-plan-week small { font:500 12px/1.4 "JetBrains Mono",monospace; color:var(--secondary); white-space:nowrap; }
 .fa-plan-week em { display:block; color:var(--accent); font:400 11px/1.6 Inter,Arial,sans-serif; }
 .fa-current-week { background:var(--selection); border-radius:9px; border-bottom-color:transparent; margin:6px 0; padding-inline:14px; }
-.fa-preview[data-theme="quiet"] .fa-current-week::before { content:""; position:absolute; width:4px; border-radius:7px; top:6px; bottom:6px; left:-8px; background:#974F3E; }
+.fa-preview[data-theme="quiet"] .fa-current-week { background:#F8F6F0; box-shadow:0 1px 2px rgba(36,35,33,.035); }
 .fa-preview[data-theme="quiet"] .fa-current-week b { color:#974F3E; }
 .fa-preview[data-theme="signature"] .fa-current-week,.fa-preview[data-theme="signature"] .fa-current-week em,.fa-preview[data-theme="signature"] .fa-current-week small { color:#F8F6F0; }
 .fa-preview[data-theme="signature"] .fa-current-week em { opacity:.82; }

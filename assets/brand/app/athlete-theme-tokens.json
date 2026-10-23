@@ -23,7 +23,7 @@
       "selection": "#E8E1D7",
       "action": "#242321",
       "actionInk": "#F8F6F0",
-      "currentWeekLeftRail": "4pt clay, exclusive",
+      "currentWeekTreatment": "lifted chalk current-week card; no side marker",
       "filing": "chalk cards, light input wells, charcoal action"
     },
     "signatureClay": {
@@ -35,7 +35,7 @@
       "selection": "#974F3E",
       "action": "#974F3E",
       "actionInk": "#F8F6F0",
-      "currentWeekLeftRail": "none; clay-filled current week",
+      "currentWeekTreatment": "clay-filled current week; no side marker",
       "filing": "chalk cards, light input wells, clay action"
     },
     "afterDark": {
@@ -47,7 +47,7 @@
       "selection": "#45362F",
       "action": "#F8F6F0",
       "actionInk": "#242321",
-      "currentWeekLeftRail": "none; warm inset and hairline",
+      "currentWeekTreatment": "warm charcoal inset and hairline; no side marker",
       "filing": "raised charcoal cards, sunset focus, chalk action"
     }
   },
