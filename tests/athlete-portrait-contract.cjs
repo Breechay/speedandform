@@ -2,6 +2,7 @@
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
+const vm = require('node:vm');
 const { parseArgs, verifyPortrait } = require('../scripts/verify-athlete-portrait.cjs');
 
 const id = '653fb49b-4127-46ee-abf4-02babdf5df71';
@@ -54,6 +55,51 @@ async function main() {
   assert.match(coachSource, /publishedByAthlete\.get\(athlete\.id\)/);
   assert.match(coachSource, /portraitUrl: canonical \|\| fallback/);
   assert.doesNotMatch(coachSource.slice(coachSource.indexOf('export async function signPortraits'), coachSource.indexOf('// A standing fact')), /first_name.*avatar_path/);
+
+  // Execute the actual Coach Console resolver in isolation. A canonical
+  // Supabase photo must beat stale site-relative and private-bucket paths,
+  // while unlisted athletes can still use their private coach portrait.
+  const code = coachSource.slice(coachSource.indexOf('const PORTRAIT_SIGNED_FOR'), coachSource.indexOf('// A standing fact'))
+    .replace('export async function signPortraits', 'async function signPortraits');
+  const signed = [];
+  const studio = {
+    URL,
+    console,
+    supabase: {
+      from: (table) => {
+        assert.equal(table, 'collective_people');
+        return { select: (columns) => {
+          assert.equal(columns, 'athlete_id,avatar_path');
+          return { in: (field, ids) => {
+            assert.equal(field, 'athlete_id');
+            assert.equal(ids.length, 3);
+            return Promise.resolve({ data: [
+              { athlete_id: 'marcus-id', avatar_path: '/assets/athletes/marcus-20261023.jpg' },
+              { athlete_id: 'simon-id', avatar_path: '/assets/athletes/simon-20261023.jpg' }
+            ], error: null });
+          } };
+        } };
+      },
+      storage: { from: (bucket) => {
+        assert.equal(bucket, 'athlete-portraits');
+        return { createSignedUrls: async (paths) => {
+          signed.push(...paths);
+          return { data: paths.map((item) => ({ path: item, signedUrl: 'https://private.example/' + item })), error: null };
+        } };
+      } }
+    }
+  };
+  const signPortraits = vm.runInNewContext(code + '\nsignPortraits;', studio, { timeout: 1000 });
+  const resolved = await signPortraits([
+    { id: 'marcus-id', portrait_path: '/assets/athletes/marcus-512.webp' },
+    { id: 'simon-id', portrait_path: 'old/simon.png' },
+    { id: 'unlisted-id', portrait_path: 'private/unlisted.jpg' }
+  ]);
+  assert.equal(resolved[0].portraitUrl, 'https://speedandform.com/assets/athletes/marcus-20261023.jpg');
+  assert.equal(resolved[1].portraitUrl, 'https://speedandform.com/assets/athletes/simon-20261023.jpg');
+  assert.equal(resolved[2].portraitUrl, 'https://private.example/private/unlisted.jpg');
+  assert.deepEqual(signed, ['private/unlisted.jpg'], 'Only genuinely private fallback images should be signed');
+  assert.ok(resolved.every((athlete) => !athlete.portraitUnreachable));
   console.log('PASS: portrait verifier fails closed on mismatched identity, broken image, roster omission and unverified account');
 }
 
