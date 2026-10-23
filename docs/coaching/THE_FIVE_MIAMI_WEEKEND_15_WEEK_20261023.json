@@ -1,5 +1,5 @@
 {
-  "version": "2026-10-23.1",
+  "version": "2026-10-23.2-proposed",
   "name": "THE FIVE · FORM Thursday + iRUN · Miami Weekend",
   "start": "2026-10-19",
   "end": "2027-01-31",
@@ -248,9 +248,9 @@
       "monMinutes": 40,
       "monStrides": 4,
       "wedMinutes": 35,
-      "satMiles": 9,
+      "satMiles": 10,
       "kevinSatMiles": 16,
-      "notes": null
+      "notes": "Approved October 23 target: Jan 16 10 mi for Brice, Sam and David; Tinius 16 km. Four new immutable session revisions needed via authenticated coach workflow; Kevin 16 mi and all Thursdays unchanged."
     },
     {
       "week": 14,
@@ -300,5 +300,6 @@
       "kevinSatMiles": 2,
       "notes": "Miami race weekend: Saturday is only a 2-mile easy shakeout; Sunday January 31 closes the program. Kevin's 26.2-mile race is an unpublished coach draft pending readiness/registration."
     }
-  ]
+  ],
+  "publicationStatus": "PENDING coach-authenticated publication. Production is still 9 mi Brice/Sam/David and 14.5 km Tinius. Kevin unchanged at 16 mi. Thursdays unchanged. Do not merge without four coach-authored revisions and production feed readback."
 }
