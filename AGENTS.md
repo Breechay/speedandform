@@ -15,6 +15,8 @@
 
 ## FORM Thursday roster and portrait onboarding
 
+> **Portrait publication regression gate (Oct 24):** Follow [Athlete portrait publication safeguards](docs/engineering/ATHLETE_PORTRAIT_PUBLICATION_GUARD_2026-10.md) for every added/repaired avatar. Never prefetch an unpublished photo URL, never overwrite a published filename, never append a query string to `collective_people.avatar_path`, and do not change athlete identity to repair an image. Publish a *new clean asset path* first, verify HTTP 200 and image decoding, update both canonical Supabase portrait fields for the same athlete ID, then check authenticated Coach **and** Dossier. CI enforces non-reused filenames, image signatures and scoped cache policy; phone verification remains separate.
+
 When Brice adds athletes to the shared Thursday speed practice, consult [the FORM Thursday cohort record](docs/coaching/FORM_THURSDAY_COHORT_20261022.md). Keep one canonical athlete identity and an explicitly linked `collective_people.athlete_id`; public site `/athletes/` and native Dossier avatar use that relationship, not name matching. Publish a person to the site only when the coach asks for roster visibility; do not auto-publish every private coached athlete. Require verified portrait asset and correct subject-specific invitation before claiming account/photo visibility is live. Easy running is 8:00/mi or slower (4:58/km or slower for Tinius), Thursday is the cohort speed work at the same prescribed splits, and weekend mileage remains coach-reviewed, particularly Kevin’s separate first-marathon progression. Archive former blocks and preserve prior versions/results; do not clone athlete-specific health history or completed runs.
 
 ## Study 002 · run ID evidence reviews
