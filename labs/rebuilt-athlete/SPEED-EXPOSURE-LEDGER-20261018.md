@@ -158,3 +158,29 @@ Work metrics are sampled device estimates, not lab-calibrated mechanics. All sev
 **Athlete context:** The first warm-up stride felt forced; work felt smooth. The last 400 was distracted, not reported as a physical fade. Heart rate was high despite smooth perceived mechanics, and the device reached 185 bpm in the full recorded session. Neither the last-lap values nor raw HR establish a biomechanical breakdown.
 
 **Ongoing run ID review:** See [Run Evidence Review Standard](RUN-EVIDENCE-REVIEW-STANDARD.md) for how supplied activity IDs are screened for lap pace, time-at-pace, stride/step length, cadence, ground contact time, vertical oscillation/ratio, cardiac cost and recovery. A Garmin activity ID can identify a summary record, but source-level mechanics and sample-accurate pace bins require the original FIT trace or a compatible detailed record. Unavailable fields remain unknown.
+
+## October 24 · Alo social run plus late pace exposure
+
+**Original Garmin Forerunner 965 FIT, activity 24837024233.** Athlete report: left bicycle at Maddie, ran to 1 Hotel, joined approximately three Alo social miles, extended to 10.42 miles for enjoyment and endurance. Later increased speed near the Garmin-estimated threshold pace. The movement felt fluid but its rhythm and symmetry required conscious holding; Brice felt losing the beat could make the stride harder to regain. No claim of two completed formal two-mile repeats, and no retroactive change to the easy social 5K prescription.
+
+- **10.42 mi, 1:28:11 moving/timer**, average HR **148 bpm**, peak **181 bpm**. Elapsed time includes a substantial club/social stop. Recorded laps include a 0.41-mi partial lap between complete-mile laps.
+- Final two full mile laps: **7:35.1 / HR 178**, **7:23.6 / HR 174**. Combined **14:58.7 / 2.00 mi**, about **7:29/mi**. Garmin screenshot around Oct 17 estimates threshold near 7:27/mi and 166 bpm, not a verified lactate threshold. Heart rate late was above that estimate despite controlled reported sensation.
+- Recorded late-lap mechanics: cadence **170 / 170 spm**, step length **1.247 / 1.266 m**, ground contact **251.6 / 248.8 ms**, vertical oscillation about 9.4 cm. Changes co-occurred with speed increase, not a matched-pace efficiency result.
+
+### Estimated time at pace from smoothed FIT samples
+
+From timestamped enhanced-speed samples near 1 Hz: use a **30-second trailing median**, restarting after clock gaps greater than two seconds. Require ten valid readings per uninterrupted window and exclude speeds under 1.0 m/s. Classified **5,176 seconds (86:16)** of **5,291 seconds (88:11)** timer time. Unclassified start/stop/invalid transitions: **1:55**. Source sampling and smoothing make these *estimates*, not proof of continuous intervals at the displayed pace. Do not sum with whole-mile-average or track work bins as though methods were identical.
+
+| Smoothed pace | Classified moving time |
+|---|---:|
+| Faster than 7:00/mi | 0:00 |
+| 7:00–7:29/mi | 9:19 |
+| 7:30–7:59/mi | 17:26 |
+| 8:00–8:29/mi | 16:17 |
+| 8:30–8:59/mi | 27:40 |
+| 9:00–9:29/mi | 9:32 |
+| 9:30/mi or slower | 6:02 |
+
+Classified below 8:00/mi: **26:45**. Classified below 7:00/mi: **0:00**. The [Speed Exposure workbench](speed-exposure/index.html#speed) keeps this sample-derived distribution distinct from the historical lap-average bars.
+
+**Next question:** Can Brice sustain an equally fluid rhythm at comparable speed with less conscious correction, and regain it when disturbed? No left-leg-specific attention pattern, next-day recovery, measured symmetry, or clinical threshold has yet been established. FORM/Forge prescriptions were not changed.
