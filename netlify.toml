@@ -34,6 +34,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
+# Athlete images use human-authored filenames, not content fingerprints.
+# A repaired portrait or temporary 404 must revalidate within five minutes.
+[[headers]]
+  for = "/assets/athletes/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300, must-revalidate"
+
 # WordPress spam
 
 # Sign in with Apple web Services ID return URL
