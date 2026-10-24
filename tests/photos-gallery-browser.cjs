@@ -33,12 +33,12 @@ async function intercept(context) {
    page.on('pageerror',error=>errors.push(error.message));
    const response=await page.goto(origin+'/photos/',{waitUntil:'domcontentloaded'});
    assert.equal(response.status(),200);
-   await page.waitForFunction(()=>document.querySelectorAll('#photo-wall .photo-frame').length===51);
+   await page.waitForFunction(()=>document.querySelectorAll('#photo-wall .photo-frame').length===52);
    const photo=page.locator('#photo-wall .photo-frame').first();
    assert.equal(await page.locator('.photos-editorial-hero').count(),0,'No Photograph masthead');
    assert.equal(await page.locator('.photos-footer').count(),0,'No duplicate footer');
    assert.equal(await page.locator('h1').count(),1,'Retain screen-reader page title');
-   assert.equal(await page.locator('#photo-wall .photo-frame').count(),51);
+   assert.equal(await page.locator('#photo-wall .photo-frame').count(),52);
    assert.equal(await photo.evaluate(e=>e.classList.contains('photo-featured')),true,'Featured frame exists');
    const geometry=await page.evaluate(()=>({nav:document.querySelector('.photos-header').getBoundingClientRect().bottom,first:document.querySelector('.photo-featured').getBoundingClientRect().top,width:document.documentElement.scrollWidth,client:document.documentElement.clientWidth}));
    assert.ok(geometry.first-geometry.nav<75,'Photos begin directly beneath header');
@@ -49,13 +49,13 @@ async function intercept(context) {
    const img=page.locator('.photo-viewer-image');
    await img.evaluate(el=>el.decode());
    assert.ok(await img.evaluate(el=>el.naturalWidth>0),'Full-resolution image loads');
-   assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 51');
+   assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 52');
    await page.locator('.photo-viewer-next').click();
-   assert.equal(await page.locator('.photo-viewer-count').innerText(),'2 / 51');
+   assert.equal(await page.locator('.photo-viewer-count').innerText(),'2 / 52');
    await page.keyboard.press('ArrowLeft');
-   assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 51');
+   assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 52');
    await page.keyboard.press('ArrowLeft');
-   assert.equal(await page.locator('.photo-viewer-count').innerText(),'51 / 51','Wraps from first to last');
+   assert.equal(await page.locator('.photo-viewer-count').innerText(),'52 / 52','Wraps from first to last');
    if(width<500){
     await page.locator('#photo-viewer').evaluate(el=>{
       // WebKit's desktop automation forbids constructing Touch directly.
@@ -67,7 +67,7 @@ async function intercept(context) {
       el.dispatchEvent(start);
       el.dispatchEvent(end);
     });
-    assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 51','Swipe advances from last to first');
+    assert.equal(await page.locator('.photo-viewer-count').innerText(),'1 / 52','Swipe advances from last to first');
    }
    // A navigation check is complete only when the selected image is visible,
    // not merely when its counter changes; catch empty black frames on mobile.
@@ -82,6 +82,6 @@ async function intercept(context) {
    count++;
   }
   assert.equal(errors.length,0,'No JavaScript exceptions: '+errors.join('; '));
-  console.log('PASS Photos: '+count+' viewports, 51 originals, black viewer, arrows, swipe, keyboard, image decoding, focus');
+  console.log('PASS Photos: '+count+' viewports, 52 originals, black viewer, arrows, swipe, keyboard, image decoding, focus');
  } finally {await browser.close();}
 })().catch(err=>{console.error(err);process.exitCode=1;});

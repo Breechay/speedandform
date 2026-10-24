@@ -298,3 +298,11 @@ Second question: **If this disappears, does the page become less useful or merel
 If it merely becomes quieter, cut it.
 
 This rule applies across the website, FORM app, FORM House, inquiry flows, commercial pages and future product interfaces. Necessary safety, legal, privacy, pricing, eligibility and material product information are not “residue” and should remain when relevant.
+
+## October 24 · Alo / 1 Hotel South Beach field observation
+
+Brice attended Alo's run and spent time at Tala / 1 Hotel. The quality of the physical setting made him want to spend more time in an environment where serious athletic work and hospitality fit together. This is personal observation of an existing property, not property interest, an agreed partnership, a meeting outcome or proof of demand.
+
+He enjoys organizing, coaching, observing movement and having one or two meaningful conversations, but does not want a role built around continuously mingling with a large crowd. The proposed operating split stays clear: **FORM owns the athletic practice and coaching; the partner owns arrival, amenities, breakfast and general guest hospitality**. Plan from a small committed group (existing 12-runner comparison, test 10 and 15) without removing the inclusive short-run or breakfast-only lanes. Form feedback to outside social runners should be invited rather than presumed.
+
+Website implication: clarify this role split inside the existing FORM House page, preserving the approved visual structure and not presenting 1 Hotel/Tala as a partner.
