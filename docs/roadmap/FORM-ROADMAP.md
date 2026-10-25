@@ -1,3 +1,10 @@
+## October 25 · Website conversion entry
+
+- Prepared a restrained homepage orientation: first-person Brice introduction, real portrait, direct running/strength coaching paths, plans, Thursday and apps. The existing cinematic opening, bend and athlete study remain intact.
+- Short-phone hero copy moves upward to clear `Work with me` from the first bend; the underlying bend geometry is untouched. The application renders Miami and remote coaching as two visible choices, preserving its original select, no-script fallback and inquiry receipt.
+- Scope, tests, unverified mobile acceptance, testimonial consent, discovery/measurement phase and the remote-price mismatch are recorded in [Website · The stranger's first visit](WEBSITE-CONVERSION-ENTRY-2026-10-25.md).
+- Status: source changes prepared on `codex/conversion-entry-20261025`, **not published**. Next: rendered browser approval, owner visual review, then a separately authorized production release.
+
 ## October 21 · Narrow-screen track transition
 
 - `work/home-track-transition`, based on main `17787082`. The shared straight now retains at least 22% of viewport width (capped at 112px), so coincident mobile bend centers cannot collapse the cream/ink blend. Track radii, lane spacing, photo transforms and gallery motion remain unchanged.

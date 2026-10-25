@@ -171,3 +171,11 @@
    ends at its own bend instead of leaking dark wedges around the next one. */
 .bend-pocket-upper,.bend-pocket-lower,.bend-pocket-right{background:#F4F2EC}
 .bend-pockets img,.bend-pockets::after{display:none}
+
+/* On short phones the primary action must remain above the first turn.
+   The older short-height exception lowered the copy into the track. */
+@media(max-width:760px) and (max-height:740px){
+  .sf-home-hero-immersive.has-bend-seam .hero-copy{
+    transform:translateY(calc(-1 * clamp(105px,19svh,145px)));
+  }
+}

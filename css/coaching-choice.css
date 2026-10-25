@@ -42,3 +42,23 @@
 
 @media(forced-colors:active){.coaching-choice__list,.coaching-choice__trigger{border-color:ButtonText}.coaching-choice__option.is-active{outline:2px solid Highlight;outline-offset:-2px}.coaching-choice__fee{color:CanvasText}}
 @media(prefers-reduced-motion:reduce){.coaching-choice__list,.coaching-choice__arrow,.coaching-choice__trigger,.coaching-choice__option{transition:none!important;transform:none!important}}
+
+/* The application shows both real coaching routes. The original select remains
+   the data source and the no-JavaScript fallback. */
+.coaching-route-choice{min-width:0;margin:0 0 clamp(32px,4vw,48px);padding:0;border:0}
+#coachingChoice[data-choice-layout="cards"][hidden],.coaching-select-label[hidden]{display:none!important}
+.coaching-route-choice>legend{font:400 13px/1.6 var(--mono,monospace);color:#565b55;margin-bottom:16px}
+.coaching-route-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.coaching-route-card{position:relative;display:block;min-width:0;min-height:208px;padding:24px 54px 22px 24px;background:#F4F2EC;border:1px solid #b8b9b5;color:#0B0B0B;cursor:pointer;transition:border-color .18s ease,background-color .18s ease}
+.coaching-route-card:has(input:checked){border:2px solid #0B0B0B;padding:23px 53px 21px 23px;background:#fff}
+.coaching-route-card input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;margin:0}
+.coaching-route-card:focus-within{outline:3px solid #0B0B0B;outline-offset:3px}
+.coaching-route-card__body{display:flex;flex-direction:column;align-items:flex-start;gap:6px;pointer-events:none}
+.coaching-route-card__type{font:400 12px/1.5 var(--mono,monospace);color:#565b55}
+.coaching-route-card__name{font:450 clamp(21px,2.25vw,28px)/1.12 "Inter Tight",Arial,sans-serif;letter-spacing:-.03em;margin-top:16px}
+.coaching-route-card__fee{font:400 14px/1.5 var(--mono,monospace);color:#3e433f}
+.coaching-route-card__detail{font:400 16px/1.5 "Inter Tight",Arial,sans-serif;margin-top:12px;max-width:32ch}
+.coaching-route-card__mark{position:absolute;right:23px;top:25px;width:22px;height:22px;border:2px solid currentColor;border-radius:50%;pointer-events:none}
+.coaching-route-card:has(input:checked) .coaching-route-card__mark::after{content:"";position:absolute;inset:4px;background:currentColor;border-radius:50%}
+@media(max-width:700px){.coaching-route-grid{grid-template-columns:1fr;gap:10px}.coaching-route-card{min-height:0;padding:18px 50px 18px 18px}.coaching-route-card:has(input:checked){padding:17px 49px 17px 17px}.coaching-route-card__name{margin-top:6px}.coaching-route-card__detail{margin-top:4px}.coaching-route-card__mark{right:18px;top:20px}}
+@media(prefers-reduced-motion:reduce){.coaching-route-card{transition:none}}

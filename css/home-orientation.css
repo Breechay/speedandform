@@ -1,0 +1,31 @@
+/* One photographic introduction and a quiet directory of real offers. */
+.home-introduction{background:#F4F2EC;color:#0B0B0B;padding:clamp(76px,9vw,144px) 0 clamp(72px,8vw,120px)}
+.home-introduction-grid{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.home-introduction-portrait{box-sizing:border-box;margin:0;min-width:0;aspect-ratio:4/4.7;overflow:hidden;border-radius:18px;background:#0B0B0B;padding-top:40px}
+.home-introduction-portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 0%;filter:none}
+.home-introduction-copy h2{font:450 clamp(60px,7.5vw,120px)/.94 "Inter Tight",Arial,sans-serif;letter-spacing:-.06em;margin:0 0 34px}
+.home-introduction-copy p{max-width:36ch;font:400 clamp(20px,2.1vw,29px)/1.32 "Inter Tight",Arial,sans-serif;letter-spacing:-.018em;margin:0}
+.home-training-paths{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);padding-top:clamp(78px,9vw,140px)}
+.home-training-paths h2{font:450 clamp(52px,6.2vw,92px)/1 "Inter Tight",Arial,sans-serif;letter-spacing:-.055em;margin:0}
+.home-training-links{min-width:0}
+.home-training-links>a,.home-training-apps{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:7px 18px;align-items:center;min-height:108px;padding:20px 0;border-top:1px solid rgba(11,11,11,.26);color:inherit;text-decoration:none}
+.home-training-links>a strong,.home-training-apps>strong{grid-column:1;font:450 clamp(25px,2.4vw,34px)/1.1 "Inter Tight",Arial,sans-serif;letter-spacing:-.025em}
+.home-training-links>a>span{grid-column:1;color:#4c514d;font:400 15px/1.5 "Inter Tight",Arial,sans-serif}
+.home-training-links>a>svg{grid-column:2;grid-row:1/3;justify-self:end;align-self:center;width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.3}
+.home-training-links>a:hover strong,.home-training-apps a:hover{text-decoration:underline;text-underline-offset:5px}
+.home-training-links>a:focus-visible,.home-training-apps a:focus-visible{outline:2px solid #0B0B0B;outline-offset:3px}
+.home-training-apps{border-bottom:1px solid rgba(11,11,11,.26)}
+.home-training-apps>span{grid-column:1;display:flex;gap:26px;flex-wrap:wrap}
+.home-training-apps a{display:inline-flex;align-items:center;gap:7px;min-height:44px;color:#4c514d;font:400 15px/1.5 "Inter Tight",Arial,sans-serif;text-decoration:none}
+.home-training-apps svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.3}
+@media(max-width:760px){
+ .home-introduction{padding-block:72px 84px}
+ .home-introduction-grid,.home-training-paths{grid-template-columns:1fr;gap:30px}
+ .home-introduction-portrait{width:min(100%,480px);aspect-ratio:4/4.2;padding-top:40px}
+ .home-introduction-copy h2{font-size:clamp(58px,14vw,88px);margin-bottom:20px}
+ .home-introduction-copy p{font-size:clamp(20px,5.2vw,25px);line-height:1.4}
+ .home-training-paths{padding-top:80px;gap:22px}
+ .home-training-paths h2{font-size:60px}
+ .home-training-links>a,.home-training-apps{min-height:100px;padding-block:18px}
+ .home-training-links>a strong,.home-training-apps>strong{font-size:28px}
+}

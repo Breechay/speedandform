@@ -41,6 +41,60 @@
   var label = document.querySelector('label[for="coachingChoice"]');
   if (!label || !select.options.length) return;
   var options = Array.from(select.options);
+  if (select.dataset.choiceLayout === 'cards') {
+    var fieldset = document.createElement('fieldset');
+    fieldset.className = 'coaching-route-choice';
+    var legend = document.createElement('legend');
+    legend.textContent = 'Coaching';
+    fieldset.appendChild(legend);
+    var cards = document.createElement('div');
+    cards.className = 'coaching-route-grid';
+    var offers = {
+      run: { type: 'In Miami', name: 'Run Development', fee: '$1,200 · 8 weeks', detail: 'One private session each week in Miami.' },
+      remote: { type: 'Anywhere', name: 'Remote running', fee: 'Fee agreed before starting', detail: 'Individual coaching wherever you train.' }
+    };
+    var radios = options.map(function (option, index) {
+      var offer = offers[option.value];
+      if (!offer) return null;
+      var card = document.createElement('label');
+      card.className = 'coaching-route-card';
+      var input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'coaching-route';
+      input.value = option.value;
+      input.checked = index === select.selectedIndex;
+      var body = document.createElement('span');
+      body.className = 'coaching-route-card__body';
+      [['coaching-route-card__type', offer.type], ['coaching-route-card__name', offer.name], ['coaching-route-card__fee', offer.fee], ['coaching-route-card__detail', offer.detail]].forEach(function (part) {
+        var node = document.createElement('span');
+        node.className = part[0];
+        node.textContent = part[1];
+        body.appendChild(node);
+      });
+      var mark = document.createElement('span');
+      mark.className = 'coaching-route-card__mark';
+      mark.setAttribute('aria-hidden', 'true');
+      card.append(input, body, mark);
+      cards.appendChild(card);
+      input.addEventListener('change', function () {
+        if (!input.checked || select.value === input.value) return;
+        select.value = input.value;
+        select.dispatchEvent(new Event('input', { bubbles: true }));
+        select.dispatchEvent(new Event('change', { bubbles: true }));
+      });
+      return input;
+    }).filter(Boolean);
+    if (radios.length === options.length) {
+      fieldset.appendChild(cards);
+      select.addEventListener('change', function () {
+        radios.forEach(function (input) { input.checked = input.value === select.value; });
+      });
+      select.insertAdjacentElement('afterend', fieldset);
+      select.hidden = true;
+      label.hidden = true;
+      return;
+    }
+  }
   var control = document.createElement('div');
   control.className = 'coaching-choice';
   var trigger = document.createElement('button');
