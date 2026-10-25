@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "name": "My November Running Plan",
+  "unit_preference": "mi",
+  "sessions": [
+    {
+      "date": "2026-11-02",
+      "type": "easy_strides",
+      "title": "Easy + strides",
+      "duration": 40,
+      "pace": { "min": 480, "max": 600, "unit": "sec_per_mi" },
+      "instructions": "4 relaxed strides after the easy run."
+    },
+    {
+      "date": "2026-11-03",
+      "type": "threshold",
+      "title": "4 × 6 min",
+      "segments": [
+        { "kind": "warmup", "amount": { "value": 20, "unit": "min" } },
+        {
+          "kind": "work",
+          "repeats": 4,
+          "amount": { "value": 6, "unit": "min" },
+          "pace": { "min": 390, "max": 400, "unit": "sec_per_mi" },
+          "recovery": "full"
+        },
+        { "kind": "cooldown", "amount": { "value": 10, "unit": "min" } }
+      ]
+    },
+    {
+      "date": "2026-11-04",
+      "type": "rest",
+      "title": "Rest"
+    },
+    {
+      "date": "2026-11-07",
+      "type": "long",
+      "title": "Long easy run",
+      "distance": { "value": 12, "unit": "mi" },
+      "pace": { "min": 480, "max": 600, "unit": "sec_per_mi" }
+    }
+  ]
+}
