@@ -38,7 +38,8 @@ If any step fails, keep the previous published Week. A valid JSON file is not su
 
 ## 100-athlete operational acceptance
 
-- **Roster:** Active, paused, and archived states are explicit; no hidden preference makes an athlete appear inactive. Search, pagination, status and assignment filters work on server-backed queries. No new client should need 100 full plan payloads to show a roster.
+- **Roster:** The Coach Console is for people Brice actually coaches or explicitly monitors. Self-service accounts never automatically join his coaching roster. Active, paused, and archived coaching states are explicit; no hidden preference makes an athlete appear inactive. Search, pagination, status and assignment filters work on server-backed queries. No new client should need 100 full plan payloads to show a roster.
+- **Onboarding:** A self-service member can establish verified login, preferred name, email, units, optional portrait and optional Strava connection without receiving a coaching relationship. Each permission is explicit; photo and Strava records stay private unless separately published. Those integrations must use existing identity and consent pathways, not another login.
 - **Identity:** One verified person and membership. Imported plans stay scoped to their owner, RLS tested for two unrelated real test identities. No public read of private weeks.
 - **Coached publishing:** Every future session passes editorial and structured prescription checks, with one Week preview of affected dates. Existing session versions and completed files remain unchanged. Do not silently lift a recovery hold to satisfy a schema.
 - **Shared practices:** Thursday is one explicitly dated authored occurrence with subscribed athletes and protected individual overrides. Saturday mileage is individual; a meetup exists only when Collective has a separate hosted occurrence. Revised shared work produces a subscriber preview and one versioned delivery per affected athlete.
