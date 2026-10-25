@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { test } from 'node:test';
 import { parsePlanExchange, validatePlanExchange } from './plan-import-standard.mjs';
 
@@ -61,4 +62,8 @@ test('pace units and order are explicit', () => {
 test('malformed or overlarge JSON fails cleanly', () => {
   assert.equal(parsePlanExchange('{broken').ok, false);
   assert.equal(parsePlanExchange('x'.repeat(262145)).ok, false);
+});
+test('published exchange sample is a valid complete file', () => {
+  const example = fs.readFileSync(new URL('../docs/coaching/plan-exchange-example-v1.json', import.meta.url), 'utf8');
+  assert.equal(parsePlanExchange(example).ok, true);
 });
