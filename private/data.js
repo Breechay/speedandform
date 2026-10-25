@@ -714,7 +714,9 @@ export async function signPortraits(athletes) {
     return held && held.expires - now > PORTRAIT_RESIGN_WITHIN * 1000 ? held.url : null;
   };
   const paths = [...new Set(athletes.map((athlete) => athlete.portrait_path).filter(Boolean))];
-  const wanted = paths.filter((path) => !fresh(path));
+  // Site-owned roster photos are public assets, not private Storage keys.
+  const siteAsset = (path) => /^\/assets\/athletes\/[a-z0-9][a-z0-9._-]*$/.test(path);
+  const wanted = paths.filter((path) => !siteAsset(path) && !fresh(path));
   if (wanted.length) {
     const { data, error } = await supabase.storage.from('athlete-portraits')
       .createSignedUrls(wanted, PORTRAIT_SIGNED_FOR);
@@ -724,7 +726,7 @@ export async function signPortraits(athletes) {
       });
     }
   }
-  const byPath = new Map(paths.map((path) => [path, fresh(path)]).filter(([, url]) => url));
+  const byPath = new Map(paths.map((path) => [path, siteAsset(path) ? path : fresh(path)]).filter(([, url]) => url));
   // A pointer that exists and could not be signed is not the same state as no
   // photograph. The monogram is drawn for both, but only one of them is a fault.
   return athletes.map((athlete) => ({
