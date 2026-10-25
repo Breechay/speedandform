@@ -363,6 +363,9 @@ async function change(r, row) {
   const { data: { user } } = await sb.auth.getUser();
   const { error } = await sb.from('collective_run_changes').insert({ run_id: r.id, issued_by: user.id, ...row });
   if (error) throw error;
+  // Linked FORM Miami occurrences enqueue athlete notices in the database.
+  // Dispatch is best-effort; an email failure never undoes the run edit.
+  try { await sb.functions.invoke('form-messages', { body: { action: 'dispatch' } }); } catch {}
 }
 async function detail(r, groupFacts) {
   const { data: { user } } = await sb.auth.getUser();

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#101315">
+  <title>FORM Miami · Coach</title>
+  <link rel="stylesheet" href="/coach/miami/miami.css?v=1">
+</head>
+<body>
+  <header class="top"><a class="wordmark" href="/coach/labs/">FORM <span>MIAMI</span></a><nav><a href="/coach/labs/">Athletes</a><a href="/coach/runs/">Runs</a><a href="/coach/ops/">Operations</a></nav></header>
+  <main>
+    <div class="intro"><p class="kicker">COACH CONSOLE</p><h1>One session.<br><em>Everyone’s Week.</em></h1></div>
+    <section id="gate" class="panel gate"><p>Use your FORM coach account to publish a practice.</p><form id="signin"><label>Email<input name="email" type="email" required autocomplete="username"></label><label>Password<input name="password" type="password" autocomplete="current-password"></label><div class="actions"><button type="submit">Sign in</button><button type="button" id="magic">Email sign-in link</button></div></form><p class="feedback" id="gateStatus" role="status">Checking access…</p></section>
+    <div id="work" hidden>
+      <section class="orientation"><div class="switch" role="group" aria-label="Practice day"><button type="button" data-lane="thursday" aria-pressed="true">Thursday · Track</button><button type="button" data-lane="saturday" aria-pressed="false">Saturday · Long runs</button></div><label class="date-label">DATE <input id="date" type="date"></label></section>
+      <p class="feedback" id="status" role="status" aria-live="polite"></p>
+      <section class="pane" id="sessionPane">
+        <div class="pane-heading"><div><p class="kicker">01 / WORKOUT</p><h2 id="practiceTitle">FORM Thursday</h2></div><span id="revision" class="stamp"></span></div>
+        <p class="intro-line" id="practiceIntro">Edit once, preview every affected Week, then publish.</p>
+        <form id="workoutForm">
+          <div class="formgrid"><label>SESSION TITLE<input name="title" maxlength="100" required></label><label>TOTAL TIME · MINUTES<input name="duration" type="number" min="10" max="240" required></label></div>
+          <label>WHAT WE ARE DOING<input name="intent" maxlength="240" required></label>
+          <label>SETUP / CUES<input name="details" maxlength="500"></label>
+          <div class="formgrid compact"><label>WARM UP · MINUTES<input name="warmup" type="number" min="0" max="90"></label><label>COOL DOWN · MINUTES<input name="cooldown" type="number" min="0" max="90"></label></div>
+          <div class="sets-head"><h3>Work sets</h3><button class="subtle" id="addSet" type="button">+ Add set</button></div>
+          <div class="sets" id="sets"></div>
+          <div class="actions"><button type="button" class="outline" id="preview">Preview affected Weeks</button><button type="submit" class="primary" id="publish" disabled>Publish revision</button></div>
+          <p id="publishNote" class="hint">The preview must be current. Filed work and individual overrides are protected.</p>
+        </form>
+      </section>
+      <section class="pane" id="athletesPane"><div class="pane-heading"><div><p class="kicker">02 / ATHLETES</p><h2>On their calendars</h2></div><span class="stamp" id="count"></span></div><div id="roster"></div><details class="management"><summary>Manage subscriptions and Thursday links</summary><div id="manage"></div></details></section>
+      <section class="pane" id="runPane"><div class="pane-heading"><div><p class="kicker">03 / IN PERSON</p><h2>Meet when we meet.</h2></div><span class="stamp" id="runState">NO MEETUP</span></div><div id="meeting"></div><div class="run-link"><label>LINK AN EXISTING RUN<select id="runSelect"><option value="">Choose a run</option></select></label><button id="linkRun" type="button" disabled>Link and notify</button></div><p class="hint">Create an actual hosted occurrence in <a href="/coach/runs/">Runs</a> first. Saturday mileage is always prescribed independently.</p></section>
+      <section class="pane"><div class="pane-heading"><div><p class="kicker">04 / MESSAGE</p><h2>Coach note</h2></div></div><form id="nudgeForm"><label>SUBJECT<input name="title" maxlength="90" placeholder="Thursday practice update" required></label><label>MESSAGE<textarea name="body" maxlength="500" rows="3" placeholder="Meet at 6:00. First rep at 6:15." required></textarea></label><div class="actions"><button type="submit" class="outline">Nudge subscribed athletes</button></div><p class="hint">A message appears in each athlete’s private inbox. Verified, claimed accounts can receive an email too.</p></form></section>
+    </div>
+  </main>
+  <script type="module" src="/coach/miami/miami.js?v=1"></script>
+</body>
+</html>

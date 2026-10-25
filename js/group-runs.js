@@ -46,6 +46,13 @@
       return rows.filter(function (r) { return KIND[r.kind] && Number.isFinite(Date.parse(r.starts_at)); });
     });
   }
+  function loadFORMMiamiWorkouts() {
+    return request('rpc/form_miami_public_calendar', {}).then(function (rows) {
+      var byRun = {};
+      (Array.isArray(rows) ? rows : []).forEach(function (r) { byRun[r.run_id] = r; });
+      return byRun;
+    });
+  }
   function loadGalleries() {
     return request('rpc/collective_galleries', {}).then(function (rows) {
       var by = {};
@@ -74,7 +81,17 @@
   function isUpcoming(r) { return r.status !== 'archived' && parts(r.starts_at).ymd >= today(); }
 
   function facts(r) { return r.group_facts && typeof r.group_facts === 'object' ? r.group_facts : {}; }
-  function session(r) { var s = SESSIONS[facts(r).workout_session_id]; return s ? { title: s[0], sequence: s[1] } : null; }
+  function session(r) {
+    if (r.form_miami_workout) {
+      var shared = r.form_miami_workout;
+      var sequence = (shared.sets || []).map(function (s) {
+        var work = s.meters ? s.meters + 'm' : (s.seconds ? s.seconds + ' sec' : 'work');
+        return (s.reps || 1) + ' × ' + work + (s.recovery ? ' / ' + s.recovery + 's rest' : '');
+      }).join(' · ');
+      return { title: shared.session_title, sequence: sequence };
+    }
+    var s = SESSIONS[facts(r).workout_session_id]; return s ? { title: s[0], sequence: s[1] } : null;
+  }
   // The app's albumTitle / albumDetail: the session when the morning had one, else the run's title.
   function title(r) { var s = session(r); return s ? s.title : r.title; }
   function detail(r) { var s = session(r); return [r.meet_name, s && s.sequence].filter(Boolean).join(' · '); }
@@ -142,8 +159,9 @@
     if (!next || !mornings) return;
     next.innerHTML = '<p class="gr-state">Checking the next runs…</p>';
     mornings.innerHTML = '<p class="gr-state">Loading the mornings…</p>';
-    Promise.all([loadRuns(), loadGalleries().catch(function () { return null; })]).then(function (res) {
-      var runs = res[0], gal = res[1];
+    Promise.all([loadRuns(), loadGalleries().catch(function () { return null; }),loadFORMMiamiWorkouts().catch(function(){return {};})]).then(function (res) {
+      var runs = res[0], gal = res[1], shared = res[2];
+      runs.forEach(function (r) { if (shared[r.id]) r.form_miami_workout = shared[r.id]; });
       var upcoming = runs.filter(isUpcoming).sort(function (a, b) { return Date.parse(a.starts_at) - Date.parse(b.starts_at); }).slice(0, 6);
       var heroAction = $('gr-hero-action');
       if (heroAction) heroAction.firstChild.textContent = upcoming.length ? 'See the next run ' : 'Run details ';
