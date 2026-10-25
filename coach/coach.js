@@ -1,3 +1,4 @@
+import { changedSessionEditorialIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
@@ -59,6 +60,7 @@ let reviewNextExistingReadId = null;
 // Set when the session dialog is revising rather than authoring. A revision
 // appends a version; authoring makes the session.
 let revisingSessionId = null;
+let originalSessionEditorialCopy = null;
 let roster = [];
 let selectedId = null;
 let selectedRecord = null;
@@ -1315,6 +1317,9 @@ function openSession(plannedSessionId = null) {
 
   const session = plannedSessionId ? selectedRecord.sessions.find((entry) => entry.id === plannedSessionId) : null;
   const version = session?.currentVersion;
+  originalSessionEditorialCopy = session ? {
+    title: version?.title || '', intent: version?.intent || '', details: version?.details || ''
+  } : null;
   document.getElementById('changeReasonField').hidden = !session;
   sessionForm.elements.changeReason.required = !!session;
   // Authoring is the moment a session has to say why it exists. Revising is not:
@@ -1695,6 +1700,12 @@ sessionForm.addEventListener('submit', async (event) => {
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
 
+  const editorialIssues = changedSessionEditorialIssues(payload, originalSessionEditorialCopy);
+  if (editorialIssues.length) {
+    status.textContent = editorialIssues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
+    status.className = 'status-message error';
+    return;
+  }
   const complaint = partsComplaint(payload.components || []);
   if (complaint) { status.textContent = complaint; status.className = 'status-message error'; return; }
   button.disabled = true; status.textContent = 'Saving.';
