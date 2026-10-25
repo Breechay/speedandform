@@ -26,7 +26,28 @@ test('invalid dates and duplicates are rejected', () => {
 });
 test('speed prose is not silently converted to an executable workout', () => {
   const x = fixture(); x.sessions[0].type = 'speed'; x.sessions[0].title = '6 × 800m';
-  assert.ok(validatePlanExchange(x).errors.some(e => e.includes('reviewed interval')));
+  assert.ok(validatePlanExchange(x).errors.some(e => e.includes('require structured')));
+});
+test('structured threshold intervals include target and full recovery', () => {
+  const x = fixture();
+  x.sessions[0] = {
+    date: '2026-11-02', type: 'threshold', title: '4 × 6 min',
+    segments: [
+      { kind: 'warmup', amount: { value: 20, unit: 'min' } },
+      { kind: 'work', repeats: 4, amount: { value: 6, unit: 'min' }, pace: { min: 390, max: 400, unit: 'sec_per_mi' }, recovery: 'full' },
+      { kind: 'cooldown', amount: { value: 10, unit: 'min' } }
+    ]
+  };
+  assert.equal(validatePlanExchange(x).ok, true);
+});
+test('repeated speed work without recovery or with zero distances is rejected', () => {
+  const x = fixture();
+  x.sessions[0] = { date: '2026-11-02', type: 'speed', title: '6 × 800m', segments: [
+    { kind: 'work', repeats: 6, amount: { value: 0, unit: 'km' }, pace: { min: 370, max: 380, unit: 'sec_per_mi' } }
+  ] };
+  const found = validatePlanExchange(x).errors;
+  assert.ok(found.some(e => e.includes('invalid positive')));
+  assert.ok(found.some(e => e.includes('specify a duration')));
 });
 test('editorial guard prevents generic or private language', () => {
   const x = fixture(); x.sessions[0].instructions = 'If recovered — not a sprint.';
