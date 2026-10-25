@@ -9,7 +9,7 @@ An athlete can bring a plan, understand the resulting Week, and execute it witho
 
 ## Three separate lanes
 
-1. **Coached plan.** Coach-owned future prescriptions in the FORM Athlete System, published through the existing versioned path. Athlete changes are coach-reviewed. Never overwrite completed sessions.
+1. **Coached plan.** Coach-owned prescriptions in the FORM Athlete System. A coached athlete may also choose or edit their own working plan. That choice is athlete-owned and does **not** imply Brice reviewed or endorsed the change. Coach suggestions are available without a mandatory proposal/approval queue. Never overwrite completed sessions.
 2. **Personal import.** Athlete-owned draft, previewed and explicitly activated by its authenticated owner. Label provenance clearly. No FORM coaching claim or private coach notes.
 3. **Exchange template.** Shared, reusable, optionally published with author permission. Copying a template creates a personal plan revision, never a live link that can rewrite another athlete's schedule later.
 
@@ -21,7 +21,7 @@ One athlete may have plans in multiple lanes but must have one unambiguous activ
 
 Top-level fields: `schema_version: 1`, `name`, `unit_preference: mi|km`, and `sessions` (1 to 366 days). Each session has a calendar date, recognized type, short title, optional instructions, distance or duration, and optional explicit seconds-per-mile or seconds-per-kilometer pace bounds. A rest day has no distance, duration or pace. File size is capped at 256 KB, future and historical dates are preserved exactly, and the plan cannot span more than a year.
 
-This intentionally handles straightforward easy, long, recovery, rest, race and cross-training entries. **Speed/threshold import is currently rejected**, pending a reviewed structured interval format for sets, repetitions, target, recovery, warm-up/cool-down and metric conversions. Prose must never be parsed into invented timed segments. Multi-session days also require a later representation. These are clear errors, not silent omissions.
+This handles straightforward easy, long, recovery, rest, race and cross-training entries, plus speed and threshold when `segments` are explicitly structured. A segment supplies `kind: warmup|work|recovery|strides|cooldown`, an `amount` with unit `mi|km|min`, optional repetition count, optional pace bounds, and optional work/strides recovery as `full` or an explicit duration in minutes. Repeated work must prescribe a recovery value, including `full` when no exact duration is intended. Speed and threshold require at least one work segment; prose never turns into invented intervals. Multi-session days and more advanced nested sets require a later schema version. These are clear errors, not silent omissions.
 
 The validator is only a pure library. **It is not an authentication check, a server RPC, or a training-safety judgment.** It must be called again in the trusted receiving service even if the client already validated its preview.
 
@@ -30,7 +30,7 @@ The validator is only a pure library. **It is not an authentication check, a ser
 1. Authenticate the real user, verify account and athlete membership in RLS. Resolve the athlete from the token and authorized relationship, not from JSON or email/name matching.
 2. Parse, validate, scan payload, and store the upload as a *private draft* with its file hash, schema version, import attempt ID, source label, authored timestamp and validation findings. Idempotency key = `(authenticated owner, client import UUID)`; repeated retries return the original draft.
 3. Render preview with actual units and exact dates, showing session count, start/end, conflicts, missing prescriptions, any rejected rows, and which active Week would be replaced. Nothing is discarded without explicit indication.
-4. On explicit confirmation, perform one atomic, versioned activation under a lock for that athlete. Detect concurrent edits; reject stale previews. Record previous active assignment for rollback and preserve completed work, filed receipts and original attribution.
+4. On explicit athlete confirmation, perform one atomic, versioned activation under a lock for that athlete. A coach approval step is **not** required merely because the athlete is coached. Detect concurrent edits; reject stale previews. Record previous active assignment for rollback and preserve completed work, filed receipts and original attribution. Never quietly relabel an athlete import as a coach-authored revision.
 5. Read back the athlete's resolved Week under their own authorized session, not merely as service role. Compare day, title, intensity, volume, units, structured target, and provenance. Mark the published revision only after verification.
 6. Queue at most one athlete notification for an actual active Week change. Notify by revision ID with idempotent delivery, opt-in policy and quiet hours. Never describe a local draft as live.
 
@@ -48,4 +48,4 @@ If any step fails, keep the previous published Week. A valid JSON file is not su
 
 ## Current implementation boundary
 
-The schema-1 parser and seven focused tests are the first reusable seam. This does **not** connect to Supabase or iOS yet. Before exposing import in the app, build the authenticated draft/preview/commit path, structured interval schema, provenance and rollback, two-account RLS tests, and end-to-end device QA. Native Plan Exchange and shared-session notifications are being designed separately and must consume this contract rather than introduce a second source of training truth.
+The schema-1 parser and focused tests are the first reusable seam. This does **not** connect to Supabase or iOS yet. Before exposing import in the app, build the authenticated draft/preview/commit path, the corresponding canonical interval mapping, provenance and rollback, two-account RLS tests, and end-to-end device QA. Native Plan Exchange and shared-session notifications are being designed separately and must consume this contract rather than introduce a second source of training truth.
