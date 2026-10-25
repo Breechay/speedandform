@@ -40,7 +40,7 @@ Implementation prepared, **not yet published**:
 ## Decisions reserved for Brice
 
 - Approve each athlete story and permission before it is public.
-- Decide whether remote running remains a negotiated fee or adopts the published $1,200 eight-week terms everywhere; the existing application currently uses negotiated-fee wording, while another running page contains an $1,200 remote reference. Do not silently change either commercial promise.
+- Decide whether remote running remains a negotiated fee or adopts a fixed eight-week price. The live authored application currently says the fee is agreed before starting; an obsolete, non-owning commercial builder template mentions $1,200 for remote. Do not silently turn that old template into the live offer.
 - Approve the final visual/browser review and production publication of Release 01.
 
 ## Status evidence

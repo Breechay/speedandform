@@ -3,6 +3,7 @@
 - Prepared a restrained homepage orientation: first-person Brice introduction, real portrait, direct running/strength coaching paths, plans, Thursday and apps. The existing cinematic opening, bend and athlete study remain intact.
 - Short-phone hero copy moves upward to clear `Work with me` from the first bend; the underlying bend geometry is untouched. The application renders Miami and remote coaching as two visible choices, preserving its original select, no-script fallback and inquiry receipt.
 - Scope, tests, unverified mobile acceptance, testimonial consent, discovery/measurement phase and the remote-price mismatch are recorded in [Website · The stranger's first visit](WEBSITE-CONVERSION-ENTRY-2026-10-25.md).
+- October 26 independent source/browser review is handed off in [Claude conversion audit](../audits/WEBSITE_CONVERSION_CLAUDE_AUDIT_2026-10-26.md); it is a QA assignment, not a second deploy.
 - Status: source changes prepared on `codex/conversion-entry-20261025`, **not published**. Next: rendered browser approval, owner visual review, then a separately authorized production release.
 
 ## October 21 · Narrow-screen track transition
