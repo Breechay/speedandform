@@ -1,3 +1,11 @@
+## October 25 · Website conversion entry
+
+- Prepared a restrained homepage orientation: first-person Brice introduction, real portrait, direct running/strength coaching paths, plans, Thursday and apps. The existing cinematic opening, bend and athlete study remain intact.
+- Short-phone hero copy moves upward to clear `Work with me` from the first bend; the underlying bend geometry is untouched. The application renders Miami and remote coaching as two visible choices, preserving its original select, no-script fallback and inquiry receipt.
+- Scope, tests, unverified mobile acceptance, testimonial consent, discovery/measurement phase and the remote-price mismatch are recorded in [Website · The stranger's first visit](WEBSITE-CONVERSION-ENTRY-2026-10-25.md).
+- October 26 independent source/browser review is handed off in [Claude conversion audit](../audits/WEBSITE_CONVERSION_CLAUDE_AUDIT_2026-10-26.md); it is a QA assignment, not a second deploy.
+- Status at authoring: [PR #374](https://github.com/Breechay/speedandform/pull/374) holds the release source and QA record. First rendered Chromium/WebKit run passed; final commercial/browser checks and Netlify production receipt must be read at that PR before calling the change live. Brice authorized one coherent production release on October 25.
+
 ## October 21 · Narrow-screen track transition
 
 - `work/home-track-transition`, based on main `17787082`. The shared straight now retains at least 22% of viewport width (capped at 112px), so coincident mobile bend centers cannot collapse the cream/ink blend. Track radii, lane spacing, photo transforms and gallery motion remain unchanged.

@@ -126,8 +126,12 @@ fs.mkdirSync(out,{recursive:true});
  await page.emulateMedia({reducedMotion:'reduce'});
  // Keyboard service selection, a full inquiry, rejection, retained answer, accepted retry.
  await page.goto(origin+'/coaching/apply/?utm_source=google&utm_medium=cpc&utm_campaign=qa');
- await page.locator('#coachingChoiceTrigger').focus();await page.keyboard.press('Enter');
- await page.keyboard.press('Escape');assert.equal(await page.locator('#coachingChoiceTrigger').getAttribute('aria-expanded'),'false');
+ const coachingRoutes=page.locator('.coaching-route-card input[type="radio"]');
+ assert.equal(await coachingRoutes.count(),2,'Both running coaching choices are visible');
+ await coachingRoutes.nth(0).focus();await page.keyboard.press('ArrowRight');
+ assert.equal(await page.locator('#coachingChoice').inputValue(),'remote','Keyboard selects remote running');
+ await page.keyboard.press('ArrowLeft');
+ assert.equal(await page.locator('#coachingChoice').inputValue(),'run','Keyboard returns to Miami Run Development');
  await page.locator('[data-key=goal] .opt').filter({hasText:'Run longer'}).click();
  await page.locator('[data-key=days] .opt').filter({hasText:/^3$/}).click();
  await page.locator('[data-key=vol] .opt').filter({hasText:'10–20 mi'}).click();

@@ -108,6 +108,38 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
         }
       }
     }
+    // The entrance uses a first-viewport bend. A short phone must still be
+    // able to see and activate the complete coaching action above that turn.
+    for(const [width,height] of [[320,568],[375,667],[390,844]]){
+      await page.setViewportSize({width,height});
+      await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
+      await page.evaluate(()=>document.fonts.ready);
+      await page.waitForFunction(()=>document.querySelector('.sf-home-hero-immersive')?.classList.contains('has-bend-seam'));
+      const placement=await page.evaluate(()=>{
+        const button=document.querySelector('.sf-home-hero-immersive .home-hero-primary').getBoundingClientRect();
+        const bend=document.querySelector('.home-entry.home-bend-only').getBoundingClientRect();
+        return {buttonTop:button.top,buttonBottom:button.bottom,bendTop:bend.top,height:innerHeight,width:innerWidth};
+      });
+      assert.ok(placement.buttonTop>=0 && placement.buttonBottom<height-4,'Mobile action visible at '+width+'x'+height+': '+JSON.stringify(placement));
+      assert.ok(placement.buttonBottom<=placement.bendTop-4,'Mobile action clears bend at '+width+'x'+height+': '+JSON.stringify(placement));
+      const file='entry-pages/home-hero-short-'+width+'.png';
+      await page.screenshot({path:path.join(out,file),animations:'disabled'});
+      report.screenshots.push(file);
+    }
+    // Both coaching paths are visible and select the original inquiry offer.
+    await page.setViewportSize({width:390,height:844});
+    await page.goto(origin+'/coaching/apply/',{waitUntil:'domcontentloaded'});
+    const cards=page.locator('.coaching-route-card');
+    assert.equal(await cards.count(),2,'Application exposes both coaching routes');
+    assert.ok(await page.locator('#coachingChoice').isHidden(),'Original program select is visually replaced');
+    await cards.nth(1).click();
+    assert.equal(await page.locator('#coachingChoice').inputValue(),'remote','Remote card selects remote inquiry');
+    await cards.nth(0).click();
+    assert.equal(await page.locator('#coachingChoice').inputValue(),'run','Miami card restores Run Development inquiry');
+    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Coaching route cards fit a phone');
+    const choiceFile='entry-pages/application-coaching-390.png';
+    await page.screenshot({path:path.join(out,choiceFile),animations:'disabled'});
+    report.screenshots.push(choiceFile);
     // Manual navigation must establish the origin for subsequent page-driven movement.
     await page.emulateMedia({reducedMotion:'no-preference'});
     await page.goto(origin+'/',{waitUntil:'domcontentloaded'});
