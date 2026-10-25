@@ -1,0 +1,27 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname,'..');
+const sql = fs.readFileSync(path.join(root,'supabase/migrations/20261025184500_form_miami_shared_publication_and_notifications.sql'),'utf8');
+const site = fs.readFileSync(path.join(root,'js/group-runs.js'),'utf8');
+const coach = fs.readFileSync(path.join(root,'coach/miami/miami.js'),'utf8');
+const edge = fs.readFileSync(path.join(root,'supabase/functions/form-messages/index.ts'),'utf8');
+const inbox = fs.readFileSync(path.join(root,'athlete/inbox.js'),'utf8');
+
+assert.match(sql,/unique\s*\(planned_session_id\)/i,'one group link per exact planned session');
+assert.match(sql,/exists\(select 1 from public\.session_completions where planned_session_id/i,'completed session exclusion');
+assert.match(sql,/p_expected->>r\.session_id::text is distinct from v\.id::text/,'stale preview protection');
+assert.match(sql,/coalesce\(s\.override_reason,' '\)|coalesce\(s\.override_reason,''\)/,'individual override exclusion');
+assert.match(sql,/public\.form_miami_public_calendar\(\)/,'public boundary');
+assert.match(sql,/join public\.collective_public_runs/,'only published public occurrences');
+assert.match(sql,/where l\.lane='thursday'/,'no public Saturday private distances');
+assert.match(sql,/u\.email_confirmed_at is not null/,'verified claimed addresses only');
+assert.match(sql,/revoke all on public\.\%I from public, anon, authenticated/,'RLS and no direct grants');
+assert.match(coach,/No FORM .* meetup is linked here/,'no implied Saturday gathering');
+assert.match(coach,/form_miami_publish_thursday/,'one shared coach writer');
+assert.match(coach,/form_miami_link_run/,'actual run link independent');
+assert.match(site,/form_miami_public_calendar/,'website reads public publication projection');
+assert.match(edge,/form_miami_email_claim/,'email receives only server recipients');
+assert.match(edge,/coach_only/,'coach-only dispatcher');
+assert.match(inbox,/form_miami_mark_read/,'private inbox read receipt');
+console.log('FORM Miami static publication contract passes.');
