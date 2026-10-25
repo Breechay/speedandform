@@ -27,6 +27,8 @@ assert.match(choice, /input\.name = 'coaching-route'/);
 assert.match(choice, /select\.dispatchEvent\(new Event\('change'/);
 assert.match(choice, /select\.hidden = true/);
 assert.match(choiceCss, /#coachingChoice\[data-choice-layout="cards"\]\[hidden\],\.coaching-select-label\[hidden\]\{display:none!important\}/);
+assert.match(choiceCss, /\.coaching-route-card:has\(input:focus-visible\)/);
+assert.doesNotMatch(choiceCss, /\.coaching-route-card:focus-within/);
 assert.match(apply, /window\.sfSubmitInquiry\(inquiry\)/);
 assert.match(apply, /receipt && receipt\.accepted === true/);
 assert.match(apply, /selected === "remote"/);

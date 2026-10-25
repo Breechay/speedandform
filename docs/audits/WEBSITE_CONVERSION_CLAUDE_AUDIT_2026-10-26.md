@@ -24,6 +24,8 @@ A visitor arriving without a referral should meet Brice, understand the offers, 
 - Responsive interception suite: `tests/public-entry-browser.cjs` now checks short-phone hero clearance and both application choices; `site-menu.yml` runs it on Chromium and WebKit for pull requests.
 - Full Netlify build command in `netlify.toml`; the October 25 local run passed. Builders regenerate many unrelated pages, so do not commit that incidental output without separate review.
 - Existing `tests/commercial-release.cjs` is stale: it expects a homepage form removed before this change. Do not label that baseline assertion a new regression.
+- The older `tests/public-finish-browser.cjs` likewise expected `#coachingChoiceTrigger`. This release updates its keyboard/receipt test to the two radios. Confirm the updated CI result rather than citing the initial failed run.
+- First Chromium screenshots confirmed button clearance at the three short-phone sizes. A double selected-card focus border shown after pointer selection prompted a CSS focus-visible refinement; check the final version, not just the first artifact.
 
 ## What to report
 
