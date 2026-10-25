@@ -49,3 +49,24 @@ test('the revision baseline is captured only when the selected session editor op
   assert.equal(coachSource.split(assignment).length - 1, 1);
   assert.ok(coachSource.indexOf(assignment) > coachSource.indexOf('function openSession('));
 });
+
+test('published roster boilerplate is rejected for a newly authored session', () => {
+  const examples = [
+    'No catch-up surges.',
+    'Use the same measured, even route you will use November 10.',
+    'Heart rate is recorded for context and trend only.',
+    'Record your time, splits, effort, conditions and shoes.'
+  ];
+  for (const details of examples) {
+    assert.ok(sessionEditorialIssues({ title: 'Threshold', details }).length > 0, details);
+  }
+});
+
+test('specific useful instructions remain valid', () => {
+  const copy = {
+    title: 'Speed · 600s & 200s',
+    details: 'Drills + 4 strides before the first set. Full recovery between sets.',
+    intent: 'Develop speed and control.'
+  };
+  assert.deepEqual(sessionEditorialIssues(copy), []);
+});
