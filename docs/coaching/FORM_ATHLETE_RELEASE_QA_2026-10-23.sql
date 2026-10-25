@@ -54,8 +54,12 @@ with current_sessions as (
   where s.title ~* '(HM durability|durable 10K|conditional A.goal|5K development)'
   union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
-         'Track workout needs an authored Week preview with sets and rests'
+         'Track workout lacks structured work and a readable dose'
   from current_sessions s where (s.title ilike 'THE FIFTH CIRCLE%' or s.title ilike 'FORM Track%')
+    and not exists (
+      select 1 from public.planned_session_components c
+      where c.version_id=s.version_id and c.role='work'
+    )
     and coalesce(s.details,'') not like 'Week: %'
   union all
   select 'BLOCK','THE_FIVE_WEEK_EMPTY',a.slug,w.starts_on,
@@ -71,6 +75,32 @@ with current_sessions as (
       select 1 from public.planned_sessions ps
       where ps.week_id=w.id and ps.state='published'
     )
+  union all
+  select 'COPY','PLAN_GOAL_VOICE',a.slug,b.starts_on,b.name,
+         'Plan introduction is too long or includes internal/disclaimer language'
+  from public.training_blocks b join public.athletes a on a.id=b.athlete_id
+  where b.status='active' and a.slug<>'walk-fixture'
+    and (length(coalesce(b.goal_statement,''))>150
+         or coalesce(b.goal_statement,'') ~* '(cohort|shared team practices|race entry|attendance implied|published plan|measurement of fitness|aspirational|coach owns|recovery budget)')
+  union all
+  select 'COPY','WEEK_STORY_VOICE',a.slug,w.starts_on,
+         'Week ' || w.week_number::text,
+         'Weekly story is too long or includes internal/conditional commentary'
+  from public.training_weeks w join public.training_blocks b on b.id=w.block_id
+  join public.athletes a on a.id=b.athlete_id
+  where b.status='active' and a.slug<>'walk-fixture'
+    and (length(coalesce(w.intent,''))>100
+         or length(coalesce(w.matters_because,''))>125
+         or concat_ws(' ',w.intent,w.matters_because) ~* '(cohort|attendance|no history|garmin-verified|pass/fail|aspirational|coach owns|recovery budget|published plan|measurement of fitness|(^|[[:space:]])if[[:space:]])')
+  union all
+  select 'COPY','PHASE_STORY_VOICE',a.slug,b.starts_on,p.name,
+         'Phase purpose is too long or includes administrative/disclaimer language'
+  from public.training_block_phases p join public.training_blocks b on b.id=p.block_id
+  join public.athletes a on a.id=b.athlete_id
+  where b.status='active' and a.slug<>'walk-fixture'
+    and p.revision=(select max(p2.revision) from public.training_block_phases p2 where p2.block_id=b.id)
+    and (length(coalesce(p.purpose,''))>125
+         or coalesce(p.purpose,'') ~* '(cohort|no race entry|attendance|published plan|coach owns|recovery budget)')
 )
 select severity,code,slug,scheduled_on,title,detail from issues
 order by case severity when 'BLOCK' then 1 else 2 end,slug,scheduled_on,code;
