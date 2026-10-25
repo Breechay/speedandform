@@ -327,9 +327,6 @@ function blockShapeHtml() {
     const cell = (session) => {
       const label = escapeHtml(name(session));
       const version = session?.currentVersion;
-  originalSessionEditorialCopy = session ? {
-    title: version?.title || '', intent: version?.intent || '', details: version?.details || ''
-  } : null;
       const why = version?.intent?.trim();
       // Plain form: this view gets photographed and sent to athletes.
       const what = structureOf(version, { plain: true });
@@ -1320,6 +1317,9 @@ function openSession(plannedSessionId = null) {
 
   const session = plannedSessionId ? selectedRecord.sessions.find((entry) => entry.id === plannedSessionId) : null;
   const version = session?.currentVersion;
+  originalSessionEditorialCopy = session ? {
+    title: version?.title || '', intent: version?.intent || '', details: version?.details || ''
+  } : null;
   document.getElementById('changeReasonField').hidden = !session;
   sessionForm.elements.changeReason.required = !!session;
   // Authoring is the moment a session has to say why it exists. Revising is not:

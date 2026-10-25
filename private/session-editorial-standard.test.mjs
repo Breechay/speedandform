@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { test } from 'node:test';
 import { sessionEditorialIssues, changedSessionEditorialIssues } from './session-editorial-standard.mjs';
 
@@ -40,4 +41,11 @@ test('a new athlete has the same standard', () => {
 
 test('pace ranges retain the typographic en dash', () => {
   assert.deepEqual(sessionEditorialIssues({ title: '4 mi continuous at 6:48–6:52/mi', details: '' }), []);
+});
+
+test('the revision baseline is captured only when the selected session editor opens', () => {
+  const coachSource = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
+  const assignment = 'originalSessionEditorialCopy = session ? {';
+  assert.equal(coachSource.split(assignment).length - 1, 1);
+  assert.ok(coachSource.indexOf(assignment) > coachSource.indexOf('function openSession('));
 });
