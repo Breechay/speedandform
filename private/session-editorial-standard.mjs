@@ -7,7 +7,11 @@ const RULES = [
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],
   [/\b(?:if absorbed|if recovered|if Tuesday absorbed)\b/iu, 'Publish one coached prescription; keep readiness contingencies private.'],
   [/\b(?:joins the cohort|shared team practices|no race entry is assumed)\b/iu, 'Remove internal or administrative narration.'],
-  [/\b(?:volume bars show the published plan|measurement of fitness)\b/iu, 'Remove UI/legal commentary.']
+  [/\b(?:volume bars show the published plan|measurement of fitness)\b/iu, 'Remove UI/legal commentary.'],
+  [/\bno catch-up surges\b/iu, 'Keep general pacing commentary out of the prescription.'],
+  [/\bsame measured,? even route you will use\b/iu, 'Remove invented route commitments.'],
+  [/\bheart rate is recorded for context and trend only\b/iu, 'Remove measurement-policy commentary from athlete instructions.'],
+  [/\b(?:record how the run feels|record your time, splits, effort|note your leg and breathing effort)\b/iu, 'Move recording and review instructions into coach workflow.']
 ];
 
 export function sessionEditorialIssues(copy) {
