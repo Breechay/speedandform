@@ -7,6 +7,8 @@ Status: design and implementation contract, not a claim of built or published sc
 
 **Brice's October 26 confirmation:** Keep the full design. The three doors, welcome, Apple/Google/email design intent, progressive preferences, free-plan and plan-import paths all remain in scope. A proposed reduction to Apple-only, Curated-only arrival with no three-door choice was explicitly declined. Phase and provider rollout can be staged for engineering truth; do not quietly delete the designed experience or claim an unconfigured provider is already live.
 
+**Concierge flow implementation companion:** `docs/product/FORM_ARRIVAL_CONCIERGE_IMPLEMENTATION_CONTRACT_20261026.md` is the current screen/Coach-tab delivery contract informed by Brice's October 26 attached *FORM Arrival · The Concierge Flow* and actual Coach-tab screenshots. Where the earlier illustrative copy below differs (new hero vs shipped collage; magic link only vs verified email code; universal multi-step intake vs progressive selected-lane questions), the concierge contract and confirmed product decisions control. Do not treat its listed capabilities as already shipped.
+
 ## 1. The proposition
 
 **One account. Several ways to belong.**
@@ -55,14 +57,12 @@ Do not create another global tab bar merely to fit these modes. Reuse the Week-t
 
 ## 4. Entry flow, screen by screen
 
-### E00 · Arrival / Welcome
+### E00 · Existing team-collage arrival
 
-**Header:** SF mark.  
-**Hero:** `Training, with direction.`  
-**Support:** `A place for your plan and the practice around it.`  
-**Actions:** `Create your account`, `I already have an account`, and a quiet `Explore upcoming runs` for guest-safe content.
+**Visual:** Retain the already shipped José/team collage, brush reveal and low SF signature.  
+**Actions after reveal:** `Join FORM` and `I'm already on the team`. Existing returning sessions go to their real resolved home. No second generic marketing hero or added slogans.
 
-One screen, with an assured hero and a subtle five-mark running line. Existing returning sessions bypass this screen. Never force returning invited athletes to repeat the stranger plan generator.
+The member's own name/portrait poster later composes across identity, selection and delivery. A guest-safe future event preview may be offered without faking authentication or a published event. Never force returning invited athletes to repeat a stranger intake.
 
 ### E01 · Identity selection
 
@@ -70,7 +70,7 @@ One identity system, not separate Coach, Collective, Forge or Plan accounts.
 
 - Primary: `Continue with Apple`.
 - Secondary: `Continue with Google` once the configured provider and linking flow actually work.
-- Secondary: `Continue with email` using verified link, not invented password UI.
+- Secondary: `Continue with email` using a real six-digit one-time verification code with iOS paste/auto-fill and resend/expiry handling, once configured and tested. Preserve the existing coached magic-link claim path where needed; this is not permission to invent a working provider.
 - Existing athlete: `Connect my FORM record` using verified coach-invited email.
 - Copy: `Your training, events and invitations live under one FORM account.`
 
@@ -78,7 +78,7 @@ Provider-only members must survive with no `athlete_id`. A successful login is n
 
 ### E02 · Identity essentials
 
-Ask for preferred first name (and optional last initial where required), optional photo, distance unit (mi/km) and broad **training city or area**. Do not ask for street address, constant device location, injury history or pace to join Curated. Show privacy defaults plainly: location private, training private, no athlete discoverability by default.
+Ask for preferred first name (and optional last initial where required), optional photo, distance unit (mi/km) and broad **training city or area**. The person's poster composes with name and portrait behind the form, without showing other athletes' private images beyond already-approved team material. Do not ask for street address, constant device location, injury history or pace to join Curated. Show privacy defaults plainly: location private, training private, no athlete discoverability by default.
 
 All choices are editable later. No invented demographic survey. Email comes from the verified account, not an extra unverifiable form field. A minimal progress marker is helpful; avoid a daunting wizard.
 
@@ -129,6 +129,9 @@ Land directly on the next **confirmed dated** FORM Curated item. Editorial secti
 Recurring iRUN Monday and FORM Thursday can show their pattern, but an actual RSVP or calendar file requires a verified occurrence with exact time and place. ALO events remain absent until Brice enters their dates. A Saturday workout in an athlete's plan is not evidence of a Saturday group meeting.
 
 ## 5. Primary in-app experiences
+
+**Coach-tab concierge:** New-member Arrivals portraits, this-morning RSVP/first-timer roster, Plans to arrange, and Sunday week-ahead drafts must live on Brice's existing iPhone Coach tab, preserving the actual `The athletes.` inscription, athlete avatar strip and existing cards. See the implementation companion for operator states, permissions and release gates. Do not introduce a separate required desktop Labs desk.
+
 
 ### M01 · The Week, active plan
 
