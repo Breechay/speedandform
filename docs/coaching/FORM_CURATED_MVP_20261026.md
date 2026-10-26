@@ -28,13 +28,13 @@ These are **curatorial profiles managed by FORM**, not claims that iRUN or ALO o
 
 ## Coach flow
 
-1. Publish a dated FORM-owned Collective Run from the existing coach Run editor. Do not publish an invented Saturday or unsupplied third-party schedule.
-2. Link the existing Run to form / irun / alo using the coach-only curated linking function, supplying category, cadence and optional verified end time/source URL.
-3. Preview the intended audience, then explicitly invite named athletes via the coach-only curated invitation function. The unique run-and-athlete key prevents duplicate invitations.
+1. Open `/coach/curated/`. The Brice-only console presents the three host identities, upcoming curated calendar and roster for explicit invitation selection.
+2. Add a confirmed dated occasion there in one transaction, or link a previously published FORM Thursday/long run without duplicating its occurrence. The database now permits `event` alongside track and long-run kinds, matching the existing native model.
+3. Select the actual athlete recipients and confirm invitations. The unique run-and-athlete key prevents duplicate invitations; no push or email is implied by the RPC.
 4. Athletes read events, mark invitations seen, and RSVP; joining inserts only their existing Collective Run intention.
 5. A cancellation or time/place update remains a Collective run change and is projected to event detail. It does not rewrite training or claim attendance.
 
-**Next operator convenience:** add a focused /coach/curated/ editor so Brice can link runs and choose recipients from the dashboard without SQL. In the first pass the existing coach Run editor provides occurrence authoring; linking/inviting is behind coach-restricted RPCs.
+The editor is a private FORM members-first MVP. The pattern label is **not** an automated recurrence writer; every live event has a verified date and place. Existing Run authoring and changes remain with Collective. Dates are editable/cancellable there after the Runs editor exposes the already-modeled `event` kind.
 
 ## Release truth and proof
 
