@@ -2,6 +2,16 @@
 -- A Collective run remains the only owner of time/place/status/RSVP.
 -- An event is never a planned session or evidence that training was completed.
 
+-- The iOS Run model already has .event, but the database's old constraints
+-- still restrict FORM-authored occurrences to track/long_run. Preserve the
+-- one-Run model while allowing curated fitness, yoga and social occurrences.
+alter table public.collective_runs drop constraint collective_runs_kind_check;
+alter table public.collective_runs add constraint collective_runs_kind_check
+  check (kind = any(array['long_run'::text,'track'::text,'invite'::text,'event'::text]));
+alter table public.collective_runs drop constraint collective_runs_check2;
+alter table public.collective_runs add constraint collective_runs_check2
+  check (author_kind <> 'form' or kind = any(array['long_run'::text,'track'::text,'event'::text]));
+
 create table public.form_curated_hosts (
   slug text primary key check (slug ~ '^[a-z][a-z0-9-]{1,40}$'),
   display_name text not null check (length(btrim(display_name)) between 2 and 80),
@@ -85,6 +95,60 @@ begin
   values(p_run_id,p_host_slug,p_category,p_cadence,p_source_url,coalesce(p_note,''),p_ends_at,(select auth.uid()))
   on conflict(run_id) do update set host_slug=excluded.host_slug,category=excluded.category,
     cadence=excluded.cadence,source_url=excluded.source_url,note=excluded.note,ends_at=excluded.ends_at;
+end $$;
+
+-- Small owner console: this reads the existing Collective calendar and
+-- our editorial links. It does not create recurrence or infer attendance.
+create or replace function public.form_curated_manage()
+returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare events jsonb; available jsonb;
+begin
+  perform public.form_miami_ensure_coach();
+  if not public.collective_is_publisher() then raise exception 'publisher_required' using errcode='42501'; end if;
+  select coalesce(jsonb_agg(jsonb_build_object(
+    'id',r.id,'title',r.title,'kind',r.kind,'host_slug',l.host_slug,
+    'category',l.category,'cadence',l.cadence,'starts_at',r.starts_at,
+    'meet_name',r.meet_name,'status',r.status,
+    'invitation_count',(select count(*) from public.form_curated_invitations i where i.run_id=r.id)
+  ) order by r.starts_at),'[]'::jsonb) into events
+  from public.form_curated_run_links l join public.collective_runs_current r on r.id=l.run_id
+  where r.starts_at >= now()-interval '1 day' and r.starts_at < now()+interval '180 days';
+  select coalesce(jsonb_agg(jsonb_build_object(
+    'id',r.id,'title',r.title,'kind',r.kind,'starts_at',r.starts_at,'meet_name',r.meet_name
+  ) order by r.starts_at),'[]'::jsonb) into available
+  from public.collective_runs_current r
+  where r.author_kind='form' and r.status='scheduled' and r.starts_at > now()
+    and r.starts_at < now()+interval '180 days'
+    and not exists(select 1 from public.form_curated_run_links l where l.run_id=r.id);
+  return jsonb_build_object('events',events,'available_runs',available,
+    'hosts',public.form_curated_hosts_list());
+end $$;
+
+-- A single transaction creates and curates an actual one-time occurrence.
+-- Only a FORM publisher who is also a coach may use this private editor.
+create or replace function public.form_curated_create_event(
+  p_host_slug text,p_title text,p_category text,p_cadence text,
+  p_starts_at timestamptz,p_meet_at timestamptz,p_meet_name text,p_meet_address text,
+  p_visibility text default 'members',p_ends_at timestamptz default null,
+  p_source_url text default null,p_note text default '')
+returns uuid language plpgsql security definer set search_path = '' as $$
+declare created uuid;
+begin
+  perform public.form_miami_ensure_coach();
+  if not public.collective_is_publisher() then raise exception 'publisher_required' using errcode='42501'; end if;
+  if p_starts_at <= now() or p_starts_at > now()+interval '180 days'
+    or (p_meet_at is not null and p_meet_at > p_starts_at)
+    or p_visibility not in ('members','public') or btrim(coalesce(p_title,''))=''
+    or btrim(coalesce(p_meet_name,''))='' or btrim(coalesce(p_meet_address,''))='' then
+    raise exception 'check_time_title_and_meeting_place';
+  end if;
+  insert into public.collective_runs(
+    author_kind,author_account_id,kind,title,visibility,starts_at,meet_at,meet_name,meet_address,group_facts)
+  values('form',(select auth.uid()),'event',btrim(p_title),p_visibility,
+    p_starts_at,p_meet_at,btrim(p_meet_name),btrim(p_meet_address),'{}'::jsonb)
+  returning id into created;
+  perform public.form_curated_link_run(created,p_host_slug,p_category,p_cadence,p_source_url,p_note,p_ends_at);
+  return created;
 end $$;
 
 -- Recipient selection is explicit; neither group subscriptions nor athlete
@@ -216,3 +280,7 @@ grant execute on function public.form_curated_decline(uuid) to authenticated;
 grant execute on function public.form_curated_rsvp(uuid,boolean) to authenticated;
 grant execute on function public.form_curated_link_run(uuid,text,text,text,text,text,timestamptz) to authenticated;
 grant execute on function public.form_curated_invite(uuid,uuid[]) to authenticated;
+revoke all on function public.form_curated_manage() from public,anon,authenticated;
+revoke all on function public.form_curated_create_event(text,text,text,text,timestamptz,timestamptz,text,text,text,timestamptz,text,text) from public,anon,authenticated;
+grant execute on function public.form_curated_manage() to authenticated;
+grant execute on function public.form_curated_create_event(text,text,text,text,timestamptz,timestamptz,text,text,text,timestamptz,text,text) to authenticated;
