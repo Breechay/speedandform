@@ -10,6 +10,8 @@ FORM helps people train deliberately and find good company for the work. It can 
 
 FORM is the logistician. An athlete does not have to adopt FORM as their run coach to attend Thursday track, meet a long-run group, come to Muscle Beach, or join a yoga or ALO event. A committed FORM-coached athlete receives a much deeper relationship with a real coach. Free access should show the quality of that thinking, not create artificial dependency.
 
+**October 26 concierge extension:** Brice's full arrival, progressive intake, live member poster and phone-only Coach-tab Arrivals / This morning / Plans to arrange / The week ahead are defined in `docs/product/FORM_ARRIVAL_CONCIERGE_IMPLEMENTATION_CONTRACT_20261026.md`. The three doors and training city remain. The approved experience is staged engineering work, not proof of configured Google/email-code auth, actual plan activation, or personally staffed 24-hour support. Build the 44.3 native integration on the verified 44.2 release base; do not merge older native Curated #117 as a whole-file replacement.
+
 ## First product milestone: 100 real, claimed accounts
 
 **Goal: 100 distinct people who have actually connected or created verified FORM accounts and used one of the product lanes.** This is not 100 app installs, 100 raw email addresses, 100 coach-roster entries or 100 paid clients.
