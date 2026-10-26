@@ -1308,6 +1308,7 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
 document.getElementById('sessionParts').addEventListener('input', markPartsState);
 
 function openSession(plannedSessionId = null) {
+  sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
   sessionForm.reset();
   revisingSessionId = plannedSessionId;
   const weeks = selectedRecord.weeks;
@@ -1338,7 +1339,6 @@ function openSession(plannedSessionId = null) {
     // Older plans use THU/Thu while the editor options use Thursday.
     // Keep the exact stored label unless the coach deliberately changes it.
     const daySelect = sessionForm.elements.dayLabel;
-    daySelect.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
     daySelect.value = session.day_label;
     if (daySelect.selectedIndex < 0 && session.day_label) {
       const currentDay = new Option(session.day_label, session.day_label, true, true);
