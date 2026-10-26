@@ -40,7 +40,7 @@ It is deliberately a consent handshake, not direct athlete-to-athlete discovery.
 | `form_match_requests` | Athlete asks FORM for training company | `form_match_request`, `form_match_request_cancel`, `form_match_my` |
 | `form_match_introductions` | Coach-mediated proposal, two responses, final connection | `form_match_coach_propose`, `form_match_reply`, `form_match_coach_connect` |
 | Existing `planned_sessions` / latest versions | Private training owner; read only | `form_match_coach_candidates(date,limit)` |
-| Coach queue | Derived, not a second message/plan system | `form_match_coach_queue` |
+| Coach queue | Derived, paged in groups of up to 200, not a second message/plan system | `form_match_coach_queue(limit,offset)` |
 
 All new tables have RLS enabled and direct `anon`/`authenticated` access revoked. Public RPC names are granted to authenticated users but enforce ownership/coach membership internally. No direct athlete-pair list or plan view is exposed. An account with ambiguous active athlete identity cannot opt in or reply until its identity is resolved.
 
