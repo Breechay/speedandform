@@ -1335,7 +1335,16 @@ function openSession(plannedSessionId = null) {
     // Revising starts from what is already there, so the coach edits rather than retypes.
     document.getElementById('sessionContext').textContent = `${session.day_label} · version ${(version?.version_number || 0) + 1}`;
     sessionForm.elements.weekId.value = session.week_id;
-    sessionForm.elements.dayLabel.value = session.day_label;
+    // Older plans use THU/Thu while the editor options use Thursday.
+    // Keep the exact stored label unless the coach deliberately changes it.
+    const daySelect = sessionForm.elements.dayLabel;
+    daySelect.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
+    daySelect.value = session.day_label;
+    if (daySelect.selectedIndex < 0 && session.day_label) {
+      const currentDay = new Option(session.day_label, session.day_label, true, true);
+      currentDay.dataset.existingDay = 'true';
+      daySelect.add(currentDay);
+    }
     sessionForm.elements.scheduledOn.value = session.scheduled_on || '';
     sessionForm.elements.title.value = version?.title || '';
     sessionForm.elements.prescribedDistance.value = version?.prescribed_distance || '';
