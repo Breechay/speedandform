@@ -1,6 +1,6 @@
 // FORM Plan Exchange, schema 1. Pure validation only: never publishes a plan.
 // The authenticated server must determine identity, permission and ownership.
-import { sessionEditorialIssues } from './session-editorial-standard.mjs';
+import { selfAuditSessionCopy } from './session-editorial-standard.mjs';
 
 const TYPES = new Set(['easy', 'easy_strides', 'speed', 'threshold', 'long', 'recovery', 'rest', 'race', 'cross_training']);
 const UNITS = new Set(['mi', 'km', 'min']);
@@ -114,7 +114,7 @@ export function validatePlanExchange(input) {
     if (s.type === 'easy' && s.segments?.some?.(x => x?.kind === 'work'))
       errors.push(`${path}.segments: an easy run cannot contain hard work`);
     if (typeof s.title === 'string') {
-      for (const issue of sessionEditorialIssues({ title: s.title, details: s.instructions || '' }))
+      for (const issue of selfAuditSessionCopy({ title: s.title, details: s.instructions || '' }).issues)
         errors.push(`${path}.${issue.field}: ${issue.message}`);
     }
   });
