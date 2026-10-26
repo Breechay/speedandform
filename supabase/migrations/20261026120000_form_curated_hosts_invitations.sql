@@ -265,6 +265,35 @@ begin
   return p_join;
 end $$;
 
+-- RSVP is an explicit, member-owned declaration. Only an eligible signed-in
+-- viewer may see names, never a coach's entire training roster. The tiny name
+-- list is independent of the wider Collective navigation release flag.
+create or replace function public.form_curated_attendees(p_run_id uuid)
+returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare result jsonb;
+begin
+  if (select auth.uid()) is null or not exists(
+    select 1 from public.form_curated_run_links l
+    join public.collective_runs_current r on r.id=l.run_id
+    where l.run_id=p_run_id and r.starts_at>now()-interval '1 day'
+      and (r.visibility='public' or public.collective_is_member() or exists(
+        select 1 from public.form_curated_invitations i
+        join public.athlete_memberships m on m.athlete_id=i.athlete_id
+        where i.run_id=p_run_id and m.user_id=(select auth.uid())
+          and m.role='athlete' and m.status='active'
+      ))
+  ) then return '[]'::jsonb; end if;
+  select coalesce(jsonb_agg(x.name order by x.at),'[]'::jsonb) into result
+  from (
+    select ci.at, btrim(cm.first_name) ||
+      case when nullif(btrim(coalesce(cm.last_initial,'')),'') is null
+        then '' else ' ' || upper(left(btrim(cm.last_initial),1)) end as name
+    from public.collective_run_ins ci join public.collective_members cm on cm.account_id=ci.account_id
+    where ci.run_id=p_run_id order by ci.at limit 50
+  ) x;
+  return result;
+end $$;
+
 -- SECURITY DEFINER RPCs are not public endpoints by default.
 revoke all on function public.form_curated_hosts_list() from public,anon,authenticated;
 revoke all on function public.form_curated_link_run(uuid,text,text,text,text,text,timestamptz) from public,anon,authenticated;
@@ -284,3 +313,5 @@ revoke all on function public.form_curated_manage() from public,anon,authenticat
 revoke all on function public.form_curated_create_event(text,text,text,text,timestamptz,timestamptz,text,text,text,timestamptz,text,text) from public,anon,authenticated;
 grant execute on function public.form_curated_manage() to authenticated;
 grant execute on function public.form_curated_create_event(text,text,text,text,timestamptz,timestamptz,text,text,text,timestamptz,text,text) to authenticated;
+revoke all on function public.form_curated_attendees(uuid) from public,anon,authenticated;
+grant execute on function public.form_curated_attendees(uuid) to authenticated;
