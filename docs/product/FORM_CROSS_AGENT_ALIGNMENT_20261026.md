@@ -3,6 +3,14 @@
 **October 26, 2026 · for Brice, Claude, Codex and ChatGPT**  
 Owner: Brice. This document is a readable cross-repository handoff, not a substitute for the code, production database or signed-in device evidence.
 
+## The new concierge direction (Brice + Claude, October 26)
+
+Brice supplied **FORM Arrival · The Concierge Flow** with a live member poster, verified account creation, progressive intake, an actual six-week starter, actual file activation/manual conversion, and Join the practice. He explicitly wants the operational side **inside the existing mobile Coach tab**, which presently includes the athlete inscription, round-portrait strip and coached athlete cards.
+
+The build contract is `docs/product/FORM_ARRIVAL_CONCIERGE_IMPLEMENTATION_CONTRACT_20261026.md` on PR #378. Keep the shipped collage, use verified email OTP in the designed experience (with working legacy magic link retained), compose the member poster, preserve all three doors, and implement Brice's phone-based Arrivals / This morning / Plans to arrange / The week ahead queues. Intake is progressive per selected door: joining a gathering never requires injury history or weekly mileage. The manual plan queue shows a real ETA instead of a next-day promise without staffed capacity. Paid coaching provenance and privacy remain distinct.
+
+Claude's audit of 44.1 revealed its no-record dead end, unreachable FORMStrangerOnboardingFlow and preview-only import. These are known gaps, not activated features. Its critical merge warning: **native Curated PR #117 predates 44.1/44.2 and reportedly replaces whole Week/Dossier files**. Do not merge as-is. Rebuild surgical Curated changes on the *verified* FORM 44.2 target, with Xcode/device regression for poster Dossier, Plan Exchange and filing. Target the coherent 44.3 account/three-door batch. Neither documentation nor draft PRs prove production capability.
+
 ## The latest product decision overrides a narrower review
 
 **Brice explicitly rejected cutting the experience to an Apple-only / calendar-only front door.** Do not remove these from the authored design:
