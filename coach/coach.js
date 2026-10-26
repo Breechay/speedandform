@@ -1,4 +1,4 @@
-import { changedSessionEditorialIssues } from '/private/session-editorial-standard.mjs';
+import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
@@ -1700,9 +1700,9 @@ sessionForm.addEventListener('submit', async (event) => {
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
 
-  const editorialIssues = changedSessionEditorialIssues(payload, originalSessionEditorialCopy);
-  if (editorialIssues.length) {
-    status.textContent = editorialIssues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
+  const editorialReview = selfAuditSessionCopy(payload, originalSessionEditorialCopy);
+  if (!editorialReview.ok) {
+    status.textContent = editorialReview.issues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
     status.className = 'status-message error';
     return;
   }
