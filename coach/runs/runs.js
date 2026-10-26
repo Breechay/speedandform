@@ -42,7 +42,7 @@ const PLACES = {
   'Flamingo Park Track': '11 St & Jefferson Ave, Miami Beach, FL 33139',
   'The Labs': '425 NE 22nd St, Miami, FL 33137'
 };
-const KIND = { track: 'Track', long_run: 'Long run' };
+const KIND = { track: 'Track', long_run: 'Long run', event: 'Event' };
 const LAYOUTS = [['photo_essay', 'Photo essay'], ['cover_story', 'Cover story'], ['sequence', 'Sequence'], ['contact_sheet', 'Contact sheet']];
 
 const $ = (id) => document.getElementById(id);
