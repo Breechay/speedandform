@@ -9,6 +9,8 @@ October 25, 2026
 “My FORM” is the current design direction, not a completed rename or production feature. Its second fold should transition naturally out of the artwork. Do not create a separate generic dashboard.
 
 ## Athlete-facing coaching rule
+
+See [the October 26 self-audit contract](FORM_ATHLETE_COPY_SELF_AUDIT_20261026.md). An author drafts, audits, rewrites failing text, and runs the audit again before saving.
 Write to the athlete, in plain language. One useful sentence beats a paragraph of commentary. Use imagery only when it makes the workout easier to understand.
 
 - Show the workout once: a complete title and precisely typed work/recovery. Do not repeat structured numbers in prose.
@@ -24,10 +26,12 @@ Write to the athlete, in plain language. One useful sentence beats a paragraph o
 ## Enforcement added
 `private/session-editorial-standard.mjs` is a shared, deterministic validator. The private Coach Console calls it before creating a session. On revision it checks changed title, intent and details only, so known legacy copy does not block a valid dosage update. Errors remain visible in the form and the save is halted.
 
-Run the six focused test cases with:
+Run the editorial and import regression tests with:
 ```sh
-node --test private/session-editorial-standard.test.mjs
+node --test private/session-editorial-standard.test.mjs private/session-copy-quality.test.mjs private/plan-import-standard.test.mjs
 ```
+
+New or changed single-paragraph execution text over 190 characters is rejected, as are unnecessary explanations and short fractional mile/km notation. Structured exercise details remain intact. Coach Console and Plan Exchange use `selfAuditSessionCopy`. The author must rewrite text until the gate passes; the validator never rewrites doses.
 
 The validator checks wording, not coaching safety. It neither changes doses nor silently rewrites a prescription. Current gaps:
 - Direct SQL/RPC authoring, migration scripts, and other remote tools bypass this web-form validator. A server-side publication gate with authorized coach testing is the eventual single point of enforcement.
