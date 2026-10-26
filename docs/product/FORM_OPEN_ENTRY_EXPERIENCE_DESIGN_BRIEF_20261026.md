@@ -5,6 +5,8 @@ Owner: Brice / FORM
 Companion: `docs/product/FORM_MASTER_PRODUCT_BRIEF_20261026.md`  
 Status: design and implementation contract, not a claim of built or published screens.
 
+**Brice's October 26 confirmation:** Keep the full design. The three doors, welcome, Apple/Google/email design intent, progressive preferences, free-plan and plan-import paths all remain in scope. A proposed reduction to Apple-only, Curated-only arrival with no three-door choice was explicitly declined. Phase and provider rollout can be staged for engineering truth; do not quietly delete the designed experience or claim an unconfigured provider is already live.
+
 ## 1. The proposition
 
 **One account. Several ways to belong.**
