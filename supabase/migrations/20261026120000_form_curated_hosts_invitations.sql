@@ -179,16 +179,17 @@ begin
   return total;
 end $$;
 
--- All joined and invited flags are derived for the signed-in athlete only.
--- RSVP remains collective_run_ins; the invited table never claims attendance.
+-- Confirmed public/member events belong to the signed-in FORM account,
+-- including Collective-only members who do not have a coached athlete record.
+-- Invitations remain athlete-scoped until the separate member invitation
+-- expansion ships. RSVP remains collective_run_ins, never attendance.
 create or replace function public.form_curated_my()
 returns jsonb language plpgsql stable security definer set search_path = '' as $$
 declare v_account_id uuid := (select auth.uid()); payload jsonb; total integer;
 begin
-  if v_account_id is null or not exists (
-    select 1 from public.athlete_memberships m
-    where m.user_id=v_account_id and m.role='athlete' and m.status='active'
-  ) then return jsonb_build_object('hosts','[]'::jsonb,'events','[]'::jsonb,'unread_count',0); end if;
+  if v_account_id is null then
+    return jsonb_build_object('hosts','[]'::jsonb,'events','[]'::jsonb,'unread_count',0);
+  end if;
   select coalesce(jsonb_agg(jsonb_build_object(
     'id',r.id,'host_slug',h.slug,'host_name',h.display_name,
     'title',r.title,'category',l.category,'cadence',l.cadence,
