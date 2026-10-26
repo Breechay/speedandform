@@ -23,7 +23,7 @@ These are **curatorial profiles managed by FORM**, not claims that iRUN or ALO o
 - The Dossier has an **Upcoming events** door under its plan/race orientation. A separate **This week** section shows events the athlete has joined. Tapping one opens its dated detail.
 - The upcoming list groups real dated events beneath the three host profiles. Labels distinguish **Weekly / Occasional / One time**. A weekly cadence is descriptive, never proof that every future date is hosted.
 - A joined event appears **as an additional row** on the dated Week. The original workout remains visible and fileable.
-- RSVP shows **I'm in / You're in**; the existing Collective attendee list owns names and counts. Membership/identity gates remain. An invitation is not an RSVP; an RSVP is not witnessed attendance.
+- RSVP shows **I'm in / You're in**. The existing Collective intention rows own names and counts, exposed through an athlete-scoped curated read that still works while the wider Collective surfaces are release-gated. An invitation is not an RSVP; an RSVP is not witnessed attendance.
 - Google Calendar and Apple Calendar choices are offered only when the event has both verified start and end times. iOS shares a standard .ics file through the system share sheet, without accessing the user's calendar or requiring Calendar permission.
 
 ## Coach flow
@@ -38,7 +38,7 @@ The editor is a private FORM members-first MVP. The pattern label is **not** an 
 
 ## Release truth and proof
 
-- Additive SQL rehearsed in one transaction and **rolled back** against the existing FORM Athlete System schema. Three founding host rows and a signed-out empty response were verified inside the rollback.
+- The SQL change (including the new event-kind constraint and editor/attendee RPCs) was rehearsed in one transaction and **rolled back** against the existing FORM Athlete System schema. Three founding host rows and the event-kind check were verified inside the rollback.
 - The source is proposed on a branch, not applied to production. No invitation has been sent. No iRUN or ALO event date, venue or time has been guessed.
 - Native implementation uses the existing signed-in FORM coaching RPC. The feature stays hidden on an old backend if the new RPC does not exist; no local fixture can create fake upcoming events.
 - Native Swift compiles and device QA require the existing Mac/Xcode release lane. The current workspace has no Xcode/Swift compiler; do not equate source review or a PR with Apple distribution.
