@@ -73,6 +73,8 @@ The fail-closed runner in PR #376 is `tests/curated-signed-in-rpc-smoke.mjs`. It
 
 PR #376 backend and #117 native are **staged only**. PR #377 is a stacked private matching draft and remains off; PR #378 is account/Exchange/design groundwork and also not live. `FORM 44.2 (15)` belongs to Codex's separate release batch. Neither a source commit nor a Netlify build is proof of production publication.
 
+PR #377's head was created before the latest #376 Curated SQL fixes. Because it is stacked, **rebase/update #377 from the corrected #376 head before any eventual merge**. Do not let a stale stacked branch reintroduce the ambiguous RPC or the empty-member calendar restriction. This is a branch hygiene requirement, not authorization to activate Phase 2.
+
 The Curated calendar will legitimately be empty until confirmed future occurrences are authored. Claude proposed Thursday October 29 at Flamingo Park, meet 5:50 AM and run 6:00 AM. These times should be verified against the current actual FORM organizer notice before creating the authoritative event; older context contains different times. iRUN Monday's exact meet point remains to be confirmed before a dated calendar entry. ALO dates remain pending. Do not invent Saturday meetups or publish partner registrations as FORM-owned RSVPs.
 
 **Next decisions are engineering, not aesthetic narrowing:** obtain safe branch/fixture runtime evidence; fix any additional RPC issues; compile and signed-in walk native #117 on the release base; reconcile the live event calendar; then publish a coherent release batch. Preserve all three doors in the design and subsequent implementation roadmap.
