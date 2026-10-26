@@ -65,6 +65,8 @@ Before applying the Curated migration to production or distributing native #117,
 
 Also exercise `form_curated_invite()` and `form_curated_create_event()` under real coach permissions. A `BEGIN/ROLLBACK` DDL rehearsal is useful but **insufficient** if functions are never called. Test the exact deployed version; keep durable receipts (subject types, returned/error classes, branch ref, migration hash, mobile build, observed behavior) without leaking tokens or identifying unrelated athletes.
 
+The fail-closed runner in PR #376 is `tests/curated-signed-in-rpc-smoke.mjs`. It requires a **non-production** Supabase URL, publishable key, QA event ID, two distinct member access tokens and a coach token (optional outsider). It rejects the production project and refuses to run with missing inputs. It exercises `my`, `manage`, `mark_read`, `attendees` and join/leave, then asserts one person's leave does not remove the other person's RSVP. The file passed `node --check`; **the live RPC test has not run** because a safe QA project/branch has not yet been provisioned.
+
 **Branch test status:** No disposable branch existed in the FORM Athlete System at the last check. An attempted `supabase_create_branch` returned `INVALID_ARGUMENT`; no branch or production mutation resulted. Creating a Supabase branch may incur usage charges and requires the proper cost confirmation. Do not evade this by running side-effecting test RPCs on production.
 
 ## Publication and the first event
