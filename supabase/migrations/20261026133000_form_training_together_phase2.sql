@@ -2,6 +2,15 @@
 -- The coach is the connector. No athlete can browse another athlete's plan,
 -- location, availability, identity or message through these tables/functions.
 
+-- Existing session tables do not have a date index in the current schema.
+-- This bounds the coach's one-day candidate lookup as the roster grows.
+create index if not exists form_match_sessions_date_athlete
+  on public.planned_sessions(scheduled_on,athlete_id)
+  where state='published' and scheduled_on is not null;
+create index if not exists form_match_active_member_user
+  on public.athlete_memberships(user_id)
+  where role='athlete' and status='active';
+
 -- A row exists only after the athlete has explicitly opted into matching.
 -- This is their preferred TRAINING area, never an inferred home address,
 -- device location, GPS coordinate or Strava start point.
@@ -53,6 +62,7 @@ create table public.form_match_introductions (
 );
 create index form_match_introductions_first on public.form_match_introductions(first_athlete_id,on_date);
 create index form_match_introductions_second on public.form_match_introductions(second_athlete_id,on_date);
+create index form_match_introductions_date on public.form_match_introductions(on_date,proposed_at);
 
 alter table public.form_match_profiles enable row level security;
 alter table public.form_match_requests enable row level security;
@@ -193,7 +203,7 @@ begin
       case when s.role='easy' then 'easy'
         when s.role='key' and v.title ~* '(long run|long aerobic)' then 'long_run'
         else null end as lane,
-      case when lower(coalesce(v.distance_unit,'mi')) in ('km','kilometer','kilometers')
+      case when lower(v.distance_unit)='km'
         then v.prescribed_distance * 0.621371 else v.prescribed_distance end as miles
     from public.planned_sessions s
     join public.athletes a on a.id=s.athlete_id and a.active
@@ -204,6 +214,7 @@ begin
       order by v.version_number desc,v.created_at desc limit 1
     ) v on true
     where s.scheduled_on=p_on_date and s.state='published'
+      and lower(v.distance_unit) in ('mi','km')
       and public.is_coach_member(s.athlete_id)
   ), eligible as (
     select distinct on (athlete_id,lane) * from normalized
