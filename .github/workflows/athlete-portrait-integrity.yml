@@ -1,0 +1,38 @@
+name: FORM athlete portrait integrity
+
+on:
+  pull_request:
+    paths:
+      - 'assets/athletes/**'
+      - '_headers'
+      - 'netlify.toml'
+      - 'tests/athlete-portrait-integrity.cjs'
+      - '.github/workflows/athlete-portrait-integrity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'assets/athletes/**'
+      - '_headers'
+      - 'netlify.toml'
+      - 'tests/athlete-portrait-integrity.cjs'
+      - '.github/workflows/athlete-portrait-integrity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  portrait-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify portrait assets, cache headers and publication-safe filenames
+        env:
+          FORM_PORTRAIT_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: node tests/athlete-portrait-integrity.cjs
