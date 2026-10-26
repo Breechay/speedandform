@@ -285,10 +285,18 @@ begin
   ) then return '[]'::jsonb; end if;
   select coalesce(jsonb_agg(x.name order by x.at),'[]'::jsonb) into result
   from (
-    select ci.at, btrim(cm.first_name) ||
-      case when nullif(btrim(coalesce(cm.last_initial,'')),'') is null
-        then '' else ' ' || upper(left(btrim(cm.last_initial),1)) end as name
-    from public.collective_run_ins ci join public.collective_members cm on cm.account_id=ci.account_id
+    select ci.at,
+      coalesce(nullif(btrim(cm.first_name),''),nullif(split_part(btrim(a.display_name),' ',1),''),'Runner') ||
+      case when coalesce(nullif(btrim(cm.last_initial),''),nullif(split_part(btrim(a.display_name),' ',2),'')) is null
+        then '' else ' ' || upper(left(coalesce(nullif(btrim(cm.last_initial),''),split_part(btrim(a.display_name),' ',2)),1)) end as name
+    from public.collective_run_ins ci
+    left join public.collective_members cm on cm.account_id=ci.account_id
+    left join lateral (
+      select ath.display_name from public.athlete_memberships m
+      join public.athletes ath on ath.id=m.athlete_id
+      where m.user_id=ci.account_id and m.role='athlete' and m.status='active'
+      order by m.created_at limit 1
+    ) a on true
     where ci.run_id=p_run_id order by ci.at limit 50
   ) x;
   return result;
