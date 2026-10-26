@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
 import { test } from 'node:test';
 import { selfAuditSessionCopy, sessionEditorialIssues } from './session-editorial-standard.mjs';
 
@@ -46,4 +47,12 @@ test('new recovery forks remain blocked', () => {
 
 test('race pace ranges remain allowed', () => {
   assert.deepEqual(sessionEditorialIssues({ title: '4 mi at 6:48–6:52/mi', details: '' }), []);
+});
+
+test('revising old sessions preserves the stored weekday label', () => {
+  const coachSource = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
+  assert.ok(coachSource.includes("daySelect.value = session.day_label;"));
+  assert.ok(coachSource.includes("if (daySelect.selectedIndex < 0 && session.day_label)"));
+  assert.ok(coachSource.includes("new Option(session.day_label, session.day_label, true, true)"));
+  assert.ok(coachSource.includes("sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]')"));
 });
