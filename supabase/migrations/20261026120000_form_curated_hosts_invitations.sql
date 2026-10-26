@@ -183,11 +183,11 @@ end $$;
 -- RSVP remains collective_run_ins; the invited table never claims attendance.
 create or replace function public.form_curated_my()
 returns jsonb language plpgsql stable security definer set search_path = '' as $$
-declare account_id uuid := (select auth.uid()); payload jsonb; total integer;
+declare v_account_id uuid := (select auth.uid()); payload jsonb; total integer;
 begin
-  if account_id is null or not exists (
+  if v_account_id is null or not exists (
     select 1 from public.athlete_memberships m
-    where m.user_id=account_id and m.role='athlete' and m.status='active'
+    where m.user_id=v_account_id and m.role='athlete' and m.status='active'
   ) then return jsonb_build_object('hosts','[]'::jsonb,'events','[]'::jsonb,'unread_count',0); end if;
   select coalesce(jsonb_agg(jsonb_build_object(
     'id',r.id,'host_slug',h.slug,'host_name',h.display_name,
@@ -197,7 +197,7 @@ begin
     'status',r.status,'invited',i.athlete_id is not null,
     'unread',i.athlete_id is not null and i.read_at is null,
     'declined',i.declined_at is not null,
-    'joined',exists(select 1 from public.collective_run_ins ci where ci.run_id=r.id and ci.account_id=account_id),
+    'joined',exists(select 1 from public.collective_run_ins ci where ci.run_id=r.id and ci.account_id=v_account_id),
     'attendee_count',(select count(*) from public.collective_run_ins ci where ci.run_id=r.id)
   ) order by r.starts_at),'[]'::jsonb) into payload
   from public.form_curated_run_links l
@@ -206,7 +206,7 @@ begin
   left join lateral (
     select ci.* from public.form_curated_invitations ci
     join public.athlete_memberships m on m.athlete_id=ci.athlete_id
-      and m.user_id=account_id and m.role='athlete' and m.status='active'
+      and m.user_id=v_account_id and m.role='athlete' and m.status='active'
     where ci.run_id=r.id limit 1
   ) i on true
   where r.starts_at>=now()-interval '1 day' and r.starts_at<now()+interval '180 days'
@@ -214,7 +214,7 @@ begin
   select count(*) into total from public.form_curated_invitations i
     join public.athlete_memberships m on m.athlete_id=i.athlete_id
     join public.collective_runs_current r on r.id=i.run_id
-    where m.user_id=account_id and m.role='athlete' and m.status='active'
+    where m.user_id=v_account_id and m.role='athlete' and m.status='active'
       and i.read_at is null and i.declined_at is null
       and r.starts_at>now() and r.status='scheduled';
   return jsonb_build_object('hosts',public.form_curated_hosts_list(),'events',payload,'unread_count',total);
@@ -243,9 +243,9 @@ end $$;
 
 create or replace function public.form_curated_rsvp(p_run_id uuid,p_join boolean)
 returns boolean language plpgsql security definer set search_path = '' as $$
-declare account_id uuid := (select auth.uid()); run_row record;
+declare v_account_id uuid := (select auth.uid()); run_row record;
 begin
-  if account_id is null or not public.collective_is_member() then
+  if v_account_id is null or not public.collective_is_member() then
     raise exception 'join_collective_to_rsvp' using errcode='42501';
   end if;
   select r.id,r.status,r.starts_at,r.visibility into run_row
@@ -257,10 +257,11 @@ begin
   end if;
   if p_join then
     insert into public.collective_run_ins(run_id,account_id,at)
-    values(p_run_id,account_id,now()) on conflict do nothing;
+    values(p_run_id,v_account_id,now()) on conflict do nothing;
     perform public.form_curated_mark_read(p_run_id);
   else
-    delete from public.collective_run_ins where run_id=p_run_id and account_id=account_id;
+    delete from public.collective_run_ins ci
+    where ci.run_id=p_run_id and ci.account_id=v_account_id;
   end if;
   return p_join;
 end $$;
