@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="description" content="Download a FORM Plan Exchange file, edit your running plan with an AI assistant, and prepare it for FORM.">
+  <title>Plan Exchange | FORM</title>
+  <link rel="canonical" href="https://speedandform.com/plans/exchange/">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/kit/favicon/form-rounded.svg">
+  <link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin>
+  <link rel="stylesheet" href="/css/sf-brand.css?v=20261001">
+  <style>
+    :root{color-scheme:dark;--ink:#f4f2ec;--muted:#a9aaa5;--line:#474947;--base:#0b0b0b;--surface:#1a1a1a;--blue:#9db1bd}
+    *{box-sizing:border-box}
+    html{background:var(--base);scroll-behavior:smooth}
+    body{margin:0;background:var(--base);color:var(--ink);font-family:"Inter Tight",Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    button,input,select,textarea{font:inherit}
+    :focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+    .shell{width:min(1160px,calc(100% - 44px));margin:auto}
+    .head{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line)}
+    .brand img{width:75px;height:auto;display:block}
+    .head nav{display:flex;align-items:center;gap:24px;font-size:14px}
+    .head nav a{color:var(--muted);text-decoration:none}
+    .head nav a:hover{color:var(--ink)}
+    main{padding:84px 0 100px}
+    .intro{max-width:900px}
+    h1{font-size:clamp(56px,8.8vw,120px);line-height:.94;letter-spacing:-.065em;font-weight:640;margin:0}
+    .intro p{font-size:clamp(18px,2.1vw,23px);font-weight:380;line-height:1.42;color:#c8c9c6;max-width:690px;margin:28px 0 0}
+    .work{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;margin-top:90px;align-items:start}
+    h2{margin:0;font-size:clamp(29px,3.3vw,43px);letter-spacing:-.035em;line-height:1.1;font-weight:600}
+    .caption{font-size:14px;color:var(--muted);line-height:1.55;max-width:520px;margin:14px 0 30px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    label{font-size:13px;display:block;color:#d1d0ca;margin-bottom:8px}
+    input,select{border:1px solid var(--line);border-radius:6px;width:100%;min-height:48px;color:var(--ink);background:var(--surface);padding:12px;accent-color:var(--blue)}
+    select{cursor:pointer}
+    .action{background:var(--ink);color:#0b0b0b;border:1px solid var(--ink);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;min-height:52px;padding:13px 22px;font-size:15px;font-weight:650;cursor:pointer;transition:background .15s,color .15s}
+    .action:hover{background:#d9d9d2}
+    .action.secondary{background:transparent;color:var(--ink);border-color:var(--line)}
+    .action.secondary:hover{border-color:var(--ink)}
+    .button-row{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+    .hint{font-size:13px;color:var(--muted);line-height:1.55;margin:16px 0 0}
+    .hint strong{color:var(--ink);font-weight:500}
+    .paper{background:#f4f2ec;color:#101010;padding:34px;border-radius:6px;box-shadow:0 30px 70px rgba(0,0,0,.18)}
+    .paper .overline{letter-spacing:.16em;text-transform:uppercase;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;color:#62645f;margin-bottom:30px}
+    .paper h2{font-size:clamp(29px,3.1vw,40px);max-width:380px}
+    .paper p{font-size:15px;line-height:1.5;color:#444642;max-width:380px}
+    .paper pre{white-space:pre-wrap;overflow-wrap:anywhere;padding:22px 0 4px;border-top:1px solid #c9c9c1;color:#40423d;font:12px/1.8 ui-monospace,SFMono-Regular,Menlo,monospace}
+    .prompter{border-top:1px solid var(--line);padding-top:42px;margin-top:80px;max-width:800px}
+    .prompter h2{font-size:32px}
+    textarea{width:100%;color:#d5d6d1;background:#1a1a1a;border:1px solid var(--line);border-radius:6px;line-height:1.55;padding:18px;min-height:240px;resize:vertical;font-size:13px;margin:4px 0 0}
+    .status{min-height:20px;font-size:13px;color:var(--blue);margin:12px 0 0}
+    footer{padding:24px 0 45px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+    .foot{display:flex;justify-content:space-between;gap:22px;flex-wrap:wrap}
+    .foot a{text-decoration:none}
+    @media(max-width:780px){main{padding-top:56px}.work{grid-template-columns:1fr;gap:44px;margin-top:65px}.paper{padding:27px}.head{min-height:70px}.head nav{gap:15px}}
+    @media(max-width:400px){.shell{width:calc(100% - 34px)}.form-grid{grid-template-columns:1fr}.button-row>*{width:100%}.head nav{font-size:13px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.action{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="shell head">
+    <a class="brand" href="/" aria-label="FORM home"><img src="/assets/brand/kit/emblem/sf-emblem-bone.svg" alt="FORM" width="75" height="35"></a>
+    <nav aria-label="Navigation"><a href="/plans/">Training plans</a><a href="/form/">Running app</a></nav>
+  </header>
+  <main class="shell">
+    <div class="intro">
+      <h1>Make your<br>plan yours.</h1>
+      <p>Download a FORM file. Work on your running plan with ChatGPT, Claude or your own coach. Bring the finished file into FORM when personal-plan import is available.</p>
+    </div>
+    <section class="work" aria-label="Plan file">
+      <div>
+        <h2>Start with a file.</h2>
+        <p class="caption">A valid, editable FORM Plan Exchange JSON example. It contains four sample entries, not a prescribed training program.</p>
+        <div class="form-grid">
+          <div><label for="file-start">Example week starts</label><input id="file-start" type="date" required></div>
+          <div><label for="file-unit">Distance unit</label><select id="file-unit"><option value="mi">Miles</option><option value="km">Kilometers</option></select></div>
+        </div>
+        <div class="button-row">
+          <button class="action" id="download" type="button">Download FORM file</button>
+          <a class="action secondary" href="/form/">FORM running app</a>
+        </div>
+        <p class="hint">The example downloads on your device. <strong>We do not collect your plan or account details here.</strong> Import into your FORM Week will require the app's authenticated preview and confirmation flow when released.</p>
+        <p class="status" id="download-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="paper" aria-label="Example file preview">
+        <div class="overline">FORM / schema 01</div>
+        <h2>Structured for the work.</h2>
+        <p>Dates, workout type, distance or time, and exact interval steps when a session calls for them.</p>
+        <pre id="file-preview" aria-label="Plan file preview">{
+  "schema_version": 1,
+  "name": "My FORM plan",
+  "unit_preference": "mi",
+  "sessions": [ ... ]
+}</pre>
+      </div>
+    </section>
+    <section class="prompter" aria-labelledby="prompt-title">
+      <h2 id="prompt-title">Instructions for your assistant.</h2>
+      <p class="caption">Send the downloaded JSON with these instructions. Ask your assistant to return the complete edited file, not just a description of the workouts.</p>
+      <label for="assistant-instructions">Copy with your FORM file</label>
+      <textarea id="assistant-instructions" readonly spellcheck="false"></textarea>
+      <div class="button-row"><button class="action secondary" id="copy-instructions" type="button">Copy instructions</button></div>
+      <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <footer><div class="shell foot"><span>© 2026 Speed &amp; Form</span><span><a href="/form/privacy/">Privacy</a> · <a href="/form/support/">Support</a></span></div></footer>
+  <script type="module" src="/plans/exchange/page.mjs"></script>
+</body>
+</html>
