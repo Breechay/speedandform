@@ -313,20 +313,27 @@ begin
   if not found then raise exception 'both_athletes_must_agree' using errcode='42501'; end if;
 end $$;
 
-create or replace function public.form_match_coach_queue()
+create or replace function public.form_match_coach_queue(
+  p_limit integer default 100,p_offset integer default 0)
 returns jsonb language plpgsql stable security definer set search_path = '' as $$
 declare requests jsonb;introductions jsonb;
 begin
   perform public.form_miami_ensure_coach();
+  if p_limit not between 1 and 200 or p_offset not between 0 and 100000 then
+    raise exception 'invalid_page';
+  end if;
   select coalesce(jsonb_agg(jsonb_build_object(
     'id',r.id,'athlete_id',r.athlete_id,'athlete_name',a.display_name,
     'date',r.on_date,'lane',r.lane,'note',r.note,
     'city',p.training_city,'area',p.training_area
   ) order by r.on_date),'[]'::jsonb) into requests
-  from public.form_match_requests r
+  from (
+    select * from public.form_match_requests r
+    where r.on_date>=current_date and public.is_coach_member(r.athlete_id)
+    order by r.on_date,r.created_at,r.id limit p_limit offset p_offset
+  ) r
   join public.athletes a on a.id=r.athlete_id
-  join public.form_match_profiles p on p.athlete_id=r.athlete_id
-  where r.on_date>=current_date and public.is_coach_member(r.athlete_id);
+  join public.form_match_profiles p on p.athlete_id=r.athlete_id;
   select coalesce(jsonb_agg(jsonb_build_object(
     'id',i.id,'date',i.on_date,'lane',i.lane,
     'first_athlete_id',i.first_athlete_id,'second_athlete_id',i.second_athlete_id,
@@ -334,12 +341,17 @@ begin
     'first_answer',i.first_answer,'second_answer',i.second_answer,
     'connected',i.connected_at is not null,'closed',i.closed_at is not null
   ) order by i.on_date),'[]'::jsonb) into introductions
-  from public.form_match_introductions i
+  from (
+    select * from public.form_match_introductions i
+    where i.on_date>=current_date-interval '1 day'
+      and public.is_coach_member(i.first_athlete_id)
+      and public.is_coach_member(i.second_athlete_id)
+    order by i.on_date,i.proposed_at,i.id limit p_limit offset p_offset
+  ) i
   join public.athletes a on a.id=i.first_athlete_id
-  join public.athletes b on b.id=i.second_athlete_id
-  where i.on_date>=current_date-interval '1 day'
-    and public.is_coach_member(i.first_athlete_id) and public.is_coach_member(i.second_athlete_id);
-  return jsonb_build_object('requests',requests,'introductions',introductions);
+  join public.athletes b on b.id=i.second_athlete_id;
+  return jsonb_build_object('requests',requests,'introductions',introductions,
+    'limit',p_limit,'offset',p_offset);
 end $$;
 
 -- Functions are the only Data API contract; not one new table is directly
@@ -354,7 +366,7 @@ revoke all on function public.form_match_coach_candidates(date,integer) from pub
 revoke all on function public.form_match_coach_propose(uuid,uuid,date,text,text) from public,anon,authenticated;
 revoke all on function public.form_match_reply(uuid,boolean) from public,anon,authenticated;
 revoke all on function public.form_match_coach_connect(uuid) from public,anon,authenticated;
-revoke all on function public.form_match_coach_queue() from public,anon,authenticated;
+revoke all on function public.form_match_coach_queue(integer,integer) from public,anon,authenticated;
 grant execute on function public.form_match_profile_set(text,text,text,text[]) to authenticated;
 grant execute on function public.form_match_opt_out() to authenticated;
 grant execute on function public.form_match_my() to authenticated;
@@ -364,4 +376,4 @@ grant execute on function public.form_match_coach_candidates(date,integer) to au
 grant execute on function public.form_match_coach_propose(uuid,uuid,date,text,text) to authenticated;
 grant execute on function public.form_match_reply(uuid,boolean) to authenticated;
 grant execute on function public.form_match_coach_connect(uuid) to authenticated;
-grant execute on function public.form_match_coach_queue() to authenticated;
+grant execute on function public.form_match_coach_queue(integer,integer) to authenticated;
