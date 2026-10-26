@@ -18,7 +18,7 @@ Nothing is backfilled. All new fields are null/absent until the person opts in. 
 ## Two ways to connect
 
 1. **Athlete request:** “I’d like company for Saturday’s long run.” The athlete gives FORM a date, type, and optional short note. This goes only to the coach queue, never another athlete.
-2. **Coach suggestion:** FORM examines published sessions privately for athletes who opted in. Only **easy** and explicitly named **long run** sessions are compared automatically today. Same city, compatible time preference and training type, same date, and distance difference at most 3 mi produce a candidate. Same training area raises priority. No paces, injury history, health state, private notes, or exact location are matched or exposed.
+2. **Coach suggestion:** FORM examines published sessions privately for athletes who opted in. Only **easy** and explicitly named **long run** sessions with a known mi/km distance are compared automatically today. Same city, compatible time preference and training type, same date, and distance difference at most 3 mi produce a candidate. Same training area raises priority. Missing distance units are skipped, never guessed. No paces, injury history, health state, private notes, or exact location are matched or exposed.
 
 Candidates are suggestions for the coach, **not invitations or proof of compatibility**. Brice reviews pace, individual prescriptions, fatigue and context before proposing anything. Future Plan Exchange plans can participate once their sessions are properly published through the canonical training model.
 
