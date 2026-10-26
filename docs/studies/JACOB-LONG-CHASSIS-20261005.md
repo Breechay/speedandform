@@ -51,3 +51,32 @@ Pain, PT instructions, race history, Garmin estimates and athlete impressions re
 The 100-mile idea is a direction, not a current load target. The first success condition is much smaller:
 
 **Can the athlete train consistently without the chassis becoming the reason the engine cannot be used?**
+
+## October 26 coaching decision · Speed First
+
+Jacob is training **remotely**, not in Miami. Do not put iRUN or FORM Thursday hosted occurrences on his calendar. The coach's new emphasis is **faster mile and 5K running before the next ultra-specific build**. Long-distance experience is already present; we are testing whether his speed, pace control and economy can improve while ordinary aerobic work remains comfortable.
+
+This draws on Brice's *Speed Reserve* sequence but does **not** copy Brice's paces, mileage, race targets, or attended group workouts. In a fourteen-week coach draft, the main quality session progresses through:
+
+| Week | Draft quality focus |
+| --- | --- |
+| 1 | Easy calibration and 4 × 15-second relaxed strides |
+| 2 | 8 × 200 m, relaxed turnover |
+| 3 | Threshold 2 × 10 minutes |
+| 4 | 5 × 400 m, even effort |
+| 5 | Threshold 2 × 12 minutes |
+| 6 | 6 × 600 m, 5K-style rhythm |
+| 7 | Threshold 2 × 15 minutes |
+| 8 | 4 × 800 m, 5K-style rhythm |
+| 9 | Threshold 25 minutes continuous |
+| 10 | 4 × 1000 m, 5K-style rhythm |
+| 11 | Threshold 20 + 8 minutes |
+| 12 | 3 × 1200 m, 5K-style rhythm |
+| 13 | Mile reference |
+| 14 | 5K reference |
+
+One key quality day per week is the starting design. The supporting week includes relaxed easy running, an easy longer run (duration grounded in his current base), and FORGE strength/stability matched to his PT instructions. Exact dates, paces, warm-ups, recoveries, weekly volume and day selection are not yet authored as athlete-facing sessions. The two benchmarks establish his own mile and 5K marks, not copied goals from another athlete.
+
+**Activation gate:** confirm his 6–8-week training history, knee/hip and PT restrictions, a few race results, and whether the November Palermo Marathon is still planned. Do not prepublish intervals into a possible marathon/taper or post-marathon recovery period. A reported good workout is not speed clearance; monitor symptoms during and after running, and send persistent/worsening pain, swelling, instability or altered gait to the appropriate clinician/PT. These are private coach review criteria, not conditional athlete copy.
+
+**System status, October 26:** FORM athlete profile and fourteen ordered Week intents created; the block is a draft without dated or published sessions, and the athlete has no claimed sign-in yet. Coach will publish definite prescriptions after intake.
