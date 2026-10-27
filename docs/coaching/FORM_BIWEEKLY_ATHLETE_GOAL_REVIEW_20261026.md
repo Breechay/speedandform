@@ -24,11 +24,11 @@ Every 14 days, make a coach decision about **each athlete against their individu
 
 The live Supabase project runs a **private, rules-based snapshot every other Sunday at 21:00 UTC**, beginning **November 1, 2026**. A database cron job runs weekly but only writes on the 14-day anchor. The initial snapshot was run October 26. No extra ChatGPT Automation task is required.
 
-- Source: `supabase/migrations/20261027023504_form_biweekly_coaching_goal_audit.sql`
+- Source: `supabase/migrations/20261027023504_form_biweekly_coaching_goal_audit.sql` and follow-up `supabase/migrations/20261027023914_form_coaching_audit_recent_pain_signal.sql`
 - Cron job: `form-coach-goal-review-fortnightly`
 - Private schema: `coach_audit_private`
 - Tables: `plan_audit_runs` and `plan_audit_findings`
-- Rules currently cover active-block race-day presence, race-card distance, event-name drift, pace-field context, limited marathon long-run runway, three quality days per week, upcoming block end, unknown event date, and missing *filed* evidence.
+- Rules currently cover active-block race-day presence, race-card distance, event-name drift, pace-field context, limited marathon long-run runway, three quality days per week, upcoming block end, unknown event date, recently filed pain symptoms, and missing *filed* evidence.
 - Findings are **review prompts, not automatic coaching judgments**. The function never modifies plans, sends athlete notifications, exposes private notes, or publishes a workout.
 
 To inspect the latest snapshot as an authorized coach/admin in Supabase SQL:
