@@ -1,3 +1,11 @@
+## October 27 · Study 002, iRUN 5K and rhythm-under-fatigue observation
+
+- Original Garmin FIT `24863469052`: 7.74 miles total with warm-up, travel, 20:01 continuous 4.989 km iRUN 5K loop effort and cool-down separated by timer events. Equal-distance thirds of the loop effort are about 6:28, 6:35 and 6:18/mi; no fabricated course-lap or certified result.
+- Athlete debrief: a steady running companion helped establish rhythm; a faster passing group and another runner's light movement helped the final change of pace. Keep company, leg strength, “Relax. It's marathon pace” and occasional attention resets as observed variables. The counterfactual middle-run fade and immediate causal lift benefit remain unproven. Legs felt fine on the October 27 morning walk.
+- Updated [evidence ledger](../../labs/rebuilt-athlete/SPEED-EXPOSURE-LEDGER-20261018.md), [main Study 002](../../labs/rebuilt-athlete/index.html), [Speed Exposure](../../labs/rebuilt-athlete/speed-exposure/index.html), [strength field guide](../../labs/rebuilt-athlete/strength-and-speed/index.html) and [return-to-speed blueprint](../studies/REBUILT-ATHLETE-RETURN-TO-SPEED-20261021.md). The older 12-week plan is labeled historical where the October 23 15-week team season supersedes it.
+- Raw FIT, third-party names and the full athlete reflection remain private. No FORM run completion, speed-band change, Forge program activation, medical clearance or revised prescription is inferred from the study.
+- Release checks: `node tests/rebuilt-athlete-oct26.cjs`, public copy law, editorial contract, full editorial scan and `git diff --check`. Source/tests are separate from merge, Netlify production and real-device acceptance; capture those receipts before calling the pages live.
+
 ## October 25 · Website conversion entry
 
 - Prepared a restrained homepage orientation: first-person Brice introduction, real portrait, direct running/strength coaching paths, plans, Thursday and apps. The existing cinematic opening, bend and athlete study remain intact.

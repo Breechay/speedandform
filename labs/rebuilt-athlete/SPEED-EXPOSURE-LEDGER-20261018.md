@@ -184,3 +184,53 @@ From timestamped enhanced-speed samples near 1 Hz: use a **30-second trailing me
 Classified below 8:00/mi: **26:45**. Classified below 7:00/mi: **0:00**. The [Speed Exposure workbench](speed-exposure/index.html#speed) keeps this sample-derived distribution distinct from the historical lap-average bars.
 
 **Next question:** Can Brice sustain an equally fluid rhythm at comparable speed with less conscious correction, and regain it when disturbed? No left-leg-specific attention pattern, next-day recovery, measured symmetry, or clinical threshold has yet been established. FORM/Forge prescriptions were not changed.
+
+## October 26 · iRUN 5K, company and late rhythm
+
+**Source:** Original athlete-supplied Garmin Forerunner 965 FIT, activity `24863469052` (`24863469052_ACTIVITY.fit`), athlete debrief October 27. Full original recording and the detailed first-person note remain in private athlete storage. This selected evidence is not a FORM completion or a new prescription.
+
+### Actual work separated from travel running
+
+The original recording includes **7.74 miles / 12.45365 km** and **1:01:04 timer time** within about 1:40:48 of elapsed clock time including group stops. Timer events and the athlete account distinguish four parts:
+
+| Segment | Approximate distance | Timer duration | Pace /mi | Sampled mean HR |
+| --- | ---: | ---: | ---: | ---: |
+| Warm-up to iRUN | 2.816 km | 14:52 | 8:30 | 153 bpm |
+| Jog to the loop location | 2.397 km | 15:01 | 10:05 | 121 bpm |
+| **Continuous iRUN 5K loop effort** | **4.989 km** | **20:01** | **6:27** | **163 bpm** |
+| Cool-down to the store | 2.247 km | 12:10 | 8:43 | 127 bpm |
+
+The loop effort begins with a timer start at **7:11:21 PM EDT** and ends at **7:31:22 PM**. It was 11 m short of 5.000 km according to the watch, so **20:01 is a recorded continuous effort, not a certified 5K race result**. Across the full activity, Garmin reports 144 bpm average and 172 bpm maximum. Phase means are sampled from the FIT and exclude the long pauses. The first two segments contain brief watch pauses. They are not equivalent to continuous race work.
+
+The athlete describes three course loops. The original FIT auto-laps are every mile, not the course loops. Dividing the 4.989 km continuous effort into three equal-distance sections is the honest proxy:
+
+| Third (~1.663 km) | Approx. time | Pace /mi | Mean HR | Cadence | Step length | Contact | Vertical oscillation | Vertical ratio |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| First | 6:41 | 6:28 | 162 bpm | 175 spm | 1.427 m | 230 ms | 9.68 cm | 6.78% |
+| Middle | 6:49 | 6:35 | 163 bpm | 172 spm | 1.408 m | 236 ms | 9.82 cm | 6.97% |
+| Final | 6:31 | 6:18 | 165 bpm | 174 spm | 1.467 m | 229 ms | 9.87 cm | 6.73% |
+
+**Work-only means:** about 173 spm cadence, 1.43 m step length, 232 ms contact and 163 bpm HR. As in earlier FIT reviews, cadence is doubled from Garmin's cycle field; step length, contact and vertical metrics use decoded FIT units. These are device estimates and cannot establish left/right symmetry or a trained economy change. A faster pace naturally affects step length and contact time. The middle third did slow modestly; the final third was faster, with no observed mechanical collapse in this limited comparison.
+
+### Estimated sample time at pace
+
+The continuous 20:01 iRUN segment is the only input. Every ~1-second enhanced-speed reading inside the timer boundary was classified using a **centered 11-second rolling median**. Each estimate receives the time until the next record, capped at two seconds and the interval boundary; all 1,201 seconds classified. This is separate from assigning the whole effort to its **6:27/mi average-pace** band in the public workbench. Instantaneous GPS speed remains noisy and the displayed bins are approximate.
+
+| Smoothed sample pace | Estimated time |
+| --- | ---: |
+| Faster than 6:00/mi | 0:18 |
+| 6:00–6:14/mi | 3:41 |
+| 6:15–6:29/mi | 5:53 |
+| 6:30–6:44/mi | 8:52 |
+| 6:45–6:59/mi | 1:12 |
+| 7:00/mi or slower | 0:05 |
+| **Total continuous work** | **20:01** |
+
+### Athlete account and working variables
+
+- **Company:** A runner helped establish a comfortable rhythm through the early loops. The athlete then maintained that rhythm himself. A quicker group passed in the last loop and provided an external pace anchor; he joined without describing the effort as a grind.
+- **Attention and cue:** “Relax. It's marathon pace” was a mental instruction to begin conservatively, not a verified pace zone. In the last loop he focused on how lightly another runner moved, shifted attention and found the quicker rhythm.
+- **Strength:** The athlete reports doing **Forge Sculpt Phase 2, Week 1, Day 1** lifting early the same morning, and subjectively feeling unusually strong legs. Garmin has a morning strength activity, but lift choice/sets and whether Sculpt was the phone's selected active program are not verified here. The separately authored Muscle Beach strength blueprint remains distinct. No same-day causal adaptation claim is supported.
+- **Recovery:** At approximately 6 AM October 27, Brice reported his legs felt fine while walking to coach Rod. This is a positive next-morning report, not a complete 24–48-hour impact response or medical clearance.
+
+**Current hypothesis, not conclusion:** Rhythmic company, accumulated strength work, fitness and an occasional deliberate attention reset may help Brice sustain a relaxed, faster stride. Without the passing group, a further fade is **unknown**; the measured middle dip alone cannot establish one. He does not want to monitor stride constantly or turn every run into a mechanics drill. A future comparison should ask whether he can notice a modest drift and regain ease during selected runs, including without a pacer, while keeping lower-leg response and effort acceptable. Do not force longer steps or change FORM/Forge prescriptions from this observation.
