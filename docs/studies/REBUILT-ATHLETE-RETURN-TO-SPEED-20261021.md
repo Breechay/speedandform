@@ -4,6 +4,8 @@
 **Study:** FORM Study 002, [The Rebuilt Athlete](../../labs/rebuilt-athlete/index.html)  
 **Status:** coaching interpretation and current-phase direction, not an independent running prescription.
 
+**Later decision boundary:** The October 23 [THE FIVE 15-week team season](../coaching/THE_FIVE_MIAMI_WEEKEND_15_WEEK_20261023.md) is newer than this October 21 blueprint. The earlier preference against structured speed before 2027 remains a dated decision, not a veto over later authorized FORM assignments. The FORM Athlete System owns each athlete's live prescription.
+
 ## The direction
 
 Brice's next performance targets are a **sub-5:00 mile** and a **10K at 6:00/mi** (approximately 37:17). The earlier marathon and the 2025 VO₂ max peak are historical evidence, not present training targets. He prefers **no structured speed block before 2027**, with no urgency to return to racing. The current emphasis is complete lower-leg recovery, repeatable running, and sufficient strength, food, sleep and mobility to keep training sustainable.
@@ -68,3 +70,13 @@ Establish several repeatable weeks at a non-escalating load with no meaningful d
 Original Garmin FIT files and raw medical/recovery data should remain in private athlete systems; Study 002 publishes only relevant, approved lessons with qualifiers. Athletic recollections remain dated first-person reports. Garmin VO₂ and Endurance Score are device estimates; race predictors are not PBs. There is no proof that marathon stride length/contact changes caused the fade.
 
 **Canonical revision applied October 21:** FORM Week 04 Saturday Oct 24 is now **40 minutes easy at RPE 2–3** (immutable version 2), replacing the original eight-mile session, which remains in history. Six future prescribed sessions dated Oct 26–Nov 7 were cancelled with reasons; weeks 5–6 await a new weekly coaching decision. Oct 19–20 original prescriptions and historical evidence remain intact. FORM database readback verified the changes. The web week, Saturday page and program projection have been revised to match. A signed-in phone refresh has not been verified. Administrative authorship and athlete approval are documented without claiming an authenticated coach session.
+
+## October 27 addendum · Continuous 5K and the attention question
+
+Brice's original Garmin Forerunner 965 FIT from Monday October 26 (`24863469052`) separates **7.74 miles total** into a warm-up to iRUN, run to the loop location, a **20:01 continuous 4.989 km effort at about 6:27/mi**, and cool-down to the store. The surrounding runs are not part of the fast 5K. This is a recorded loop effort, not a certified race result.
+
+The athlete reports three course laps, a deliberately conservative opening, another runner's rhythm helping him settle, a slight easing in the middle and a faster finish with a passing group. He focused on imitating another runner's light, relaxed motion; it felt like a shift in attention and rhythm rather than a grind. His opening cue, **“Relax. It's marathon pace,”** expressed desired composure, not a measured marathon training pace. Equal-distance FIT thirds were approximately **6:28, 6:35 and 6:18/mi**, with cadence around **175, 172 and 174 steps/min** and step length about **1.43, 1.41 and 1.47 m**. Those pace-linked mechanics do not prove a causal improvement in economy. Without the passing group, later slowing is a hypothesis, not an observed outcome.
+
+Earlier that morning, Brice reports using **Forge Sculpt Phase 2, Week 1, Day 1**. He felt unusually strong legs during the run and reported fine legs while walking at 6 AM the following morning. Do not infer that one lift caused the result or that archived Sculpt is the currently installed assignment. The combined day includes strength and a hard 5K effort even though the full 7.74-mile average looks moderate.
+
+**Variables to retain:** useful company and external rhythm, accumulated leg strength, the relaxed mental cue, and an occasional deliberate return to light running when attention drifts. Fitness and regular training may make the cue less effortful over time. Brice explicitly does not want to coach every stride on every run. Test the ability to regain fluid movement during selected runs, with and without company, while reviewing workload and later leg response. Do not automatically add fast mileage, change the next quality day, or create a new FORM/Forge prescription from the study. Full source methods and speed bins are in the [Speed Exposure Ledger](../../labs/rebuilt-athlete/SPEED-EXPOSURE-LEDGER-20261018.md).
