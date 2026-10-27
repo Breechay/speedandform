@@ -18,7 +18,7 @@ begin
   end if;
 
   select jsonb_strip_nulls(jsonb_build_object(
-    'program', coalesce(active_block.name, nullif(a.program_name, '')),
+    'program', active_block.name,
     'goal', nullif(coalesce(active_block.goal_statement, a.goal_label), ''),
     'pr', mark.best,
     'threshold', pace.value,
@@ -84,7 +84,7 @@ begin
     limit 1
   ) lens on true
   left join lateral (
-    select n.body
+    select regexp_replace(n.body, '^[A-Z][A-Z0-9-]+[[:space:]]*·[[:space:]]*', '') as body
     from public.coach_private_notes n
     where n.athlete_id = a.id
     order by n.created_at desc
