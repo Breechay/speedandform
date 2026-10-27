@@ -17,11 +17,11 @@
 - No 12-mile continuous race-pace training test is required. The current coach-authored running schedule is in FORM; do not copy or freeze it here.
 
 ## October 27 result and coach verdict
-- **Filed actual:** Four continuous miles in 27:12.6 (6:48/mi), inside prescribed 6:48–6:52 goal pace. Full Garmin run 8.68 mi / 1:07:13.5, with 20:00 warm-up and 20:00.8 cooldown. Whole-run average HR 161 bpm; no work-segment HR or mile-by-mile splits supplied.
+- **Filed actual:** Four continuous miles in 27:12.6 (6:48/mi), inside prescribed 6:48–6:52 goal pace. Full Garmin run 8.68 mi / 1:07:13.5, with 20:00 warm-up and 20:00.8 cooldown. Original Garmin FIT confirms work average HR 173 bpm (peak 181), versus whole-run average 161. Approximate work-mile splits calculated from distance records were 6:53 / 6:47 / 6:45 / 6:48, with corresponding mean HR about 172 / 176 / 170 / 175 bpm.
 - **Athlete response:** José initially called it easy but clarified **7/10 effort**. Breathing was never limiting; he intentionally restrained his pace. He saw the watch average near 6:46 and deliberately eased. The warm-up took longer to feel comfortable after lower-body lifting October 26, but his legs were not severely tired.
 - **Comparison:** October 20 was eight continuous miles at 6:44/mi with high reported cost. October 27 was four miles at 6:48/mi with 7/10 reported cost and deliberate control. Different duration, pace and context: encouraging restraint, not a measured economy gain. November 10 is the better matched four-mile repeat.
 - **Coach verdict:** Keep sub-1:30 Orlando goal, the published October 29 controlled twenty-minute work and October 31 thirteen easy. No faster target or additional quality. November 7/14 late-goal-pace rehearsals remain the key checks.
-- **Private follow-up:** Capture individual splits, company, route/weather, 24/48-hour recovery and the current lower-body strength dose. RPE has now been supplied; do not describe this as a 4/10 session.
+- **Private follow-up:** Individual mile times and HR are now extracted from the FIT. Capture company, route/weather, 24/48-hour recovery and the current lower-body strength dose. Preserve the original FIT reference in private evidence; it supersedes the former 'segment HR unavailable' note. RPE has now been supplied; do not describe this as a 4/10 session.
 - **Owners:** Actual and corrected athlete report are filed in FORM. Public study updated at `#oct27-jose`; this week's athlete focus reflects the 7/10 effort. October 20 eight-mile homepage milestone remains intentionally unchanged.
 
 ## Multi-agent intake: keep disagreements
