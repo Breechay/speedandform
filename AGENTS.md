@@ -1,5 +1,7 @@
 # Start here: Speed & Form
 
+> **Biweekly athlete goal review (October 26):** Every active coached athlete needs an explicit coach assessment against their own goal, execution evidence, PT/health constraints, competing strength load and race timeline every 14 days; race builds inside six weeks are checked weekly. Follow [the FORM biweekly athlete goal-review standard](docs/coaching/FORM_BIWEEKLY_ATHLETE_GOAL_REVIEW_20261026.md). A private Supabase cron job now records rules-based findings, but a successful scan does **not** replace a signed-off coaching judgment. Do not blindly assign shared iRUN/Thursday practice near races or mistake missing filed data for no training.
+
 > **Athlete copy self-audit (Oct 26):** Every agent and writing path must draft → check → rewrite until the copy passes before athlete publication. Keep instructions plain and succinct, preserve exact workout numbers, and never turn an editorial rewrite into a training change. Follow [the athlete copy self-audit](docs/FORM_ATHLETE_COPY_SELF_AUDIT_20261026.md) and the authenticated athlete release gate. Do not claim a plan is live without latest-version readback and signed-in athlete confirmation.
 
 
