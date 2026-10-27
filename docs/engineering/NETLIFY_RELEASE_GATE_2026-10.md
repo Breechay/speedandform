@@ -61,6 +61,21 @@ authorization, without waiting for the routine batch cadence.
 - Audit external build hooks and any other connected Netlify sites; this
   repo gate cannot control them.
 
+### Athlete training is database data, not a website release
+
+Coached workout prescriptions, pace/recovery targets, weekly dates, race
+priorities, and private athlete notes use the authorized Supabase coaching
+publication pipeline. For an existing app-supported field, editing and
+publishing that live data **must not** trigger a Netlify production build or
+an App Store submission. Validate the coaching prescription and authority,
+publish one revision, read back the latest server version, and verify it in
+the signed-in athlete's Week before saying it is live.
+
+Changes to Coach Console HTML/JavaScript itself still require the deliberate
+website release path. Changes to native iOS rendering or unsupported fields
+require a separately tested iOS build. A failed athlete refresh must never
+silently substitute an invented or stale workout.
+
 ### Subscription decision
 
 Keep auto-recharge off. Do not downgrade the hosting plan while availability
