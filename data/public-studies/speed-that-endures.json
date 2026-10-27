@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "a40c35c700be39ac09c4309cc79e91490094bceb81666dd35c5dd877f8b945e0",
+  "source_sha256": "1b796cfb275976239e2bcd73f06f06be59b5260141dc3cfb45d249fb07cbcc11",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -92,12 +92,13 @@
     "cooldown": "20:00.8 / 2.28 mi",
     "total": "8.68 mi / 1:07:13.5",
     "full_activity_average_hr_bpm": 161,
-    "athlete_response": "Four-mile goal-pace effort felt easy; warm-up was sluggish after lower-body lifting the prior day.",
-    "coach_read": "Prescribed sub-1:30 goal pace achieved with favorable reported effort. Different duration and pace from Oct 20; no measured threshold or economy gain established.",
-    "next_test": "Nov 10 matched four-mile goal-pace read and Nov 7/14 late-long-run goal-pace rehearsals. Track work RPE and next-day recovery.",
+    "athlete_response": "Initially called the four miles easy; clarified 7/10 effort, breathing controlled, consciously restrained speed and slowed after watch average reached about 6:46/mi. Warm-up sluggish after prior-day leg strength.",
+    "coach_read": "Four miles at prescribed goal pace with deliberate restraint, RPE 7/10. Encouraging pacing execution, not a 4/10 easy effort or proof of lower physiological cost versus longer Oct 20 work.",
+    "next_test": "Nov 10 four-mile comparison and Nov 7/14 late-long-run goal-pace rehearsals. Capture mile splits, recovery and strength load.",
     "race": "Orlando Half Marathon · December 5, 2026",
     "race_outcome": "pending",
-    "source_url": "/labs/speed-that-endures/#oct27-jose"
+    "source_url": "/labs/speed-that-endures/#oct27-jose",
+    "rpe": 7
   },
   "pace_psychology": {
     "observed_on": "2026-10-20",
@@ -105,7 +106,7 @@
     "fresh_training_pace": "6:40–6:45/mi",
     "late_goal_pace": "6:48–6:52/mi",
     "hypothesis": "José reports running with others improves perceived ability to maintain rhythm; it is not causal proof.",
-    "outcome": "Oct 20: eight continuous miles at 6:44/mi, hard effort. Oct 27: four continuous miles at 6:48/mi, described as easy. Different doses and conditions; no causal conclusion.",
+    "outcome": "Oct 20: eight continuous miles at 6:44/mi felt hard. Oct 27: four at 6:48/mi, 7/10 effort with deliberate restraint and no breath limitation. Different doses; no causal conclusion.",
     "next_tests": "Nov 10 four-mile goal-pace repeat; Nov 7 final three late; Nov 14 final five late with last two alongside steady company.",
     "race_strategy": "Controlled opening around 6:50–6:51, even miles through nine, group for steadiness rather than a compulsory faster finish.",
     "measurement": "Pace, RPE, company, reliable HR when comparable, fueling, weather, sleep, 24- and 48-hour recovery.",
@@ -115,7 +116,7 @@
     "date": "2026-10-20",
     "status": "in_progress",
     "goal": "Sub-1:30",
-    "fresh_test": "Oct 27: first four-mile goal-pace effort completed at 6:48/mi, reported easy after a sluggish warm-up. Nov 10 repeat planned at 6:48–6:52/mi; compare context and 24/48-hour recovery.",
+    "fresh_test": "Oct 27: first four-mile goal-pace work at 6:48/mi, 7/10 effort, breathing comfortable and pace restrained; warm-up slow after leg strength. Nov 10 repeat at 6:48–6:52/mi.",
     "late_tests": [
       {
         "date": "2026-11-07",
