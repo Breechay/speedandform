@@ -1,6 +1,5 @@
 // Athlete-facing copy gate. Coaching owns the dose; this only checks words.
 const RULES = [
-  [/\u2014/u, 'Use a short sentence instead of a long em dash.'],
   [/\b(?:not a sprint|no sprinting)\b/iu, 'Remove redundant sprint commentary.'],
   [/\brun by your own rhyt?hm\b/iu, 'Replace vague rhythm commentary with a usable instruction.'],
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],
@@ -17,6 +16,15 @@ const RULES = [
 
 const SINGLE_PARAGRAPH_LIMIT = 190;
 
+// A strength list's exercise-to-dose separator is useful notation, not prose.
+// Examine each line: a valid separator on one line must not excuse a rambling
+// em dash elsewhere in the same workout.
+function hasNarrativeEmDash(value) {
+  return String(value).split(/\r?\n/u).some(line =>
+    line.includes('—') && !/^\s*(?:[-*•]\s*)?[^.!?\n—]{2,65}\s+—\s+\d/u.test(line)
+  );
+}
+
 export function sessionEditorialIssues(copy) {
   const issues = [];
   for (const field of ['title', 'intent', 'details']) {
@@ -24,6 +32,8 @@ export function sessionEditorialIssues(copy) {
     for (const [pattern, message] of RULES) {
       if (pattern.test(value)) issues.push({ field, message });
     }
+    if (hasNarrativeEmDash(value))
+      issues.push({ field, message: 'Use a short sentence instead of a narrative em dash.' });
   }
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
@@ -32,8 +42,28 @@ export function sessionEditorialIssues(copy) {
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
   if (/\b(?:note effort|report back|send (?:me|your coach)|at halfway and at the end)\b/iu.test(details))
     issues.push({ field: 'details', message: 'Keep the athlete focused on executing the session, not submitting commentary.' });
+  if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove the repeated total-mileage lead-in. Keep the warm-up, work, recovery and cool-down.' });
+  if (/\bRPE\s*(\d)\s*[–-]\s*\1\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Write one RPE number when both ends of a range are the same.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
     issues.push({ field: 'details', message: 'Execution is too long. Keep the exact dose in structured work and use one or two short lines.' });
+  return issues;
+}
+
+// Week is a compact projection, not a replacement for the coach's complete
+// session. These findings belong to the Week renderer. Never delete details
+// from the canonical prescription merely to satisfy a collapsed-card layout.
+export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork = false } = {}) {
+  const issues = [];
+  const text = String(preview ?? '').trim();
+  if (!text) return issues;
+  if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
+    issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
+  if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(text))
+    issues.push({ field: 'preview', message: 'The card already shows the workout total. Start with the actual work.' });
+  if (hasStructuredWork && /\b(?:warm[ -]?up|cool[ -]?down)\b/iu.test(text) && /\b(?:warm[ -]?up|cool[ -]?down)\b/iu.test(String(title ?? '')))
+    issues.push({ field: 'preview', message: 'Do not repeat structured warm-up or cool-down labels.' });
   return issues;
 }
 
