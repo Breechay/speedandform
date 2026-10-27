@@ -26,6 +26,7 @@ begin
     'watch_date', body_watch.observed_on,
     'movement', movement.observation,
     'coach_lens', lens.observation,
+    'coach_note', private_note.body,
     'latest', latest.completion
   ))
   into result
@@ -82,6 +83,13 @@ begin
     order by o.observed_on desc, o.created_at desc
     limit 1
   ) lens on true
+  left join lateral (
+    select n.body
+    from public.coach_private_notes n
+    where n.athlete_id = a.id
+    order by n.created_at desc
+    limit 1
+  ) private_note on true
   left join lateral (
     select jsonb_strip_nulls(jsonb_build_object(
       'filed_on', (c.filed_at at time zone 'America/New_York')::date,
