@@ -1353,6 +1353,8 @@ function openSession(plannedSessionId = null) {
     sessionForm.elements.scheduledOn.value = session.scheduled_on || '';
     sessionForm.elements.title.value = version?.title || '';
     sessionForm.elements.prescribedDistance.value = version?.prescribed_distance || '';
+    // The unit is part of the number. Re-saving a km session must not turn it into miles.
+    sessionForm.elements.distanceUnit.value = version?.distance_unit === 'km' ? 'km' : 'mi';
     sessionForm.elements.prescribedDurationMinutes.value = version?.prescribed_duration_minutes || '';
     sessionForm.elements.intent.value = version?.intent || '';
     paintParts((version?.components || []).slice().sort((a, b) => a.position - b.position));
@@ -1698,7 +1700,7 @@ sessionForm.addEventListener('submit', async (event) => {
     scheduledOn: f.scheduledOn.value || null,
     title: f.title.value.trim(),
     prescribedDistance: f.prescribedDistance.value ? Number(f.prescribedDistance.value) : null,
-    distanceUnit: 'mi',
+    distanceUnit: f.distanceUnit.value === 'km' ? 'km' : 'mi',
     prescribedDurationMinutes: f.prescribedDurationMinutes.value ? Number(f.prescribedDurationMinutes.value) : null,
     intent: f.intent.value.trim(),
     details: f.details.value.trim() || null,
