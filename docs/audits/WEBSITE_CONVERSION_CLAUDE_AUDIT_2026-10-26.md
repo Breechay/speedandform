@@ -30,3 +30,17 @@ A visitor arriving without a referral should meet Brice, understand the offers, 
 ## What to report
 
 Return a short **ship / fix / defer** verdict for each changed surface. Name the exact SHA checked, browser dimensions, first paint and interactions observed, failed selectors with evidence, and the production deploy receipt if published. Make small, coherent fixes in the owning source and one review PR if needed. Do not silently add a second production deploy.
+
+## Claude audit result · October 26, 2026
+
+Checked `782f4b8` (main; no website-file diff from release `b8e2a49`). Live homepage copy read back matches the release. Netlify deploy receipt not independently readable from the audit session.
+
+| Surface | Verdict | Evidence |
+|---|---|---|
+| Short-phone hero | Ship | Work with me ends above the first lane at 320×568 (361 < 395), 375×667 (441 < 494), 390×844 (581 < 650); also 1024 and 1440, reduced motion identical. Tap target hit-tests to the link. |
+| Introduction portrait | Fixed | The 40px ink pad read as a letterbox above the photograph. A top gradient now carries the ink into the night sky; headroom unchanged. Mobile repeats the hero file; kept, because the film replaces the hero photograph after load. |
+| Ways to train | Fixed | Plans implied Race Pace That Lasts was free; now shows $79. Thursday matches the menu and page: Thursday sprints, Flamingo Park, 6:00 AM. |
+| Application | Ship | Both routes visible at 390 and 1440; arrow keys move selection and the select follows; pointer selection leaves no focus ring; keyboard ring is the intended focus indicator. No-JS shows the email fallback. Remote fee wording matches the review screen. |
+| Athletes / José | Partial | Static links on /athletes/ and José's study pages resolve. Live roster is loaded from the database and was not reachable from the audit session. |
+
+Pre-existing, not from this release: `tests/sf-bend.cjs` fails on main (counts two bends); not in the Netlify build chain.
