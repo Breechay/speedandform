@@ -23,7 +23,7 @@
 import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=3';
 import { escapeHtml } from '/private/record.js';
-import { authoredMiles, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -600,10 +600,14 @@ function dossierWeekHtml() {
   const days = WEEK_DAYS.map((name, index) => {
     const date = addDays(week.starts_on, index);
     const mine = sessions.filter((session) => session.scheduled_on === date && session.state !== 'cancelled');
+    const held = asCoach() ? sessions.filter((session) => session.scheduled_on === date
+      && session.state === 'cancelled' && session.withdrawn_at
+      && !/^superseded by /i.test(session.withdrawn_reason || '')) : [];
     return `<div class="ccDay${date === today() ? ' today' : ''}">
       <div class="ccDayName"><span>${escapeHtml(name.slice(0, 3).toUpperCase())}</span><b>${escapeHtml(Number(date.slice(8)))}</b></div>
       ${mine.map((session) => `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
         data-session="${escapeHtml(session.id)}"><span>${escapeHtml(shortDose(session.currentVersion) || titleOf(session))}</span></button>`).join('')}
+      ${held.length ? `<span class="ccHeld" title="${escapeHtml(held[0].withdrawn_reason || 'Coach withdrawal')}">Coach hold</span>` : ''}
     </div>`;
   }).join('');
   return `<section class="ccCard ccWeek">
@@ -1059,10 +1063,10 @@ const isNamed = (title) => !/^[\d\s×x]/.test(String(title || ''))
 function shortDose(version) {
   const parts = workParts(version);
   if (!parts.length) return '';
+  if (parts.length > 1) return (sessionTotalLabel(version) || structureOf(version) || '').toUpperCase();
   const magnitude = (part) => {
     if (part.distance != null) {
-      const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
-      return `${Number(each.toFixed(2))} MI`;
+      return `${Number(Number(part.distance).toFixed(2))} ${(part.distance_unit || version.distance_unit || 'mi').toUpperCase()}`;
     }
     if (part.duration_seconds != null) return `${Math.round(part.duration_seconds / 60)} MIN`;
     return '';
@@ -1073,14 +1077,7 @@ function shortDose(version) {
     const one = magnitude(part);
     return reps > 1 ? `${reps} × ${one}` : one;
   }
-  // A long run and its finish are one distance to the eye. The finish is the rule.
-  const total = parts.reduce((sum, part) => {
-    const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
-    if (part.distance == null) return sum;
-    const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
-    return sum + each * reps;
-  }, 0);
-  return total ? `${Number(total.toFixed(2))} MI` : '';
+  return '';
 }
 
 // The rule the dose is run to. One line, and only where there is one.
@@ -1089,7 +1086,7 @@ function shortRule(version, title) {
   const banded = parts.find((part) => part.pace_low != null && part.pace_high != null);
   if (banded) {
     if (parts.length > 1 && banded.distance != null) {
-      return `${Number(banded.distance)} mi @ ${banded.pace_low}–${banded.pace_high}`;
+      return `${Number(banded.distance)} ${banded.distance_unit || 'mi'} @ ${banded.pace_low}–${banded.pace_high}`;
     }
     return `${banded.pace_low}–${banded.pace_high}`;
   }
@@ -1183,9 +1180,8 @@ function anatomyOf(version) {
 
   const magnitude = (part) => {
     if (part.distance != null) {
-      const each = part.distance_unit === 'km' ? Number(part.distance) * 0.621371 : Number(part.distance);
       // Decimals should mean precision. 2, never 2.0.
-      return `${Number(each.toFixed(2))} MI`;
+      return `${Number(Number(part.distance).toFixed(2))} ${(part.distance_unit || version.distance_unit || 'mi').toUpperCase()}`;
     }
     if (part.duration_seconds != null) {
       const secs = part.duration_seconds;
@@ -1280,7 +1276,7 @@ function prescribedCell(session, context) {
   // the session total are what you need to execute and not what the session is
   // about, so they are one quiet line rather than two more things to parse.
   const whole = total != null && (work == null || Math.abs(total - work) > 0.05)
-    ? `${Number(total.toFixed(1))} MI` : '';
+    ? sessionTotalLabel(version).toUpperCase() : '';
   const logistics = [around, whole].filter(Boolean).join(' · ');
   const completion = context.completionFor(session.id);
   const ran = session.state === 'cancelled' ? ''

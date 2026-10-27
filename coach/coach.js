@@ -2,7 +2,7 @@ import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
-import { MONTHS, dayLabel, initials, rangeLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -221,7 +221,8 @@ function paceRunSvg(seconds) {
 }
 
 function doseOf(version) {
-  const work = (version?.components || []).find((part) => part.role === 'work');
+  const works = (version?.components || []).filter((part) => part.role === 'work');
+  const work = works[0];
   if (!work) return null;
   const unit = work.distance_unit || 'mi';
   const amount = work.distance != null
@@ -229,13 +230,15 @@ function doseOf(version) {
     : `${Math.round((work.duration_seconds || 0) / 60)} min`;
   const total = work.shape === 'repetitions' && work.distance != null
     ? Number((work.distance * work.repeat_count).toFixed(2)) : null;
-  const line = work.shape === 'repetitions'
+  const line = works.length > 1 ? structureOf(version) : work.shape === 'repetitions'
     ? `${work.repeat_count} \u00d7 ${amount}`
     : `${amount} continuous`;
   // The runway has room for two lines and reads better spelling it out. A week
   // row does not, and "9 mi continuous" wrapping into the title beside it is
   // worse than saying continuous once, quietly, with the other qualifiers.
-  const shortLine = work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
+  const shortLine = works.length > 1
+    ? (sessionTotalLabel(version) || structureOf(version))
+    : work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total work` : null;
@@ -262,7 +265,9 @@ function doseOf(version) {
   // `line` already says continuous; `shortLine` does not. The word belongs to
   // whichever headline is missing it, and never to both.
   const shapeWord = work.shape === 'continuous' ? 'continuous' : null;
-  const shortQualifiers = shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
+  const shortQualifiers = works.length > 1
+    ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
+    : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
   return {
     line, shortLine, work, proofBearing, totalLine,
     qualifiers: qualifiers.join(' \u00b7 '),
@@ -458,7 +463,7 @@ function workbenchHtml() {
       <span class="consoleWorkRow__day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
       <span class="consoleWorkRow__dose">${dose
         ? escapeHtml(dose.shortLine)
-        : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>mi</i>`
+        : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>${escapeHtml(version.distance_unit || 'mi')}</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(version.title)}
         ${doubleOn(session.scheduled_on)

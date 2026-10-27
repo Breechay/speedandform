@@ -987,6 +987,8 @@ body:has(.ccApp)>.navSet,body:has(.ccApp)>.plToggle,body:has(.ccApp)>.grain{disp
 .ccSession{width:100%;min-height:72px;margin-top:13px;padding:9px 8px;border:1px solid #7f99d52e;border-left:2px solid #9787ec;
   border-radius:8px;background:linear-gradient(145deg,#2e3e644f,#2234513b);color:#e0e9fa;font-size:12px;line-height:1.4}
 .ccSession.quality{border-left-color:#7edbd0}.ccSession.long{border-left-color:#c6a177}
+.ccHeld{display:block;margin-top:14px;padding:7px 0;color:#cbbba0;font-size:10px;
+  line-height:1.35;letter-spacing:.035em}
 .ccDistance{min-height:310px;padding:35px 34px 29px;display:flex;flex-direction:column;justify-content:center;gap:32px}
 .ccDistanceTop{display:flex;align-items:center;justify-content:space-between;gap:24px}.ccDistanceTotal{display:flex;align-items:baseline;gap:12px}
 .ccDistanceTotal strong{font-size:clamp(58px,6vw,82px);font-weight:450;line-height:1;letter-spacing:-.065em;color:#d9f8f1}
