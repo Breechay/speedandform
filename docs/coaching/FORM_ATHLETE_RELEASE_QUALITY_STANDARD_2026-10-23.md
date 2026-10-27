@@ -35,6 +35,16 @@ Database checks deliberately test consistency, not whether a workout is physiolo
 7. **On-device:** Verify signed-in athlete Week, collapsed track prescription, session details and Dossier on normal and small iPhones. Capture screenshots. Old App Store builds and cached sessions must be checked separately.
 8. **Distribution claim:** Distinguish authored data, committed native code, signed build, App Store availability, and observed signed-in device. None implies the next.
 
+## Coach-approved rapid publication rule · October 27, 2026
+
+**Approval is a release instruction, not a request for another approval.** When Brice says publish, make live, update the athlete, or otherwise explicitly approves an athlete prescription, complete author → self-audit → coaching/data checks → versioned publish → exact production readback in the same work cycle. Do not park a passing change as a draft, leave a staged version awaiting a routine follow-up, or ask Brice to approve the same change again. Updating athlete data does not require a native App Store build when the installed reader already supports the data.
+
+**Fast means decisive checks, not skipped checks.** Run the current athlete release gates, including verified identity, existing block/assignment, dated current Week, complete structured warm-up/work/recovery/cool-down, pace or RPE with verified units, load/race/health context, copy/privacy self-audit, duplicate-day and stale-version checks, and athlete-feed readback. Automatic validators should reject or route a specific failing field to immediate rewrite/correction; they must not silently alter a prescribed training dose. Publish as soon as all gates pass, then verify exactly what was saved. Distinguish database publication from actual signed-in iPhone reception.
+
+**A material safety/identity conflict is the narrow exception.** Missing clearance, unresolved injury/PT restriction, unconfirmed imminent race/taper, conflicting external-coach workload, or mismatched identity is a genuine hold on that affected prescription. Never work around it by inventing paces, dates, workouts, memberships or a generic alternative. In the same work cycle, publish any independently safe, already-authorized changes; leave unsafe sessions unissued; identify the exact missing fact and request it once through the appropriate coach/athlete channel. Show the hold explicitly in the Coach Console and keep the queue ready for automatic validation and prompt release when the fact is resolved. Do not claim the whole plan is live because an invitation or Week focus row exists.
+
+**No silent unfinished handoff.** Every approved athlete change ends with either (a) a production receipt listing athlete ID, dates, latest version IDs, active assignment/feed readback and remaining device-verification limit, or (b) a named blocking gate, owning follow-up and exact next action. The next coaching edit must not reintroduce a withdrawn session or stale Week copy. Publication should be idempotent and version-aware; conflicts trigger a fresh read and reconciliation, not a blanket overwrite.
+
 ## Engineering follow-up
 - Add a typed session intensity to the canonical schema instead of relying forever on words in a title.
 - Make pace rules part of coach preview and publish, with a readable reason when rejected.
