@@ -317,6 +317,7 @@
         </select></label>
         <label class="field-label">Date<input class="field-input" type="date" name="scheduledOn"></label>
         <label class="field-label">Distance<input class="field-input" type="number" step="0.01" min="0" name="prescribedDistance" placeholder="6"></label>
+        <label class="field-label">Unit<select class="field-select" name="distanceUnit"><option value="mi" selected>mi</option><option value="km">km</option></select></label>
         <label class="field-label">Or minutes<input class="field-input" type="number" min="0" name="prescribedDurationMinutes" placeholder="60"></label>
         <label class="field-label">Effort<span class="rpe-pair">
           <input class="field-input" type="number" min="1" max="10" name="rpeLow" placeholder="7">
@@ -432,6 +433,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=35"></script>
+  <script type="module" src="/coach/coach.js?v=36"></script>
 </body>
 </html>
