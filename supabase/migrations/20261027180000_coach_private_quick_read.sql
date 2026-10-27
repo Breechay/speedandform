@@ -20,8 +20,9 @@ begin
   select jsonb_strip_nulls(jsonb_build_object(
     'program', active_block.name,
     'goal', nullif(coalesce(active_block.goal_statement, a.goal_label), ''),
-    'pr', mark.best,
+    'pr', coalesce(bests.best, mark.best),
     'threshold', pace.value,
+    'vo2max', vo2.value,
     'watch', body_watch.observation,
     'watch_date', body_watch.observed_on,
     'movement', movement.observation,
@@ -49,10 +50,45 @@ begin
     limit 1
   ) mark on true
   left join lateral (
+    select string_agg(
+      (case m.measurement_type
+        when 'reported_best_5k_seconds' then '5K'
+        when 'reported_best_10k_seconds' then '10K'
+        when 'reported_best_half_seconds' then 'Half'
+      end) || ' ' ||
+      (case when m.measurement_type = 'reported_best_half_seconds'
+        then (m.value::integer / 3600)::text || ':' ||
+          lpad(((m.value::integer % 3600) / 60)::text, 2, '0') || ':' ||
+          lpad((m.value::integer % 60)::text, 2, '0')
+        else (m.value::integer / 60)::text || ':' ||
+          lpad((m.value::integer % 60)::text, 2, '0')
+      end), ' · '
+      order by case m.measurement_type
+        when 'reported_best_5k_seconds' then 1
+        when 'reported_best_10k_seconds' then 2
+        else 3 end
+    ) as best
+    from (
+      select distinct on (x.measurement_type)
+        x.measurement_type, x.value
+      from public.athlete_measurements x
+      where x.athlete_id = a.id and x.measurement_type in
+        ('reported_best_5k_seconds', 'reported_best_10k_seconds', 'reported_best_half_seconds')
+      order by x.measurement_type, x.measured_at desc, x.created_at desc
+    ) m
+  ) bests on true
+  left join lateral (
+    select m.value::text || ' · reported estimate' as value
+    from public.athlete_measurements m
+    where m.athlete_id = a.id and m.measurement_type = 'estimated_vo2max'
+    order by m.measured_at desc, m.created_at desc
+    limit 1
+  ) vo2 on true
+  left join lateral (
     select p.value
     from public.block_pace_bands p
     where p.athlete_id = a.id and p.label ilike 'threshold%'
-      and (active_block.id is null or p.block_id = active_block.id)
+      and active_block.id is not null and p.block_id = active_block.id
     order by p.updated_at desc
     limit 1
   ) pace on true
@@ -66,12 +102,10 @@ begin
     limit 1
   ) body_watch on true
   left join lateral (
-    select o.observation
-    from public.athlete_observations o
-    where o.athlete_id = a.id and o.facet = 'mechanics'
-      and not exists (select 1 from public.athlete_observations newer
-        where newer.supersedes = o.id)
-    order by o.observed_on desc, o.created_at desc
+    select regexp_replace(n.body, '^[A-Z][A-Z0-9-]+[[:space:]]*·[[:space:]]*', '') as observation
+    from public.coach_private_notes n
+    where n.athlete_id = a.id and n.body like 'FORM-COACH-MECHANICS-%'
+    order by n.created_at desc
     limit 1
   ) movement on true
   left join lateral (
@@ -86,7 +120,7 @@ begin
   left join lateral (
     select regexp_replace(n.body, '^[A-Z][A-Z0-9-]+[[:space:]]*·[[:space:]]*', '') as body
     from public.coach_private_notes n
-    where n.athlete_id = a.id
+    where n.athlete_id = a.id and n.body not like 'FORM-COACH-MECHANICS-%'
     order by n.created_at desc
     limit 1
   ) private_note on true
