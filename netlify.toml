@@ -1,19 +1,21 @@
 # ── Publishing is a human action ─────────────────────────────────────────────
 #
-# Every push to main was auto-publishing, and a production deploy is 15 of the 300
-# free monthly credits. That is roughly twenty pushes a month, and one working day
-# spent about a dozen of them. Build minutes were never the cost; automatic
-# publishing was.
+# October 27, 2026: frequent automatic production deploys were the primary
+# source of avoidable Netlify credit use. Batch and approve website releases.
 #
-# The real control is the Netlify UI: Site configuration -> Build & deploy ->
-# Continuous deployment -> Stop auto publishing. Pushes still build a preview and
-# nothing reaches production until a person presses publish.
+# The context-aware ignore command below skips ordinary production commits but
+# preserves branch and PR preview builds. It allows a paid production build only
+# when the commit subject matches:
+#   release(site): <approved batch> [FORM-PUBLISH]
+# Owner approval, QA, and production verification remain mandatory.
+# See docs/engineering/NETLIFY_RELEASE_GATE_2026-10.md.
 #
-# Deliberately NOT using `ignore = "exit 0"` here. That skips every build including
-# branch previews, which is the loop used to check a change on a phone. The point is
-# to stop publishing, not to stop building.
+# Do not replace this with unconditional `ignore = "exit 0"`: that would also
+# skip useful deploy previews. Netlify build hooks/manual deploys may bypass the
+# source-level guard and remain subject to separate release approval.
 
 [build]
+  ignore = "node scripts/netlify-release-gate.cjs"
   command = "node tests/pace-math.cjs && node scripts/build-half-marathon.cjs && node scripts/build-half-marathon-collection.cjs && node tests/half-marathon-library.cjs && node tests/half-marathon-seo.cjs && node tests/half-marathon-measurement.cjs && node tests/cream-reading.cjs && node scripts/build-cream-reading.cjs && node scripts/build-commercial.cjs && node scripts/build-sf-brand.cjs && node scripts/build-public-share.cjs && node tests/public-share.cjs && node tests/half-marathon-collection.cjs && node scripts/check-house-integrity.cjs && node scripts/build-site-menu.cjs && node tests/site-menu.cjs && node tests/brand-color-integrity.cjs && node tests/public-copy-law.cjs && node scripts/studies/apply-jose-oct13.cjs && node tests/editorial-contract.cjs && node scripts/check-editorial-contract.cjs"
   publish = "."
 

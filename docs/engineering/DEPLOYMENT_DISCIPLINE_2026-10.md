@@ -34,6 +34,25 @@ Netlify credits are a production resource. Avoid spending them on iterative edit
 4. Can any remaining nearby edits be bundled into this same release?
 5. Is production deployment explicitly authorized?
 
+### Enforced Netlify production release gate · October 27
+
+The public website uses the context-aware build ignore command described in
+[Netlify production release gate](NETLIFY_RELEASE_GATE_2026-10.md).
+Ordinary commits to `main` must skip paid production builds; pull-request
+previews and branch deploys continue to build. A production build is only
+requested by an authorized, tested release commit with a subject exactly in
+this form:
+
+`release(site): <description> [FORM-PUBLISH]`
+
+That marker is a **technical trigger, not authority to deploy**. The owner
+must still explicitly authorize each public-site production release; the
+release operator bundles QA'd changes and then verifies the public URL.
+Do not use the marker in normal commit subjects or automated merges.
+Emergency website fixes still require a deliberately approved release commit.
+This gate does **not** stop Netlify deploy hooks/manual uploads and does not
+apply to remote athlete-plan revisions published via Supabase/Coach Console.
+
 ### Status language
 
 Keep these states distinct:
