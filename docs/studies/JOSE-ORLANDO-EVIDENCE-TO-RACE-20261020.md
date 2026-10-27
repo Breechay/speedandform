@@ -16,6 +16,14 @@
 - Twenty-four- and forty-eight-hour recovery after the key effort, comparable RPE/HR at goal pace, and current strength training load remain evidence gaps.
 - No 12-mile continuous race-pace training test is required. The current coach-authored running schedule is in FORM; do not copy or freeze it here.
 
+## October 27 result and coach verdict
+- **Filed actual:** Four continuous miles in 27:12.6 (6:48/mi), inside the prescribed 6:48–6:52 goal band. Full Garmin run 8.68 mi / 1:07:13.5, with 20:00 warm-up and 20:00.8 cooldown. Whole-run average HR 161 bpm; no segment HR, mile-by-mile pacing or numeric RPE has been supplied.
+- **Athlete response:** Work felt easy; warm-up took longer than usual to feel comfortable after lower-body lifting October 26. This is athlete feedback, not proof that a threshold or running economy measure improved.
+- **Comparison:** October 20 was eight miles at 6:44/mi and reported hard. October 27 was half as long, slightly slower and reported easy. Treat as favorable execution at a different dose, not a controlled cost comparison. November 10 remains the better matched four-mile repeat.
+- **Coach verdict:** Keep sub-1:30 Orlando goal and currently published October 29 controlled 20-minute work and October 31 thirteen easy. No pace, mileage or extra quality escalation. The November 7/14 late-goal-pace rehearsals remain the meaningful upcoming checks.
+- **Private follow-up:** Capture work RPE, individual splits, company, route/weather, 24/48-hour recovery and the current lower-body strength dose. Confirm resolution and clinical review of the historical exertional chest-pain report recorded in the private athlete note; do not put that history on the public study.
+- **Owners:** Detailed actual, segment pieces, athlete report and coach reasoning were filed October 27 in FORM. The public study has a dated section at `#oct27-jose` and updated public feed. The homepage's October 20 eight-mile milestone remains intentionally unchanged.
+
 ## Multi-agent intake: keep disagreements
 For every independent review, preserve **agent/source, date, scope, which data it saw, exact recommendation, evidence, assumptions, uncertainty, competing proposal, and whether it applies before Dec 5 or only to the product afterward**. Cite repo files or filed sessions wherever available. Do not merge agent recommendations by majority vote.
 
