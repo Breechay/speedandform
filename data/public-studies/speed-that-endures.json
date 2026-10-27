@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_path": "labs/speed-that-endures/index.html",
-  "source_url": "/labs/speed-that-endures/#oct20-late-durability",
+  "source_url": "/labs/speed-that-endures/#oct27-jose",
   "status": "ongoing",
   "latest_completed": {
     "date": "2026-09-29",
@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "306ff8573181ac24fba0890e3245bfbba912f858f137d9f78f62c6b7319247bc",
+  "source_sha256": "a40c35c700be39ac09c4309cc79e91490094bceb81666dd35c5dd877f8b945e0",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -81,22 +81,23 @@
     "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change.",
     "engagement": "José responded positively to the revision and called the continuous threshold a new challenge. This is engagement evidence, not readiness; the recovery gate remains explicit."
   },
-  "latest_jose_result_url": "/labs/speed-that-endures/#oct20-jose",
+  "latest_jose_result_url": "/labs/speed-that-endures/#oct27-jose",
   "latest_jose_completion": {
-    "date": "2026-10-20",
+    "date": "2026-10-27",
     "athlete": "José",
-    "work_distance_mi": 8,
-    "work_time": "53:54.5",
-    "work_pace": "6:44/mi",
-    "warmup": "20:00 / 2.42 mi",
-    "cooldown": "10:00.8 / 1.07 mi",
-    "total": "11.49 mi / 1:23:55.3",
-    "athlete_response": "Reported hard effort and meaningful benefit from people running alongside him late.",
-    "coach_read": "Race-pace duration demonstrated, not yet economical or independently repeatable.",
-    "revised_support": "Oct 27 and Nov 10: 4 continuous solo at 6:48–6:52/mi; Nov 3: 3 × 1 mi at 6:40–6:45; Nov 7: 14 mi with final 3 at goal pace; Nov 14: 14 mi with final 5 at goal pace; Nov 21: 10 easy; Nov 28: 8 easy; Dec 5 race.",
+    "work_distance_mi": 4,
+    "work_time": "27:12.6",
+    "work_pace": "6:48/mi",
+    "warmup": "20:00.0 / 2.40 mi",
+    "cooldown": "20:00.8 / 2.28 mi",
+    "total": "8.68 mi / 1:07:13.5",
+    "full_activity_average_hr_bpm": 161,
+    "athlete_response": "Four-mile goal-pace effort felt easy; warm-up was sluggish after lower-body lifting the prior day.",
+    "coach_read": "Prescribed sub-1:30 goal pace achieved with favorable reported effort. Different duration and pace from Oct 20; no measured threshold or economy gain established.",
+    "next_test": "Nov 10 matched four-mile goal-pace read and Nov 7/14 late-long-run goal-pace rehearsals. Track work RPE and next-day recovery.",
     "race": "Orlando Half Marathon · December 5, 2026",
     "race_outcome": "pending",
-    "source_url": "/labs/speed-that-endures/#oct20-late-durability"
+    "source_url": "/labs/speed-that-endures/#oct27-jose"
   },
   "pace_psychology": {
     "observed_on": "2026-10-20",
@@ -104,17 +105,17 @@
     "fresh_training_pace": "6:40–6:45/mi",
     "late_goal_pace": "6:48–6:52/mi",
     "hypothesis": "José reports running with others improves perceived ability to maintain rhythm; it is not causal proof.",
-    "outcome": "Eight continuous training-pace miles at 6:44/mi completed; effort high and recovery not yet verified.",
-    "next_tests": "Oct 27 and Nov 10 matched four-mile solo goal-pace runs; Nov 7 final three late; Nov 14 final five late with last two alongside steady company.",
+    "outcome": "Oct 20: eight continuous miles at 6:44/mi, hard effort. Oct 27: four continuous miles at 6:48/mi, described as easy. Different doses and conditions; no causal conclusion.",
+    "next_tests": "Nov 10 four-mile goal-pace repeat; Nov 7 final three late; Nov 14 final five late with last two alongside steady company.",
     "race_strategy": "Controlled opening around 6:50–6:51, even miles through nine, group for steadiness rather than a compulsory faster finish.",
     "measurement": "Pace, RPE, company, reliable HR when comparable, fueling, weather, sleep, 24- and 48-hour recovery.",
     "source_url": "/labs/speed-that-endures/#oct20-psychology"
   },
   "late_run_durability": {
     "date": "2026-10-20",
-    "status": "planned",
+    "status": "in_progress",
     "goal": "Sub-1:30",
-    "fresh_test": "Oct 27 and Nov 10, four solo continuous miles each at 6:48–6:52/mi",
+    "fresh_test": "Oct 27: first four-mile goal-pace effort completed at 6:48/mi, reported easy after a sluggish warm-up. Nov 10 repeat planned at 6:48–6:52/mi; compare context and 24/48-hour recovery.",
     "late_tests": [
       {
         "date": "2026-11-07",
@@ -160,5 +161,21 @@
     "work_pace": "6:44/mi",
     "source_url": "/labs/speed-that-endures/#oct20-jose",
     "next_update": "After the December 5, 2026 Orlando Half Marathon, once the result is verified. Preserve this approved milestone through intervening training updates."
+  },
+  "jose_oct20_milestone": {
+    "date": "2026-10-20",
+    "athlete": "José",
+    "work_distance_mi": 8,
+    "work_time": "53:54.5",
+    "work_pace": "6:44/mi",
+    "warmup": "20:00 / 2.42 mi",
+    "cooldown": "10:00.8 / 1.07 mi",
+    "total": "11.49 mi / 1:23:55.3",
+    "athlete_response": "Reported hard effort and meaningful benefit from people running alongside him late.",
+    "coach_read": "Race-pace duration demonstrated, not yet economical or independently repeatable.",
+    "revised_support": "Oct 27 and Nov 10: 4 continuous solo at 6:48–6:52/mi; Nov 3: 3 × 1 mi at 6:40–6:45; Nov 7: 14 mi with final 3 at goal pace; Nov 14: 14 mi with final 5 at goal pace; Nov 21: 10 easy; Nov 28: 8 easy; Dec 5 race.",
+    "race": "Orlando Half Marathon · December 5, 2026",
+    "race_outcome": "pending",
+    "source_url": "/labs/speed-that-endures/#oct20-late-durability"
   }
 }
