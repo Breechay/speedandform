@@ -39,3 +39,17 @@ test('an unmeasurable timed segment cannot be turned into invented mileage', () 
   version.components[1].duration_seconds = 600;
   assert.equal(sessionTotalDistance(version), null);
 });
+
+test('fallback includes explicitly measured warm-up and cool-down distances', () => {
+  const version = steadyFinish(null, null, 7, 2);
+  version.components.forEach((part) => { part.distance_unit = 'mi'; });
+  version.components.unshift({ role: 'warm_up', shape: 'continuous', distance: 1, distance_unit: 'mi' });
+  version.components.push({ role: 'cool_down', shape: 'continuous', distance: 1, distance_unit: 'mi' });
+  assert.equal(sessionTotalLabel(version), '11 mi');
+});
+
+test('a timed warm-up makes a missing total unknowable', () => {
+  const version = steadyFinish(null, null, 7, 2);
+  version.components.unshift({ role: 'warm_up', duration_seconds: 1200 });
+  assert.equal(sessionTotalDistance(version), null);
+});
