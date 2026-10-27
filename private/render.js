@@ -107,7 +107,11 @@ export function structureOf(version, { plain = false } = {}) {
 // the fallback for a session authored before the distinction, or one authored
 // in time rather than distance.
 export function authoredMiles(version) {
-  if (version?.prescribed_distance != null) return Number(version.prescribed_distance);
+  if (version?.prescribed_distance != null) {
+    const total = Number(version.prescribed_distance);
+    if (!Number.isFinite(total)) return null;
+    return version.distance_unit === 'km' ? total * 0.621371 : total;
+  }
   const parts = (version?.components || []);
   if (!parts.length) return null;
   let miles = 0;
@@ -120,6 +124,31 @@ export function authoredMiles(version) {
     sawDistance = true;
   });
   return sawDistance ? Number(miles.toFixed(2)) : null;
+}
+
+// The Week's headline is the complete RUN, not the first structured piece.
+// Structured pieces still describe how to run it. Never add a 20-minute warm-up
+// to a mileage total by guessing its distance, or silently treat km as miles.
+export function sessionTotalDistance(version) {
+  const authored = Number(version?.prescribed_distance);
+  if (version?.prescribed_distance != null && Number.isFinite(authored) && authored > 0
+      && ['mi', 'km'].includes(version.distance_unit)) {
+    return { amount: authored, unit: version.distance_unit };
+  }
+  const parts = (version?.components || []).filter((part) => part.role === 'work');
+  if (!parts.length || parts.some((part) => part.distance == null
+    || !['mi', 'km'].includes(part.distance_unit) || !Number.isFinite(Number(part.distance)))) return null;
+  const unit = parts[0].distance_unit;
+  const amount = parts.reduce((sum, part) => {
+    const each = Number(part.distance) * (part.shape === 'repetitions' ? (part.repeat_count || 1) : 1);
+    return sum + (part.distance_unit === unit ? each : (unit === 'km' ? each * 1.609344 : each * 0.621371));
+  }, 0);
+  return amount > 0 ? { amount: Number(amount.toFixed(2)), unit } : null;
+}
+
+export function sessionTotalLabel(version) {
+  const total = sessionTotalDistance(version);
+  return total ? `${Number(total.amount.toFixed(2))} ${total.unit}` : '';
 }
 
 // The work inside the session, as distinct from the session. Six miles at race
