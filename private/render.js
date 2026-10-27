@@ -135,8 +135,9 @@ export function sessionTotalDistance(version) {
       && ['mi', 'km'].includes(version.distance_unit)) {
     return { amount: authored, unit: version.distance_unit };
   }
-  const parts = (version?.components || []).filter((part) => part.role === 'work');
-  if (!parts.length || parts.some((part) => part.distance == null
+  const parts = (version?.components || []).filter((part) =>
+    ['work', 'warm_up', 'cool_down'].includes(part.role));
+  if (!parts.some((part) => part.role === 'work') || parts.some((part) => part.distance == null
     || !['mi', 'km'].includes(part.distance_unit) || !Number.isFinite(Number(part.distance)))) return null;
   const unit = parts[0].distance_unit;
   const amount = parts.reduce((sum, part) => {
