@@ -6,6 +6,23 @@ function result(data, error) {
   return data || [];
 }
 
+// A long id list in one `.in()` becomes one URL, and the URL has a ceiling.
+// The coach bench asks for every version of every session it shows, so the
+// list grows each time a session is revised until the request is refused
+// (400) and the console cannot open. Ask in batches and join the rows.
+const IN_BATCH = 100;
+async function selectIn(table, column, ids, orderColumn, ascending = true) {
+  const rows = [];
+  for (let i = 0; i < ids.length; i += IN_BATCH) {
+    const { data, error } = await supabase.from(table).select('*')
+      .in(column, ids.slice(i, i + IN_BATCH)).order(orderColumn, { ascending });
+    if (error) return { data: null, error };
+    rows.push(...(data || []));
+  }
+  rows.sort((a, b) => (a[orderColumn] > b[orderColumn] ? 1 : a[orderColumn] < b[orderColumn] ? -1 : 0) * (ascending ? 1 : -1));
+  return { data: rows, error: null };
+}
+
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
@@ -256,8 +273,7 @@ export async function loadCoachBench(coachMemberships) {
   // at a week that is already behind us, so its title is fetched on its own.
   const filedAgainst = [...new Set(completions.map((item) => item.planned_session_id).filter(Boolean))];
   const pastResponse = filedAgainst.length
-    ? await supabase.from('planned_session_versions').select('*')
-        .in('planned_session_id', filedAgainst).order('version_number', { ascending: false })
+    ? await selectIn('planned_session_versions', 'planned_session_id', filedAgainst, 'version_number', false)
     : { data: [] };
   if (pastResponse.error) throw pastResponse.error;
   const versionFor = new Map();
@@ -266,7 +282,7 @@ export async function loadCoachBench(coachMemberships) {
   });
   const pastVersionIds = [...versionFor.values()].map((row) => row.id);
   const pastPartsResponse = pastVersionIds.length
-    ? await supabase.from('planned_session_components').select('*').in('version_id', pastVersionIds).order('position')
+    ? await selectIn('planned_session_components', 'version_id', pastVersionIds, 'position')
     : { data: [] };
   if (pastPartsResponse.error) throw pastPartsResponse.error;
   versionFor.forEach((row) => {
@@ -274,14 +290,13 @@ export async function loadCoachBench(coachMemberships) {
   });
   const sessionIds = sessions.map((session) => session.id);
   const versionsResponse = sessionIds.length
-    ? await supabase.from('planned_session_versions').select('*')
-        .in('planned_session_id', sessionIds).order('version_number', { ascending: false })
+    ? await selectIn('planned_session_versions', 'planned_session_id', sessionIds, 'version_number', false)
     : { data: [] };
   if (versionsResponse.error) throw versionsResponse.error;
   const versions = versionsResponse.data || [];
   const versionIds = versions.map((version) => version.id);
   const componentsResponse = versionIds.length
-    ? await supabase.from('planned_session_components').select('*').in('version_id', versionIds).order('position')
+    ? await selectIn('planned_session_components', 'version_id', versionIds, 'position')
     : { data: [] };
   if (componentsResponse.error) throw componentsResponse.error;
   const components = componentsResponse.data || [];
