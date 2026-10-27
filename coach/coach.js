@@ -1,4 +1,4 @@
-import { changedSessionEditorialIssues } from '/private/session-editorial-standard.mjs';
+import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
@@ -1308,6 +1308,7 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
 document.getElementById('sessionParts').addEventListener('input', markPartsState);
 
 function openSession(plannedSessionId = null) {
+  sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
   sessionForm.reset();
   revisingSessionId = plannedSessionId;
   const weeks = selectedRecord.weeks;
@@ -1335,7 +1336,15 @@ function openSession(plannedSessionId = null) {
     // Revising starts from what is already there, so the coach edits rather than retypes.
     document.getElementById('sessionContext').textContent = `${session.day_label} · version ${(version?.version_number || 0) + 1}`;
     sessionForm.elements.weekId.value = session.week_id;
-    sessionForm.elements.dayLabel.value = session.day_label;
+    // Older plans use THU/Thu while the editor options use Thursday.
+    // Keep the exact stored label unless the coach deliberately changes it.
+    const daySelect = sessionForm.elements.dayLabel;
+    daySelect.value = session.day_label;
+    if (daySelect.selectedIndex < 0 && session.day_label) {
+      const currentDay = new Option(session.day_label, session.day_label, true, true);
+      currentDay.dataset.existingDay = 'true';
+      daySelect.add(currentDay);
+    }
     sessionForm.elements.scheduledOn.value = session.scheduled_on || '';
     sessionForm.elements.title.value = version?.title || '';
     sessionForm.elements.prescribedDistance.value = version?.prescribed_distance || '';
@@ -1700,9 +1709,9 @@ sessionForm.addEventListener('submit', async (event) => {
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
 
-  const editorialIssues = changedSessionEditorialIssues(payload, originalSessionEditorialCopy);
-  if (editorialIssues.length) {
-    status.textContent = editorialIssues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
+  const editorialReview = selfAuditSessionCopy(payload, originalSessionEditorialCopy);
+  if (!editorialReview.ok) {
+    status.textContent = editorialReview.issues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
     status.className = 'status-message error';
     return;
   }

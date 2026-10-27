@@ -11,7 +11,8 @@ const has=(text,needle,msg)=>{assert.ok(text.includes(needle),msg||needle);check
 
 has(study,'Sep 22<br/>W5</div><div><b>5 × 1 mi · 2 min float</b>','study W5 Tuesday is canonical');
 has(study,'Sep 24<br/>W5</div><div><b>3 × 10 min threshold</b>','study W5 Thursday is canonical');
-has(study,'Hope is now working at 6:45–7:00','study carries Hope race-pace canon');
+has(study,'HOPE · RACE-PACE BAND</small><strong>6:45–7:00 <em>/mi</em>','study retains Hope historical race-pace band');
+has(study,'Last documented direction:</b> ease back into running following PT; easy running before another quality session.','study keeps Hope current return-to-running direction');
 has(study,'2 × 10 threshold work at 6:22 · 6:24','study threshold evidence supports Hope threshold canon');
 
 has(migration,"RPD v5 effective W5 by coach decision","private assignment cutover is explicit");

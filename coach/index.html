@@ -49,7 +49,7 @@
   <dialog class="dialog" id="coachingDialog">
     <form class="dialog-inner" id="coachingForm">
       <div class="dialog-head">
-        <h2 id="coachingContext">Write to her</h2>
+        <h2 id="coachingContext">Coach the athlete</h2>
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
       </div>
 
@@ -83,8 +83,8 @@
       </details>
 
       <details class="more">
-        <summary>How it reaches her</summary>
-        <label class="field-label">Delivery<select class="field-select" name="deliveryState"><option value="published">Published to her record</option><option value="delivered_externally">Sent outside FORM</option></select></label>
+        <summary>How it is delivered</summary>
+        <label class="field-label">Delivery<select class="field-select" name="deliveryState"><option value="published">Published to athlete record</option><option value="delivered_externally">Sent outside FORM</option></select></label>
         <label class="field-label" data-external-only hidden>Wording actually sent<textarea class="field-textarea" name="deliveredWording" placeholder="Paste exactly what you sent."></textarea></label>
       </details>
 
@@ -305,7 +305,7 @@
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
       </div>
 
-      <label class="field-label lead">What she is running
+      <label class="field-label lead">Session
         <input class="field-input" name="title" required placeholder="6 x 1 mile at race pace">
       </label>
 
@@ -347,7 +347,7 @@
       </label>
 
       <label class="field-label" id="changeReasonField" hidden>What changed and why
-        <input class="field-input" name="changeReason" placeholder="Moved to 8 miles. She held 6 without fading.">
+        <input class="field-input" name="changeReason" placeholder="Moved to 8 miles after completing 6 comfortably.">
       </label>
 
       <p class="status-message" id="sessionStatus" role="status"></p>
@@ -394,15 +394,15 @@
       </label>
 
       <label class="field-label" data-correct-only hidden>What was wrong
-        <input class="field-input" name="reason" placeholder="Recoveries were read backwards. She ran them slow, not hard.">
+        <input class="field-input" name="reason" placeholder="Recovery pace was recorded incorrectly.">
       </label>
 
       <label class="field-label" data-file-only>Garmin screenshot
         <input class="field-input" type="file" name="evidence" accept="image/*">
       </label>
 
-      <label class="field-label">What she said
-        <textarea class="field-textarea" name="athleteNote" placeholder="Paste her words. Not yours."></textarea>
+      <label class="field-label">Athlete’s words
+        <textarea class="field-textarea" name="athleteNote" placeholder="Paste the athlete’s words, not yours."></textarea>
       </label>
 
       <p class="status-message" id="fileStatus" role="status"></p>

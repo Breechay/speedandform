@@ -1,0 +1,46 @@
+name: FORM athlete-copy quality gate
+
+on:
+  pull_request:
+    paths:
+      - 'private/session-editorial-standard.mjs'
+      - 'private/session-editorial-standard.test.mjs'
+      - 'private/session-copy-quality.test.mjs'
+      - 'private/plan-import-standard.mjs'
+      - 'private/plan-import-standard.test.mjs'
+      - 'coach/coach.js'
+      - 'docs/FORM_WHITE_GLOVE_PRODUCT_STANDARD_20261025.md'
+      - 'AGENTS.md'
+      - '.github/workflows/athlete-copy-quality.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'private/session-editorial-standard.mjs'
+      - 'private/session-editorial-standard.test.mjs'
+      - 'private/session-copy-quality.test.mjs'
+      - 'private/plan-import-standard.mjs'
+      - 'private/plan-import-standard.test.mjs'
+      - 'coach/coach.js'
+      - 'docs/FORM_WHITE_GLOVE_PRODUCT_STANDARD_20261025.md'
+      - 'AGENTS.md'
+      - '.github/workflows/athlete-copy-quality.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: athlete-copy-quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  athlete-copy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate session copy and Plan Exchange
+        run: node --test private/session-editorial-standard.test.mjs private/session-copy-quality.test.mjs private/plan-import-standard.test.mjs
