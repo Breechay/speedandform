@@ -81,7 +81,7 @@ begin
   ) bests on true
   left join lateral (
     select (case when m.metadata ? 'range_upper' and (m.metadata->>'range_upper')::numeric > m.value
-      then m.value::text || '–' || m.metadata->>'range_upper'
+      then m.value::text || '–' || (m.metadata->>'range_upper')
       else m.value::text end) || ' · reported estimate' as value
     from public.athlete_measurements m
     where m.athlete_id = a.id and m.measurement_type = 'estimated_vo2max'
