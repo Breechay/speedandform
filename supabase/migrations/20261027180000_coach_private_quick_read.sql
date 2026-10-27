@@ -21,7 +21,7 @@ begin
     'program', active_block.name,
     'goal', nullif(coalesce(active_block.goal_statement, a.goal_label), ''),
     'pr', coalesce(bests.best, mark.best),
-    'threshold', pace.value,
+    'threshold', coalesce(pace.value, estimated_threshold.value),
     'vo2max', vo2.value,
     'watch', body_watch.observation,
     'watch_date', body_watch.observed_on,
@@ -55,8 +55,9 @@ begin
         when 'reported_best_5k_seconds' then '5K'
         when 'reported_best_10k_seconds' then '10K'
         when 'reported_best_half_seconds' then 'Half'
+        when 'reported_best_marathon_seconds' then 'Marathon'
       end) || ' ' ||
-      (case when m.measurement_type = 'reported_best_half_seconds'
+      (case when m.measurement_type in ('reported_best_half_seconds','reported_best_marathon_seconds')
         then (m.value::integer / 3600)::text || ':' ||
           lpad(((m.value::integer % 3600) / 60)::text, 2, '0') || ':' ||
           lpad((m.value::integer % 60)::text, 2, '0')
@@ -66,19 +67,22 @@ begin
       order by case m.measurement_type
         when 'reported_best_5k_seconds' then 1
         when 'reported_best_10k_seconds' then 2
-        else 3 end
+        when 'reported_best_half_seconds' then 3
+        else 4 end
     ) as best
     from (
       select distinct on (x.measurement_type)
         x.measurement_type, x.value
       from public.athlete_measurements x
       where x.athlete_id = a.id and x.measurement_type in
-        ('reported_best_5k_seconds', 'reported_best_10k_seconds', 'reported_best_half_seconds')
+        ('reported_best_5k_seconds', 'reported_best_10k_seconds', 'reported_best_half_seconds', 'reported_best_marathon_seconds')
       order by x.measurement_type, x.measured_at desc, x.created_at desc
     ) m
   ) bests on true
   left join lateral (
-    select m.value::text || ' · reported estimate' as value
+    select (case when m.metadata ? 'range_upper' and (m.metadata->>'range_upper')::numeric > m.value
+      then m.value::text || '–' || m.metadata->>'range_upper'
+      else m.value::text end) || ' · reported estimate' as value
     from public.athlete_measurements m
     where m.athlete_id = a.id and m.measurement_type = 'estimated_vo2max'
     order by m.measured_at desc, m.created_at desc
@@ -92,6 +96,19 @@ begin
     order by p.updated_at desc
     limit 1
   ) pace on true
+  left join lateral (
+    select
+      '≈' || (m.value::integer / 60)::text || ':' || lpad((m.value::integer % 60)::text, 2, '0') ||
+      '–' || ((m.metadata->>'range_upper_seconds_per_mile')::integer / 60)::text || ':' ||
+      lpad(((m.metadata->>'range_upper_seconds_per_mile')::integer % 60)::text, 2, '0') ||
+      ' /mi · coach estimate' as value
+    from public.athlete_measurements m
+    where m.athlete_id = a.id
+      and m.measurement_type = 'estimated_threshold_pace_seconds_per_mile'
+      and m.metadata ? 'range_upper_seconds_per_mile'
+    order by m.measured_at desc, m.created_at desc
+    limit 1
+  ) estimated_threshold on true
   left join lateral (
     select o.observation, o.observed_on
     from public.athlete_observations o
