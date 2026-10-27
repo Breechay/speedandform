@@ -22,6 +22,7 @@
 - **Comparison:** October 20 was eight continuous miles at 6:44/mi with high reported cost. October 27 was four miles at 6:48/mi with 7/10 reported cost and deliberate control. Different duration, pace and context: encouraging restraint, not a measured economy gain. November 10 is the better matched four-mile repeat.
 - **Coach verdict:** Keep sub-1:30 Orlando goal, the published October 29 controlled twenty-minute work and October 31 thirteen easy. No faster target or additional quality. November 7/14 late-goal-pace rehearsals remain the key checks.
 - **Private follow-up:** Individual mile times and HR are now extracted from the FIT. Capture company, route/weather, 24/48-hour recovery and the current lower-body strength dose. Preserve the original FIT reference in private evidence; it supersedes the former 'segment HR unavailable' note. RPE has now been supplied; do not describe this as a 4/10 session.
+- **Historical record:** The earlier August exception has been closed under coach authority and is not an active follow-up. Never resurrect a closed historical issue in athlete-facing copy, active coaching alerts or later study reviews without genuinely new evidence.
 - **Owners:** Actual and corrected athlete report are filed in FORM. Public study updated at `#oct27-jose`; this week's athlete focus reflects the 7/10 effort. October 20 eight-mile homepage milestone remains intentionally unchanged.
 
 ## Multi-agent intake: keep disagreements
