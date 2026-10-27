@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "1b796cfb275976239e2bcd73f06f06be59b5260141dc3cfb45d249fb07cbcc11",
+  "source_sha256": "3d06ee3f51c62ac5d8280880babb69a0c3431af9a4af0db9a534b8e72d5a3999",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -93,12 +93,27 @@
     "total": "8.68 mi / 1:07:13.5",
     "full_activity_average_hr_bpm": 161,
     "athlete_response": "Initially called the four miles easy; clarified 7/10 effort, breathing controlled, consciously restrained speed and slowed after watch average reached about 6:46/mi. Warm-up sluggish after prior-day leg strength.",
-    "coach_read": "Four miles at prescribed goal pace with deliberate restraint, RPE 7/10. Encouraging pacing execution, not a 4/10 easy effort or proof of lower physiological cost versus longer Oct 20 work.",
+    "coach_read": "Four miles at prescribed goal pace, 7/10 effort, work HR 173 average (181 peak). Approx mile splits 6:53, 6:47, 6:45, 6:48 support deliberate restraint after a faster middle. No economy or threshold improvement established versus longer Oct20 effort.",
     "next_test": "Nov 10 four-mile comparison and Nov 7/14 late-long-run goal-pace rehearsals. Capture mile splits, recovery and strength load.",
     "race": "Orlando Half Marathon · December 5, 2026",
     "race_outcome": "pending",
     "source_url": "/labs/speed-that-endures/#oct27-jose",
-    "rpe": 7
+    "rpe": 7,
+    "work_avg_hr_bpm": 173,
+    "work_max_hr_bpm": 181,
+    "work_mile_splits_approx": [
+      "6:53",
+      "6:47",
+      "6:45",
+      "6:48"
+    ],
+    "work_mile_avg_hr_bpm_approx": [
+      172,
+      176,
+      170,
+      175
+    ],
+    "evidence_note": "Original Garmin FIT uploaded October 27 confirms lap HR and approximate mile splits; the 161 bpm figure is full-run average only."
   },
   "pace_psychology": {
     "observed_on": "2026-10-20",
@@ -116,7 +131,7 @@
     "date": "2026-10-20",
     "status": "in_progress",
     "goal": "Sub-1:30",
-    "fresh_test": "Oct 27: first four-mile goal-pace work at 6:48/mi, 7/10 effort, breathing comfortable and pace restrained; warm-up slow after leg strength. Nov 10 repeat at 6:48–6:52/mi.",
+    "fresh_test": "Oct 27: four miles at 6:48/mi and 7/10; work HR 173 average (181 max), with approximate mile splits 6:53 / 6:47 / 6:45 / 6:48. Warm-up slow after leg strength. Nov 10 repeat at 6:48–6:52/mi.",
     "late_tests": [
       {
         "date": "2026-11-07",
