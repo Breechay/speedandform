@@ -88,6 +88,12 @@ Progress can look like:
 
 Distance and pace are not always the first priority. Correct exposure, repeated often enough to stick, can matter more.
 
+### Coach the runner who exists
+
+Repetition matters, but a training plan must be built for the athlete's actual life, habits, willingness and demonstrated follow-through. Do not assume someone will suddenly become a person who never misses a run because the plan asks for it. Make high-value sessions clear and attainable, then learn from what the athlete actually does. Missed support work is not a moral failure or a debt to repay.
+
+This is not a ban on developing consistency. If an athlete wants more frequency, or shows readiness for an achievable change, the coach can nudge one manageable exposure every few weeks, review how it fits, and progress from there. Do not force a behavioral transformation the athlete does not want or cannot currently sustain. Improve the runner within their real circumstances, while leaving room for those circumstances and habits to change voluntarily.
+
 ## 5. Form is not decoration
 
 FORM treats mechanics as part of performance, not as aesthetics.
