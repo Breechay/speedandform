@@ -16,6 +16,14 @@
 - Sam Reyes — shared Thursday work, profile and portrait; details, weekly response, and long-run history to be collected.
 - Kevin Helle — Thursday shared work while developing a **separate** first Miami Marathon completion preparation. His long-run progression, nutrition and balanced four-day strength should not be inferred from Brice's speed program.
 
+## Standing FORM Thursday pace default · October 28 coach ruling
+
+- One dated FORM Thursday workout has **one coach-authored interval structure and pace standard**. Every linked athlete defaults to that exact pace band, in the same unit, for matching work sets. For **October 29**, 5 × 600 m use **5:35–5:44/mi (335–344 sec/mi)** with **2:00 standing recovery**, then 4 × 200 m use **5:22–5:30/mi (322–330 sec/mi)** with **1:30 standing recovery**.
+- **Brice alone specifies an exception.** It must be attached to the named athlete and session/date with its purpose and versioned coach reason. Effort-only mode, a paused individual link, or a separately authored race/taper/recovery session is a visible exception, not a default. New athletes, including Megan, are not automatically effort-only because pace evidence is sparse.
+- FORM and AI assistants **must never silently scale, remove, replace, or downgrade** an authored target, hard session, or two-quality-day week on a recovery inference. Surface observations for Brice's decision without rewriting an athlete's assignment. A dated coach directive supersedes an older generalized recovery doctrine.
+- The coach publication workflow must copy the authored group pace into the athlete-facing structured work components for every eligible paced athlete, and verify the published feed. If a new workout has no authored pace standard or an exception is ambiguous, hold that publication for coach review; do not fabricate a number, silently leave targets blank, or apply a prior week's band to different work.
+- Preserve existing versions, work geometry, recovery, individual RPE cues, filed sessions, and explicit exceptions. A shared edit must not overwrite a documented individual variation. Session presence in the calendar is not completion evidence.
+
 ## Stable weekly structure
 - **Monday evenings:** iRUN normally has a group workout; the 40-minute easy run plus four strides currently published in FORM is the **independent easy fallback**, not an invented record of the iRUN session. When the actual iRUN prescription arrives, the coach must revise the athlete's published session and review Thursday speed and Forge strength exposure. Do not stack a hard Monday iRUN session on top of the easy fallback.
 - **Wednesday:** Easy aerobic running.
