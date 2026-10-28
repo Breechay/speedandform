@@ -16,7 +16,7 @@ for(const phrase of [
  'Do not assume that the answer is more features.',
  'The app is not the entire product. It is the surface of a broader service.',
  'What could FORM make possible in an athlete',
- 'Those are database counts, not claims about app engagement',
+ 'These are database counts, not claims about app engagement',
  'Privacy','The quality bar for the answer'
 ])assert.ok(built.includes(phrase), 'Preserve substantive sentence: '+phrase);
 assert.match(built,/href="#chapter-15"/,'Contents reaches the final section');
