@@ -84,7 +84,7 @@ function makePage(md) {
    <div class="al-hero-wrap">
      <div class="al-hero-copy">
        <p class="al-eyebrow">FORM</p>
-       <h1 id="al-title">The Athletic Life<span class="al-period">.</span></h1>
+       <h1 id="al-title">The Athletic Life</h1>
        <p class="al-deck">Independent Strategy, Human Experience &amp; Product Opportunity Research Brief</p>
      </div>
      <figure class="al-hero-photo"><img src="/media/library/bw-group-portrait-1200.webp" alt="FORM athletes in a group portrait" width="1200" height="800" fetchpriority="high"></figure>
