@@ -91,12 +91,23 @@ When workload rises, a few hundred extra calories may be added around harder ses
 - `docs/studies/ADRIAN-WEIGHT-UPDATE-20261001.json`
 - `docs/studies/ADRIAN-STUDY-UPDATE-20261005.json`
 - `docs/studies/ADRIAN-MEASUREMENTS-20261005.json`
+- `docs/studies/ADRIAN-RACE-CALENDAR-20261027.json` — athlete-reported upcoming races, dates and venues; no registration or result presumed.
 
 ## Live backend state
 
 FORM Athlete System / Supabase project: `pbgsjjegycacodiltbhn`.
 
 Adrian exists as athlete slug `adrian`.
+
+### Athlete-reported race calendar · Oct 27, 2026
+
+The live FORM Athlete System records these in `race_events` / `race_entries` as `target` (registration receipts not verified):
+
+- **Nov 15, 2026:** Flanigan's Rockin' Rib Run 10K — Miramar Regional Park, Miramar, Florida; secondary race anchor.
+- **Dec 6, 2026:** Weston Rotary Run for Tomorrow Half Marathon — Cypress Bay High School, Weston, Florida; secondary race anchor.
+- **Feb 13, 2027:** Mesa Marathon — Mesa, Arizona; main/primary marathon event.
+
+Source: Adrian's Oct 27 text, transcribed in `docs/studies/ADRIAN-RACE-CALENDAR-20261027.json`. The public Study 001 race anchors and study log reflect this record. The outside coach continues to own running prescriptions; these calendar entries change no session, completion, or strength prescription.
 
 The Oct 5 frame audit has already been projected into new immutable planned-session versions for Weeks 4–16. Week 4 is the active/current week.
 
