@@ -89,6 +89,7 @@ function makePage(md) {
      </div>
      <figure class="al-hero-photo"><img src="/media/library/bw-group-portrait-1200.webp" alt="FORM athletes in a group portrait" width="1200" height="800" fetchpriority="high"></figure>
    </div>
+   <nav aria-label="Athletic Life companion" style="margin:32px auto 0;max-width:1460px;display:flex;flex-wrap:wrap;gap:24px;font-size:16px"><a href="/the-athletic-life/discoveries/" style="text-decoration:underline;text-underline-offset:5px;padding:10px 0">First discoveries ↗</a><a href="/the-athletic-life/research/" style="text-decoration:underline;text-underline-offset:5px;padding:10px 0">Research &amp; agent guide ↗</a></nav>
    <dl class="al-meta">${meta}</dl>
  </section>
  <div class="al-reading-frame" id="brief">
