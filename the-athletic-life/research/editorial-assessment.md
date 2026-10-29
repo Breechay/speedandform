@@ -51,3 +51,9 @@ My first report should have inspected the September 30 practice and audience cla
 Its four-week research sequence remains an optional proposal, not a new gate or a recurring assignment for Brice. Some foundational defects deserve correction because they are defects, not because a pilot proves demand for correctness. Already-approved Week, development and archive work should continue under its existing authority.
 
 The earlier recommendation around continuity remains useful, but the public framing should retain the original question's breadth. A well-run season is one expression of an athletic life, not its whole definition.
+
+## Source context
+
+The September 30 corrections above come from [Practice direction v3](https://github.com/Breechay/FORM-iOS/blob/codex/form44-3-build16-candidate-20261027/docs/next/FORM_PRACTICE_DIRECTION_V3.md) and the [athlete programs and visual archive clarification](https://github.com/Breechay/FORM-iOS/blob/codex/form44-3-build16-candidate-20261027/docs/next/ATHLETE_PROGRAM_AND_MEDIA_BRIEF.md), inspected for this synthesis on October 28. These are dated documents on a candidate branch. Check current owning decisions before implementation; a historical audience distinction is not a current client census.
+
+The companion's five research references were checked through primary publications or PubMed records. The complete reports have not all received a citation-by-citation replication. Original sources, including their disagreements and limitations, remain available in the [research collection](https://speedandform.com/the-athletic-life/research/).

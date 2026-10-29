@@ -3,6 +3,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const root=path.resolve(__dirname,'..'),base=path.join(root,'the-athletic-life');
 const {render,reports}=require('../scripts/build-athletic-research.cjs');
 assert.equal(reports.length,7);
+assert.match(fs.readFileSync(path.join(base,'research/sources/the-season.md'),'utf8'),/\]\(https:\/\/selfdeterminationtheory.org\//,'DOCX source hyperlinks survive the reading edition');
 for(const r of reports){
  const original=fs.readFileSync(path.join(base,'research',r.original));
  assert.equal(crypto.createHash('sha256').update(original).digest('hex'),r.sha256,r.slug+' original integrity');

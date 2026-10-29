@@ -80,7 +80,7 @@ Five mechanisms are worth designing for. Most of the evidence is correlational; 
 
 
 
-On comparison. One large survey found fitness-app use associated with higher wellbeing, partly through upward comparison, with a stronger effect in high self-control users (Frontiers in Public Health, 2024). It is cross-sectional, and the self-control split is the warning: comparison helps people who already feel capable and can hurt those who don't. FORM's rule holds: aspiration through faces and stories, never through ranked numbers.
+On comparison. One large survey found fitness-app use associated with higher wellbeing, partly through upward comparison, with a stronger effect in high self-control users ([Frontiers in Public Health, 2024](https://frontiersin.org/articles/10.3389/fpubh.2023.1281323/full)). It is cross-sectional, and the self-control split is the warning: comparison helps people who already feel capable and can hurt those who don't. FORM's rule holds: aspiration through faces and stories, never through ranked numbers.
 
 Harms to design against. Dependence on Brice for every decision. Identity collapse when an injured runner loses "being a FORM athlete." Social pressure that turns a free morning into an obligation. Surveillance: an athlete who stops filing because every filing is read. Each is avoided by the same move: the athlete always controls what is shared, and absence is never treated as failure.
 
@@ -268,21 +268,21 @@ FORM sources read. Breechay/FORM-iOS at codex/form44-3-build16-candidate-2026102
 
 Research opened.
 
-- Mageau & Vallerand, 2003 — the coach–athlete relationship, a motivational model
+- [Mageau & Vallerand, 2003 — the coach–athlete relationship, a motivational model](https://selfdeterminationtheory.org/wp-content/uploads/2014/04/2003_MageauVallerand_Coach.pdf)
 
-- Burke et al., 2006 — group versus individual approach, meta-analysis
+- [Burke et al., 2006 — group versus individual approach, meta-analysis](https://research.birmingham.ac.uk/files/2920673/BurkeNtoumanisGroupIndividualApproach.pdf)
 
-- Franken et al., 2022 — Running Together
+- [Franken et al., 2022 — Running Together](https://public-pages-files-2025.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.643150/text)
 
-- Yang, Li & Liu, 2025 — exercise intention–behavior gap meta-analysis
+- [Yang, Li & Liu, 2025 — exercise intention–behavior gap meta-analysis](https://public-pages-files-2025.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1586176/text)
 
-- Bélanger-Gravel et al., 2013 — implementation intentions and physical activity
+- [Bélanger-Gravel et al., 2013 — implementation intentions and physical activity](https://www.mcmasteroptimalaging.org/full-article/HE/meta-analytic-review-effect-implementation-intentions-physical-activity-25322)
 
-- Motivation of marathon and ultra-marathon runners, narrative review, 2024
+- [Motivation of marathon and ultra-marathon runners, narrative review, 2024](https://dovepress.com/motivation-of-marathon-and-ultra-marathon-runners-a-narrative-review-peer-reviewed-fulltext-article-PRBM)
 
-- Fitness app use, upward comparison and wellbeing, 2024
+- [Fitness app use, upward comparison and wellbeing, 2024](https://frontiersin.org/articles/10.3389/fpubh.2023.1281323/full)
 
-- Runners as sport tourists: Ljubljana Marathon — about 30% of 664 runners were sport tourists; context for the crew weekend, not evidence for it.
+- [Runners as sport tourists: Ljubljana Marathon](https://collantropol.hr/antropo/article/view/236) — about 30% of 664 runners were sport tourists; context for the crew weekend, not evidence for it.
 
 Not validated.
 
