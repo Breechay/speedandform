@@ -1,6 +1,6 @@
 # The Athletic Life: opportunity action wiring
 
-October 29, 2026 · Proposed implementation contract · not a live service launch
+October 29, 2026 · Implemented private capability · production database live; site publication batched
 
 ## Purpose
 
@@ -118,4 +118,10 @@ The safe release order is:
 3. Only after the owner authorizes the website release, merge in a coherent batch and verify the matching Netlify deploy and real signed-in behavior. The private Console is not an App Store release.
 4. Add the first *real* candidate only when Brice chooses it after reviewing currently active experiments; record the actual owner/approval and readback.
 
-Status as authored: SQL and browser code prepared; Node checks are recorded in the PR. Database migration, actual RLS behavior, hosted authenticated UX, production deploy and human participation are **not verified**.
+### Release receipt, October 29, 2026
+- [PR #403](https://github.com/Breechay/speedandform/pull/403) merged into `main` at squash commit `eea92cc1a338643223d53051f56e756b92584d95`.
+- The additive `athletic_life_opportunities_v1` migration was applied to FORM Athlete System, recorded as version `20261029162911`; the repository filename matches that version.
+- Live schema readback: zero opportunity rows, row-level security enabled, three access policies, anonymous SELECT denied, authenticated DELETE denied, three audit/stamp/guard triggers, and security-invoker read RPC.
+- Isolated PGlite authorization/transition/audit integration test passed; opportunity model 7/7 and existing Operating Console 12/12 passed. Eleven PR workflow checks passed; the separate Structured Strength SQL job failed on older Forge/Collective fixture dependencies, with no opportunity-migration error in its logs.
+- Production Netlify builds from the `production` branch, normally advanced around 10:15 a.m. and 6:15 p.m. Eastern. As checked after merge, its published deploy still reflected an older source commit, so **publication of this UI and authenticated responsive/device behavior were not yet verified**. Verify the production deploy commit includes the merged change before calling the tab live.
+- No opportunities, people, invitations, media permissions, bookings or actual experimental work were seeded. The first real candidate remains Brice's choice.
