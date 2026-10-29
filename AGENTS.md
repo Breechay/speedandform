@@ -21,6 +21,8 @@
 
 ## FORM Thursday roster and portrait onboarding
 
+> **New athlete release gate · October 29:** The [onboarding brief and hardened roster/photo/invite readback](docs/coaching/FORM_NEW_ATHLETE_ONBOARDING_BRIEF_20261028.md) is mandatory for every new athlete. Verify both coach identities in `coach_preview_roster`, a nonblank current `coach_preview_plan_feed`, production HTTP-200 portrait and correct mobile focal crop, deduplicated race entry, Thursday sync eligibility, and transactional delivery before reporting success. Completed work and linked invites have separate receipts; device acceptance remains a separate state. Do not allow a long future race block with missing Thursday links to block the shared publisher.
+
 When Brice adds athletes to the shared Thursday speed practice, consult [the FORM Thursday cohort record](docs/coaching/FORM_THURSDAY_COHORT_20261022.md). Keep one canonical athlete identity and an explicitly linked `collective_people.athlete_id`; public site `/athletes/` and native Dossier avatar use that relationship, not name matching. Publish a person to the site only when the coach asks for roster visibility; do not auto-publish every private coached athlete. Require verified portrait asset and correct subject-specific invitation before claiming account/photo visibility is live. Easy running is 8:00/mi or slower (4:58/km or slower for Tinius), Thursday is the cohort speed work at the same prescribed splits, and weekend mileage remains coach-reviewed, particularly Kevin’s separate first-marathon progression. Archive former blocks and preserve prior versions/results; do not clone athlete-specific health history or completed runs.
 
 ## Study 002 · run ID evidence reviews
