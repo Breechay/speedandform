@@ -1,3 +1,11 @@
+## October 29 · The Athletic Life opportunity action wiring
+
+- Owner request: give the 20 brainstorming ideas a reusable path to action without auto-launching a social product, altering athlete records or generating twenty active tasks.
+- Proposed source on `feat/athletic-life-opportunity-register`: a private owner-scoped `athletic_opportunities` table and `athletic_opportunities_read` RPC; a new `/coach/ops/` tab to capture, scope, approve, run and review; an explicit link to the existing `operating_items` task queue; no seeded private people or experiments.
+- Governance: maximum two active experiments enforced on server; approval and scope-change rules; optimistic revisions and private audit. No external sends, bookings, money, Collective, media or prescriptions are changed by the register.
+- Contract: [Athletic Life action wiring](../operations/ATHLETIC_LIFE_ACTION_WIRING_20261029.md). First proposal (One New Door) remains a hypothetical candidate until Brice chooses it; the current two-experiment doctrine remains in force.
+- Status: implementation candidate, not applied to the live database or deployed. Node/static checks are part of the feature PR. Remaining gates: database migration review/RLS-transition tests, hosted signed-in/mobile QA, deliberate owner-authorized release and readback. No native app change or actual participant contact.
+
 ## October 27 · Study 002, iRUN 5K and rhythm-under-fatigue observation
 
 ## October 28 · The Athletic Life research collection
