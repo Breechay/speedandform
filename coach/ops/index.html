@@ -7,7 +7,7 @@
   <meta name="referrer" content="same-origin">
   <meta name="theme-color" content="#e8e3d9">
   <title>Operating Console | Speed &amp; Form</title>
-  <link rel="stylesheet" href="/coach/ops/console.css?v=3">
+  <link rel="stylesheet" href="/coach/ops/console.css?v=4">
 </head>
 <body>
 <a class="skip" href="#main">Skip to your day</a>
@@ -27,7 +27,7 @@
     </section>
     <section id="workspace" hidden>
       <div class="day-heading"><div><p id="date" class="eyebrow"></p><h1 id="page-title">Today.</h1><p class="intro">Choose the few things that move the day forward.</p></div><p id="freshness" class="small"></p></div>
-      <nav class="tabs" aria-label="Workspace views"><button type="button" data-tab="today" aria-current="page">Today</button><button type="button" data-tab="runway">Runway</button><button type="button" data-tab="areas">All areas</button><button type="button" data-tab="waiting">Waiting <span id="waiting-count"></span></button><button type="button" data-tab="sources">Sources <span id="source-count"></span></button></nav>
+      <nav class="tabs" aria-label="Workspace views"><button type="button" data-tab="today" aria-current="page">Today</button><button type="button" data-tab="runway">Runway</button><button type="button" data-tab="areas">All areas</button><button type="button" data-tab="opportunities">Opportunities</button><button type="button" data-tab="waiting">Waiting <span id="waiting-count"></span></button><button type="button" data-tab="sources">Sources <span id="source-count"></span></button></nav>
       <p id="message" role="status" aria-live="polite"></p>
       <section id="view" aria-labelledby="page-title"></section>
       <details class="capture"><summary>Add an open loop</summary><form id="capture-form"><label>What needs to happen?<input name="title" maxlength="240" required placeholder="A concrete next action"></label><label>What does finished look like?<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home & life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Due, when real<input name="due_on" type="date"></label></div><label class="check"><input type="checkbox" name="focus">Consider for today</label><button class="primary" type="submit">Save to console</button></form></details>
@@ -36,6 +36,23 @@
   </main>
 </div>
 <dialog id="editor"><form id="edit-form"><div class="section-head"><h2>Edit the next step</h2><button type="button" id="close-editor" aria-label="Close editor">Close</button></div><input name="id" type="hidden"><input name="revision" type="hidden"><label>Title<input name="title" maxlength="240" required></label><label>Finish condition<textarea name="next_action" maxlength="2000" rows="2"></textarea></label><label>Context<textarea name="body" maxlength="12000" rows="3"></textarea></label><div class="form-grid"><label>State<select name="status"><option value="queued">Ready</option><option value="active">In progress</option><option value="waiting">Waiting</option><option value="done">Done</option><option value="cancelled">Parked</option></select></label><label>Priority (1 first)<input name="priority" type="number" min="1" max="100" required></label><label>Due date<input name="due_on" type="date"></label></div><div class="form-grid"><label>Area<select name="area"><option value="form">FORM</option><option value="coaching">Coaching</option><option value="training">My training</option><option value="money">Money</option><option value="home">Home &amp; life</option><option value="learning">Learning</option></select></label><label>Who moves it?<select name="actor"><option value="brice">Me</option><option value="agent">Agent</option><option value="other">Someone else</option></select></label><label>Focus date<input name="focus_on" type="date"></label></div><label>Waiting on<input name="waiting_on" maxlength="500" placeholder="Name the person or missing input"></label><label>Review date<input name="review_on" type="date"></label><p id="edit-message" role="status"></p><button class="primary" type="submit">Save changes</button></form></dialog>
-<script type="module" src="/coach/ops/console.js?v=3"></script>
+<dialog id="opportunity-editor"><form id="opportunity-edit-form">
+  <div class="section-head"><h2>Shape the experiment</h2><button type="button" id="close-opportunity-editor" aria-label="Close opportunity editor">Close</button></div>
+  <input name="id" type="hidden"><input name="revision" type="hidden">
+  <label>Name<input name="title" maxlength="240" required></label>
+  <label>Category<select name="category"><option value="experience">Experiences</option><option value="connection">Connections</option><option value="development">Development</option><option value="creative">Creative work</option><option value="commercial">Commercial</option><option value="product">Product</option></select></label>
+  <label>What might this make possible?<textarea name="hypothesis" maxlength="4000" rows="3" required></textarea></label>
+  <label>Smallest useful test<textarea name="next_test" maxlength="3000" rows="3"></textarea></label>
+  <label>Who could benefit? (private context only)<textarea name="beneficiary_note" maxlength="2000" rows="2"></textarea></label>
+  <div class="form-grid"><label>Estimated hours<input name="estimated_hours" type="number" min="0" max="9999" step="0.25"></label><label>Estimated direct cost (USD)<input name="estimated_cost_usd" type="number" min="0" max="9999999" step="0.01"></label><label>Review date<input name="review_on" type="date"></label></div>
+  <label>Owner approval scope<textarea name="approval_note" maxlength="2000" rows="2" placeholder="Exactly what testing is approved. External sends, bookings and publication remain separate."></textarea></label>
+  <label>Next action<input name="next_action" maxlength="2000"></label>
+  <label>Observed evidence<textarea name="evidence" maxlength="6000" rows="3" placeholder="What actually happened, with an owning-source reference where possible"></textarea></label>
+  <label>What did we learn?<textarea name="learning" maxlength="4000" rows="3" placeholder="What remains uncertain; continue, revise or park?"></textarea></label>
+  <label>Additional source URL (optional)<input name="source_url" type="url" placeholder="https://..."></label>
+  <p class="small">Changing an approved scope returns it to candidate for another decision. Saving text never sends an invitation or updates training, Calendar, money, or the Archive.</p>
+  <p id="opportunity-edit-message" role="status"></p><button class="primary" type="submit">Save and read back</button>
+</form></dialog>
+<script type="module" src="/coach/ops/console.js?v=4"></script>
 </body>
 </html>
