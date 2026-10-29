@@ -1,0 +1,56 @@
+# Netlify production is built from the `production` branch, NOT from `main`.
+# Normal edits land on main and accumulate. Only this release gate advances
+# production, twice daily, or when a coach explicitly dispatches an urgent run.
+# Do not push to production directly or create a new Netlify build for each edit.
+name: Publish Speed & Form
+
+on:
+  schedule:
+    - cron: "15 10,18 * * *"
+      timezone: "America/New_York"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Why this release cannot wait for the next batch"
+        type: string
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: speedandform-production-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Advance production branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch release history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Fast-forward production only when main changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main production
+          main_sha="$(git rev-parse refs/remotes/origin/main)"
+          production_sha="$(git rev-parse refs/remotes/origin/production)"
+          if [[ "$main_sha" == "$production_sha" ]]; then
+            echo "No new source changes. No Netlify deploy."
+            exit 0
+          fi
+          if ! git merge-base --is-ancestor "$production_sha" "$main_sha"; then
+            echo "::error::Production diverged from main. Release stopped; resolve the branch history before publishing."
+            exit 1
+          fi
+          git push origin "$main_sha:refs/heads/production"
+          echo "Released main $main_sha to Netlify's production branch."
+
+# Urgent releases: Actions > Publish Speed & Form > Run workflow (main).
+# Routine releases: ~10:15 AM and 6:15 PM Miami time, subject to Actions delays.
+# Netlify is configured to build only the production branch, with no PR/branch builds.
