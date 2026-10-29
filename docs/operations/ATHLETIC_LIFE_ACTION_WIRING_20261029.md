@@ -56,7 +56,7 @@ These are routing examples, not instructions to create twenty records. Any propo
 
 ## The private register
 
-Migration: `supabase/migrations/20261029152310_athletic_life_opportunities_v1.sql`.
+Migration: `supabase/migrations/20261029162911_athletic_life_opportunities_v1.sql` (applied to the FORM Athlete System project on October 29, 2026).
 
 The `public.athletic_opportunities` record owns a question, category, optional idea number, beneficiary context, smallest test, time and direct-cost estimates, next action, owner approval scope, state, evidence, learning, source references and a review date. It contains **no seeded athletes, contacts or opportunities**.
 

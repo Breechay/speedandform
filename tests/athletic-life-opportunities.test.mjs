@@ -6,7 +6,7 @@ import {
   activeOpportunityCount,canApproveOpportunity,canStartOpportunity,opportunityEstimate
 } from '../coach/ops/opportunity-model.mjs';
 
-const sql=fs.readFileSync(new URL('../supabase/migrations/20261029152310_athletic_life_opportunities_v1.sql',import.meta.url),'utf8');
+const sql=fs.readFileSync(new URL('../supabase/migrations/20261029162911_athletic_life_opportunities_v1.sql',import.meta.url),'utf8');
 const js=fs.readFileSync(new URL('../coach/ops/console.js',import.meta.url),'utf8');
 const html=fs.readFileSync(new URL('../coach/ops/index.html',import.meta.url),'utf8');
 const candidate={id:'one',title:'One New Door',category:'experience',status:'candidate',hypothesis:'Remove one real barrier',next_test:'Ask a willing athlete what would be meaningful',approval_note:'A single private discovery conversation',estimated_hours:2,estimated_cost_usd:0};
