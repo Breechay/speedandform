@@ -46,12 +46,15 @@ jobs:
           SF_MENU_BROWSER: ${{ matrix.browser }}
           PLAYWRIGHT_MODULE: /tmp/sf-menu-browser/node_modules/playwright
           SF_MENU_ARTIFACTS: /tmp/site-menu-review
+          AR_BROWSER: ${{ matrix.browser }}
+          AR_QA_DIR: /tmp/site-menu-review/athletic-life
         run: |
           mkdir -p /tmp/site-menu-review
           git rev-parse HEAD > /tmp/site-menu-review/tested-commit.txt
           node tests/site-menu-browser.cjs
           node tests/public-entry-browser.cjs
           node tests/photos-gallery-browser.cjs
+          node tests/athletic-research-browser.cjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

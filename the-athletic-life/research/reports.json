@@ -1,0 +1,86 @@
+[
+  {
+    "slug": "personal-athletic-practice",
+    "title": "Personal athletic practice",
+    "contribution": "Audience distinctions, source authority and One New Door.",
+    "limit": "No athlete interviews or direct production verification.",
+    "original": "sources/personal-athletic-practice.md",
+    "originalFilename": "FORM_The_Athletic_Life_Independent_Strategy_Report_2026-10-28(1).md",
+    "sha256": "f6b3e5314733128109007fda25f30a1b99ee225fa81aa1fe1e1b76115b14d6e0",
+    "markdown": "sources/personal-athletic-practice.md",
+    "format": "Original text; presentation only",
+    "words": 8502
+  },
+  {
+    "slug": "athletic-continuity",
+    "title": "Athletic continuity",
+    "contribution": "Life constraints, autonomy and continuity through disruption.",
+    "limit": "No repository access; proposed experiments are not commitments.",
+    "original": "sources/athletic-continuity.txt",
+    "originalFilename": "Pasted text (2)(20261028-210900).txt",
+    "sha256": "d637e7a1b7ffd01cc19a547cac58db786041e186886b4f1585987e53aa6d7ef7",
+    "markdown": "sources/athletic-continuity.md",
+    "format": "Original text; presentation only",
+    "words": 5824
+  },
+  {
+    "slug": "athletic-institution",
+    "title": "Athletic institution",
+    "contribution": "The wider human ambition beyond service delivery.",
+    "limit": "No independent database review; some pasted citation labels lack their links.",
+    "original": "sources/athletic-institution.txt",
+    "originalFilename": "Pasted text (3)(20261028-210930).txt",
+    "sha256": "c06074450cd40a95ec08d5a07f39e3c05ac6a565fabafcf657f70c2412190d9e",
+    "markdown": "sources/athletic-institution.md",
+    "format": "Pasted text formatted with headings and tables; wording retained, detached citation labels remain as supplied",
+    "words": 6819
+  },
+  {
+    "slug": "steward",
+    "title": "Steward of the athletic year",
+    "contribution": "Transitions, race decisions and Target Night.",
+    "limit": "The author could not retrieve the starting studies; literature claims need verification.",
+    "original": "sources/steward.docx",
+    "originalFilename": "FORM — The Athletic Life Independent Strategy Report.docx",
+    "sha256": "25d776f1e69f07cb348e2d0fcb5194a24a453bb089235f7cf8059c4ba3bce022",
+    "markdown": "sources/steward.md",
+    "format": "DOCX converted to Markdown; wording retained, document styling simplified",
+    "words": 5954
+  },
+  {
+    "slug": "the-season",
+    "title": "The Season",
+    "contribution": "Film, hospitality and a season worth remembering.",
+    "limit": "Filing counts do not establish usage. Proposed response times and build freezes are not adopted.",
+    "original": "sources/the-season.docx",
+    "originalFilename": "FORM — The Athletic Life Independent Strategy Report (1).docx",
+    "sha256": "4f4d8b06a4b6d686007687639f03d1b5f61a18cce5e7ace1c92ba5dfa882183b",
+    "markdown": "sources/the-season.md",
+    "format": "DOCX converted to Markdown; wording retained, document styling simplified",
+    "words": 4930
+  },
+  {
+    "slug": "intelligence-layer",
+    "title": "Intelligence layer",
+    "contribution": "Reducing coordination work and protecting coaching time.",
+    "limit": "Contains unsupported scale and competitor claims. Automatic pace changes and access restrictions are not approved.",
+    "original": "sources/intelligence-layer.txt",
+    "originalFilename": "Pasted text(20261028-210849).txt",
+    "sha256": "aca2f365ed1299e67182400659128c12fb2c0c417168be40184d7a9459360bd4",
+    "markdown": "sources/intelligence-layer.md",
+    "format": "Original text; presentation only",
+    "words": 3697
+  },
+  {
+    "slug": "personal-athletic-service",
+    "title": "Personal athletic service",
+    "contribution": "Continuity, evidence distinctions and operating costs.",
+    "limit": "Missed the September 30 audience clarification. Its research sequence remains optional.",
+    "original": "sources/personal-athletic-service.md",
+    "originalFilename": "FORM_The_Athletic_Life_Research_Report.md",
+    "sha256": "da9be04459b849d5d46436392671cd9d3d7260d6aea04a1c72bfdf3a7eaeccb0",
+    "markdown": "sources/personal-athletic-service.md",
+    "format": "Original text; presentation only",
+    "words": 7451
+  }
+]
