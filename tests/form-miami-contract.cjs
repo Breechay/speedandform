@@ -24,4 +24,26 @@ assert.match(site,/form_miami_public_calendar/,'website reads public publication
 assert.match(edge,/form_miami_email_claim/,'email receives only server recipients');
 assert.match(edge,/coach_only/,'coach-only dispatcher');
 assert.match(inbox,/form_miami_mark_read/,'private inbox read receipt');
+// A shared date must carry the coach's current pace standard into each new
+// typed component. The original writer dropped it whenever rep geometry changed.
+const paceMigration = fs.readFileSync(path.join(root,'supabase/migrations/20261030033000_form_miami_shared_group_pace_standard.sql'),'utf8');
+assert.match(paceMigration,/perform public\\.form_miami_ensure_coach\\(\\)/,'coach auth remains mandatory');
+assert.match(paceMigration,/p_expected->>r\\.session_id::text is distinct from v\\.id::text/,'version preview remains mandatory');
+assert.match(paceMigration,/invalid_or_missing_group_pace/,'shared numeric targets required');
+assert.match(paceMigration,/n\\.value \\|\\| jsonb_build_object/,'group pace fields are used directly');
+assert.doesNotMatch(paceMigration,/old\\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
+assert.match(coach,/paceLowSeconds=parsePace\\(fast\\)/,'coach editor writes fast /mi band');
+assert.match(coach,/paceHighSeconds=parsePace\\(slow\\)/,'coach editor writes slow /mi band');
+assert.match(coach,/paceMode==='effort'/,'explicit unpaced recovery day is supported');
+
+const vm = require('node:vm');
+const helpers = coach.slice(coach.indexOf('function formatPace('),coach.indexOf('function setRow('));
+assert.ok(helpers.includes('function parsePace('),'pace helpers exist');
+const paceHelpers = vm.runInNewContext(helpers+'; ({formatPace,parsePace})');
+assert.equal(paceHelpers.parsePace('5:19'),319);
+assert.equal(paceHelpers.parsePace('6:08'),368);
+assert.equal(paceHelpers.formatPace(319),'5:19');
+assert.throws(()=>paceHelpers.parsePace('3:99'));
+assert.throws(()=>paceHelpers.parsePace('16:00'));
+
 console.log('FORM Miami static publication contract passes.');
