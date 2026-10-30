@@ -66,4 +66,12 @@ assert.equal(paceHelpers.formatPace(319),'5:19');
 assert.throws(()=>paceHelpers.parsePace('3:99'));
 assert.throws(()=>paceHelpers.parsePace('16:00'));
 
+// auth.users.email is varchar(255). RETURN QUERY's text output needs an
+// explicit cast, or the email claim aborts after the outbox is queued.
+const emailFix = fs.readFileSync(path.join(root,'supabase/migrations/20261030095818_form_miami_email_claim_email_type_fix_20261030.sql'),'utf8');
+assert.match(emailFix,/u\.email::text/,'claim returns exact text type');
+assert.match(emailFix,/u\.email_confirmed_at is not null/,'only confirmed recipients remain eligible');
+assert.match(emailFix,/grant execute on function public\.form_miami_email_claim\(integer\) to service_role/,'dispatcher retains least-privilege access');
+assert.match(emailFix,/revoke all on function public\.form_miami_email_claim\(integer\) from public,anon,authenticated/,'athletes never claim outbox');
+
 console.log('FORM Miami static publication contract passes.');
