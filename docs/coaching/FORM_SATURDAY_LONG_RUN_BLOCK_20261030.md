@@ -29,14 +29,14 @@ The menu is a Vault-style authoring vocabulary, **not a rotation enforced by the
 | **Sat Nov 7** | **The Long Easy** | Preserve established, currently published individualized distances while the Nov 5 1000/600/400 workout is introduced. The Saturday gathering is a shared start, not a ten-mile order to everybody. |
 | **Sat Nov 14** | **Three Speeds** | Only the athletes already durable at the prescribed long-run distance receive a modest last 2 mi aerobic progression. Entry-base athletes still receive one fully prescribed easy session. Do not add a second hard day after Thursday. |
 | **Sat Nov 21** | **Fast Finish / Late Hold candidate** | Full-marathon athletes can begin with an easy run and a 2–3 mi race-relevant finish **only after** a coach review of actual Nov 7/14 execution. Non-marathoners can use a negative-split easy run. Exact pace bands are chosen from each athlete's current race-plan evidence, not from the group's 16:30 5K goal. |
-| **Sat Nov 28** | **Cutback easy** | Thanksgiving 5K/Turkey Trot schedules and travel affect the quality budget. No automatic late fast segment. The Nov 26 group track proposal must be checked against each actual race entry before publication. |
+| **Sat Nov 28** | **Race-led individual day, not a group cutback** | The currently published Weeks differ: Brice 6 mi easy, Megan 4.5 mi easy, Kevin 9 mi with a final steady mile, Patrick 14 mi easy, and Saul/Matt 16 mi easy. Preserve those distinct prescriptions until each athlete's race calendar, Nov 7/14/21 execution and recovery have been reviewed. Thanksgiving 5K/Turkey Trot entries may warrant a personal cutback; do not impose one on all marathoners or add an automatic hard finish. |
 
 ### Current roster, Nov 7 anchoring and progression candidates
 
 | Athlete | User's cohort | Published Nov 7 long-run anchor | First coaching move / protection |
 | --- | --- | --- | --- |
 | **Brice** | Non-full · 10–14 mi destination | **6 mi easy** (separate 10 mi entry also exists outside current published Week) | Request actual 30-day longest-run evidence before a direct jump to 10; progress the active easy run first. His return-to-duration goal makes this particularly important. |
-| **Tinius** | Non-full · 10–14 mi destination | **10 km easy** in current shared Week; historical/overlapping plan entries also show 14 km and 29 km | Identify the owning restart block; do **not** publish against duplicated historical sessions. A ~14–16 km long run may be an appropriate bridge to ten miles once actual recent execution is confirmed. |
+| **Tinius** | Non-full · 10–14 mi destination | **Multiple currently published Nov 7 entries:** 10 km easy, 14 km long run and 29 km with race-pace finish | Resolve which owning plan and scheduled session is authoritative before publishing or inviting him to follow a Saturday prescription. Duplicates also occur on Nov 14, 21 and 28. Do **not** silently select 29 km or stack these workouts. A ~14–16 km bridge toward ten miles is only a candidate after verifying recent execution. |
 | **Jimmy** | Non-full | **10 mi easy**, no recent completed long run in current filing sample | Keep the ten easy and verify actual adherence; gradual 11–12 mi progression later. Do not add a fast finish merely because the calendar says so. |
 | **Sam** | Non-full | **6 mi easy** | Maintain and extend gradually toward ten; no immediate double to 10. |
 | **Anthony** | Non-full, HM target Jan 31 | **12 mi easy** with existing individual coach override | Preserve the 12-mile authored progression unless a fresh execution review changes it. Easy rather than hard after Tuesday miles and Thursday track. |
@@ -56,7 +56,7 @@ Additional athletes not named in the current request (e.g. Lisa and David) retai
 
 ## Program horizon
 
-- **Nov:** establish repeatable easy distance after Thursday's stronger 5K sessions. Introduce one small aerobic progression, then Thanksgiving cutback.
+- **Nov:** establish repeatable easy distance after Thursday's stronger 5K sessions. Introduce selective aerobic progression where already authored and earned. Thanksgiving is an individual race/travel review point, not an automatic group-wide cutback: some currently published marathoner Weeks reach 14–16 easy miles on Nov 28.
 - **Dec:** marathon athletes use longer easy runs and race-pace segments only when earned; Marcus/Patrick taper for Dec 13. HM and 5K athletes develop continuous easy duration, with occasional final aerobic miles. Simon remains on his independently owned study progression.
 - **Jan:** Miami Marathon athletes complete their own final race-specific long runs early, then reduce volume toward Jan 31. Non-full athletes can continue the 10–14 destination ladder or taper for their own race. No shared 16-mile requirement in a taper week.
 
@@ -66,7 +66,7 @@ Additional athletes not named in the current request (e.g. Lisa and David) retai
 2. The app Home long-run display reads actual event status and each signed-in athlete's current prescribed distance. No permanent “everyone 10–16” written into individual Weeks.
 3. Coach checks current version identity and every race/return-to-run exception before a write. After any change, reauthor/reconfirm that athlete's Week story and validate `story_current=true`. Preserve completed evidence, history and paired Forge strength receipts.
 4. A route photo can be attached to the actual published gathering later. A Sunday exception must say Sunday rather than silently moving all Saturday prescriptions.
-5. Publication uses authenticated coach workflows. This file is a **proposal**, and no group RSVP, athlete session or individual split has been published by its existence.
+5. Publication uses authenticated coach workflows. This file is a **proposal**: existing published athlete prescriptions remain live independently of it. No group RSVP, new athlete session or individual split is published by this document's existence.
 
 ## Evidence context
 
