@@ -41,6 +41,15 @@ assert.match(coach,/sb\.from\('training_weeks'\)\.update/,'coach owns the weekly
 assert.match(coach,/id="changeMode"/,'coach can edit existing subscriber track mode');
 assert.match(coach,/target\.id==='changeMode'/,'existing athlete mode update is explicit');
 assert.match(coach,/form_miami_set_subscription/,'mode update uses the authorized coach RPC');
+const individualMigration=fs.readFileSync(path.join(root,'supabase/migrations/20261030042000_form_miami_individual_pace_offsets.sql'),'utf8');
+assert.match(individualMigration,/perform public\.form_miami_ensure_coach\(\)/,'individual pacing cannot bypass coach auth');
+assert.match(individualMigration,/plan_changed_reload_preview/,'individual pacing cannot bypass version lock');
+assert.match(individualMigration,/form_miami_is_protected_study_session/,'individual pacing leaves study-owned plans untouched');
+assert.match(individualMigration,/invalid_individual_pace_recipient/,'only eligible linked paced athletes may receive a custom band');
+assert.match(individualMigration,/pace_delta:=case when r\.track_mode='effort' then 0/,'effort athletes never inherit a clock band');
+assert.match(coach,/secondsOver600\*1609\.344\/600/,'individual pace offsets scale consistently across rep distances');
+assert.match(coach,/individualPaceOffsets/,'coach UI authors per-date, per-athlete pace difference');
+assert.equal(Math.round(20*1609.344/600),54,'Megan 20 seconds slower per 600m equals +54 seconds per mile');
 assert.match(paceMigration,/n\.value \|\| jsonb_build_object/,'group pace fields are used directly');
 assert.doesNotMatch(paceMigration,/old\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
 assert.match(coach,/paceLowSeconds=parsePace\(fast\)/,'coach editor writes fast /mi band');
