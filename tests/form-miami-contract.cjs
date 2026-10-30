@@ -38,6 +38,9 @@ assert.match(paceMigration,/form_miami_week_story_status/,'coach-scoped week sto
 assert.match(paceMigration,/coach_audit_private\.week_story_is_current/,'week story checks authoritative audit timestamp');
 assert.match(coach,/statuses\?\.\[r\.id\]!==true/,'coach cannot report a week current without its release receipt');
 assert.match(coach,/sb\.from\('training_weeks'\)\.update/,'coach owns the weekly copy review');
+assert.match(coach,/id="changeMode"/,'coach can edit existing subscriber track mode');
+assert.match(coach,/target\.id==='changeMode'/,'existing athlete mode update is explicit');
+assert.match(coach,/form_miami_set_subscription/,'mode update uses the authorized coach RPC');
 assert.match(paceMigration,/n\.value \|\| jsonb_build_object/,'group pace fields are used directly');
 assert.doesNotMatch(paceMigration,/old\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
 assert.match(coach,/paceLowSeconds=parsePace\(fast\)/,'coach editor writes fast /mi band');
