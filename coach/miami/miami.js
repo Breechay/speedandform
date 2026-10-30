@@ -13,7 +13,7 @@ const near = (weekday) => {
   return d.toISOString().slice(0,10);
 };
 const fmt = (iso) => new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}).format(new Date(iso));
-let lane = 'thursday', preview = null, roster = [], availableAthletes = [], daySessions = [], runs = [], prepared = null, editorLoadedKey = '';
+let lane = 'thursday', preview = null, roster = [], availableAthletes = [], daySessions = [], runs = [], prepared = null, editorLoadedKey = '', weekStories = new Map();
 const isThursday = () => lane === 'thursday';
 function say(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error);}
 async function rpc(name,args={}){const {data,error}=await sb.rpc(name,args);if(error)throw error;return data;}
@@ -99,6 +99,23 @@ function rosterContent(){
   }).join('')||'<p class="hint">No athletes are subscribed yet.</p>';
   if(isThursday())$('publishNote').textContent=`${editable.length} linked and unfinished Weeks can be revised. Individual overrides, filed sessions and unlinked athletes stay unchanged.`;
 }
+async function loadWeekStories(){
+  weekStories=new Map();
+  const relevant=isThursday()?roster.filter(allowed).filter((r)=>r.week_id):[];
+  if(!relevant.length){$('storiesPane').hidden=true;$('storyList').innerHTML='';return;}
+  const ids=[...new Set(relevant.map((r)=>r.week_id))];
+  const {data,error}=await sb.from('training_weeks').select('id,athlete_id,intent,matters_because').in('id',ids);
+  if(error)throw error;
+  const status=await rpc('form_miami_week_story_status',{p_on_date:$('date').value});
+  for(const week of data||[])weekStories.set(week.id,week);
+  $('storyList').innerHTML=relevant.map((r)=>{
+    const w=weekStories.get(r.week_id);if(!w)return '';
+    return `<div class="story" data-week="${safe(w.id)}"><h3>${safe(r.name)} <small>${status?.[w.id]?'Current':'Review needed'}</small></h3>
+      <label>WHAT CHANGED · MAX 100<input data-story="intent" maxlength="100" value="${safe(w.intent||'')}" required></label>
+      <label>WHY IT MATTERS · MAX 125<textarea data-story="matters_because" maxlength="125" rows="2" required>${safe(w.matters_because||'')}</textarea></label></div>`;
+  }).join('');
+  $('storiesPane').hidden=!$('storyList').children.length;
+}
 function meetingContent(){
   const r=preview.run;
   $('runState').textContent=r?r.status.toUpperCase():'NO MEETUP';
@@ -143,7 +160,7 @@ async function load(){
     const source=preview.publication?.payload||roster.find((r)=>allowed(r)&&r.mode==='paced')||roster.find(allowed);
     fillEditor(source);editorLoadedKey=key;
   }
-  rosterContent();meetingContent();management();say('Calendar ready.');
+  rosterContent();meetingContent();management();await loadWeekStories();say('Calendar ready.');
 }
 async function prime(){
   const access=await getAccessContext();if(!access.session||!access.coachMemberships.length){$('gate').hidden=false;$('work').hidden=true;return;}
@@ -178,8 +195,36 @@ $('workoutForm').addEventListener('submit',async(e)=>{
   $('publish').disabled=true;
   try{
     const out=await rpc('form_miami_publish_thursday',{p_on_date:prepared.date,p_payload:prepared.payload,p_expected:prepared.expected});
-    editorLoadedKey='';await load();const mail=await dispatchEmails();say(`Published revision ${out.revision} to ${out.updated} athlete Weeks. ${mail}`);
+    editorLoadedKey='';await load();say(`Published revision ${out.revision} to ${out.updated} athlete Weeks. Review the affected Week writing below before releasing queued email notices.`);
   }catch(err){say(`Not published: ${err.message}`,true);}
+});
+$('storyForm').addEventListener('submit',async(e)=>{
+  e.preventDefault();
+  try{
+    const updates=[];
+    for(const entry of $('storyList').children){
+      const id=entry.dataset.week,old=weekStories.get(id);
+      if(!old)throw new Error('An athlete Week has changed. Reload the calendar.');
+      const intent=entry.querySelector('[data-story="intent"]').value.trim();
+      const why=entry.querySelector('[data-story="matters_because"]').value.trim();
+      if(intent.length<15||intent.length>100||why.length<15||why.length>125||/[—\n\r]/.test(intent+why))
+        throw new Error('Every Week needs two short, plain sentences without em dashes or line breaks.');
+      if(intent===old.intent&&why===old.matters_because)throw new Error('Reauthor or reconfirm both Week sentences after the session changed. Unchanged text cannot be marked reviewed.');
+      updates.push({id,intent,matters_because:why});
+    }
+    if(!updates.length)throw new Error('There are no linked Weeks to review.');
+    $('saveStories').disabled=true;
+    let saved=0;
+    for(const item of updates){
+      const {error}=await sb.from('training_weeks').update({intent:item.intent,matters_because:item.matters_because}).eq('id',item.id);
+      if(error)throw new Error(`Saved ${saved} Week stories, then stopped: ${error.message}`);
+      saved++;
+    }
+    const statuses=await rpc('form_miami_week_story_status',{p_on_date:$('date').value});
+    const stale=updates.filter((r)=>statuses?.[r.id]!==true);
+    if(stale.length)throw new Error(`${saved} Week stories saved, but ${stale.length} are still stale. Review the affected plans before notifying athletes.`);
+    await loadWeekStories();const mail=await dispatchEmails();say(`${saved} Week stories verified current after publication. ${mail}`);
+  }catch(err){say(err.message,true);}finally{$('saveStories').disabled=false;}
 });
 $('manage').addEventListener('click',async(e)=>{
   const target=e.target.closest('button');if(!target)return;
