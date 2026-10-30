@@ -34,6 +34,10 @@ assert.match(paceMigration,/form_miami_is_protected_study_session/,'study-owned 
 assert.match(paceMigration,/s\.id=p_session_id and tp\.slug='simon-ceiling-durability-01'/,'Simon Study 003 is an explicit owner exception');
 assert.match(paceMigration,/'protected',case when s\.id is null/,'protected state returned by coach preview');
 assert.match(coach,/!r\.protected/,'coach preview does not sign protected studies for publication');
+assert.match(paceMigration,/form_miami_week_story_status/,'coach-scoped week story receipt');
+assert.match(paceMigration,/coach_audit_private\.week_story_is_current/,'week story checks authoritative audit timestamp');
+assert.match(coach,/statuses\?\.\[r\.id\]!==true/,'coach cannot report a week current without its release receipt');
+assert.match(coach,/sb\.from\('training_weeks'\)\.update/,'coach owns the weekly copy review');
 assert.match(paceMigration,/n\.value \|\| jsonb_build_object/,'group pace fields are used directly');
 assert.doesNotMatch(paceMigration,/old\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
 assert.match(coach,/paceLowSeconds=parsePace\(fast\)/,'coach editor writes fast /mi band');
