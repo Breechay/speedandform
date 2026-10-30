@@ -27,13 +27,13 @@ assert.match(inbox,/form_miami_mark_read/,'private inbox read receipt');
 // A shared date must carry the coach's current pace standard into each new
 // typed component. The original writer dropped it whenever rep geometry changed.
 const paceMigration = fs.readFileSync(path.join(root,'supabase/migrations/20261030033000_form_miami_shared_group_pace_standard.sql'),'utf8');
-assert.match(paceMigration,/perform public\\.form_miami_ensure_coach\\(\\)/,'coach auth remains mandatory');
-assert.match(paceMigration,/p_expected->>r\\.session_id::text is distinct from v\\.id::text/,'version preview remains mandatory');
+assert.match(paceMigration,/perform public\.form_miami_ensure_coach\(\)/,'coach auth remains mandatory');
+assert.match(paceMigration,/p_expected->>r\.session_id::text is distinct from v\.id::text/,'version preview remains mandatory');
 assert.match(paceMigration,/invalid_or_missing_group_pace/,'shared numeric targets required');
-assert.match(paceMigration,/n\\.value \\|\\| jsonb_build_object/,'group pace fields are used directly');
-assert.doesNotMatch(paceMigration,/old\\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
-assert.match(coach,/paceLowSeconds=parsePace\\(fast\\)/,'coach editor writes fast /mi band');
-assert.match(coach,/paceHighSeconds=parsePace\\(slow\\)/,'coach editor writes slow /mi band');
+assert.match(paceMigration,/n\.value \|\| jsonb_build_object/,'group pace fields are used directly');
+assert.doesNotMatch(paceMigration,/old\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
+assert.match(coach,/paceLowSeconds=parsePace\(fast\)/,'coach editor writes fast /mi band');
+assert.match(coach,/paceHighSeconds=parsePace\(slow\)/,'coach editor writes slow /mi band');
 assert.match(coach,/paceMode==='effort'/,'explicit unpaced recovery day is supported');
 
 const vm = require('node:vm');
