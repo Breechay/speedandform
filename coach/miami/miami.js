@@ -88,12 +88,12 @@ function workoutPayload(){
   return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),
     details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components};
 }
-function allowed(r){return Boolean(r.session_id&&r.version_id&&r.state==='published'&&!r.paused&&!r.override&&!r.filed);}
+function allowed(r){return Boolean(r.session_id&&r.version_id&&r.state==='published'&&!r.paused&&!r.protected&&!r.override&&!r.filed);}
 function rosterContent(){
   const editable=roster.filter(allowed);
   $('count').textContent=`${roster.length} SUBSCRIBED`;
   $('roster').innerHTML=roster.map((r)=>{
-    const flags=[];if(!r.session_id)flags.push('No linked session');if(r.paused)flags.push('Paused');if(r.override)flags.push('Individual edit');if(r.filed)flags.push('Already filed');if(r.state&&r.state!=='published')flags.push('Not published');
+    const flags=[];if(!r.session_id)flags.push('No linked session');if(r.paused)flags.push('Paused');if(r.protected)flags.push('Study-owned plan');if(r.override)flags.push('Individual edit');if(r.filed)flags.push('Already filed');if(r.state&&r.state!=='published')flags.push('Not published');
     const dist=r.distance ? `${r.distance} ${r.unit||'mi'}` : '';
     return `<div class="row"><span>${safe(r.name)}<small>${r.mode==='effort'?'Own effort':'Own pace'}</small></span><span>${safe(r.title||'No assigned Saturday session')}${dist?`<small>${safe(dist)}</small>`:''}</span><span class="flag ${flags.length?'':'good'}">${safe(flags.join(' · ')||(isThursday()?'Ready':'Own distance'))}</span></div>`;
   }).join('')||'<p class="hint">No athletes are subscribed yet.</p>';
