@@ -57,7 +57,17 @@ function fillEditor(item){
   f.elements.warmup.value=Math.round((blocks.find((b)=>b.role==='warm_up')?.durationSeconds||1200)/60);
   f.elements.cooldown.value=Math.round((blocks.find((b)=>b.role==='cool_down')?.durationSeconds||900)/60);
   $('sets').innerHTML=blocks.filter((b)=>b.role==='work').map(setRow).join('')||setRow();
+  renderIndividualPaces(item?.individualPaceOffsets||{});
   $('publish').disabled=true;prepared=null;
+}
+function renderIndividualPaces(offsets){
+  const paced=roster.filter((r)=>allowed(r)&&r.mode==='paced');
+  $('individualPane').hidden=!isThursday()||!paced.length;
+  $('individualPaces').innerHTML=`<div class="individual-grid">${paced.map((r)=>{
+    const delta=offsets[r.athlete_id];
+    const per600=delta==null?'':String(Math.round(Number(delta)*600/1609.344));
+    return `<div class="individual-row" data-athlete="${safe(r.athlete_id)}"><label>${safe(r.name)}<span class="unit"> · SEC / 600M</span></label><input data-individual-offset type="number" min="-25" max="90" step="1" value="${safe(per600)}" placeholder="Group"></div>`;
+  }).join('')}</div>`;
 }
 function workoutPayload(){
   const f=$('workoutForm'); const warm=Number(f.elements.warmup.value||0)*60, cool=Number(f.elements.cooldown.value||0)*60;
@@ -85,8 +95,18 @@ function workoutPayload(){
     components.push(part);
   }
   if(cool>0)components.push({role:'cool_down',shape:'continuous',durationSeconds:cool,rpeLow:2,rpeHigh:3});
+  const individualPaceOffsets={};
+  for(const row of $('individualPaces').querySelectorAll('[data-athlete]')){
+    const raw=row.querySelector('[data-individual-offset]').value.trim();
+    if(!raw)continue;
+    const secondsOver600=Number(raw);
+    if(paceMode!=='paced'||!Number.isInteger(secondsOver600)||secondsOver600< -25||secondsOver600>90)
+      throw new Error('Individual adjustments must be whole seconds, from -25 to +90 per 600m, on a paced session.');
+    individualPaceOffsets[row.dataset.athlete]=Math.round(secondsOver600*1609.344/600);
+  }
   return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),
-    details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components};
+    details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components,
+    ...(Object.keys(individualPaceOffsets).length?{individualPaceOffsets}:{})};
 }
 function allowed(r){return Boolean(r.session_id&&r.version_id&&r.state==='published'&&!r.paused&&!r.protected&&!r.override&&!r.filed);}
 function rosterContent(){
@@ -130,6 +150,7 @@ function management(){
   const candidates=availableAthletes.filter((a)=>!existing.has(a.id));
   const selectable=daySessions.filter((s)=>existing.has(s.athlete_id));
   $('manage').innerHTML=`<div class="manage-grid"><label>ADD ATHLETE<select id="addAthlete"><option value="">Choose athlete</option>${candidates.map((a)=>`<option value="${safe(a.id)}">${safe(a.display_name)}</option>`).join('')}</select></label>${isThursday()?'<label>TRACK MODE<select id="addMode"><option value="paced">Own pace</option><option value="effort">Own effort</option></select></label>':''}<button id="subscribe" type="button">Subscribe</button></div>`
+  + (isThursday()?`<div class="manage-grid"><label>EXISTING ATHLETE<select id="modeAthlete"><option value="">Choose subscribed athlete</option>${roster.map((r)=>`<option value="${safe(r.athlete_id)}">${safe(r.name)} · ${r.mode==='effort'?'Own effort':'Own pace'}</option>`).join('')}</select></label><label>THURSDAY TARGET MODE<select id="modeValue"><option value="">Choose mode</option><option value="paced">Own pace · shared clock targets</option><option value="effort">Own effort · same sets, no clock targets</option></select></label><button id="changeMode" type="button">Save track mode</button></div><p class="hint">Changing a subscriber's mode applies to upcoming shared Thursdays until the coach changes it again. It does not rewrite an already published version.</p>`:'')
   + (isThursday()?`<p class="hint">Link one exact Thursday session per athlete and date. Changing this link does not erase a prior session.</p>${roster.map((r)=>`<div class="row"><span>${safe(r.name)}</span><label><select data-link="${safe(r.athlete_id)}"><option value="">Choose dated session</option>${selectable.filter((s)=>s.athlete_id===r.athlete_id).map((s)=>`<option value="${safe(s.id)}" ${s.id===r.session_id?'selected':''}>${safe(s.title)}</option>`).join('')}</select></label><button data-attach="${safe(r.athlete_id)}" type="button">Link</button></div>`).join('')}`:'');
 }
 async function loadDateSessions(){
@@ -152,7 +173,7 @@ async function load(){
   [preview]=await Promise.all([rpc('form_miami_preview',{p_lane:lane,p_on_date:date}),loadDateSessions(),loadRuns()]);
   roster=preview.roster||[];
   $('practiceTitle').textContent=isThursday()?'FORM Thursday':'FORM Saturday';
-  $('practiceIntro').textContent=isThursday()?'One shared structure and one authored pace standard. Named exceptions stay protected.':'Everyone runs their assigned distance. No meetup unless one is posted.';
+  $('practiceIntro').textContent=isThursday()?'One shared workout with a reference pace and individual targets where needed. Named exceptions stay protected.':'Everyone runs their assigned distance. No meetup unless one is posted.';
   $('sessionPane').hidden=!isThursday();
   $('revision').textContent=preview.publication?`REVISION ${preview.publication.revision}`:'FIRST PUBLICATION';
   const key=`${date}:${lane}:${preview.publication?.revision||0}`;
@@ -185,7 +206,11 @@ $('preview').addEventListener('click',async()=>{
     roster.filter(allowed).forEach((r)=>{expected[r.session_id]=r.version_id;names.push(r.name);});
     if(!names.length)throw new Error('No editable linked Thursday sessions on this date.');
     prepared={payload,expected,date:$('date').value};$('publish').disabled=false;rosterContent();
-    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Shared pace bands will be published to paced athletes; effort-mode athletes keep the same work without a clock demand.`);
+    const adjusted=Object.entries(payload.individualPaceOffsets||{}).map(([id,seconds])=>{
+      const athlete=roster.find((r)=>r.athlete_id===id);
+      return `${athlete?.name||'Athlete'} ${seconds>=0?'+':''}${Math.round(seconds*600/1609.344)}s/600m`;
+    });
+    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Paced athletes receive the reference band${adjusted.length?`; individual adjustments: ${adjusted.join(', ')}`:''}. Effort-mode athletes receive the same sets without clock targets.`);
   }catch(err){prepared=null;$('publish').disabled=true;say(err.message,true);}
 });
 $('workoutForm').addEventListener('submit',async(e)=>{
@@ -232,6 +257,12 @@ $('manage').addEventListener('click',async(e)=>{
     if(target.id==='subscribe'){
       const athlete=$('addAthlete').value;if(!athlete)throw new Error('Choose an athlete.');
       await rpc('form_miami_set_subscription',{p_athlete_id:athlete,p_lane:lane,p_enabled:true,p_mode:isThursday()?$('addMode').value:'effort'});
+    }else if(target.id==='changeMode'){
+      const athlete=$('modeAthlete').value,mode=$('modeValue').value,person=roster.find((r)=>r.athlete_id===athlete);
+      if(!person||!['paced','effort'].includes(mode))throw new Error('Choose a subscribed athlete and a track mode.');
+      if(person.mode===mode)throw new Error(`${person.name} already uses that track mode.`);
+      if(!confirm(`Set ${person.name} to ${mode==='effort'?'own effort (no shared clock targets)':'own pace (shared clock targets)'} for upcoming FORM Thursdays? This does not change previously published sessions.`))return;
+      await rpc('form_miami_set_subscription',{p_athlete_id:athlete,p_lane:'thursday',p_enabled:true,p_mode:mode});
     }else if(target.dataset.attach){
       const id=target.dataset.attach,session=document.querySelector(`[data-link="${id}"]`)?.value;if(!session)throw new Error('Choose a specific published Thursday session.');
       await rpc('form_miami_set_link',{p_athlete_id:id,p_session_id:session});

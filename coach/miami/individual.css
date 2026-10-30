@@ -1,0 +1,8 @@
+.individual { border-top: 1px solid #373e40; padding: 24px 0 4px; margin-top: 25px; }
+.individual summary { color: #cfdfeb; font-size: 14px; font-weight: 550; cursor: pointer; }
+.individual p.hint { max-width: 680px; margin: 15px 0 20px; }
+.individual-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(215px,1fr)); gap: 12px 20px; }
+.individual-row { display: grid; grid-template-columns: minmax(100px,1fr) 110px; gap: 12px; align-items: center; border-bottom: 1px solid #333a3c; padding: 7px 0; }
+.individual-row label { font-size: 12px; margin: 0; letter-spacing: 0; font-weight: 450; color: #e0e3e1; }
+.individual-row input { width: 100%; padding: 10px; text-align: center; }
+.individual-row .unit { color: #99aeb8; font-size: 10px; }
