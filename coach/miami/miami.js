@@ -24,7 +24,7 @@ function formatPace(seconds) {
   return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;
 }
 function parsePace(raw) {
-  const match=/^(\\d{1,2}):([0-5]\\d)$/.exec(String(raw||'').trim());
+  const match=/^(\d{1,2}):([0-5]\d)$/.exec(String(raw||'').trim());
   if(!match)throw new Error('Enter a pace in m:ss per mile, such as 5:19.');
   const seconds=Number(match[1])*60+Number(match[2]);
   if(seconds<180||seconds>900)throw new Error('Pace must be between 3:00 and 15:00 per mile.');
@@ -34,7 +34,7 @@ function setRow(part={}){
   const recoveryKind=part.recoveryKind||'jog';
   return `<div class="set">
     <label>REPEATS<input data-part="repeatCount" type="number" min="1" max="30" value="${safe(part.repeatCount ?? 1)}" required></label>
-    <label>DISTANCE · M<input data-part="meters" type="number" min="0" max="10000" step="50" value="${safe(part.distance == null ? 400 : Math.round(part.distance*1000))}"></label>
+    <label>DISTANCE · M<input data-part="meters" type="number" min="0" max="10000" step="50" value="${safe(part.distance == null ? (part.durationSeconds ? 0 : 400) : Math.round(part.distance*1000))}"></label>
     <label>WORK · SECONDS<input data-part="durationSeconds" type="number" min="0" max="3600" value="${safe(part.durationSeconds ?? '')}" placeholder="For timed holds"></label>
     <label>FAST PACE · /MI<input data-part="paceFast" type="text" inputmode="numeric" value="${safe(formatPace(part.paceLowSeconds))}" placeholder="5:19"></label>
     <label>SLOW PACE · /MI<input data-part="paceSlow" type="text" inputmode="numeric" value="${safe(formatPace(part.paceHighSeconds))}" placeholder="5:25"></label>
