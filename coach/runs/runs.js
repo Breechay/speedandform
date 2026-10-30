@@ -514,7 +514,7 @@ function newRun() {
     if (!name || !address) throw new Error('Add the place and its address.');
     const { data: { user } } = await sb.auth.getUser();
     const groupFacts = kind === 'track' && f.get('session') ? { workout_session_id: f.get('session') } : {};
-    const latestCover = runs.filter(r => r.kind === kind && facts(r).hero_url)
+    const latestCover = runs.filter(r => r.kind === kind && Object.prototype.hasOwnProperty.call(facts(r),'hero_url'))
       .sort((a,b) => Date.parse(b.starts_at)-Date.parse(a.starts_at))[0];
     if (latestCover) Object.assign(groupFacts, Object.fromEntries(COVER_KEYS.map(k => [k, coverFacts(latestCover)[k]])));
     const { error } = await sb.from('collective_runs').insert({
