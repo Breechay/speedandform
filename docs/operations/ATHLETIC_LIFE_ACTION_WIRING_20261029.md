@@ -6,6 +6,8 @@ October 29, 2026 · Implemented private capability · production database live; 
 
 The founding [Athletic Life brief](../../the-athletic-life/brief.md) asks what FORM could make possible in a person's life. The [research agent guide](../../the-athletic-life/research/agent-guide.md) provides strategic context, not an approved feature backlog. This contract gives Brice and authorized agents a small private workflow for exploring those opportunities without building a social network, duplicating athlete records or converting hypotheses into commitments.
 
+When looking for a future experiment, consult the [Athletic Life idea shelf](ATHLETIC_LIFE_IDEA_SHELF_20261029.md) first. It preserves the October 29 race, travel, memory, hospitality and engineering possibilities without seeding them into this register or making them approved work.
+
 **The missing operation is:** idea → named human benefit → smallest test → resource/permission review → owner approval → actual action in the owning system → evidence → continue, revise or park.
 
 The register is intentionally distinct from a task list. It records an experiment's question, scope, approval and learning. The existing `operating_items` remain the source for next actions and the Daily Operating Brief. A button can create **one linked operating task**; nothing is added to today's four priorities automatically.
