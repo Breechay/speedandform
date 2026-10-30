@@ -42,7 +42,8 @@
             <label>Official race website<input name="official_url" type="url" placeholder="https://..."></label>
 
             <div class="section-heading spaced"><h2>Words</h2><span>Short. Specific. Source-backed.</span></div>
-            <label>Race introduction<textarea name="brief" maxlength="700" rows="3" placeholder="A concise reason this course and occasion are distinct."></textarea></label>
+            <label>Race introduction<textarea name="brief" maxlength="240" rows="3" placeholder="One specific detail that makes this race distinct."></textarea></label>
+            <p class="hint" id="brief-count">Aim for 15–25 words. Specific, sourced and easy to read.</p>
             <label>Introduction source<input name="brief_source_url" type="url" placeholder="https://organizer..."></label>
             <label>Course overview<textarea name="course_overview" maxlength="500" rows="2"></textarea></label>
             <div class="pair"><label>Full marathon course<textarea name="full_course" maxlength="500" rows="3"></textarea></label><label>Half marathon course<textarea name="half_course" maxlength="500" rows="3"></textarea></label></div>
@@ -73,6 +74,6 @@
       </section>
     </main>
   </div>
-  <script type="module" src="/coach/races/workbench.js?v=1"></script>
+  <script type="module" src="/coach/races/workbench.js?v=2"></script>
 </body>
 </html>
