@@ -26,7 +26,8 @@ The site is on a review branch. Do not merge into the auto-published site or adv
 
 ## Acceptance checks
 
-An isolated PostgreSQL 16 CI service now compiles the *unapplied candidate* SQL
+An isolated PostgreSQL 17.6 CI service, matched to the currently observed FORM
+database version, now compiles the *unapplied candidate* SQL
 against minimal fixture tables and checks anonymous/non-admin denial, direct
 table isolation, stale draft revisions, external-source conflicts, atomic
 photo-free publication, one publication-history row and versioned cover
