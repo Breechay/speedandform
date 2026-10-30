@@ -1,0 +1,904 @@
+{
+  "schema": "form_miami_publish_thursday.payloads.v1",
+  "status": "prepared_not_published",
+  "author": "FORM coach revision 2026-10-30",
+  "rules": [
+    "Do not insert directly into athlete version tables.",
+    "Call the authenticated coach preview for each date immediately before publishing; expected session/version ids must be fresh.",
+    "Pause or preserve named race/effort/taper exceptions and completed sessions.",
+    "Re-author and verify each affected athlete Week story, and complete paired FORM/Forge review.",
+    "A PR or this manifest alone does not publish any athlete plan."
+  ],
+  "dates": [
+    {
+      "on_date": "2026-11-05",
+      "payload": {
+        "title": "Speed · 1000 / 600 / 400 × 2",
+        "intent": "Hold a controlled kilometer, approach 5K speed over 600m, and finish the 400m faster without forcing it.",
+        "duration": 60,
+        "details": "Two passes. 1000m 3:30–3:35; 600m 2:00–2:03; 400m 1:16–1:19. Recovery 2:00 after 1000, 1:30 after 600, 3:00 between passes.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 338,
+            "paceHighSeconds": 346,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "easy"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 180,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 338,
+            "paceHighSeconds": 346,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "easy"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-11-12",
+      "payload": {
+        "title": "Long Holds · 2 × 10 min",
+        "intent": "Two ten-minute holds develop the steady running needed beneath 5K speed.",
+        "duration": 57,
+        "details": "2 × 10:00 at 6:00–6:08/mi. 2:00 easy jog between.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 600,
+            "paceLowSeconds": 360,
+            "paceHighSeconds": 368,
+            "rpeLow": 6,
+            "rpeHigh": 7,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-11-19",
+      "payload": {
+        "title": "Speed · 5K Pyramid",
+        "intent": "Build to a 1200m middle repetition, then shorten the work and regain speed.",
+        "duration": 58,
+        "details": "400m 1:16–1:19; 800m 2:40–2:43; 1200m 4:06–4:11; 800m and 400m repeat. Easy recoveries 1:30 / 2:00 / 2:30 / 2:00.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 328,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1.2,
+            "distanceUnit": "km",
+            "paceLowSeconds": 330,
+            "paceHighSeconds": 337,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 328,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-11-26",
+      "payload": {
+        "title": "Long Holds · 3 × 8 min",
+        "intent": "Three measured holds extend the time you can run well without turning the session into a 5K race.",
+        "duration": 60,
+        "details": "3 × 8:00 at 5:58–6:06/mi. 1:30 easy jog between.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 3,
+            "durationSeconds": 480,
+            "paceLowSeconds": 358,
+            "paceHighSeconds": 366,
+            "rpeLow": 6,
+            "rpeHigh": 7,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-12-03",
+      "payload": {
+        "title": "Speed · 600 / 400 Switch",
+        "intent": "Repeated 600s teach 5K rhythm; the 400s ask you to change speed while keeping the movement smooth.",
+        "duration": 61,
+        "details": "4 rounds: 600m 2:00–2:03 then 400m 1:16–1:19. 1:30 easy after 600; 2:30 easy between rounds.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 322,
+            "paceHighSeconds": 330,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-12-10",
+      "payload": {
+        "title": "Long Holds · 2 × 12 min",
+        "intent": "Extend each controlled effort by two minutes while keeping the pace even from start to finish.",
+        "duration": 61,
+        "details": "2 × 12:00 at 5:56–6:04/mi. 2:00 easy jog between.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 720,
+            "paceLowSeconds": 356,
+            "paceHighSeconds": 364,
+            "rpeLow": 6,
+            "rpeHigh": 7,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-12-17",
+      "payload": {
+        "title": "Speed · Descending Ladder",
+        "intent": "The distances shorten from 1200 to 400m, with the pace rising as the remaining work gets shorter.",
+        "duration": 60,
+        "details": "1200m 4:06–4:11; 1000m 3:21–3:24; 800m 2:39–2:42; 600m 1:58–2:01; 400m 1:15–1:18. 2:00 easy between.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1.2,
+            "distanceUnit": "km",
+            "paceLowSeconds": 330,
+            "paceHighSeconds": 337,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 323,
+            "paceHighSeconds": 328,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 320,
+            "paceHighSeconds": 326,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.6,
+            "distanceUnit": "km",
+            "paceLowSeconds": 317,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 120,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 302,
+            "paceHighSeconds": 314,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-12-24",
+      "payload": {
+        "title": "Long Holds · Continuous 22",
+        "intent": "Twenty-two continuous minutes develop uninterrupted rhythm without a rep-to-rep reset.",
+        "duration": 57,
+        "details": "22:00 continuous at 5:55–6:04/mi.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 1320,
+            "paceLowSeconds": 355,
+            "paceHighSeconds": 364,
+            "rpeLow": 6,
+            "rpeHigh": 7
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2026-12-31",
+      "payload": {
+        "title": "Speed · Broken 5K",
+        "intent": "Four 800m holds at goal rhythm, each followed by a shorter, faster 400m.",
+        "duration": 68,
+        "details": "4 rounds: 800m 2:39–2:42 and 400m 1:16–1:19. 1:30 easy after 800; 2:30 easy between rounds.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 320,
+            "paceHighSeconds": 326,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 320,
+            "paceHighSeconds": 326,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 320,
+            "paceHighSeconds": 326,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.8,
+            "distanceUnit": "km",
+            "paceLowSeconds": 320,
+            "paceHighSeconds": 326,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 90,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 0.4,
+            "distanceUnit": "km",
+            "paceLowSeconds": 306,
+            "paceHighSeconds": 318,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2027-01-07",
+      "payload": {
+        "title": "Long Holds · 2 × 14 min",
+        "intent": "Longer sustained running builds the capacity to carry the faster pace work deeper into a race.",
+        "duration": 66,
+        "details": "2 × 14:00 at 5:52–6:00/mi. 3:00 easy jog between.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 840,
+            "paceLowSeconds": 352,
+            "paceHighSeconds": 360,
+            "rpeLow": 6,
+            "rpeHigh": 7,
+            "recoverySeconds": 180,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2027-01-14",
+      "payload": {
+        "title": "Speed · 5 × 1000m",
+        "intent": "Five kilometers of broken work at goal race pace show whether the rhythm is repeatable across full kilometer repetitions.",
+        "duration": 62,
+        "details": "5 × 1000m in 3:18–3:22. 2:30 easy jog between. This is not a continuous 5K time trial.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 319,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 319,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 319,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 319,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8,
+            "recoverySeconds": 150,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "distance": 1,
+            "distanceUnit": "km",
+            "paceLowSeconds": 319,
+            "paceHighSeconds": 325,
+            "rpeLow": 6,
+            "rpeHigh": 8
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2027-01-21",
+      "payload": {
+        "title": "Long Holds · 20 + 8 min",
+        "intent": "One longer hold and one shorter hold preserve sustained speed before race week.",
+        "duration": 65,
+        "details": "20:00 + 8:00 at 5:50–6:00/mi. 3:00 easy jog between. Preserve named race/taper exceptions.",
+        "paceMode": "paced",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 1200,
+            "paceLowSeconds": 350,
+            "paceHighSeconds": 360,
+            "rpeLow": 6,
+            "rpeHigh": 7,
+            "recoverySeconds": 180,
+            "recoveryKind": "jog"
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 1,
+            "durationSeconds": 480,
+            "paceLowSeconds": 350,
+            "paceHighSeconds": 360,
+            "rpeLow": 6,
+            "rpeHigh": 7
+          },
+          {
+            "role": "cool_down",
+            "shape": "continuous",
+            "durationSeconds": 900,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          }
+        ]
+      }
+    },
+    {
+      "on_date": "2027-01-28",
+      "payload": {
+        "title": "Easy · 20 min + 4 strides",
+        "intent": "Twenty easy minutes and four relaxed strides maintain rhythm without another hard interval session.",
+        "duration": 26,
+        "details": "20:00 easy, then 4 × 15 seconds relaxed with 1:00 walk between. No race-pace target.",
+        "paceMode": "effort",
+        "components": [
+          {
+            "role": "warm_up",
+            "shape": "continuous",
+            "durationSeconds": 1200,
+            "rpeLow": 2,
+            "rpeHigh": 3
+          },
+          {
+            "role": "work",
+            "shape": "repetitions",
+            "repeatCount": 4,
+            "durationSeconds": 15,
+            "recoverySeconds": 60,
+            "recoveryKind": "easy",
+            "rpeLow": 4,
+            "rpeHigh": 5
+          }
+        ]
+      }
+    }
+  ]
+}

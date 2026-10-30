@@ -6,7 +6,8 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#101315">
   <title>FORM Miami · Coach</title>
-  <link rel="stylesheet" href="/coach/miami/miami.css?v=1">
+  <link rel="stylesheet" href="/coach/miami/miami.css?v=3">
+  <link rel="stylesheet" href="/coach/miami/story.css?v=1">
 </head>
 <body>
   <header class="top"><a class="wordmark" href="/coach/labs/">FORM <span>MIAMI</span></a><nav><a href="/coach/labs/">Athletes</a><a href="/coach/runs/">Runs</a><a href="/coach/ops/">Operations</a></nav></header>
@@ -23,6 +24,7 @@
           <div class="formgrid"><label>SESSION TITLE<input name="title" maxlength="100" required></label><label>TOTAL TIME · MINUTES<input name="duration" type="number" min="10" max="240" required></label></div>
           <label>WHAT WE ARE DOING<input name="intent" maxlength="240" required></label>
           <label>SETUP / CUES<input name="details" maxlength="500"></label>
+          <label>PACE STANDARD<select name="paceMode"><option value="paced">Clock targets for paced athletes</option><option value="effort">No clock target · easy running / strides</option></select></label>
           <div class="formgrid compact"><label>WARM UP · MINUTES<input name="warmup" type="number" min="0" max="90"></label><label>COOL DOWN · MINUTES<input name="cooldown" type="number" min="0" max="90"></label></div>
           <div class="sets-head"><h3>Work sets</h3><button class="subtle" id="addSet" type="button">+ Add set</button></div>
           <div class="sets" id="sets"></div>
@@ -31,10 +33,11 @@
         </form>
       </section>
       <section class="pane" id="athletesPane"><div class="pane-heading"><div><p class="kicker">02 / ATHLETES</p><h2>On their calendars</h2></div><span class="stamp" id="count"></span></div><div id="roster"></div><details class="management"><summary>Manage subscriptions and Thursday links</summary><div id="manage"></div></details></section>
+      <section class="pane" id="storiesPane" hidden><div class="pane-heading"><div><p class="kicker">02B / WEEK RECORD</p><h2>Review the week writing</h2></div></div><p class="intro-line">A Thursday revision makes the old weekly explanation stale. Review each affected athlete's actual week, rewrite what changed and why, then save. Unedited text is not accepted as a new review.</p><form id="storyForm"><div class="story-list" id="storyList"></div><div class="actions"><button type="submit" id="saveStories" class="primary">Save reviewed week stories</button></div><p class="hint">This writes only the owning athlete's week copy. It does not create or change another workout.</p></form></section>
       <section class="pane" id="runPane"><div class="pane-heading"><div><p class="kicker">03 / IN PERSON</p><h2>Meet when we meet.</h2></div><span class="stamp" id="runState">NO MEETUP</span></div><div id="meeting"></div><div class="run-link"><label>LINK AN EXISTING RUN<select id="runSelect"><option value="">Choose a run</option></select></label><button id="linkRun" type="button" disabled>Link and notify</button></div><p class="hint">Create an actual hosted occurrence in <a href="/coach/runs/">Runs</a> first. Saturday mileage is always prescribed independently.</p></section>
       <section class="pane"><div class="pane-heading"><div><p class="kicker">04 / MESSAGE</p><h2>Coach note</h2></div></div><form id="nudgeForm"><label>SUBJECT<input name="title" maxlength="90" placeholder="Thursday practice update" required></label><label>MESSAGE<textarea name="body" maxlength="500" rows="3" placeholder="Meet at 6:00. First rep at 6:15." required></textarea></label><div class="actions"><button type="submit" class="outline">Nudge subscribed athletes</button></div><p class="hint">A message appears in each athlete’s private inbox. Verified, claimed accounts can receive an email too.</p></form></section>
     </div>
   </main>
-  <script type="module" src="/coach/miami/miami.js?v=1"></script>
+  <script type="module" src="/coach/miami/miami.js?v=3"></script>
 </body>
 </html>

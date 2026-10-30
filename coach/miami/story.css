@@ -1,0 +1,7 @@
+.story-list { display: grid; gap: 16px; margin: 26px 0; }
+.story { padding: 22px; border: 1px solid #3d4647; border-radius: 7px; background: #171c1d; }
+.story h3 { font-size: 19px; font-weight: 550; letter-spacing: -.02em; margin: 0 0 20px; }
+.story h3 small { float: right; color: #a4b6b7; font-size: 11px; font-weight: 450; letter-spacing: .04em; }
+.story label { margin-bottom: 14px; }
+.story textarea { min-height: 73px; }
+@media (max-width: 680px) { .story { padding: 17px; } }
