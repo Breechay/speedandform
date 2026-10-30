@@ -57,7 +57,17 @@ function fillEditor(item){
   f.elements.warmup.value=Math.round((blocks.find((b)=>b.role==='warm_up')?.durationSeconds||1200)/60);
   f.elements.cooldown.value=Math.round((blocks.find((b)=>b.role==='cool_down')?.durationSeconds||900)/60);
   $('sets').innerHTML=blocks.filter((b)=>b.role==='work').map(setRow).join('')||setRow();
+  renderIndividualPaces(item?.individualPaceOffsets||{});
   $('publish').disabled=true;prepared=null;
+}
+function renderIndividualPaces(offsets){
+  const paced=roster.filter((r)=>allowed(r)&&r.mode==='paced');
+  $('individualPane').hidden=!isThursday()||!paced.length;
+  $('individualPaces').innerHTML=`<div class="individual-grid">${paced.map((r)=>{
+    const delta=offsets[r.athlete_id];
+    const per600=delta==null?'':String(Math.round(Number(delta)*600/1609.344));
+    return `<div class="individual-row" data-athlete="${safe(r.athlete_id)}"><label>${safe(r.name)}<span class="unit"> · SEC / 600M</span></label><input data-individual-offset type="number" min="-25" max="90" step="1" value="${safe(per600)}" placeholder="Group"></div>`;
+  }).join('')}</div>`;
 }
 function workoutPayload(){
   const f=$('workoutForm'); const warm=Number(f.elements.warmup.value||0)*60, cool=Number(f.elements.cooldown.value||0)*60;
@@ -85,8 +95,18 @@ function workoutPayload(){
     components.push(part);
   }
   if(cool>0)components.push({role:'cool_down',shape:'continuous',durationSeconds:cool,rpeLow:2,rpeHigh:3});
+  const individualPaceOffsets={};
+  for(const row of $('individualPaces').querySelectorAll('[data-athlete]')){
+    const raw=row.querySelector('[data-individual-offset]').value.trim();
+    if(!raw)continue;
+    const secondsOver600=Number(raw);
+    if(paceMode!=='paced'||!Number.isInteger(secondsOver600)||secondsOver600< -25||secondsOver600>90)
+      throw new Error('Individual adjustments must be whole seconds, from -25 to +90 per 600m, on a paced session.');
+    individualPaceOffsets[row.dataset.athlete]=Math.round(secondsOver600*1609.344/600);
+  }
   return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),
-    details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components};
+    details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components,
+    ...(Object.keys(individualPaceOffsets).length?{individualPaceOffsets}:{})};
 }
 function allowed(r){return Boolean(r.session_id&&r.version_id&&r.state==='published'&&!r.paused&&!r.protected&&!r.override&&!r.filed);}
 function rosterContent(){
@@ -153,7 +173,7 @@ async function load(){
   [preview]=await Promise.all([rpc('form_miami_preview',{p_lane:lane,p_on_date:date}),loadDateSessions(),loadRuns()]);
   roster=preview.roster||[];
   $('practiceTitle').textContent=isThursday()?'FORM Thursday':'FORM Saturday';
-  $('practiceIntro').textContent=isThursday()?'One shared structure and one authored pace standard. Named exceptions stay protected.':'Everyone runs their assigned distance. No meetup unless one is posted.';
+  $('practiceIntro').textContent=isThursday()?'One shared workout with a reference pace and individual targets where needed. Named exceptions stay protected.':'Everyone runs their assigned distance. No meetup unless one is posted.';
   $('sessionPane').hidden=!isThursday();
   $('revision').textContent=preview.publication?`REVISION ${preview.publication.revision}`:'FIRST PUBLICATION';
   const key=`${date}:${lane}:${preview.publication?.revision||0}`;
@@ -186,7 +206,11 @@ $('preview').addEventListener('click',async()=>{
     roster.filter(allowed).forEach((r)=>{expected[r.session_id]=r.version_id;names.push(r.name);});
     if(!names.length)throw new Error('No editable linked Thursday sessions on this date.');
     prepared={payload,expected,date:$('date').value};$('publish').disabled=false;rosterContent();
-    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Shared pace bands will be published to paced athletes; effort-mode athletes keep the same work without a clock demand.`);
+    const adjusted=Object.entries(payload.individualPaceOffsets||{}).map(([id,seconds])=>{
+      const athlete=roster.find((r)=>r.athlete_id===id);
+      return `${athlete?.name||'Athlete'} ${seconds>=0?'+':''}${Math.round(seconds*600/1609.344)}s/600m`;
+    });
+    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Paced athletes receive the reference band${adjusted.length?`; individual adjustments: ${adjusted.join(', ')}`:''}. Effort-mode athletes receive the same sets without clock targets.`);
   }catch(err){prepared=null;$('publish').disabled=true;say(err.message,true);}
 });
 $('workoutForm').addEventListener('submit',async(e)=>{
