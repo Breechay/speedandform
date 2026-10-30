@@ -26,6 +26,13 @@ The site is on a review branch. Do not merge into the auto-published site or adv
 
 ## Acceptance checks
 
+An isolated PostgreSQL 16 CI service now compiles the *unapplied candidate* SQL
+against minimal fixture tables and checks anonymous/non-admin denial, direct
+table isolation, stale draft revisions, external-source conflicts, atomic
+photo-free publication, one publication-history row and versioned cover
+requirements. This is a repeatable SQL contract test, **not** a substitute for
+real Supabase Storage/Auth behavior or a production migration rehearsal.
+
 1. Formal SQL migration in a controlled environment, inspect diff and run Supabase security/performance advisors.
 2. Test unauthenticated and unrelated signed-in access to all three workbench RPCs; both must fail. An authorized coach can read all events, create a draft, save with the expected revision, and read back. A second editor's stale revision fails.
 3. Change an event externally after the draft is saved. Publishing must fail and leave canonical `race_events` and editorial unchanged.
