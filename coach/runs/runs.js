@@ -30,8 +30,8 @@ const FILMS = 'collective-films';
 const FILM_LIMIT = 60 * 1024 * 1024;
 const COVER_KEYS = ['hero_url','hero_focus_x','hero_focus_y','hero_monochrome','hero_contrast','hero_brightness'];
 const coverDefaults = kind => kind === 'track'
-  ? {hero_focus_x:50,hero_focus_y:54,hero_monochrome:true,hero_contrast:117,hero_brightness:103}
-  : {hero_focus_x:48,hero_focus_y:84,hero_monochrome:false,hero_contrast:100,hero_brightness:100};
+  ? {hero_url:'https://speedandform.com/assets/collective/run-covers/together-after.webp',hero_focus_x:50,hero_focus_y:54,hero_monochrome:true,hero_contrast:117,hero_brightness:103}
+  : {hero_url:'https://speedandform.com/assets/collective/run-covers/road-rhythm.webp',hero_focus_x:48,hero_focus_y:84,hero_monochrome:false,hero_contrast:100,hero_brightness:100};
 const coverFacts = r => ({...coverDefaults(r.kind),...Object.fromEntries(COVER_KEYS.filter(k => facts(r)[k] !== undefined && facts(r)[k] !== null).map(k => [k,facts(r)[k]]))});
 const focus = n => Math.max(0,Math.min(100,Number(n)||0));
 const coverFilter = c => `${c.hero_monochrome?'grayscale(1) ':''}contrast(${Number(c.hero_contrast)/100}) brightness(${Number(c.hero_brightness)/100})`;
