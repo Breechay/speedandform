@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import {normalizePayload,validatePayload,validateWorkbench,escapeHtml,safeHttps} from '../coach/races/workbench-model.mjs';
+import {normalizePayload,validatePayload,validateWorkbench,escapeHtml,safeHttps,isRaceCoverUrl,wordCount} from '../coach/races/workbench-model.mjs';
 
 const id='00000000-0000-4000-8000-000000000001';
 const base={name:'Life Time Miami Marathon & Half',starts_on:'2027-01-31',ends_on:'2027-01-31',city:'Miami, FL',
@@ -20,11 +20,32 @@ test('publication requires provenance for an authored brief',()=>{
   assert.match(validatePayload({...base,source_checked_at:null},{publish:true,eventId:id}).errors.join(' '),/checked/i);
 });
 test('cover must be event-specific and approval plus alt are required',()=>{
-  const url=`https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-media/races/${id}/v2.webp`;
+  const imageId='00000000-0000-4000-8000-000000000003';
+  const url=`https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-media/races/${id}/${imageId}.webp`;
   assert.match(validatePayload({...base,cover_image_url:url},{publish:true,eventId:id}).errors.join(' '),/rights/i);
   assert.deepEqual(validatePayload({...base,cover_image_url:url,cover_rights_confirmed:true,cover_image_alt:'Runners at dawn'},
     {publish:true,eventId:id}).errors,[]);
   assert.match(validatePayload({...base,cover_image_url:url},{eventId:'00000000-0000-4000-8000-000000000002'}).errors.join(' '),/this race/i);
+});
+test('cover URL rejects cross-event traversal, external hosts, query strings and unversioned files',()=>{
+  const imageId='00000000-0000-4000-8000-000000000003';
+  const root=`https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-media/races/${id}/`;
+  assert.equal(isRaceCoverUrl(`${root}${imageId}.jpg`,id),true);
+  for(const url of [
+    `${root}../other-race/${imageId}.webp`,`${root}${imageId}.webp?download=1`,
+    `${root}${imageId}.webp#fragment`,`${root}cover.jpg`,
+    `https://cdn.example.com/storage/v1/object/public/collective-media/races/${id}/${imageId}.jpg`,
+    `${root}${imageId}.svg`
+  ])assert.equal(isRaceCoverUrl(url,id),false,url);
+});
+test('race introductions keep their short editorial limit',()=>{
+  assert.equal(wordCount('One specific course. One clear reason.'),6);
+  assert.deepEqual(validatePayload({...base,brief:'x'.repeat(240)},{eventId:id}).errors,[]);
+  assert.match(validatePayload({...base,brief:'x'.repeat(241)},{eventId:id}).errors.join(' '),/too long/i);
+});
+test('invalid calendar dates are rejected before database publication',()=>{
+  const bad=validatePayload({...base,starts_on:'2027-02-30'},{eventId:id}).errors.join(' ');
+  assert.match(bad,/valid start and end dates/i);
 });
 test('new drafts cannot smuggle entry, result or approval fields',()=>{
   const p=normalizePayload({...base,race_entries:[{status:'registered'}],result:{finish_seconds:1},athlete_approved_at:'now'});
@@ -52,4 +73,7 @@ test('SQL retains strict separation between draft and athlete-visible publish',(
   assert.doesNotMatch(sql,/update\s+public\.race_entries\b/i);
   assert.doesNotMatch(sql,/update\s+coach_race_private\.result_publications\b/i);
   assert.match(sql,/for insert to authenticated/);
+  assert.match(sql,/char_length\(coalesce\(p_payload->>'brief',''\)\)>240/);
+  assert.match(sql,/from storage\.objects o where o\.bucket_id='collective-media'/);
+  assert.match(sql,/o\.name=split_part\(v_cover,'\/collective-media\/',2\)/);
 });
