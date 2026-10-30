@@ -74,4 +74,9 @@ assert.match(emailFix,/u\.email_confirmed_at is not null/,'only confirmed recipi
 assert.match(emailFix,/grant execute on function public\.form_miami_email_claim\(integer\) to service_role/,'dispatcher retains least-privilege access');
 assert.match(emailFix,/revoke all on function public\.form_miami_email_claim\(integer\) from public,anon,authenticated/,'athletes never claim outbox');
 
+const labs = fs.readFileSync(path.join(root,'coach/labs/labs.js'),'utf8');
+assert.match(labs,/id="rvDetails"/,'individual revision offers athlete-facing setup copy');
+assert.match(labs,/details: document.getElementById\('rvDetails'\)/,'revision preserves authored details in the new version');
+assert.match(coach,/Remove shared rep clock ranges from setup text/,'group editor prevents mixed individual and reference clocks');
+
 console.log('FORM Miami static publication contract passes.');

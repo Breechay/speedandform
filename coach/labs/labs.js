@@ -2443,6 +2443,9 @@ function openRevise(sessionId) {
       : `<div class="f"><label>THE WORK</label>
           <p class="hint">${escapeHtml(structureOf(version) || 'No typed anatomy')} — composite work is
           re-authored in the Console, where each piece can be changed on purpose.</p></div>`}
+    <div class="f"><label for="rvDetails">SETUP / CUES</label>
+      <textarea id="rvDetails" rows="4">${escapeHtml(version?.details || '')}</textarea>
+      <p class="hint">Athlete-facing. Keep the rep clocks here consistent with the individually prescribed work.</p></div>
     <div class="f"><label for="rvIntent">INTENT</label>
       <textarea id="rvIntent" placeholder="Blank keeps the sentence it already has."></textarea></div>
     ${askField(session)}
@@ -2515,6 +2518,7 @@ async function keepRevision() {
       title,
       intent: document.getElementById('rvIntent').value.trim() || null,
       changeReason: reason,
+      details: document.getElementById('rvDetails').value.trim() || null,
       prescribedDistance: total,
       distanceUnit: version?.distance_unit || 'mi',
       components

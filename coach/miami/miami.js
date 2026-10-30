@@ -128,6 +128,9 @@ function workoutPayload(){
       throw new Error('Individual adjustments must be whole seconds, from -25 to +90 per 600m, on a paced session.');
     individualPaceOffsets[row.dataset.athlete]=Math.round(secondsOver600*1609.344/600);
   }
+  if(Object.keys(individualPaceOffsets).length && /\b\d{1,2}:\d{2}\s*[–-]\s*\d{1,2}:\d{2}\b/.test(f.elements.details.value)){
+    throw new Error('Remove shared rep clock ranges from setup text when individual paces are prescribed. The work sets show each athlete their own targets.');
+  }
   return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),
     details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components,
     ...(Object.keys(individualPaceOffsets).length?{individualPaceOffsets}:{})};
