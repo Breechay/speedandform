@@ -17,7 +17,31 @@ let lane = 'thursday', preview = null, roster = [], availableAthletes = [], dayS
 const isThursday = () => lane === 'thursday';
 function say(msg,error=false){$('status').textContent=msg;$('status').classList.toggle('error',error);}
 async function rpc(name,args={}){const {data,error}=await sb.rpc(name,args);if(error)throw error;return data;}
-async function dispatchEmails(){try{const {data,error}=await sb.functions.invoke('form-messages',{body:{action:'dispatch'}});if(error) return 'Email delivery is queued; sender could not be reached.';return data?.sent ? `${data.sent} email${data.sent===1?'':'s'} sent.` : 'In-app messages saved. Eligible emails were checked.';}catch{return 'In-app messages saved. Email dispatch is pending.';}}
+async function dispatchEmails(){
+  try{
+    const {data,error}=await sb.functions.invoke('form-messages',{body:{action:'dispatch'}});
+    if(error){
+      let reason='';
+      try{reason=(await error.context?.clone()?.json())?.code||'';}catch{}
+      if(reason==='delivery_queue_error')return 'Email queue could not be claimed. Existing notices remain pending.';
+      if(reason==='delivery_not_configured')return 'Email sender is not configured. Existing notices remain pending.';
+      return 'Email delivery could not be completed. Existing notices remain pending.';
+    }
+    const sent=Number(data?.sent||0),failed=Number(data?.failed||0),processed=Number(data?.processed||0);
+    if(failed)return `${sent} email${sent===1?'':'s'} sent; ${failed} failed and will be retried.`;
+    return processed ? `${sent} email${sent===1?'':'s'} sent.` : 'No eligible email updates pending.';
+  }catch{return 'Email delivery unavailable. Existing notices remain pending.';}
+}
+
+$('retryEmails').addEventListener('click',async()=>{
+  const button=$('retryEmails');
+  button.disabled=true;
+  say('Checking approved, pending email updates…');
+  try{
+    const result=await dispatchEmails();
+    say(result,/could not|unavailable|pending|failed|not completed|not configured/i.test(result));
+  }finally{button.disabled=false;}
+});
 
 function formatPace(seconds) {
   if(!Number.isInteger(seconds)||seconds<1)return '';
