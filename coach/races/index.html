@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#f4f2ec">
+  <title>Race Editorial · FORM Coach</title>
+  <link rel="stylesheet" href="/coach/races/workbench.css?v=1">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to race editor</a>
+  <div class="shell">
+    <header class="masthead">
+      <a href="/coach/ops/" aria-label="Back to private Operating Console"><img src="/assets/brand/kit/emblem/sf-emblem-ink.svg" width="70" alt="Speed and Form"></a>
+      <span>RACE EDITORIAL</span>
+      <button id="signout" type="button" hidden>Sign out</button>
+    </header>
+    <main id="main">
+      <section id="gate">
+        <p class="overline">Private coach workbench</p>
+        <h1>Races.</h1>
+        <p class="intro">Use your existing authorized coach account. Nothing on this page is visible to athletes until you publish it.</p>
+        <form id="signin-form" class="signin">
+          <label>Email<input type="email" name="email" autocomplete="username" required></label>
+          <label>Password<input type="password" name="password" autocomplete="current-password" minlength="8"></label>
+          <div class="action-row"><button type="submit" class="ink">Sign in</button><button type="button" id="magic">Email a sign-in link</button></div>
+        </form>
+        <p id="gate-message" role="status">Checking your existing sign-in.</p>
+      </section>
+      <section id="workspace" hidden>
+        <div class="work-heading"><div><p class="overline">FORM / THE CALENDAR</p><h1>Race editorial.</h1></div><a href="/coach/ops/">Operating Console ↗</a></div>
+        <div class="race-switch"><label for="event-select">Choose a race</label><select id="event-select"></select><button type="button" id="refresh">Refresh</button></div>
+        <p id="message" role="status" aria-live="polite"></p>
+        <div class="editor-layout">
+          <form id="race-form" class="editor" novalidate>
+            <div class="section-heading"><h2>Event</h2><span id="draft-state"></span></div>
+            <label>Race name<input name="name" maxlength="240" required></label>
+            <div class="pair"><label>First event day<input name="starts_on" type="date" required></label><label>Final event day<input name="ends_on" type="date" required></label></div>
+            <div class="pair"><label>City / region<input name="city" maxlength="180"></label><label>Venue<input name="venue" maxlength="250"></label></div>
+            <label>Official race website<input name="official_url" type="url" placeholder="https://..."></label>
+
+            <div class="section-heading spaced"><h2>Words</h2><span>Short. Specific. Source-backed.</span></div>
+            <label>Race introduction<textarea name="brief" maxlength="700" rows="3" placeholder="A concise reason this course and occasion are distinct."></textarea></label>
+            <label>Introduction source<input name="brief_source_url" type="url" placeholder="https://organizer..."></label>
+            <label>Course overview<textarea name="course_overview" maxlength="500" rows="2"></textarea></label>
+            <div class="pair"><label>Full marathon course<textarea name="full_course" maxlength="500" rows="3"></textarea></label><label>Half marathon course<textarea name="half_course" maxlength="500" rows="3"></textarea></label></div>
+
+            <div class="section-heading spaced"><h2>Race day</h2></div>
+            <div class="pair"><label>Start time / wave note<input name="start_time" maxlength="180" placeholder="6:00 AM ET, staggered corrals"></label><label>Start address<input name="start_address" maxlength="500"></label></div>
+            <label>Organizer facts last checked<input type="date" name="source_checked_at"></label>
+
+            <div class="section-heading spaced"><h2>Photograph</h2><span>Optional</span></div>
+            <p class="hint">An event without a photo keeps its full typography-led layout. To change an image, upload a new file; existing app caches won't hold onto the old one.</p>
+            <label class="check"><input type="checkbox" name="cover_rights_confirmed"> I have the right to publish this photo in FORM.</label>
+            <label>Image description<input name="cover_image_alt" placeholder="What the photograph shows"></label>
+            <label>Upload approved image<input type="file" name="cover_file" accept="image/jpeg,image/png,image/webp"></label>
+            <button type="button" id="upload">Upload new photo</button>
+            <label>Stored cover URL<input name="cover_image_url" readonly placeholder="No cover selected"></label>
+            <button type="button" id="remove-cover" class="subtle">Remove cover from this draft</button>
+            <p class="hint">Photos must be your own or explicitly licensed, with the appropriate subject approval. Uploading does not publish them in the app. Files in the public media bucket are accessible to anyone with their URL.</p>
+
+            <div class="savebar"><button class="ink" id="save" type="submit">Save private draft</button><button id="publish" type="button" disabled>Publish saved draft</button></div>
+            <p class="hint">Publishing updates the canonical race and published editorial atomically. It never changes athlete entries, personal goals, results, or training.</p>
+          </form>
+          <aside class="preview-wrap">
+            <div class="section-heading"><h2>Preview</h2><span>Editorial content only</span></div>
+            <p class="hint">A live layout preview of this copy and cover. Athlete portraits and the exact native shell are verified in the app separately.</p>
+            <article id="preview" class="preview" aria-label="Race editorial preview"></article>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="/coach/races/workbench.js?v=1"></script>
+</body>
+</html>
