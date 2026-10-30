@@ -213,10 +213,32 @@ $('preview').addEventListener('click',async()=>{
     say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Paced athletes receive the reference band${adjusted.length?`; individual adjustments: ${adjusted.join(', ')}`:''}. Effort-mode athletes receive the same sets without clock targets.`);
   }catch(err){prepared=null;$('publish').disabled=true;say(err.message,true);}
 });
+function confirmWeekPublication(count){
+  const dialog=$('publishConfirm');
+  $('publishConfirmDescription').textContent=`This updates ${count} linked athlete Weeks. Completed sessions, paused plans, study-owned sessions and individual overrides remain untouched.`;
+  return new Promise((resolve)=>{
+    let settled=false;
+    const finish=(confirmed)=>{
+      if(settled)return;
+      settled=true;
+      $('cancelPublish').removeEventListener('click',cancel);
+      $('confirmPublish').removeEventListener('click',accept);
+      dialog.removeEventListener('cancel',cancel);
+      if(dialog.open)dialog.close();
+      resolve(confirmed);
+    };
+    const cancel=(event)=>{event?.preventDefault();finish(false);};
+    const accept=()=>finish(true);
+    $('cancelPublish').addEventListener('click',cancel);
+    $('confirmPublish').addEventListener('click',accept);
+    dialog.addEventListener('cancel',cancel);
+    dialog.showModal();
+  });
+}
 $('workoutForm').addEventListener('submit',async(e)=>{
   e.preventDefault();if(!prepared||prepared.date!==$('date').value)return;
   const count=Object.keys(prepared.expected).length;
-  if(!confirm(`Publish this Thursday workout to ${count} athlete Weeks? Completed sessions and individual overrides remain untouched.`))return;
+  if(!await confirmWeekPublication(count))return;
   $('publish').disabled=true;
   try{
     const out=await rpc('form_miami_publish_thursday',{p_on_date:prepared.date,p_payload:prepared.payload,p_expected:prepared.expected});
