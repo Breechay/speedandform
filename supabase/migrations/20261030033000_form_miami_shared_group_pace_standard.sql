@@ -5,6 +5,74 @@
 -- Effort-mode participants receive the same work geometry without a clock target.
 -- This migration does not publish any athlete work by itself.
 
+-- Simon's Study 003 is a separately versioned half-marathon research plan.
+-- Its current FORM Thursday links have not been paused, yet the authored
+-- sessions must not be overwritten by the group 5K block. This explicit
+-- source-plan guard stays effective across dates without altering his link,
+-- prescription, study publication, or the athlete's Week record.
+create or replace function public.form_miami_is_protected_study_session(p_session_id uuid)
+returns boolean language sql stable security definer set search_path = '' as $$
+  select exists (
+    select 1 from public.planned_sessions s
+    join public.training_plan_sessions tps on tps.id=s.plan_session_id
+    join public.training_plans tp on tp.id=tps.plan_id
+    where s.id=p_session_id and tp.slug='simon-ceiling-durability-01'
+  );
+$$;
+revoke all on function public.form_miami_is_protected_study_session(uuid) from public,anon,authenticated;
+
+-- Keep the preview recipient set identical to the publisher's hard gate.
+-- The UI will show the protected study rather than silently count it as ready.
+create or replace function public.form_miami_preview(p_lane text,p_on_date date)
+returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare roster jsonb; run_info jsonb; latest jsonb;
+begin
+  perform public.form_miami_ensure_coach();
+  if p_lane not in ('thursday','saturday') or p_on_date is null then raise exception 'invalid_lane_or_date'; end if;
+  select coalesce(jsonb_agg(jsonb_build_object(
+    'athlete_id',a.id,'name',a.display_name,'mode',sub.track_mode,
+    'session_id',s.id,'scheduled_on',s.scheduled_on,'state',s.state,
+    'override',coalesce(s.override_reason,'')<>'',
+    'protected',case when s.id is null then false else public.form_miami_is_protected_study_session(s.id) end,
+    'paused',coalesce(link.paused,false),'filed',exists(select 1 from public.session_completions c where c.planned_session_id=s.id),
+    'version_id',v.id,'version_number',v.version_number,'title',v.title,
+    'intent',v.intent,'details',v.details,'duration',v.prescribed_duration_minutes,
+    'distance',v.prescribed_distance,'unit',v.distance_unit,
+    'components',(select coalesce(jsonb_agg(jsonb_build_object(
+      'role',c.role,'shape',c.shape,'repeatCount',c.repeat_count,
+      'distance',c.distance,'distanceUnit',c.distance_unit,'durationSeconds',c.duration_seconds,
+      'recoverySeconds',c.recovery_seconds,'recoveryKind',c.recovery_kind,
+      'paceLowSeconds',c.pace_low_seconds,'paceHighSeconds',c.pace_high_seconds,
+      'rpeLow',c.rpe_low,'rpeHigh',c.rpe_high) order by c.position),'[]'::jsonb)
+      from public.planned_session_components c where c.version_id=v.id)
+  ) order by a.display_name),'[]'::jsonb) into roster
+  from public.form_miami_subscriptions sub
+  join public.athletes a on a.id=sub.athlete_id
+  left join public.form_miami_session_links link on link.athlete_id=sub.athlete_id and link.lane=p_lane and link.on_date=p_on_date
+  left join public.planned_sessions s on s.id=case when p_lane='thursday' then link.planned_session_id else null end
+  left join lateral (select vv.* from public.planned_session_versions vv where vv.planned_session_id=s.id order by vv.version_number desc limit 1) v on true
+  where sub.lane=p_lane and sub.enabled and public.is_coach_member(a.id);
+  if p_lane='saturday' then
+    select coalesce(jsonb_agg(jsonb_build_object(
+      'athlete_id',a.id,'name',a.display_name,'mode',sub.track_mode,'session_id',s.id,
+      'scheduled_on',s.scheduled_on,'state',s.state,'title',v.title,
+      'distance',v.prescribed_distance,'unit',v.distance_unit,'filed',exists(select 1 from public.session_completions c where c.planned_session_id=s.id)
+    ) order by a.display_name),'[]'::jsonb) into roster
+    from public.form_miami_subscriptions sub
+    join public.athletes a on a.id=sub.athlete_id
+    left join lateral(select ps.* from public.planned_sessions ps where ps.athlete_id=a.id and ps.scheduled_on=p_on_date and ps.state='published' order by ps.position limit 1) s on true
+    left join lateral(select * from public.planned_session_versions vv where vv.planned_session_id=s.id order by vv.version_number desc limit 1) v on true
+    where sub.lane='saturday' and sub.enabled and public.is_coach_member(a.id);
+  end if;
+  select jsonb_build_object('id',r.id,'title',r.title,'kind',r.kind,'status',r.status,
+    'starts_at',r.starts_at,'meet_at',r.meet_at,'meet_name',r.meet_name,'meet_address',r.meet_address)
+  into run_info from public.form_miami_run_links l join public.collective_runs_current r on r.id=l.run_id
+  where l.lane=p_lane and l.on_date=p_on_date;
+  select jsonb_build_object('revision',p.revision,'payload',p.payload,'published_at',p.published_at)
+  into latest from public.form_miami_publications p where p.lane=p_lane and p.on_date=p_on_date order by p.revision desc limit 1;
+  return jsonb_build_object('lane',p_lane,'date',p_on_date,'roster',roster,'run',run_info,'publication',latest);
+end $$;
+
 create or replace function public.form_miami_publish_thursday(
  p_on_date date,p_payload jsonb,p_expected jsonb)
 returns jsonb language plpgsql security definer set search_path = '' as $$
@@ -56,7 +124,8 @@ begin
     where sub.lane='thursday' and sub.enabled order by a.id
   loop
     if not public.is_coach_member(r.athlete_id) then raise exception 'not_athlete_coach'; end if;
-    if r.paused or r.state<>'published' or coalesce(r.override_reason,'')<>'' or
+    if r.paused or public.form_miami_is_protected_study_session(r.session_id)
+       or r.state<>'published' or coalesce(r.override_reason,'')<>'' or
        exists(select 1 from public.session_completions where planned_session_id=r.session_id) then continue; end if;
     eligible := eligible+1;
     select * into v from public.planned_session_versions where planned_session_id=r.session_id order by version_number desc limit 1;
@@ -72,6 +141,7 @@ begin
     join public.form_miami_session_links link on link.athlete_id=sub.athlete_id and link.lane='thursday' and link.on_date=p_on_date
     join public.planned_sessions s on s.id=link.planned_session_id
     where sub.lane='thursday' and sub.enabled and not link.paused and s.state='published'
+      and not public.form_miami_is_protected_study_session(s.id)
       and coalesce(s.override_reason,'')='' and not exists(select 1 from public.session_completions where planned_session_id=s.id)
     order by sub.athlete_id
   loop
