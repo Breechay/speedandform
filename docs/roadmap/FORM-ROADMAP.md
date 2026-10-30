@@ -2,7 +2,7 @@
 
 - Working branch `chatgpt/race-editorial-coach-workbench-20261029`: private coach race editor, mobile-layout editorial preview, versioned cover upload, private draft/publish workflow, conflict protection and publication audit. All canonical `race_events` remain the event owners; the existing athlete V2 projection reads only deliberately published content.
 - Source contract: [Race workbench release contract](../next/FORM_RACE_WORKBENCH_RELEASE_CONTRACT_20261029.md); SQL is a **candidate** in `docs/next` and must enter the canonical migration workflow after controlled review. No deployment, new athlete entry, media publication or race-day change is claimed.
-- Checks in current isolated workspace: seven model/contract tests passed; JS syntax passed. Remaining: CLI-created migration, SQL transaction/auth tests, security advisors, image policy checks, web browser layout QA, owner-approved site batch, and real iOS V2 acceptance. Native draft PRs #172 and #174 remain separately unshipped.
+- Checks in current isolated workspace: ten model/contract tests passed; JS syntax passed; strict event-scoped cover URL and existing-object validation added. Remaining: CLI-created migration, SQL transaction/auth tests, security advisors, image policy checks, web browser layout QA, owner-approved site batch, and real iOS V2 acceptance. Native draft PRs #172 and #174 remain separately unshipped.
 
 ## October 29 · The Athletic Life opportunity action wiring
 
