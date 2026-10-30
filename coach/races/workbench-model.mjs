@@ -5,8 +5,28 @@ const EDITABLE = [
   'cover_rights_confirmed','source_checked_at'
 ];
 
-const LIMITS = {name:240,city:180,venue:250,brief:700,course_overview:500,
+const LIMITS = {name:240,city:180,venue:250,brief:240,course_overview:500,
   full_course:500,half_course:500,start_address:500,start_time:180};
+
+const MEDIA_ORIGIN='https://pbgsjjegycacodiltbhn.supabase.co';
+const UUID_PATTERN='[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';
+
+function validDate(value){
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(value||''))return false;
+  const date=new Date(`${value}T12:00:00Z`);
+  return Number.isFinite(date.getTime())&&date.toISOString().slice(0,10)===value;
+}
+
+export function isRaceCoverUrl(value,eventId){
+  if(!value||!new RegExp(`^${UUID_PATTERN}$`).test(eventId||''))return false;
+  try{
+    const url=new URL(value);
+    const path=new RegExp(`^/storage/v1/object/public/collective-media/races/${eventId}/${UUID_PATTERN}\\.(jpg|png|webp)$`);
+    return url.origin===MEDIA_ORIGIN&&!url.username&&!url.password&&!url.search&&!url.hash&&path.test(url.pathname);
+  }catch{return false;}
+}
+
+export function wordCount(value){return String(value||'').trim().split(/\s+/u).filter(Boolean).length;}
 
 export function normalizePayload(input={}) {
   const result={};
@@ -22,8 +42,7 @@ export function validatePayload(data,{publish=false,eventId=null}={}) {
   if(!d.name)errors.push('Name the race.');
   for(const [field,max] of Object.entries(LIMITS))if((d[field]||'').length>max)
     errors.push(`${field.replaceAll('_',' ')} is too long (max ${max}).`);
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(d.starts_on||'')||
-     !/^\d{4}-\d{2}-\d{2}$/.test(d.ends_on||'')||
+  if(!validDate(d.starts_on)||!validDate(d.ends_on)||
      d.starts_on>d.ends_on)errors.push('Enter valid start and end dates.');
   for(const key of ['official_url','brief_source_url']) {
     if(d[key]){
@@ -31,11 +50,8 @@ export function validatePayload(data,{publish=false,eventId=null}={}) {
       catch{errors.push(`${key.replaceAll('_',' ')} must be an HTTPS link.`);}
     }
   }
-  if(d.cover_image_url) {
-    const expected=`https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-media/races/${eventId}/`;
-    if(!eventId||!d.cover_image_url.startsWith(expected))errors.push('Use a cover uploaded to this race.');
-  }
-  if(d.source_checked_at && (!/^\d{4}-\d{2}-\d{2}$/.test(d.source_checked_at)||
+  if(d.cover_image_url&&!isRaceCoverUrl(d.cover_image_url,eventId))errors.push('Use a cover uploaded to this race.');
+  if(d.source_checked_at && (!validDate(d.source_checked_at)||
       d.source_checked_at>new Date().toISOString().slice(0,10)))errors.push('Source check date must be valid and not in the future.');
   if(publish){
     if(!d.source_checked_at)errors.push('Record when you checked the organizer facts.');
