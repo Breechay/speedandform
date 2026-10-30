@@ -8,6 +8,7 @@
   <title>FORM Miami · Coach</title>
   <link rel="stylesheet" href="/coach/miami/miami.css?v=3">
   <link rel="stylesheet" href="/coach/miami/story.css?v=1">
+  <link rel="stylesheet" href="/coach/miami/individual.css?v=1">
 </head>
 <body>
   <header class="top"><a class="wordmark" href="/coach/labs/">FORM <span>MIAMI</span></a><nav><a href="/coach/labs/">Athletes</a><a href="/coach/runs/">Runs</a><a href="/coach/ops/">Operations</a></nav></header>
@@ -28,6 +29,7 @@
           <div class="formgrid compact"><label>WARM UP · MINUTES<input name="warmup" type="number" min="0" max="90"></label><label>COOL DOWN · MINUTES<input name="cooldown" type="number" min="0" max="90"></label></div>
           <div class="sets-head"><h3>Work sets</h3><button class="subtle" id="addSet" type="button">+ Add set</button></div>
           <div class="sets" id="sets"></div>
+          <details class="individual" id="individualPane"><summary>Individual pace adjustments</summary><p class="hint">Same workout and recoveries. Enter how many seconds faster or slower an athlete runs a 600m compared with the reference pace. The other distances scale to the same pace difference. Leave blank for the group target.</p><div id="individualPaces"></div></details>
           <div class="actions"><button type="button" class="outline" id="preview">Preview affected Weeks</button><button type="submit" class="primary" id="publish" disabled>Publish revision</button></div>
           <p id="publishNote" class="hint">The preview must be current. Filed work and individual overrides are protected.</p>
         </form>
@@ -38,6 +40,6 @@
       <section class="pane"><div class="pane-heading"><div><p class="kicker">04 / MESSAGE</p><h2>Coach note</h2></div></div><form id="nudgeForm"><label>SUBJECT<input name="title" maxlength="90" placeholder="Thursday practice update" required></label><label>MESSAGE<textarea name="body" maxlength="500" rows="3" placeholder="Meet at 6:00. First rep at 6:15." required></textarea></label><div class="actions"><button type="submit" class="outline">Nudge subscribed athletes</button></div><p class="hint">A message appears in each athlete’s private inbox. Verified, claimed accounts can receive an email too.</p></form></section>
     </div>
   </main>
-  <script type="module" src="/coach/miami/miami.js?v=4"></script>
+  <script type="module" src="/coach/miami/miami.js?v=5"></script>
 </body>
 </html>
