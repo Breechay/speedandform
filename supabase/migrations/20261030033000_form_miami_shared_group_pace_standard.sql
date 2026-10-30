@@ -21,6 +21,25 @@ returns boolean language sql stable security definer set search_path = '' as $$
 $$;
 revoke all on function public.form_miami_is_protected_study_session(uuid) from public,anon,authenticated;
 
+-- Read-only, coach-scoped release receipt. A successful week-text UPDATE
+-- alone is not proof that another plan edit did not invalidate the story.
+create or replace function public.form_miami_week_story_status(p_on_date date)
+returns jsonb language plpgsql stable security definer set search_path = '' as $$
+declare result jsonb;
+begin
+  perform public.form_miami_ensure_coach();
+  select coalesce(jsonb_object_agg(w.id::text,coach_audit_private.week_story_is_current(w.id)),'{}'::jsonb)
+  into result
+  from public.form_miami_session_links link
+  join public.planned_sessions s on s.id=link.planned_session_id
+  join public.training_weeks w on w.id=s.week_id
+  where link.lane='thursday' and link.on_date=p_on_date
+    and public.is_coach_member(s.athlete_id);
+  return result;
+end $$;
+revoke all on function public.form_miami_week_story_status(date) from public,anon;
+grant execute on function public.form_miami_week_story_status(date) to authenticated;
+
 -- Keep the preview recipient set identical to the publisher's hard gate.
 -- The UI will show the protected study rather than silently count it as ready.
 create or replace function public.form_miami_preview(p_lane text,p_on_date date)
@@ -31,7 +50,7 @@ begin
   if p_lane not in ('thursday','saturday') or p_on_date is null then raise exception 'invalid_lane_or_date'; end if;
   select coalesce(jsonb_agg(jsonb_build_object(
     'athlete_id',a.id,'name',a.display_name,'mode',sub.track_mode,
-    'session_id',s.id,'scheduled_on',s.scheduled_on,'state',s.state,
+    'session_id',s.id,'week_id',s.week_id,'scheduled_on',s.scheduled_on,'state',s.state,
     'override',coalesce(s.override_reason,'')<>'',
     'protected',case when s.id is null then false else public.form_miami_is_protected_study_session(s.id) end,
     'paused',coalesce(link.paused,false),'filed',exists(select 1 from public.session_completions c where c.planned_session_id=s.id),
