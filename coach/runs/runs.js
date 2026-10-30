@@ -28,6 +28,13 @@ const DRAFTS = 'collective-gallery-drafts';
 const PUBLIC = 'collective-media';
 const FILMS = 'collective-films';
 const FILM_LIMIT = 60 * 1024 * 1024;
+const COVER_KEYS = ['hero_url','hero_focus_x','hero_focus_y','hero_monochrome','hero_contrast','hero_brightness'];
+const coverDefaults = kind => kind === 'track'
+  ? {hero_url:'https://speedandform.com/assets/collective/run-covers/track-drive.webp',hero_focus_x:74,hero_focus_y:54,hero_monochrome:true,hero_contrast:117,hero_brightness:103}
+  : {hero_url:'https://speedandform.com/assets/collective/run-covers/road-rhythm.webp',hero_focus_x:48,hero_focus_y:84,hero_monochrome:false,hero_contrast:100,hero_brightness:100};
+const coverFacts = r => ({...coverDefaults(r.kind),...Object.fromEntries(COVER_KEYS.filter(k => facts(r)[k] !== undefined && facts(r)[k] !== null).map(k => [k,facts(r)[k]]))});
+const focus = n => Math.max(0,Math.min(100,Number(n)||0));
+const coverFilter = c => `${c.hero_monochrome?'grayscale(1) ':''}contrast(${Number(c.hero_contrast)/100}) brightness(${Number(c.hero_brightness)/100})`;
 const LIMIT = 9;
 const LONG_EDGE = 3000;
 const SESSIONS = [
@@ -303,7 +310,7 @@ function paintList() {
 // ------------------------------------------------------------------ upcoming run
 
 function paintUpcoming(r) {
-  const p = parts(r.starts_at), s = session(r), off = r.status === 'cancelled';
+  const p = parts(r.starts_at), s = session(r), off = r.status === 'cancelled', art = coverFacts(r);
   $('pane').innerHTML = `
     <button type="button" class="back" data-back>‹ Runs</button>
     <div class="head"><div><p class="label">${esc(`${p.wd} ${p.day} ${p.mon} · ${KIND[r.kind]}${off ? ' · Canceled' : ''}`)}</p><h2>${esc(r.title)}</h2>
@@ -316,6 +323,11 @@ function paintUpcoming(r) {
       ${r.kind === 'track' ? `<dt>Workout</dt><dd>${s ? `${esc(s[1])} <span class="quiet">· ${esc(s[2])}</span>` : '<span class="quiet">Not set</span>'}</dd>` : ''}
       ${Array.isArray(facts(r).distance_miles) ? `<dt>Group offer</dt><dd>${esc(facts(r).distance_miles.join('–'))} mi${facts(r).pace ? ` · ${esc(facts(r).pace)}` : ''}</dd>` : ''}
     </dl></div>
+    <div class="runCoverWrap"><p class="label">Cover photography</p>
+      ${art.hero_url ? `<div class="runCover"><img src="${esc(art.hero_url)}" alt="FORM run cover"></div>` : '<div class="runCover empty">No cover selected</div>'}
+      <p class="quiet">For the FORM tab; separate from the post-run gallery.</p>
+      ${off ? '' : '<button type="button" class="btn" data-act="cover">Edit image & crop</button>'}
+    </div>
     ${off ? '<div class="banner info"><p>This date is canceled. A canceled date stays canceled; add a new run if plans change.</p></div>' : `
     <div class="acts">
       <button type="button" class="btn" data-act="time">Change time</button>
@@ -323,6 +335,8 @@ function paintUpcoming(r) {
       ${r.kind === 'track' ? '<button type="button" class="btn" data-act="workout">Workout</button>' : ''}
       <button type="button" class="btn danger" data-act="cancel">Cancel this date</button>
     </div>`}`;
+  const img = $('pane').querySelector('.runCover img');
+  if (img) { img.style.objectPosition = `${focus(art.hero_focus_x)}% ${focus(art.hero_focus_y)}%`; img.style.filter = coverFilter(art); }
 }
 
 // ------------------------------------------------------------------ sheet (forms)
@@ -374,6 +388,73 @@ async function detail(r, groupFacts) {
 }
 const placeButtons = () => `<div class="choices">${Object.keys(PLACES).map((n) => `<button type="button" data-pick="${esc(n)}" data-place="${esc(n)}" aria-pressed="false">${esc(n)}</button>`).join('')}</div><input type="hidden">`;
 
+// Upcoming-run cover art is independent from post-run documentary galleries.
+function editCover(r) {
+  const c = coverFacts(r);
+  openSheet('FORM cover · ' + r.title, `
+    <div class="coverEditor">
+      <div class="coverPreview"><img id="coverPreviewImage" src="${esc(c.hero_url || '')}" alt="Cover preview" ${c.hero_url ? '' : 'hidden'}></div>
+      <p class="quiet">Same crop and treatment as the athlete FORM tab.</p>
+      <label>Replace photo<input type="file" name="photo" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.jpg,.jpeg,.png,.webp,.heic,.heif"><small>JPEG, PNG, WebP or HEIC. Maximum 24 MB.</small></label>
+      <div class="coverSliders">
+        <label>Horizontal <output id="cx">${c.hero_focus_x}%</output><input type="range" name="x" min="0" max="100" value="${focus(c.hero_focus_x)}"></label>
+        <label>Vertical <output id="cy">${c.hero_focus_y}%</output><input type="range" name="y" min="0" max="100" value="${focus(c.hero_focus_y)}"></label>
+        <label>Contrast <output id="cc">${c.hero_contrast}%</output><input type="range" name="contrast" min="75" max="145" value="${c.hero_contrast}"></label>
+        <label>Brightness <output id="cb">${c.hero_brightness}%</output><input type="range" name="brightness" min="75" max="125" value="${c.hero_brightness}"></label>
+      </div>
+      <label class="check"><input type="checkbox" name="mono" ${c.hero_monochrome ? 'checked' : ''}> Black and white</label>
+      ${c.hero_url ? '<label class="check"><input type="checkbox" name="remove"> Unlink this cover</label>' : ''}
+      <label class="check"><input type="checkbox" name="future" checked> Use for all upcoming ${r.kind === 'track' ? 'FORM Thursdays' : 'FORM Long Runs'}</label>
+      <p class="quiet">Past events, route maps and athlete galleries stay as they are.</p>
+    </div>`,
+  async (f) => {
+    const photo = f.get('photo'), removing = f.get('remove') === 'on';
+    if (removing && photo?.size) throw Error('Choose either a new image or unlink.');
+    let url = removing ? '' : (c.hero_url || '');
+    if (photo?.size) {
+      if (photo.size > 24*1024*1024) throw Error('Photo must be under 24 MB.');
+      if (!/image\/(jpeg|png|webp|heic|heif)/.test(photo.type) && !/\.(jpe?g|png|webp|heic|heif)$/i.test(photo.name))
+        throw Error('Choose a JPEG, PNG, WebP or HEIC photo.');
+      const image = await prepare(photo); // orientation and EXIF-safe resizing
+      const path = `runs/covers/${crypto.randomUUID()}.jpg`;
+      const uploaded = await sb.storage.from(PUBLIC).upload(path, image.blob,
+        { upsert:false, cacheControl:'31536000', contentType:'image/jpeg' });
+      if (uploaded.error) throw Error('Cover upload failed: ' + uploaded.error.message);
+      url = sb.storage.from(PUBLIC).getPublicUrl(path).data.publicUrl;
+    }
+    if (!url && !removing) throw Error('Choose a photo to publish.');
+    const groupFacts = { hero_url:url, hero_focus_x:focus(f.get('x')), hero_focus_y:focus(f.get('y')),
+      hero_monochrome:f.get('mono')==='on', hero_contrast:Number(f.get('contrast')), hero_brightness:Number(f.get('brightness')) };
+    const targets = f.get('future')==='on'
+      ? runs.filter(other => other.kind===r.kind && isUpcoming(other) && other.status!=='cancelled')
+      : [r];
+    const errors = [];
+    for (const target of targets) {
+      try { await detail(target, groupFacts); }
+      catch (e) { errors.push(`${parts(target.starts_at).ymd}: ${message(e)}`); }
+    }
+    if (errors.length) throw Error('Not saved for: '+errors.join(', '));
+  }, 'Publish cover');
+  const form = $('sheetForm'), image = $('coverPreviewImage');
+  let objectURL = null;
+  const preview = () => {
+    const f = new FormData(form), x = focus(f.get('x')), y = focus(f.get('y'));
+    image.style.objectPosition = `${x}% ${y}%`;
+    image.style.filter = `${f.get('mono')==='on'?'grayscale(1) ':''}contrast(${Number(f.get('contrast'))/100}) brightness(${Number(f.get('brightness'))/100})`;
+    [['cx',x],['cy',y],['cc',f.get('contrast')],['cb',f.get('brightness')]].forEach(([id,n]) => { $(id).textContent = n+'%'; });
+  };
+  form.querySelectorAll('.coverEditor input').forEach(el => { el.addEventListener('input',preview); el.addEventListener('change',preview); });
+  form.querySelector('[name="photo"]').addEventListener('change', e => {
+    if (objectURL) URL.revokeObjectURL(objectURL);
+    const file = e.target.files?.[0];
+    objectURL = file ? URL.createObjectURL(file) : null;
+    if (objectURL) { image.src = objectURL; image.hidden = false; }
+    preview();
+  });
+  $('sheet').addEventListener('close', () => { if (objectURL) URL.revokeObjectURL(objectURL); }, {once:true});
+  preview();
+}
+
 function act(kind, r) {
   const p = parts(r.starts_at);
   if (kind === 'time') {
@@ -398,6 +479,8 @@ function act(kind, r) {
       <option value="">Not set</option>${SESSIONS.map((s) => `<option value="${s[0]}"${s[0] === cur ? ' selected' : ''}>${esc(s[1])} · ${esc(s[2])}</option>`).join('')}</select></label></div>
       <p class="quiet">Shown on the run page and in the app. The album takes this name.</p>`,
     async (f) => detail(r, { workout_session_id: f.get('session') || null }));
+  } else if (kind === 'cover') {
+    editCover(r);
   } else if (kind === 'cancel') {
     openSheet(`Cancel ${p.wd} ${p.mon} ${p.day}?`, `<p>Everyone sees it as canceled, in the app and on the site. A canceled date can’t be brought back; add a new run instead.</p>`,
       async () => change(r, { kind: 'cancelled' }), 'Cancel this date');
@@ -431,6 +514,9 @@ function newRun() {
     if (!name || !address) throw new Error('Add the place and its address.');
     const { data: { user } } = await sb.auth.getUser();
     const groupFacts = kind === 'track' && f.get('session') ? { workout_session_id: f.get('session') } : {};
+    const latestCover = runs.filter(r => r.kind === kind && Object.prototype.hasOwnProperty.call(facts(r),'hero_url'))
+      .sort((a,b) => Date.parse(b.starts_at)-Date.parse(a.starts_at))[0];
+    if (latestCover) Object.assign(groupFacts, Object.fromEntries(COVER_KEYS.map(k => [k, coverFacts(latestCover)[k]])));
     const { error } = await sb.from('collective_runs').insert({
       author_kind: 'form', author_account_id: user.id, kind, title,
       series_id: kind === 'track' && f.get('series') ? 'track-thursday' : null,

@@ -124,3 +124,24 @@ select:focus,input:focus,textarea:focus,button:focus-visible,a:focus-visible{out
 .sessHead{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .sessHead .pill{font-family:var(--sans);font-size:13px;letter-spacing:0;text-transform:none;min-height:36px;padding:6px 12px}
 textarea{background:var(--field-2);border:1px solid var(--edge-2);border-radius:10px;padding:9px 12px;font:inherit;color:inherit;resize:vertical}
+
+/* Coach-editable editorial covers, not the athlete gallery. */
+.runCoverWrap{margin:20px 28px 8px;padding:18px;border:1px solid var(--edge);border-radius:14px}
+.runCoverWrap .label{margin:0 0 12px}
+.runCoverWrap .quiet{font-size:12px;line-height:1.5}
+.runCover{width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:9px;background:#151a1b}
+.runCover img,.coverPreview img{width:100%;height:100%;display:block;object-fit:cover}
+.runCover.empty{display:grid;place-items:center;color:var(--sec);font-size:13px}
+.runCoverWrap .btn{margin-top:8px}
+.coverEditor{display:grid;gap:15px}
+.coverEditor label{display:flex;flex-direction:column;gap:6px}
+.coverEditor .check{flex-direction:row}
+.coverEditor small{color:var(--sec);font-size:12px}
+.coverEditor input[type=file]{max-width:100%;font-size:13px}
+.coverEditor input[type=range]{width:100%;accent-color:var(--lime)}
+.coverPreview{aspect-ratio:16/9;background:#151a1b;border:1px solid var(--edge);border-radius:12px;overflow:hidden}
+.coverPreview img[hidden]{display:none}
+.coverSliders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.coverSliders label{font-size:12px;color:var(--sec)}
+.coverSliders output{color:var(--text);font-family:var(--mono);font-size:11px}
+@media(max-width:860px){.runCoverWrap{margin:16px;padding:14px}.coverSliders{grid-template-columns:1fr}}
