@@ -19,12 +19,32 @@ function say(msg,error=false){$('status').textContent=msg;$('status').classList.
 async function rpc(name,args={}){const {data,error}=await sb.rpc(name,args);if(error)throw error;return data;}
 async function dispatchEmails(){try{const {data,error}=await sb.functions.invoke('form-messages',{body:{action:'dispatch'}});if(error) return 'Email delivery is queued; sender could not be reached.';return data?.sent ? `${data.sent} email${data.sent===1?'':'s'} sent.` : 'In-app messages saved. Eligible emails were checked.';}catch{return 'In-app messages saved. Email dispatch is pending.';}}
 
+function formatPace(seconds) {
+  if(!Number.isInteger(seconds)||seconds<1)return '';
+  return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`;
+}
+function parsePace(raw) {
+  const match=/^(\\d{1,2}):([0-5]\\d)$/.exec(String(raw||'').trim());
+  if(!match)throw new Error('Enter a pace in m:ss per mile, such as 5:19.');
+  const seconds=Number(match[1])*60+Number(match[2]);
+  if(seconds<180||seconds>900)throw new Error('Pace must be between 3:00 and 15:00 per mile.');
+  return seconds;
+}
 function setRow(part={}){
+  const recoveryKind=part.recoveryKind||'jog';
   return `<div class="set">
-    <label>REPEATS<input data-part="repeatCount" type="number" min="1" max="30" value="${safe(part.repeatCount ?? 4)}" required></label>
+    <label>REPEATS<input data-part="repeatCount" type="number" min="1" max="30" value="${safe(part.repeatCount ?? 1)}" required></label>
     <label>DISTANCE · M<input data-part="meters" type="number" min="0" max="10000" step="50" value="${safe(part.distance == null ? 400 : Math.round(part.distance*1000))}"></label>
-    <label>WORK · SECONDS<input data-part="durationSeconds" type="number" min="0" max="3600" value="${safe(part.durationSeconds ?? '')}" placeholder="Distance reps"></label>
-    <label>RECOVERY · SECONDS<input data-part="recoverySeconds" type="number" min="0" max="900" value="${safe(part.recoverySeconds ?? 90)}" required></label>
+    <label>WORK · SECONDS<input data-part="durationSeconds" type="number" min="0" max="3600" value="${safe(part.durationSeconds ?? '')}" placeholder="For timed holds"></label>
+    <label>FAST PACE · /MI<input data-part="paceFast" type="text" inputmode="numeric" value="${safe(formatPace(part.paceLowSeconds))}" placeholder="5:19"></label>
+    <label>SLOW PACE · /MI<input data-part="paceSlow" type="text" inputmode="numeric" value="${safe(formatPace(part.paceHighSeconds))}" placeholder="5:25"></label>
+    <label>RECOVERY · SEC<input data-part="recoverySeconds" type="number" min="0" max="900" value="${safe(part.recoverySeconds ?? 90)}" required></label>
+    <label>RECOVERY KIND<select data-part="recoveryKind">
+      <option value="jog" ${recoveryKind==='jog'?'selected':''}>Easy jog</option>
+      <option value="easy" ${recoveryKind==='easy'?'selected':''}>Walk / jog</option>
+      <option value="standing" ${recoveryKind==='standing'?'selected':''}>Standing</option>
+      <option value="float" ${recoveryKind==='float'?'selected':''}>Float</option>
+    </select></label>
     <button class="remove" type="button" aria-label="Remove set" title="Remove set">✕</button></div>`;
 }
 function fillEditor(item){
@@ -33,6 +53,7 @@ function fillEditor(item){
   f.elements.intent.value=item?.intent||'Practice fast, controlled running on the track.';
   f.elements.details.value=item?.details||'';
   f.elements.duration.value=item?.duration||70;
+  f.elements.paceMode.value=item?.paceMode||'paced';
   f.elements.warmup.value=Math.round((blocks.find((b)=>b.role==='warm_up')?.durationSeconds||1200)/60);
   f.elements.cooldown.value=Math.round((blocks.find((b)=>b.role==='cool_down')?.durationSeconds||900)/60);
   $('sets').innerHTML=blocks.filter((b)=>b.role==='work').map(setRow).join('')||setRow();
@@ -40,19 +61,32 @@ function fillEditor(item){
 }
 function workoutPayload(){
   const f=$('workoutForm'); const warm=Number(f.elements.warmup.value||0)*60, cool=Number(f.elements.cooldown.value||0)*60;
+  const paceMode=f.elements.paceMode.value;
   const components=[];
-  if(warm>0) components.push({role:'warm_up',shape:'continuous',durationSeconds:warm,rpeLow:2,rpeHigh:3});
+  if(warm>0)components.push({role:'warm_up',shape:'continuous',durationSeconds:warm,rpeLow:2,rpeHigh:3});
   for(const set of $('sets').children){
     const get=(field)=>Number(set.querySelector(`[data-part="${field}"]`).value||0);
+    const getText=(field)=>set.querySelector(`[data-part="${field}"]`).value.trim();
     const reps=get('repeatCount'),meters=get('meters'),duration=get('durationSeconds'),recovery=get('recoverySeconds');
-    if(!Number.isInteger(reps)||reps<1||reps>30||(!meters&&!duration)||meters>10000||duration>3600||recovery>900)throw new Error('Check set distances, repeats, and recovery.');
-    const part={role:'work',shape:'repetitions',repeatCount:reps,recoverySeconds:recovery,recoveryKind:'standing',rpeLow:5,rpeHigh:7};
-    if(meters) {part.distance=meters/1000;part.distanceUnit='km';}
+    if(!Number.isInteger(reps)||reps<1||reps>30||(!meters&&!duration)||meters>10000||duration>3600||recovery>900)
+      throw new Error('Check set distances, repeats, and recovery.');
+    if(meters&&duration)throw new Error('Use distance or duration for a set, not both.');
+    const fast=getText('paceFast'),slow=getText('paceSlow');
+    if(paceMode==='paced'&&(!fast||!slow))throw new Error('Every paced work set needs a fast and slow /mile target.');
+    if(paceMode==='effort'&&(fast||slow))throw new Error('Clear clock targets before publishing an effort-only session.');
+    const part={role:'work',shape:'repetitions',repeatCount:reps,rpeLow:5,rpeHigh:7};
+    if(meters){part.distance=meters/1000;part.distanceUnit='km';}
     if(duration)part.durationSeconds=duration;
+    if(recovery>0){part.recoverySeconds=recovery;part.recoveryKind=getText('recoveryKind');}
+    if(paceMode==='paced'){
+      part.paceLowSeconds=parsePace(fast);part.paceHighSeconds=parsePace(slow);
+      if(part.paceLowSeconds>part.paceHighSeconds)throw new Error('Fast pace must be faster than slow pace.');
+    }
     components.push(part);
   }
-  if(cool>0) components.push({role:'cool_down',shape:'continuous',durationSeconds:cool,rpeLow:2,rpeHigh:3});
-  return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),components};
+  if(cool>0)components.push({role:'cool_down',shape:'continuous',durationSeconds:cool,rpeLow:2,rpeHigh:3});
+  return {title:f.elements.title.value.trim(),intent:f.elements.intent.value.trim(),
+    details:f.elements.details.value.trim(),duration:Number(f.elements.duration.value),paceMode,components};
 }
 function allowed(r){return Boolean(r.session_id&&r.version_id&&r.state==='published'&&!r.paused&&!r.override&&!r.filed);}
 function rosterContent(){
@@ -101,7 +135,7 @@ async function load(){
   [preview]=await Promise.all([rpc('form_miami_preview',{p_lane:lane,p_on_date:date}),loadDateSessions(),loadRuns()]);
   roster=preview.roster||[];
   $('practiceTitle').textContent=isThursday()?'FORM Thursday':'FORM Saturday';
-  $('practiceIntro').textContent=isThursday()?'One shared workout structure. Individual speed targets remain personal.':'Everyone runs their assigned distance. No meetup unless one is posted.';
+  $('practiceIntro').textContent=isThursday()?'One shared structure and one authored pace standard. Named exceptions stay protected.':'Everyone runs their assigned distance. No meetup unless one is posted.';
   $('sessionPane').hidden=!isThursday();
   $('revision').textContent=preview.publication?`REVISION ${preview.publication.revision}`:'FIRST PUBLICATION';
   const key=`${date}:${lane}:${preview.publication?.revision||0}`;
@@ -134,7 +168,7 @@ $('preview').addEventListener('click',async()=>{
     roster.filter(allowed).forEach((r)=>{expected[r.session_id]=r.version_id;names.push(r.name);});
     if(!names.length)throw new Error('No editable linked Thursday sessions on this date.');
     prepared={payload,expected,date:$('date').value};$('publish').disabled=false;rosterContent();
-    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. The individual paces that still fit each rep stay intact.`);
+    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Shared pace bands will be published to paced athletes; effort-mode athletes keep the same work without a clock demand.`);
   }catch(err){prepared=null;$('publish').disabled=true;say(err.message,true);}
 });
 $('workoutForm').addEventListener('submit',async(e)=>{
