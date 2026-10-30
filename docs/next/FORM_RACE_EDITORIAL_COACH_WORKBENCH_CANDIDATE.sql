@@ -81,6 +81,7 @@ declare
   v_event record;
   v_editorial_updated_at timestamptz;
   v_revision integer;
+  v_cover text := nullif(p_payload->>'cover_image_url','');
   v_allowed text[] := array[
     'name','starts_on','ends_on','city','venue','official_url',
     'brief','brief_source_url','course_overview','full_course','half_course',
@@ -102,7 +103,7 @@ begin
     or (p_payload->>'starts_on')::date > (p_payload->>'ends_on')::date then
     raise exception 'Race name and valid event dates required' using errcode='22023';
   end if;
-  if char_length(coalesce(p_payload->>'brief',''))>700
+  if char_length(coalesce(p_payload->>'brief',''))>240
     or char_length(coalesce(p_payload->>'course_overview',''))>500
     or char_length(coalesce(p_payload->>'full_course',''))>500
     or char_length(coalesce(p_payload->>'half_course',''))>500
@@ -118,10 +119,16 @@ begin
     and (p_payload->>'brief_source_url') !~* '^https://[^ ]+$') then
     raise exception 'Organizer and source links must be HTTPS' using errcode='22023';
   end if;
-  if nullif(p_payload->>'cover_image_url','') is not null
-    and (p_payload->>'cover_image_url') not like
-      ('https://pbgsjjegycacodiltbhn.supabase.co/storage/v1/object/public/collective-media/races/' || p_event_id::text || '/%') then
-    raise exception 'Cover must be uploaded to this race media folder' using errcode='22023';
+  if v_cover is not null and (
+    v_cover !~ ('^https://pbgsjjegycacodiltbhn\.supabase\.co/storage/v1/object/public/collective-media/races/'
+      || p_event_id::text
+      || '/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(jpg|png|webp)$')
+    or not exists (
+      select 1 from storage.objects o where o.bucket_id='collective-media'
+        and o.name=split_part(v_cover,'/collective-media/',2)
+    )
+  ) then
+    raise exception 'Cover must be an existing versioned upload in this race media folder' using errcode='22023';
   end if;
   if p_payload->>'source_checked_at' is not null
     and (p_payload->>'source_checked_at')::date>current_date then
@@ -182,6 +189,12 @@ begin
   end if;
   v_p:=v_draft.payload;
   v_cover:=nullif(v_p->>'cover_image_url','');
+  if v_cover is not null and not exists (
+    select 1 from storage.objects o where o.bucket_id='collective-media'
+      and o.name=split_part(v_cover,'/collective-media/',2)
+  ) then
+    raise exception 'Race cover is no longer in Storage; upload a new file' using errcode='22023';
+  end if;
   if nullif(v_p->>'source_checked_at','') is null
     or (v_p->>'source_checked_at')::date>current_date
     or (nullif(v_p->>'brief','') is not null and nullif(v_p->>'brief_source_url','') is null)
