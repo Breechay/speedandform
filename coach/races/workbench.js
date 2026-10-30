@@ -1,6 +1,6 @@
 import { supabase } from '/private/supabase-client.js';
 import { sendMagicLink, signInWithPassword } from '/private/auth.js';
-import { EDITABLE_FIELDS,normalizePayload,validatePayload,validateWorkbench,escapeHtml as e,safeHttps } from './workbench-model.mjs?v=1';
+import { EDITABLE_FIELDS,normalizePayload,validatePayload,validateWorkbench,escapeHtml as e,safeHttps,wordCount } from './workbench-model.mjs?v=2';
 
 const $=selector=>document.querySelector(selector);
 const form=$('#race-form');
@@ -13,6 +13,9 @@ function formValues(){
   for(const field of EDITABLE_FIELDS)values[field]=field==='cover_rights_confirmed'
     ?form.elements[field].checked:form.elements[field].value;
   return normalizePayload(values);
+}
+function hasUnsavedChanges(){
+  return !!selected&&JSON.stringify(formValues())!==JSON.stringify(normalizePayload(selected.draft||selected.published));
 }
 function setForm(values){
   const v=normalizePayload(values);
@@ -31,6 +34,8 @@ function formatDate(value){
 function updatePreview(){
   if(!selected)return;
   const d=formValues(),root=$('#preview');
+  const words=wordCount(d.brief);
+  $('#brief-count').textContent=words?`${words} words · aim for 15–25 specific, sourced words.`:'Aim for 15–25 words. Specific, sourced and easy to read.';
   const cover=safeHttps(d.cover_image_url);
   const official=safeHttps(d.official_url);
   const course=[['Full',d.full_course],['Half',d.half_course]].filter(([,v])=>v);
@@ -43,7 +48,7 @@ function updatePreview(){
     ${d.brief?`<p class="copy">${e(d.brief)}</p>`:''}
     ${d.course_overview||course.length?`<div class="course"><p class="mini-label">THE COURSE</p>${d.course_overview?`<p>${e(d.course_overview)}</p>`:''}${course.map(([label,v])=>`<p><strong>${e(label)}:</strong> ${e(v)}</p>`).join('')}</div>`:''}`;
   root.querySelector('img.cover')?.addEventListener('error',event=>event.currentTarget.remove(),{once:true});
-  const dirty=selected&&JSON.stringify(formValues())!==JSON.stringify(normalizePayload(selected.draft||selected.published));
+  const dirty=hasUnsavedChanges();
   $('#save').disabled=busy||!dirty;
   $('#publish').disabled=busy||dirty||!selected.draft_revision;
   $('#draft-state').textContent=dirty?'Unsaved changes':selected.draft_revision?'Private draft saved':'Published record';
@@ -71,7 +76,11 @@ async function load({eventId=null}={}){
   choose(feed.events.some(row=>row.event_id===target)?target:feed.events[0]?.event_id);
   return true;
 }
-function busyState(value){busy=value;$('#refresh').disabled=value;$('#upload').disabled=value;updatePreview();}
+function busyState(value){
+  busy=value;
+  for(const selector of ['#refresh','#upload','#event-select','#remove-cover','#signout'])$(selector).disabled=value;
+  updatePreview();
+}
 
 async function sessionChanged(session){
   const next=session?.user||null;
@@ -90,7 +99,19 @@ async function sessionChanged(session){
   }catch(err){if(generation!==authGeneration)return;gateMessage(`Private workbench unavailable: ${err.message||'Could not load races.'}`);}
 }
 
-$('#event-select').addEventListener('change',event=>choose(event.target.value));
+$('#event-select').addEventListener('change',event=>{
+  if(event.target.value===selected?.event_id)return;
+  if(hasUnsavedChanges()&&!window.confirm('Discard unsaved edits and switch races?')){
+    event.target.value=selected.event_id;
+    return;
+  }
+  choose(event.target.value);
+});
+window.addEventListener('beforeunload',event=>{
+  if(!hasUnsavedChanges())return;
+  event.preventDefault();
+  event.returnValue='';
+});
 form.addEventListener('input',updatePreview);
 form.addEventListener('change',updatePreview);
 
@@ -164,12 +185,15 @@ $('#remove-cover').addEventListener('click',()=>{
 });
 $('#refresh').addEventListener('click',async()=>{
   if(busy||!user)return;
-  if(selected&&JSON.stringify(formValues())!==JSON.stringify(normalizePayload(selected.draft||selected.published))&&
+  if(hasUnsavedChanges()&&
       !window.confirm('Discard unsaved edits and reload the server record?'))return;
   try{await load();showMessage('Loaded the latest race records.');}
   catch(err){showMessage(err.message||'Refresh failed.',true);}
 });
-$('#signout').addEventListener('click',async()=>{const {error}=await supabase.auth.signOut();if(error)showMessage(error.message,true);});
+$('#signout').addEventListener('click',async()=>{
+  if(hasUnsavedChanges()&&!window.confirm('Discard unsaved edits and sign out?'))return;
+  const {error}=await supabase.auth.signOut();if(error)showMessage(error.message,true);
+});
 $('#signin-form').addEventListener('submit',async event=>{
   event.preventDefault();const f=event.target,b=f.querySelector('[type=submit]');b.disabled=true;
   try{if(!f.elements.password.value)throw Error('Enter your password or choose a sign-in link.');
