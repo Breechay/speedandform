@@ -1,0 +1,42 @@
+name: Race editorial workbench contract
+
+on:
+  pull_request:
+    paths:
+      - 'coach/races/**'
+      - 'docs/next/FORM_RACE_EDITORIAL_COACH_WORKBENCH_CANDIDATE.sql'
+      - 'tests/race-workbench-model.test.mjs'
+      - '.github/workflows/race-workbench-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'coach/races/**'
+      - 'docs/next/FORM_RACE_EDITORIAL_COACH_WORKBENCH_CANDIDATE.sql'
+      - 'tests/race-workbench-model.test.mjs'
+      - '.github/workflows/race-workbench-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: race-workbench-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check coach race editor JavaScript syntax
+        run: |
+          node --check coach/races/workbench.js
+          node --check coach/races/workbench-model.mjs
+      - name: Verify race editor data and authorization contracts
+        run: node tests/race-workbench-model.test.mjs
