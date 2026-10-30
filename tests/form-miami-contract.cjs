@@ -30,6 +30,10 @@ const paceMigration = fs.readFileSync(path.join(root,'supabase/migrations/202610
 assert.match(paceMigration,/perform public\.form_miami_ensure_coach\(\)/,'coach auth remains mandatory');
 assert.match(paceMigration,/p_expected->>r\.session_id::text is distinct from v\.id::text/,'version preview remains mandatory');
 assert.match(paceMigration,/invalid_or_missing_group_pace/,'shared numeric targets required');
+assert.match(paceMigration,/form_miami_is_protected_study_session/,'study-owned sessions excluded server-side');
+assert.match(paceMigration,/s\.id=p_session_id and tp\.slug='simon-ceiling-durability-01'/,'Simon Study 003 is an explicit owner exception');
+assert.match(paceMigration,/'protected',case when s\.id is null/,'protected state returned by coach preview');
+assert.match(coach,/!r\.protected/,'coach preview does not sign protected studies for publication');
 assert.match(paceMigration,/n\.value \|\| jsonb_build_object/,'group pace fields are used directly');
 assert.doesNotMatch(paceMigration,/old\.pace_low_seconds/,'do not retain wrong paces from prior geometry');
 assert.match(coach,/paceLowSeconds=parsePace\(fast\)/,'coach editor writes fast /mi band');
