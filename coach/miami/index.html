@@ -8,7 +8,7 @@
   <title>FORM Miami · Coach</title>
   <link rel="stylesheet" href="/coach/miami/miami.css?v=3">
   <link rel="stylesheet" href="/coach/miami/story.css?v=1">
-  <link rel="stylesheet" href="/coach/miami/individual.css?v=1">
+  <link rel="stylesheet" href="/coach/miami/individual.css?v=2">
 </head>
 <body>
   <header class="top"><a class="wordmark" href="/coach/labs/">FORM <span>MIAMI</span></a><nav><a href="/coach/labs/">Athletes</a><a href="/coach/runs/">Runs</a><a href="/coach/ops/">Operations</a></nav></header>
@@ -40,6 +40,12 @@
       <section class="pane"><div class="pane-heading"><div><p class="kicker">04 / MESSAGE</p><h2>Coach note</h2></div></div><form id="nudgeForm"><label>SUBJECT<input name="title" maxlength="90" placeholder="Thursday practice update" required></label><label>MESSAGE<textarea name="body" maxlength="500" rows="3" placeholder="Meet at 6:00. First rep at 6:15." required></textarea></label><div class="actions"><button type="submit" class="outline">Nudge subscribed athletes</button></div><p class="hint">A message appears in each athlete’s private inbox. Verified, claimed accounts can receive an email too.</p></form></section>
     </div>
   </main>
-  <script type="module" src="/coach/miami/miami.js?v=5"></script>
+  <dialog id="publishConfirm" class="publish-confirm" aria-labelledby="publishConfirmTitle" aria-describedby="publishConfirmDescription">
+    <p class="kicker">COACH CONFIRMATION</p>
+    <h2 id="publishConfirmTitle">Publish this practice?</h2>
+    <p id="publishConfirmDescription"></p>
+    <div class="actions"><button type="button" class="outline" id="cancelPublish">Cancel</button><button type="button" class="primary" id="confirmPublish">Publish to Weeks</button></div>
+  </dialog>
+  <script type="module" src="/coach/miami/miami.js?v=6"></script>
 </body>
 </html>
