@@ -43,6 +43,15 @@ runs = [
 ]
 galleries = [dict(run_id='p1', object_path=f'runs/p1/{i}.webp', position=i) for i in range(9)] + \
             [dict(run_id='p3', object_path=f'runs/p3/{i}.webp', position=i) for i in range(5)]
+shared_workouts = [dict(run_id='u1', lane='thursday', revision=1,
+                        session_title='Speed · 1000 / 600 / 400 × 2', sets=[
+    dict(reps=1, meters=1000, recovery=120),
+    dict(reps=1, meters=600, recovery=90),
+    dict(reps=1, meters=400, recovery=180),
+    dict(reps=1, meters=1000, recovery=120),
+    dict(reps=1, meters=600, recovery=90),
+    dict(reps=1, meters=400, recovery=0),
+])]
 albums = {
     'p1': dict(revision=1, layout='photo_essay', appearance='cream', published_at=iso(at(-11)), film=None,
                items=[dict(asset=f'a{i}', path=f'runs/p1/{i}.webp', width=1600, height=1067 if i != 2 else 1600, focal_x=0.5, focal_y=0.4, fit=False) for i in range(9)]),
@@ -51,12 +60,15 @@ albums = {
 }
 
 
-def install(page, fail=False):
+def install(page, fail=False, workouts_fail=False):
     def api(route):
         url = route.request.url
         if fail: return route.fulfill(status=503, body='{}')
         if '/rest/v1/collective_public_runs' in url:
             return route.fulfill(status=200, content_type='application/json', body=json.dumps(sorted(runs, key=lambda r: r['starts_at'], reverse=True)))
+        if url.endswith('/rpc/form_miami_public_calendar'):
+            if workouts_fail: return route.fulfill(status=503, body='{}')
+            return route.fulfill(status=200, content_type='application/json', body=json.dumps(shared_workouts))
         if url.endswith('/rpc/collective_galleries'):
             return route.fulfill(status=200, content_type='application/json', body=json.dumps(galleries))
         if url.endswith('/rpc/collective_album'):
@@ -121,7 +133,7 @@ with sync_playwright() as p:
         rows = page.locator('#gr-next-rows .gr-row')
         assert rows.count() == 3, rows.count()
         first = rows.nth(0).inner_text()
-        assert 'AM meet' in first and 'Speed Demons · 300 / 200 / 100' in first and 'Bench by the bleachers' in first, first
+        assert 'AM meet' in first and 'Speed · 1000 / 600 / 400 × 2' in first and '1 × 1000m / 120s rest' in first and 'Bench by the bleachers' in first, first
         assert 'Place to be confirmed' in rows.nth(1).inner_text() and '12–15 mi' in rows.nth(1).inner_text()
         assert 'is-off' in rows.nth(2).get_attribute('class') and 'Add to calendar' not in rows.nth(2).inner_text()
         assert page.locator('#gr-mornings .gr-card').count() == 2 and page.locator('#gr-mornings .gr-card.is-lead').count() == 1
@@ -168,8 +180,26 @@ with sync_playwright() as p:
     run_href = page.locator('#gr-next-rows .gr-row h2 a').first.get_attribute('href')
     page.goto(base + run_href, wait_until='networkidle'); page.wait_for_function('window.FORM_GROUP_ALBUM')
     assert page.evaluate('FORM_GROUP_ALBUM.run') is True and 'add to calendar' in page.locator('#gr-album').inner_text().lower()
+    assert page.locator('#gr-workout-title').inner_text() == 'Speed · 1000 / 600 / 400 × 2'
+    assert page.locator('.gr-workout-sets li').count() == 6
+    assert '2:00 recovery' in page.locator('.gr-workout-sets li').first.inner_text()
+    assert '1:30 recovery' in page.locator('.gr-workout-sets li').nth(1).inner_text()
+    assert '3:00 recovery' in page.locator('.gr-workout-sets li').nth(2).inner_text()
+    assert page.locator('.gr-row .gr-work').count() == 0, 'avoid duplicating the workout summary'
+    assert 'Brice' not in page.locator('#gr-album').inner_text(), 'do not expose private names'
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
     page.screenshot(path=str(out / 'run-upcoming-390.png'), full_page=True)
+    detail_desktop = b.new_page(viewport={'width': 1440, 'height': 900}); install(detail_desktop)
+    detail_desktop.goto(base + run_href, wait_until='networkidle'); detail_desktop.wait_for_function('window.FORM_GROUP_ALBUM')
+    assert detail_desktop.locator('.gr-workout-sets li').count() == 6
+    assert detail_desktop.evaluate('document.documentElement.scrollWidth<=innerWidth')
+    detail_desktop.screenshot(path=str(out / 'run-upcoming-1440.png'), full_page=True)
+    detail_desktop.close()
+    fallback = b.new_page(viewport={'width': 390, 'height': 844}); install(fallback, workouts_fail=True)
+    fallback.goto(base + run_href, wait_until='networkidle'); fallback.wait_for_function('window.FORM_GROUP_ALBUM')
+    assert fallback.locator('.gr-workout').count() == 0
+    assert 'Speed Demons' in fallback.locator('#gr-album').inner_text(), 'legacy session fallback remains visible'
+    fallback.close()
     # unknown address is honest, never another run's album
     page.goto(base + '/run/not-a-run/', wait_until='networkidle'); page.wait_for_function('window.FORM_GROUP_ALBUM')
     assert 'isn’t here' in page.locator('#gr-album').inner_text()

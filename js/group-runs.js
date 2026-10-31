@@ -122,7 +122,7 @@
       'URL:https://speedandform.com' + href(r), 'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     return 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
   }
-  function runRow(r, linked) {
+  function runRow(r, linked, showWork) {
     var p = parts(r.starts_at), f = facts(r), s = session(r), off = r.status === 'cancelled';
     var kind = KIND[r.kind] + (off ? ' · Canceled' : '');
     // "6:00 AM meet · 6:15 run": AM/PM said once, on the first time shown.
@@ -130,8 +130,10 @@
     var mp = meetPoint(r);
     var where = r.meet_name ? esc(r.meet_name) + (mp ? ' · ' + esc(mp) : '') : 'Place to be confirmed';
     var work = '';
-    if (s) work = '<p class="gr-work">This week: <b>' + esc(s.title) + ' · ' + esc(s.sequence) + '</b></p>';
-    else if (Array.isArray(f.distance_miles) && f.distance_miles.length) work = '<p class="gr-work">Group offer: <b>' + esc(miles(f.distance_miles) + (f.pace ? ' · ' + f.pace : '')) + '</b></p>';
+    if (showWork !== false) {
+      if (s) work = '<p class="gr-work">This week: <b>' + esc(s.title) + ' · ' + esc(s.sequence) + '</b></p>';
+      else if (Array.isArray(f.distance_miles) && f.distance_miles.length) work = '<p class="gr-work">Group offer: <b>' + esc(miles(f.distance_miles) + (f.pace ? ' · ' + f.pace : '')) + '</b></p>';
+    }
     var acts = off ? '' : '<a href="' + calendarHref(r) + '" download="speed-and-form-' + p.ymd + '.ics">Add to calendar</a>' +
       (r.meet_name ? '<a href="https://maps.google.com/?q=' + encodeURIComponent([r.meet_name, r.meet_address].filter(Boolean).join(', ')) + '" target="_blank" rel="noopener">Directions</a>' : '');
     var name = linked ? '<a href="' + href(r) + '">' + esc(r.title) + '</a>' : esc(r.title);
@@ -140,6 +142,22 @@
       '<div class="gr-what"><p class="gr-kind gr-mono">' + esc(kind) + '</p><h2>' + name + '</h2>' +
       (off ? '<p class="gr-q">Not meeting on this date.</p>' : '<p>' + esc(times) + '<br><span class="gr-q">' + where + '</span></p>' + work) +
       '</div><div class="gr-acts gr-mono">' + acts + '</div></article>';
+  }
+  function sharedWorkoutSection(r) {
+    var w = r.form_miami_workout;
+    if (r.status === 'cancelled' || !w || !Array.isArray(w.sets)) return '';
+    var sets = w.sets.map(function (s) {
+      var meters = Number(s.meters), seconds = Number(s.seconds), reps = Number(s.reps) || 1;
+      var work = meters > 0 ? meters + 'm' : (seconds > 0 ? seconds + ' sec' : '');
+      if (!work) return '';
+      var recovery = Math.round(Number(s.recovery) || 0);
+      var rest = recovery > 0 ? '<span class="gr-set-rest">' + Math.floor(recovery / 60) + ':' + String(recovery % 60).padStart(2, '0') + ' recovery</span>' : '';
+      return '<li><span class="gr-set-work">' + esc(reps + ' × ' + work) + '</span>' + rest + '</li>';
+    }).filter(Boolean);
+    if (!sets.length) return '';
+    return '<section class="gr-workout" aria-labelledby="gr-workout-title">' +
+      '<p class="gr-mono">This week</p><h2 id="gr-workout-title">' + esc(w.session_title || r.title) + '</h2>' +
+      '<ol class="gr-workout-sets" role="list">' + sets.join('') + '</ol></section>';
   }
   function morningItem(r, photos, lead) {
     var p = parts(r.starts_at), place = r.meet_name || '';
@@ -286,13 +304,14 @@
       window.FORM_GROUP_ALBUM = { error: msg };
     }
     if (!slug) return fail('This run isn’t here.');
-    Promise.all([loadRuns(), loadGalleries().catch(function () { return {}; })]).then(function (res) {
-      var runs = res[0], gal = res[1];
+    Promise.all([loadRuns(), loadGalleries().catch(function () { return {}; }), loadFORMMiamiWorkouts().catch(function () { return {}; })]).then(function (res) {
+      var runs = res[0], gal = res[1], shared = res[2];
       // A moved occurrence keeps the address it was shared under (its original date) and its new one.
       var matches = runs.filter(function (r) { return slugOf(r) === slug || (r.original_starts_at && slugOf(r, r.original_starts_at) === slug); });
       if (!matches.length) return fail('This run isn’t here.');
       if (matches.length > 1) return fail('More than one run has this address.');
       var run = matches[0], p = parts(run.starts_at), url = 'https://speedandform.com' + href(run);
+      if (shared[run.id]) run.form_miami_workout = shared[run.id];
       var canon = document.querySelector('link[rel=canonical]');
       if (canon) canon.href = url;
       if (isUpcoming(run)) {
@@ -301,7 +320,8 @@
         $('gr-title').textContent = run.title;
         $('gr-sub').textContent = run.status === 'cancelled' ? 'Canceled' : KIND[run.kind];
         $('gr-when').textContent = '';
-        root.innerHTML = '<div class="gr-rows">' + runRow(run, false) + '</div>';
+        var workout = sharedWorkoutSection(run);
+        root.innerHTML = '<div class="gr-rows">' + runRow(run, false, !workout) + '</div>' + workout;
         $('gr-count').textContent = 'Miami time';
         window.FORM_GROUP_ALBUM = { run: true, title: run.title };
         return;

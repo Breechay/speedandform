@@ -21,6 +21,7 @@ assert.match(coach,/No FORM .* meetup is linked here/,'no implied Saturday gathe
 assert.match(coach,/form_miami_publish_thursday/,'one shared coach writer');
 assert.match(coach,/form_miami_link_run/,'actual run link independent');
 assert.match(site,/form_miami_public_calendar/,'website reads public publication projection');
+require('./group-runs-detail-contract.cjs'); // Same public workout must appear on the run's own page.
 assert.match(edge,/form_miami_email_claim/,'email receives only server recipients');
 assert.match(edge,/coach_only/,'coach-only dispatcher');
 assert.match(inbox,/form_miami_mark_read/,'private inbox read receipt');
