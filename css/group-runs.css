@@ -58,6 +58,14 @@ body.is-run .gr-essay{display:block}
 body.is-run .gr-what h2,body.is-run .gr-kind{display:none}
 body.is-run .gr-what p:first-of-type{margin-top:0}
 body.is-run .gr-row{border-color:rgba(242,238,229,.14)}
+.gr-workout{padding:38px 0 14px}
+.gr-workout .gr-mono{margin:0 0 12px;color:var(--q-dark)}
+.gr-workout h2{font-size:clamp(30px,4.5vw,48px);font-weight:560;letter-spacing:-.04em;line-height:1.05;margin:0}
+.gr-workout-sets{counter-reset:workset;list-style:none;margin:32px 0 0;padding:0}
+.gr-workout-sets li{counter-increment:workset;display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:baseline;gap:18px;padding:16px 0;border-top:1px solid var(--hair-dark)}
+.gr-workout-sets li::before{content:counter(workset,decimal-leading-zero);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--q-dark)}
+.gr-set-work{font-size:22px;font-weight:550;font-variant-numeric:tabular-nums}
+.gr-set-rest{font-size:15px;color:var(--q-dark);font-variant-numeric:tabular-nums}
 .gr-plain p{margin:6px 0 0;color:var(--q-light);font-size:16px}
 .gr-plain+.gr-plain{margin-top:-64px}
 .gr-close{padding:110px var(--g) 90px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end}
@@ -145,6 +153,11 @@ html.gr-locked,html.gr-locked body{overflow:clip}
  .gr-back{margin-bottom:22px}
  .gr-facts{flex-direction:column;gap:4px;font-size:15px}
  .gr-essay{padding:0 22px}
+ .gr-workout{padding-top:30px}
+ .gr-workout-sets{margin-top:24px}
+ .gr-workout-sets li{grid-template-columns:26px minmax(0,1fr);gap:8px 12px}
+ .gr-set-work{font-size:20px}
+ .gr-set-rest{grid-column:2;font-size:14px}
  .gr-end{padding:30px 22px 60px;flex-direction:column}
  .gr-empty{padding:0 22px 80px}
 }
