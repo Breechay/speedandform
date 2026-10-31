@@ -355,6 +355,14 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .form-grid { display: grid; gap: 15px; margin-top: 22px; }
 .form-grid.two { grid-template-columns: 1fr 1fr; }
 .dialog-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 22px; }
+.consoleArchiveReview { padding: 10px 0 22px; }
+.archiveOverlap { padding: 16px 0; border-bottom: 1px solid var(--edge); }
+.archiveOverlap h3 { margin: 5px 0; font-size: 15px; }
+.archiveOverlap__date { margin: 0; color: var(--text); font-size: 12px; font-weight: 700; }
+.archiveOverlap__source, .archiveOverlap__protected { margin: 5px 0; color: var(--secondary); font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.archiveOverlap__protected { color: var(--muted); }
+.archiveOverlap .button { margin-top: 10px; }
+#withdrawForm { margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--edge); }
 
 /* Coach desk */
 .desk-layout { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: calc(100vh - 68px); }

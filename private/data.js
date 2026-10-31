@@ -1,5 +1,6 @@
 import { supabase } from './supabase-client.js';
 import { deliveryOverviewFor } from './delivery-status.js';
+import { publishedDayKey, uniqueActivePublicationByDay } from './archive-reconciliation.mjs';
 
 function result(data, error) {
   if (error) throw error;
@@ -212,7 +213,8 @@ export async function loadCoachBench(coachMemberships) {
   ]);
   [blocksResponse, weeksResponse, completionsResponse].forEach(({ error }) => { if (error) throw error; });
 
-  const weeks = weeksResponse.data || [];
+  const activeBlockIds = new Set((blocksResponse.data || []).map((block) => block.id));
+  const weeks = (weeksResponse.data || []).filter((week) => activeBlockIds.has(week.block_id));
   // The current week is found from the WEEK's own dates, never from a session
   // date: a Saturday long run and a Sunday long run in one week fall into
   // different buckets the moment the session date is the key. And the dates
@@ -267,7 +269,7 @@ export async function loadCoachBench(coachMemberships) {
   ]);
   [sessionsResponse, piecesResponse].forEach(({ error }) => { if (error) throw error; });
 
-  const sessions = sessionsResponse.data || [];
+  const sessions = (sessionsResponse.data || []).filter((session) => session.state !== 'cancelled' && !session.withdrawn_at);
 
   // Splits with no session attached tell you nothing. The filing usually points
   // at a week that is already behind us, so its title is fetched on its own.
@@ -398,13 +400,37 @@ export async function loadAttentionFor(athleteId) {
 }
 
 export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
+  // Keep archived blocks out of the hot path. Their sessions/versions remain in
+  // the database for filed receipts and coach review, but neither the athlete
+  // Week nor the Console should download or display their entire old programs.
+  const activePlan = (async () => {
+    const blockResponse = await supabase.from('training_blocks').select('*')
+      .eq('athlete_id', athleteId).eq('status', 'active').maybeSingle();
+    if (blockResponse.error) throw blockResponse.error;
+    const weeksResponse = blockResponse.data
+      ? await supabase.from('training_weeks').select('*').eq('block_id', blockResponse.data.id)
+          .order('week_number', { ascending: false })
+      : { data: [], error: null };
+    if (weeksResponse.error) throw weeksResponse.error;
+    const weekIds = (weeksResponse.data || []).map((week) => week.id);
+    const sessionsResponse = weekIds.length
+      ? await selectIn('planned_sessions', 'week_id', weekIds, 'position')
+      : { data: [], error: null };
+    if (sessionsResponse.error) throw sessionsResponse.error;
+    const sessionIds = (sessionsResponse.data || []).map((session) => session.id);
+    const versionsResponse = sessionIds.length
+      ? await selectIn('planned_session_versions', 'planned_session_id', sessionIds, 'version_number', false)
+      : { data: [], error: null };
+    if (versionsResponse.error) throw versionsResponse.error;
+    const versionIds = (versionsResponse.data || []).map((version) => version.id);
+    const componentsResponse = versionIds.length
+      ? await selectIn('planned_session_components', 'version_id', versionIds, 'position')
+      : { data: [], error: null };
+    if (componentsResponse.error) throw componentsResponse.error;
+    return { blockResponse, weeksResponse, sessionsResponse, versionsResponse, componentsResponse };
+  })();
   const queries = [
     supabase.from('athletes').select('*').eq('id', athleteId).single(),
-    supabase.from('training_blocks').select('*').eq('athlete_id', athleteId).eq('status', 'active').maybeSingle(),
-    supabase.from('training_weeks').select('*').eq('athlete_id', athleteId).order('week_number', { ascending: false }),
-    supabase.from('planned_sessions').select('*').eq('athlete_id', athleteId).order('position'),
-    supabase.from('planned_session_versions').select('*').eq('athlete_id', athleteId).order('version_number', { ascending: false }),
-    supabase.from('planned_session_components').select('*').eq('athlete_id', athleteId).order('position'),
     supabase.from('athlete_baselines').select('*').eq('athlete_id', athleteId).order('captured_at', { ascending: false }),
     supabase.from('athlete_measurements').select('*').eq('athlete_id', athleteId)
       .order('measured_at', { ascending: false }).order('created_at', { ascending: false }),
@@ -465,15 +491,14 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     );
   }
 
-  const responses = await Promise.all(queries);
+  const [responses, plan] = await Promise.all([Promise.all(queries), activePlan]);
   // The Forge receipt read is supplementary evidence: if it is unavailable the record
   // must still load, so its error is not fatal (it renders as no receipts).
   const forgeIndex = coach ? queries.length - 1 : -1;
   responses.forEach(({ error }, index) => { if (error && index !== forgeIndex) throw error; });
 
   const [
-    athleteResponse, blockResponse, weeksResponse, sessionsResponse, versionsResponse,
-    componentsResponse, baselinesResponse, measurementsResponse, completionsResponse, directionsResponse, readsResponse,
+    athleteResponse, baselinesResponse, measurementsResponse, completionsResponse, directionsResponse, readsResponse,
     readLinksResponse, decisionsResponse, marksResponse, signalsResponse, checkpointsResponse,
     gatesResponse, movementResponse, supportResponse, supportItemsResponse,
     verdictsResponse, piecesResponse, judgmentsResponse, judgmentLinksResponse,
@@ -482,6 +507,7 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     taskResponse, evidenceResponse, actionsResponse, privateNotesResponse, adminResponse,
     forgeReceiptsResponse
   ] = responses;
+  const { blockResponse, weeksResponse, sessionsResponse, versionsResponse, componentsResponse } = plan;
 
   const components = result(componentsResponse.data, componentsResponse.error);
   const versions = result(versionsResponse.data, versionsResponse.error)
@@ -581,6 +607,71 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     adminStatus: adminResponse?.data || null,
     forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
   };
+}
+
+// This audit is deliberately opt-in. Fetching archived plans during every Week
+// read would reproduce the very fan-out it is meant to resolve. Show an older
+// published session only when a live session on the SAME DATE and weekday exists
+// in the active block; a title/distance resemblance is never authority.
+export async function loadArchivedDuplicateSessions(athleteId, activeSessions) {
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError) throw authError;
+  if (!user) throw new Error('A signed-in coach is required to review archived sessions.');
+
+  const liveByDate = uniqueActivePublicationByDay(activeSessions);
+  if (!liveByDate.size) return [];
+
+  const { data: blocks, error: blockError } = await supabase.from('training_blocks')
+    .select('id,name,status').eq('athlete_id', athleteId).neq('status', 'active');
+  if (blockError) throw blockError;
+  if (!blocks?.length) return [];
+  const blockById = new Map(blocks.map((block) => [block.id, block]));
+  const weeksResponse = await selectIn('training_weeks', 'block_id', [...blockById.keys()], 'week_number');
+  if (weeksResponse.error) throw weeksResponse.error;
+  const weekById = new Map((weeksResponse.data || []).map((week) => [week.id, week]));
+  if (!weekById.size) return [];
+  const sessionsResponse = await selectIn('planned_sessions', 'week_id', [...weekById.keys()], 'position');
+  if (sessionsResponse.error) throw sessionsResponse.error;
+  const candidates = (sessionsResponse.data || []).filter((session) =>
+    session.state === 'published' && !session.withdrawn_at
+    && liveByDate.has(publishedDayKey(session)));
+  if (!candidates.length) return [];
+  const versionsResponse = await selectIn('planned_session_versions', 'planned_session_id',
+    candidates.map((session) => session.id), 'version_number', false);
+  if (versionsResponse.error) throw versionsResponse.error;
+  const latest = new Map();
+  (versionsResponse.data || []).forEach((version) => {
+    if (!latest.has(version.planned_session_id)) latest.set(version.planned_session_id, version);
+  });
+  const { data: filed, error: filedError } = await supabase.from('session_completions')
+    .select('planned_session_id').in('planned_session_id', candidates.map((session) => session.id));
+  if (filedError) throw filedError;
+  const filedIds = new Set((filed || []).map((completion) => completion.planned_session_id));
+  return candidates.map((session) => {
+    const week = weekById.get(session.week_id);
+    return {
+      ...session,
+      block: blockById.get(week?.block_id),
+      week,
+      currentVersion: latest.get(session.id) || null,
+      canonical: liveByDate.get(publishedDayKey(session)),
+      hasReceipt: filedIds.has(session.id)
+    };
+  }).sort((a, b) => a.scheduled_on.localeCompare(b.scheduled_on) || a.block.name.localeCompare(b.block.name));
+}
+
+export async function withdrawArchivedDuplicate(sessionId, reason) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in as the assigned coach before withdrawing a session.');
+  const note = String(reason || '').trim();
+  if (!note) throw new Error('A source and replacement ID are required in the withdrawal reason.');
+  const { data, error } = await supabase.rpc('withdraw_session', {
+    p_planned_session_id: sessionId,
+    p_reason: note
+  });
+  if (error) throw error;
+  return data;
 }
 
 export async function fileSession(payload, evidenceFile = null) {
