@@ -1,0 +1,39 @@
+name: Public FORM run links
+
+on:
+  pull_request:
+    paths:
+      - 'js/group-runs.js'
+      - 'js/people.js'
+      - 'coach/runs/runs.js'
+      - 'tests/group-runs-detail-contract.cjs'
+      - '.github/workflows/group-run-links.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'js/group-runs.js'
+      - 'js/people.js'
+      - 'coach/runs/runs.js'
+      - 'tests/group-runs-detail-contract.cjs'
+      - '.github/workflows/group-run-links.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify public run page and exact legacy links
+        run: |
+          node --check js/group-runs.js
+          node --check js/people.js
+          node tests/group-runs-detail-contract.cjs
+          node tests/public-copy-law.cjs
+          node tests/editorial-contract.cjs
