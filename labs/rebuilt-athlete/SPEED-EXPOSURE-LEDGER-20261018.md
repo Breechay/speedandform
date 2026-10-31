@@ -234,3 +234,21 @@ The continuous 20:01 iRUN segment is the only input. Every ~1-second enhanced-sp
 - **Recovery:** At approximately 6 AM October 27, Brice reported his legs felt fine while walking to coach Rod. This is a positive next-morning report, not a complete 24–48-hour impact response or medical clearance.
 
 **Current hypothesis, not conclusion:** Rhythmic company, accumulated strength work, fitness and an occasional deliberate attention reset may help Brice sustain a relaxed, faster stride. Without the passing group, a further fade is **unknown**; the measured middle dip alone cannot establish one. He does not want to monitor stride constantly or turn every run into a mechanics drill. A future comparison should ask whether he can notice a modest drift and regain ease during selected runs, including without a pacer, while keeping lower-leg response and effort acceptable. Do not force longer steps or change FORM/Forge prescriptions from this observation.
+
+## October 31 · Five eight-minute efforts across MacArthur Bridge
+
+**Source:** Original athlete-supplied Garmin Forerunner 965 FIT, activity 24916445808 (Miami - Tempo), and the athlete's October 31 terrain correction. The watch recommended 5 × 8:00 at 7:35/mi with 3-minute jog recoveries for the following Tuesday; Brice chose to perform it Saturday. This is a completed self-selected workout, not a FORM Week filing or revised coach prescription.
+
+The FIT records **72:02 timer time, 14.402 km (about 8.95 mi), whole-run HR 138 average / 166 peak**. The five eight-minute work efforts totaled **40:00 and 5.40 mi at about 7:25/mi**, with recoveries, warm-up and cooldown excluded.
+
+| Work rep | Duration | Avg pace /mi | Mean HR | Cadence | Step length | Ground contact |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1, bridge climb | 8:00 | 7:30 | 146 bpm | 171 spm | 1.253 m | 251 ms |
+| 2 | 8:00 | 7:24 | 142 bpm | 173 spm | 1.260 m | 247 ms |
+| 3 | 8:00 | 7:24 | 143 bpm | 174 spm | 1.249 m | 245 ms |
+| 4 | 8:00 | 7:12 | 149 bpm | 175 spm | 1.270 m | 241 ms |
+| 5, opposite bridge climb | 8:00 | 7:35 | 151 bpm | 173 spm | 1.229 m | 248 ms |
+
+These work-only means come from approximately one-second original FIT record messages; pace uses cumulative recorded distance at workout-step boundaries and cadence doubles the device cycle field to steps/minute. The first and fifth efforts climbed **opposite sides of MacArthur Bridge**, with somewhat different inclines and approaches, as Brice clarified. Their grade/wind demands were not matched. The faster fourth and slower fifth are therefore not evidence of a mechanical fade. Across the two climbs, pace and cadence were similar and contact time slightly shorter later, but no controlled efficiency or durability conclusion follows.
+
+**Still unknown:** the specific perceived effort on the last climb and the following 24–48-hour recovery response. The Garmin VO₂ estimate is a device trend, not a physiological threshold test. The original FIT and fuller private interpretation remain outside the public page. No FORM/Forge prescriptions were changed by this study review.
