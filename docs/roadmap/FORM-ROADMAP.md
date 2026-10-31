@@ -1,3 +1,10 @@
+## October 31 · Tinius archived Saturday reconciliation · issue #415
+
+- Ownership and exact session identifiers are recorded in the restricted coach audit and [issue #415](https://github.com/Breechay/speedandform/issues/415). Four upcoming Saturdays each have one active published prescription and two published archived overlaps. The read-only audit found no linked completions against the archived overlaps.
+- `codex/tinius-active-block-withdrawal` narrows website Athlete Week and Coach Console reads to active-block weeks and sessions, filters archived weeks from the multi-athlete bench, and adds an on-demand coach-only archive overlap review. Withdrawal requires exact-date/weekday active ownership, fresh completion checks, source/replacement IDs, a provenance reason, and the authenticated `withdraw_session` RPC. Historical filed sessions remain linked when correcting receipts.
+- Status: source implemented and local unit/athlete-workspace checks passed. **No production deployment or data withdrawal yet.** GitHub issue #415 tracks the live reconciliation. This web change is not an iOS release and has not been proven to resolve native Filing-sheet keyboard/scroll lag.
+- Next: review/merge the code, explicitly authorize a coordinated release, sign in as an assigned coach and withdraw the eight uncompleted archived occurrences; re-read exact `state`, `withdrawn_*`, current active Week/feed and Week stories (including known stale Weeks 4–6), compare internal board and athlete-facing Week, then validate installed iPhone and performance separately. Do not hard-delete session versions or completed receipts.
+
 ## October 29 · The Athletic Life opportunity action wiring
 
 - Owner request: give the 20 brainstorming ideas a reusable path to action without auto-launching a social product, altering athlete records or generating twenty active tasks.

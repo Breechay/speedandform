@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadArchivedDuplicateSessions, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, withdrawArchivedDuplicate } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
@@ -41,6 +41,8 @@ const shareDialog = document.getElementById('shareDialog');
 const shareForm = document.getElementById('shareForm');
 const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
+const archivedDialog = document.getElementById('archivedDialog');
+const withdrawForm = document.getElementById('withdrawForm');
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
 // Set when the filing dialog is correcting an existing entry rather than adding one.
@@ -64,6 +66,7 @@ let originalSessionEditorialCopy = null;
 let roster = [];
 let selectedId = null;
 let selectedRecord = null;
+let archivedDuplicates = [];
 let shownWeekId = null;
 let shownSessionId = null;
 // Set when an ad hoc filing is open rather than an authored session.
@@ -302,7 +305,8 @@ function blockShapeHtml() {
   const DASH = '\u2014';
 
   const rows = weeks.map((week) => {
-    const sessions = (selectedRecord.sessionsByWeek?.[week.id] || []);
+    const sessions = (selectedRecord.sessionsByWeek?.[week.id] || [])
+      .filter((session) => session.state !== 'cancelled' && !session.withdrawn_at);
     if (!sessions.length) return '';
     const out = week.starts_on
       ? Math.max(0, Math.round((new Date(raceOn) - new Date(week.starts_on)) / 604800000))
@@ -437,7 +441,7 @@ function workbenchHtml() {
   // Calendar order, from the stored dates. The long run is stored on the week's
   // first day, so a Sunday anchored week opens with it.
   const sessions = (selectedRecord.sessionsByWeek?.[shown.id] || [])
-    .filter((session) => session.currentVersion)
+    .filter((session) => session.currentVersion && session.state !== 'cancelled' && !session.withdrawn_at)
     .sort((a, b) => String(a.scheduled_on).localeCompare(String(b.scheduled_on)));
   const picked = sessions.find((session) => session.id === shownSessionId) || sessions[0];
 
@@ -895,6 +899,7 @@ function deskHtml() {
     ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
     ${runwayHtml()}
     ${workbenchHtml()}
+    ${selectedRecord.block ? '<div class="consoleArchiveReview"><button type="button" class="button small" id="reviewArchived">Review archived overlaps</button></div>' : ''}
     ${renderCoachAthletePreview(selectedRecord)}
   </div>`;
 }
@@ -979,6 +984,7 @@ function bindDesk() {
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
+  document.getElementById('reviewArchived')?.addEventListener('click', openArchivedReview);
   
   // Console actions using data-console-action
   app.querySelectorAll('[data-console-action]').forEach((button) => {
@@ -1013,6 +1019,7 @@ async function selectAthlete(athleteId) {
   shownWeekId = null;
   app.innerHTML = '<div class="loading" aria-label="Loading athlete"></div>';
   selectedRecord = await loadAthleteRecord(athleteId, { coach: true });
+  archivedDuplicates = [];
   const rosterEntry = roster.find((entry) => entry.id === athleteId);
   selectedRecord.attention = rosterEntry?.attention || await loadAttentionFor(athleteId);
   selectedRecord.deliveryOverview = rosterEntry?.deliveryOverview || null;
@@ -1020,6 +1027,85 @@ async function selectAthlete(athleteId) {
   app.innerHTML = deskHtml(); bindDesk();
   history.replaceState(null, '', `/coach/?athlete=${encodeURIComponent(selectedRecord.athlete.slug)}`);
 }
+
+function renderArchivedDuplicates() {
+  const rows = document.getElementById('archivedRows');
+  if (!archivedDuplicates.length) {
+    rows.innerHTML = '<p class="field-hint">No published archived sessions overlap this active program. Filed history is untouched.</p>';
+    return;
+  }
+  rows.innerHTML = archivedDuplicates.map((old) => `<section class="archiveOverlap">
+    <p class="archiveOverlap__date">${escapeHtml(formatDate(old.scheduled_on))} · ${escapeHtml(old.day_label)} · archived Week ${escapeHtml(old.week.week_number)}</p>
+    <h3>${escapeHtml(old.currentVersion?.title || 'Untitled archived session')}</h3>
+    <p class="archiveOverlap__source">${escapeHtml(old.block.name)} · ${escapeHtml(old.currentVersion?.prescribed_distance || '—')} ${escapeHtml(old.currentVersion?.distance_unit || '')} · v${escapeHtml(old.currentVersion?.version_number || '—')}</p>
+    <p class="archiveOverlap__source">Active replacement: ${escapeHtml(old.canonical.currentVersion?.title || 'Published session')} · ${escapeHtml(old.canonical.currentVersion?.prescribed_distance || '—')} ${escapeHtml(old.canonical.currentVersion?.distance_unit || '')}</p>
+    ${old.hasReceipt
+      ? '<p class="archiveOverlap__protected">Filed evidence exists. Preserved; withdrawal unavailable.</p>'
+      : `<button class="button small" type="button" data-prepare-withdraw="${escapeHtml(old.id)}">Review withdrawal</button>`}
+  </section>`).join('');
+  rows.querySelectorAll('[data-prepare-withdraw]').forEach((button) => button.addEventListener('click', () => {
+    const old = archivedDuplicates.find((item) => item.id === button.dataset.prepareWithdraw);
+    if (!old || old.hasReceipt) return;
+    withdrawForm.reset();
+    withdrawForm.elements.sessionId.value = old.id;
+    withdrawForm.elements.reason.value = `Superseded by ${old.canonical.id} (active ${selectedRecord.block.name} block ${selectedRecord.block.id}) on ${old.scheduled_on}. Withdraw archived ${old.block.name} block ${old.block.id} session ${old.id} (issue #415); preserve its versions and completed evidence.`;
+    document.getElementById('withdrawContext').textContent = `${formatDate(old.scheduled_on)} · ${old.currentVersion?.title || 'Archived session'} → ${old.canonical.currentVersion?.title || 'Active prescription'}`;
+    withdrawForm.hidden = false;
+    document.getElementById('archivedStatus').textContent = '';
+  }));
+}
+
+async function reloadArchivedDuplicates() {
+  archivedDuplicates = await loadArchivedDuplicateSessions(selectedRecord.athlete.id, selectedRecord.sessions);
+  renderArchivedDuplicates();
+}
+
+async function openArchivedReview() {
+  withdrawForm.hidden = true;
+  document.getElementById('archivedRows').innerHTML = '<p class="field-hint">Checking older published sessions and completion receipts…</p>';
+  const status = document.getElementById('archivedStatus');
+  status.textContent = '';
+  archivedDialog.showModal();
+  try { await reloadArchivedDuplicates(); }
+  catch (error) { status.textContent = error.message; status.className = 'status-message error'; }
+}
+
+document.getElementById('cancelWithdrawal').addEventListener('click', () => { withdrawForm.hidden = true; });
+withdrawForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const button = withdrawForm.querySelector('button[type="submit"]');
+  const status = document.getElementById('archivedStatus');
+  const sessionId = withdrawForm.elements.sessionId.value;
+  const reason = withdrawForm.elements.reason.value.trim();
+  button.disabled = true;
+  status.textContent = 'Rechecking current ownership and receipts…';
+  try {
+    // Re-read live block ownership too. A block switch since opening the modal
+    // must invalidate the proposed successor instead of withdrawing by stale UI.
+    const current = await loadAthleteRecord(selectedRecord.athlete.id, { coach: true });
+    const candidates = await loadArchivedDuplicateSessions(current.athlete.id, current.sessions);
+    const old = candidates.find((item) => item.id === sessionId);
+    if (!old || old.hasReceipt || current.block?.id !== selectedRecord.block?.id) {
+      throw new Error('The plan or completion evidence changed. Close and review again; nothing was withdrawn.');
+    }
+    if (!reason.includes(old.id) || !reason.includes(old.canonical.id)) {
+      throw new Error('Keep both the archived session ID and its active replacement ID in the provenance reason.');
+    }
+    await withdrawArchivedDuplicate(sessionId, reason);
+    selectedRecord = current;
+    await reloadArchivedDuplicates();
+    if (archivedDuplicates.some((item) => item.id === sessionId)) {
+      throw new Error('The session still appears published. Verify its database state before trying again.');
+    }
+    withdrawForm.hidden = true;
+    status.className = 'status-message success';
+    status.textContent = 'Archived duplicate withdrawn. Its version history is preserved; review the affected Week story and athlete feed before closing the issue.';
+    await refreshSelected();
+  } catch (error) {
+    status.className = 'status-message error';
+    status.textContent = error.message;
+  } finally { button.disabled = false; }
+});
 
 function liveSessionsForReview(completion) {
   const filedOn = String(completion?.filed_at || '').slice(0, 10);
@@ -1403,6 +1489,12 @@ function openFile(plannedSessionId = '', completionId = null) {
     '<option value="">Not one of her sessions</option>' +
     selectedRecord.sessions.map((session) =>
       `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
+  // Old prescriptions are excluded from the active Week payload. When correcting
+  // a historical filing, keep its original link rather than silently changing
+  // the recorded work into an unassigned/ad-hoc run.
+  if (existing?.planned_session_id && !selectedRecord.sessions.some((session) => session.id === existing.planned_session_id)) {
+    fileForm.elements.plannedSessionId.add(new Option('Historical filed session (preserved)', existing.planned_session_id));
+  }
   if (plannedSessionId) fileForm.elements.plannedSessionId.value = plannedSessionId;
   if (existing) {
     // Correcting starts from what is there, so a wrong number is changed rather

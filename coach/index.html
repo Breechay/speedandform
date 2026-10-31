@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Console · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=43">
+  <link rel="stylesheet" href="/private/graphite.css?v=44">
   <link rel="stylesheet" href="/athlete/workspace.css?v=2">
 </head>
 <body>
@@ -354,6 +354,31 @@
       <p class="status-message" id="sessionStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
     </form>
+  </dialog>
+
+  <dialog class="dialog" id="archivedDialog">
+    <div class="dialog-inner">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Coach-only reconciliation</p><h2>Archived duplicate sessions</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <p class="field-hint">Only published sessions from older blocks that overlap the active block on the exact date and weekday appear here. A completed session cannot be withdrawn.</p>
+      <div id="archivedRows" aria-live="polite"></div>
+      <form id="withdrawForm" hidden>
+        <input type="hidden" name="sessionId">
+        <p class="field-hint" id="withdrawContext"></p>
+        <label class="field-label">Withdrawal provenance
+          <textarea class="field-textarea" name="reason" required minlength="20"></textarea>
+        </label>
+        <p class="field-hint">This withdraws one uncompleted archived prescription through the authorized coach path. Its versions remain in the audit record.</p>
+        <div class="dialog-actions">
+          <button class="button" type="button" id="cancelWithdrawal">Keep session</button>
+          <button class="button primary" type="submit">Confirm withdrawal</button>
+        </div>
+      </form>
+      <p class="status-message" id="archivedStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Close review</button></div>
+    </div>
   </dialog>
 
   <dialog class="dialog" id="fileDialog">
