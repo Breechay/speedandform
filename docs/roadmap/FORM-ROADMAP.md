@@ -5,6 +5,13 @@
 - Status: source implemented and local unit/athlete-workspace checks passed. **No production deployment or data withdrawal yet.** GitHub issue #415 tracks the live reconciliation. This web change is not an iOS release and has not been proven to resolve native Filing-sheet keyboard/scroll lag.
 - Next: review/merge the code, explicitly authorize a coordinated release, sign in as an assigned coach and withdraw the eight uncompleted archived occurrences; re-read exact `state`, `withdrawn_*`, current active Week/feed and Week stories (including known stale Weeks 4–6), compare internal board and athlete-facing Week, then validate installed iPhone and performance separately. Do not hard-delete session versions or completed receipts.
 
+## October 31 · Public FORM Long Run link collision
+
+- Production database has public Collective occurrences for November 1 and 7 titled `FORM Long Run`, both without a series ID. The old website slug rule sent each to `/run/form-long-run/` and rejected the duplicate; `/run/long-run-02/` also could not resolve.
+- [PR #421](https://github.com/Breechay/speedandform/pull/421) proposes dated canonical links for this generic long-run title, a Story 02 alias pinned to the verified November 7 public run ID, an older-link date chooser, and aligned Coach Runs/People links. It adds a focused regression gate and fresh page asset version.
+- **Status:** source committed and isolated JS rendering checked. GitHub CI/hosted acceptance and Netlify release are separate. No public group dose, athlete prescription, RSVP, run row or database migration changed.
+- **Next:** inspect CI and page at phone/desktop sizes, merge the reviewed source, then request explicit approval for one Netlify production publish and verify live URLs. Native clients using the old title-only link get the web chooser until their share composer changes.
+
 ## October 29 · The Athletic Life opportunity action wiring
 
 - Owner request: give the 20 brainstorming ideas a reusable path to action without auto-launching a social product, altering athlete records or generating twenty active tasks.
