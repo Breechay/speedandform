@@ -96,13 +96,21 @@
   function title(r) { var s = session(r); return s ? s.title : r.title; }
   function detail(r) { var s = session(r); return [r.meet_name, s && s.sequence].filter(Boolean).join(' · '); }
   function meetPoint(r) { return facts(r).meet_point || MEET_POINTS[r.meet_name] || ''; }
-  // FORMCollectiveComposer.slug: a series occurrence carries its Miami date, a one-off is its title.
-  function slugOf(r, when) {
-    var base = Array.from(String(r.title).toLowerCase()).map(function (c) { return /[\p{L}\p{N}]/u.test(c) ? c : '-'; })
+  // Keep existing one-off titles stable. The recurring generic "FORM Long Run" title
+  // needs a date even when the occurrence has no series_id, or separate mornings collide.
+  function titleSlug(r) {
+    return Array.from(String(r.title).toLowerCase()).map(function (c) { return /[\p{L}\p{N}]/u.test(c) ? c : '-'; })
       .join('').split('-').filter(Boolean).join('-');
-    return r.series_id ? base + '-' + parts(when || r.starts_at).ymd : base;
+  }
+  function slugOf(r, when) {
+    var base = titleSlug(r);
+    var dated = !!r.series_id || (r.kind === 'long_run' && base === 'form-long-run');
+    return dated ? base + '-' + parts(when || r.starts_at).ymd : base;
   }
   function href(r) { return '/run/' + slugOf(r) + '/'; }
+  // Story 02's previously promised URL is an alias for the verified Nov 7 occurrence.
+  // Resolve by public run ID, never by the duplicate "FORM Long Run" title.
+  var STORY_ALIASES = { 'long-run-02': 'fa6ef832-bdd2-471e-9418-7455505beaa0' };
   function miles(list) {
     if (!Array.isArray(list) || !list.length) return '';
     var lo = Math.min.apply(null, list), hi = Math.max.apply(null, list);
@@ -306,8 +314,27 @@
     if (!slug) return fail('This run isn’t here.');
     Promise.all([loadRuns(), loadGalleries().catch(function () { return {}; }), loadFORMMiamiWorkouts().catch(function () { return {}; })]).then(function (res) {
       var runs = res[0], gal = res[1], shared = res[2];
-      // A moved occurrence keeps the address it was shared under (its original date) and its new one.
-      var matches = runs.filter(function (r) { return slugOf(r) === slug || (r.original_starts_at && slugOf(r, r.original_starts_at) === slug); });
+      // A moved occurrence keeps both its original-date and current-date address.
+      var aliasId = STORY_ALIASES[slug];
+      var matches = runs.filter(function (r) {
+        return aliasId ? r.id === aliasId :
+          slugOf(r) === slug || (r.original_starts_at && slugOf(r, r.original_starts_at) === slug);
+      });
+      // Older native app releases shared undated one-off links. If several mornings now
+      // share that address, let the visitor choose the date; never silently pick one.
+      if (!matches.length && !aliasId) {
+        var old = runs.filter(function (r) { return !r.series_id && titleSlug(r) === slug; });
+        if (old.length === 1) matches = old;
+        else if (old.length > 1) {
+          old.sort(function (a, b) { return Date.parse(a.starts_at) - Date.parse(b.starts_at); });
+          $('gr-title').textContent = old[0].title;
+          $('gr-sub').textContent = 'Choose a date';
+          $('gr-count').textContent = 'Miami time';
+          root.innerHTML = '<div class="gr-rows">' + old.map(function (r) { return runRow(r, true); }).join('') + '</div>';
+          window.FORM_GROUP_ALBUM = { choices: old.length };
+          return;
+        }
+      }
       if (!matches.length) return fail('This run isn’t here.');
       if (matches.length > 1) return fail('More than one run has this address.');
       var run = matches[0], p = parts(run.starts_at), url = 'https://speedandform.com' + href(run);
