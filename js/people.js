@@ -33,7 +33,7 @@
   // Same address the app shares (FORMCollectiveComposer.slug; js/group-runs.js slugOf).
   function runHref(title, startsAt, series) {
     var base = Array.from(String(title).toLowerCase()).map(function (c) { return /[\p{L}\p{N}]/u.test(c) ? c : '-'; }).join('').split('-').filter(Boolean).join('-');
-    if (!series) return '/run/' + base;
+    if (!series && base !== 'form-long-run') return '/run/' + base;
     var ymd = new Intl.DateTimeFormat('en-CA', { timeZone: ZONE, year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(startsAt));
     return '/run/' + base + '-' + ymd;
   }

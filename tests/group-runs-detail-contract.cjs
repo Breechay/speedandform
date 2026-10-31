@@ -23,7 +23,7 @@ const published = {
   ]
 };
 
-async function render({workoutsFail = false, cancelled = false} = {}) {
+async function render({workoutsFail = false, cancelled = false, publicRuns = null, pathname = '/run/form-thursday-2099-11-05/', expectRun = true} = {}) {
   const nodes = Object.fromEntries(['gr-album', 'gr-title', 'gr-sub', 'gr-when', 'gr-count'].map(id =>
     [id, {innerHTML: '', textContent: ''}]));
   const requests = [];
@@ -38,7 +38,7 @@ async function render({workoutsFail = false, cancelled = false} = {}) {
   const fetch = async url => {
     requests.push(url);
     let payload;
-    if (url.includes('/collective_public_runs?')) payload = [run];
+    if (url.includes('/collective_public_runs?')) payload = publicRuns || [run];
     else if (url.endsWith('/rpc/collective_galleries')) payload = [];
     else if (url.endsWith('/rpc/form_miami_public_calendar')) {
       if (workoutsFail) return {ok: false};
@@ -48,10 +48,10 @@ async function render({workoutsFail = false, cancelled = false} = {}) {
   };
   vm.runInNewContext(source, {
     document, window, fetch, AbortController, setTimeout, clearTimeout,
-    URLSearchParams, location: {pathname: '/run/form-thursday-2099-11-05/'},
+    URLSearchParams, location: {pathname},
   }, {filename: 'group-runs.js'});
   for (let i = 0; i < 8 && !window.FORM_GROUP_ALBUM; i++) await new Promise(resolve => setImmediate(resolve));
-  assert.equal(window.FORM_GROUP_ALBUM?.run, true, 'detail page rendered');
+  if (expectRun) assert.equal(window.FORM_GROUP_ALBUM?.run, true, 'detail page rendered');
   assert.ok(requests.some(url => url.endsWith('/rpc/form_miami_public_calendar')), 'detail reads public workout projection');
   assert.ok(requests.every(url => !/coach|private|athlete/.test(url)), 'no private endpoint requested');
   return nodes['gr-album'].innerHTML;
@@ -75,5 +75,26 @@ async function render({workoutsFail = false, cancelled = false} = {}) {
   const cancelled = await render({cancelled: true});
   assert.doesNotMatch(cancelled, /gr-workout-sets|Add to calendar/);
   assert.match(cancelled, /Not meeting on this date/);
-  console.log('Group run detail: published workout, graceful fallback and cancellation pass');
+
+  // Production regression: Nov 1 and Nov 7 share an undated title, not an address.
+  const longRuns = [
+    {id: '4bc77034-8812-481b-8530-050de1a17df0', kind: 'long_run', series_id: null,
+      title: 'FORM Long Run', status: 'scheduled', meet_at: '2099-11-01T11:00:00Z',
+      starts_at: '2099-11-01T11:00:00Z', original_starts_at: '2099-11-01T11:00:00Z',
+      meet_name: 'The Labs', meet_address: 'Miami', group_facts: {}},
+    {id: 'fa6ef832-bdd2-471e-9418-7455505beaa0', kind: 'long_run', series_id: null,
+      title: 'FORM Long Run', status: 'scheduled', meet_at: '2099-11-07T11:00:00Z',
+      starts_at: '2099-11-07T11:00:00Z', original_starts_at: '2099-11-07T11:00:00Z',
+      meet_name: 'The Labs', meet_address: 'Miami', group_facts: {}}
+  ];
+  const canonical = await render({publicRuns: longRuns, pathname: '/run/form-long-run-2099-11-07/'});
+  assert.match(canonical, /FORM Long Run/);
+  assert.doesNotMatch(canonical, /More than one run has this address/);
+  const story = await render({publicRuns: longRuns, pathname: '/run/long-run-02/'});
+  assert.match(story, /FORM Long Run/, 'Story 02 alias resolves the exact public Nov 7 run ID');
+  const legacy = await render({publicRuns: longRuns, pathname: '/run/form-long-run/', expectRun: false});
+  assert.match(legacy, /href="\/run\/form-long-run-2099-11-01\/"/);
+  assert.match(legacy, /href="\/run\/form-long-run-2099-11-07\/"/);
+  assert.doesNotMatch(legacy, /More than one run has this address/);
+  console.log('Group run detail: workout, fallback, cancellation, unique Nov 7 link and legacy chooser pass');
 })().catch(error => { console.error(error); process.exitCode = 1; });
