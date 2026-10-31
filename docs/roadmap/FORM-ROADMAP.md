@@ -2,8 +2,8 @@
 
 - Production database has public Collective occurrences for November 1 and 7 titled `FORM Long Run`, both without a series ID. The old website slug rule sent each to `/run/form-long-run/` and rejected the duplicate; `/run/long-run-02/` also could not resolve.
 - [PR #421](https://github.com/Breechay/speedandform/pull/421) proposes dated canonical links for this generic long-run title, a Story 02 alias pinned to the verified November 7 public run ID, an older-link date chooser, and aligned Coach Runs/People links. It adds a focused regression gate and fresh page asset version.
-- **Status:** source committed and isolated JS rendering checked. GitHub CI/hosted acceptance and Netlify release are separate. No public group dose, athlete prescription, RSVP, run row or database migration changed.
-- **Next:** inspect CI and page at phone/desktop sizes, merge the reviewed source, then request explicit approval for one Netlify production publish and verify live URLs. Native clients using the old title-only link get the web chooser until their share composer changes.
+- **Status:** PR #421 passed focused route, editorial, integrity, discovery and public-menu checks and was squash-merged as `dea35975414451764e60d6293fe5de52bfa2b3b9`. The Netlify production deploy remains unchanged. An unrelated pre-existing escaped-newline error in the visual-theater workflow was found by the post-merge run and is being repaired separately. No public group dose, athlete prescription, RSVP, run row or database migration changed.
+- **Next:** confirm the repaired visual gate and available hosted QA, then obtain explicit approval for one Netlify production publish and verify live URLs. Native clients using the old title-only link get the web date chooser until their share composer changes.
 
 ## October 29 · The Athletic Life opportunity action wiring
 
