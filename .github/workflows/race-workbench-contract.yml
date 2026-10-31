@@ -1,0 +1,64 @@
+name: Race editorial workbench contract
+
+on:
+  pull_request:
+    paths:
+      - 'coach/races/**'
+      - 'docs/next/FORM_RACE_EDITORIAL_COACH_WORKBENCH_CANDIDATE.sql'
+      - 'tests/race-workbench-*'
+      - '.github/workflows/race-workbench-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'coach/races/**'
+      - 'docs/next/FORM_RACE_EDITORIAL_COACH_WORKBENCH_CANDIDATE.sql'
+      - 'tests/race-workbench-*'
+      - '.github/workflows/race-workbench-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: race-workbench-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    services:
+      postgres:
+        image: postgres:17.6
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: races_contract
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d races_contract"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check coach race editor JavaScript syntax
+        run: |
+          node --check coach/races/workbench.js
+          node --check coach/races/workbench-model.mjs
+      - name: Verify race editor data and authorization contracts
+        run: node tests/race-workbench-model.test.mjs
+      - name: Execute SQL candidate against a disposable PostgreSQL database
+        env:
+          PGPASSWORD: postgres
+        run: |
+          psql -h 127.0.0.1 -U postgres -d races_contract -X -v ON_ERROR_STOP=1 \
+            -f tests/race-workbench-postgres-fixture.sql \
+            -f docs/next/FORM_RACE_EDITORIAL_COACH_WORKBENCH_CANDIDATE.sql \
+            -f tests/race-workbench-postgres-contract.sql
