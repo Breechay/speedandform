@@ -322,7 +322,7 @@ $('manage').addEventListener('click',async(e)=>{
 $('linkRun').addEventListener('click',async()=>{
   const id=$('runSelect').value;const item=runs.find((r)=>r.id===id);if(!item)return;
   if(!confirm(`Link ${item.title} to FORM ${lane}? This will notify the subscribed athletes and expose the existing Who’s in RSVP.`))return;
-  try{await rpc('form_miami_link_run',{p_lane:lane,p_on_date:$('date').value,p_run_id:id});await load();const mail=await dispatchEmails();say(`Run linked, RSVP available. ${mail}`);}catch(err){say(err.message,true);}
+  try{await rpc('form_miami_link_run',{p_lane:lane,p_on_date:$('date').value,p_run_id:id});await load();say('Run linked. RSVP and in-app notices are available; email delivery was not requested.');}catch(err){say(err.message,true);}
 });
 $('nudgeForm').addEventListener('submit',async(e)=>{
   e.preventDefault();const f=new FormData(e.currentTarget),title=f.get('title').trim(),body=f.get('body').trim();
