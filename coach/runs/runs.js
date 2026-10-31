@@ -94,7 +94,8 @@ const session = (r) => SESSIONS.find((s) => s[0] === facts(r).workout_session_id
 const albumTitle = (r) => session(r)?.[1] || r.title;
 function slugOf(r) {
   const base = Array.from(String(r.title).toLowerCase()).map((c) => (/[\p{L}\p{N}]/u.test(c) ? c : '-')).join('').split('-').filter(Boolean).join('-');
-  return r.series_id ? `${base}-${parts(r.starts_at).ymd}` : base;
+  return r.series_id || (r.kind === 'long_run' && base === 'form-long-run')
+    ? `${base}-${parts(r.starts_at).ymd}` : base;
 }
 
 // ------------------------------------------------------------------ server
