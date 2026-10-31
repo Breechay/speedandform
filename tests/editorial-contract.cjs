@@ -14,6 +14,46 @@ const expected = [
 ];
 for (const [file,phrase] of expected) assert.ok(read(file).includes(phrase), 'Publication rule missing in '+file);
 
+const ownerRule = 'People are the subject. FORM is the platform. The founder is not the narrator.';
+for (const file of [
+  'AGENTS.md',
+  'docs/BRAND.md',
+  'docs/editorial/PUBLICATION_CONTRACT.md',
+  'docs/marketing/ATHLETE_LANGUAGE_RULE.md',
+  '.cursor/rules/form-speedandform-context.mdc'
+]) assert.ok(read(file).includes(ownerRule), 'Athlete-first attribution rule missing in '+file);
+for (const [copy, code] of [
+  ['Photos by Brice', 'founder.photos-by'],
+  ['Sent to Brice', 'founder.sent-to'],
+  ['Brice confirms it before your name shows', 'founder.tag-review'],
+  ['Strength, coached by Brice.', 'founder.strength-pitch']
+]) assert.ok(scanText(copy, 'fixture.html', 'visible copy').some(x => x.rule === code), 'Founder narration not caught: '+copy);
+assert.equal(scanText('Brice · Athlete profile · Miami', 'fixture.html', 'visible copy').length, 0, 'Actual athlete identity remains legal');
+assert.equal(scanText('Request sent. Tag pending review.', 'fixture.html', 'visible copy').length, 0, 'Neutral status remains allowed');
+
+// Owner's October 19 athletic-world rule must survive future site and agent changes.
+for (const [file, phrase] of [
+  ['AGENTS.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/BRAND.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/editorial/PUBLICATION_CONTRACT.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['docs/design/APP-DESIGN-DIRECTION-20261012.md', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md'],
+  ['.cursor/rules/form-speedandform-context.mdc', 'FORM_ATHLETIC_WORLD_STANDARD_2026-10.md']
+]) assert.ok(read(file).includes(phrase), 'Living athletic-world rule missing from '+file);
+assert.ok(read('docs/design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md').includes('No dead sections'), 'No-dead-sections design authority missing');
+assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('No group run scheduled'), 'No-run fallback contract missing');
+assert.ok(read('docs/product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md').includes('/media/library/library.json'), 'Content contract must reuse approved FORM media library');
+
+// October 19 bend-photography direction must persist when brand/agent docs are revised.
+for (const file of [
+  'AGENTS.md',
+  'docs/BRAND.md',
+  'docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md',
+  'docs/design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md',
+  '.cursor/rules/form-speedandform-context.mdc'
+]) assert.ok(read(file).includes('FORM_BEND_PHOTOGRAPHIC_APERTURE_2026-10.md'), 'Photo bend art direction missing from '+file);
+assert.ok(read('docs/design/FORM_BEND_PHOTOGRAPHIC_APERTURE_2026-10.md').includes('photographic-aperture grammar'), 'Bend photographic architecture creative spec missing');
+
 const doc = text => '<!doctype html><html><head><title>FORM Study</title><meta name="description" content="A real training question."></head><body>'+text+'</body></html>';
 assert.equal(scanHtml(doc('<h1>José · Oct 13</h1><p>20 minutes at 6:06/mi, athlete reported.</p><a href="#source">Reports &amp; splits</a>'), 'fixture.html').length, 0);
 assert.equal(scanHtml(doc('<p>Read the study archive for the original splits.</p>'), 'fixture.html').length, 0);
