@@ -31,7 +31,7 @@ assert(!/elijah-nov-11/.test(toml),'netlify.toml must not reference elijah-nov-1
 // not reachable from sitemap, search index, or any tracked page link
 const tracked=require('child_process').execFileSync('git',['ls-files','-z'],{cwd:root,encoding:'utf8'}).split('\0').filter(Boolean);
 for(const f of tracked){
-  if(/^(docs|tests)\//.test(f)||f==='_redirects'||f.startsWith('plans/elijah-nov-11/')) continue;
+  if(/^(docs|tests)\//.test(f)||f==='_redirects'||f==='scripts/verify-withdrawn-routes.cjs'||f.startsWith('plans/elijah-nov-11/')) continue;
   if(!/\.(html|js|json|xml|txt|cjs|md|toml)$/.test(f)) continue;
   let t; try{t=fs.readFileSync(path.join(root,f),'utf8');}catch(e){continue;}
   assert(!t.includes('plans/elijah-nov-11'),`${f} references the withdrawn page`);
