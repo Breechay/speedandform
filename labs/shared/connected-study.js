@@ -1,4 +1,5 @@
 /* One approved public record graph and one guarded plan read for every study.
+   Plan content is shown ONLY from a live response verified as "published" (see publication-gate.js); there is no committed fallback.
    No athlete memberships, private filings, auth tokens or coach notes are fetched. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.FORMConnectedStudy=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
@@ -35,9 +36,14 @@ function component(c,unit,lang='en'){
  const p=pace(c.pace_low_seconds,c.pace_high_seconds,unit);
  return [label,repeat+amount,p?'@ '+p:'',c.recovery_seconds?(lang==='fr'?' · récupération ':' · recovery ')+clock(c.recovery_seconds)+(c.recovery_kind==='easy'?(lang==='fr'?' très facile':' very easy'):''):''].filter(Boolean).join(' ');
 }
-function stateMessage(state,lang){return text({en:state==='live'?'Approved plan checked against the dated FORM sessions.':state==='review_required'?'Update awaiting matched publication. The saved plan below is not confirmed current.':state==='unavailable'?'Public plan unavailable. Follow your assigned FORM plan.':'Saved approved copy. Live connection not yet confirmed.',fr:state==='live'?'Plan publié vérifié avec les séances datées de FORM.':state==='review_required'?'Mise à jour en attente de publication concordante. La copie ci-dessous n’est pas confirmée actuelle.':state==='unavailable'?'Plan public indisponible. Suivre le plan attribué dans FORM.':'Copie publiée enregistrée. Connexion actuelle non confirmée.'},lang);}
-function planHTML(name,raw,unit,lang='en',state='saved',full=true){
- if(!raw||raw.state!=='published')return `<p class="cs-state" role="status">${esc(stateMessage(raw?.state||'unavailable',lang))}</p>`;
+function stateMessage(state,lang){return FORMGateRef().message(state,lang);}
+function FORMGateRef(){
+ // Fail CLOSED: if the gate script is missing, no plan content is ever shown.
+ const g=(typeof module==='object'&&module.exports)?require('./publication-gate.js'):(typeof window!=='undefined'?window.FORMPublicationGate:null);
+ return g||{forAthlete:()=>({state:'unverified',entry:null}),displayable:()=>false,message:()=>'The plan could not be verified, so it is not shown.'};
+}
+function planHTML(name,raw,unit,lang='en',state='checking',full=true){
+ if(!raw||raw.state!=='published'||!raw.payload)return `<p class="cs-state" role="status" data-plan-state="${esc(raw?.state||'unverified')}">${esc(stateMessage(raw?.state||'unverified',lang))}</p>`;
  const p=raw.payload;unit=unit||raw.distance_unit;
  let h=`<div class="cs-plan" data-plan-athlete="${name}" data-plan-version="${p.version.number}" data-state="${esc(state)}"><p class="cs-state" role="status">${esc(stateMessage(state,lang))} <span>V${p.version.number} · ${esc(when(p.running.published_at.slice(0,10),lang))}</span></p><div class="cs-plan-heading"><h3>${esc(p.running.race_name)}</h3><strong>${esc(when(p.running.race_on,lang))}</strong></div>`;
  const days={MON:['Monday','Lundi'],TUE:['Tuesday','Mardi'],WED:['Wednesday','Mercredi'],THU:['Thursday','Jeudi'],FRI:['Friday','Vendredi'],SAT:['Saturday','Samedi'],SUN:['Sunday','Dimanche']};
@@ -79,32 +85,32 @@ function journalHTML(b,plans,filter='all',unit='mi',lang='en',kind='all'){
 async function readPlans(signal){const r=await fetch(RPC,{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:'{}',cache:'no-store',signal});if(!r.ok)throw Error('Public plan unavailable');return validatePlans(await r.json());}
 function boot(){
  const root=document.querySelector('[data-connected-study]');if(!root)return;
- let b=window.FORMStudyBundle, saved=window.FORMStudyPlans,live=null, lang=document.documentElement.lang==='fr'?'fr':'en';
+ let b=window.FORMStudyBundle, live=null, checked=false, lang=document.documentElement.lang==='fr'?'fr':'en';
  let unit=new URLSearchParams(location.search).get('unit')||root.dataset.unit||'mi';if(!['mi','km'].includes(unit))unit='mi';
  let filter=new URLSearchParams(location.search).get('athlete')||root.dataset.athlete||'all';if(!['all','elijah','simon'].includes(filter))filter='all';let kind='all', busy=false,lastRead=0;
- validateBundle(b);validatePlans(saved);
+ validateBundle(b);
  function render(){
   root.querySelectorAll('[data-cs-copy]').forEach(e=>{const v=b.copy?.[e.dataset.csCopy];if(v)e.textContent=text(v,lang);});
-  root.querySelectorAll('[data-cs-plan]').forEach(e=>{const a=e.dataset.csPlan,state=live?.athletes?.[a]?.state;e.innerHTML=planHTML(a,state==='published'||state==='unavailable'?live.athletes[a]:saved.athletes[a],unit,lang,state==='published'?'live':state||'saved');});
-  root.querySelectorAll('[data-cs-journal]').forEach(e=>e.innerHTML=journalHTML(b,live||saved,e.dataset.csJournal||filter,unit,lang,kind));
-  root.querySelectorAll('[data-cs-entry]').forEach(e=>{const r=b.records.find(x=>x.id===e.dataset.csEntry);e.innerHTML=r?entryHTML(r,b,live||saved,unit,lang,true):'<p>Entry unavailable.</p>';});
+  root.querySelectorAll('[data-cs-plan]').forEach(e=>{const a=e.dataset.csPlan,g=FORMGateRef().forAthlete(live,a,checked);e.innerHTML=planHTML(a,g.state==='published'?g.entry:(g.entry||{state:g.state}),unit,lang,g.state==='published'?'live':g.state);});
+  root.querySelectorAll('[data-cs-journal]').forEach(e=>e.innerHTML=journalHTML(b,live,e.dataset.csJournal||filter,unit,lang,kind));
+  root.querySelectorAll('[data-cs-entry]').forEach(e=>{const r=b.records.find(x=>x.id===e.dataset.csEntry);e.innerHTML=r?entryHTML(r,b,live,unit,lang,true):'<p>Entry unavailable.</p>';});
   root.querySelectorAll('[data-cs-unit]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.csUnit===unit)));
   root.querySelectorAll('[data-cs-filter]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.csFilter===filter)));
   root.querySelectorAll('[data-cs-kind]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.csKind===kind)));
   root.querySelectorAll('[data-cs-lang]').forEach(e=>e.setAttribute('aria-pressed',String(e.dataset.csLang===lang)));
-  document.querySelectorAll('[data-cs-race]').forEach(e=>{const a=e.dataset.csRace,p=(live?.athletes?.[a]?.state==='published'?live:saved).athletes[a].payload;e.textContent=when(p.running.race_on,lang);});
-  document.querySelectorAll('[data-cs-version]').forEach(e=>{const a=e.dataset.csVersion;e.textContent='V'+(live?.athletes?.[a]?.payload||saved.athletes[a].payload).version.number;});
-  if(root.dataset.athlete==='simon'){const st=document.getElementById('statusTxt'),sub=document.getElementById('statusSub');if(st)st.textContent=(lang==='fr'?'Plan V':'Plan V')+(live?.athletes?.simon?.payload||saved.athletes.simon.payload).version.number;if(sub)sub.textContent=lang==='fr'?'Voir les séances datées':'See the dated plan below';}
+  document.querySelectorAll('[data-cs-race]').forEach(e=>{const a=e.dataset.csRace,g=FORMGateRef().forAthlete(live,a,checked);e.textContent=FORMGateRef().displayable(g)?when(g.entry.payload.running.race_on,lang):'—';});
+  document.querySelectorAll('[data-cs-version]').forEach(e=>{const a=e.dataset.csVersion,g=FORMGateRef().forAthlete(live,a,checked);e.textContent=FORMGateRef().displayable(g)?'V'+g.entry.payload.version.number:'';});
+  if(root.dataset.athlete==='simon'){const st=document.getElementById('statusTxt'),sub=document.getElementById('statusSub'),g=FORMGateRef().forAthlete(live,'simon',checked),ok=FORMGateRef().displayable(g);if(st)st.textContent=ok?'Plan V'+g.entry.payload.version.number:'';if(sub)sub.textContent=ok?(lang==='fr'?'Voir les séances datées':'See the dated plan below'):FORMGateRef().message(g.state,lang);}
   if(root.dataset.scope==='paired'&&lang==='fr')root.querySelectorAll('[data-english-editorial]').forEach(e=>e.lang='en');
  }
  root.addEventListener('click',e=>{const t=e.target.closest('button');if(!t)return;
   if(t.dataset.csUnit){unit=t.dataset.csUnit;render();}if(t.dataset.csFilter){filter=t.dataset.csFilter;render();}if(t.dataset.csKind){kind=t.dataset.csKind;render();}if(t.dataset.csLang){lang=t.dataset.csLang;document.documentElement.lang=lang;render();}if(t.hasAttribute('data-cs-refresh'))refresh(true);
  });
- async function refresh(force=false){if(busy||(!force&&Date.now()-lastRead<30000))return;busy=true;try{live=await readPlans(AbortSignal.timeout(12000));}catch(_){live=null;}try{const r=await fetch(BASE+'bundle.json',{cache:'no-store',signal:AbortSignal.timeout(8000)});if(r.ok)b=validateBundle(await r.json());}catch(_){}lastRead=Date.now();busy=false;render();}
+ async function refresh(force=false){if(busy||(!force&&Date.now()-lastRead<30000))return;busy=true;try{live=await readPlans(AbortSignal.timeout(12000));}catch(_){live=null;}checked=true;try{const r=await fetch(BASE+'bundle.json',{cache:'no-store',signal:AbortSignal.timeout(8000)});if(r.ok)b=validateBundle(await r.json());}catch(_){}lastRead=Date.now();busy=false;render();}
  render();refresh();document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});window.addEventListener('focus',()=>refresh());
  // Existing Simon controls remain the authority for that page's language/units.
  document.addEventListener('form-study-preferences',e=>{unit=e.detail.unit;lang=e.detail.lang;render();});
 }
 if(typeof document!=='undefined'){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();}
-return {esc,text,clock,distance,pace,validatePlans,validateBundle,component,planHTML,entryHTML,journalHTML,recordState,readPlans,boot};
+return {esc,text,clock,distance,pace,validatePlans,validateBundle,component,planHTML,entryHTML,journalHTML,recordState,readPlans,boot,stateMessage};
 });

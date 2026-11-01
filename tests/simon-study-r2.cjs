@@ -101,7 +101,17 @@ const panel=require('../scripts/studies/simon-study-panel.cjs')();
 const banned=/absorbed|absorption|working.development|ceiling maintenance|race prediction|not established half|quality budget|separated gates/i;
 for(const [name,copy] of Object.entries({plan,observation,panel,bilingual:JSON.stringify(publicCopy)}))assert.ok(!banned.test(copy),name+': current athlete copy is plain');
 assert.ok(publicCopy['obs.p'][1].includes('cours facilement jeudi ou repose-toi'));
-assert.ok(plan.includes('6 × 20 sec relaxed strides'),'Saved/no-JS grid includes strides');
+// WITHDRAWAL-SAFE (Nov 1 2026): the committed page carries NO plan grid, doses or pace cards. They are drawn at run time
+// only from a publication verified as "published"; a committed snapshot is never a fallback.
+const staticMarkup=html.replace(/<script\b[\s\S]*?<\/script>/g,'');   // the page's own JS templates legitimately name these classes
+assert.ok(!/class="gp-d |class="gp-row |relaxed strides|Warm-up \d+ min|class="gp-tot"/.test(staticMarkup),'No baked plan grid or doses in the committed page markup');
+assert.ok(html.includes('data-source-state="checking"')&&html.includes('<noscript>'),'The plan area starts unverified and says so without JavaScript');
+assert.ok(!html.includes('published-plan.js')&&!/FORMSimonPublishedPlan/.test(html),'The page no longer loads or reads a committed snapshot');
+assert.ok(html.includes('/labs/shared/publication-gate.js')&&html.includes('readState('),'The page uses the publication gate');
+const bakedT=JSON.parse(html.slice(html.indexOf('const T = ')+10,html.indexOf('const MON = ')).trim().replace(/;$/,''));
+for(const k of ['s2.p','tr1.p','tr2.p','tr3.p','pace.easy','pace.tuesday','pace.thursday'])assert.deepEqual(bakedT[k],['',''],k+' is blank in the committed page');
+for(const el of ['tr1.p','tr2.p','tr3.p','pace.easy','pace.tuesday','pace.thursday'])assert.ok(new RegExp('data-i="'+el.replace('.','\\.')+'"[^>]*></(p|b|td)>').test(html),el+' element is empty in the static HTML');
+assert.ok(/refreshApprovedPublication[\s\S]*publicationState='unverified'/.test(html)&&/publicationState=r\.state/.test(html),'Unavailable, review_required and unverifiable states are all handled without content');
 assert.ok(html.includes('data-study-revision="'+pub.revision+'"'));
 for(const [,attrs,body]of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)){
  if(attrs.includes('application/ld+json'))JSON.parse(body);else if(body.trim())new vm.Script(body);
@@ -110,7 +120,7 @@ const build=require('../scripts/studies/build-simon-r2.cjs');
 assert.equal(build.render(html,pub),html,'Repeating the publication build is idempotent');
 const futureBuild=build.render(html,later);
 const futureT=JSON.parse(futureBuild.slice(futureBuild.indexOf('const T = ')+10,futureBuild.indexOf('const MON = ')).trim().replace(/;$/,''));
-assert.deepEqual(futureT['s2.p'],['Updated coach description.','Updated coach description.'],'A later saved build also avoids a stale French description');
+assert.deepEqual(futureT['s2.p'],['',''],'A later build still bakes no plan summary into the page');
 assert.equal(publicCopy['s2.p'][0],pub.payload.version.summary,'Building a later publication never rewrites the translation source');
 assert.equal(build.render(futureBuild,later),futureBuild,'Future-summary fallback build is idempotent');
 assert.deepEqual(Object.keys(pub).sort(),['state','revision','distance_unit','schema_version','pace_seconds_unit','payload'].sort());
