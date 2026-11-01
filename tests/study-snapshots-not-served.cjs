@@ -10,10 +10,13 @@ for(const f of SNAPSHOTS){
 }
 // no tracked HTML/JS page loads or fetches a snapshot
 const tracked=cp.execFileSync('git',['ls-files','-z','--','*.html','*.js','*.cjs','*.mjs'],{cwd:ROOT}).toString().split('\0').filter(Boolean);
-// KNOWN OPEN FINDING (not part of this fix): plans/elijah-nov-11 is a separate, noindex static page for Elijah's earlier plan
-// (publication elijah-nov11-half, revoked Oct 18). It needs its own decision; it is listed here so the exception is explicit.
-const KNOWN_STATIC_PLAN_PAGES=['plans/elijah-nov-11/index.html'];
-const allowed=new Set([...KNOWN_STATIC_PLAN_PAGES,...SNAPSHOTS,'tests/simon-study-browser.cjs','tests/simon-study-r2.cjs','tests/study-withdrawal-fallback-browser.cjs','tests/study-snapshots-not-served.cjs','scripts/studies/build-simon-r2.cjs']);
+// Withdrawn static plan page: its source is preserved in git, but it is exempt from the text scan ONLY while every
+// route to it is a forced 404 (full variant coverage lives in tests/revoked-plan-routes-not-served.cjs).
+const WITHDRAWN_BLOCKED_PAGES=['plans/elijah-nov-11/index.html'];
+{const {load,resolve}=require('./lib/redirect-rules.cjs');const rules=load(path.join(ROOT,'_redirects'));
+ for(const f of WITHDRAWN_BLOCKED_PAGES){const d='/'+path.dirname(f);
+  for(const v of [d,d+'/',d+'/index.html']){const r=resolve(rules,v);assert.ok(r&&r.status===404&&r.force,v+' must be force-404 for the withdrawn page to be exempt');}}}
+const allowed=new Set([...WITHDRAWN_BLOCKED_PAGES,...SNAPSHOTS,'tests/simon-study-browser.cjs','tests/simon-study-r2.cjs','tests/study-withdrawal-fallback-browser.cjs','tests/study-snapshots-not-served.cjs','scripts/studies/build-simon-r2.cjs']);
 const offenders=[];
 for(const f of tracked){
  if(allowed.has(f)||f.startsWith('docs/'))continue;

@@ -36,7 +36,7 @@ Simon's and Elijah's currently approved plans render exactly as before whenever 
 - `SUMMARY_TRANSLATION` in `labs/the-two-curves/index.html` holds the plan summary's EN/FR text so a verified summary can be translated; it is shown only when it matches a verified live summary.
 - `data-study-revision` (a version label), the editorial records in `bundle.json|js` and `evidence.json` (separately approved), and the dates written into the editorial copy.
 - **Git history** of this public repository contains every earlier committed snapshot and baked page.
-- **Open finding, not part of this change:** `plans/elijah-nov-11/` is a separate noindex static page for Elijah's earlier (revoked) plan. Other `plans/*` folders are static athlete plan pages (Adrian, José, Devin, others) under their own consent status, which this review did not assess. A noindex tag is not access control.
+- **`plans/elijah-nov-11/` (resolved in this PR, pending deploy):** Elijah's earlier, revoked prescription (publication `elijah-nov11-half`, revoked 2026-10-18). Source (`index.html`, `program.json`) stays in git; `_redirects` force-404s every route to it. Guard: `tests/revoked-plan-routes-not-served.cjs`; post-deploy check: `scripts/verify-withdrawn-routes.cjs`. The *other* `plans/*` pages are classified in `docs/studies/PLANS_STATIC_PAGES_AUDIT_20261101.md`. A noindex tag is not access control.
 - `plans/elijah-savannah-half/` is titled for the Savannah half but now fills with whichever Elijah plan is live (Palm Beaches); a content decision for Brice.
 
 ## Withdrawal checklist (if either athlete's consent is withdrawn, or a publication must come down)

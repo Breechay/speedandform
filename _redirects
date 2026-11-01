@@ -1,3 +1,12 @@
+# Withdrawn static plan page (Nov 1 2026): Elijah's revoked Savannah prescription (publication slug elijah-nov11-half, revoked Oct 18).
+# The source stays in git (plans/elijah-nov-11/) for history; NO route to it may resolve. Guarded by tests/revoked-plan-routes-not-served.cjs.
+/plans/elijah-nov-11 /404.html 404!
+/plans/elijah-nov-11/ /404.html 404!
+/plans/elijah-nov-11/index.html /404.html 404!
+/plans/elijah-nov-11/program.json /404.html 404!
+/plans/elijah-nov-11.html /404.html 404!
+/plans/elijah-nov-11/* /404.html 404!
+
 # Withdrawal safety (Nov 1 2026): committed study-plan snapshots stay in the repo for builds and CI, but are NEVER served.
 # Study pages show plan content only from a live, verified "published" response (see labs/shared/publication-gate.js).
 /labs/the-two-curves/published-plan.json /404.html 404!

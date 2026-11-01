@@ -32,6 +32,7 @@ jobs:
           git diff --exit-code -- labs/the-two-curves/
           node tests/simon-study-r2.cjs /tmp/simon-study-qa/contract.json
           node tests/study-snapshots-not-served.cjs
+          node tests/revoked-plan-routes-not-served.cjs
           node tests/cream-reading.cjs
       - name: Browser tooling
         run: |
