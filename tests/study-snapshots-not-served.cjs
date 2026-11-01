@@ -16,7 +16,7 @@ const WITHDRAWN_BLOCKED_PAGES=['plans/elijah-nov-11/index.html'];
 {const {load,resolve}=require('./lib/redirect-rules.cjs');const rules=load(path.join(ROOT,'_redirects'));
  for(const f of WITHDRAWN_BLOCKED_PAGES){const d='/'+path.dirname(f);
   for(const v of [d,d+'/',d+'/index.html']){const r=resolve(rules,v);assert.ok(r&&r.status===404&&r.force,v+' must be force-404 for the withdrawn page to be exempt');}}}
-const allowed=new Set([...WITHDRAWN_BLOCKED_PAGES,...SNAPSHOTS,'tests/simon-study-browser.cjs','tests/simon-study-r2.cjs','tests/study-withdrawal-fallback-browser.cjs','tests/study-snapshots-not-served.cjs','scripts/studies/build-simon-r2.cjs']);
+const allowed=new Set([...WITHDRAWN_BLOCKED_PAGES,...SNAPSHOTS,'tests/simon-study-browser.cjs','tests/simon-study-r2.cjs','tests/study-withdrawal-fallback-browser.cjs','tests/study-snapshots-not-served.cjs','scripts/studies/build-simon-r2.cjs','scripts/verify-withdrawn-routes.cjs']);
 const offenders=[];
 for(const f of tracked){
  if(allowed.has(f)||f.startsWith('docs/'))continue;
