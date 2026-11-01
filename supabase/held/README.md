@@ -11,3 +11,10 @@ That has happened once already.
   provenance, revocation without deleting identity, append-only grant history,
   retention, a checker rejecting client-writable memberships) are written and
   Brice has read them. Coaching uploads must never be mixed into it.
+- `20261101230000_public_plan_preview_allowlist.sql` · restricts `public_plan_preview` to an explicit allowlist
+  (`race-pace-durability` only) so an athlete-specific published slug cannot be previewed. Approved in design by Brice
+  (Nov 1, 2026), **not applied**. This is the AUTHORITATIVE copy; FORM-iOS holds a byte-identical mirror
+  (`supabase/mirrors/speedandform/`, sha256 `ef9ff7547e573ac7c54e999c5428bb7a0162b10dc98ba35f4bb58fd24b99766b`). It requires the reviewed function-definition hash
+  (`form.expected_preview_md5`) and refuses to run if the migration ledger already records it. It moves into
+  `migrations/` only on Brice's explicit approval, after staging verification, and is then applied by hand per
+  `docs/engineering/MIGRATION_OWNERSHIP_AND_APPLICATION_20261101.md`. Do not run `supabase db push` while it is here or there.
