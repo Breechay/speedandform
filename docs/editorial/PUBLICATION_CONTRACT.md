@@ -15,6 +15,24 @@ Show the athlete, the work, the result, the question, or the action. Do not expl
 - **Write like the practice.** Plain, concise, first person when Brice is the speaker. Do not write corporate belief copy, pseudo-scientific noun piles, generic aspiration, or artificial emotional cues. Follow `docs/marketing/ATHLETE_LANGUAGE_RULE.md`.
 - **Keep the theater.** This is not a minimalism rule. Preserve cinematic photography, editorial strips, real film, deep shadow and visual drama; improve readable contrast, consent, performance, mobile composition and reduced-motion behavior instead of deleting worthwhile decoration. Follow `docs/design/FORM_VISUAL_EXECUTION_STANDARD_2026-10.md`.
 
+## Athlete-first attribution · October 19, 2026
+
+**People are the subject. FORM is the platform. The founder is not the narrator.**
+
+This is a standing owner-approved editorial rule for all athlete-facing Running and Strength/Forge screens, the Dossier, Collective/Network, athlete profiles, group runs, photos and film, training studies, captions, website content and generated UI copy.
+
+- **Lead with the athlete and the event.** Show the actual workout, result, race, session, photograph, date, place, participant or next action. Never add founder credits, signatures or approval narration just to remind the athlete who is behind the product.
+- **No gratuitous self-attribution.** Avoid interface copy such as `Photos by Brice`, `Sent to Brice`, `Brice confirms it`, `From Brice · Oct 18`, `Strength, coached by Brice`, or repeatedly appending a founder signature to coach notes. Prefer the event/date/location, `Request sent`, `Pending review`, `Oct 18`, and an athlete-focused training promise. Don't make the founder the hero of group or athlete screens.
+- **Keep tag moderation real but backstage.** The `That's me` action can create a tag request. Only verified/approved tags may display person names, and hidden/opted-out profiles must stay hidden. The athlete may need a concise status (`Request sent` or `Pending review`), not the personal identity of the reviewer. Never imply approval is automatic.
+- **Use real names when they have a real job.** Do not erase Brice from his own athlete profile, actual roster, direct one-to-one coaching communication, necessary contact/support details, a genuine quoted/authored perspective, contractual credit or legally required attribution. Other photographers and contributors retain required or agreed credits. Identity must be factual, relevant and proportionate, not repetitive promotion.
+- **Silence beats a substitute slogan.** Removing an unnecessary name does not create a vacancy to fill with `the team`, `curated by FORM`, `personally approved` or more exposition. Delete the line when the visual and factual context already say enough.
+
+**Editorial check:** If the founder's name disappeared, would the athlete lose information needed to act, understand authorship, consent, contact or accountability? If not, omit it. **Present the evidence. Don't narrate the presentation.** Preserve the visual theater and the necessary privacy, permission and accessibility disclosures.
+
+## Athletic world: photographs, people and useful notes
+
+FORM's athlete-facing screens are not only schedules: they also present real people, published photos, films, and occasional complete short training ideas. Follow the [athletic-world standard](../design/FORM_ATHLETIC_WORLD_STANDARD_2026-10.md) and the [lean Running + website model](../product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md). A section with no upcoming event can remain useful through truthful existing archive material, but never imply an old run is upcoming or invent freshness. Keep event absence distinct from read failure. Curated cards are not a social feed; photographs and notes must respect permission, source and relevance.
+
 ## Check before publishing
 
 1. **Question:** What would a visitor know or do differently after reading each sentence? Delete lines that merely explain the page design, navigation, content grouping or feeling.
