@@ -9,6 +9,7 @@ const hash=s=>crypto.createHash('sha256').update(s).digest('hex');
 const escapeHTML=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const escapeRE=s=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
 const staticFormat=s=>A.format(s,'km').replace(/\{e:(\d+)\}/g,(_,x)=>x+' m').replace(/\{b1\}/g,'Sep 28').replace(/\{b1end\}/g,'Nov 1').replace(/\{g1\}/g,'Oct 29');
+const PLAN_KEYS=['s2.p','tr1.p','tr2.p','tr3.p','pace.easy','pace.tuesday','pace.thursday'];
 const arg=name=>{const i=process.argv.indexOf(name);return i<0?null:process.argv[i+1];};
 
 function replaceCopy(html,key,value){
@@ -42,10 +43,10 @@ function render(html,pub){
   assert.ok(t0>=0&&t1>t0,'Study translations missing');
   const T=JSON.parse(html.slice(t0+10,t1).trim().replace(/;$/,''));
   Object.assign(T,COPY);
-  const current=A.currentCopy(pub);
-  T['s2.p']=A.summaryCopy(pub,COPY['s2.p']).values;
-  delete current['s2.en'];
-  Object.assign(T,current);
+  // Plan-derived copy (summary, doses, pace cards) is NEVER baked into the committed page: it is blank here and
+  // filled at run time only from a publication verified as "published". Withdrawal therefore needs no rebuild of the page.
+  A.currentCopy(pub); A.summaryCopy(pub,COPY['s2.p']);   // build-time validation only
+  for(const key of PLAN_KEYS) T[key]=['',''];
   // These are the recorded September 4 repetitions, not a current pace range.
   const history=`{p:${366/A.MI}} / {p:${362/A.MI}}`;
   T['pace.history']=[history,history];
@@ -86,11 +87,15 @@ function render(html,pub){
   const copyStart=html.indexOf('function renderCopy(){'),copyEnd=html.indexOf('  document.querySelectorAll("[data-i]")',copyStart);
   assert.ok(copyStart>=0&&copyEnd>copyStart,'Study copy renderer missing');
   html=html.slice(0,copyStart)+`function renderCopy(){
-  // STUDY003_LIVE_COPY: update the summaries as well as the grid.
-  const copy=window.FORMSimonPlan.currentCopy(window.FORMSimonPublishedPlan);
-  const summary=window.FORMSimonPlan.summaryCopy(window.FORMSimonPublishedPlan,SUMMARY_TRANSLATION);
-  T['s2.p']=summary.values;delete copy['s2.en'];Object.assign(T,copy);
-  const englishFallback=lang==='fr'&&summary.frenchFallback;
+  // STUDY003_LIVE_COPY: plan-derived copy exists only while a verified publication is held; otherwise it is blank.
+  const PLAN_KEYS=${JSON.stringify(PLAN_KEYS)};
+  let englishFallback=false;
+  if(VERIFIED){
+    const copy=window.FORMSimonPlan.currentCopy(VERIFIED);
+    const summary=window.FORMSimonPlan.summaryCopy(VERIFIED,SUMMARY_TRANSLATION);
+    T['s2.p']=summary.values;delete copy['s2.en'];Object.assign(T,copy);
+    englishFallback=lang==='fr'&&summary.frenchFallback;
+  }else PLAN_KEYS.forEach(k=>{T[k]=['',''];});
   const summaryLabel=document.getElementById('summaryLanguage');
   summaryLabel.hidden=!englishFallback;summaryLabel.textContent=t('s2.fallback');
   document.querySelector('[data-i="s2.p"]').lang=englishFallback?'en':lang;
@@ -99,38 +104,36 @@ function render(html,pub){
   html=html.replace('const body = d.type==="easy" ? (d.lbl?d.lbl[lang]:"") : fmt(d[lang]);','const body = fmt(d[lang]);');
   html=html.replace('${types[d.type]}</span><span class="body">${body}', '${d.label?d.label[lang]:types[d.type]}</span><span class="body">${body}');
 
-  const status=`let publicationState='saved';
+  const status=`let publicationState='checking';
 let refreshingPublication=false;
 function renderPublicationState(){
  const el=document.getElementById('planSource'),button=document.getElementById('refreshPlan');if(!el)return;
  el.dataset.sourceState=publicationState;
- const ver=window.FORMSimonPublishedPlan.payload.version.number;
+ const G=window.FORMPublicationGate;
  if(publicationState==='refreshing')el.textContent=lang==='fr'?'Vérification du plan…':'Checking for plan updates…';
- else if(publicationState==='live')el.textContent=(lang==='fr'?'Plan à jour · version ':'Plan up to date · version ')+ver;
- else if(publicationState==='review_required')el.textContent=lang==='fr'?'La publication doit être mise à jour. Consulte ton plan dans FORM. La copie précédente reste affichée.':'The published copy needs an update. Check your plan in FORM. The previous copy remains visible.';
- else el.textContent=(lang==='fr'?'Copie enregistrée · version ':'Saved plan · version ')+ver+(lang==='fr'?'. Les mises à jour n’ont pas pu être vérifiées.':'. Updates could not be checked.');
+ else if(publicationState==='live')el.textContent=(lang==='fr'?'Plan à jour · version ':'Plan up to date · version ')+VERIFIED.payload.version.number;
+ else el.textContent=G.message(publicationState,lang);
  if(button){button.hidden=false;button.disabled=refreshingPublication;button.textContent=refreshingPublication?(lang==='fr'?'Vérification…':'Checking…'):t('refresh');}
 }
 async function refreshApprovedPublication(){
  if(refreshingPublication)return;
  refreshingPublication=true;publicationState='refreshing';renderPublicationState();
  try{
-  const next=await window.FORMSimonPlan.read(AbortSignal.timeout(12000));
-  if(next.payload.running.starts_on!==BLOCK01_START||next.payload.version.number<window.FORMSimonPublishedPlan.payload.version.number)throw Error('Public plan is not approved/current');
-  B1=window.FORMSimonPlan.fromPublication(next);window.FORMSimonPublishedPlan=next;publicationState='live';
- }catch(e){publicationState=String(e.message).includes('approved/current')?'review_required':'saved';}
+  const r=await window.FORMSimonPlan.readState(AbortSignal.timeout(12000));
+  if(r.state==='published'){VERIFIED=r.plan;BLOCK01_START=r.plan.payload.running.starts_on;B1=window.FORMSimonPlan.fromPublication(r.plan);publicationState='live';}
+  else{VERIFIED=null;BLOCK01_START=null;B1=[];publicationState=r.state;}   // unavailable | review_required: no plan content
+ }catch(e){VERIFIED=null;BLOCK01_START=null;B1=[];publicationState='unverified';}   // unverifiable: no plan content
  refreshingPublication=false;
- renderCopy();renderGrid();renderPublicationState();
+ renderAll();
 }
-
 `;
-  const s0=html.indexOf("let publicationState='saved';"),s1=html.indexOf('function renderAll(){',s0);
+  const s0=Math.max(html.indexOf("let publicationState='saved';"),html.indexOf("let publicationState='checking';")),s1=html.indexOf('function renderAll(){',s0);
   assert.ok(s0>=0&&s1>s0,'Publication refresh entry point missing');
   html=html.slice(0,s0)+status+html.slice(s1);
   if(!html.includes("getElementById('refreshPlan').addEventListener"))html=html.replace('\nrenderAll();\nrefreshApprovedPublication();',"\ndocument.getElementById('refreshPlan').addEventListener('click',refreshApprovedPublication);\nrenderAll();\nrefreshApprovedPublication();");
 
-  const version=pub.payload.version.number;
-  const saved=`<!-- STUDY003_SAVED_GRID --><div class="plan-publication"><p class="plan-source" id="planSource" data-source-state="saved" role="status" aria-live="polite">Saved plan · version ${version}.</p><button id="refreshPlan" class="plan-refresh" type="button" data-i="refresh" hidden>Refresh plan</button></div><div class="grid-plan" id="gridPlan" role="table" aria-label="Block 01, every day">${A.fallbackGrid(pub)}</div><!-- END_STUDY003_SAVED_GRID -->`;
+  // The committed page carries NO plan grid. The grid is drawn at run time from a verified publication only.
+  const saved=`<!-- STUDY003_SAVED_GRID --><div class="plan-publication"><p class="plan-source" id="planSource" data-source-state="checking" role="status" aria-live="polite">Checking the publication status…</p><button id="refreshPlan" class="plan-refresh" type="button" data-i="refresh" hidden>Refresh plan</button></div><div class="grid-plan" id="gridPlan" role="table" aria-label="Block 01, every day"></div><noscript><p class="plan-source">The plan is shown only after its publication status is verified in the browser. Turn on JavaScript to see it.</p></noscript><!-- END_STUDY003_SAVED_GRID -->`;
   html=html.replace(/<!-- STUDY003_SAVED_GRID -->[\s\S]*?<!-- END_STUDY003_SAVED_GRID -->/,()=>saved);
   if(!html.includes('STUDY003_REFRESH_CONTROL'))html=html.replace('</style>',`/* STUDY003_REFRESH_CONTROL */
 .plan-publication{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin:8px 0 12px}
@@ -162,7 +165,6 @@ async function main(){
   const pub=Object.fromEntries(['state','revision','distance_unit','schema_version','pace_seconds_unit','payload'].map(k=>[k,raw[k]]));
   const html=render(fs.readFileSync(FILE,'utf8'),pub);
   fs.writeFileSync(path.join(DIR,'published-plan.json'),JSON.stringify(pub,null,2)+'\n');
-  fs.writeFileSync(path.join(DIR,'published-plan.js'),'/* Generated from approved FORM publication. Do not author here. */\nwindow.FORMSimonPublishedPlan = '+JSON.stringify(pub).replace(/</g,'\\u003c')+';\n');
   fs.writeFileSync(FILE,html);
   console.log(JSON.stringify({revision:pub.revision,version:pub.payload.version.number,totals:pub.payload.weeks.map(w=>w.total_distance),html_sha256:hash(html)}));
 }
