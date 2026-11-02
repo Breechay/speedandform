@@ -10,14 +10,14 @@ Read-only audit of current **published** future `planned_sessions` (2026-11-02 o
 | Published quality-title sessions | 189 |
 | Quality sessions with typed work component(s) | 175 |
 | Quality sessions without a typed work component | **14** |
-| Structured quality sessions whose details contain quantitative `×` notation (possible publisher echo) | **37** |
+| Structured quality sessions whose details contain quantitative `×` notation (possible publisher echo) | **38** |
 | True mismatches between pace text and canonical per-mile pace seconds | **0** |
 | Reversed stored pace bands or work rows missing distance and duration | **0** |
 | Current published Nov 5 source descriptions still containing the old “Two passes” summary | **0** |
 
 The 14 quality sessions without typed work are **six Turner sessions** and **eight Jacob Hackman knee-return sessions**. They are review exceptions; some contain imprecise ranges such as “2 × 8–10 min.” The author must choose an exact measurable work prescription where appropriate. Do **not** synthesize structured work, change duration, or change injury-return constraints by inference.
 
-The 37 detailed `×` descriptions are **candidates for source-copy review**, not 37 confirmed defects: some may contain meaningful instruction. Compare each one against its actual components, preserve useful execution guidance, and remove only repeated volume / split / recovery recaps. The broad search also surfaced other long/easy sessions with the word “speed” in intent; those were excluded from this quality-title count.
+These 38 quantitative-detail candidates are distributed as David (20), Megan (7), Lisa (5), Natalie (2), Simon (2), and Valerie (2). The 38 detailed `×` descriptions are **candidates for source-copy review**, not 37 confirmed defects: some may contain meaningful instruction. Compare each one against its actual components, preserve useful execution guidance, and remove only repeated volume / split / recovery recaps. The broad search also surfaced other long/easy sessions with the word “speed” in intent; those were excluded from this quality-title count.
 
 ## Source and publishing standard
 
@@ -30,7 +30,7 @@ The 37 detailed `×` descriptions are **candidates for source-copy review**, not
 
 ## Deployment and residual risk
 
-Guardrail code is proposed in draft PR #431. It must pass CI, be reviewed and merged, and follow the planned release process before it changes production authoring. This UI/import check does **not** cover direct SQL/RPC publishers; a server-side validation at the common write boundary is the remaining defense-in-depth task. The 14 already-published prose-only sessions and 37 review candidates remain unchanged pending a coach decision.
+Guardrail code is proposed in draft PR #431. It must pass CI, be reviewed and merged, and follow the planned release process before it changes production authoring. This UI/import check does **not** cover direct SQL/RPC publishers; a server-side validation at the common write boundary is the remaining defense-in-depth task. The 14 already-published prose-only sessions and 38 review candidates remain unchanged pending a coach decision.
 
 ## Source cleanup already completed
 
