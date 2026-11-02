@@ -61,6 +61,8 @@ Keep the founding brief untouched. New evidence belongs in a dated companion, so
 
 ## Which rule wins
 
+Prior decisions are precedents, not permanent constraints. Keep the principle behind a decision, and challenge its implementation when something better appears. Say what changed, why it is stronger and what might be lost.
+
 When two documents disagree, use this order:
 
 1. Privacy, consent and safety.

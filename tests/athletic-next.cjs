@@ -4,7 +4,8 @@ const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f
 const {makePage,makeThanks}=require('../scripts/build-athletic-next.cjs');
 const data=JSON.parse(read('the-athletic-life/next/items.json'));
 const items=data.sections.flatMap(s=>s.items);
-assert.deepEqual(data.sections.map(s=>s.id),['testing','next','ideas'],'Three states, in order');
+assert.deepEqual(data.sections.map(s=>s.id).filter(id=>id!=='released'),['testing','next','ideas'],'Three states, in order, then what has shipped');
+assert.ok(!data.sections.some(s=>s.id==='released'&&!s.items.length),'Released appears only when something has shipped');
 for(const item of items)for(const key of ['title','line'])assert.ok(item[key]?.trim(),item.title+': needs '+key);
 assert.ok(data.sections[1].items.every(item=>item.when?.trim()),'Every up-next item says when');
 assert.equal(data.sections[0].when,'Next update','Testing carries one timing');

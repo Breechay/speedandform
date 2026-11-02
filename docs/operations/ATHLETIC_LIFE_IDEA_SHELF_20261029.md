@@ -106,7 +106,7 @@ The essential relationship is **race ↔ person ↔ optional Collective occasion
 
 ## Public list
 
-On November 2, 2026, Brice approved a public list of app ideas and updates at [What's next](../../the-athletic-life/next/). Edit `the-athletic-life/next/items.json`, then run `node scripts/build-athletic-next.cjs`. An idea there is not a promise, a date or a chosen experiment. Anything marked Next update must be cut if it does not ship.
+On November 2, 2026, Brice approved a public list of app ideas and updates at [What's next](../../the-athletic-life/next/). Edit `the-athletic-life/next/items.json`, then run `node scripts/build-athletic-next.cjs`. Testing now means it is happening. Up next means a committed direction. Ideas are open possibilities, including athlete suggestions. Items move from Ideas to Up next to Testing now, then into a Released section (`id: released`, with a `when` such as `FORM 44.5`) rather than disappearing. Anything marked Next update moves back if it does not ship.
 
 ## When FORM needs an idea
 

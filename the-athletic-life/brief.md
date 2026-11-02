@@ -7,6 +7,8 @@ The north star for FORM. Use it to decide what to build, what to host and what t
 
 ## 1. The question
 
+I coach runners, and the running is only part of it. This is the question I keep coming back to.
+
 **What could FORM make possible in an athlete's life that probably would not have happened, or would have been much harder, without FORM?**
 
 Every idea for the app, the team and the coaching starts here. Running better is part of the answer. So are the people you meet, the places you go, the time you stop spending on logistics, and a history worth keeping.
@@ -17,13 +19,13 @@ The answer may not be another feature. It may be a better morning, an introducti
 
 ## 2. What FORM is
 
-FORM is a running practice in Miami and the people who train in it, near and far.
+FORM is the running practice I built in Miami, and the people who train in it, near and far.
 
-A coach writes the training for each person. Thursday track and long runs bring people together. Photographs and film keep the history. The app carries all of it.
+I ran a café for years, and I still think about a training morning the way a good host does: who is arriving, what they need, what they will remember. Thursday track and long runs bring people together. Photographs and film keep the history. The app carries all of it.
 
 The app is not the whole product. It is the surface of a service, and it should feel like one person remembered every detail.
 
-FORM stays small on purpose. We would rather be extraordinarily valuable to the people who choose it than be big.
+FORM stays small on purpose. I would rather be extraordinarily valuable to the people who choose it than be big.
 
 ---
 
@@ -41,7 +43,7 @@ Most people are more than one of these, and it changes through a season.
 
 ---
 
-## 4. What people need from us
+## 4. What people need
 
 ### Know what to do
 
@@ -97,8 +99,8 @@ Build at Apple-level ease. If something saves five minutes and takes ten to expl
 
 ## 7. Where we are
 
-Next, we are talking to athletes. What they tell us outranks anything written here.
+Next, I am talking to athletes. What they tell me outranks anything written here.
 
-- [What's next](/the-athletic-life/next/): what we are testing, building and considering.
+- [What's next](/the-athletic-life/next/): what is being tested, what is coming and what is still an idea.
 - [First discoveries](/the-athletic-life/discoveries/): what the research taught us.
 - [Research and agent guide](/the-athletic-life/research/): the sources, and how to use them.
