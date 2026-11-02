@@ -75,6 +75,17 @@ with current_sessions as (
     and s.title ~* '(^|[^[:alpha:]])easy([^[:alpha:]]|$)'
     and s.title !~* '(long[[:space:]]+(run|easy)|strides|race[[:space:]]+pace|tempo|threshold|interval)'
   union all
+  select 'BLOCK','DOUBLE_THRESHOLD_FORM_WEEK',t.slug,t.scheduled_on,t.title,
+         'Tuesday threshold repeats the linked FORM Thursday threshold; use the coach-approved easy or strides Tuesday instead'
+  from current_sessions t
+  join current_sessions th on th.athlete_id=t.athlete_id
+       and th.scheduled_on=t.scheduled_on + 2
+  join public.form_miami_session_links link on link.planned_session_id=th.session_id
+       and link.lane='thursday' and not link.paused
+  where extract(isodow from t.scheduled_on)=2
+    and t.title ~* '(threshold|tempo)'
+    and th.title ~* '(threshold|tempo)'
+  union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
          'Track workout needs an authored Week preview with sets and rests'
   from current_sessions s where (s.title ilike 'THE FIFTH CIRCLE%' or s.title ilike 'FORM Track%')
