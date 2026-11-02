@@ -56,7 +56,7 @@ with current_sessions as (
   select 'COPY','PLACEHOLDER_SESSION_TITLE',s.slug,s.scheduled_on,s.title,
          'Replace an internal category with a plain title that names the actual work'
   from current_sessions s
-  where s.title ~* '(midweek aerobic|threshold control|long aerobic|easy aerobic|recovery aerobic|aerobic[[:space:]]*\\+[[:space:]]*strides|^[[:space:]]*key session[[:space:]]*$)'
+  where s.title ~* '(midweek aerobic|threshold control|long aerobic|easy aerobic|recovery aerobic|aerobic[[:space:]]*[+][[:space:]]*strides|^[[:space:]]*key session[[:space:]]*$)'
   union all
   select 'BLOCK','QUALITY_WORK_NOT_STRUCTURED',s.slug,s.scheduled_on,s.title,
          'Published quality work has no structured work rows; author the precise repetitions, efforts and recoveries'
