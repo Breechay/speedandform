@@ -24,6 +24,10 @@ test('authoritative totals follow actual work changes by the measured delta', as
   assert.equal(revisedAuthoredTotal({ prescribed_distance: 10, distance_unit: 'mi' },
     { distance: 1, distance_unit: 'km' }, 2), 10.62);
   assert.equal(revisedAuthoredTotal({ prescribed_distance: 14, distance_unit: 'mi' }), 14);
+  assert.equal(revisedAuthoredTotal({ prescribed_distance: 8, distance_unit: 'mi' },
+    { shape: 'repetitions', repeat_count: 3, distance: 1, distance_unit: 'mi' }, 2), 11);
+  assert.equal(revisedAuthoredTotal({ prescribed_distance: 8, distance_unit: 'mi' },
+    { shape: 'repetitions', repeat_count: 4, distance: 0.5, distance_unit: 'km' }, 1), 9.24);
 });
 
 test('the live editor preserves components on wording changes instead of re-serializing them', () => {
