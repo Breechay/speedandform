@@ -46,6 +46,13 @@ export function sessionEditorialIssues(copy) {
     issues.push({ field: 'details', message: 'Remove the repeated total-mileage lead-in. Keep the warm-up, work, recovery and cool-down.' });
   if (/\bRPE\s*(\d)\s*[–-]\s*\1\b/iu.test(details))
     issues.push({ field: 'details', message: 'Write one RPE number when both ends of a range are the same.' });
+  // Do not publish a second prose copy of fully structured interval rows.
+  // The canonical work pieces already carry distance, pace and recovery; copy
+  // must add an execution cue, not retype the set as a publisher summary.
+  if (/^\\s*(?:(?:two|three|four|five|six)|[2-9])\\s+(?:passes|rounds|sets)\\.\\s*(?:\\d{3,4}\\s*m|1\\s*k(?:m)?)\\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove the repeated pass summary. Keep the targets and recoveries in structured work; write only a concise execution cue.' });
+  if (/\\bathlete clock targets are individualized\\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove internal pace-provenance commentary from athlete instructions.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
     issues.push({ field: 'details', message: 'Execution is too long. Keep the exact dose in structured work and use one or two short lines.' });
   return issues;
