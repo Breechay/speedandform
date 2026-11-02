@@ -23,6 +23,7 @@
 import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
+import { isPublishedPlanSession, visibleHeldCoachSessions } from '/private/coach-bench-live.mjs';
 import { authoredMiles, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
@@ -599,10 +600,8 @@ function dossierWeekHtml() {
   const next = weekIndex >= 0 && weekIndex < orderedWeeks.length - 1 ? orderedWeeks[weekIndex + 1] : null;
   const days = WEEK_DAYS.map((name, index) => {
     const date = addDays(week.starts_on, index);
-    const mine = sessions.filter((session) => session.scheduled_on === date && session.state !== 'cancelled');
-    const held = asCoach() ? sessions.filter((session) => session.scheduled_on === date
-      && session.state === 'cancelled' && session.withdrawn_at
-      && !/^superseded by /i.test(session.withdrawn_reason || '')) : [];
+    const mine = sessions.filter((session) => session.scheduled_on === date && isPublishedPlanSession(session));
+    const held = visibleHeldCoachSessions(sessions, date, asCoach());
     return `<div class="ccDay${date === today() ? ' today' : ''}">
       <div class="ccDayName"><span>${escapeHtml(name.slice(0, 3).toUpperCase())}</span><b>${escapeHtml(Number(date.slice(8)))}</b></div>
       ${mine.map((session) => `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
