@@ -49,6 +49,12 @@ test('console shows aggregate queue and per-athlete count without auto-publishin
   assert.doesNotMatch(script,/supabase\.from\('coach_strength_groups'\)\.update/);
 });
 
+test('roster does not query the restricted direction-draft table with a coach browser token', () => {
+  const roster = data.split('export async function loadCoachRoster')[1];
+  assert.doesNotMatch(roster, /supabase\.from\('athlete_direction_drafts'\)/);
+  assert.match(roster, /supabase\.from\('coach_strength_group_members'\)/);
+});
+
 test('Glute Priority activation requires per-athlete coach feed proof and never claims a phone receipt', () => {
   const source = read('private/data.js');
   assert.match(source, /export async function activatePublishedGlutePriority/);
