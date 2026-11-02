@@ -27,7 +27,12 @@ const withoutExercises = (feed) => ({
 const db = await openPglite();
 // This migration is held (supabase/held), so the migrations directory is exactly its pre-state.
 // Once it is promoted into migrations/ it replays as part of the history instead.
-const pre = await replaySchema({ db, skip: (f) => f.endsWith('_structured_strength_exercises.sql') });
+// The coach editorial migration targets form_training_strength_days, a live
+// coach-sync schema not yet represented in this historical athlete-plan replay.
+// Its complete DDL + authenticated policies are exercised separately by
+// tests/coach-editorial-authenticated-db.mjs against a production-shaped fixture.
+const coachEditorial = (f) => f.endsWith('_coach_editorial_copy_publication.sql');
+const pre = await replaySchema({ db, skip: (f) => f.endsWith('_structured_strength_exercises.sql') || coachEditorial(f) });
 eq(pre.ddlFailures.filter((f) => !PLATFORM_ONLY.has(f.file)), [], 'the schema history before this migration replays');
 
 // The migration carries its own frozen snapshot of Adrian's program. The test reads THAT, not the
@@ -249,7 +254,7 @@ const full = await openPglite();
 // When the migration is still held, append it explicitly. Once promoted into migrations/,
 // replaySchema will discover it there and must not apply the same file twice.
 const promoted = MIGRATION.startsWith('supabase/migrations/');
-const replay = await replaySchema({ db: full, extra: promoted ? [] : [MIGRATION] });
+const replay = await replaySchema({ db: full, skip: coachEditorial, extra: promoted ? [] : [MIGRATION] });
 eq(replay.ddlFailures.filter((f) => !PLATFORM_ONLY.has(f.file)), [], 'the full history, including this migration, replays on an empty database');
 ok(replay.files.some((f) => f.endsWith('_structured_strength_exercises.sql')), 'this migration is part of the replayed history');
 eq((await rows(full, 'select count(*)::int n from public.planned_session_exercises'))[0].n, 0, 'with no Adrian present the backfill is a quiet no-op');
