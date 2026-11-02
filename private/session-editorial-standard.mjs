@@ -51,7 +51,7 @@ export function sessionEditorialIssues(copy) {
   // must add an execution cue, not retype the set as a publisher summary.
   if (/^\s*(?:(?:two|three|four|five|six)|[2-9])\s+(?:passes|rounds|sets)\.\s*(?:\d{3,4}\s*m|1\s*k(?:m)?)\b/iu.test(details))
     issues.push({ field: 'details', message: 'Remove the repeated pass summary. Keep the targets and recoveries in structured work; write only a concise execution cue.' });
-  if (/\\bathlete clock targets are individualized\\b/iu.test(details))
+  if (/\bathlete clock targets are individualized\b/iu.test(details))
     issues.push({ field: 'details', message: 'Remove internal pace-provenance commentary from athlete instructions.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
     issues.push({ field: 'details', message: 'Execution is too long. Keep the exact dose in structured work and use one or two short lines.' });
