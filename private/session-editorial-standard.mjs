@@ -90,7 +90,7 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
 // or ambiguous range still requires a coach to author it; never generate work.
 export function unstructuredQualityIssue({ title, components = [] } = {}) {
   const value = String(title ?? '');
-  if (!/\\b(?:threshold|tempo|intervals?|speed|track|hills?|fartlek)\\b/iu.test(value))
+  if (!/\b(?:threshold|tempo|intervals?|speed|track|hills?|fartlek)\b/iu.test(value))
     return null;
   if (Array.isArray(components) && components.some(part =>
     part?.role === 'work' && (
