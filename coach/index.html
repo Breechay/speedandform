@@ -16,6 +16,7 @@
       <a class="brand" href="/coach/console/" aria-label="Coach Console"><span class="form-mark">FORM</span><span class="product-name">Coach Console</span></a>
       <div class="topbar-tools">
         <button class="consoleOrderToggle" type="button" id="orderToggle">roster</button>
+        <button class="consoleOrderToggle" type="button" id="publicationQueueToggle">Publish queue</button>
         <details class="control" id="control">
           <summary aria-label="Account"><span class="avatar-me" id="userInitials">B</span></summary>
           <div class="control-menu">
@@ -411,6 +412,32 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="publicationQueueDialog">
+    <div class="dialog-inner">
+      <div class="dialog-head"><div><p class="eyebrow">Roster · publication</p><h2>Publish queue</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button></div>
+      <p class="dialog-note">This queue shows detected drafts, unactivated groups, and items awaiting verification. An item is not live just because its label was changed. Held intakes and retired groups are excluded.</p>
+      <div id="publicationQueueRows"></div>
+      <p class="status-message" id="gluteActivationStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" id="activateGlutePriority" hidden>Activate verified Glute Priority</button></div>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Close</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="dialog" id="inviteDialog">
+    <form class="dialog-inner" id="inviteForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Coach only · access</p><h2 id="inviteContext">Invite athlete</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <label class="field-label lead">Verified email
+        <input class="field-input" type="email" name="email" autocomplete="off" required placeholder="name@example.com">
+      </label>
+      <p class="dialog-note">Reserve access for this athlete's existing roster record. This does not create an Auth user, claim an account, or send an email. The athlete still needs to verify this address and sign in.</p>
+      <p class="status-message" id="inviteStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Reserve access <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="noteDialog">
     <form class="dialog-inner" id="noteForm">
       <div class="dialog-head"><div><p class="eyebrow">Coach only</p><h2>Add a private note.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
@@ -433,6 +460,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=36"></script>
+  <script type="module" src="/coach/coach.js?v=39"></script>
 </body>
 </html>
