@@ -1,6 +1,7 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
@@ -40,6 +41,7 @@ const noteForm = document.getElementById('noteForm');
 const shareDialog = document.getElementById('shareDialog');
 const shareForm = document.getElementById('shareForm');
 const publicationQueueDialog = document.getElementById('publicationQueueDialog');
+const editorialDialog = document.getElementById('editorialDialog');
 const inviteDialog = document.getElementById('inviteDialog');
 const inviteForm = document.getElementById('inviteForm');
 const sessionDialog = document.getElementById('sessionDialog');
@@ -73,6 +75,9 @@ let shownSessionId = null;
 let shownCompletionId = null;
 // Ordering is a mode, never a permanent rearrangement of the roster.
 let attentionOrder = false;
+let editorialReview = null;
+let editorialOverrides = {};
+let copyAuditWarning = '';
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -945,7 +950,36 @@ function paintSquad() {
   if (toggle) toggle.textContent = attentionOrder ? 'needs attention' : 'roster';
   const publicationButton = document.getElementById('publicationQueueToggle');
   const total = roster.reduce((sum, athlete) => sum + (athlete.publicationQueue || []).length, 0);
-  if (publicationButton) publicationButton.textContent = `Publish queue · ${total}`;
+  if (publicationButton) publicationButton.textContent = `Publish queue · ${total}${copyAuditWarning ? ' · Copy audit unavailable' : ''}`;
+}
+
+// Non-blocking and fail-visible. An unavailable copy audit may never take the
+// whole desk down or silently imply that all athlete descriptions are current.
+async function refreshCopyAlerts(review = null) {
+  try {
+    const data = review || await loadCoachCopyReview();
+    const counts = new Map();
+    for (const day of data.strength.filter(day => !String(day.emphasis || '').trim())) {
+      const next = counts.get(day.athlete_id) || { strength: 0, running: 0 };
+      next.strength += 1; counts.set(day.athlete_id, next);
+    }
+    for (const day of data.running) {
+      const next = counts.get(day.athlete_id) || { strength: 0, running: 0 };
+      next.running += 1; counts.set(day.athlete_id, next);
+    }
+    roster.forEach(athlete => {
+      athlete.publicationQueue = (athlete.publicationQueue || []).filter(item => item.kind !== 'editorial');
+      const count = counts.get(athlete.id);
+      if (count) athlete.publicationQueue.push({ kind: 'editorial', state: 'draft',
+        label: `Athlete descriptions · ${count.strength} strength / ${count.running} running need publishing` });
+    });
+    const selected = roster.find(athlete => athlete.id === selectedId);
+    if (selectedRecord && selected) selectedRecord.publicationQueue = selected.publicationQueue;
+    copyAuditWarning = '';
+  } catch (error) {
+    copyAuditWarning = error.message || 'The copy review could not be loaded.';
+  }
+  paintSquad();
 }
 
 function openPublicationQueue() {
@@ -953,11 +987,11 @@ function openPublicationQueue() {
   const queue = roster.flatMap(athlete => (athlete.publicationQueue || []).map(item => ({ athlete, item })));
   queue.sort((a, b) => (a.item.state === 'blocked' ? -1 : 0) - (b.item.state === 'blocked' ? -1 : 0)
     || (a.athlete.display_name || '').localeCompare(b.athlete.display_name || ''));
-  content.innerHTML = queue.length
+  content.innerHTML = (copyAuditWarning ? `<p class="status-message error">ATHLETE COPY AUDIT UNAVAILABLE · ${escapeHtml(copyAuditWarning)}</p>` : '') + (queue.length
     ? queue.map(({ athlete, item }) => `<button class="control-item" type="button" data-publish-athlete="${escapeHtml(athlete.id)}">
         <strong>${escapeHtml(athlete.display_name || athlete.first_name)}</strong>
         <span>${escapeHtml(item.label)} · ${escapeHtml(item.state)}</span></button>`).join('')
-    : '<p class="dialog-note">No detected publication items. Check the athlete-side receipt before declaring the roster verified.</p>';
+    : '<p class="dialog-note">No detected publication items. Check the athlete-side receipt before declaring the roster verified.</p>');
   const activation = document.getElementById('activateGlutePriority');
   if (activation) activation.hidden = !queue.some(row => row.item.label.includes('Glute Priority'));
   content.querySelectorAll('[data-publish-athlete]').forEach(button => button.addEventListener('click', () => {
@@ -984,6 +1018,120 @@ document.getElementById('activateGlutePriority')?.addEventListener('click', asyn
   } catch (error) {
     status.textContent = 'Activation stopped: ' + error.message;
   } finally { button.disabled = false; }
+});
+
+function editorialLabelFor(athleteId) {
+  const athlete = roster.find(row => row.id === athleteId);
+  return athlete?.display_name || athlete?.first_name || 'Assigned athlete';
+}
+
+function renderEditorialReview() {
+  if (!editorialReview) return;
+  const { strength, running } = editorialReview;
+  document.getElementById('editorialSummary').textContent =
+    `${strength.length} future strength sessions · ${running.length} future running sessions missing authored intent.`;
+
+  const strengthGroups = new Map();
+  for (const day of strength) {
+    const key = 'strength:' + day.title;
+    if (!strengthGroups.has(key)) strengthGroups.set(key, []);
+    strengthGroups.get(key).push(day);
+  }
+  document.getElementById('editorialStrengthRows').innerHTML = [...strengthGroups].map(([key, rows]) => {
+    const first = rows[0];
+    const names = (first.exercises || []).slice(0, 9).map(ex => ex.name).filter(Boolean);
+    const suggestion = editorialOverrides[key] ?? first.emphasis ?? STRENGTH_EMPHASIS[first.title] ?? '';
+    return `<div class="coach-editorial-row">
+      <p class="eyebrow">ATHLETE VISIBLE · ${rows.length} sessions</p>
+      <label class="field-label">${escapeHtml(first.title)}
+        <input class="field-input" data-editorial-key="${escapeHtml(key)}" value="${escapeHtml(suggestion)}" maxlength="120">
+      </label>
+      <p class="dialog-note">Exercises checked: ${escapeHtml(names.join(' · '))}</p>
+      <p class="dialog-note">First: ${escapeHtml(first.scheduled_on)} · ${escapeHtml(editorialLabelFor(first.athlete_id))}</p>
+    </div>`;
+  }).join('') || '<p class="dialog-note">No strength days in this review window.</p>';
+
+  const runGroups = new Map();
+  for (const day of running) {
+    const key = 'run:' + day.athlete_id + ':' + day.title;
+    if (!runGroups.has(key)) runGroups.set(key, []);
+    runGroups.get(key).push(day);
+  }
+  document.getElementById('editorialRunRows').innerHTML = [...runGroups].map(([key, rows]) => {
+    const first = rows[0];
+    const suggestion = editorialOverrides[key] ?? suggestRunIntent(first.title);
+    return `<div class="coach-editorial-row">
+      <p class="eyebrow">ATHLETE VISIBLE · ${rows.length} sessions · ${escapeHtml(editorialLabelFor(first.athlete_id))}</p>
+      <label class="field-label">${escapeHtml(first.title)}
+        <input class="field-input" data-editorial-key="${escapeHtml(key)}" value="${escapeHtml(suggestion)}" maxlength="180">
+      </label>
+      <p class="dialog-note">Structured prescription remains: ${escapeHtml((first.details || first.title).slice(0,240))}</p>
+    </div>`;
+  }).join('') || '<p class="dialog-note">All future published running sessions have authored intent.</p>';
+
+  const firstStrength = strength[0], firstRun = running[0];
+  document.getElementById('editorialWeekPreview').innerHTML =
+    '<p class="eyebrow">WEEK · athlete-visible preview</p>' +
+    (firstStrength ? `<p><strong>${escapeHtml(firstStrength.scheduled_on)} · ${escapeHtml(firstStrength.title)}</strong><br>${escapeHtml(editorialOverrides['strength:' + firstStrength.title] ?? firstStrength.emphasis ?? STRENGTH_EMPHASIS[firstStrength.title] ?? '')}</p>` : '') +
+    (firstRun ? `<p><strong>${escapeHtml(firstRun.scheduled_on)} · ${escapeHtml(firstRun.title)}</strong><br>${escapeHtml(editorialOverrides['run:' + firstRun.athlete_id + ':' + firstRun.title] ?? suggestRunIntent(firstRun.title))}</p>` : '');
+
+  editorialDialog.querySelectorAll('[data-editorial-key]').forEach(input => {
+    input.addEventListener('input', () => {
+      editorialOverrides[input.dataset.editorialKey] = input.value;
+      const error = validateAthleteCopy(input.value, input.dataset.editorialKey.startsWith('strength:') ? 120 : 180);
+      input.setAttribute('aria-invalid', error ? 'true' : 'false');
+    });
+  });
+  document.getElementById('publishEditorial').disabled = !(strength.length || running.length);
+}
+
+document.getElementById('reviewAthleteCopy')?.addEventListener('click', async () => {
+  publicationQueueDialog.close();
+  editorialDialog.showModal();
+  const status = document.getElementById('editorialStatus');
+  status.textContent = 'Reading authenticated coach copy preview.';
+  document.getElementById('publishEditorial').disabled = true;
+  try {
+    editorialReview = await loadCoachCopyReview();
+    editorialOverrides = {};
+    renderEditorialReview();
+    status.textContent = 'Preview ready. Review each title against its exercises and structured work before publishing.';
+  } catch (error) {
+    status.textContent = 'Preview unavailable: ' + error.message;
+  }
+});
+
+document.getElementById('publishEditorial')?.addEventListener('click', async () => {
+  const button = document.getElementById('publishEditorial');
+  const status = document.getElementById('editorialStatus');
+  if (!editorialReview) return;
+  let proposal;
+  try {
+    proposal = buildEditorialProposal(editorialReview, editorialOverrides);
+  } catch (error) {
+    status.textContent = 'Validation stopped: ' + error.message;
+    return;
+  }
+  button.disabled = true;
+  status.textContent = 'Publishing descriptions; original doses, dates and notes are unchanged.';
+  try {
+    const receipt = await publishCoachEditorialCopy(proposal.strength, proposal.running);
+    const after = await loadCoachCopyReview();
+    const actual = new Map(after.strength.map(day => [day.day_id, day.emphasis]));
+    const strengthVerified = proposal.strength.every(day => actual.get(day.day_id) === day.emphasis);
+    const remainingRunning = new Set(after.running.map(day => day.session_id));
+    const runsVerified = proposal.running.every(day => !remainingRunning.has(day.session_id));
+    if (!strengthVerified || !runsVerified) throw new Error('One or more athlete-facing descriptions failed server readback.');
+    editorialReview = after;
+    editorialOverrides = {};
+    renderEditorialReview();
+    await refreshCopyAlerts(after);
+    status.textContent = `Published and server-verified: ${receipt.strength_updated} strength, ${receipt.running_updated} running · ${receipt.already_matching} already matching. Native 44.5 device receipt pending.`;
+  } catch (error) {
+    status.textContent = 'Publication stopped or verification pending: ' + error.message;
+  } finally {
+    button.disabled = false;
+  }
 });
 
 function bindDesk() {
@@ -1999,6 +2147,7 @@ async function boot() {
     const requested = new URLSearchParams(location.search).get('athlete');
     selectedId = roster.find((athlete) => athlete.slug === requested)?.id || roster[0]?.id;
     await selectAthlete(selectedId);
+    await refreshCopyAlerts();
   } catch (error) {
     app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Could not open the desk</p><h1>Try that again.</h1><p class="status-message error">${escapeHtml(authErrorMessage(error))}</p><button class="button" id="retry" type="button">Retry</button></div></section>`;
     document.getElementById('retry').addEventListener('click', () => window.location.reload());
