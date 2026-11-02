@@ -1,0 +1,43 @@
+name: Coach editorial publication and authenticated RLS
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/coach-editorial-publish.yml'
+      - 'coach/**'
+      - 'private/**'
+      - 'supabase/migrations/**'
+      - 'tests/coach-editorial*'
+      - 'tests/coach-publish-queue-contract.test.cjs'
+  push:
+    branches: [main, production]
+    paths:
+      - '.github/workflows/coach-editorial-publish.yml'
+      - 'coach/**'
+      - 'private/**'
+      - 'supabase/migrations/**'
+      - 'tests/coach-editorial*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  authenticated-editorial:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Install isolated in-memory Postgres test dependency
+        run: npm install --prefix "$RUNNER_TEMP/form-editorial-db" --no-save --ignore-scripts @electric-sql/pglite@0.5.14
+      - name: JavaScript copy and Console contracts
+        run: |
+          node tests/coach-editorial-copy.test.mjs
+          node --test tests/coach-publish-queue-contract.test.cjs tests/coach-invite-surface.test.cjs
+      - name: Execute real authenticated Postgres functions and RLS policies
+        env:
+          SF_PGLITE_PATH: ${{ runner.temp }}/form-editorial-db/node_modules/@electric-sql/pglite/dist/index.js
+        run: node tests/coach-editorial-authenticated-db.mjs

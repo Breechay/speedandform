@@ -1119,6 +1119,27 @@ export async function reviseSession(plannedSessionId, payload) {
   return { id: data };
 }
 
+// The editorial queue is intentionally an authenticated coach-scoped RPC.
+// Never directly select internal draft tables from the athlete browser token.
+export async function loadCoachCopyReview() {
+  const from = new Date().toISOString().slice(0, 10);
+  const end = new Date(Date.now() + 120 * 86400000).toISOString().slice(0, 10);
+  const { data, error } = await supabase.rpc('coach_copy_review', { p_from: from, p_to: end });
+  if (error) throw error;
+  if (data?.schema_version !== 1 || !Array.isArray(data.strength) || !Array.isArray(data.running)) {
+    throw new Error('Editorial preview was not returned by the coach feed.');
+  }
+  return data;
+}
+
+export async function publishCoachEditorialCopy(strength, running) {
+  const { data, error } = await supabase.rpc('coach_publish_editorial_copy', {
+    p_strength: strength, p_running: running
+  });
+  if (error) throw error;
+  return data;
+}
+
 // Filing for an athlete. Same record as their own filing, marked coach_import so
 // the source of a number is never in doubt. Pieces carry the splits the verdict
 // reads; without them a session has a distance and no evidence.
