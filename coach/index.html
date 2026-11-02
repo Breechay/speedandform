@@ -417,6 +417,8 @@
       <div class="dialog-head"><div><p class="eyebrow">Roster · publication</p><h2>Publish queue</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button></div>
       <p class="dialog-note">This queue shows detected drafts, unactivated groups, and items awaiting verification. An item is not live just because its label was changed. Held intakes and retired groups are excluded.</p>
       <div id="publicationQueueRows"></div>
+      <p class="status-message" id="gluteActivationStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" id="activateGlutePriority" hidden>Activate verified Glute Priority</button></div>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Close</button></div>
     </div>
   </dialog>
@@ -458,6 +460,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=38"></script>
+  <script type="module" src="/coach/coach.js?v=39"></script>
 </body>
 </html>
