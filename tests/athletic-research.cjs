@@ -12,7 +12,7 @@ for(const r of reports){
  assert.match(html,/noindex,follow/,'Original arguments should not masquerade as current search-indexed offers');
  assert.equal((html.match(/<h1>/g)||[]).length,1);
 }
-assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(base,'brief.md'))).digest('hex'),'e71affb7c9a4474bd51567ba148f0d11fe33cb28424a58f1015e3ca998382ed9','Founding brief is byte-for-byte unchanged');
+assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'docs/operations/ATHLETIC_LIFE_FOUNDING_BRIEF_20261028.md'))).digest('hex'),'e71affb7c9a4474bd51567ba148f0d11fe33cb28424a58f1015e3ca998382ed9','Original assignment is byte-for-byte unchanged');
 const sample=render('# Test\n\n## Evidence\n\n<script>alert(1)</script>\n\n[bad](javascript:alert)\n\n| A | B |\n|---|---|\n| one | two |');
 assert.doesNotMatch(sample.html,/<script|href="javascript:/);assert.match(sample.html,/scope="col"/);assert.equal(sample.sections.length,2);
 const files=['discoveries/index.html','research/index.html','research/assessment/index.html','research/agent-guide/index.html',...reports.map(r=>'research/'+r.slug+'/index.html')];
@@ -22,4 +22,4 @@ for(const f of files){const html=fs.readFileSync(path.join(base,f),'utf8');
  }
  for(const m of html.matchAll(/href="#([^"]+)"/g))assert.ok(html.includes('id="'+m[1]+'"'),f+' broken anchor '+m[1]);
 }
-console.log('Athletic Life research: seven original checksums, immutable brief, evidence labels, safe rendering and local links passed.');
+console.log('Athletic Life research: seven original checksums, preserved original brief, evidence labels, safe rendering and local links passed.');

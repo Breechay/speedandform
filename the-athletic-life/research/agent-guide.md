@@ -1,6 +1,6 @@
 # The Athletic Life: agent guide
 
-October 28, 2026 · Research context for app audits and opportunity work
+Updated November 2, 2026 · Research context for app audits and opportunity work
 
 ## Start here
 
@@ -8,7 +8,7 @@ The central question is: **What could FORM make possible in an athlete's life th
 
 Use this collection to understand the ambition, test assumptions and recognize opportunities. It is not a feature specification, an approved backlog, a training prescription or proof of athlete demand.
 
-1. [Founding brief](https://speedandform.com/the-athletic-life/brief.md): the complete original, unchanged.
+1. [North star](https://speedandform.com/the-athletic-life/): what FORM is for, who it serves and what it protects.
 2. [First discoveries](https://speedandform.com/the-athletic-life/discoveries/): the edited companion, with five primary research references.
 3. [Editorial assessment](https://speedandform.com/the-athletic-life/research/assessment/): agreements, disagreements and corrections across the reports.
 4. [Research collection](https://speedandform.com/the-athletic-life/research/): seven source reports, individual limits, readable editions and original downloads.
@@ -18,7 +18,7 @@ Use this collection to understand the ambition, test assumptions and recognize o
 
 Read the current owning repository's AGENTS.md, current owner decisions and relevant implementation contracts before proposing or changing anything. Current explicit owner decisions and verified owning records control. This October 28 research collection provides context; it does not override them.
 
-The reports share a brief and much of the same literature. Agreement among reports is not independent validation. No athlete interviews are established by this collection. Numerical examples and scenes are proposals unless linked to attributable observations.
+The reports share a brief and much of the same literature. Agreement among reports is not independent validation. Athlete interviews are the next step and outrank this collection once they exist. Numerical examples and scenes are proposals unless linked to attributable observations.
 
 The September 30 audience documents distinguish remote programs, grandfathered app access and paying personal-coaching clients outside the app. These are dated source statements, not a newly audited census. Verify the relationship and channel relevant to the present task.
 
@@ -58,3 +58,36 @@ One New Door, Target Night, season artifacts and film sessions remain possibilit
 Lead with the concrete finding or opportunity. Link its evidence. Label it as a verified fact, reported experience, interpretation, hypothesis or chosen value. State what changed, what remains unknown and which decision, if any, is needed.
 
 Keep the founding brief untouched. New evidence belongs in a dated companion, source note or owning record. Preserve original reports and their disagreements; update the editorial assessment when stronger evidence warrants a change.
+
+## Which rule wins
+
+When two documents disagree, use this order:
+
+1. Privacy, consent and safety.
+2. The most recent explicit owner decision.
+3. The truth of the record: no invented athletes, results, prescriptions or claims.
+4. The rule that owns the surface: public copy law for public pages, voice law for private coaching, the FORM tab's own type system on the FORM tab.
+5. Older doctrine, as history.
+
+## Standing decisions
+
+- Run details are the assignment: route and workout. No prose. Easy miles need one line.
+- No athlete-facing mention of the coach by name, except the note the coach writes on the FORM tab.
+- The words FORM and Speed & Form are never slanted. In a logo, FORM sits under the SF mark edge to edge.
+- The FORM tab sets its own type first. Good ideas move to the rest of the app after that.
+- The athlete app has three places: FORM, Week and Races. The account opens from the portrait.
+- A group run never replaces a personal prescription. Saturday training does not imply a meetup unless a run is published.
+- One divider per boundary. Never crop a head.
+- Commit freely, deploy deliberately. Tested, merged, deployed, device-verified and backend-live are separate facts.
+
+## Questions for the research
+
+Use these when a new assignment needs outside thinking:
+
+- Which needs of current athletes are poorly served, and what evidence separates a known need from an assumption?
+- What could FORM become that a generic platform could not copy, because it has real relationships, real coaching judgment and a real local team?
+- What three moments would make someone think: somebody really thought this through? At least one should be physical or human.
+- What should FORM never become?
+- For each opportunity, what is the human need, the smallest real version, the work it takes, the privacy risk, and the evidence that would argue against it?
+
+Use actual decisions, attendance, introductions, races chosen, time saved and better understanding as evidence, not app opens.
