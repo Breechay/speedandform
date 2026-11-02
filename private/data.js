@@ -23,13 +23,51 @@ async function selectIn(table, column, ids, orderColumn, ascending = true) {
   return { data: rows, error: null };
 }
 
+// Publish queue is coach-only. A held intake and an old superseded group are not
+// actionable drafts. More than one pending group for an athlete is deduplicated
+// against the newest approved cohort, while independent future block drafts remain.
+export function publicationQueueForAthlete(athleteId, { members = [], groups = [], draftBlocks = [], directionDrafts = [] }) {
+  const mine = members.filter(row => row.athlete_id === athleteId && row.status !== 'ended' && row.status !== 'held');
+  const group = key => groups.find(row => row.group_key === key);
+  const member = key => mine.find(row => row.group_key === key);
+  const items = [];
+  const v2 = member('strength-sculpt02-full-v2-candidate');
+  if (v2) {
+    if (v2.status === 'planned') items.push({ kind: 'strength', state: 'blocked', label: 'Sculpt 02 (+ Arms) · publish and verify' });
+    else if (group(v2.group_key)?.status !== 'active') items.push({ kind: 'strength', state: 'verify', label: 'Sculpt 02 (+ Arms) · group verification' });
+  } else if (member('strength-sculpt02-full')) {
+    items.push({ kind: 'strength', state: 'review', label: 'Sculpt 02 · activation review' });
+  }
+  const glutes = member('strength-sculpt02-glute-only');
+  if (glutes && (glutes.status !== 'active' || group(glutes.group_key)?.status !== 'active')) {
+    items.push({ kind: 'strength', state: 'verify', label: 'Glute Priority · activate and confirm athlete feed' });
+  }
+  const individualKeys = ['strength-runner-mass-individual', 'strength-durable-frame-individual'];
+  for (const key of individualKeys) {
+    const own = member(key);
+    if (!own || (key === 'strength-durable-frame-individual' && v2)) continue;
+    if (own.status !== 'active' || group(key)?.status !== 'active') {
+      items.push({ kind: 'strength', state: 'review', label: key === 'strength-runner-mass-individual'
+        ? 'Runner Mass · activation review' : 'Durable Frame · activation review' });
+    }
+  }
+  for (const block of draftBlocks.filter(row => row.athlete_id === athleteId)) {
+    items.push({ kind: 'run', state: 'draft', label: 'Draft block · ' + block.name });
+  }
+  if (directionDrafts.some(row => row.athlete_id === athleteId)) {
+    items.push({ kind: 'direction', state: 'draft', label: 'Unpublished coaching direction' });
+  }
+  return items;
+}
+
 export async function loadCoachRoster(coachMemberships) {
   const athleteIds = coachMemberships.map((item) => item.athlete_id);
   if (!athleteIds.length) return [];
   const [
     attentionResponse, markResponse, checkpointResponse, confidenceResponse,
     ownedResponse, preferenceResponse, athleteMembershipResponse, inviteResponse,
-    assignmentResponse, blockResponse, formReceiptResponse, forgeReceiptResponse
+    assignmentResponse, blockResponse, formReceiptResponse, forgeReceiptResponse,
+    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse, directionDraftsResponse
   ] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
@@ -55,12 +93,20 @@ export async function loadCoachRoster(coachMemberships) {
     supabase.from('session_completions').select('athlete_id,source,filed_at,evidence_id')
       .in('athlete_id', athleteIds).eq('source', 'form').order('filed_at', { ascending: false }),
     supabase.from('forge_strength_receipts').select('athlete_id,program_id,received_at,receipt_id')
-      .in('athlete_id', athleteIds).order('received_at', { ascending: false })
+      .in('athlete_id', athleteIds).order('received_at', { ascending: false }),
+    supabase.from('coach_strength_group_members').select('group_key,athlete_id,status')
+      .in('athlete_id', athleteIds),
+    supabase.from('coach_strength_groups').select('group_key,title,status,program_digest'),
+    supabase.from('training_blocks').select('athlete_id,name,status,starts_on')
+      .in('athlete_id', athleteIds).eq('status', 'draft'),
+    supabase.from('athlete_direction_drafts').select('athlete_id,updated_at')
+      .in('athlete_id', athleteIds)
   ]);
   [
     attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse,
     athleteMembershipResponse, inviteResponse, assignmentResponse, blockResponse,
-    formReceiptResponse, forgeReceiptResponse
+    formReceiptResponse, forgeReceiptResponse,
+    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse, directionDraftsResponse
   ].forEach(({ error }) => { if (error) throw error; });
   const attention = attentionResponse.data || [];
   // Ordered by what actually needs the coach, not by a stored priority column.
@@ -71,6 +117,12 @@ export async function loadCoachRoster(coachMemberships) {
       ...athlete,
       membership,
       attention: items,
+      publicationQueue: publicationQueueForAthlete(membership.athlete_id, {
+        members: strengthMembersResponse.data || [],
+        groups: strengthGroupsResponse.data || [],
+        draftBlocks: draftBlocksResponse.data || [],
+        directionDrafts: directionDraftsResponse.data || []
+      }),
       topItem: items[0] || null,
       deliveryOverview: deliveryOverviewFor(athlete, {
         athleteMemberships: (athleteMembershipResponse.data || []).filter((item) => item.athlete_id === membership.athlete_id),
