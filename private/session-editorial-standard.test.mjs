@@ -116,3 +116,37 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
     preview: '1 mi easy. 3 × 800 m at RPE 6–7, walk 160 m between. 1.5 mi easy.'
   }), []);
 });
+
+test('new-athlete plan rejects vague categories that leaked into Turner\'s Week', () => {
+  const blocked = [
+    'Midweek aerobic · 7 mi',
+    'Threshold control · 6 mi',
+    'Long aerobic · 9 mi',
+    'Easy aerobic · 3 mi',
+    'Recovery aerobic · up to 4 mi',
+    'Aerobic + strides · 5 mi',
+    'Key Session'
+  ];
+  for (const title of blocked) {
+    const issues = sessionEditorialIssues({ title, details: '' });
+    assert.ok(issues.some(issue => issue.field === 'title'), title);
+  }
+  const corrected = [
+    '7 mi easy',
+    'Threshold · 2 × 8–10 min · 6 mi',
+    'Long Run · 9 mi',
+    'Recovery Run · up to 4 mi',
+    '5 mi easy + 4 strides',
+    'Speed · 1000 / 600 / 400 × 2'
+  ];
+  for (const title of corrected) {
+    assert.deepEqual(sessionEditorialIssues({ title, details: '' }), [], title);
+  }
+});
+
+test('new wording is blocked but unchanged legacy copy is not retroactively rewritten', () => {
+  const old = { title: 'Midweek aerobic · 7 mi', details: 'Easy.', intent: '' };
+  assert.deepEqual(changedSessionEditorialIssues(old, old), []);
+  const changed = changedSessionEditorialIssues({ ...old, title: 'Long aerobic · 9 mi' }, old);
+  assert.ok(changed.some(issue => issue.field === 'title'));
+});
