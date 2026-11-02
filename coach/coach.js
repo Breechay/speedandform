@@ -134,7 +134,7 @@ function rosterHtml() {
 
 function athleteMenuHtml() {
   const account = selectedRecord.adminStatus;
-  const notes = selectedRecord.privateNotes.slice(0, 3).map((note) =>
+  const notes = selectedRecord.privateNotes.filter((note) => !note.planned_session_id).slice(0, 3).map((note) =>
     `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
   return `<details class="athlete-menu" id="athleteMenu">
     <summary aria-label="Coach only">\u2026</summary>
@@ -1315,6 +1315,8 @@ document.getElementById('sessionParts').addEventListener('input', markPartsState
 function openSession(plannedSessionId = null) {
   sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
   sessionForm.reset();
+  document.getElementById('sessionPrivateHistory').hidden = true;
+  document.getElementById('sessionPrivateHistory').innerHTML = '';
   revisingSessionId = plannedSessionId;
   const weeks = selectedRecord.weeks;
   sessionForm.elements.weekId.innerHTML = weeks
@@ -1336,6 +1338,19 @@ function openSession(plannedSessionId = null) {
   document.getElementById('intentHint').textContent = session
     ? 'Leave it as it is to keep what the session already says. Blank does not clear it.'
     : '';
+  // Coach-only source notes are linked to a session and never enter the
+  // athlete-visible title, intent, details or structured work.
+  const linkedNotes = session
+    ? (selectedRecord.privateNotes || []).filter((note) => note.planned_session_id === session.id).slice(0, 3)
+    : [];
+  const privateHistory = document.getElementById('sessionPrivateHistory');
+  if (linkedNotes.length) {
+    privateHistory.hidden = false;
+    privateHistory.innerHTML = '<p class="session-private-history__title">Earlier internal notes</p>' +
+      linkedNotes.map((note) =>
+        `<article class="private-note"><time>${escapeHtml(new Date(note.created_at).toLocaleDateString())}</time><p>${escapeHtml(note.body)}</p></article>`
+      ).join('');
+  }
 
   if (session) {
     // Revising starts from what is already there, so the coach edits rather than retypes.
@@ -1724,20 +1739,37 @@ sessionForm.addEventListener('submit', async (event) => {
   }
   const complaint = partsComplaint(payload.components || []);
   if (complaint) { status.textContent = complaint; status.className = 'status-message error'; return; }
+  const internalNote = f.internalNote.value.trim();
   button.disabled = true; status.textContent = 'Saving.';
+  let sessionSavedNoteFailed = false;
   try {
+    let savedSessionId = revisingSessionId;
     if (revisingSessionId) await reviseSession(revisingSessionId, payload);
     else {
       // Position orders the week. Take the next free slot rather than asking.
       const inWeek = selectedRecord.sessions.filter((entry) => entry.week_id === payload.weekId);
       payload.position = inWeek.reduce((highest, entry) => Math.max(highest, entry.position), 0) + 1;
-      await authorSession(payload);
+      const created = await authorSession(payload);
+      savedSessionId = created.id;
+    }
+    if (internalNote) {
+      try {
+        await addPrivateNote(payload.athleteId, internalNote, savedSessionId);
+      } catch (noteError) {
+        // The athlete session was already saved. Do not let a retry create a
+        // duplicate session/version; leave the private text available to copy.
+        sessionSavedNoteFailed = true;
+        status.textContent = `Workout saved. Internal note NOT saved: ${noteError.message}. Copy the note before closing; do not resubmit the workout.`;
+        status.className = 'status-message error';
+        return;
+      }
     }
     sessionDialog.close();
     await refreshSelected(true);
   } catch (error) {
     status.textContent = error.message;
-  } finally { button.disabled = false; }
+    status.className = 'status-message error';
+  } finally { button.disabled = sessionSavedNoteFailed; }
 });
 
 fileForm.addEventListener('submit', async (event) => {
