@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
@@ -39,6 +39,8 @@ const noteDialog = document.getElementById('noteDialog');
 const noteForm = document.getElementById('noteForm');
 const shareDialog = document.getElementById('shareDialog');
 const shareForm = document.getElementById('shareForm');
+const inviteDialog = document.getElementById('inviteDialog');
+const inviteForm = document.getElementById('inviteForm');
 const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
@@ -143,6 +145,7 @@ function athleteMenuHtml() {
       ${notes || '<p class="control-who">No private notes.</p>'}
       <button class="control-item" id="setPassword" type="button">Set a password</button>
       <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
+      <button class="control-item" id="inviteAthlete" type="button">Invite athlete</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
       <button class="control-item" data-console-action="file-run" type="button">File a run</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
@@ -979,6 +982,12 @@ function bindDesk() {
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
+  document.getElementById('inviteAthlete')?.addEventListener('click', () => {
+    inviteForm.reset();
+    document.getElementById('inviteContext').textContent = 'Invite ' + (selectedRecord.athlete.display_name || selectedRecord.athlete.first_name);
+    document.getElementById('inviteStatus').textContent = '';
+    inviteDialog.showModal();
+  });
   
   // Console actions using data-console-action
   app.querySelectorAll('[data-console-action]').forEach((button) => {
@@ -1688,6 +1697,27 @@ judgeForm.addEventListener('submit', async (event) => {
   finally { button.disabled = false; }
 });
 
+inviteForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('inviteStatus');
+  const button = inviteForm.querySelector('button[type="submit"]');
+  const athleteId = selectedRecord?.athlete?.id;
+  const email = inviteForm.elements.email.value.trim().toLowerCase();
+  if (!athleteId) { status.textContent = 'Select an athlete before inviting.'; return; }
+  button.disabled = true;
+  status.textContent = 'Reserving access.';
+  try {
+    const invite = await createAthleteInvite(athleteId, email);
+    if (invite?.athlete_id !== athleteId || invite?.email !== email) {
+      throw new Error('Invite receipt does not match the selected athlete and email.');
+    }
+    await refreshSelected(true);
+    status.textContent = 'Access reserved for ' + email + '. No email has been sent. Verify delivery separately.';
+  } catch (error) {
+    status.textContent = error.message;
+  } finally { button.disabled = false; }
+});
+
 sessionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const status = document.getElementById('sessionStatus');
@@ -1712,6 +1742,15 @@ sessionForm.addEventListener('submit', async (event) => {
   // Untouched means untouched: the field is omitted, revise_session carries the
   // previous anatomy forward, and nothing this form cannot express is lost. A new
   // session has nothing to carry, so what is on screen is what it gets.
+  if (revisingSessionId) {
+    const existing = selectedRecord.sessions.find((session) => session.id === revisingSessionId);
+    if (existing && (payload.scheduledOn !== existing.scheduled_on || payload.dayLabel !== existing.day_label || payload.weekId !== existing.week_id)) {
+      status.textContent = 'This editor revises the workout only; it cannot move an existing session. The date and week have not changed. Use a dedicated reschedule workflow.';
+      status.className = 'status-message error';
+      return;
+    }
+  }
+
   const parts = readParts();
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
