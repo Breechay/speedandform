@@ -10,5 +10,9 @@ const {h,js}=check('form/index.html',{name:'Speed & Form: Running',store:'https:
 const assert=require('node:assert/strict');
 assert.ok(js.includes('data-sf-event'),'Store links keep their existing click attribution');
 assert.ok(!h.includes('id="session-tabs"'),'No duplicated five-lesson selector on a product page');
+assert.match(h,/<h1 id="hero-title">Train with<br>direction\.<\/h1>/,'Brice-approved training promise');
+assert.match(h,/id="practice-title">Run together\.<br>Keep your plan\./,'Shared runs do not replace a private plan');
+assert.match(h,/Version 44\.5 is still in review, not yet distributed on the App Store/,'Candidate work is not described as shipped');
+assert.match(h,/href="\/the-athletic-life\/"[^>]*>The Athletic Life/,'The app connects to the broader north star');
 assert.ok(/<svg class="fl-bend"[^>]*preserveAspectRatio="xMidYMax slice"/.test(h)&&h.includes('<!-- sf-bend-run -->'),'Close carries the generated bend');
 console.log('PASS: Running page: structure, fragments, links, metadata, structured data, contrast, honest preview labels, keyboard tabs and house identity.');
