@@ -3,7 +3,8 @@
 - Owner request: a public companion to The Athletic Life listing what is being tested, what is next and open ideas, with a way for athletes to suggest features. Garmin stays marked as waiting on Garmin's developer program.
 - Source: `/the-athletic-life/next/`, generated from `the-athletic-life/next/items.json` by `scripts/build-athletic-next.cjs`. Suggestions use a static Netlify form and land on `/the-athletic-life/next/thanks/`.
 - Added idea: past runs and photos on FORM Home, after FORM 44.5.
-- Status: draft PR, not deployed. After the first deploy, confirm the form appears in Netlify, send one test idea and turn on email notifications. Items marked Next update must match what FORM 44.5 actually ships.
+- Athletic Life is now the north star: a shorter public page, ink and bone, First Discoveries cut in half, and the original assignment preserved in `docs/operations/ATHLETIC_LIFE_FOUNDING_BRIEF_20261028.md`. Rule order and standing decisions moved into the agent guide. Athlete runs and run reminders added to What's next.
+- Status: Brice authorized this release on November 2. After the first deploy, confirm the form appears in Netlify, send one test idea and turn on email notifications. Items marked Next update must match what FORM 44.5 actually ships.
 
 ## October 31 · Public FORM Long Run link collision
 

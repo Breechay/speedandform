@@ -1,5 +1,5 @@
 'use strict';
-// The Athletic Life: preserve the approved brief in brief.md; generate only its presentation.
+// The Athletic Life: the north star lives in brief.md; generate only its presentation.
 const fs=require('node:fs');
 const path=require('node:path');
 const ROOT=path.resolve(__dirname,'..');
@@ -9,6 +9,7 @@ function inline(src) {
   function hold(markup){const key=`QX${saved.length}XQ`;saved.push(markup);return key}
   let s=esc(src);
   s=s.replace(/`([^`]+)`/g,(_m,t)=>hold(`<code>${t}</code>`));
+  s=s.replace(/\[([^\]]+)\]\((\/[^)]+)\)/g,(_m,label,url)=>hold(`<a href="${url}">${label}</a>`));
   s=s.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,(_m,label,url)=>hold(`<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`));
   s=s.replace(/https?:\/\/[^\s<>]+/g,m=>{const url=m.replace(/[.,;:]+$/,"");return hold(`<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`)+m.slice(url.length)});
   s=s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>").replace(/(?<!\*)\*([^*]+)\*(?!\*)/g,"<em>$1</em>");
@@ -26,7 +27,7 @@ function renderBrief(md) {
   const raw=ls[i],s=raw.trim();
   if(i<ls.length && !open && !/^## \d+\.\s/.test(s)){i++;continue;}
   const chapter=s.match(/^## (\d+)\.\s+(.+)$/);
-  if(chapter){endSection();let id=`chapter-${chapter[1]}`;sections.push({id,title:chapter[2],n:chapter[1]});blocks.push(`<section class="al-chapter" id="${id}" aria-labelledby="${id}-title"><header class="al-chapter-head"><span class="al-chapter-number">${chapter[1].padStart(2,"0")}</span><h2 id="${id}-title">${inline(chapter[2])}</h2></header>`);open=true;i++;continue}
+  if(chapter){endSection();let id=`chapter-${chapter[1]}`;sections.push({id,title:chapter[2],n:chapter[1]});blocks.push(`<section class="al-chapter" id="${id}" aria-labelledby="${id}-title"><header class="al-chapter-head"><h2 id="${id}-title">${inline(chapter[2])}</h2></header>`);open=true;i++;continue}
   if(!s){flushP();finishList();i++;continue}
   if(s==="---"){flushP();finishList();i++;continue}
   const h3=s.match(/^###\s+(.+)$/);
@@ -45,8 +46,7 @@ function renderBrief(md) {
 }
 function makePage(md) {
  const rendered=renderBrief(md);
- const toc=rendered.sections.map(x=>`<a href="#${x.id}"><span>${x.n.padStart(2,"0")}</span>${esc(x.title)}</a>`).join("\n");
- const meta=["Prepared","Founder and coach","Organization","Stage","Research status"].map(label=>{const hit=md.match(new RegExp(`\\*\\*${label}:\\*\\*\\s+([^\\n]+)`));return hit?`<div class="al-meta-item"><dt>${esc(label)}</dt><dd>${inline(hit[1].trim())}</dd></div>`:""}).join("\n");
+ const toc=rendered.sections.map(x=>`<a href="#${x.id}">${esc(x.title)}</a>`).join("\n");
  const digest=md.length+"-"+rendered.sections.length; // structural guard, not security checksum
  return `<!doctype html>
 <html lang="en">
@@ -54,49 +54,46 @@ function makePage(md) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>The Athletic Life | Speed &amp; Form</title>
-<meta name="description" content="FORM: the athletic life. An independent strategy, human experience and product opportunity research brief.">
+<meta name="description" content="The north star for FORM: what we are building, who it is for and what we protect.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://speedandform.com/the-athletic-life/">
 <meta name="theme-color" content="#0b0b0b">
 <link rel="icon" href="/favicon.ico">
 <link rel="preload" href="/assets/site/fonts/inter-tight-latin-variable.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/athletic-life.css?v=20261028">
+<link rel="stylesheet" href="/css/athletic-life.css?v=20261102">
 <meta property="og:type" content="article">
 <meta property="og:title" content="The Athletic Life | FORM">
-<meta property="og:description" content="Independent Strategy, Human Experience &amp; Product Opportunity Research Brief">
+<meta property="og:description" content="The north star for FORM.">
 <meta property="og:url" content="https://speedandform.com/the-athletic-life/">
 <meta property="og:site_name" content="Speed &amp; Form">
 <meta property="og:image" content="https://speedandform.com/og/public-index-20261006.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Athletic Life | FORM">
-<meta name="twitter:description" content="Independent Strategy, Human Experience &amp; Product Opportunity Research Brief">
+<meta name="twitter:description" content="The north star for FORM.">
 <meta name="twitter:image" content="https://speedandform.com/og/public-index-20261006.jpg">
 <meta name="form-brief-source" content="the-athletic-life/brief.md">
 <meta name="form-brief-check" content="${digest}">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Athletic Life","datePublished":"2026-10-28","author":{"@type":"Person","name":"Brice Ikouebe"},"publisher":{"@type":"Organization","name":"Speed & Form"},"mainEntityOfPage":"https://speedandform.com/the-athletic-life/"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The Athletic Life","datePublished":"2026-10-28","dateModified":"2026-11-02","author":{"@type":"Organization","name":"Speed & Form"},"publisher":{"@type":"Organization","name":"Speed & Form"},"mainEntityOfPage":"https://speedandform.com/the-athletic-life/"}</script>
 </head>
 <body class="al-page">
-<a class="al-skip" href="#brief">Skip to the brief</a>
+<a class="al-skip" href="#brief">Skip to content</a>
 <div class="al-reading-progress" aria-hidden="true"><span id="al-progress"></span></div>
 <header class="al-header"><a href="/" class="al-header-logo" aria-label="Speed and Form home"><img src="/assets/brand/kit/emblem/sf-emblem-bone.svg" alt="" width="96" height="40"></a><a class="al-home" href="/">Speed &amp; Form <span aria-hidden="true">↗</span></a></header>
 <main>
  <section class="al-hero" id="top" aria-labelledby="al-title">
    <div class="al-hero-wrap">
      <div class="al-hero-copy">
-       <p class="al-eyebrow">FORM</p>
        <h1 id="al-title">The Athletic Life</h1>
-       <p class="al-deck">Independent Strategy, Human Experience &amp; Product Opportunity Research Brief</p>
      </div>
      <figure class="al-hero-photo"><img src="/media/library/bw-group-portrait-1200.webp" alt="FORM athletes in a group portrait" width="1200" height="800" fetchpriority="high"></figure>
    </div>
-   <nav aria-label="Athletic Life companion" style="margin:32px auto 0;max-width:1460px;display:flex;flex-wrap:wrap;gap:24px;font-size:16px"><a href="/the-athletic-life/discoveries/" style="text-decoration:underline;text-underline-offset:5px;padding:10px 0">First discoveries ↗</a><a href="/the-athletic-life/research/" style="text-decoration:underline;text-underline-offset:5px;padding:10px 0">Research &amp; agent guide ↗</a><a href="/the-athletic-life/next/" style="text-decoration:underline;text-underline-offset:5px;padding:10px 0">What's next ↗</a></nav>
-   <dl class="al-meta">${meta}</dl>
+   <nav aria-label="Athletic Life companion" class="al-companions"><a href="/the-athletic-life/discoveries/">First discoveries ↗</a><a href="/the-athletic-life/research/">Research &amp; agent guide ↗</a><a href="/the-athletic-life/next/">What's next ↗</a></nav>
  </section>
  <div class="al-reading-frame" id="brief">
    <div class="al-mobile-index"><details><summary>Contents <span aria-hidden="true">+</span></summary><nav aria-label="Sections">${toc}</nav></details></div>
    <div class="al-columns">
      <aside class="al-aside" aria-label="Article navigation"><div class="al-aside-inner"><div class="al-aside-title">CONTENTS</div><nav aria-label="Sections">${toc}</nav><a class="al-aside-top" href="#top">Back to top ↑</a></div></aside>
-     <article class="al-article" aria-label="The Athletic Life full research brief">${rendered.html}</article>
+     <article class="al-article" aria-label="The Athletic Life">${rendered.html}</article>
    </div>
  </div>
 </main>

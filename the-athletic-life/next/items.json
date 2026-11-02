@@ -43,6 +43,16 @@
           "when": "Waiting on Garmin's developer program"
         },
         {
+          "title": "Athlete runs",
+          "line": "Post your run, your time and your spot. Anyone in FORM can say I'm in.",
+          "when": "After the next update"
+        },
+        {
+          "title": "Run reminders",
+          "line": "A heads-up before your run, and when someone joins yours.",
+          "when": "After the next update"
+        },
+        {
           "title": "Past runs on Home",
           "line": "Every run we have done, with the photos and who came.",
           "when": "After the next update"
