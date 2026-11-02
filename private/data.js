@@ -771,11 +771,13 @@ export async function addObservation({ athleteId, facet, source, observation, di
   return data;
 }
 
-export async function addPrivateNote(athleteId, body) {
+export async function addPrivateNote(athleteId, body, plannedSessionId = null) {
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError) throw userError;
+  if (!user) throw new Error('Sign in before adding an internal coach note.');
   const { data, error } = await supabase.from('coach_private_notes').insert({
     athlete_id: athleteId,
+    planned_session_id: plannedSessionId || null,
     body: String(body || '').trim(),
     authored_by: user.id
   }).select('*').single();
