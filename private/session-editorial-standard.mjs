@@ -23,7 +23,7 @@ const VAGUE_TITLES = [
   [/\b(?:easy aerobic|recovery aerobic)\b/iu, 'Use a plain Easy Run or Recovery Run title with the dose.'],
   [/\baerobic\s*\+\s*strides\b/iu, 'Write the easy distance and number of strides.'],
   [/^\s*key session\s*$/iu, 'Name the actual work; “key session” is an internal classification.'],
-  [/^threshold\s*·\s*(?=\d)/iu, 'Do not put a dot between Threshold and its dose; Week can show an orphan separator.'],
+  [/^threshold\s*·\s*\d.*·\s*\d+(?:\.\d+)?\s*mi\s*$/iu, 'Do not put a dot between Threshold and its dose; Week can show an orphan separator.'],
   [/\b\d+\s*[×x]\s*\d+\s*[–-]\s*\d+\s*(?:min|sec)\b/iu, 'Commit to an exact work duration per repetition before publishing.']
 ];
 
