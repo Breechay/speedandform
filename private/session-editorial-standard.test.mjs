@@ -116,3 +116,33 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
     preview: '1 mi easy. 3 × 800 m at RPE 6–7, walk 160 m between. 1.5 mi easy.'
   }), []);
 });
+
+
+test('external-coach source attribution is blocked from every athlete-visible field', () => {
+  const phrases = [
+    { title: '8 mi', intent: 'Outside-coach easy run.' },
+    { title: '8 mi', details: 'Imported from Adrian’s outside running coach for Nov 3, 2026.' },
+    { title: '8 mi', details: 'Coach-only note: needs follow-up.' }
+  ];
+  for (const phrase of phrases) {
+    assert.ok(sessionEditorialIssues(phrase).some((issue) => issue.message.includes('private note')));
+  }
+  assert.deepEqual(sessionEditorialIssues({
+    title: '8 mi easy + strides',
+    intent: 'Finish with relaxed strides.',
+    details: '8 mi easy. Then 4–6 × 15 sec strides with full recovery.'
+  }), []);
+});
+
+test('Coach Console visibly splits athlete instructions from session-linked private notes', () => {
+  const html = fs.readFileSync(new URL('../coach/index.html', import.meta.url), 'utf8');
+  const consoleSource = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
+  const dataSource = fs.readFileSync(new URL('./data.js', import.meta.url), 'utf8');
+  assert.ok(html.includes('ATHLETE VIEW · Published in FORM Week'));
+  assert.ok(html.includes('COACH ONLY · Never shown to the athlete'));
+  assert.ok(html.includes('name="internalNote"'));
+  assert.ok(consoleSource.includes('f.internalNote.value.trim()'));
+  assert.ok(consoleSource.includes('await addPrivateNote(payload.athleteId, internalNote, savedSessionId)'));
+  assert.ok(consoleSource.includes('note.planned_session_id === session.id'));
+  assert.ok(dataSource.includes('planned_session_id: plannedSessionId || null'));
+});

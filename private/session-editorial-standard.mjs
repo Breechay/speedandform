@@ -1,5 +1,6 @@
 // Athlete-facing copy gate. Coaching owns the dose; this only checks words.
 const RULES = [
+  [/\b(?:imported from|transcribed from|outside[- ]coach|outside running coach|coach[- ]only note|internal coaching note|FORM group administration)\b/iu, 'Put sources and coach-only context in the private note, not athlete instructions.'],
   [/\b(?:not a sprint|no sprinting)\b/iu, 'Remove redundant sprint commentary.'],
   [/\brun by your own rhyt?hm\b/iu, 'Replace vague rhythm commentary with a usable instruction.'],
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],

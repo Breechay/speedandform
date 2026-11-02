@@ -55,9 +55,10 @@ has(restorePage, />Send sign-in link</, 'restore CTA says what it does');
 has(restorePage, /email used for the purchase[\s\S]*?verifies that address before opening the paid weeks/, 'restore copy names the actual email-to-purchase proof');
 lacks(restorePage, /proves the purchase<br>belongs to you/i, 'restore copy does not overstate identity proof');
 
-for (const [name, page] of [['athlete',athletePage],['coach',coachPage],['record',recordPage]]) {
+for (const [name, page] of [['athlete',athletePage],['record',recordPage]]) {
   has(page, /\/private\/graphite\.css\?v=43/, name + ' refreshes the shared private stylesheet');
 }
+has(coachPage, /\/private\/graphite\.css\?v=44/, 'Coach Console refreshes its updated stylesheet');
 has(callbackPage, /\/auth\/record-callback\/callback\.css\?v=1/, 'callback uses its house paper-room stylesheet');
 lacks(callbackPage, /\/private\/graphite\.css/, 'callback no longer inherits the old graphite room');
 has(athletePage, /\/athlete\/workspace\.css\?v=2/, 'athlete refreshes workspace CSS');

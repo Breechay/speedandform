@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Console · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=43">
+  <link rel="stylesheet" href="/private/graphite.css?v=44">
   <link rel="stylesheet" href="/athlete/workspace.css?v=2">
 </head>
 <body>
@@ -305,9 +305,14 @@
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
       </div>
 
-      <label class="field-label lead">Session
-        <input class="field-input" name="title" required placeholder="6 x 1 mile at race pace">
-      </label>
+      <section class="session-copy-panel session-copy-panel--athlete" aria-labelledby="sessionAthleteHeading">
+        <div class="session-copy-panel__heading">
+          <p class="session-copy-panel__label" id="sessionAthleteHeading">ATHLETE VIEW · Published in FORM Week</p>
+          <p class="session-copy-panel__hint">Session, distance, focus, pieces and instructions below are visible to the athlete. Write only what they need to do.</p>
+        </div>
+        <label class="field-label lead">Session
+          <input class="field-input" name="title" required placeholder="6 x 1 mile at race pace">
+        </label>
 
       <div class="form-grid two">
         <label class="field-label">Week<select class="field-select" name="weekId" required></select></label>
@@ -325,7 +330,7 @@
         </span></label>
       </div>
 
-      <label class="field-label">Why
+      <label class="field-label">Workout focus · athlete-visible
         <input class="field-input" name="intent" required placeholder="Get comfortable holding race pace for longer.">
         <span class="field-hint" id="intentHint"></span>
       </label>
@@ -343,13 +348,26 @@
         </div>
       </fieldset>
 
-      <label class="field-label">How it is built
+      <label class="field-label">Workout instructions · athlete-visible
         <textarea class="field-textarea" name="details" placeholder="20 min easy, then 6 x 1 mile at 6:30 to 6:45 with 90 second floats, then 10 min easy."></textarea>
+        <span class="field-hint">Do not include outside-coach sources, import history, private decisions or admin notes here.</span>
       </label>
+      </section>
 
-      <label class="field-label" id="changeReasonField" hidden>What changed and why
-        <input class="field-input" name="changeReason" placeholder="Moved to 8 miles after completing 6 comfortably.">
-      </label>
+      <section class="session-copy-panel session-copy-panel--private" aria-labelledby="sessionPrivateHeading">
+        <div class="session-copy-panel__heading">
+          <p class="session-copy-panel__label" id="sessionPrivateHeading">COACH ONLY · Never shown to the athlete</p>
+          <p class="session-copy-panel__hint">Keep external-coach sources, dates, rationale and internal context here. These notes stay in the private coach record.</p>
+        </div>
+        <label class="field-label">Internal coaching note
+          <textarea class="field-textarea" name="internalNote" placeholder="Source: outside running coach, Nov 3, 2026."></textarea>
+          <span class="field-hint">Optional. Each save adds a private note tied to this session; earlier notes are preserved.</span>
+        </label>
+        <div class="session-private-history" id="sessionPrivateHistory" hidden></div>
+        <label class="field-label" id="changeReasonField" hidden>Reason for revision · coach history only
+          <input class="field-input" name="changeReason" placeholder="Moved to 8 miles after completing 6 comfortably.">
+        </label>
+      </section>
 
       <p class="status-message" id="sessionStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Save <span class="icon-arrow">&rarr;</span></button></div>
