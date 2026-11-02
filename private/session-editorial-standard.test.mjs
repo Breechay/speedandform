@@ -136,3 +136,18 @@ test('useful speed preparation and recovery cue is not classified as a duplicate
   const copy = { title: 'Speed · 400s', details: 'Drills and four relaxed strides before the first rep. Walk until posture feels composed.', hasStructuredWork: true };
   assert.deepEqual(sessionEditorialIssues(copy), []);
 });
+
+test('track source recaps with total mileage are blocked when work is typed', () => {
+  const natalie = {
+    title: 'Track · 3 × 400m',
+    details: '2 mi total. Run 0.75 mi easy, then 3 × 400m at steady effort with 75 sec easy walk/jog between. Jog easy to 2 mi. Keep posture tall.',
+    hasStructuredWork: true
+  };
+  const valerie = {
+    title: 'Track · 2 × 300m + 2 × 200m',
+    details: 'About 1.2 km easy. 2 × 300 m + 2 × 200 m smooth at RPE 5–6. Walk/jog 75 sec between repeats. Jog easy to 2 mi total.',
+    hasStructuredWork: true
+  };
+  assert.ok(sessionEditorialIssues(natalie).some(issue => issue.message.includes('duplicated structured prescription')));
+  assert.ok(sessionEditorialIssues(valerie).some(issue => issue.message.includes('duplicated structured prescription')));
+});
