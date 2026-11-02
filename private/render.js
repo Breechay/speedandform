@@ -40,6 +40,19 @@ export function titleAlreadySays(title, line) {
   return dose.length > 0 && flatten(title).includes(dose);
 }
 
+// A single pace endpoint is a directional limit, not an incomplete range.
+// The fast edge alone means the athlete may run slower; the slow edge alone
+// means faster is allowed. Never render a missing endpoint as "null".
+export function paceTargetLabel(low, high, units = 'mi') {
+  const fast = String(low ?? '').trim();
+  const slow = String(high ?? '').trim();
+  const suffix = `/${units}`;
+  if (fast && slow) return `${fast}${fast === slow ? '' : `–${slow}`}${suffix}`;
+  if (fast) return `${fast}${suffix} or slower`;
+  if (slow) return `${slow}${suffix} or faster`;
+  return '';
+}
+
 // The structure line, DERIVED from the authored pieces.
 //
 // Brice's library stores a notation string — "15e + 4 × [5 min LT2 / 2 min steady
@@ -70,7 +83,15 @@ export function structureOf(version, { plain = false } = {}) {
   // A band names the effort it belongs to rather than repeating two numbers the
   // athlete already has on the paces page.
   const effort = (part) => {
-    if (part.pace_low_seconds == null) return '';
+    const paceClock = (text, seconds) => String(text ?? '').trim()
+      || (Number.isFinite(seconds) ? `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}` : '');
+    const low = paceClock(part.pace_low, part.pace_low_seconds);
+    const high = paceClock(part.pace_high, part.pace_high_seconds);
+    if (!low && !high) return '';
+    if (!low || !high || low === high) {
+      const target = paceTargetLabel(low, high, part.distance_unit || 'mi');
+      return `${plain ? ' at ' : ' @ '}${target}`;
+    }
     if (part.pace_low_seconds >= 390 && part.pace_high_seconds <= 405) {
       return plain ? ' at race pace' : ` @ ${part.pace_low}–${part.pace_high}`;
     }
