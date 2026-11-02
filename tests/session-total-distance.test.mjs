@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { authoredMiles, sessionTotalDistance, sessionTotalLabel, structureOf } from '../private/render.js';
+import { authoredMiles, paceTargetLabel, sessionTotalDistance, sessionTotalLabel, structureOf } from '../private/render.js';
 
 const steadyFinish = (amount, unit, easy, finish) => ({
   prescribed_distance: amount,
@@ -24,6 +24,22 @@ test('a 14.5 km steady finish retains metric units in its headline and anatomy',
   assert.equal(sessionTotalLabel(version), '14.5 km');
   assert.ok(Math.abs(authoredMiles(version) - 9.0098795) < 0.0001);
   assert.equal(structureOf(version), '11.3 km → 3.2 km');
+});
+
+test('a fast-only easy pace is an open ceiling, not a range ending in null', () => {
+  const version = steadyFinish(14, 'mi', 6, 3);
+  version.components[0].pace_low = '8:05';
+  version.components[0].pace_low_seconds = 485;
+  assert.equal(structureOf(version), '6 mi @ 8:05/mi or slower → 3 mi');
+  assert.equal(structureOf(version, { plain: true }), '6 mi at 8:05/mi or slower, then 3 mi');
+  assert.equal(paceTargetLabel('8:05', null), '8:05/mi or slower');
+});
+
+test('a slow-only pace is directional and full bands stay full bands', () => {
+  assert.equal(paceTargetLabel(null, '6:52'), '6:52/mi or faster');
+  assert.equal(paceTargetLabel('6:48', '6:52'), '6:48–6:52/mi');
+  assert.equal(paceTargetLabel('4:58', null, 'km'), '4:58/km or slower');
+  assert.equal(paceTargetLabel(null, null), '');
 });
 
 test('fallback sums every measurable segment with an explicit conversion', () => {
