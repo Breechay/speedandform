@@ -43,7 +43,12 @@ language sql stable security definer set search_path = '' as $$
   select coalesce((select jsonb_build_object('athlete_id',athlete_id)
     from public.athlete_memberships where user_id=(select auth.uid())
       and role='athlete' and status='active' limit 1),'{}'::jsonb) $$;
-create table public.coach_strength_groups(group_key text primary key, status text);
+create table public.coach_strength_groups(
+  group_key text primary key,
+  status text,
+  constraint coach_strength_groups_status_check
+    check(status in ('draft','ready','retired'))
+);
 create table public.coach_strength_group_members(group_key text,athlete_id uuid,status text);
 alter table public.coach_strength_groups enable row level security;
 alter table public.coach_strength_group_members enable row level security;
@@ -102,6 +107,7 @@ await db.query("insert into public.planned_session_components(athlete_id,version
 
 const grant = fs.readFileSync(new URL('../supabase/migrations/20261102163200_coach_strength_group_policy_helper_grant.sql', import.meta.url),'utf8');
 const migration = fs.readFileSync(new URL('../supabase/migrations/20261102170000_coach_editorial_copy_publication.sql', import.meta.url),'utf8');
+const groupLifecycle = fs.readFileSync(new URL('../supabase/migrations/20261102174500_coach_strength_group_active_lifecycle.sql', import.meta.url),'utf8');
 await db.exec(grant);
 await db.exec(migration);
 
@@ -118,6 +124,17 @@ test('authenticated coach reads real group RLS and secure copy audit; private di
   });
   await as(db, outsider, async () => {
     await assert.rejects(q('select public.coach_copy_review(current_date,current_date+30)'), /active coach required/);
+  });
+});
+
+test('Glute Priority group can reach active while original security policies remain intact', async () => {
+  await assert.rejects(q("update public.coach_strength_groups set status='active'"), /check constraint/);
+  await db.exec(groupLifecycle);
+  await q("update public.coach_strength_groups set status='active'");
+  assert.equal((await q('select status from public.coach_strength_groups'))[0].status,'active');
+  await as(db, outsider, async () => {
+    const result = await q('select group_key from public.coach_strength_groups');
+    assert.deepEqual(result, [], 'non-coaches never see the activated group');
   });
 });
 
