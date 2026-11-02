@@ -56,3 +56,18 @@ test('revising old sessions preserves the stored weekday label', () => {
   assert.ok(coachSource.includes("new Option(session.day_label, session.day_label, true, true)"));
   assert.ok(coachSource.includes("sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]')"));
 });
+
+test('repeated two-pass publisher prose is rejected while a useful cue passes', () => {
+  const details = 'Two passes. 1000m 3:30–3:35; 600m 2:00–2:03; 400m 1:16–1:19. Recovery 2:00 after 1000, 1:30 after 600, 3:00 between passes. Athlete clock targets are individualized.';
+  const findings = sessionEditorialIssues({ title: 'Speed · 1K · 600m · 400m × 2', details });
+  assert.ok(findings.some(issue => issue.message.includes('repeated pass summary')));
+  assert.ok(findings.some(issue => issue.message.includes('pace-provenance')));
+  assert.equal(selfAuditSessionCopy({
+    title: 'Speed · 1K · 600m · 400m × 2',
+    details: 'Keep the 400m smooth. Finish with another gear available.'
+  }).ok, true);
+  assert.deepEqual(sessionEditorialIssues({
+    title: 'Hill technique',
+    details: 'Two passes of easy drills to rehearse posture.'
+  }), []);
+});
