@@ -48,3 +48,14 @@ test('console shows aggregate queue and per-athlete count without auto-publishin
   assert.match(html,/id="publicationQueueRows"/);
   assert.doesNotMatch(script,/supabase\.from\('coach_strength_groups'\)\.update/);
 });
+
+test('Glute Priority activation requires per-athlete coach feed proof and never claims a phone receipt', () => {
+  const source = read('private/data.js');
+  assert.match(source, /export async function activatePublishedGlutePriority/);
+  assert.match(source, /supabase\.rpc\('coach_preview_strength_days'/);
+  assert.match(source, /receipt\.days\?\.length !== 6/);
+  assert.match(source, /d\.forge_program_digest === group\.program_digest/);
+  assert.match(source, /nativeDeviceVerified: false/);
+  const html = read('coach/index.html');
+  assert.match(html, /id="activateGlutePriority"/);
+});
