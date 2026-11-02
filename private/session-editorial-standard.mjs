@@ -14,6 +14,17 @@ const RULES = [
   [/(?:^|\s)(?:0\.|\.)(?:[1-9]\d*)\s*(?:km|mi|miles?)\b/iu, 'Write short distances in meters, such as 500 m or 800 m. Keep the actual prescribed distance unchanged.']
 ];
 
+// Athlete titles should describe a runnable prescription, not an internal
+// programming label. The full plan may keep richer coaching context privately.
+const VAGUE_TITLES = [
+  [/\bmidweek aerobic\b/iu, 'Write the actual easy-run distance or work, not “midweek aerobic”.'],
+  [/\bthreshold control\b/iu, 'Name the threshold repetitions or duration; “control” is not a dose.'],
+  [/\blong aerobic\b/iu, 'Call this a Long Run and show the distance.'],
+  [/\b(?:easy aerobic|recovery aerobic)\b/iu, 'Use a plain Easy Run or Recovery Run title with the dose.'],
+  [/\baerobic\s*\+\s*strides\b/iu, 'Write the easy distance and number of strides.'],
+  [/^\s*key session\s*$/iu, 'Name the actual work; “key session” is an internal classification.']
+];
+
 const SINGLE_PARAGRAPH_LIMIT = 190;
 
 // A strength list's exercise-to-dose separator is useful notation, not prose.
@@ -37,6 +48,9 @@ export function sessionEditorialIssues(copy) {
   }
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
+  for (const [pattern, message] of VAGUE_TITLES) {
+    if (pattern.test(title)) issues.push({ field: 'title', message });
+  }
   if (!title) issues.push({ field: 'title', message: 'Name the session.' });
   if (/\beasy\s*\+\s*strides\b/iu.test(title) && /\b(?:warm[ -]?up)\b/iu.test(details))
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
