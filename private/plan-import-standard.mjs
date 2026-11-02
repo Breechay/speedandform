@@ -114,7 +114,7 @@ export function validatePlanExchange(input) {
     if (s.type === 'easy' && s.segments?.some?.(x => x?.kind === 'work'))
       errors.push(`${path}.segments: an easy run cannot contain hard work`);
     if (typeof s.title === 'string') {
-      for (const issue of selfAuditSessionCopy({ title: s.title, details: s.instructions || '' }).issues)
+      for (const issue of selfAuditSessionCopy({ title: s.title, details: s.instructions || '', hasStructuredWork: s.segments?.some?.(segment => segment.kind === 'work') }).issues)
         errors.push(`${path}.${issue.field}: ${issue.message}`);
     }
   });
