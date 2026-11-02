@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <meta name="theme-color" content="#141718">
   <title>Coach Console · FORM</title>
-  <link rel="stylesheet" href="/private/graphite.css?v=43">
+  <link rel="stylesheet" href="/private/graphite.css?v=44">
   <link rel="stylesheet" href="/athlete/workspace.css?v=2">
 </head>
 <body>
@@ -419,6 +419,24 @@
       <div id="publicationQueueRows"></div>
       <p class="status-message" id="gluteActivationStatus" role="status"></p>
       <div class="dialog-actions"><button class="button" type="button" id="activateGlutePriority" hidden>Activate verified Glute Priority</button></div>
+      <div class="dialog-actions"><button class="button" type="button" id="reviewAthleteCopy">Review athlete-visible descriptions</button></div>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Close</button></div>
+    </div>
+  </dialog>
+
+  <dialog class="dialog" id="editorialDialog">
+    <div class="dialog-inner">
+      <div class="dialog-head"><div><p class="eyebrow">Roster · copy review</p><h2>Descriptions before publication</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button></div>
+      <p class="dialog-note">ATHLETE VISIBLE · These short descriptions appear beside the structured prescription. Review the actual exercises and session details below before publishing. No sets, reps, pace, recovery, dates, or completed work will be changed.</p>
+      <div id="editorialSummary"></div>
+      <div id="editorialWeekPreview"></div>
+      <h3>Strength · athlete-visible emphasis</h3>
+      <div id="editorialStrengthRows"></div>
+      <h3>Running · missing athlete-visible intent</h3>
+      <div id="editorialRunRows"></div>
+      <p class="dialog-note">INTERNAL ONLY · Private coaching notes remain separate, unchanged, and never appear in these preview fields. Every changed running session receives a new historical version.</p>
+      <p class="status-message" id="editorialStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button primary" type="button" id="publishEditorial" disabled>Validate, publish, and verify descriptions</button></div>
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Close</button></div>
     </div>
   </dialog>
@@ -460,6 +478,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=39"></script>
+  <script type="module" src="/coach/coach.js?v=40"></script>
 </body>
 </html>
