@@ -13,7 +13,7 @@ Every authenticated coach write should end in one of four explicit states: **dra
 - A visible **Publish queue** total on the console, always loaded with the roster, refreshed after session and program writes.
 - A small per-athlete **Draft N** indicator, and a single queue listing full athlete names and what remains. One click navigates to the affected athlete.
 - Separate actionable release work from **held intake**, archived/retired drafts, and externally authored programs. Do not count the same athlete twice because a newer Sculpt 02 cohort supersedes an older group.
-- The current first slice detects relevant strength-group activation, future draft training blocks, and unpublished direction drafts. It is a detection surface; **it does not pretend to publish** or infer native strength delivery from a group label.
+- The current first slice detects relevant strength-group activation, future draft training blocks, and unpublished direction drafts. It also includes an explicit, coach-authorized **Activate verified Glute Priority** action: before changing metadata it checks six matching strength days per athlete, source digest, titles, and exercises through the coach preview RPC. It never infers native iOS delivery from a group label.
 - Subsequent slices should add schedule conflicts, missing source digests, unsigned invitations, stale weekly stories, FORM Thursday link issues and athlete-device verification receipts to a single audited release ledger.
 
 ## Publish sequence
