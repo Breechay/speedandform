@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
@@ -958,6 +958,8 @@ function openPublicationQueue() {
         <strong>${escapeHtml(athlete.display_name || athlete.first_name)}</strong>
         <span>${escapeHtml(item.label)} · ${escapeHtml(item.state)}</span></button>`).join('')
     : '<p class="dialog-note">No detected publication items. Check the athlete-side receipt before declaring the roster verified.</p>';
+  const activation = document.getElementById('activateGlutePriority');
+  if (activation) activation.hidden = !queue.some(row => row.item.label.includes('Glute Priority'));
   content.querySelectorAll('[data-publish-athlete]').forEach(button => button.addEventListener('click', () => {
     publicationQueueDialog.close();
     selectAthlete(button.dataset.publishAthlete);
@@ -966,6 +968,23 @@ function openPublicationQueue() {
 }
 
 document.getElementById('publicationQueueToggle')?.addEventListener('click', openPublicationQueue);
+document.getElementById('activateGlutePriority')?.addEventListener('click', async () => {
+  const button = document.getElementById('activateGlutePriority');
+  const status = document.getElementById('gluteActivationStatus');
+  button.disabled = true;
+  status.textContent = 'Verifying five coach strength feeds.';
+  try {
+    const receipt = await activatePublishedGlutePriority();
+    status.textContent = receipt.alreadyActive
+      ? 'Group already active. Native device verification remains separate.'
+      : 'Five athletes active; coach feed verified. Native device verification remains pending.';
+    const access = await getAccessContext();
+    roster = await loadCoachRoster(access.coachMemberships);
+    paintSquad();
+  } catch (error) {
+    status.textContent = 'Activation stopped: ' + error.message;
+  } finally { button.disabled = false; }
+});
 
 function bindDesk() {
   paintSquad();
