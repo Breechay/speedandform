@@ -41,3 +41,13 @@ Keep the high-touch review separate from the writing gate: a short session can s
 Automated `sessionEditorialIssues` guards Coach Console saves and Plan Exchange imports. `weekPreviewEditorialIssues` is a separate helper for Week presentation and must be connected and tested by the native Week renderer; exporting it here does not mean an iOS build has adopted it. The CI workflow runs unit tests on related PRs. **Current limitation:** direct SQL/RPC and native-only authoring do not share this client-side validation. The eventual server publication gate must apply equivalent rules with coach authentication and append-only version history, then be tested on the actual athlete feed. Until then, writers must self-audit before any other publishing path. A green CI run alone is not proof an athlete received corrected copy.
 
 Preserve the existing one-routine-deploy-per-work-block rule. A completed audit permits publication only through the owning release process; it is not an instruction to deploy every copy edit.
+
+
+## Coach Console authoring surfaces (November 2, 2026)
+
+The session editor separates two authoring slots:
+
+- **ATHLETE VIEW:** Session title, distance, target work, workout focus and execution instructions. All are delivered through the athlete plan feed and may appear in FORM Week. Include exact actionable doses; exclude source attribution and administrative notes.
+- **COACH ONLY:** A private note tied to the planned session in `coach_private_notes` for outside-coach provenance, source dates, uncertainty, and internal reasoning. A separate revision reason stays in the coach-only version history. Neither belongs in athlete `intent` or `details`.
+
+The coach-only note is append-only through a new linked row. Do not overwrite an earlier note when changing a workout. The Console's editorial validator rejects external-source and private-note phrases in new athlete copy. The authenticated athlete feed remains the source of truth for what is actually visible; editor labels alone do not verify a native build.
