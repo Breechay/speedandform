@@ -1,3 +1,11 @@
+## November 2 · Running app page aligned to FORM 44.5
+
+- Brice authorized one public release of the updated Running app page. `/app` is a redirect to the canonical `/form/` product page; update the source page, its share description and its focused tests together.
+- The public promise is `Train with direction.` The page now separates the plan from the completed work, shows real FORM track photography, connects to The Athletic Life, and names the next release's FORM/Week/Races changes without saying 44.5 is already in the App Store.
+- Evidence: FORM-iOS `release/form44-5-manifest` handoff and PR #173, plus the distributed 44.4 App Store listing. Release candidate does not mean signed-in device verification or distribution. The native app, athletes, training prescriptions, database and App Store metadata are unchanged.
+- Athletic Life north star, First Discoveries, research collection/assessment and What's next were checked. Their source truth and preserved founding brief remain untouched.
+- At source authoring: landing, public-copy, editorial, share, Athletic Life and research tests passed. Netlify merge/deployment and live URL readback are separate release receipts; browser/device visual acceptance remains open where this environment cannot run it.
+
 ## November 2 · What's next page
 
 - Owner request: a public companion to The Athletic Life listing what is being tested, what is next and open ideas, with a way for athletes to suggest features. Garmin stays marked as waiting on Garmin's developer program.
