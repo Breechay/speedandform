@@ -22,7 +22,9 @@ const VAGUE_TITLES = [
   [/\blong aerobic\b/iu, 'Call this a Long Run and show the distance.'],
   [/\b(?:easy aerobic|recovery aerobic)\b/iu, 'Use a plain Easy Run or Recovery Run title with the dose.'],
   [/\baerobic\s*\+\s*strides\b/iu, 'Write the easy distance and number of strides.'],
-  [/^\s*key session\s*$/iu, 'Name the actual work; “key session” is an internal classification.']
+  [/^\s*key session\s*$/iu, 'Name the actual work; “key session” is an internal classification.'],
+  [/^threshold\s*·\s*(?=\d)/iu, 'Do not put a dot between Threshold and its dose; Week can show an orphan separator.'],
+  [/\b\d+\s*[×x]\s*\d+\s*[–-]\s*\d+\s*(?:min|sec)\b/iu, 'Commit to an exact work duration per repetition before publishing.']
 ];
 
 const SINGLE_PARAGRAPH_LIMIT = 190;
@@ -72,6 +74,8 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
   const issues = [];
   const text = String(preview ?? '').trim();
   if (!text) return issues;
+  if (/^\s*[·•]\s*|\s*[·•]\s*$/u.test(text))
+    issues.push({ field: 'preview', message: 'Remove leading or trailing separators from the athlete Week headline.' });
   if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
   if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(text))
