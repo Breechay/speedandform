@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { addPrivateNote, authorSession, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
@@ -39,6 +39,9 @@ const noteDialog = document.getElementById('noteDialog');
 const noteForm = document.getElementById('noteForm');
 const shareDialog = document.getElementById('shareDialog');
 const shareForm = document.getElementById('shareForm');
+const publicationQueueDialog = document.getElementById('publicationQueueDialog');
+const inviteDialog = document.getElementById('inviteDialog');
+const inviteForm = document.getElementById('inviteForm');
 const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
@@ -118,12 +121,14 @@ function rosterHtml() {
     // Someone waiting on you is marked, not moved. The dot says there is
     // something here; the queue is where it gets ordered.
     const waiting = (athlete.attention || []).length > 0;
+    const publishCount = (athlete.publicationQueue || []).length;
     return `<button class="consoleAthleteTab${athlete.id === selectedId ? ' consoleAthleteTab--on' : ''}"
       type="button" data-select-athlete="${escapeHtml(athlete.id)}"
       ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
       <span class="consoleAthleteTab__name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
       <em class="consoleAthleteTab__score">${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
       ${waiting ? '<i class="consoleAthleteTab__waiting" aria-label="Waiting on you"></i>' : ''}
+      ${publishCount ? `<span class="consoleAthleteTab__draft" aria-label="${publishCount} publication items">Draft ${publishCount}</span>` : ''}
     </button>`;
   };
   const order = attentionOrder
@@ -143,6 +148,7 @@ function athleteMenuHtml() {
       ${notes || '<p class="control-who">No private notes.</p>'}
       <button class="control-item" id="setPassword" type="button">Set a password</button>
       <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
+      <button class="control-item" id="inviteAthlete" type="button">Invite athlete</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
       <button class="control-item" data-console-action="file-run" type="button">File a run</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
@@ -937,7 +943,48 @@ function paintSquad() {
     button.addEventListener('click', () => selectAthlete(button.dataset.selectAthlete)));
   const toggle = document.getElementById('orderToggle');
   if (toggle) toggle.textContent = attentionOrder ? 'needs attention' : 'roster';
+  const publicationButton = document.getElementById('publicationQueueToggle');
+  const total = roster.reduce((sum, athlete) => sum + (athlete.publicationQueue || []).length, 0);
+  if (publicationButton) publicationButton.textContent = `Publish queue · ${total}`;
 }
+
+function openPublicationQueue() {
+  const content = document.getElementById('publicationQueueRows');
+  const queue = roster.flatMap(athlete => (athlete.publicationQueue || []).map(item => ({ athlete, item })));
+  queue.sort((a, b) => (a.item.state === 'blocked' ? -1 : 0) - (b.item.state === 'blocked' ? -1 : 0)
+    || (a.athlete.display_name || '').localeCompare(b.athlete.display_name || ''));
+  content.innerHTML = queue.length
+    ? queue.map(({ athlete, item }) => `<button class="control-item" type="button" data-publish-athlete="${escapeHtml(athlete.id)}">
+        <strong>${escapeHtml(athlete.display_name || athlete.first_name)}</strong>
+        <span>${escapeHtml(item.label)} · ${escapeHtml(item.state)}</span></button>`).join('')
+    : '<p class="dialog-note">No detected publication items. Check the athlete-side receipt before declaring the roster verified.</p>';
+  const activation = document.getElementById('activateGlutePriority');
+  if (activation) activation.hidden = !queue.some(row => row.item.label.includes('Glute Priority'));
+  content.querySelectorAll('[data-publish-athlete]').forEach(button => button.addEventListener('click', () => {
+    publicationQueueDialog.close();
+    selectAthlete(button.dataset.publishAthlete);
+  }));
+  publicationQueueDialog.showModal();
+}
+
+document.getElementById('publicationQueueToggle')?.addEventListener('click', openPublicationQueue);
+document.getElementById('activateGlutePriority')?.addEventListener('click', async () => {
+  const button = document.getElementById('activateGlutePriority');
+  const status = document.getElementById('gluteActivationStatus');
+  button.disabled = true;
+  status.textContent = 'Verifying five coach strength feeds.';
+  try {
+    const receipt = await activatePublishedGlutePriority();
+    status.textContent = receipt.alreadyActive
+      ? 'Group already active. Native device verification remains separate.'
+      : 'Five athletes active; coach feed verified. Native device verification remains pending.';
+    const access = await getAccessContext();
+    roster = await loadCoachRoster(access.coachMemberships);
+    paintSquad();
+  } catch (error) {
+    status.textContent = 'Activation stopped: ' + error.message;
+  } finally { button.disabled = false; }
+});
 
 function bindDesk() {
   paintSquad();
@@ -979,6 +1026,12 @@ function bindDesk() {
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
+  document.getElementById('inviteAthlete')?.addEventListener('click', () => {
+    inviteForm.reset();
+    document.getElementById('inviteContext').textContent = 'Invite ' + (selectedRecord.athlete.display_name || selectedRecord.athlete.first_name);
+    document.getElementById('inviteStatus').textContent = '';
+    inviteDialog.showModal();
+  });
   
   // Console actions using data-console-action
   app.querySelectorAll('[data-console-action]').forEach((button) => {
@@ -1688,6 +1741,27 @@ judgeForm.addEventListener('submit', async (event) => {
   finally { button.disabled = false; }
 });
 
+inviteForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('inviteStatus');
+  const button = inviteForm.querySelector('button[type="submit"]');
+  const athleteId = selectedRecord?.athlete?.id;
+  const email = inviteForm.elements.email.value.trim().toLowerCase();
+  if (!athleteId) { status.textContent = 'Select an athlete before inviting.'; return; }
+  button.disabled = true;
+  status.textContent = 'Reserving access.';
+  try {
+    const invite = await createAthleteInvite(athleteId, email);
+    if (invite?.athlete_id !== athleteId || invite?.email !== email) {
+      throw new Error('Invite receipt does not match the selected athlete and email.');
+    }
+    await refreshSelected(true);
+    status.textContent = 'Access reserved for ' + email + '. No email has been sent. Verify delivery separately.';
+  } catch (error) {
+    status.textContent = error.message;
+  } finally { button.disabled = false; }
+});
+
 sessionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const status = document.getElementById('sessionStatus');
@@ -1712,6 +1786,15 @@ sessionForm.addEventListener('submit', async (event) => {
   // Untouched means untouched: the field is omitted, revise_session carries the
   // previous anatomy forward, and nothing this form cannot express is lost. A new
   // session has nothing to carry, so what is on screen is what it gets.
+  if (revisingSessionId) {
+    const existing = selectedRecord.sessions.find((session) => session.id === revisingSessionId);
+    if (existing && (payload.scheduledOn !== existing.scheduled_on || payload.dayLabel !== existing.day_label || payload.weekId !== existing.week_id)) {
+      status.textContent = 'This editor revises the workout only; it cannot move an existing session. The date and week have not changed. Use a dedicated reschedule workflow.';
+      status.className = 'status-message error';
+      return;
+    }
+  }
+
   const parts = readParts();
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
@@ -1893,6 +1976,7 @@ async function refreshSelected(animate = false) {
   const access = await getAccessContext(); roster = await loadCoachRoster(access.coachMemberships); selectedRecord = await loadAthleteRecord(selectedId, { coach: true });
   const rosterEntry = roster.find((entry) => entry.id === selectedId);
   selectedRecord.attention = rosterEntry?.attention || [];
+  selectedRecord.publicationQueue = rosterEntry?.publicationQueue || [];
   selectedRecord.deliveryOverview = rosterEntry?.deliveryOverview || null;
   selectedRecord.fallbackProgram = await loadStrengthFallback(selectedRecord.athlete).catch(() => null);
   app.innerHTML = deskHtml(); if (animate) document.querySelector('.situation')?.classList.add('resolve-in'); bindDesk();
