@@ -411,6 +411,21 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="inviteDialog">
+    <form class="dialog-inner" id="inviteForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Coach only · access</p><h2 id="inviteContext">Invite athlete</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <label class="field-label lead">Verified email
+        <input class="field-input" type="email" name="email" autocomplete="off" required placeholder="name@example.com">
+      </label>
+      <p class="dialog-note">Reserve access for this athlete's existing roster record. This does not create an Auth user, claim an account, or send an email. The athlete still needs to verify this address and sign in.</p>
+      <p class="status-message" id="inviteStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Reserve access <span class="icon-arrow">&rarr;</span></button></div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="noteDialog">
     <form class="dialog-inner" id="noteForm">
       <div class="dialog-head"><div><p class="eyebrow">Coach only</p><h2>Add a private note.</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">×</button></div>
@@ -433,6 +448,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=36"></script>
+  <script type="module" src="/coach/coach.js?v=37"></script>
 </body>
 </html>
