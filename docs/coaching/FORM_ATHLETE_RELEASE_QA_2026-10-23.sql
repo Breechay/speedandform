@@ -73,6 +73,7 @@ with current_sessions as (
   from current_sessions s
   where s.role='key' and coalesce(s.is_key,false)
     and s.title ~* '(^|[^[:alpha:]])easy([^[:alpha:]]|$)'
+    and s.title !~* '(long[[:space:]]+run|strides|race[[:space:]]+pace|tempo|threshold|interval)'
   union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
          'Track workout needs an authored Week preview with sets and rests'
