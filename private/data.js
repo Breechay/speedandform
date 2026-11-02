@@ -1012,6 +1012,66 @@ export async function createAthleteInvite(athleteId, email) {
   return data;
 }
 
+// Coach-only activation: confirm the exact six published Glute Priority days
+// before changing group metadata. Never infer native iOS delivery from this.
+export async function activatePublishedGlutePriority() {
+  const key = 'strength-sculpt02-glute-only';
+  const { data: group, error: ge } = await supabase.from('coach_strength_groups')
+    .select('status,forge_program_id,program_digest,weekly_days').eq('group_key', key).single();
+  if (ge) throw ge;
+  if (!['draft','active'].includes(group.status) || !group.program_digest || group.weekly_days?.length !== 2)
+    throw new Error('Glute Priority source is not ready.');
+  const { data: members, error: me } = await supabase.from('coach_strength_group_members')
+    .select('athlete_id,status,planned_start_on').eq('group_key', key);
+  if (me) throw me;
+  if (members?.length !== 5 || members.some(m => !['planned','active'].includes(m.status) || !m.planned_start_on))
+    throw new Error('Glute Priority roster differs from the approved five.');
+  const plusDays = (start, offset) => {
+    const d = new Date(start + 'T00:00:00Z');
+    d.setUTCDate(d.getUTCDate() + offset);
+    return d.toISOString().slice(0,10);
+  };
+  for (const member of members) {
+    const { data: receipt, error: re } = await supabase.rpc('coach_preview_strength_days', {
+      p_athlete_id: member.athlete_id, p_from: member.planned_start_on,
+      p_to: plusDays(member.planned_start_on, 20)
+    });
+    if (re) throw re;
+    if (receipt?.athlete_id !== member.athlete_id || receipt.days?.length !== 6)
+      throw new Error('Coach feed identity/count mismatch.');
+    for (let w = 0; w < 3; w++) for (const day of group.weekly_days) {
+      const on = plusDays(member.planned_start_on, 7*w + Number(day.weekday));
+      const matches = receipt.days.filter(d => d.scheduled_on === on
+        && d.forge_program_id === group.forge_program_id
+        && d.forge_program_digest === group.program_digest
+        && d.title === day.session && Array.isArray(d.exercises) && d.exercises.length > 0);
+      if (matches.length !== 1) throw new Error('Unverified strength day ' + on);
+    }
+  }
+  const now = new Date().toISOString(), ids = members.map(m => m.athlete_id);
+  const pending = members.filter(m => m.status === 'planned').map(m => m.athlete_id);
+  if (pending.length) {
+    const { data: updatedMembers, error: ue } = await supabase.from('coach_strength_group_members')
+      .update({ status: 'active', updated_at: now }).eq('group_key', key)
+      .eq('status', 'planned').in('athlete_id', pending).select('athlete_id');
+    if (ue) throw ue;
+    if (updatedMembers?.length !== pending.length) throw new Error('Incomplete activation. Review the queue.');
+  }
+  if (group.status === 'draft') {
+    const { data: updatedGroup, error: ug } = await supabase.from('coach_strength_groups')
+      .update({ status: 'active', updated_at: now }).eq('group_key', key)
+      .eq('status', 'draft').select('group_key').single();
+    if (ug) throw ug;
+    if (updatedGroup?.group_key !== key) throw new Error('Group receipt mismatch.');
+  }
+  const { data: check, error: ce } = await supabase.from('coach_strength_group_members')
+    .select('athlete_id,status').eq('group_key', key);
+  if (ce) throw ce;
+  if (check?.length !== ids.length || check.some(m => m.status !== 'active'))
+    throw new Error('Activation readback failed.');
+  return { activated: ids.length, alreadyActive: pending.length === 0 && group.status === 'active', coachFeedVerified: true, nativeDeviceVerified: false };
+}
+
 export async function authorSession(payload) {
   const { data, error } = await supabase.rpc('author_session', {
     p_athlete_id: payload.athleteId,
