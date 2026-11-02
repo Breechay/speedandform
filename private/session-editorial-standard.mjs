@@ -81,6 +81,23 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
   return issues;
 }
 
+// A quality day cannot be published with only a prose description of work.
+// Use this in the editor with the *actual* typed components. Missing recovery
+// or ambiguous range still requires a coach to author it; never generate work.
+export function unstructuredQualityIssue({ title, components = [] } = {}) {
+  const value = String(title ?? '');
+  if (!/\\b(?:threshold|tempo|intervals?|speed|track|hills?|fartlek)\\b/iu.test(value))
+    return null;
+  if (Array.isArray(components) && components.some(part =>
+    part?.role === 'work' && (
+      Number(part.distance) > 0 || Number(part.durationSeconds ?? part.duration_seconds) > 0
+    ))) return null;
+  return {
+    field: 'components',
+    message: 'Quality work needs typed repetitions or duration, effort and recovery before publishing.'
+  };
+}
+
 // Validate changed prose only. Existing legacy copy does not block a safe dose
 // revision, but newly introduced wording must pass before it is saved.
 export function changedSessionEditorialIssues(next, previous = null) {
