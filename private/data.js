@@ -945,6 +945,21 @@ export async function changeEmail(nextEmail, returnTo = '/athlete/') {
 // `components` omitted means "I did not touch the structure" and the previous
 // version's anatomy is carried forward. An explicit [] means the session has no
 // typed structure. Those are different statements and the RPC keeps them apart.
+// Create or reuse an access reservation through the authenticated, coach-scoped RPC.
+// This is not an Auth user, a claimed membership, or an email delivery receipt.
+export async function createAthleteInvite(athleteId, email) {
+  const normalized = String(email || '').trim().toLowerCase();
+  if (!athleteId || !/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(normalized)) {
+    throw new Error('Enter the athlete’s verified email address.');
+  }
+  const { data, error } = await supabase.rpc('coach_invite_create', {
+    p_athlete_id: athleteId,
+    p_email: normalized
+  });
+  if (error) throw error;
+  return data;
+}
+
 export async function authorSession(payload) {
   const { data, error } = await supabase.rpc('author_session', {
     p_athlete_id: payload.athleteId,
