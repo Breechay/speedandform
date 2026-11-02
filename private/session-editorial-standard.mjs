@@ -60,6 +60,8 @@ export function sessionEditorialIssues(copy) {
     issues.push({ field: 'details', message: 'Keep the athlete focused on executing the session, not submitting commentary.' });
   if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(details))
     issues.push({ field: 'details', message: 'Remove the repeated total-mileage lead-in. Keep the warm-up, work, recovery and cool-down.' });
+  if (/\b\d+\s*[×x]\s*\d+\s*[–-]\s*\d+\s*(?:min|sec)\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Write exact work repetition durations; do not leave an 8–10 minute choice in the instructions.' });
   if (/\bRPE\s*(\d)\s*[–-]\s*\1\b/iu.test(details))
     issues.push({ field: 'details', message: 'Write one RPE number when both ends of a range are the same.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
