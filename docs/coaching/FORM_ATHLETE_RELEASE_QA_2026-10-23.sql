@@ -57,6 +57,8 @@ with current_sessions as (
          'Replace an internal category with a plain title that names the actual work'
   from current_sessions s
   where s.title ~* '(midweek aerobic|threshold control|long aerobic|easy aerobic|recovery aerobic|aerobic[[:space:]]*[+][[:space:]]*strides|^[[:space:]]*key session[[:space:]]*$)'
+     or s.title ~* '^threshold[[:space:]]*·[[:space:]]*[0-9]'
+     or s.title ~* '[0-9][[:space:]]*[×x][[:space:]]*[0-9]+[–-][0-9]+[[:space:]]*(min|sec)'
   union all
   select 'BLOCK','QUALITY_WORK_NOT_STRUCTURED',s.slug,s.scheduled_on,s.title,
          'Published quality work has no structured work rows; author the precise repetitions, efforts and recoveries'
