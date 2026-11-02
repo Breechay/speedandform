@@ -1,4 +1,5 @@
 import { supabase } from './supabase-client.js';
+import { isPublishedPlanSession } from './coach-bench-live.mjs';
 import { deliveryOverviewFor } from './delivery-status.js';
 
 function result(data, error) {
@@ -360,7 +361,7 @@ export async function loadCoachBench(coachMemberships) {
   return signed.map((entry) => {
     const block = (blocksResponse.data || []).find((item) => item.athlete_id === entry.id) || null;
     const currentWeek = currentWeekFor(entry.id);
-    const mine = sessions.filter((session) => session.week_id === currentWeek?.id)
+    const mine = sessions.filter((session) => session.week_id === currentWeek?.id && isPublishedPlanSession(session))
       .map((session) => ({
         ...session,
         currentVersion: withComponents.find((version) => version.planned_session_id === session.id) || null
@@ -397,7 +398,8 @@ export async function loadCoachBench(coachMemberships) {
       // most important session in their next ten days behind a long run.
       next: (() => {
         const coming = sessions
-          .filter((session) => (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
+          .filter((session) => isPublishedPlanSession(session)
+            && (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
             && session.role === 'key' && session.scheduled_on && session.scheduled_on > today
             && session.scheduled_on <= weekAhead)
           .map((session) => ({ ...session, currentVersion: withComponents.find((v) => v.planned_session_id === session.id) || null }))
@@ -427,7 +429,8 @@ export async function loadCoachBench(coachMemberships) {
       // What the brief needs and the bench does not: everything filed in the
       // last seven days, and everything asked of them in the next seven.
       recentFilings: completions.filter((item) => item.athlete_id === entry.id && item.filed_at.slice(0, 10) >= weekAgo),
-      coming: sessions.filter((session) => session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id)
+      coming: sessions.filter((session) => isPublishedPlanSession(session)
+        && (session.week_id === currentWeek?.id || session.week_id === nextWeekFor(entry.id)?.id))
         .filter((session) => session.scheduled_on && session.scheduled_on >= today && session.scheduled_on <= weekAhead)
         .map((session) => ({
           ...session,
