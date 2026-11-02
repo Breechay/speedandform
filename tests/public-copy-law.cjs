@@ -45,7 +45,7 @@ assert.match(app,/class="questionnaire"/,'Functional questionnaire stays on appl
 assert.match(coaching,/>Run better\.</);
 assert.match(coaching,/>I look for ease\.</);
 assert.match(read('runs/index.html'),/>Run<br>together\.</);
-assert.match(read('form/index.html'),/Train for your<br>next race\./);
+assert.match(read('form/index.html'),/Train with<br>direction\./);
 assert.match(read('forge-sculpt/index.html'),/Build muscle<br>with a plan\./);
 assert.match(read('library.html'),/<h1>The Library\.<\/h1>/);
 const policy=read('docs/editorial/PUBLIC_COPY_LAW_2026-10-19.md');
