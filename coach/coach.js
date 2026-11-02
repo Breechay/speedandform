@@ -1722,7 +1722,7 @@ sessionForm.addEventListener('submit', async (event) => {
     ? (selectedRecord.sessions.find((entry) => entry.id === revisingSessionId)?.currentVersion?.components || [])
     : [];
   const auditParts = payload.components || carriedParts;
-  const isQualityTitle = /^(?:speed|threshold|5k rhythm|intervals?|tempo|track|fartlek|sprint|repeats?)\b/iu.test(payload.title);
+  const isQualityTitle = /^(?:speed|threshold|5k rhythm|intervals?|tempo|track|vo2|hill|fartlek|sprint|strides|mile repeats?|repeats?)\b/iu.test(payload.title);
   if (!revisingSessionId && isQualityTitle && !auditParts.some((part) => part.role === 'work')) {
     status.textContent = 'Add the measured work pieces before publishing a Speed or Threshold session.';
     status.className = 'status-message error';
