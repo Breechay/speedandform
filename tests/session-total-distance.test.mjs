@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { authoredMiles, sessionTotalDistance, sessionTotalLabel, structureOf } from '../private/render.js';
+import { authoredMiles, displayPaceBand, sessionTotalDistance, sessionTotalLabel, structureOf } from '../private/render.js';
 
 const steadyFinish = (amount, unit, easy, finish) => ({
   prescribed_distance: amount,
@@ -52,4 +52,14 @@ test('a timed warm-up makes a missing total unknowable', () => {
   const version = steadyFinish(null, null, 7, 2);
   version.components.unshift({ role: 'warm_up', duration_seconds: 1200 });
   assert.equal(sessionTotalDistance(version), null);
+});
+
+test('FORM kilometer intervals use canonical per-mile seconds and never a false /km label', () => {
+  const oneK = { role: 'work', shape: 'continuous', distance: 1, distance_unit: 'km',
+    pace_low_seconds: 338, pace_high_seconds: 346, pace_low: '5:38', pace_high: '5:46' };
+  assert.equal(displayPaceBand(oneK), '3:30–3:35');
+  assert.equal(displayPaceBand({ ...oneK, distance_unit: 'mi' }), '5:38–5:46');
+  const version = { components: [oneK,
+    { ...oneK, position: 2, distance: 0.6, pace_low_seconds: 322, pace_high_seconds: 330 }] };
+  assert.equal(structureOf(version), '1 km @ 3:30–3:35 → 600 m @ 3:20–3:25');
 });
