@@ -60,7 +60,7 @@ export function sessionEditorialIssues(copy) {
   const structuredWork = Boolean(copy?.hasStructuredWork || copy?.components?.some?.(part =>
     part?.role === 'work' || part?.kind === 'work'));
   const repeatedDose = /\b\d{1,2}\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:m|km|mi|min|s|sec|seconds?|minutes?)\b/iu.test(details);
-  const preparation = /\b(?:warm[ -]?up|cool[ -]?down)\b|^\s*\d{1,2}\s*min(?:utes?)?\s*(?:easy|relaxed)\b/iu.test(details);
+  const preparation = /\b(?:warm[ -]?up|cool[ -]?down)\b|^\s*\d{1,2}\s*min(?:utes?)?\s*(?:easy|relaxed)\b|^\s*(?:about\s+)?\d+(?:\.\d+)?\s*(?:mi|km)\s*(?:total|easy)\b/iu.test(details);
   const recovery = /\b(?:rest|recovery|recover|jog|walk|standing|stand|float|between)\b/iu.test(details);
   if (structuredWork && repeatedDose && preparation && recovery)
     issues.push({ field: 'details', message: 'Remove the duplicated structured prescription. Reps, pace, preparation and recovery belong in the workout pieces; keep only an execution cue.' });
