@@ -16,7 +16,9 @@ export function revisedAuthoredTotal(version, originalWork = null, nextWork = nu
 
   const sourceUnit = originalWork.distance_unit || version.distance_unit || 'mi';
   const totalUnit = version.distance_unit || 'mi';
-  const delta = next - previous;
+  const repeats = originalWork.shape === 'repetitions' ? Number(originalWork.repeat_count || 1) : 1;
+  if (!Number.isInteger(repeats) || repeats < 1) return null;
+  const delta = (next - previous) * repeats;
   if (sourceUnit !== totalUnit && !['mi', 'km'].includes(sourceUnit)) return null;
   const converted = sourceUnit === totalUnit ? delta
     : sourceUnit === 'km' && totalUnit === 'mi' ? delta * 0.621371
