@@ -116,3 +116,23 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
     preview: '1 mi easy. 3 × 800 m at RPE 6–7, walk 160 m between. 1.5 mi easy.'
   }), []);
 });
+
+test('future speed echo guard checks typed work without blocking execution cues', () => {
+  const recap = 'Warm up: 20 min. 8 × 1 min fast and relaxed, RPE 6–7. Stand 1:30 between reps. Cool down: 15 min.';
+  const copy = { title: 'Speed · 8 × 1 min', details: recap, hasStructuredWork: true };
+  assert.ok(sessionEditorialIssues(copy).some(issue => issue.message.includes('duplicated structured prescription')));
+  assert.ok(changedSessionEditorialIssues(copy).some(issue => issue.message.includes('duplicated structured prescription')));
+  assert.deepEqual(sessionEditorialIssues({ ...copy, details: 'Fast and relaxed. Keep the last repetition as controlled as the first.' }), []);
+  assert.deepEqual(sessionEditorialIssues({ ...copy, hasStructuredWork: false }), []);
+});
+
+test('publisher Week recap is flagged only when typed work already exists', () => {
+  const copy = { title: 'Speed · 1000s', details: 'Week: 20 min easy warm-up; 4 × 1000 m at RPE 6–7, 3:00 standing rest; 15 min easy cool-down.' };
+  assert.deepEqual(sessionEditorialIssues(copy), []);
+  assert.ok(sessionEditorialIssues({ ...copy, hasStructuredWork: true }).some(issue => issue.message.includes('publisher Week recap')));
+});
+
+test('useful speed preparation and recovery cue is not classified as a duplicate dose', () => {
+  const copy = { title: 'Speed · 400s', details: 'Drills and four relaxed strides before the first rep. Walk until posture feels composed.', hasStructuredWork: true };
+  assert.deepEqual(sessionEditorialIssues(copy), []);
+});
