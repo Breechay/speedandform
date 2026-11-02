@@ -45,7 +45,11 @@
         {
           "title": "Athlete runs",
           "line": "Post your run, your time and your spot. Anyone in FORM can say I'm in.",
-          "when": "After the next update"
+          "when": "Concept ready · Timing open",
+          "prototype": {
+            "href": "/the-athletic-life/next/prototypes/FORM_Home_Athlete_Runs.html",
+            "downloadName": "FORM_Home_Athlete_Runs.html"
+          }
         },
         {
           "title": "Run reminders",
