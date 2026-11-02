@@ -1,0 +1,110 @@
+{
+  "updated": "November 2, 2026",
+  "sections": [
+    {
+      "id": "testing",
+      "title": "Testing now",
+      "items": [
+        {
+          "title": "A new Home",
+          "line": "The next Long Run and Thursday track, first thing when you open the app."
+        },
+        {
+          "title": "The Field",
+          "line": "Recent work from the team, one athlete at a time. Turn sharing off in Settings any time."
+        },
+        {
+          "title": "File any run",
+          "line": "Log a run on any day, even if it was not on your plan."
+        },
+        {
+          "title": "Move a workout",
+          "line": "Move a session to another day, and undo it if plans change."
+        },
+        {
+          "title": "Look around first",
+          "line": "See the runs before you sign in."
+        }
+      ],
+      "when": "Next update"
+    },
+    {
+      "id": "next",
+      "title": "Up next",
+      "items": [
+        {
+          "title": "Strength in your Week",
+          "line": "Strength sessions next to your runs. Your loads are remembered.",
+          "when": "In pilot"
+        },
+        {
+          "title": "Garmin",
+          "line": "Your runs arrive on their own.",
+          "when": "Waiting on Garmin's developer program"
+        },
+        {
+          "title": "Past runs on Home",
+          "line": "Every run we have done, with the photos and who came.",
+          "when": "After the next update"
+        },
+        {
+          "title": "Events in one place",
+          "line": "Track, long runs, strength, yoga and socials, next to your training.",
+          "when": "Planned"
+        },
+        {
+          "title": "More ways in",
+          "line": "Make a plan, bring a plan, or just come run.",
+          "when": "Planned"
+        }
+      ]
+    },
+    {
+      "id": "ideas",
+      "title": "Ideas",
+      "items": [
+        {
+          "title": "Bring your own plan",
+          "line": "Fill in a form with AI or another coach, then load it into the app."
+        },
+        {
+          "title": "Download your photos",
+          "line": "Your photos from every run, ready to save."
+        },
+        {
+          "title": "Why this race",
+          "line": "Share your reason for a race, if you want to."
+        },
+        {
+          "title": "Races I'm curious about",
+          "line": "A private list. No sign-up, no promise."
+        },
+        {
+          "title": "Race weekends",
+          "line": "A shakeout or a table after the race, when the group is there."
+        },
+        {
+          "title": "After the race",
+          "line": "Your result, your photos and your own note, kept together."
+        },
+        {
+          "title": "Race day support",
+          "line": "Choose who cheers for you, and how."
+        },
+        {
+          "title": "A long run somewhere new",
+          "line": "An optional run outside the usual routes."
+        },
+        {
+          "title": "Nutrition in Strength",
+          "line": "Simple guidelines inside the Strength app."
+        },
+        {
+          "title": "Your own opening",
+          "line": "The app opens on your photos."
+        }
+      ],
+      "when": "No date"
+    }
+  ]
+}

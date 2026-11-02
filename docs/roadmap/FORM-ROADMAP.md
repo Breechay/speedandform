@@ -1,3 +1,10 @@
+## November 2 · What's next page
+
+- Owner request: a public companion to The Athletic Life listing what is being tested, what is next and open ideas, with a way for athletes to suggest features. Garmin stays marked as waiting on Garmin's developer program.
+- Source: `/the-athletic-life/next/`, generated from `the-athletic-life/next/items.json` by `scripts/build-athletic-next.cjs`. Suggestions use a static Netlify form and land on `/the-athletic-life/next/thanks/`.
+- Added idea: past runs and photos on FORM Home, after FORM 44.5.
+- Status: draft PR, not deployed. After the first deploy, confirm the form appears in Netlify, send one test idea and turn on email notifications. Items marked Next update must match what FORM 44.5 actually ships.
+
 ## October 31 · Public FORM Long Run link collision
 
 - Production database has public Collective occurrences for November 1 and 7 titled `FORM Long Run`, both without a series ID. The old website slug rule sent each to `/run/form-long-run/` and rejected the duplicate; `/run/long-run-02/` also could not resolve.

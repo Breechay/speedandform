@@ -104,6 +104,10 @@ The essential relationship is **race ↔ person ↔ optional Collective occasion
 - An editor that forces photography on every race, fills unknown organizer facts, or requires App Store updates for content changes.
 - An automatic post-race “next goal” or training rewrite. The athlete and coach decide what follows.
 
+## Public list
+
+On November 2, 2026, Brice approved a public list of app ideas and updates at [What's next](../../the-athletic-life/next/). Edit `the-athletic-life/next/items.json`, then run `node scripts/build-athletic-next.cjs`. An idea there is not a promise, a date or a chosen experiment. Anything marked Next update must be cut if it does not ship.
+
 ## When FORM needs an idea
 
 1. Review the current person or group need, capacity, and existing work; don't select a feature because it sits on this shelf.
