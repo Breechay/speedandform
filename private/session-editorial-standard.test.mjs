@@ -158,6 +158,10 @@ test('Turner threshold is exact, lacks orphan dot and uses structured work', () 
   });
   assert.ok(bad.some(issue => issue.field === 'title' && issue.message.includes('dot')));
   assert.ok(bad.some(issue => issue.field === 'title' && issue.message.includes('exact work')));
+  assert.ok(sessionEditorialIssues({
+    title: 'Threshold 2 × 10 min · 6 mi',
+    details: 'Run 2 × 8–10 min if feeling good.'
+  }).some(issue => issue.field === 'details' && issue.message.includes('exact work')));
   assert.ok(weekPreviewEditorialIssues({ preview: '· 2 × 8–10 min · 6 mi' }).length > 0);
 
   const good = {
