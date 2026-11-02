@@ -1716,7 +1716,21 @@ sessionForm.addEventListener('submit', async (event) => {
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
 
-  const editorialReview = selfAuditSessionCopy(payload, originalSessionEditorialCopy);
+  // A new quality workout must have typed work, and a revision must be checked
+  // against its carried anatomy even when the editor's pieces were untouched.
+  const carriedParts = revisingSessionId
+    ? (selectedRecord.sessions.find((entry) => entry.id === revisingSessionId)?.currentVersion?.components || [])
+    : [];
+  const auditParts = payload.components || carriedParts;
+  const isQualityTitle = /^(?:speed|threshold|5k rhythm|intervals?|tempo|track|fartlek|sprint|repeats?)\b/iu.test(payload.title);
+  if (!revisingSessionId && isQualityTitle && !auditParts.some((part) => part.role === 'work')) {
+    status.textContent = 'Add the measured work pieces before publishing a Speed or Threshold session.';
+    status.className = 'status-message error';
+    return;
+  }
+  const editorialReview = selfAuditSessionCopy({
+    ...payload, hasStructuredWork: auditParts.some((part) => part.role === 'work')
+  }, originalSessionEditorialCopy);
   if (!editorialReview.ok) {
     status.textContent = editorialReview.issues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
     status.className = 'status-message error';
