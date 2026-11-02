@@ -2566,3 +2566,45 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .review-chain-form { grid-template-columns: 1fr; gap: 24px; }
   .review-chain-form > section + section { padding: 24px 0 0; border-left: 0; border-top: 1px solid var(--edge); }
 }
+
+
+/* Session authoring: the athlete surface and private coach record stay distinct. */
+.session-copy-panel {
+  margin: 0 0 18px;
+  padding: 20px;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+}
+.session-copy-panel--athlete { background: var(--field); }
+.session-copy-panel--private { border-style: dashed; }
+.session-copy-panel__heading { margin-bottom: 18px; }
+.session-copy-panel__label {
+  margin: 0 0 7px;
+  color: var(--secondary);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.session-copy-panel__hint {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.session-copy-panel .field-label { margin-top: 16px; }
+.session-copy-panel .field-label.lead { margin-top: 0; }
+.session-copy-panel .parts { margin-top: 16px; }
+.session-private-history { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--edge); }
+.session-private-history__title {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.session-private-history .private-note + .private-note { margin-top: 12px; }
+@media (max-width: 600px) {
+  .session-copy-panel { padding: 14px; }
+}
