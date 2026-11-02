@@ -67,7 +67,7 @@ export async function loadCoachRoster(coachMemberships) {
     attentionResponse, markResponse, checkpointResponse, confidenceResponse,
     ownedResponse, preferenceResponse, athleteMembershipResponse, inviteResponse,
     assignmentResponse, blockResponse, formReceiptResponse, forgeReceiptResponse,
-    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse, directionDraftsResponse
+    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse
   ] = await Promise.all([
     supabase.from('coach_attention').select('*').in('athlete_id', athleteIds)
       .order('priority').order('occurred_at', { ascending: false, nullsFirst: false }),
@@ -98,15 +98,13 @@ export async function loadCoachRoster(coachMemberships) {
       .in('athlete_id', athleteIds),
     supabase.from('coach_strength_groups').select('group_key,title,status,program_digest'),
     supabase.from('training_blocks').select('athlete_id,name,status,starts_on')
-      .in('athlete_id', athleteIds).eq('status', 'draft'),
-    supabase.from('athlete_direction_drafts').select('athlete_id,updated_at')
-      .in('athlete_id', athleteIds)
+      .in('athlete_id', athleteIds).eq('status', 'draft')
   ]);
   [
     attentionResponse, markResponse, checkpointResponse, confidenceResponse, ownedResponse,
     athleteMembershipResponse, inviteResponse, assignmentResponse, blockResponse,
     formReceiptResponse, forgeReceiptResponse,
-    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse, directionDraftsResponse
+    strengthMembersResponse, strengthGroupsResponse, draftBlocksResponse
   ].forEach(({ error }) => { if (error) throw error; });
   const attention = attentionResponse.data || [];
   // Ordered by what actually needs the coach, not by a stored priority column.
@@ -120,8 +118,7 @@ export async function loadCoachRoster(coachMemberships) {
       publicationQueue: publicationQueueForAthlete(membership.athlete_id, {
         members: strengthMembersResponse.data || [],
         groups: strengthGroupsResponse.data || [],
-        draftBlocks: draftBlocksResponse.data || [],
-        directionDrafts: directionDraftsResponse.data || []
+        draftBlocks: draftBlocksResponse.data || []
       }),
       topItem: items[0] || null,
       deliveryOverview: deliveryOverviewFor(athlete, {
