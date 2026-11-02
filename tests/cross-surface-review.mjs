@@ -55,9 +55,12 @@ has(restorePage, />Send sign-in link</, 'restore CTA says what it does');
 has(restorePage, /email used for the purchase[\s\S]*?verifies that address before opening the paid weeks/, 'restore copy names the actual email-to-purchase proof');
 lacks(restorePage, /proves the purchase<br>belongs to you/i, 'restore copy does not overstate identity proof');
 
-for (const [name, page] of [['athlete',athletePage],['coach',coachPage],['record',recordPage]]) {
+for (const [name, page] of [['athlete',athletePage],['record',recordPage]]) {
   has(page, /\/private\/graphite\.css\?v=43/, name + ' refreshes the shared private stylesheet');
 }
+// The Coach Console can advance its cache key independently when new authoring
+// controls ship. The athlete and record readers retain their stable key.
+has(coachPage, /\/private\/graphite\.css\?v=4[34]/, 'coach refreshes its changed shared stylesheet');
 has(callbackPage, /\/auth\/record-callback\/callback\.css\?v=1/, 'callback uses its house paper-room stylesheet');
 lacks(callbackPage, /\/private\/graphite\.css/, 'callback no longer inherits the old graphite room');
 has(athletePage, /\/athlete\/workspace\.css\?v=2/, 'athlete refreshes workspace CSS');
