@@ -131,7 +131,7 @@ export function mountAttendance({ sb, pane, run, onBack }) {
 
   pane.addEventListener('click', async (e) => {
     const t = e.target;
-    if (t.closest('[data-back]')) { ctl.abort(); onBack(); return; }
+    if (t.closest('[data-back]')) { e.stopPropagation(); ctl.abort(); onBack(); return; }
     if (t.closest('[data-refresh]')) { await run_(async () => {}); return; }
     if (t.closest('[data-activity]')) {
       try {
