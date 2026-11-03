@@ -458,9 +458,10 @@ function editCover(r) {
   preview();
 }
 
-function act(kind, r) {
+async function act(kind, r) {
   const p = parts(r.starts_at);
   if (kind === 'attendance') {
+    if (!(await leaveAlbum())) return;
     ed = null; $('wrap').classList.add('editing');
     mountAttendance({ sb, pane: $('pane'), run: r, onBack: () => { $('wrap').classList.remove('editing'); selected = null; paintList(); $('pane').innerHTML = '<div class="empty"><p class="quiet">Choose a run.</p></div>'; } });
     return;
@@ -972,6 +973,7 @@ async function leaveAlbum() {
 }
 async function select(id) {
   if (!(await leaveAlbum())) return;
+  $('pane')._attendance?.abort();
   selected = id; ed = null;
   const r = runs.find((x) => x.id === id);
   paintList();
@@ -984,7 +986,7 @@ document.addEventListener('click', async (e) => {
   const row = t.closest('[data-run]'); if (row) { await select(row.dataset.run); return; }
   if (t.closest('[data-back]')) { if (!(await leaveAlbum())) return; $('wrap').classList.remove('editing'); selected = null; ed = null; paintList(); return; }
   if (t.closest('#newRun')) { newRun(); return; }
-  const a = t.closest('[data-act]'); if (a) { act(a.dataset.act, runs.find((r) => r.id === selected)); return; }
+  const a = t.closest('[data-act]'); if (a) { await act(a.dataset.act, runs.find((r) => r.id === selected)); return; }
   if (t.closest('[data-reopen]')) { select(selected); return; }
   if (t.closest('[data-new-session]')) { sessionSheet(null); return; }
   const sr = t.closest('[data-session]'); if (sr) { sessionSheet((sessions || []).find((x) => x.id === sr.dataset.session)); return; }
