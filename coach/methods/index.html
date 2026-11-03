@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="same-origin">
+  <meta name="theme-color" content="#111312">
+  <title>Collective Methods · FORM Console</title>
+  <link rel="stylesheet" href="/coach/methods/methods.css?v=1">
+</head>
+<body>
+  <header class="masthead">
+    <a href="/coach/" class="brand" aria-label="Back to FORM Coach Console">FORM <span>COACH CONSOLE</span></a>
+    <a href="/coach/ops/" class="back">Operating console</a>
+  </header>
+  <section id="gate" class="gate" aria-labelledby="gate-title">
+    <p class="eyebrow">FORM / PRIVATE EDITORIAL</p>
+    <h1 id="gate-title">The Collective Methods.</h1>
+    <p>Use your existing coach account to review and publish the sentence at the foot of the FORM tab.</p>
+    <form id="signin-form" class="signin">
+      <label>Email<input type="email" name="email" autocomplete="username" required></label>
+      <label>Password<input type="password" name="password" autocomplete="current-password"></label>
+      <button class="solid" type="submit">Sign in</button>
+      <button id="magic" type="button" class="quiet">Email a sign-in link</button>
+    </form>
+    <p id="gate-status" role="status">Checking your session…</p>
+  </section>
+  <main id="workspace" hidden>
+    <div class="heading">
+      <div><p class="eyebrow">THE COLLECTIVE / METHODS</p><h1>The thought behind the work.</h1></div>
+      <button id="signout" class="quiet">Sign out</button>
+    </div>
+    <div class="layout">
+      <section class="view-area" aria-labelledby="preview-title">
+        <div class="section-head"><h2 id="preview-title">Athlete preview</h2><span id="current-display" class="indicator"></span></div>
+        <div class="phone">
+          <div class="night-track" aria-hidden="true"></div>
+          <div class="phone-content">
+            <div class="collective-eyebrow"><span>THE COLLECTIVE</span><i></i></div>
+            <h3>The athletes.</h3>
+            <div id="method-preview" class="method-preview" aria-live="polite"></div>
+          </div>
+        </div>
+        <p class="caption">The live app keeps its existing night track, athlete portraits and roster. Only this one sentence changes.</p>
+      </section>
+      <section class="edit-area" aria-labelledby="edit-title">
+        <div class="section-head"><h2 id="edit-title">Edit a Method</h2><span id="published-date" class="indicator"></span></div>
+        <label class="field">Method <select id="method-select"></select></label>
+        <label class="field">One complete thought<textarea id="statement" rows="4" maxlength="240" spellcheck="true"></textarea></label>
+        <div class="toolbar" aria-label="Inline typography controls">
+          <button id="bright" type="button" class="tone-white">Bring forward · White</button>
+          <button id="muted" type="button" class="tone-gray">Send back · Gray</button>
+        </div>
+        <p class="help">Select words in the sentence, then choose their emphasis. The app wraps it naturally as one paragraph.</p>
+        <div class="sliders">
+          <label class="field">Size <output id="size-value" for="font-size">14 pt</output><input id="font-size" type="range" min="13" max="17" step="1" value="14"></label>
+          <label class="field">Muted tone <output id="gray-value" for="muted-gray">#A6A6A6</output><input id="muted-gray" type="range" min="155" max="200" step="1" value="166"></label>
+          <label class="field">Foreground <output id="white-value" for="bright-gray">#F0F0F0</output><input id="bright-gray" type="range" min="225" max="255" step="1" value="240"></label>
+        </div>
+        <div class="actions"><button id="reset" class="quiet" type="button">Discard edits</button><button id="publish" class="solid" type="button">Publish this Method</button></div>
+        <p id="message" role="status" aria-live="polite"></p>
+        <div class="lower-section">
+          <h2>Rotation</h2><p>Everyone sees the same Method each Miami day. Pin one temporarily when you want it to lead.</p>
+          <div class="actions"><button id="daily" type="button" class="quiet">Daily rotation</button><button id="pin" type="button" class="quiet">Pin selected Method</button></div>
+          <p id="rotation-status" class="help"></p>
+        </div>
+        <div class="lower-section">
+          <h2>Publication history</h2><p>Published edits are preserved. You can load an earlier version into the preview and publish it again.</p>
+          <label class="field">Previous versions <select id="history-select"></select></label>
+          <button id="restore" type="button" class="quiet">Load selected version</button>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script type="module" src="/coach/methods/methods.js?v=1"></script>
+</body>
+</html>
