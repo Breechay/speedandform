@@ -1140,6 +1140,44 @@ export async function publishCoachEditorialCopy(strength, running) {
   return data;
 }
 
+// Coach-attested, duration-only strength filing. Separate from running
+// completions and from native Forge receipts, which remain source-of-truth for
+// actual sets and weights when they are eventually synced.
+export async function loadCoachStrengthDays(athleteId) {
+  const { data: days, error: dayError } = await supabase
+    .from('form_training_strength_days')
+    .select('id, scheduled_on, title, forge_program_id, cleared_at')
+    .eq('athlete_id', athleteId)
+    .is('cleared_at', null)
+    .order('scheduled_on', { ascending: false })
+    .limit(40);
+  if (dayError) throw dayError;
+  if (!days?.length) return [];
+  const { data: filings, error: filingError } = await supabase
+    .from('coach_strength_duration_completions')
+    .select('id, strength_day_id, duration_seconds, duration_source, filed_at, superseded_by_strength_receipt_id')
+    .eq('athlete_id', athleteId)
+    .in('strength_day_id', days.map((day) => day.id));
+  if (filingError) throw filingError;
+  const filedByDay = new Map((filings || []).map((filing) => [filing.strength_day_id, filing]));
+  return days.map((day) => ({ ...day, coachFiling: filedByDay.get(day.id) || null }));
+}
+
+export async function fileCoachStrengthDuration({ athleteId, strengthDayId, durationSeconds, durationSource, privateNote }) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before filing strength.');
+  const { data: completionId, error } = await supabase.rpc('coach_file_strength_duration', {
+    p_athlete_id: athleteId,
+    p_strength_day_id: strengthDayId,
+    p_duration_seconds: durationSeconds,
+    p_duration_source: durationSource,
+    p_private_note: privateNote || null
+  });
+  if (error) throw error;
+  return completionId;
+}
+
 // Filing for an athlete. Same record as their own filing, marked coach_import so
 // the source of a number is never in doubt. Pieces carry the splits the verdict
 // reads; without them a session has a distance and no evidence.
