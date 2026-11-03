@@ -22,6 +22,7 @@
 
 import { getAccessContext, authErrorMessage } from '/private/auth.js';
 import { supabase as sb } from '/private/supabase-client.js';
+import { mountAttendance } from '/coach/runs/attendance.js';
 
 const ZONE = 'America/New_York';
 const DRAFTS = 'collective-gallery-drafts';
@@ -333,6 +334,7 @@ function paintUpcoming(r) {
     <div class="acts">
       <button type="button" class="btn" data-act="time">Change time</button>
       <button type="button" class="btn" data-act="place">Change place</button>
+      <button type="button" class="btn" data-act="attendance">Attendance</button>
       ${r.kind === 'track' ? '<button type="button" class="btn" data-act="workout">Workout</button>' : ''}
       <button type="button" class="btn danger" data-act="cancel">Cancel this date</button>
     </div>`}`;
@@ -458,6 +460,11 @@ function editCover(r) {
 
 function act(kind, r) {
   const p = parts(r.starts_at);
+  if (kind === 'attendance') {
+    ed = null; $('wrap').classList.add('editing');
+    mountAttendance({ sb, pane: $('pane'), run: r, onBack: () => { $('wrap').classList.remove('editing'); selected = null; paintList(); $('pane').innerHTML = '<div class="empty"><p class="quiet">Choose a run.</p></div>'; } });
+    return;
+  }
   if (kind === 'time') {
     openSheet('Change time', `<div class="fields">
       <label>Date<input type="date" name="date" required value="${p.ymd}"></label><span></span>
@@ -644,7 +651,8 @@ function paintAlbumHead() {
   $('albumHead').innerHTML = `<div><p class="label">${esc(`${p.wd} ${p.day} ${p.mon} ${p.year} · Album`)}</p><h2>${esc(albumTitle(r))}</h2>
     <p class="facts">${esc([r.meet_name, opt].filter(Boolean).join(' · '))}</p></div>
     <div><p class="status${ed.statusClass ? ` ${ed.statusClass}` : ''}" id="saveStatus">${esc(ed.status || liveLine)}</p>
-    ${ed.live && !ed.takenDown && r.visibility === 'public' ? `<a class="status" href="/run/${esc(slugOf(r))}/" target="_blank" rel="noopener">Open on the site ↗</a>` : ''}</div>`;
+    ${ed.live && !ed.takenDown && r.visibility === 'public' ? `<a class="status" href="/run/${esc(slugOf(r))}/" target="_blank" rel="noopener">Open on the site ↗</a>` : ''}
+    <button type="button" class="btn" data-act="attendance">Attendance</button></div>`;
 }
 
 function whoLine(assetID) {
