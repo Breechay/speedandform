@@ -1140,6 +1140,44 @@ export async function publishCoachEditorialCopy(strength, running) {
   return data;
 }
 
+// Coach-attested, duration-only strength filing. Separate from running
+// completions and from native Forge receipts, which remain source-of-truth for
+// actual sets and weights when they are eventually synced.
+export async function loadCoachStrengthDays(athleteId) {
+  // Strength-day table is intentionally not exposed for direct client reads.
+  // This RPC confirms the signed-in user's active coach membership.
+  const { data, error } = await supabase.rpc('coach_strength_duration_day_options', {
+    p_athlete_id: athleteId
+  });
+  if (error) throw error;
+  return (data || []).map((day) => ({
+    id: day.strength_day_id,
+    scheduled_on: day.scheduled_on,
+    title: day.session_title,
+    coachFiling: day.filed_at ? {
+      duration_seconds: day.duration_seconds,
+      duration_source: day.duration_source,
+      filed_at: day.filed_at,
+      superseded_by_strength_receipt_id: day.superseded_by_strength_receipt_id
+    } : null
+  }));
+}
+
+export async function fileCoachStrengthDuration({ athleteId, strengthDayId, durationSeconds, durationSource, privateNote }) {
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in before filing strength.');
+  const { data: completionId, error } = await supabase.rpc('coach_file_strength_duration', {
+    p_athlete_id: athleteId,
+    p_strength_day_id: strengthDayId,
+    p_duration_seconds: durationSeconds,
+    p_duration_source: durationSource,
+    p_private_note: privateNote || null
+  });
+  if (error) throw error;
+  return completionId;
+}
+
 // Filing for an athlete. Same record as their own filing, marked coach_import so
 // the source of a number is never in doubt. Pieces carry the splits the verdict
 // reads; without them a session has a distance and no evidence.

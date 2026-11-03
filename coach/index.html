@@ -412,6 +412,43 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="strengthFileDialog">
+    <form class="dialog-inner" id="strengthFileForm">
+      <div class="dialog-head">
+        <h2 id="strengthFileContext">File strength</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <label class="field-label">Strength day
+        <select class="field-select" name="strengthDayId" required>
+          <option value="">Loading strength days…</option>
+        </select>
+      </label>
+      <div class="form-grid two">
+        <label class="field-label">Elapsed duration
+          <input class="field-input" name="duration" inputmode="numeric"
+            autocomplete="off" placeholder="1:07:27" required>
+        </label>
+        <label class="field-label">Duration source
+          <select class="field-select" name="durationSource" required>
+            <option value="athlete_reported">Athlete-reported</option>
+            <option value="garmin_elapsed">Garmin elapsed</option>
+            <option value="coach_observed">Coach-observed</option>
+          </select>
+        </label>
+      </div>
+      <label class="field-label">Private context (optional)
+        <textarea class="field-textarea" name="privateNote"
+          maxlength="2000" placeholder="Source reference or filing context. Not shown to athletes."></textarea>
+      </label>
+      <p class="dialog-note">Duration-only strength record. No run, Forge receipt, sets or weights will be created. If a native Forge receipt arrives later, the feed replaces this temporary entry.</p>
+      <p class="status-message" id="strengthFileStatus" role="status"></p>
+      <div class="dialog-actions">
+        <button class="button" type="button" data-close-dialog>Cancel</button>
+        <button class="button primary" type="submit">File strength <span class="icon-arrow">&rarr;</span></button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="publicationQueueDialog">
     <div class="dialog-inner">
       <div class="dialog-head"><div><p class="eyebrow">Roster · publication</p><h2>Publish queue</h2></div><button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button></div>
@@ -478,6 +515,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=40"></script>
+  <script type="module" src="/coach/coach.js?v=41"></script>
 </body>
 </html>

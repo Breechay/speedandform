@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
@@ -48,6 +48,8 @@ const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
+const strengthFileDialog = document.getElementById('strengthFileDialog');
+const strengthFileForm = document.getElementById('strengthFileForm');
 // Set when the filing dialog is correcting an existing entry rather than adding one.
 let editingCompletionId = null;
 const judgeDialog = document.getElementById('judgeDialog');
@@ -156,6 +158,7 @@ function athleteMenuHtml() {
       <button class="control-item" id="inviteAthlete" type="button">Invite athlete</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
       <button class="control-item" data-console-action="file-run" type="button">File a run</button>
+      <button class="control-item" data-console-action="file-strength" type="button">File strength</button>
       <button class="control-item" id="addPrivateNote" type="button">Add a private note</button>
       <button class="control-item" id="shareExcerpt" type="button">Create a share card</button>
     </div>
@@ -1186,6 +1189,7 @@ function bindDesk() {
     button.addEventListener('click', () => {
       const action = button.dataset.consoleAction;
       if (action === 'file-run') openFile('');
+      else if (action === 'file-strength') openStrengthFile();
       else if (action === 'correct-entry' && button.dataset.completionId) openFile('', button.dataset.completionId);
       else if (action === 'judge' && button.dataset.completionId) openJudge(button.dataset.completionId);
       else if (action === 'source-image' && button.dataset.completionId) {
@@ -1591,6 +1595,47 @@ function pieceRowHtml(piece = null) {
   </div>`;
 }
 
+// A manual strength duration carries only measured time. The actual Forge
+// movement log stays local until a native receipt is independently received.
+async function openStrengthFile() {
+  if (!selectedRecord?.athlete?.id) return;
+  strengthFileForm.reset();
+  const context = document.getElementById('strengthFileContext');
+  const status = document.getElementById('strengthFileStatus');
+  const select = strengthFileForm.elements.strengthDayId;
+  const submit = strengthFileForm.querySelector('button[type="submit"]');
+  context.textContent = 'File strength for ' + selectedRecord.athlete.first_name;
+  select.innerHTML = '<option value="">Loading strength days…</option>';
+  submit.disabled = true;
+  status.textContent = '';
+  strengthFileDialog.showModal();
+  try {
+    const days = await loadCoachStrengthDays(selectedRecord.athlete.id);
+    select.innerHTML = '<option value="">Select a strength day</option>' + days.map((day) => {
+      const date = String(day.scheduled_on);
+      const name = day.title || 'Strength';
+      const filed = day.coachFiling
+        ? ' · already filed (' + secondsToClock(day.coachFiling.duration_seconds) + ')'
+        : '';
+      const future = day.scheduled_on > new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+      return `<option value="${escapeHtml(day.id)}" ${(day.coachFiling || future) ? 'disabled' : ''}>${escapeHtml(date)} · ${escapeHtml(name)}${escapeHtml(filed)}</option>`;
+    }).join('');
+    const todayNY = new Date().toLocaleDateString('en-CA', { timeZone: 'America/New_York' });
+    const eligible = days.filter((day) => !day.coachFiling && day.scheduled_on <= todayNY);
+    if (eligible.length) {
+      select.value = eligible[0].id;
+      submit.disabled = false;
+    } else {
+      status.textContent = days.length
+        ? 'No unfiled strength days through today (upcoming sessions cannot be filed early).'
+        : 'No assigned strength days. Add the strength session to the athlete plan first.';
+    }
+  } catch (error) {
+    select.innerHTML = '<option value="">Cannot load strength days</option>';
+    status.textContent = error.message;
+  }
+}
+
 function openFile(plannedSessionId = '', completionId = null) {
   fileForm.reset();
   editingCompletionId = completionId;
@@ -1969,6 +2014,44 @@ sessionForm.addEventListener('submit', async (event) => {
   } catch (error) {
     status.textContent = error.message;
   } finally { button.disabled = false; }
+});
+
+strengthFileForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('strengthFileStatus');
+  const button = strengthFileForm.querySelector('button[type="submit"]');
+  const f = strengthFileForm.elements;
+  const clock = String(f.duration.value || '').trim();
+  const parts = clock.split(':');
+  if (!/^\d{1,2}:\d{2}(?::\d{2})?$/.test(clock)
+      || parts.some((part) => !Number.isFinite(Number(part)))
+      || Number(parts.at(-1)) >= 60
+      || (parts.length === 3 && Number(parts[1]) >= 60)) {
+    status.textContent = 'Enter duration as mm:ss or h:mm:ss (for example 1:07:27).';
+    return;
+  }
+  const durationSeconds = toSeconds(clock);
+  if (!durationSeconds || durationSeconds > 43200) {
+    status.textContent = 'Duration must be longer than zero and no more than 12 hours.';
+    return;
+  }
+  button.disabled = true;
+  status.textContent = 'Filing strength duration…';
+  try {
+    await fileCoachStrengthDuration({
+      athleteId: selectedRecord.athlete.id,
+      strengthDayId: f.strengthDayId.value,
+      durationSeconds,
+      durationSource: f.durationSource.value,
+      privateNote: f.privateNote.value.trim() || null
+    });
+    strengthFileDialog.close();
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
 });
 
 fileForm.addEventListener('submit', async (event) => {
