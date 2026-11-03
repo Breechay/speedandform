@@ -65,15 +65,26 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 </nav>
 <section class="panel" id="speed" aria-labelledby="speed-title">
 <p class="smallcaps">01 / Volume of pace exposure</p><h2 id="speed-title">How many minutes live at each speed?</h2>
-<p class="quiet">Fifteen-second bands grouped by the average pace of each known work repetition, full-mile lap or the Oct 26 continuous 5K effort. Each whole segment contributes its duration to one pace band; this is not second-by-second residency. FIT sample-based estimates are separately shown below. Other runs need their original recordings for comparable sample histograms.</p>
+<p class="quiet">Fifteen-second bands grouped by the average pace of each known work repetition, full-mile lap or the Oct 26 continuous 5K effort. The Nov 2 iRUN 200 m laps use nominal 200 m divided by recorded time; short-lap GPS distance can overread. Each whole segment contributes its duration to one band. Broken repeats, full-mile laps and continuous work remain different questions. FIT sample-based estimates appear separately below.</p>
 <div class="numbers">
 <div class="num"><small>Oct 22 / timed work</small><strong>17:23</strong><span class="quiet">Seven FIT work laps, 2.99 miles</span></div>
 <div class="num"><small>Oct 22 / work average</small><strong>5:49</strong><span class="quiet">min/mi, recoveries excluded</span></div>
 <div class="num"><small>Oct 22 / faster than 6:00</small><strong>10:49</strong><span class="quiet">Estimated 11-second smoothed speed samples</span></div>
 </div>
-<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="fivek26" aria-pressed="false">Oct 26 continuous 5K</button><button class="scope" data-scope="track22" aria-pressed="false">Oct 22 track</button><button class="scope" data-scope="track" aria-pressed="false">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="true">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
+<div class="scopebar" aria-label="Which documented segments to chart"><button class="scope" data-scope="irun200" aria-pressed="false">Nov 2 iRUN 200s</button><button class="scope" data-scope="fivek26" aria-pressed="false">Oct 26 continuous 5K</button><button class="scope" data-scope="track22" aria-pressed="false">Oct 22 track</button><button class="scope" data-scope="track" aria-pressed="false">Oct 18 track</button><button class="scope" data-scope="all" aria-pressed="true">All verified segments</button><button class="scope" data-scope="road" aria-pressed="false">Earlier road + miles</button></div>
 <div class="bars" id="exposure-bars" role="img" aria-label="Bar chart of accumulated recorded interval duration by the average pace of each lap"><div class="barrow"><span class="range">7:28–7:42</span><div class="rail"><span class="fill" style="width:98.32%"></span></div><span class="val">15:17.0</span></div><div class="barrow"><span class="range">7:13–7:27</span><div class="rail"><span class="fill" style="width:46.85%"></span></div><span class="val">7:17.0</span></div><div class="barrow"><span class="range">6:58–7:12</span><div class="rail"><span class="fill" style="width:90.60%"></span></div><span class="val">14:05.0</span></div><div class="barrow"><span class="range">6:43–6:57</span><div class="rail"><span class="fill" style="width:43.74%"></span></div><span class="val">6:48.0</span></div><div class="barrow"><span class="range">6:28–6:42</span><div class="rail"><span class="fill" style="width:42.89%"></span></div><span class="val">6:40.0</span></div><div class="barrow"><span class="range">6:13–6:27</span><div class="rail"><span class="fill" style="width:0%"></span></div><span class="val">n/a</span></div><div class="barrow"><span class="range">5:58–6:12</span><div class="rail"><span class="fill" style="width:100.00%"></span></div><span class="val">15:32.7</span></div><div class="barrow"><span class="range">5:43–5:57</span><div class="rail"><span class="fill five" style="width:9.89%"></span></div><span class="val">1:32.2</span></div><div class="barrow"><span class="range">5:28–5:42</span><div class="rail"><span class="fill five" style="width:0%"></span></div><span class="val">n/a</span></div></div><div class="axis" id="bar-axis"><span>0</span><span>Minutes at lap-average pace</span><span id="max-axis">16</span></div>
 <div class="fineprint" id="scope-note">All documented whole-mile averages from October 10, 13 and 17 plus the October 18 timed track repetitions. These are selected known segments, not full raw-activity time-in-zone totals.</div>
+<div class="tile" id="irun-200s-20261102" style="margin-top:24px">
+<h3>Nov 2 · iRUN 20 × 200 m</h3>
+<p class="quiet">13:26.5 of timed 200 m work, 1:15 recoveries by athlete report. The Garmin FIT work laps span 47.30 to 37.03 seconds, but the athlete reports a steady 6–7/10 effort and intentionally controlled landings throughout. This was iRUN's group workout, not a FORM-authored interval prescription.</p>
+<div class="repsummary" aria-label="November 2 iRUN 200 m repetition means by chronological group">
+<div><b>Reps 1–5</b><strong>44.93 s</strong><small>Nominal 200 m average</small></div>
+<div><b>Reps 6–10</b><strong>40.61 s</strong><small>Nominal 200 m average</small></div>
+<div><b>Reps 11–15</b><strong>38.30 s</strong><small>Nominal 200 m average</small></div>
+<div><b>Reps 16–20</b><strong>37.46 s</strong><small>Rhythm and arm-swing attention, not racing</small></div>
+</div>
+<p class="fineprint">The final five range from 37.13 to 37.95 seconds. Brice felt more propulsion when the arm pull became wider and extended farther back; the watch does not measure arm movement or propulsive force. Do not read broken 200 m speed as continuous 5K pace or proof of an economy change.</p>
+</div>
 <div class="tile" id="fit-samples-20261022" style="margin-top:24px">
 <h3>Oct 22 · Estimated time within pace bands</h3>
 <p class="quiet">Original Garmin FIT enhanced-speed samples during the seven work laps only. Centered 11-second rolling median within each rep; recovery laps excluded. Estimated sample durations differ from the lap-average chart. GPS pace can oscillate near starts and stops.</p>
@@ -139,7 +150,7 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <div class="num"><small>Running cadence</small><strong>179 spm</strong><span class="quiet">Two steps per Garmin cadence cycle</span></div>
 <div class="num"><small>Ground contact</small><strong>213 ms</strong><span class="quiet">Timed work · 7 repetitions</span></div>
 </div>
-<div class="scopebar" aria-label="Mechanics comparison set"><button class="scope" data-mech-view="reps" aria-pressed="true">Oct 22 repetitions</button><button class="scope" data-mech-view="history" aria-pressed="false">Session history through Oct 26</button></div>
+<div class="scopebar" aria-label="Mechanics comparison set"><button class="scope" data-mech-view="irun200" aria-pressed="false">Nov 2 · 200 m groups</button><button class="scope" data-mech-view="reps" aria-pressed="true">Oct 22 repetitions</button><button class="scope" data-mech-view="history" aria-pressed="false">Earlier session history</button></div>
 <div class="scopebar" aria-label="Mechanics graph metric"><button class="scope" data-metric="gct" aria-pressed="true">Ground contact</button><button class="scope" data-metric="stride" aria-pressed="false">Step length</button><button class="scope" data-metric="cadence" aria-pressed="false">Cadence</button><button class="scope" data-metric="vo" aria-pressed="false">Vertical movement</button><button class="scope" data-metric="ratio" aria-pressed="false">Vertical ratio</button><button class="scope" data-metric="hr" aria-pressed="false">Heart rate</button></div>
 <svg class="figure" id="mechanics-plot" viewBox="0 0 780 380" role="img" aria-label="Running mechanics versus lap average pace; choose metric and observation group above"></svg>
 <p class="fineprint" id="mechanics-scope-note">October 22: FIT records sampled during each timed fast repetition. Recoveries excluded. The graph shows work-lap average pace versus measured work-lap mechanics, not synchronized instantaneous values or a fatigue test.</p>
@@ -157,6 +168,17 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 </tbody></table>
 </div>
 <p class="fineprint">* The final 400 m was affected by a late start and attempts to film with sweaty hands. The measured values are kept; the slower split is not classified as a fitness fade. These sample means use moving records in each recorded work lap, excluding pauses and implausible stationary transitions. No left-right contact-balance metric was available in this FIT.</p>
+<div class="tile" id="nov2-arm-rhythm">
+<h3>Nov 2 · Feeling the pull</h3>
+<p class="quiet">Brice used other runners as a left-right timing reference. He reports that his arm rhythm drifts when he relaxes on his own, and that the last five 200s helped him feel a more active arm pull—wider and farther behind him—with more propulsion. He did not raise his reported effort above 6–7/10 or race the group.</p>
+<div class="mech-table-wrap"><table class="mech-table" aria-label="November 2 iRUN 200 m running dynamics by five-repetition group">
+<thead><tr><th>200 m reps</th><th>Avg / rep</th><th>Step length</th><th>Cadence</th><th>Contact</th><th>Vertical</th><th>Ratio</th></tr></thead>
+<tbody><tr><th>1–5</th><td>44.93 s</td><td>1.62 m</td><td>181 spm</td><td>204 ms</td><td>9.74 cm</td><td>6.01%</td></tr>
+<tr><th>6–10</th><td>40.61 s</td><td>1.70 m</td><td>187 spm</td><td>195 ms</td><td>9.11 cm</td><td>5.37%</td></tr>
+<tr><th>11–15</th><td>38.30 s</td><td>1.75 m</td><td>192 spm</td><td>191 ms</td><td>8.76 cm</td><td>5.03%</td></tr>
+<tr><th>16–20</th><td>37.46 s</td><td>1.77 m</td><td>195 spm</td><td>187 ms</td><td>8.47 cm</td><td>4.78%</td></tr></tbody></table></div>
+<p class="fineprint">Moving records from original FIT, grouped by work laps; early rep 2 supplied only two valid filtered samples. Speed changed across groups, so cadence, step length and contact changes cannot isolate the arm pull's effect. Neither arm excursion, left-right coordination nor ground-reaction forces were recorded. Normal arm swing can support balance and economy (<a href="https://pubmed.ncbi.nlm.nih.gov/21316058/">Arellano &amp; Kram, 2011</a>; <a href="https://pubmed.ncbi.nlm.nih.gov/25031455/">2014</a>), but these studies do not establish that a wider or farther-back pull is better. <a href="https://doi.org/10.3389/fspor.2026.1845590">Li et al., 2026</a> studied arm-swing modification in one elite sprinter; it does not establish causation in this session.</p>
+</div>
 <div class="tile" id="oct26-mechanics">
 <h3>Oct 26 · Three parts of one continuous 5K</h3>
 <p class="quiet">Each row is approximately one-third of the recorded 4.989 km, not a manually marked course lap. The athlete reports three course loops, an intentionally restrained start, a slight middle dip and joining a faster group in the final loop.</p>
@@ -181,17 +203,38 @@ h2{font-weight:500;letter-spacing:-.04em;line-height:1.1;font-size:clamp(25px,3.
 <div class="tile"><h3>Ownership / October 13</h3><strong style="font-size:43px;font-weight:500;letter-spacing:-.05em">3 × 1 mi</strong><p class="quiet">7:05, 6:40 and 6:48 with recovery. The third mile was deliberately relaxed, not a forced fade. Longer continuous holds remain a separate question.</p></div>
 <div class="tile"><h3>Late-run stability / Oct 26</h3><p class="quiet">The equal-distance thirds of the continuous 5K were about 6:28, 6:35 and 6:18/mi. A slightly slower middle was followed by a faster finish with company. Matched-pace fatigue and economy remain separate questions.</p></div>
 <div class="tile"><h3>Recovery durability</h3><p class="quiet">Brice reported comfortable legs while walking Tuesday morning after Monday's lift and run. Keep observing the next 24–48 hours. A good morning alone does not justify more intensity or mileage.</p></div>
+<div class="tile"><h3>Nov 2 · Controlled speed, new arm sensation</h3><p class="quiet">Twenty 200 m reps, 1:15 recoveries, and a reported steady 6–7/10 effort. The last five were nearly identical in time while Brice matched runners' rhythm, pulled his arms wider and farther back, and felt more propulsion. This is a credible report of what he felt, not a measurement of arm-generated drive. The next test is recognizing that rhythm without an external pacer and confirming normal lower-leg response after same-day Glute A hinge strength.</p></div>
 <div class="tile"><h3>Oct 26 · Company and attention</h3><p class="quiet">Brice began conservatively with another runner helping set a steady rhythm. His cue was “Relax. It's marathon pace,” meaning controlled effort, not a measured marathon prescription. He felt strong after morning strength work. A negative-splitting group passed in the final loop; he joined and focused on moving lightly rather than pushing. Company, leg strength and attention are working variables. The slight middle dip could reflect relaxed pacing as well as attention drifting. Without the group, the next lap's pace is unknowable. Practice regaining fluid rhythm at useful moments, not every run.</p></div>
 </div>
 <h3>Oct 22 · Smooth speed, distracted finish</h3><p class="quiet">The FIT records one mile in 5:59.5, two 800 m repetitions in 2:52.7 and 2:57.2, and four 400 m repetitions in 1:22.3, 1:22.1, 1:22.4 and 1:26.7. Athlete report: the first warm-up stride felt forced, but the workout felt smooth and controlled. The 185 bpm heart-rate maximum describes cardiovascular demand, not mechanical grinding. The final 400 included a late start and distraction while trying to film, not a reported fatigue fade. Quinn, Jacob and Kevin were part of the group environment that helped settle pacing and rhythm.</p><h3>Oct 24 · Fluid, still consciously held</h3><p class="quiet">After roughly three social miles and a longer self-selected continuation, the last two complete miles were 7:35.1 and 7:23.6 (about 7:29/mi combined). The athlete felt fluid, but maintaining rhythm and symmetry took attention. He sensed that falling off beat would make it harder to regain the stride. At faster lap pace, step length rose to 1.25–1.27 m, cadence to 170 spm and contact shortened to 249–252 ms. These changes are speed-dependent and do not prove economy or automatic coordination. Last two lap HR averages were 178 and 174 bpm, above the watch's recent estimated threshold HR. Recovery after this longer run is pending.</p><h3>The retirement rule for 7:42–7:20</h3><p class="quiet">When the corridor becomes reliably low-aerobic in comparable conditions, with relaxed perceived effort, stable control and acceptable recovery, we can stop tracking it as a special <em>speed</em> milestone and retain it under ordinary aerobic mileage. There is no preset number of minutes at which this happens.</p>
 </section>
 </main>
-<footer class="foot">Part of <a href="/labs/rebuilt-athlete/">FORM Study 002 · The Rebuilt Athlete</a>. Study records are observational, not new prescriptions. Garmin and athlete-reported data are identified separately. Science context: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11052887/">running-economy training meta-analysis (2024)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11889008/">durability and lactate-threshold study (2025)</a>. The October 22 work, October 24 pace estimates and October 26 continuous effort come from original Garmin FIT recordings; many earlier sample-level records remain incomplete. Review rules: <a href="/labs/rebuilt-athlete/RUN-EVIDENCE-REVIEW-STANDARD.md">Run Evidence Standard</a>.</footer>
+<footer class="foot">Part of <a href="/labs/rebuilt-athlete/">FORM Study 002 · The Rebuilt Athlete</a>. Study records are observational, not new prescriptions. Garmin and athlete-reported data are identified separately. Science context: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11052887/">running-economy training meta-analysis (2024)</a>; <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11889008/">durability and lactate-threshold study (2025)</a>. The October 22 work, October 24 pace estimates, October 26 continuous effort and November 2 iRUN repetitions come from original Garmin FIT recordings; many earlier sample-level records remain incomplete. Review rules: <a href="/labs/rebuilt-athlete/RUN-EVIDENCE-REVIEW-STANDARD.md">Run Evidence Standard</a>.</footer>
 </div>
 <script>
 (function(){
 "use strict";
 var reps=[
+{date:"Nov 2",type:"irun200",pace:364,seconds:45.28},
+{date:"Nov 2",type:"irun200",pace:381,seconds:47.30},
+{date:"Nov 2",type:"irun200",pace:362,seconds:44.98},
+{date:"Nov 2",type:"irun200",pace:360,seconds:44.80},
+{date:"Nov 2",type:"irun200",pace:340,seconds:42.27},
+{date:"Nov 2",type:"irun200",pace:337,seconds:41.86},
+{date:"Nov 2",type:"irun200",pace:345,seconds:42.89},
+{date:"Nov 2",type:"irun200",pace:321,seconds:39.90},
+{date:"Nov 2",type:"irun200",pace:316,seconds:39.22},
+{date:"Nov 2",type:"irun200",pace:315,seconds:39.17},
+{date:"Nov 2",type:"irun200",pace:312,seconds:38.82},
+{date:"Nov 2",type:"irun200",pace:310,seconds:38.54},
+{date:"Nov 2",type:"irun200",pace:313,seconds:38.87},
+{date:"Nov 2",type:"irun200",pace:298,seconds:37.03},
+{date:"Nov 2",type:"irun200",pace:308,seconds:38.26},
+{date:"Nov 2",type:"irun200",pace:302,seconds:37.57},
+{date:"Nov 2",type:"irun200",pace:299,seconds:37.13},
+{date:"Nov 2",type:"irun200",pace:299,seconds:37.15},
+{date:"Nov 2",type:"irun200",pace:302,seconds:37.50},
+{date:"Nov 2",type:"irun200",pace:305,seconds:37.95},
 {date:"Oct 26",type:"fivek26",pace:387,seconds:1201},
 {date:"Oct 22",type:"track22",pace:360,seconds:359.548},
 {date:"Oct 22",type:"track22",pace:347.5,seconds:172.741},
@@ -216,7 +259,7 @@ var reps=[
 {date:"Oct 10",type:"road",pace:420,seconds:420},
 {date:"Oct 17",type:"road",pace:460,seconds:460}
 ];
-var bands=[{lo:448,hi:462,label:"7:28–7:42"},{lo:433,hi:447,label:"7:13–7:27"},{lo:418,hi:432,label:"6:58–7:12"},{lo:403,hi:417,label:"6:43–6:57"},{lo:388,hi:402,label:"6:28–6:42"},{lo:373,hi:387,label:"6:13–6:27"},{lo:358,hi:372,label:"5:58–6:12"},{lo:343,hi:357,label:"5:43–5:57"},{lo:328,hi:342,label:"5:28–5:42"}];
+var bands=[{lo:448,hi:462,label:"7:28–7:42"},{lo:433,hi:447,label:"7:13–7:27"},{lo:418,hi:432,label:"6:58–7:12"},{lo:403,hi:417,label:"6:43–6:57"},{lo:388,hi:402,label:"6:28–6:42"},{lo:373,hi:387,label:"6:13–6:27"},{lo:358,hi:372,label:"5:58–6:12"},{lo:343,hi:357,label:"5:43–5:57"},{lo:328,hi:342,label:"5:28–5:42"},{lo:313,hi:327,label:"5:13–5:27"},{lo:298,hi:312,label:"4:58–5:12"},{lo:283,hi:297,label:"4:43–4:57"}];
 var observations=[
 {date:"Oct 9",pace:498,gct:264,stride:1.18,hr:159},
 {date:"Oct 10",pace:438,gct:250,stride:1.30,hr:139},
@@ -239,19 +282,25 @@ var workMechanics=[
 {date:"400 #3",pace:331.6,gct:204.7,stride:1.61,cadence:181.1,vo:9.68,ratio:6.01,hr:163.9},
 {date:"400 #4*",pace:349.0,gct:212.0,stride:1.55,cadence:179.3,vo:9.63,ratio:6.24,hr:164.9}
 ];
+var irun200Mechanics=[
+{date:"Reps 1–5",pace:361.5,gct:204.0,stride:1.62,cadence:180.8,vo:9.74,ratio:6.01,hr:132.7},
+{date:"Reps 6–10",pace:326.8,gct:194.9,stride:1.70,cadence:186.7,vo:9.11,ratio:5.37,hr:141.4},
+{date:"Reps 11–15",pace:308.2,gct:190.6,stride:1.75,cadence:191.9,vo:8.76,ratio:5.03,hr:151.4},
+{date:"Reps 16–20",pace:301.4,gct:187.3,stride:1.77,cadence:195.0,vo:8.47,ratio:4.78,hr:159.0}
+];
 var mechanicsMetric="gct",mechanicsView="reps";
 function fmt(s){var m=Math.floor(s/60),ss=s-m*60;return m+":"+ss.toFixed(1).padStart(4,"0")}
 function init(){document.querySelectorAll(".tab").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".tab").forEach(function(t){t.setAttribute("aria-selected",String(t===b))});document.querySelectorAll(".panel").forEach(function(p){p.hidden=p.id!==b.dataset.panel})})});document.querySelectorAll("[data-scope]").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll("[data-scope]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});renderBars(b.dataset.scope)})});document.querySelectorAll("[data-metric]").forEach(function(b){b.addEventListener("click",function(){mechanicsMetric=b.dataset.metric;document.querySelectorAll("[data-metric]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});drawMechanics()})});document.querySelectorAll("[data-mech-view]").forEach(function(b){b.addEventListener("click",function(){mechanicsView=b.dataset.mechView;document.querySelectorAll("[data-mech-view]").forEach(function(v){v.setAttribute("aria-pressed",String(v===b))});drawMechanics()})});renderBars("all");drawMechanics();var initial=window.location.hash.slice(1);if(["speed","aerobic","mechanics","durability"].includes(initial)){var button=document.querySelector(".tab[data-panel=\""+initial+"\"]");if(button){button.click()}}}
-function renderBars(scope){var entries=reps.filter(function(d){return scope==="all"||(scope==="fivek26"&&d.type==="fivek26")||(scope==="track22"&&d.type==="track22")||(scope==="track"&&d.type==="track")||(scope==="road"&&d.type==="road")}),values=bands.map(function(b){return entries.filter(function(r){return r.pace>=b.lo&&r.pace<=b.hi}).reduce(function(s,v){return s+v.seconds},0)}),max=Math.max(60,...values);var el=document.getElementById("exposure-bars");el.textContent="";
+function renderBars(scope){var entries=reps.filter(function(d){return scope==="all"||(scope==="irun200"&&d.type==="irun200")||(scope==="fivek26"&&d.type==="fivek26")||(scope==="track22"&&d.type==="track22")||(scope==="track"&&d.type==="track")||(scope==="road"&&d.type==="road")}),values=bands.map(function(b){return entries.filter(function(r){return r.pace>=b.lo&&r.pace<=b.hi}).reduce(function(s,v){return s+v.seconds},0)}),max=Math.max(60,...values);var el=document.getElementById("exposure-bars");el.textContent="";
 bands.forEach(function(b,i){var v=values[i],row=document.createElement("div");row.className="barrow";var caption=document.createElement("span");caption.className="range";caption.textContent=b.label;var rail=document.createElement("div");rail.className="rail";var fill=document.createElement("span");fill.className="fill"+(b.lo<360?" five":"");fill.style.width=String(v?Math.max(0.5,v/max*100):0)+"%";rail.append(fill);var val=document.createElement("span");val.className="val";val.textContent=v?fmt(v):"n/a";row.append(caption,rail,val);el.append(row)});
-document.getElementById("max-axis").textContent=Math.ceil(max/60)+"m";document.getElementById("scope-note").textContent=scope==="fivek26"?"October 26 FIT: one continuous 4.989 km loop effort placed in a band by its full-effort average pace. Smoothed one-second estimates are separate above.":scope==="track22"?"October 22 FIT: seven timed work laps grouped by lap-average pace, recovery excluded. See sample estimates below.":scope==="track"?"Only October 18 timed work reps, sorted by their Garmin lap-average pace. Recovery is excluded.":scope==="road"?"Known full-mile laps from October 10, October 13 and October 17. Do not confuse their average-pace duration with exact time at that instantaneous speed.": "Selected full-mile laps, Oct 18 and Oct 22 reps and Oct 26 continuous 5K. Bars group each full segment by average pace; they do not show second-by-second speed.";
+document.getElementById("max-axis").textContent=Math.ceil(max/60)+"m";document.getElementById("scope-note").textContent=scope==="irun200"?"November 2 FIT: 20 nominal 200 m work laps grouped by time for 200 m, with about 1:15 between repetitions. Short GPS lap distances were not used as the denominator. Broken speed is not continuous durability.":scope==="fivek26"?"October 26 FIT: one continuous 4.989 km loop effort placed in a band by its full-effort average pace. Smoothed one-second estimates are separate above.":scope==="track22"?"October 22 FIT: seven timed work laps grouped by lap-average pace, recovery excluded. See sample estimates below.":scope==="track"?"Only October 18 timed work reps, sorted by their Garmin lap-average pace. Recovery is excluded.":scope==="road"?"Known full-mile laps from October 10, October 13 and October 17. Do not confuse their average-pace duration with exact time at that instantaneous speed.": "Selected full-mile laps, Oct 18/22 reps, Oct 26 continuous 5K and Nov 2 nominal 200 m reps. Bars group each segment by average pace; broken and continuous work are not equivalent.";
 }
 function drawMechanics(){
 var svg=document.getElementById("mechanics-plot");while(svg.firstChild)svg.removeChild(svg.firstChild);
 var NS="http://www.w3.org/2000/svg";
 function node(tag,attrs,txt){var el=document.createElementNS(NS,tag);Object.keys(attrs).forEach(function(k){el.setAttribute(k,attrs[k])});if(txt!==undefined)el.textContent=txt;svg.append(el);return el}
 var meta={gct:{label:"Ground contact",units:"ms",dec:0},stride:{label:"Step length",units:"m",dec:2},cadence:{label:"Cadence",units:"spm",dec:0},vo:{label:"Vertical movement",units:"cm",dec:2},ratio:{label:"Vertical ratio",units:"%",dec:2},hr:{label:"Heart rate",units:"bpm",dec:0}}[mechanicsMetric];
-var rows=(mechanicsView==="reps"?workMechanics:observations).filter(function(o){return Number.isFinite(o[mechanicsMetric])&&Number.isFinite(o.pace)});
+var rows=(mechanicsView==="irun200"?irun200Mechanics:mechanicsView==="reps"?workMechanics:observations).filter(function(o){return Number.isFinite(o[mechanicsMetric])&&Number.isFinite(o.pace)});
 var xs=rows.map(function(o){return o.pace}),ys=rows.map(function(o){return o[mechanicsMetric]});
 var xmin=Math.floor((Math.min.apply(null,xs)-8)/10)*10,xmax=Math.ceil((Math.max.apply(null,xs)+8)/10)*10;
 var ymin=Math.min.apply(null,ys),ymax=Math.max.apply(null,ys),ypad=Math.max((ymax-ymin)*.20,mechanicsMetric==="stride"?.04:mechanicsMetric==="ratio"?.08:mechanicsMetric==="vo"?.06:3);
@@ -261,11 +310,11 @@ function yAt(v){return 312-(v-ymin)/(ymax-ymin)*245}
 for(var k=0;k<=4;k++){var y=312-k*61.25,val=ymin+(ymax-ymin)*k/4;node("line",{x1:80,y1:y,x2:725,y2:y,stroke:"#43515e","stroke-width":1});node("text",{x:5,y:y+4},val.toFixed(meta.dec)+" "+meta.units)}
 var tickStep=(xmax-xmin)<=50?10:20;
 for(var p=Math.ceil(xmin/tickStep)*tickStep;p<=xmax;p+=tickStep){var px=xAt(p);node("text",{x:px,y:352,"text-anchor":"middle"},Math.floor(p/60)+":"+String(Math.round(p%60)).padStart(2,"0"))}
-rows.forEach(function(o,i){var xx=xAt(o.pace),yy=yAt(o[mechanicsMetric]);node("circle",{cx:xx,cy:yy,r:7,fill:mechanicsView==="reps"?"#b27b8a":o.date==="Oct 22 work"?"#b27b8a":"#aac7d7",stroke:"#1b232a","stroke-width":2});var dx=(i%2?12:-6),dy=(i%3===0?-15:i%3===1?20:-24);
+rows.forEach(function(o,i){var xx=xAt(o.pace),yy=yAt(o[mechanicsMetric]);node("circle",{cx:xx,cy:yy,r:7,fill:mechanicsView==="reps"||mechanicsView==="irun200"?"#b27b8a":o.date==="Oct 22 work"?"#b27b8a":"#aac7d7",stroke:"#1b232a","stroke-width":2});var dx=(i%2?12:-6),dy=(i%3===0?-15:i%3===1?20:-24);
 node("text",{x:xx+dx,y:yy+dy,fill:"#e3e9ed",style:"font-size:11px","text-anchor":i%2?"start":"end"},o.date)});
 node("text",{x:395,y:377,"text-anchor":"middle",style:"font-size:12px"},"Recorded average pace (min/mi)");
 var note=document.getElementById("mechanics-scope-note");
-if(note)note.textContent=mechanicsView==="reps"?"October 22 FIT: seven work laps only, recoveries excluded. Graph: lap-average pace against the metric averaged from valid moving work samples. Comparing faster and slower repetitions here is not a recovery or efficiency trend.":"October 9–18: earlier whole-outing / session averages; October 22: timed-work-only mean; October 26: continuous 5K portion. These scopes are not equivalent or a controlled matched-pace trend. Earlier observations lack some mechanics fields.";
+if(note)note.textContent=mechanicsView==="irun200"?"November 2 FIT: four groups of five nominal 200 m work laps. Moving-sample device estimates, 1:15 reported recoveries excluded. Different speeds are not a causal arm-swing test; the first group has sparse telemetry in rep 2.":mechanicsView==="reps"?"October 22 FIT: seven work laps only, recoveries excluded. Graph: lap-average pace against the metric averaged from valid moving work samples. Comparing faster and slower repetitions here is not a recovery or efficiency trend.":"October 9–18: earlier whole-outing / session averages; October 22: timed-work-only mean; October 26: continuous 5K portion. These scopes are not equivalent or a controlled matched-pace trend. Earlier observations lack some mechanics fields.";
 }
 function sendHeight(){if(window.parent!==window){window.parent.postMessage({type:"form-study-speed-embed",height:Math.ceil(document.documentElement.scrollHeight)},"*")}}document.addEventListener("DOMContentLoaded",function(){init();sendHeight();if(typeof ResizeObserver!=="undefined"){new ResizeObserver(sendHeight).observe(document.body)}window.addEventListener("load",sendHeight)});
 })();
