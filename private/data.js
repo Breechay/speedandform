@@ -1144,23 +1144,23 @@ export async function publishCoachEditorialCopy(strength, running) {
 // completions and from native Forge receipts, which remain source-of-truth for
 // actual sets and weights when they are eventually synced.
 export async function loadCoachStrengthDays(athleteId) {
-  const { data: days, error: dayError } = await supabase
-    .from('form_training_strength_days')
-    .select('id, scheduled_on, title, forge_program_id, cleared_at')
-    .eq('athlete_id', athleteId)
-    .is('cleared_at', null)
-    .order('scheduled_on', { ascending: false })
-    .limit(40);
-  if (dayError) throw dayError;
-  if (!days?.length) return [];
-  const { data: filings, error: filingError } = await supabase
-    .from('coach_strength_duration_completions')
-    .select('id, strength_day_id, duration_seconds, duration_source, filed_at, superseded_by_strength_receipt_id')
-    .eq('athlete_id', athleteId)
-    .in('strength_day_id', days.map((day) => day.id));
-  if (filingError) throw filingError;
-  const filedByDay = new Map((filings || []).map((filing) => [filing.strength_day_id, filing]));
-  return days.map((day) => ({ ...day, coachFiling: filedByDay.get(day.id) || null }));
+  // Strength-day table is intentionally not exposed for direct client reads.
+  // This RPC confirms the signed-in user's active coach membership.
+  const { data, error } = await supabase.rpc('coach_strength_duration_day_options', {
+    p_athlete_id: athleteId
+  });
+  if (error) throw error;
+  return (data || []).map((day) => ({
+    id: day.strength_day_id,
+    scheduled_on: day.scheduled_on,
+    title: day.session_title,
+    coachFiling: day.filed_at ? {
+      duration_seconds: day.duration_seconds,
+      duration_source: day.duration_source,
+      filed_at: day.filed_at,
+      superseded_by_strength_receipt_id: day.superseded_by_strength_receipt_id
+    } : null
+  }));
 }
 
 export async function fileCoachStrengthDuration({ athleteId, strengthDayId, durationSeconds, durationSource, privateNote }) {
