@@ -18,10 +18,8 @@ create index if not exists form_home_method_latest
   on public.form_home_method_editions (method_key, published_at desc, id desc);
 alter table public.form_home_method_editions enable row level security;
 revoke all on public.form_home_method_editions from public, anon, authenticated;
--- The sentences are already athlete-facing; historical edits cannot reveal coach notes.
-grant select on public.form_home_method_editions to authenticated;
-create policy form_home_method_published_read on public.form_home_method_editions
-  for select to authenticated using (published_at <= now());
+-- The table is never exposed directly. The reader function returns only one
+-- currently published sentence, never the revision log or the publisher ID.
 
 create table if not exists public.form_home_method_control (
   id smallint primary key default 1 check (id = 1),
@@ -31,9 +29,6 @@ create table if not exists public.form_home_method_control (
 );
 alter table public.form_home_method_control enable row level security;
 revoke all on public.form_home_method_control from public, anon, authenticated;
-grant select on public.form_home_method_control to authenticated;
-create policy form_home_method_control_read on public.form_home_method_control
-  for select to authenticated using (true);
 insert into public.form_home_method_control (id, pinned_key) values (1, null)
   on conflict (id) do nothing;
 
@@ -57,18 +52,18 @@ with seeds(method_key, sort_order, title, lead, focus, tail) as (
       'the pace you can reach and the pace you can hold.', ''),
     ('glutes', 6, 'Glute Development',
       'We train the glutes because ',
-      'strong hips help us produce and control force', ' with every stride.'),
+      'strong hips matter in running', ', helping produce and control force with every stride.'),
     ('threshold', 7, 'Threshold Development',
       'We keep threshold work controlled because ',
       'the goal is to sustain a demanding pace longer', ', not race every workout.'),
     ('easy', 8, 'Easy Running',
       'Easy runs have a purpose, ',
-      'building aerobic fitness without taking away from harder sessions.', ''),
+      'building aerobic fitness without taking away from the sessions that demand more.', ''),
     ('long_run', 9, 'Long-Run Development',
       'We build long runs progressively ',
-      'so we can sustain effort for longer', ' without turning every Saturday into a test.'),
+      'so athletes can sustain effort for longer', ' without turning every Saturday into a test.'),
     ('volume', 10, 'Training Volume',
-      'We do not add mileage simply because we have more time, ',
+      'We don''t add mileage simply because an athlete has more time, ',
       'we add it when the training calls for it.', '')
 )
 insert into public.form_home_method_editions
@@ -91,8 +86,12 @@ where not exists (select 1 from public.form_home_method_editions e where e.metho
 -- A coach pin overrides selection; an explicitly published revision of the selected
 -- Method takes effect without rebuilding the app.
 create or replace function public.form_home_method_current()
-returns jsonb language sql stable security invoker set search_path = ''
+returns jsonb language plpgsql stable security definer set search_path = ''
 as $$
+declare result jsonb;
+begin
+  -- The view is member-facing; no anonymous API access and no direct table grant.
+  if (select auth.uid()) is null then return null; end if;
   with latest as (
     select distinct on (e.method_key) e.*
       from public.form_home_method_editions e
@@ -119,7 +118,9 @@ as $$
       'muted_gray', muted_gray, 'bright_gray', bright_gray,
       'edition_id', id, 'selected_on', today,
       'mode', case when pin is not null then 'pinned' else 'daily' end)
-    from chosen;
+    into result from chosen;
+  return result;
+end;
 $$;
 revoke all on function public.form_home_method_current() from public, anon;
 grant execute on function public.form_home_method_current() to authenticated;
