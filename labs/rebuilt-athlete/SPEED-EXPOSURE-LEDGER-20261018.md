@@ -234,3 +234,42 @@ The continuous 20:01 iRUN segment is the only input. Every ~1-second enhanced-sp
 - **Recovery:** At approximately 6 AM October 27, Brice reported his legs felt fine while walking to coach Rod. This is a positive next-morning report, not a complete 24–48-hour impact response or medical clearance.
 
 **Current hypothesis, not conclusion:** Rhythmic company, accumulated strength work, fitness and an occasional deliberate attention reset may help Brice sustain a relaxed, faster stride. Without the passing group, a further fade is **unknown**; the measured middle dip alone cannot establish one. He does not want to monitor stride constantly or turn every run into a mechanics drill. A future comparison should ask whether he can notice a modest drift and regain ease during selected runs, including without a pacer, while keeping lower-leg response and effort acceptable. Do not force longer steps or change FORM/Forge prescriptions from this observation.
+
+## November 2 · iRUN 20 × 200 m, external rhythm and farther-back arm pull
+
+**Source:** Original athlete-supplied Garmin Forerunner 965 FIT, activity `24946083222` (`24946083222_ACTIVITY.fit`), and Brice's November 3 first-person debrief. The user-supplied planned session was simply **“with iRUN”**: iRUN chooses its own workout, which FORM does not know beforehand. These **20 × 200 m** are the completed group workout, not a retroactive 20-rep FORM prescription or a new plan for any athlete.
+
+### Recorded execution
+
+The activity contains **4.58 mi total**, **31:56.8 Garmin timer time** and **65:56 elapsed clock time** including pauses and recoveries, with 1 mile of warm-up, an additional ~0.16 mi jog and ~0.74 mi cool-down. The original FIT marks 20 short work laps of ~200 m each (individual GPS lap distances range roughly 202–220 m), separated by short recovery/transition lap artifacts and substantial watch-paused intervals. Do **not** treat the 1–7-second transition laps as the full between-rep recovery. Work-lap time is a more reproducible comparison than variable GPS distance over these short repeats.
+
+- **20 × nominal 200 m:** **13:26.49 timed work** over 4.00 km prescribed by the group workout; **40.32 seconds/rep**, equivalent to about **5:24/mi** at nominal 200 m. GPS-reported rep distance sums to approximately 4.14 km and would produce a faster calculated average; this is not the appropriate comparison here.
+- **Recoveries:** **1:15 by Brice's report**, supported by the approximately 75-second start-to-start gaps after subtracting the work portions; the watch paused for much of the recoveries. Do not sum watch timer time as if recoveries were continuous running.
+- **Work laps in chronological order, seconds:** 45.28, 47.30, 44.98, 44.80, 42.27 / 41.86, 42.89, 39.90, 39.22, 39.17 / 38.82, 38.54, 38.87, 37.03, 38.26 / 37.57, 37.13, 37.15, 37.50, 37.95. The final five are closely grouped; an earlier gradual acceleration was recorded too. It was not described by the athlete as racing or rising effort.
+
+### Moving-record running dynamics during each work lap
+
+The following are **mean device-estimated moving samples** assigned to each work lap using FIT lap start time and timer duration, restricted to speed at least 2.4 m/s and positive cadence. Garmin half-cadence plus fractional cadence gives steps/min; step length /10,000 gives metres; ground contact /10 gives ms; vertical oscillation /100 gives cm. These are not calibrated force or arm-motion measurements. One early lap (rep 2) had only two valid filtered samples, making the first group less reliable than the later groups.
+
+| Work reps | Avg nominal-200 time | Cadence | Step length | Ground contact | Vertical movement | Vertical ratio |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1–5 | 44.93 s | ~181 spm | ~1.62 m | ~204 ms | ~9.74 cm | ~6.01% |
+| 6–10 | 40.61 s | ~187 spm | ~1.70 m | ~195 ms | ~9.11 cm | ~5.37% |
+| 11–15 | 38.30 s | ~192 spm | ~1.75 m | ~191 ms | ~8.76 cm | ~5.03% |
+| **16–20** | **37.46 s** | **~195 spm** | **~1.77 m** | **~187 ms** | **~8.47 cm** | **~4.78%** |
+
+Later reps show a small additional rise in cadence and recorded step length and a small drop in contact time alongside increased running speed. This cannot isolate a change in arm mechanics, elastic response, propulsive force or metabolic efficiency. The sample-level record does **not** measure arm-swing range, left/right coordination, ground-reaction force or actual stride symmetry. HR was variable and lagged during short work laps; a session peak of approximately **178 bpm** is not evidence that Brice worked at RPE 8 or raced.
+
+### Athlete's account · retain separately from the metrics
+
+Brice explicitly reports keeping **all 20 reps at RPE 6–7**, never deliberately pushing to 8, never racing another runner and intentionally slowing at points to control foot placement and land safely. The final five repeats were primarily a **rhythm and arm-use lesson**, not a maximal finish.
+
+- **External reference:** He stayed near other runners and matched the ease and cadence of their movement. When left-right arm timing sometimes drifts during relaxed solo running, watching another runner helped him feel the beat.
+- **Precise new sensation:** He felt **more propulsion when the arm pulls became wider and reached farther behind him**. This was a perceived change in the arm action, not merely faster arm turnover. No video or force measurement confirms the width, excursion, propulsion mechanism or which portion of the motion made the difference.
+- **Concurrent load:** Brice reports performing a **Glute A · Hinge** Forge strength workout the same day. The precise strength loads and their effect on the evening run have not been established. Delayed 24–48-hour lower-leg response after this combined day is not yet reported.
+
+**Current interpretation:** The Nov 2 FIT shows repeatable faster 200 m times at a *reported stable* effort, alongside changes in watch-estimated cadence, step length and contact. The Nov 3 debrief identifies a more specific **perceptual and coordination question** than Oct 26: can an external runner's rhythm help him find a freer arm-leg pattern, and can he own it when alone? **Perceived forward propulsion from the arm pull is the athlete's description; direct arm-generated propulsion is unmeasured.** Faster late reps, warming up, confidence, cueing, general speed-dependent kinematics and group pacing are competing explanations.
+
+**Research boundary:** [Arellano & Kram (2014)](https://pubmed.ncbi.nlm.nih.gov/25031455/) found normal arm swing less energetically costly than several restricted-arm conditions; [Arellano & Kram (2011)](https://pubmed.ncbi.nlm.nih.gov/21316058/) linked natural arm motion with lateral balance. Neither study tested “wider” or more backward arm pulls as a universal improvement. [Li et al. (2026)](https://doi.org/10.3389/fspor.2026.1845590) examined arm-swing modification and whole-body dynamics in **one elite sprinter**; it is hypothesis-generating, not validation of an intervention for this runner or proof that the arms directly pull the body forward.
+
+**Next observation, not a new prescription:** Within already-authorized running, note whether the useful arm rhythm can be recognized and regained **without** tracking another runner, while keeping comfortable shoulder/hand action and the intended effort. If filming a comparable short bout is practical and consented, compare arm travel, torso rotation and leg timing at similar pace; review 24–48-hour lower-leg response after the strength-plus-speed day. Do not deliberately exaggerate arm width, reach behind the body, overstride, increase repetitions or change running/Forge prescriptions on this single session.
