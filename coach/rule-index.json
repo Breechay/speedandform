@@ -82,6 +82,14 @@
       "authority": "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md",
       "enforcement": "current permission boundaries and agent operating contract",
       "verification": "coach/AGENT_OPERATIONS.md"
+    },
+    {
+      "id": "FORM-GLUTE-011",
+      "title": "Current glute-day placement is approved; change on new evidence, not routine overlap warnings",
+      "owner": "Brice",
+      "authority": "coach/AGENT_OPERATIONS.md",
+      "enforcement": "whole-week guardian treats existing strength/run stacking as context",
+      "verification": "tests/whole-week-guardian.test.mjs"
     }
   ]
 }

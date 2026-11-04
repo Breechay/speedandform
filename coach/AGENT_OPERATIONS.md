@@ -116,6 +116,14 @@ titles and emphasis against key running dates. This verifies the FORM mirror
 and its Forge program digest as returned, not live Forge-native delivery or
 unsynced edits. Those remain unknown until the owning Forge program is read.
 
+**November 4 owner correction:** Existing glute strength days are intentional
+and approved across the current roster. A same-day key run/lower-body strength
+pair is background context, not an endless coach-review escalation or license
+to move glute days. Keep the program in place. Reconsider when athletes report
+new feedback, the running/strength prescriptions materially change, or an
+actual restriction conflicts. Preserve the original observation and adjustment
+history; do not manufacture a readiness problem from schedule geometry alone.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
