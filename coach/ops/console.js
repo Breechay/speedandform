@@ -2,6 +2,7 @@ import { supabase } from '/private/supabase-client.js';
 import { sendMagicLink, signInWithPassword } from '/private/auth.js';
 import { wholeWeekGuardian } from '/private/whole-week-guardian.mjs';
 import { athleteFeedbackTimeline } from '/private/athlete-feedback-timeline.mjs';
+import { addObservation } from '/private/data.js';
 import { AREAS, escapeHtml as e, safeUrl, sourceState, dateLabel, validateBoard, upcomingAppointments } from './model.mjs?v=1';
 import { OPPORTUNITY_CATEGORIES, OPPORTUNITY_STATES, ATHLETIC_LIFE_IDEAS, validateOpportunityFeed, activeOpportunityCount, canApproveOpportunity, canStartOpportunity, opportunityEstimate } from './opportunity-model.mjs?v=1';
 const $ = s => document.querySelector(s);
@@ -10,6 +11,7 @@ let opportunities={available:false,items:[],error:'Not checked'};
 let filingIntegrity={available:false,read_at:null,filings:[],error:'Not checked'};
 let rosterStory={available:false,athletes:[],error:'Not checked'};
 let athleteBrief={id:null,data:null,strength:null,feedback:null,error:'',loading:false};
+let feedbackReceipt='';
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
 if(['today','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
 const closed=i=>['done','cancelled'].includes(i.status);
@@ -43,11 +45,12 @@ function intelligenceDetail(d){
   const feedback=athleteBrief.feedback?.available
     ?athleteFeedbackTimeline(athleteBrief.feedback.rows,d.recent_filings||[]):null;
   const feedbackPanel=`<h3 class="split-label">Feedback continuity</h3>${feedback===null?'<p class="source-note">Historical observations unavailable; do not infer the athlete has given no feedback.</p>':feedback.length?feedback.map(o=>`<article class="item"><div class="metadata"><span class="pill">${e(o.source_label)}</span><span>${e(o.observed_on||'Date unknown')}</span><span>${e(o.facet||'Observation')}</span></div><p>${e(o.observation)}</p>${o.direction?`<p class="small">Recorded direction: ${e(o.direction.replaceAll('_',' '))}</p>`:''}${o.evidence.length?`<p class="small">Linked filings: ${e(o.evidence.map(x=>x.id+(x.state==='reference_not_loaded'?' (outside recent read)':'')).join(', '))}</p>`:''}${o.supersedes?`<p class="small">Supersedes observation ${e(o.supersedes)}</p>`:''}</article>`).join(''):'<p class="source-note">No observations in this bounded historical read.</p>'}`;
+  const capture=`<details class="capture"><summary>Record sourced athlete feedback</summary><form id="athlete-feedback-form"><p class="source-note">Recording for ${e(d.athlete?.display_name||'this athlete')} · ${e(d.athlete?.id||'No athlete ID')}. Keep the original meaning and label whose words these are. A message does not change the training plan.</p><div class="form-grid"><label>Who supplied it?<select name="source" required><option value="athlete_reported">Athlete reported</option><option value="coach_observed">Coach observed</option><option value="system_detected">System detected</option></select></label><label>What is it about?<select name="facet" required><option value="helps">What helps</option><option value="practice">Practice</option><option value="capacity">Capacity</option><option value="body">Body</option><option value="pattern">Pattern</option><option value="aspiration">Aspiration</option><option value="means">What it means</option></select></label><label>Date observed<input type="date" name="observed_on" required></label></div><label>Original observation<textarea name="observation" rows="3" maxlength="2000" required placeholder="Record the athlete's own words, or your separately identified observation."></textarea></label><button class="primary" type="submit">Save to athlete record</button><p class="source-note" role="status">${e(feedbackReceipt)}</p></form></details>`;
   const guardian=wholeWeekGuardian(d,athleteBrief.strength);
   const actionable=guardian.findings.filter(f=>f.severity!=='context');
   const knownStacks=guardian.findings.filter(f=>f.severity==='context').length;
   const summary=`<h3 class="split-label">Publication intelligence · next eight days</h3><p class="source-note">Agent maintenance is distinct from coach judgment. These are source checks, not automatic edits or a complete FORM/Forge workload certification.${knownStacks?` ${knownStacks} approved strength/run overlap(s) retained as context, not action items.`:''}</p>${actionable.map(f=>`<article class="item"><div class="metadata"><span class="pill ${f.severity==='block'||f.severity==='review'?'warning':''}">${e(f.owner==='coach'?'Coaching judgment':'Agent '+(f.severity==='maintenance'?'maintenance':'check'))}</span><span>${e(f.code.replaceAll('_',' '))}</span></div><p>${e(f.message)}</p>${f.sources.length?`<p class="small">Owner IDs: ${e(f.sources.join(', '))}</p>`:''}</article>`).join('')||'<p class="source-note">No exceptions in this bounded read.</p>'}`;
-  return `<section class="panel"><div class="section-head"><h2>${e(d.athlete?.display_name||'Athlete')} · source brief</h2><span class="pill">Read ${e(checked(d.read_at))}</span></div><p class="source-note">${d.active_block?`Active block: ${e(d.active_block.name)}. `:'No active block returned. '}${d.current_week?`Current Week story: ${d.current_week.story_current?'current':'needs recheck'}.`:'No current Week returned.'} Live owners only; no native display or wearable refresh implied.</p>${summary}${feedbackPanel}<h3 class="split-label">Next eight days</h3>${list(d.upcoming_sessions,s=>`<article class="item"><b>${e(s.title||'Version missing')}</b><p class="small">${e(s.scheduled_on)} · version ${e(s.version_number||'missing')}${s.is_key?' · key session':''} · ${e(s.rpe_low??'?')}–${e(s.rpe_high??'?')} RPE</p></article>`)}<h3 class="split-label">Recent filings</h3>${list(d.recent_filings,f=>`<article class="item"><b>${e(f.status)} · ${e(checked(f.filed_at))}</b><p class="small">${f.actual_distance!=null?`${e(f.actual_distance)} ${e(f.distance_unit||'')} · `:''}${f.duration_seconds!=null?`${e(Math.round(f.duration_seconds/60))} min · `:''}Source ${e(f.source)} · filing ${e(f.id)}</p></article>`)}<h3 class="split-label">Measured evidence</h3>${list(d.recent_measurements,m=>`<article class="item"><b>${e(m.type)}</b><p class="small">${e(m.value)} ${e(m.unit||'')} · ${e(m.measured_at)} · ${e(m.source||'source unknown')}</p></article>`)}<h3 class="split-label">Standing observations</h3>${list(d.standing_observations,o=>`<article class="item"><p>${e(o.observation)}</p><p class="small">${e(o.facet)} · ${e(o.source)} · observed ${e(o.observed_on)}</p></article>`)}<p class="source-note">Active marks: ${e(d.active_marks?.length||0)} · Forge receipts in recent index: ${e(d.forge_receipts?.length||0)}. Full evidence and private notes remain in the authorized athlete dossier.</p><a class="ref" href="/coach/labs/">Open full athlete dossier ↗</a></section>`;
+  return `<section class="panel"><div class="section-head"><h2>${e(d.athlete?.display_name||'Athlete')} · source brief</h2><span class="pill">Read ${e(checked(d.read_at))}</span></div><p class="source-note">${d.active_block?`Active block: ${e(d.active_block.name)}. `:'No active block returned. '}${d.current_week?`Current Week story: ${d.current_week.story_current?'current':'needs recheck'}.`:'No current Week returned.'} Live owners only; no native display or wearable refresh implied.</p>${summary}${feedbackPanel}${capture}<h3 class="split-label">Next eight days</h3>${list(d.upcoming_sessions,s=>`<article class="item"><b>${e(s.title||'Version missing')}</b><p class="small">${e(s.scheduled_on)} · version ${e(s.version_number||'missing')}${s.is_key?' · key session':''} · ${e(s.rpe_low??'?')}–${e(s.rpe_high??'?')} RPE</p></article>`)}<h3 class="split-label">Recent filings</h3>${list(d.recent_filings,f=>`<article class="item"><b>${e(f.status)} · ${e(checked(f.filed_at))}</b><p class="small">${f.actual_distance!=null?`${e(f.actual_distance)} ${e(f.distance_unit||'')} · `:''}${f.duration_seconds!=null?`${e(Math.round(f.duration_seconds/60))} min · `:''}Source ${e(f.source)} · filing ${e(f.id)}</p></article>`)}<h3 class="split-label">Measured evidence</h3>${list(d.recent_measurements,m=>`<article class="item"><b>${e(m.type)}</b><p class="small">${e(m.value)} ${e(m.unit||'')} · ${e(m.measured_at)} · ${e(m.source||'source unknown')}</p></article>`)}<h3 class="split-label">Standing observations</h3>${list(d.standing_observations,o=>`<article class="item"><p>${e(o.observation)}</p><p class="small">${e(o.facet)} · ${e(o.source)} · observed ${e(o.observed_on)}</p></article>`)}<p class="source-note">Active marks: ${e(d.active_marks?.length||0)} · Forge receipts in recent index: ${e(d.forge_receipts?.length||0)}. Full evidence and private notes remain in the authorized athlete dossier.</p><a class="ref" href="/coach/labs/">Open full athlete dossier ↗</a></section>`;
 }
 function intelligenceView(){
   if(!rosterStory.available)return `<section class="panel"><h2>Athlete intelligence unavailable</h2><p>${e(rosterStory.error)}. No empty roster is inferred.</p></section>`;
@@ -265,6 +268,33 @@ $('#view').addEventListener('change',ev=>{
   const f=select.form;f.elements['title'].value=idea[0];f.elements['category'].value=idea[1];
 });
 $('#view').addEventListener('submit',async ev=>{
+  if(ev.target.id==='athlete-feedback-form'){
+    ev.preventDefault();
+    const f=ev.target,b=f.querySelector('[type=submit]');
+    const athleteId=athleteBrief.id;
+    if(!user||!athleteId||athleteBrief.loading||athleteBrief.data?.athlete?.id!==athleteId)return;
+    b.disabled=true;
+    try{
+      const saved=await addObservation({athleteId,facet:f.elements['facet'].value,
+        source:f.elements['source'].value,observation:f.elements['observation'].value,
+        observedOn:f.elements['observed_on'].value});
+      feedbackReceipt=`Saved observation ${saved.id} for athlete ${athleteId}. No plan changed.`;
+      const {data,error}=await supabase.from('athlete_observations')
+        .select('id,athlete_id,observed_on,created_at,source,facet,observation,direction,supersedes,evidence_completion_ids')
+        .eq('athlete_id',athleteId).order('observed_on',{ascending:false})
+        .order('created_at',{ascending:false}).limit(12);
+      if(error||!data?.some(o=>o.id===saved.id)){
+        feedbackReceipt+=` History reread did not confirm it; inspect record ${saved.id} before any retry.`;
+      }else{
+        athleteBrief.feedback={available:true,rows:data};
+      }
+      render();
+    }catch(error){
+      const status=f.querySelector('[role=status]');
+      if(status)status.textContent=error.message||'Save failed; inspect before retry.';
+    }finally{b.disabled=false;}
+    return;
+  }
   if(ev.target.id!=='opportunity-capture-form')return;ev.preventDefault();
   if(!user||!opportunities.available)return;
   const f=ev.target,b=f.querySelector('[type=submit]');b.disabled=true;
