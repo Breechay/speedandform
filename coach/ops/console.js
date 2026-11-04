@@ -8,7 +8,7 @@ let board=null,user=null,tab='today',area='all',loading=false,authGeneration=0;
 let opportunities={available:false,items:[],error:'Not checked'};
 let filingIntegrity={available:false,read_at:null,filings:[],error:'Not checked'};
 let rosterStory={available:false,athletes:[],error:'Not checked'};
-let athleteBrief={id:null,data:null,error:'',loading:false};
+let athleteBrief={id:null,data:null,strength:null,error:'',loading:false};
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
 if(['today','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
 const closed=i=>['done','cancelled'].includes(i.status);
@@ -39,7 +39,7 @@ function areasView(){
 function coachingView(){return `<h3 class="split-label">Current coach decisions · live FORM records</h3>${board.decisions.map(d=>`<article class="decision"><div class="metadata"><b>${e(athleteName(d.athlete_id))}</b><span>Effective ${e(dateLabel(d.effective_on))}</span><span>${d.delivery_state==='delivered_externally'?'Delivered directly':'Published'}</span></div><p>${e(d.athlete_text)}</p></article>`).join('')||'<p class="empty">No current published decisions returned. This does not mean no assignment exists.</p>'}${board.coach_tasks.length?`<h3 class="split-label">Open coaching gates</h3>${board.coach_tasks.map(coachTask).join('')}`:''}${board.coach_todos.length?`<h3 class="split-label">Dossier to-dos</h3>${board.coach_todos.map(t=>`<div class="item"><b>${e(athleteName(t.athlete_id))}</b><p>${e(t.body)}</p>${t.due_on?`<p class="small">Due ${e(dateLabel(t.due_on))}</p>`:''}</div>`).join('')}`:''}<a class="ref" href="/coach/labs/">Open athlete dossiers ↗</a><p class="source-note">These are existing FORM records, not copied plans. Appointment timing is separate from prescribed work. A new decision does not rewrite completed evidence.</p>`;}
 function intelligenceDetail(d){
   const list=(items,make)=>items?.length?items.map(make).join(''):'<p class="empty">No records in this bounded source read. Do not infer none exist elsewhere.</p>';
-  const guardian=wholeWeekGuardian(d);
+  const guardian=wholeWeekGuardian(d,athleteBrief.strength);
   const summary=`<h3 class="split-label">Publication intelligence · next eight days</h3><p class="source-note">Agent maintenance is distinct from coach judgment. These are source checks, not automatic edits or a complete FORM/Forge workload certification.</p>${guardian.findings.map(f=>`<article class="item"><div class="metadata"><span class="pill ${f.severity==='block'||f.severity==='review'?'warning':''}">${e(f.owner==='coach'?'Coaching judgment':'Agent '+(f.severity==='maintenance'?'maintenance':'check'))}</span><span>${e(f.code.replaceAll('_',' '))}</span></div><p>${e(f.message)}</p>${f.sources.length?`<p class="small">Owner IDs: ${e(f.sources.join(', '))}</p>`:''}</article>`).join('')||'<p class="source-note">No exceptions in this bounded read.</p>'}`;
   return `<section class="panel"><div class="section-head"><h2>${e(d.athlete?.display_name||'Athlete')} · source brief</h2><span class="pill">Read ${e(checked(d.read_at))}</span></div><p class="source-note">${d.active_block?`Active block: ${e(d.active_block.name)}. `:'No active block returned. '}${d.current_week?`Current Week story: ${d.current_week.story_current?'current':'needs recheck'}.`:'No current Week returned.'} Live owners only; no native display or wearable refresh implied.</p>${summary}<h3 class="split-label">Next eight days</h3>${list(d.upcoming_sessions,s=>`<article class="item"><b>${e(s.title||'Version missing')}</b><p class="small">${e(s.scheduled_on)} · version ${e(s.version_number||'missing')}${s.is_key?' · key session':''} · ${e(s.rpe_low??'?')}–${e(s.rpe_high??'?')} RPE</p></article>`)}<h3 class="split-label">Recent filings</h3>${list(d.recent_filings,f=>`<article class="item"><b>${e(f.status)} · ${e(checked(f.filed_at))}</b><p class="small">${f.actual_distance!=null?`${e(f.actual_distance)} ${e(f.distance_unit||'')} · `:''}${f.duration_seconds!=null?`${e(Math.round(f.duration_seconds/60))} min · `:''}Source ${e(f.source)} · filing ${e(f.id)}</p></article>`)}<h3 class="split-label">Measured evidence</h3>${list(d.recent_measurements,m=>`<article class="item"><b>${e(m.type)}</b><p class="small">${e(m.value)} ${e(m.unit||'')} · ${e(m.measured_at)} · ${e(m.source||'source unknown')}</p></article>`)}<h3 class="split-label">Standing observations</h3>${list(d.standing_observations,o=>`<article class="item"><p>${e(o.observation)}</p><p class="small">${e(o.facet)} · ${e(o.source)} · observed ${e(o.observed_on)}</p></article>`)}<p class="source-note">Active marks: ${e(d.active_marks?.length||0)} · Forge receipts in recent index: ${e(d.forge_receipts?.length||0)}. Full evidence and private notes remain in the authorized athlete dossier.</p><a class="ref" href="/coach/labs/">Open full athlete dossier ↗</a></section>`;
 }
@@ -227,9 +227,13 @@ $('#view').addEventListener('click',async event=>{
     if(!rosterStory.athletes?.some(a=>a.id===id)||athleteBrief.loading)return;
     const generation=authGeneration;
     athleteBrief={id,data:null,error:'',loading:true};render();
-    const {data,error}=await supabase.rpc('coach_agent_athlete_brief',{p_athlete_id:id});
+    const [{data,error},strengthResponse]=await Promise.all([
+      supabase.rpc('coach_agent_athlete_brief',{p_athlete_id:id}),
+      supabase.rpc('coach_strength_duration_day_options',{p_athlete_id:id})
+    ]);
     if(generation!==authGeneration)return;
-    athleteBrief=error?{id,data:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,error:'',loading:false};
+    const strength=strengthResponse.error?{available:false,error:'Strength source unavailable'}:{available:true,days:(strengthResponse.data||[]).map(s=>({id:s.strength_day_id,scheduled_on:s.scheduled_on,title:s.session_title}))};
+    athleteBrief=error?{id,data:null,strength:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,error:'',loading:false};
     if(tab==='intelligence')render();return;
   }
   const opportunityButton=event.target.closest('button[data-op-action]');if(opportunityButton){await opportunityAction(opportunityButton);return;}
