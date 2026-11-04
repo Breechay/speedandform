@@ -82,3 +82,17 @@ export function selfAuditSessionCopy(next, previous = null) {
   const issues = changedSessionEditorialIssues(next, previous);
   return { ok: issues.length === 0, issues };
 }
+
+// Numeric presentation gate: a title that names track metres must agree with the
+// typed work. This catches the Console's historic implicit-mi conversion before
+// an athlete sees a 200 m title paired with 0.2 mi repetitions.
+export function prescriptionPresentationIssues(title, components = []) {
+  const namedMeters = [...String(title || '').matchAll(/\b(\d{2,4})\s*m\b/giu)]
+    .map(match => Number(match[1]));
+  if (!namedMeters.length) return [];
+  const workMeters = components.filter(part => part?.role === 'work' && part.distance != null)
+    .map(part => Number(part.distance) * (part.distanceUnit === 'km' ? 1000 : 1609.344));
+  if (!workMeters.length) return [];
+  return namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
+    .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`);
+}
