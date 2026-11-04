@@ -43,6 +43,8 @@ The agent execution draft now includes an optional exact `athlete_id`, protected
 
 **44.8 feature scope is frozen here.** Remaining work is integration and security: create numbered migrations with Supabase CLI, check the live schema and grants, write source-specific verification adapters, run anonymous/unrelated-coach RLS denial tests, verify signed-in responsive Coach views, then obtain the coach's release decision. Do not add speculative scores, inferred causal outcomes, automatic review gates, or new staff categories to this integration PR.
 
+Read the [2026-11-04 live schema readiness checkpoint](COACH_44_8_LIVE_SCHEMA_READINESS_2026-11-04.md) before any migration or wiring work. The production read confirmed the two new tables are absent; pre-existing owning tables and grants were inspected without mutation.
+
 Do not put placeholders for these two unfinished backends into the live Staff dashboard. First verify schema and readback in a controlled environment; then add clearly source-typed panels.
 
 ## Release sequence
