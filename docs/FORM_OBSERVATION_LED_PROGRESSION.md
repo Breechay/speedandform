@@ -3,6 +3,8 @@
 Owner: Brice. Decision: October 6, 2026.
 Status: shared coaching method; not a universal workout prescription.
 
+**November 4, 2026 binding authoring standard:** [Publish the full progression and deliberately program selected long runs as workouts](coaching/FORM_FULL_PROGRESSION_AND_LONG_RUN_STANDARD_20261104.md). A session or week must not be left pending coach approval merely because future athlete evidence may change the plan. The observation loop below guides responsive revisions when evidence arrives; it does not require scheduled progression reviews.
+
 ## The standard
 
 **Success is more useful running, not more suffering.**
