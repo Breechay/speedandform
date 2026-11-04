@@ -5,6 +5,7 @@ import fs from 'node:fs';
 const html=fs.readFileSync(new URL('../coach/ops/index.html',import.meta.url),'utf8');
 const code=fs.readFileSync(new URL('../coach/ops/console.js',import.meta.url),'utf8');
 const handoff=fs.readFileSync(new URL('../docs/operations/COACH_44_8_INTEGRATION_HANDOFF_2026-11.md',import.meta.url),'utf8');
+const resume=fs.readFileSync(new URL('../docs/operations/COACH_44_8_RESUME_BRIEF.md',import.meta.url),'utf8');
 
 test('the combined Coach interface has all its source-backed views and cache-busted assets',()=>{
   assert.match(html,/data-tab="staff"/);
@@ -18,7 +19,10 @@ test('the combined Coach interface has all its source-backed views and cache-bus
 });
 test('44.8 boundaries and incomplete database features remain explicit',()=>{
   assert.match(handoff,/44\.6 stability and 44\.7 Speed \+ Strength/);
-  assert.match(handoff,/No ledger table or writer yet/);
-  assert.match(handoff,/No relationship table or writer yet/);
+  assert.match(handoff,/no applied ledger or connected source verifier/);
+  assert.match(handoff,/no applied relationship table or live writer caller/);
   assert.match(handoff,/no retroactive guess\/backfill/);
+  assert.match(resume,/44\.8 feature scope|Coach \/ Athletic Compound/i);
+  assert.match(resume,/Change-reconciliation rule/);
+  assert.match(resume,/neither|Neither `public\.coach_agent_execution_receipts`/i);
 });
