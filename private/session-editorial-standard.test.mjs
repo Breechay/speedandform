@@ -137,5 +137,5 @@ test('Console exposes component units and syncs single-work RPE on anatomy edits
   const coachSource = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
   assert.match(coachSource, /name=\"partDistanceUnit\"/);
   assert.match(coachSource, /work\.rpeLow = payload\.rpeLow/);
-  assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components\)/);
+  assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components \|\| existingParts\)/);
 });
