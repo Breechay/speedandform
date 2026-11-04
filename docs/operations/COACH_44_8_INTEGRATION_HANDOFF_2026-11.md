@@ -29,6 +29,8 @@ This integrated branch combines only the files from those five PRs, plus this ha
 - [Execution receipt ledger](AGENT_EXECUTION_LEDGER_HANDOFF_2026-11.md): generate Supabase migration with auth-scoped append-only record, bounded read projection, idempotent signed-in writer, and verified source/destination receipts.
 - [Decision/version links](DECISION_VERSION_LINK_HANDOFF_2026-11.md): generate migration and authenticated writer, cross-athlete constraints, `before`/`after` version relation, strict RLS and no retroactive guess/backfill.
 
+Two **unapplied SQL drafts** under `docs/operations/sql/` now show the intended tables and RLS boundaries. These are review material, not numbered migrations. Code must regenerate them through the normal CLI workflow, verify actual database grants and policies, and test in a controlled environment before production.
+
 Do not put placeholders for these two unfinished backends into the live Staff dashboard. First verify schema and readback in a controlled environment; then add clearly source-typed panels.
 
 ## Release sequence
