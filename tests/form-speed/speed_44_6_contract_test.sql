@@ -21,7 +21,7 @@ begin
     ('Saul 200',array[53000,38000,36000,43000]::bigint[],39000::bigint,36000::bigint)
   ) as fixtures(name,reps,expected_held,expected_best) loop
     n:=cardinality(f.reps);
-    select min(v) into best_ms from unnest(f.reps) v;
+    select min(item.value) into best_ms from unnest(f.reps) as item(value);
     held_ms:=null;
     if n>=3 then
       for i in 1..(n-2) loop
