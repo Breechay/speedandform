@@ -124,18 +124,18 @@ create or replace function coach_performance_private.refresh_track_from_completi
   p_completion_id uuid
 ) returns void language plpgsql security definer
 set search_path='' as $$
-declare c record;
+declare completion_meta record;
 begin
   select sc.athlete_id,sc.planned_session_id,sc.status,
          coalesce(ps.scheduled_on,(sc.filed_at at time zone 'America/New_York')::date) observed_on
-    into c from public.session_completions sc
+    into completion_meta from public.session_completions sc
     left join public.planned_sessions ps on ps.id=sc.planned_session_id
     where sc.id=p_completion_id;
   if not found then return; end if;
 
   delete from public.athlete_track_sessions t
    where t.completion_id=p_completion_id and t.source_kind='filed';
-  if c.status in ('completed','partial','changed') then
+  if completion_meta.status in ('completed','partial','changed') then
     with candidates as (
       select sp.position,
              sp.distance*case sp.distance_unit when 'mi' then 1609.344 else 1000 end meters,
@@ -146,13 +146,13 @@ begin
       where sp.completion_id=p_completion_id and sp.kind='rep'
         and sp.distance>0 and sp.distance_unit in ('mi','km')
     ), classified as (
-      select c.position,d.distance_m,c.seconds
-      from candidates c cross join lateral (
+      select candidate.position,d.distance_m,candidate.seconds
+      from candidates candidate cross join lateral (
         select v.distance_m from (values(200),(300),(400),(500),(600),(800),(1000),(1200),(1600)) v(distance_m)
-        where abs(c.meters-v.distance_m)<=greatest(10,v.distance_m*0.02)
-        order by abs(c.meters-v.distance_m) limit 1
+        where abs(candidate.meters-v.distance_m)<=greatest(10,v.distance_m*0.02)
+        order by abs(candidate.meters-v.distance_m) limit 1
       ) d
-      where c.seconds>0 and c.seconds < 7200
+      where candidate.seconds>0 and candidate.seconds < 7200
     ), grouped as (
       select distance_m,count(*)::integer rep_count,round(avg(seconds),2) avg_seconds,
              round(min(seconds),2) best_seconds,jsonb_agg(round(seconds,2) order by position) splits
@@ -161,13 +161,13 @@ begin
     insert into public.athlete_track_sessions
       (athlete_id,distance_m,observed_on,source_kind,source_key,planned_session_id,
        completion_id,rep_count,average_seconds,best_rep_seconds,split_seconds,source_note)
-    select c.athlete_id,g.distance_m,c.observed_on,'filed',
+    select completion_meta.athlete_id,g.distance_m,completion_meta.observed_on,'filed',
            'completion:'||p_completion_id::text||':'||g.distance_m::text,
-           c.planned_session_id,p_completion_id,g.rep_count,g.avg_seconds,g.best_seconds,g.splits,
+           completion_meta.planned_session_id,p_completion_id,g.rep_count,g.avg_seconds,g.best_seconds,g.splits,
            'Derived from filed rep pieces; recovery and easy segments excluded'
     from grouped g;
   end if;
-  perform coach_performance_private.refresh_track_stats(c.athlete_id,d.distance_m)
+  perform coach_performance_private.refresh_track_stats(completion_meta.athlete_id,d.distance_m)
     from (values(200),(300),(400),(500),(600),(800),(1000),(1200),(1600)) d(distance_m);
 end $$;
 
