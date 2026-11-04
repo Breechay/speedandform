@@ -134,6 +134,13 @@ the existing authorized `addObservation` owner after confirming athlete ID,
 source wording and observation date; do not claim a screenshot was saved merely
 because it appeared in chat. Never infer a program change from one comment.
 
+The private Athlete Intelligence view now provides **Record sourced athlete
+feedback**. It uses the same authenticated `addObservation` owner as Labs,
+requires an athlete-scoped selection, an explicit source/facet/date and the
+original observation, then returns an observation ID and rechecks history.
+If the post-write history reload fails, retain the saved ID and investigate
+before retrying; no duplicate insert, plan revision, or feed post is implied.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
