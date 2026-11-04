@@ -3,7 +3,7 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { MONTHS, dayLabel, initials, paceTargetLabel, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -256,13 +256,13 @@ function doseOf(version) {
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total work` : null;
-  const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
+  const band = paceTargetLabel(work.pace_low, work.pace_high, unit);
   // A pace band is what makes a session proof bearing. An easy run and a long run
   // are authored against effort, so they are real work and not evidence for this
   // claim, and the outside condition does not apply to them.
   const proofBearing = Boolean(band);
   const qualifiers = [];
-  if (band) qualifiers.push(`${band}/${unit}`);
+  if (band) qualifiers.push(band);
   else if (work.rpe_low) qualifiers.push(`RPE ${work.rpe_low}\u2013${work.rpe_high}`);
   if (work.recovery_seconds != null) {
     qualifiers.push(`${Math.floor(work.recovery_seconds / 60)}:${String(work.recovery_seconds % 60).padStart(2, '0')} ${work.recovery_kind}`);
@@ -280,7 +280,7 @@ function doseOf(version) {
   // whichever headline is missing it, and never to both.
   const shapeWord = work.shape === 'continuous' ? 'continuous' : null;
   const shortQualifiers = works.length > 1
-    ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
+    ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine && item !== band)]
     : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
   return {
     line, shortLine, work, proofBearing, totalLine,
@@ -569,12 +569,12 @@ function sessionInspectorHtml(session) {
       ? `${part.repeat_count} \u00d7 ${Number(part.distance)} ${part.distance_unit}`
       : part.distance != null ? `${Number(part.distance)} ${part.distance_unit} continuous`
       : `${Math.round((part.duration_seconds || 0) / 60)} min`;
-    const at = [part.pace_low, part.pace_high].filter(Boolean).join('\u2013');
+    const at = paceTargetLabel(part.pace_low, part.pace_high, part.distance_unit || 'mi');
     const after = part.recovery_seconds != null
       ? `${clock(part.recovery_seconds)} ${part.recovery_kind}` : '';
     return `<div class="ins-part">
       <dt>${escapeHtml(String(part.role).replace('_', ' '))}</dt>
-      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(part.distance_unit || 'mi')}</span>` : ''}
+      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}</span>` : ''}
         ${after ? `<span>${escapeHtml(after)}</span>` : ''}</dd>
     </div>`;
   }).join('');
