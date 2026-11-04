@@ -35,6 +35,14 @@ The Intelligence decision cards now make a bounded, authenticated read of `coach
 
 The agent execution draft now includes an optional exact `athlete_id`, protected by active coach membership when present. The Intelligence view reads at most twelve receipts for the selected athlete, validates each receipt client-side, and explicitly withholds failed identity/proof checks. The browser never infers verification from a closed operating task. **This remains read-only and unavailable until its migration and authorized writer exist.** Test absent table, no entries, cross-athlete reads, bad receipt, saved-without-readback, delivered-without-destination proof, and sign-out during an in-flight read.
 
+## Scope-freeze implementation contract
+
+`private/coach-agent-writers.mjs` provides two non-UI writer functions for use only after real migrations and signed-in RLS validation. Each checks the coach identity, validates the exact athlete/owner IDs, inserts via the caller's authenticated client, and reads back the inserted row. Execution statuses `saved` or above additionally require a separate `verifySource` callback that must perform an actual owning-record read; `delivered` and `native_verified` require `verifyDestination` as well. A callback returning `true` is a **caller obligation**, not independently established evidence by this module. Do not invoke these writers directly from UI controls or pass fabricated booleans to the verifiers. Implement specific source adapters and log their genuine read results before enabling agent execution.
+
+`tests/coach-44-8-journey.test.mjs` exercises a *fictional* athlete's feedback → decision → exact prescription version → subsequent filing → execution receipt, including authorization failure and unavailable readback. This is a mocked contract test, not production, native device, or database security verification.
+
+**44.8 feature scope is frozen here.** Remaining work is integration and security: create numbered migrations with Supabase CLI, check the live schema and grants, write source-specific verification adapters, run anonymous/unrelated-coach RLS denial tests, verify signed-in responsive Coach views, then obtain the coach's release decision. Do not add speculative scores, inferred causal outcomes, automatic review gates, or new staff categories to this integration PR.
+
 Do not put placeholders for these two unfinished backends into the live Staff dashboard. First verify schema and readback in a controlled environment; then add clearly source-typed panels.
 
 ## Release sequence
