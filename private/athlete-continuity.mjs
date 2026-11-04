@@ -7,7 +7,8 @@ export function athleteContinuity(brief, feedback, {feedbackAvailable=false}={})
   const episodes=feedback.slice().filter(o=>o?.observed_on&&o?.observation).sort((a,b)=>
     String(b.observed_on).localeCompare(String(a.observed_on)) || String(b.created_at||'').localeCompare(String(a.created_at||''))
   ).slice(0,6).map(o=>{
-    const after=filings.filter(f=>f.filed_at && f.filed_at.slice(0,10)>=o.observed_on)
+    // observed_on has day precision, so same-day filing order is unknown.
+    const after=filings.filter(f=>f.filed_at && f.filed_at.slice(0,10)>o.observed_on)
       .sort((a,b)=>String(a.filed_at).localeCompare(String(b.filed_at))).slice(0,3);
     const prescribed=sessions.filter(s=>s.scheduled_on && s.scheduled_on>=o.observed_on)
       .sort((a,b)=>String(a.scheduled_on).localeCompare(String(b.scheduled_on))).slice(0,3);

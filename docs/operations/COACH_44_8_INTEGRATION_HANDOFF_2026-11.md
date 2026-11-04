@@ -22,6 +22,7 @@ This integrated branch combines only the files from those five PRs, plus this ha
 4. Decision history: test at least one decision with explicit `decision_completions` and one with none. Linked completions are **decision inputs**; later filings are **chronology**. No inferred version ID, adaptation or automatic review gate.
 5. Approved glute schedule remains untouched. No program changes, forged feed visibility, external communications or claim of native iOS proof.
 6. Refresh after a failed RPC and after the browser regains visibility; source freshness never increases merely because the page rerendered.
+7. A feedback observation stores an observed **date**, not an exact event timestamp. A filing on that same date is not classified as occurring afterward without separate time evidence.
 
 ## Backend implementation still required
 

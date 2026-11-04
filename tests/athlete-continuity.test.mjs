@@ -23,3 +23,8 @@ test('bounded chronology retains source and supersession without invented review
   assert.equal(output.episodes[0].supersedes,'o8');
   assert.equal('review_due' in output.episodes[0],false);
 });
+test('same-day filings are not falsely ordered after a date-only observation',()=>{
+  const out=athleteContinuity({recent_filings:[{id:'same-day',filed_at:'2026-11-04T08:00:00Z'},{id:'next-day',filed_at:'2026-11-05T08:00:00Z'}]},
+    [{id:'observation',source:'athlete_reported',observed_on:'2026-11-04',observation:'Strength placement is clearer'}],{feedbackAvailable:true});
+  assert.deepEqual(out.episodes[0].later_filings.map(x=>x.id),['next-day']);
+});
