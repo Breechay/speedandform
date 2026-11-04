@@ -7,6 +7,11 @@ training theory. Then read the existing coaching and publication standards in
 `docs/FORM_CONNECTED_SURFACES.md`, and the active athlete release/Week story
 rules before any plan or filing changes.
 
+Read [`rule-index.json`](rule-index.json) for durable rule identifiers and
+[`agent-run-contract.json`](agent-run-contract.json) for specialist boundaries
+and required action receipts. Both are indexes/contracts, not substitute
+authorities or running background workers.
+
 ## The console is an interface, not an all-access agent API
 
 An agent with an authorized Supabase connector may use the established
@@ -28,6 +33,17 @@ Public metadata is not private access. These URLs retain the existing login
 and Row Level Security boundaries.
 
 ## Agent read path
+
+`coach_agent_athlete_brief(athlete_id)` is the owner-authorized, coach-scoped
+index for one athlete's active block, current Week/story state, upcoming
+prescription versions, recent filings, measurements, standing observations,
+marks and Forge receipt references. Every row identifies its owning record
+and date where available. It is a bounded read and does not prove a wearable
+sync or an iPhone render. Use the existing full dossier for deeper history.
+
+`coach_roster_story_audit()` is the roster-wide Week-story check, now shown in
+Operations → Athlete intelligence. A story exception does **not** authorize an
+agent to improvise an athlete's prescription or alter a paid coaching term.
 
 The live `coach_filing_integrity_read(p_days)` RPC gives the authorized
 operating owner a bounded source-level filing/post reconciliation. It does

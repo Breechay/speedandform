@@ -6,8 +6,10 @@ const $ = s => document.querySelector(s);
 let board=null,user=null,tab='today',area='all',loading=false,authGeneration=0;
 let opportunities={available:false,items:[],error:'Not checked'};
 let filingIntegrity={available:false,read_at:null,filings:[],error:'Not checked'};
+let rosterStory={available:false,athletes:[],error:'Not checked'};
+let athleteBrief={id:null,data:null,error:'',loading:false};
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
-if(['today','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
+if(['today','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
 const closed=i=>['done','cancelled'].includes(i.status);
 const statusName=s=>({queued:'Ready',active:'In progress',waiting:'Waiting',done:'Done',cancelled:'Parked'}[s]||s);
 const sourceName=s=>({live:'Live records',snapshot:'Checked snapshot',stale:'Check again',conflict:'Needs reconciliation',unavailable:'Unavailable',pending:'Pending',unchecked:'Not checked'}[s]||s);
@@ -34,6 +36,15 @@ function areasView(){
   return `<div class="area-tabs"><button type="button" data-area="all" class="${area==='all'?'active':''}">All</button>${Object.entries(AREAS).map(([k,v])=>`<button type="button" data-area="${k}" class="${area===k?'active':''}">${e(v)}</button>`).join('')}</div><div class="area-grid">${selected.map(k=>{const items=board.items.filter(i=>i.area===k&&!closed(i));return `<section class="panel ${selected.length===1?'wide':''}"><h2 style="margin-bottom:25px">${e(AREAS[k])}</h2>${items.length?items.map(itemMarkup).join(''):'<p class="empty">No open operating items recorded.</p>'}${k==='coaching'?coachingView():''}</section>`;}).join('')}</div><details class="changes"><summary>Recently closed</summary>${board.items.filter(closed).slice().sort((a,b)=>b.updated_at.localeCompare(a.updated_at)).slice(0,12).map(itemMarkup).join('')||'<p class="empty">No closed items recorded yet.</p>'}</details>`;
 }
 function coachingView(){return `<h3 class="split-label">Current coach decisions · live FORM records</h3>${board.decisions.map(d=>`<article class="decision"><div class="metadata"><b>${e(athleteName(d.athlete_id))}</b><span>Effective ${e(dateLabel(d.effective_on))}</span><span>${d.delivery_state==='delivered_externally'?'Delivered directly':'Published'}</span></div><p>${e(d.athlete_text)}</p></article>`).join('')||'<p class="empty">No current published decisions returned. This does not mean no assignment exists.</p>'}${board.coach_tasks.length?`<h3 class="split-label">Open coaching gates</h3>${board.coach_tasks.map(coachTask).join('')}`:''}${board.coach_todos.length?`<h3 class="split-label">Dossier to-dos</h3>${board.coach_todos.map(t=>`<div class="item"><b>${e(athleteName(t.athlete_id))}</b><p>${e(t.body)}</p>${t.due_on?`<p class="small">Due ${e(dateLabel(t.due_on))}</p>`:''}</div>`).join('')}`:''}<a class="ref" href="/coach/labs/">Open athlete dossiers ↗</a><p class="source-note">These are existing FORM records, not copied plans. Appointment timing is separate from prescribed work. A new decision does not rewrite completed evidence.</p>`;}
+function intelligenceDetail(d){
+  const list=(items,make)=>items?.length?items.map(make).join(''):'<p class="empty">No records in this bounded source read. Do not infer none exist elsewhere.</p>';
+  return `<section class="panel"><div class="section-head"><h2>${e(d.athlete?.display_name||'Athlete')} · source brief</h2><span class="pill">Read ${e(checked(d.read_at))}</span></div><p class="source-note">${d.active_block?`Active block: ${e(d.active_block.name)}. `:'No active block returned. '}${d.current_week?`Current Week story: ${d.current_week.story_current?'current':'needs recheck'}.`:'No current Week returned.'} Live owners only; no native display or wearable refresh implied.</p><h3 class="split-label">Next eight days</h3>${list(d.upcoming_sessions,s=>`<article class="item"><b>${e(s.title||'Version missing')}</b><p class="small">${e(s.scheduled_on)} · version ${e(s.version_number||'missing')}${s.is_key?' · key session':''} · ${e(s.rpe_low??'?')}–${e(s.rpe_high??'?')} RPE</p></article>`)}<h3 class="split-label">Recent filings</h3>${list(d.recent_filings,f=>`<article class="item"><b>${e(f.status)} · ${e(checked(f.filed_at))}</b><p class="small">${f.actual_distance!=null?`${e(f.actual_distance)} ${e(f.distance_unit||'')} · `:''}${f.duration_seconds!=null?`${e(Math.round(f.duration_seconds/60))} min · `:''}Source ${e(f.source)} · filing ${e(f.id)}</p></article>`)}<h3 class="split-label">Measured evidence</h3>${list(d.recent_measurements,m=>`<article class="item"><b>${e(m.type)}</b><p class="small">${e(m.value)} ${e(m.unit||'')} · ${e(m.measured_at)} · ${e(m.source||'source unknown')}</p></article>`)}<h3 class="split-label">Standing observations</h3>${list(d.standing_observations,o=>`<article class="item"><p>${e(o.observation)}</p><p class="small">${e(o.facet)} · ${e(o.source)} · observed ${e(o.observed_on)}</p></article>`)}<p class="source-note">Active marks: ${e(d.active_marks?.length||0)} · Forge receipts in recent index: ${e(d.forge_receipts?.length||0)}. Full evidence and private notes remain in the authorized athlete dossier.</p><a class="ref" href="/coach/labs/">Open full athlete dossier ↗</a></section>`;
+}
+function intelligenceView(){
+  if(!rosterStory.available)return `<section class="panel"><h2>Athlete intelligence unavailable</h2><p>${e(rosterStory.error)}. No empty roster is inferred.</p></section>`;
+  const people=rosterStory.athletes||[], flagged=people.filter(a=>a.state==='needs_review'||a.state==='missing_week');
+  return `<section class="panel"><div class="section-head"><h2>Current athlete stories</h2><span class="pill ${flagged.length?'warning':''}">${flagged.length} Week exceptions · ${people.length} authorized athletes</span></div><p class="source-note">Live roster read ${e(checked(rosterStory.generated_at))}. Select an athlete for current prescriptions, evidence timestamps, filings and observations. This is an index of owning records, not a second plan.</p><div class="area-grid">${people.map(a=>`<button type="button" class="runway-card" data-athlete-brief="${e(a.id)}"><b>${e(a.name)}</b><span class="pill ${a.state==='needs_review'||a.state==='missing_week'?'warning':''}">${e(a.state.replaceAll('_',' '))}</span><small>${e(a.published_sessions||0)} published current-week sessions</small></button>`).join('')}</div></section>${athleteBrief.loading?'<section class="panel"><p>Reading athlete owners…</p></section>':athleteBrief.error?`<section class="panel"><p class="source-note">${e(athleteBrief.error)}</p></section>`:athleteBrief.data?intelligenceDetail(athleteBrief.data):'<p class="source-note">Choose an athlete to load the bounded private source brief.</p>'}`;
+}
 
 function monday(value){
   const d=new Date(value+'T12:00:00-04:00'), day=(d.getDay()+6)%7;
@@ -114,24 +125,25 @@ function render(){
   if(!board)return;
   $('#gate').hidden=true;$('#workspace').hidden=false;$('#refresh').hidden=false;$('#signout').hidden=false;
   $('#date').textContent=dateLabel(board.today,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  $('#page-title').textContent={today:'Today.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.'}[tab];
+  $('#page-title').textContent={today:'Today.',intelligence:'Athlete intelligence.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.'}[tab];
   $('#freshness').textContent=`Workspace read ${checked(board.read_at)} ET`;
   $('#waiting-count').textContent=board.items.filter(i=>i.status==='waiting').length+board.coach_tasks.filter(t=>t.state.startsWith('waiting')).length;
   $('#source-count').textContent=board.sources.filter(s=>['stale','conflict','unavailable','pending','unchecked'].includes(sourceState(s))).length||'';
   $('[data-tab][aria-current]')?.removeAttribute('aria-current');$(`[data-tab="${tab}"]`).setAttribute('aria-current','page');
-  $('#view').innerHTML=({today:todayView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView}[tab])();
+  $('#view').innerHTML=({today:todayView,intelligence:intelligenceView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView}[tab])();
   $('.capture:not(.opportunity-capture)')?.toggleAttribute('hidden',tab==='opportunities');
 }
 async function refresh(){
   if(loading||!user)return;loading=true;$('#refresh').disabled=true;
   const generation=authGeneration;
   try{
-    const [operating,opportunity,filing]=await Promise.all([supabase.rpc('operating_console_read',{}),supabase.rpc('athletic_opportunities_read',{}),supabase.rpc('coach_filing_integrity_read',{p_days:14})]);
+    const [operating,opportunity,filing,stories]=await Promise.all([supabase.rpc('operating_console_read',{}),supabase.rpc('athletic_opportunities_read',{}),supabase.rpc('coach_filing_integrity_read',{p_days:14}),supabase.rpc('coach_roster_story_audit',{})]);
     if(operating.error)throw operating.error;if(generation!==authGeneration)return;
     board=validateBoard(operating.data);
     try {if(opportunity.error)throw opportunity.error;const valid=validateOpportunityFeed(opportunity.data);opportunities={available:true,items:valid.items,error:''};}
     catch {opportunities={available:false,items:[],error:'The private register is not installed or could not be read. Check the database release and coach permissions.'};}
     filingIntegrity=filing.error?{available:false,filings:[],error:'Authorized filing projection unavailable; check database release and coach permissions'}:{...filing.data,available:true,error:''};
+    rosterStory=stories.error?{available:false,athletes:[],error:'Roster Week audit could not be read'}:{...stories.data,available:true,error:''};
     render();message('');return true;
   }
   catch(err){if(generation!==authGeneration)return;if(!board){$('#gate').hidden=false;$('#workspace').hidden=true;$('#signout').hidden=false;$('#gate-message').textContent='This account could not open the private operating workspace. Use the authorized coach account, or retry if the connection is unavailable.';}else{message('Refresh failed. The last successfully loaded workspace is still shown. Its source timestamps have not changed.',true);}}
@@ -150,7 +162,7 @@ window.setInterval(refreshIfAged, 60 * 1000);
 async function sessionChanged(session){
   const next=session?.user||null;
   if(next?.id===user?.id){if(next&&!board&&!loading)await refresh();return;}
-  authGeneration++;user=next;board=null;opportunities={available:false,items:[],error:'Not checked'};$('#editor').close();$('#opportunity-editor').close();$('#edit-form').reset();$('#capture-form').reset();message('');$('#view').replaceChildren();$('#workspace').hidden=true;
+  authGeneration++;user=next;board=null;opportunities={available:false,items:[],error:'Not checked'};rosterStory={available:false,athletes:[],error:'Not checked'};athleteBrief={id:null,data:null,error:'',loading:false};$('#editor').close();$('#opportunity-editor').close();$('#edit-form').reset();$('#capture-form').reset();message('');$('#view').replaceChildren();$('#workspace').hidden=true;
   $('#gate').hidden=false;$('#refresh').hidden=true;$('#signout').hidden=!user;
   $('#gate-message').textContent=user?'Opening your private workspace.':'Sign in with your existing coach account.';
   if(user&&!loading)await refresh();
@@ -206,6 +218,17 @@ async function opportunityAction(button){
   }catch(err){message(err.message||'Opportunity not changed.',true);button.disabled=false;}
 }
 $('#view').addEventListener('click',async event=>{
+  const briefButton=event.target.closest('button[data-athlete-brief]');
+  if(briefButton){
+    const id=briefButton.dataset.athleteBrief;
+    if(!rosterStory.athletes?.some(a=>a.id===id)||athleteBrief.loading)return;
+    const generation=authGeneration;
+    athleteBrief={id,data:null,error:'',loading:true};render();
+    const {data,error}=await supabase.rpc('coach_agent_athlete_brief',{p_athlete_id:id});
+    if(generation!==authGeneration)return;
+    athleteBrief=error?{id,data:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,error:'',loading:false};
+    if(tab==='intelligence')render();return;
+  }
   const opportunityButton=event.target.closest('button[data-op-action]');if(opportunityButton){await opportunityAction(opportunityButton);return;}
   const areaButton=event.target.closest('[data-area]');if(areaButton){area=areaButton.dataset.area;render();return;}
   const button=event.target.closest('button[data-action]');if(!button||!board)return;
