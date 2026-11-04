@@ -124,6 +124,16 @@ new feedback, the running/strength prescriptions materially change, or an
 actual restriction conflicts. Preserve the original observation and adjustment
 history; do not manufacture a readiness problem from schedule geometry alone.
 
+Feedback continuity in Operations → Athlete intelligence now rereads up to
+12 historical `athlete_observations` under the logged-in coach's normal RLS.
+It preserves `athlete_reported`, `coach_observed`, `system_detected`, observed
+dates, supersession pointers and filing evidence IDs. A filing outside the
+bounded brief stays `reference_not_loaded`, never falsely invalid. This is
+historical readback, not automatic NLP ingestion of texts. Agents should use
+the existing authorized `addObservation` owner after confirming athlete ID,
+source wording and observation date; do not claim a screenshot was saved merely
+because it appeared in chat. Never infer a program change from one comment.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
