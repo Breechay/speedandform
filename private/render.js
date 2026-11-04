@@ -56,6 +56,18 @@ export function titleAlreadySays(title, line) {
 // The plain form is what leaves the Console. LT2, HM and 15e are internal
 // vocabulary, and a line an athlete reads should say what it means in the words a
 // coach would use standing next to them.
+// A rep's visible magnitude follows the track distance, not decimal kilometres.
+// Keep the stored unit for the math; this function changes presentation only.
+export function workMagnitude(part) {
+  if (part?.duration_seconds != null) {
+    const secs = Number(part.duration_seconds);
+    return secs % 60 === 0 ? `${secs / 60} min` : `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`;
+  }
+  const distance = Number(part?.distance);
+  if (part?.distance_unit === 'km' && distance < 1) return `${Math.round(distance * 1000)} m`;
+  return `${distance} ${part?.distance_unit || 'mi'}`;
+}
+
 export function structureOf(version, { plain = false } = {}) {
   const parts = (version?.components || [])
     .filter((part) => part.role === 'work')
@@ -79,11 +91,7 @@ export function structureOf(version, { plain = false } = {}) {
 
   const magnitude = (part) => {
     if (part.duration_seconds != null) return unit(part.duration_seconds);
-    const distance = Number(part.distance);
-    // A rep shorter than a kilometre is spoken in metres. Nobody has ever run
-    // "0.2 km", and a decimal in a rep length reads as a rounding error.
-    if (part.distance_unit === 'km' && distance < 1) return `${Math.round(distance * 1000)} m`;
-    return `${distance} ${part.distance_unit}`;
+    return workMagnitude(part);
   };
 
   return parts.map((part) => {
