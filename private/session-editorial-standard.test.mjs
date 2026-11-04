@@ -139,3 +139,24 @@ test('Console exposes component units and syncs single-work RPE on anatomy edits
   assert.match(coachSource, /work\.rpeLow = payload\.rpeLow/);
   assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components \|\| existingParts\)/);
 });
+
+test('generic session labels are rejected, while meaningful speed titles pass', () => {
+  for (const title of ['controlled', 'Key Session', 'Mid Week Aerobic', 'threshold co', 'Workout']) {
+    const issues = sessionEditorialIssues({ title, intent: 'Practice repeatable speed.', details: '4 × 800m with 3:00 jog.' });
+    assert.ok(issues.some(issue => issue.field === 'title' && issue.message.includes('too generic') || issue.message.includes('session name')), title);
+  }
+  assert.deepEqual(sessionEditorialIssues({
+    title: 'Intro to Speed',
+    intent: 'Find an even faster rhythm.',
+    details: '4 × 800m with 3:00 jog.'
+  }), []);
+});
+
+test('Console previews per-repeat time from per-mile pace and asks for extreme pace confirmation', () => {
+  const source = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
+  assert.match(source, /Fast pace \(\/mi\)/);
+  assert.match(source, /Slow pace \(\/mi\)/);
+  assert.match(source, /Projected.*m:/);
+  assert.match(source, /function unusualRepPaceWarning\(parts\)/);
+  assert.match(source, /window\.confirm\(/);
+});
