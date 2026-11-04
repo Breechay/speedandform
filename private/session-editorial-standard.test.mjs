@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { test } from 'node:test';
-import { sessionEditorialIssues, changedSessionEditorialIssues, weekPreviewEditorialIssues } from './session-editorial-standard.mjs';
+import { sessionEditorialIssues, changedSessionEditorialIssues, weekPreviewEditorialIssues, prescriptionPresentationIssues } from './session-editorial-standard.mjs';
 
 test('clean prescribed easy run and strides passes', () => {
   assert.deepEqual(sessionEditorialIssues({
@@ -115,4 +115,27 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
     title: '3 × 800 m controlled',
     preview: '1 mi easy. 3 × 800 m at RPE 6–7, walk 160 m between. 1.5 mi easy.'
   }), []);
+});
+
+
+test('a metric track title must agree with the typed component unit', () => {
+  assert.deepEqual(prescriptionPresentationIssues('Speed · 200m rhythm', [
+    { role: 'work', distance: 0.2, distanceUnit: 'km' }
+  ]), []);
+  assert.ok(prescriptionPresentationIssues('Speed · 200m rhythm', [
+    { role: 'work', distance: 0.2, distanceUnit: 'mi' }
+  ]).length);
+  assert.ok(prescriptionPresentationIssues('Aerobic power · 800m', [
+    { role: 'work', distance: 0.5, distanceUnit: 'mi' }
+  ]).length);
+  assert.deepEqual(prescriptionPresentationIssues('Rhythm · 1 minute changes', [
+    { role: 'work', durationSeconds: 60 }
+  ]), []);
+});
+
+test('Console exposes component units and syncs single-work RPE on anatomy edits', () => {
+  const coachSource = fs.readFileSync(new URL('../coach/coach.js', import.meta.url), 'utf8');
+  assert.match(coachSource, /name=\"partDistanceUnit\"/);
+  assert.match(coachSource, /work\.rpeLow = payload\.rpeLow/);
+  assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components\)/);
 });
