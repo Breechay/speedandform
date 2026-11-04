@@ -861,6 +861,15 @@ export async function addObservation({ athleteId, facet, source, observation, di
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError) throw userError;
   if (!user) throw new Error('Sign in as an authorized coach before recording feedback.');
+  // An agent may receive the same screenshot twice. Recheck the exact source
+  // observation before inserting; the database remains the canonical owner.
+  if (observedOn) {
+    const existing = await supabase.from('athlete_observations').select('id')
+      .eq('athlete_id', athleteId).eq('facet', facet).eq('source', source)
+      .eq('observed_on', observedOn).eq('observation', original).limit(1);
+    if (existing.error) throw existing.error;
+    if (existing.data?.length) return { id: existing.data[0].id, alreadyPresent: true };
+  }
   const { data, error } = await supabase.from('athlete_observations').insert({
     athlete_id: athleteId,
     facet,

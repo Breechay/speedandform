@@ -90,6 +90,14 @@
       "authority": "coach/AGENT_OPERATIONS.md",
       "enforcement": "whole-week guardian treats existing strength/run stacking as context",
       "verification": "tests/whole-week-guardian.test.mjs"
+    },
+    {
+      "id": "FORM-FEEDBACK-012",
+      "title": "File explicitly requested athlete evidence; ask once for incidental meaningful feedback",
+      "owner": "Brice",
+      "authority": "coach/AGENT_OPERATIONS.md",
+      "enforcement": "agent feedback capture decision and authorized observation writer",
+      "verification": "tests/feedback-capture-policy.test.mjs"
     }
   ]
 }
