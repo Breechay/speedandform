@@ -26,6 +26,7 @@ Approved glute-day placements stay as designed. Update only with new athlete fee
 ## What's actually implemented in the draft
 
 - Staff Console with separate agent-owned work, coach conversation points, week/filing exceptions and unavailable-source states. A queued/done item is not proof that an external action happened.
+- A collapsible staff-position directory with stable role codes (`HC`, `PD`, `AI`, `AC`, `FI`, `QR`, `CE`). These are positions/responsibilities, not independently running agents. Source-backed work and authorization still come from the existing operating records.
 - Bounded athlete observations, provenance, supersession, explicit filing references and later chronology. Date-only feedback cannot order same-day filings.
 - Decision inputs via explicit completion links, later filings as **chronology**, and optional explicit before/after prescription-version links. Never infer a version link from scheduling proximity.
 - Agent receipt statuses and validation, optional exact `athlete_id` scoped to coach membership, bounded read-only athlete execution history, and client-side rejection of invalid or cross-athlete receipts.
@@ -40,6 +41,12 @@ Source PRs #488–#492 are reference branches **already consolidated** into #493
 2. No numbered migrations have been generated through Supabase CLI, applied or verified. No agent execution writer is connected to a real source verifier, and no authenticated database end-to-end test exists.
 3. Coach desktop/mobile signed-in visual and cross-account RLS testing remain open. A sign-in wall prevented prior private UI inspection; do not claim native or browser verification.
 4. No production merge, Netlify deploy, publication, real-athlete plan change, or external message is authorized by this brief.
+5. The **Quality & Reliability (QR)** position has no live app-health data source yet. Hope's 11 iOS watchdog reports and Tinius's lag inform the 44.7 iOS reliability program, not a fabricated Coach dashboard metric. Later 44.8 integration can show verified app versions, issue counts, affected athletes and fix states only after a privacy-minimal diagnostics source and account/consent policy exist. Use Apple diagnostics/MetricKit as the proposed source; do not request routine crash files from all athletes or display sensitive diagnostics.
+
+## New cross-release evidence (Nov 4)
+
+- iOS 44.7 reliability: Hope supplied 11 watchdog reports; analysis points to Keychain and other main-thread string, filesystem and JSON work. The 44.6 fix has not been confirmed on Hope's device. Preserve 44.6 P0 escalation if she crashes again. Keep performance instrumentation and physical-device testing owned by 44.7, with QR later consuming verified summaries.
+- Filing/Field feed: the live source has published, non-revoked posts for Elijah, Sam and Hope, and all three satisfy the publication eligibility function. Sam's completion contains **four structured mile reps**; Hope's has aggregate 800m stats but no per-rep order; Elijah's `6:02 / 5:51 / 5:42` are **whole-activity mile splits** in a coach note, not verified work intervals. `collective_work_feed` currently does not return structured split fields. The FI position should own reconciliation across filing → structured pieces → post → feed payload → native rendering. Do not fabricate Hope's missing individual rep times or relabel Elijah's whole-activity splits as interval reps.
 
 ## Resume sequence for Codex / Claude Code
 
