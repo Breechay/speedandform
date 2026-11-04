@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "last_curated_on": "2026-11-04",
+  "purpose": "Locator of current FORM authority, not a replacement method or a parallel prescription database.",
+  "rules": [
+    {
+      "id": "FORM-METHOD-001",
+      "title": "Train to win, not to win workouts",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#01-train-to-win",
+      "enforcement": "coaching doctrine",
+      "verification": "coach authoring review"
+    },
+    {
+      "id": "FORM-DOSE-002",
+      "title": "Distinguish skill, stimulus and recovery cost",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#04-purpose-dose-and-recovery-cost",
+      "enforcement": "coaching doctrine",
+      "verification": "whole-week authoring review"
+    },
+    {
+      "id": "FORM-WEEK-003",
+      "title": "Author complete progression and the whole Week story",
+      "owner": "FORM Coaching",
+      "authority": "docs/coaching/FORM_WEEK_STORY_EDITORIAL_RULE_20261027.md",
+      "enforcement": "canonical week-story audit and coach review",
+      "verification": "public.coach_roster_story_audit()"
+    },
+    {
+      "id": "FORM-FILING-004",
+      "title": "Filing, Week and feed are distinct receipts",
+      "owner": "FORM Athlete System",
+      "authority": "coach/AGENT_OPERATIONS.md",
+      "enforcement": "database read and scoped repair",
+      "verification": "public.coach_filing_integrity_read(integer) and tests/coach-filing-integrity.test.mjs"
+    },
+    {
+      "id": "FORM-SHARING-005",
+      "title": "Respect effective sharing and historical permission",
+      "owner": "FORM Athlete System",
+      "authority": "supabase/migrations/20261104194500_coach_filing_reconciliation_consent_timing.sql",
+      "enforcement": "database permission and source-post repair guards",
+      "verification": "tests/coach-filing-integrity.test.mjs"
+    },
+    {
+      "id": "FORM-PRESENTATION-006",
+      "title": "Publish concise athlete-specific workouts with consistent units",
+      "owner": "FORM Coaching",
+      "authority": "private/session-editorial-standard.mjs",
+      "enforcement": "coach editor checks and typed database constraints",
+      "verification": "private/session-editorial-standard.test.mjs"
+    },
+    {
+      "id": "FORM-ARITHMETIC-007",
+      "title": "Published dose and RPE must be numerically valid",
+      "owner": "FORM Athlete System",
+      "authority": "supabase/migrations/20261104200500_program_version_arithmetic_guard.sql",
+      "enforcement": "validated PostgreSQL constraints",
+      "verification": "tests/coach-filing-integrity.test.mjs"
+    },
+    {
+      "id": "FORM-STRENGTH-008",
+      "title": "Glute development and external strength count in the athlete week",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#10-strength-belongs-in-the-athlete",
+      "enforcement": "individual coach prescription and cross-product review",
+      "verification": "coach authoring review; not an automatic universal dose"
+    },
+    {
+      "id": "FORM-EVIDENCE-009",
+      "title": "Preserve observation, athlete report, measurement and inference separately",
+      "owner": "FORM Labs",
+      "authority": "method-bible/method.md#14-every-athlete-is-a-living-study",
+      "enforcement": "sourced athlete observation and filing records",
+      "verification": "public.coach_agent_athlete_brief(uuid) source and date fields"
+    },
+    {
+      "id": "FORM-AUTONOMY-010",
+      "title": "Agent authorization is action-scoped and every action has a receipt",
+      "owner": "FORM Operations",
+      "authority": "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md",
+      "enforcement": "current permission boundaries and agent operating contract",
+      "verification": "coach/AGENT_OPERATIONS.md"
+    }
+  ]
+}
