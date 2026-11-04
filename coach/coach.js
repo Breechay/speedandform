@@ -1376,6 +1376,26 @@ let partsOpenedAs = '';
 const clockText = (seconds) => seconds == null || seconds === ''
   ? '' : `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, '0')}`;
 
+// Pace fields always mean min/mi. Rep distance alone may be entered in km.
+function repPacePreview(part) {
+  if ((part.shape || 'continuous') !== 'repetitions' || (part.role || 'work') !== 'work') return '';
+  const distance = Number(part.distance);
+  const fast = part.paceLowSeconds ?? part.pace_low_seconds;
+  const slow = part.paceHighSeconds ?? part.pace_high_seconds;
+  if (!(distance > 0) || fast == null || slow == null) return 'Pace bands are min/mi, not the split for one repeat.';
+  const unit = part.distanceUnit || part.distance_unit || 'mi';
+  const miles = distance * (unit === 'km' ? 1000 / 1609.344 : 1);
+  const meters = Math.round(distance * (unit === 'km' ? 1000 : 1609.344));
+  return `Projected ${meters} m: ${clockText(Math.round(fast * miles))}–${clockText(Math.round(slow * miles))} per rep · entered as min/mi.`;
+}
+function paintRepPacePreviews() {
+  const parts = readParts();
+  document.querySelectorAll('#partsRows [data-part]').forEach((row, index) => {
+    const preview = row.querySelector('[data-part-pace-preview]');
+    if (preview) preview.textContent = repPacePreview(parts[index] || {});
+  });
+}
+
 function partRowHtml(part = {}) {
   const shape = part.shape || 'continuous';
   const options = (list, chosen) => list
@@ -1393,12 +1413,13 @@ function partRowHtml(part = {}) {
       ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
       <label>Unit<select name="partDistanceUnit">${options([['mi', 'mi'], ['km', 'km']], part.distance_unit || 'mi')}</select></label>
       ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
-      ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
-      ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
+      ${field('Fast pace (/mi)', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
+      ${field('Slow pace (/mi)', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
       ${shape === 'repetitions' ? field('Recovery', 'recovery', clockText(part.recovery_seconds), 'placeholder="3:00"') : ''}
       ${shape === 'repetitions' ? `<label>Kind<select name="recoveryKind">${options(RECOVERY_KINDS, part.recovery_kind)}</select></label>` : ''}
       ${shape === 'repetitions' ? field('Floor', 'repeatMinimum', part.repeat_minimum, 'type="number" min="1"') : ''}
       ${shape === 'repetitions' ? field('Ceiling', 'repeatCeiling', part.repeat_ceiling, 'type="number" min="1"') : ''}
+      ${shape === 'repetitions' ? `<small data-part-pace-preview>${escapeHtml(repPacePreview(part))}</small>` : ''}
     </div>
     <button class="part-drop" type="button" data-drop-part aria-label="Remove this piece">&times;</button>
   </div>`;
@@ -1467,6 +1488,15 @@ function readParts({ raw = false } = {}) {
 }
 
 // Said here, in the coach's words, rather than surfaced as a rejected save.
+function unusualRepPaceWarning(parts) {
+  for (const part of parts) {
+    const meters = Number(part.distance) * (part.distanceUnit === 'km' ? 1000 : 1609.344);
+    if (part.role !== 'work' || part.shape !== 'repetitions' || meters < 600
+        || part.paceLowSeconds == null || part.paceLowSeconds >= 300) continue;
+    return `This ${Math.round(meters)} m repeat uses ${clockText(part.paceLowSeconds)}/mi, projecting ${clockText(Math.round(part.paceLowSeconds * meters / 1609.344))} per rep. A rep split entered as mile pace can silently double the speed. Verify the units and projected rep time.`;
+  }
+  return null;
+}
 function partsComplaint(parts) {
   for (const [index, part] of parts.entries()) {
     const where = `Piece ${index + 1}`;
@@ -1517,8 +1547,12 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
     });
   }
   markPartsState();
+  paintRepPacePreviews();
 });
-document.getElementById('sessionParts').addEventListener('input', markPartsState);
+document.getElementById('sessionParts').addEventListener('input', () => {
+  markPartsState();
+  paintRepPacePreviews();
+});
 
 function openSession(plannedSessionId = null) {
   sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
@@ -2022,6 +2056,8 @@ sessionForm.addEventListener('submit', async (event) => {
     status.className = 'status-message error';
     return;
   }
+  const paceWarning = unusualRepPaceWarning(payload.components || []);
+  if (paceWarning && !window.confirm(`${paceWarning}\n\nAre these units and projected splits correct?`)) return;
   button.disabled = true; status.textContent = 'Saving.';
   try {
     if (revisingSessionId) await reviseSession(revisingSessionId, payload);
