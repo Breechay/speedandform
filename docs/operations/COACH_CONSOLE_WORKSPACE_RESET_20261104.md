@@ -77,9 +77,11 @@ belong in secondary destinations rather than inflating the main menu.
   Programming, Today, Group Sessions and Runs.
 - No private rows, training doses, publication decisions, feed rows or backend
   schemas were touched by this presentation pass.
-- This is repository source work. It has **not** been deployed. Actual signed-in
-  browser, device and dark-to-light transition QA remain separate acceptance
-  requirements.
+- This bullet described the initial source pass before release. **The first
+  light workspace was subsequently deployed November 4** via production
+  commit `0aea893`; the [release receipt](FORM_METHOD_CONSOLE_RELEASE_RECEIPT_20261104.md)
+  distinguishes observed public entry screens from the outstanding signed-in,
+  device and dark-to-light transition QA.
 - Local visual capture was unavailable in the authoring session; screenshots
   must be checked before production release, especially fonts, low-contrast
   statuses, modals, narrow devices and long athlete names.

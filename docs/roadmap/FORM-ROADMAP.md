@@ -18,16 +18,26 @@
   defines source owners, evidence/freshness budgets, five specialist duties,
   readback and action-level approval. Existing scheduled jobs stay in place;
   no new recurring agent is activated.
-- **Verification/status:** Focused tests and syntax checks passed in local
-  source work; browser screenshots and authenticated end-to-end checks remain
-  outstanding. **Not merged, not deployed, not production-verified** at the
-  time of this record. Live athlete plans, consent, app distribution and
-  backend schemas are unchanged by this batch.
-- **Next:** visual review at desktop/mobile with a signed-in coach; verify
-  actual source/version and feed parity for a safe test; inspect the public
-  article at its final URL; then authorize one release, merge and read back
-  Netlify production separately. First system automation to implement is the
-  event-driven Filing & Feed Reconciler, behind real permissions and receipts.
+- **Production status, November 4:** **Published and read back**. Source PR
+  [#462](https://github.com/Breechay/speedandform/pull/462) merged to `main`
+  as `dfb2c2a`; the targeted production PR
+  [#463](https://github.com/Breechay/speedandform/pull/463) merged as
+  `0aea893`, preserving the separate live-branch changes. Netlify deployed
+  `0aea893` as ready deploy `6aeb6489a87159adadeeb7c0`. Public browser
+  confirmed the 17-chapter Bible, TOC, `llms.txt` and public coach entry
+  navigation. Brice waived personal design review, not access controls.
+  See the [exact release receipt](../operations/FORM_METHOD_CONSOLE_RELEASE_RECEIPT_20261104.md).
+- **Quality status:** 21/21 focused source tests passed. Production branch CI
+  had 14 successful workflows and one known **unrelated** failing
+  public-study-date assertion (expected October 27 vs recorded October 20).
+  Authenticated coach filing/publishing and native-device experience were not
+  exercised in this release. Athlete plans, consent, app distribution and
+  backend schemas were unchanged.
+- **Next:** authenticated coach QA when a valid session is available, including
+  older Labs Plan/Week/Brief visual surfaces; build the event-driven Filing &
+  Feed Reconciler with owned source/version and athlete Week/feed receipts.
+  Do not report agent runtime automation as live simply because the console
+  and agent map are now published.
 
 ## November 2 · Running app page aligned to FORM 44.5
 
