@@ -848,16 +848,28 @@ export async function signPortraits(athletes) {
 // superseding rather than overwriting. WHAT HELPS for a runner and WHAT I'M
 // SEEING for a strength athlete are the same object, which is why the facets are
 // deliberately small and shared.
-export async function addObservation({ athleteId, facet, source, observation, direction, supersedes }) {
+export async function addObservation({ athleteId, facet, source, observation, direction, supersedes, observedOn, evidenceCompletionIds }) {
+  if (!athleteId || !['body','capacity','practice','helps','aspiration','means','pattern'].includes(facet))
+    throw new Error('Choose a verified athlete and observation facet.');
+  if (!['athlete_reported','coach_observed','system_detected'].includes(source))
+    throw new Error('Identify who supplied the observation.');
+  const original = String(observation || '').trim();
+  if (!original || original.length > 2000) throw new Error('Preserve a nonempty source observation (up to 2,000 characters).');
+  if (observedOn && !/^\d{4}-\d{2}-\d{2}$/.test(observedOn)) throw new Error('Use an exact observation date.');
+  if (evidenceCompletionIds && (!Array.isArray(evidenceCompletionIds) || evidenceCompletionIds.length > 12))
+    throw new Error('Evidence links must be a bounded list.');
   const { data: { user }, error: userError } = await supabase.auth.getUser();
   if (userError) throw userError;
+  if (!user) throw new Error('Sign in as an authorized coach before recording feedback.');
   const { data, error } = await supabase.from('athlete_observations').insert({
     athlete_id: athleteId,
     facet,
-    source: source || 'coach_observed',
-    observation: String(observation || '').trim(),
+    source,
+    observation: original,
     direction: direction || null,
     supersedes: supersedes || null,
+    ...(observedOn ? { observed_on: observedOn } : {}),
+    ...(evidenceCompletionIds ? { evidence_completion_ids: evidenceCompletionIds } : {}),
     authored_by: user.id
   }).select('*').single();
   if (error) throw error;
