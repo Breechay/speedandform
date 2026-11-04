@@ -1,5 +1,14 @@
 # Speed & Form · Agent Orientation
-## Read this after root AGENTS.md · Current operating map · 2026-10-02
+## Read this after root AGENTS.md · Current operating map · updated 2026-11-04
+
+**November 4 operating overlay:** The [FORM intelligence architecture](operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md)
+defines bounded specialist duties, source freshness, receipts and human approval.
+The [agent-facing Coach Console guide](../coach/AGENT_OPERATIONS.md) and
+`coach/agent-map.json` locate current routes and their actual access rules.
+The [FORM Method Bible](../method-bible/method.md) is the public training
+doctrine; individual published plans remain the canonical athlete instructions.
+**Train to win means the right work and restraint, not racing workouts.**
+No new autonomous bot or permission is activated by this overlay.
 
 This file exists to stop a capable agent from doing locally reasonable work that makes the whole Speed & Form system less coherent.
 

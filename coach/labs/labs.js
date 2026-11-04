@@ -64,6 +64,8 @@ let pending = null;
 let consolePreferences = null;
 let dossierWeekId = null;
 let athleteLoadToken = 0;
+let lastRecordReadAt = 0;
+let lastRecordRefreshAttemptAt = 0;
 
 // Local, not UTC. toISOString rolls over at 8pm Eastern, so every surface that
 // asks "is this today" — the week view's marker, whether a session can be filed,
@@ -566,6 +568,7 @@ function dossierRosterHtml(activeSlug) {
     <div class="ccBrand"><span>Coach Console</span><button type="button" data-collapse-rail aria-label="${
       consolePreferences?.rail_collapsed ? 'Expand athlete rail' : 'Collapse athlete rail'}">▥</button></div>
     <div class="ccRailLabel">ATHLETES <span>${escapeHtml(ordered.length)}</span></div>
+    <label class="ccRosterSearch"><span class="srOnly">Find an athlete</span><input type="search" id="ccRosterSearch" placeholder="Find an athlete" autocomplete="off"></label>
     <div class="ccRoster">${ordered.map((entry) => {
       const next = entry.next;
       const context = next
@@ -583,13 +586,23 @@ function dossierRosterHtml(activeSlug) {
   </aside>`;
 }
 
+function coachWorkspaceNav() {
+  return `<nav class="coachSiteNav" aria-label="Coach workspace">
+    <a href="/coach/ops/">Today</a>
+    <a href="/coach/labs/" aria-current="page">Athletes</a>
+    <a href="/coach/console/">Programming</a>
+    <a href="/coach/miami/">Group sessions</a>
+    <a href="/coach/runs/">Runs</a>
+  </nav>`;
+}
+
 function dossierWeekHtml() {
   const orderedWeeks = (record.weeks || []).slice().sort((a, b) => a.starts_on.localeCompare(b.starts_on));
   const week = orderedWeeks.find((item) => item.id === dossierWeekId) || record.currentWeek;
   if (!week) {
     const baseline = (record.baselines || [])[0];
     return `<section class="ccCard ccWeek ccRelationshipWeek">
-      <header><div><h2>This week</h2></div><a class="ccQuiet" href="/coach/console/">＋ Add work</a></header>
+      <header><div><h2>This week</h2></div><a class="ccQuiet" href="/coach/console/?athlete=${encodeURIComponent(record.athlete.slug)}">Open programming ↗</a></header>
       ${baseline?.strength_schedule ? `<p>${escapeHtml(baseline.strength_schedule)}</p>` : ''}
     </section>`;
   }
@@ -617,7 +630,7 @@ function dossierWeekHtml() {
         <button type="button" data-dossier-week="${escapeHtml(previous?.id || '')}" ${previous ? '' : 'disabled'} aria-label="Previous week">←</button>
         <button type="button" data-dossier-week="${escapeHtml(next?.id || '')}" ${next ? '' : 'disabled'} aria-label="Next week">→</button>
       </nav></div>
-      <a class="ccQuiet" href="/coach/console/">＋ Add work</a></header>
+      <a class="ccQuiet" href="/coach/console/?athlete=${encodeURIComponent(record.athlete.slug)}">Open programming ↗</a></header>
     <div class="ccDays">${days}</div>
   </section>`;
 }
@@ -745,9 +758,11 @@ function athleteHtml() {
   return `<main class="view on ccApp${consolePreferences?.rail_collapsed ? ' railCollapsed' : ''}">
     ${dossierRosterHtml(athlete.slug)}
     <div class="ccWorkspace"><div class="ccContent">
+      ${coachWorkspaceNav()}
       <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(athlete.first_name))}</span>
         ${showConsolePortrait ? `<img data-portrait="${escapeHtml(athlete.slug)}" alt="">` : ''}</div>
         <div><h1>${escapeHtml(athlete.first_name)}</h1><p>${escapeHtml(raceLine(athlete, record.block))}</p></div>
+        <div class="ccRecordTools"><span id="ccRecordFreshness">Read ${new Date(lastRecordReadAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</span><button type="button" data-refresh-record>Refresh record</button><a href="/method-bible/" target="_blank" rel="noopener noreferrer">Method ↗</a></div>
       </header>
       <div class="ccPanelGrid">${dossierWeekHtml()}${athleteInstrumentHtml()}${dossierNotesHtml()}${dossierMediaHtml()}</div>
     </div></div>
@@ -761,6 +776,7 @@ function dossierLoadingHtml(entry) {
   return `<main class="view on ccApp ccLoading${consolePreferences?.rail_collapsed ? ' railCollapsed' : ''}" aria-busy="true">
     ${dossierRosterHtml(entry.slug)}
     <div class="ccWorkspace"><div class="ccContent">
+      ${coachWorkspaceNav()}
       <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(entry.first_name))}</span></div>
         <div><h1>${escapeHtml(entry.first_name)}</h1><p>Opening record</p></div>
       </header>
@@ -2743,6 +2759,7 @@ async function selectAthlete(slug, { silent = false } = {}) {
   if (token !== athleteLoadToken || route().slug !== slug) return;
   record = nextRecord;
   attention = nextAttention;
+  lastRecordReadAt = Date.now();
   dossierWeekId = record.currentWeek?.id || null;
   render();
   if (!silent) window.scrollTo({ top: 0, behavior: 'auto' });
@@ -2798,6 +2815,10 @@ async function show() {
 // ── binding ─────────────────────────────────────────────────────────────────
 
 document.addEventListener('click', (event) => {
+  if (event.target.closest('[data-refresh-record]')) {
+    refreshVisibleRecord(true);
+    return;
+  }
   const column = event.target.closest('[data-slug]');
   if (column) { location.hash = `#/a/${column.dataset.slug}`; return; }
 
@@ -2859,7 +2880,10 @@ document.addEventListener('click', (event) => {
   const go = event.target.closest('[data-nav]');
   if (!go) return;
   const where = go.dataset.nav;
+  if (where === 'today') { location.href = '/coach/ops/'; return; }
+  if (where === 'athletes') { location.href = '/coach/labs/'; return; }
   if (where === 'console') { location.href = '/coach/console/'; return; }
+  if (where === 'group') { location.href = '/coach/miami/'; return; }
   if (where === 'runs') { location.href = '/coach/runs/'; return; }
   if (where === 'brief') { location.hash = '#/brief'; return; }
   const slug = record?.athlete?.slug || route().slug
@@ -2886,6 +2910,13 @@ document.addEventListener('submit', async (event) => {
 });
 
 document.addEventListener('input', (event) => {
+  if (event.target.id === 'ccRosterSearch') {
+    const term = event.target.value.trim().toLocaleLowerCase();
+    document.querySelectorAll('.ccRoster .ccAthlete').forEach((button) => {
+      button.hidden = !button.textContent.toLocaleLowerCase().includes(term);
+    });
+    return;
+  }
   if (event.target.id !== 'ccNoteBody') return;
   event.target.style.height = 'auto';
   event.target.style.height = `${Math.min(event.target.scrollHeight, 280)}px`;
@@ -2918,12 +2949,37 @@ document.addEventListener('keydown', (event) => {
 });
 window.addEventListener('hashchange', () => { show().catch(fail); });
 
+function canRefreshVisibleRecord() {
+  return Boolean(access && route().view === 'athlete' && record?.athlete?.slug
+    && !document.querySelector('#sheet[aria-hidden="false"], #sessionDrawer.on, #sessionDrawer.open, dialog[open]')
+    && !document.querySelector('.ccAccount details[open], textarea:focus, input:focus'));
+}
+async function refreshVisibleRecord(force = false) {
+  if (!canRefreshVisibleRecord()) return;
+  if (!force && (Date.now() - lastRecordReadAt < 5 * 60 * 1000
+    || Date.now() - lastRecordRefreshAttemptAt < 5 * 60 * 1000)) return;
+  lastRecordRefreshAttemptAt = Date.now();
+  const slug = record.athlete.slug;
+  const status = document.querySelector('#ccRecordFreshness');
+  if (status) status.textContent = 'Checking current record…';
+  try {
+    await selectAthlete(slug, { silent: true });
+  } catch {
+    const current = document.querySelector('#ccRecordFreshness');
+    if (current) current.textContent = 'Refresh failed · previous record shown';
+  }
+}
+
 // Signed portrait URLs last an hour and this tab stays open all day. Re-signing
 // on return is cheaper than a longer signature.
 document.addEventListener('visibilitychange', () => {
   if (document.visibilityState !== 'visible' || !access) return;
   loadCoachBench(access.coachMemberships).then((rows) => { bench = rows; paint(); }).catch(() => {});
+  refreshVisibleRecord();
 });
+window.setInterval(() => {
+  if (document.visibilityState === 'visible') refreshVisibleRecord();
+}, 60 * 1000);
 
 function fail(error) {
   app.innerHTML = `<div class="failed"><p class="h">COULD NOT OPEN THE CONSOLE</p>

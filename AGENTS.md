@@ -1,5 +1,21 @@
 # Start here: Speed & Form
 
+> **FORM intelligence system · November 4, 2026:** Read
+> [the current architecture](docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md),
+> [coach agent contract](coach/AGENT_OPERATIONS.md) and
+> [public Method Bible](method-bible/method.md) before proposing autonomous
+> bots, designing or revising a plan, filing on an athlete's behalf, or claiming
+> a Console/app projection is current. **Train to win does not mean racing
+> workouts:** follow the authored progression, execute the intended effort,
+> develop glutes and full-body strength, use useful mobility, and protect the
+> recovery needed to stack sessions and perform when it matters. Keep skill,
+> stimulus and cost separate. Private athlete data never goes into public
+> doctrine. Agent authority is per action, source and permission; source
+> freshness and destination readback are required before calling a task done.
+> This new policy supplements current owner instructions and existing
+> publication/clinical/privacy gates; it does not supersede individual
+> prescriptions or medical restrictions.
+
 > **The Athletic Life is the north star (Nov 2).** Read [the north star](the-athletic-life/brief.md) before proposing product, service or experience work. Rule order and standing decisions are in [the agent guide](the-athletic-life/research/agent-guide.md). Public app updates live in `the-athletic-life/next/items.json`. The original research assignment is preserved in [the founding brief](docs/operations/ATHLETIC_LIFE_FOUNDING_BRIEF_20261028.md).
 
 > **FORM weekly story rule (Oct 27):** The Dossier "THIS WEEK" is one paragraph that teaches the point of the actual week, naming the actual speed, pace or endurance skill. `training_weeks.intent` names its distinguishing work, and `matters_because` explains the principle in plain, succinct language. No weekday-list restatement, generic "keep it controlled" second line, em dashes, hype or unverified coaching claims. **Every published session or plan change requires re-reading and reauthoring or reconfirming the Week story, including adjacent progression where needed.** The existing stale-story guard must remain active; do not show an old explanation as current. Follow [the owning weekly story rule](docs/coaching/FORM_WEEK_STORY_EDITORIAL_RULE_20261027.md) and verify `story_current` after publication. An editorial fix never changes training doses.\n\n
