@@ -22,7 +22,37 @@ async function localFiles(page){
  });
 }
 async function mock(page,mode='live'){
- await page.route(route,r=>mode==='saved'?r.abort():r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(mode==='review_required'?{state:'review_required'}:pub)}));
+ await page.route(route,r=>{
+  if(mode==='unverified-network')return r.abort();
+  if(mode==='unverified-http500')return r.fulfill({status:500,contentType:'application/json',body:'{"message":"boom"}'});
+  if(mode==='unverified-malformed')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({state:'published',payload:{plan:{slug:'simon-ceiling-durability-01'}}})});
+  if(mode==='unverified-garbage')return r.fulfill({status:200,contentType:'application/json',body:'not json'});
+  if(mode==='unverified-unknown-state')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({state:'maybe'})});
+  if(mode==='unavailable')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({state:'unavailable',message:'No approved public plan.',payload:pub.payload})});   // a stray payload must never be shown
+  if(mode==='review_required')return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({state:'review_required'})});
+  return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(pub)});
+ });
+}
+// Withdrawal-safe rule: in every non-live mode the page shows NO plan content at all.
+const DOSE_STRINGS=['3:49–3:52','3:33–3:38','3:50–3:53','6:08–6:13','5:43–5:51','relaxed strides','Warm-up 20','Cooldown 10','Plan snapshot','Lighter week','8 km to 10 km'];   // plan-only strings (the editorial history legitimately quotes other paces)
+async function recordNoPlan(page,name,mode,state,lang='en'){
+ const errors=[];page.on('pageerror',e=>errors.push(String(e)));
+ await localFiles(page);
+ await page.goto(BASE+'/labs/the-two-curves/?lang='+lang+'&unit=km',{waitUntil:'domcontentloaded'});
+ await page.waitForFunction(st=>document.querySelector('#planSource')?.dataset.sourceState===st,state,{timeout:20000});
+ assert.equal(await page.locator('#gridPlan .gp-row').count(),0,name+': no plan rows');
+ assert.equal((await page.locator('#gridPlan').innerText()).trim(),'',name+': plan grid is empty');
+ for(const key of ['s2.p','tr1.p','tr2.p','tr3.p','pace.easy','pace.tuesday','pace.thursday'])assert.equal((await page.locator('[data-i="'+key+'"]').first().innerText()).trim(),'',name+': '+key+' is blank');
+ assert.equal((await page.locator('#statusTxt').innerText()).trim(),'',name+': no block status without a verified publication');
+ const visible=await page.locator('body').innerText();
+ for(const s of DOSE_STRINGS)assert.ok(!visible.includes(s),name+': plan text "'+s+'" must not be visible');
+ const G=require('../labs/shared/publication-gate.js');
+ assert.equal((await page.locator('#planSource').innerText()).trim(),G.message(state==='refreshing'?'checking':state,lang),name+': honest status message');
+ assert.ok(await page.locator('#history').isVisible()&&await page.locator('#gate').isVisible(),name+': the editorial study is untouched');
+ assert.ok(await page.locator('#refreshPlan').isVisible()&&!(await page.locator('#refreshPlan').isDisabled()),name+': retry is available');
+ assert.deepEqual(errors,[],name+': script errors');
+ report.cases.push({name,state,result:'No plan content shown'});
+ console.log('PASS '+name);
 }
 async function record(page,name,width,lang,mode='live',screenshot=false){
  const errors=[];page.on('pageerror',e=>errors.push(String(e)));
@@ -105,36 +135,60 @@ async function main(){
    assert.equal(await manual.locator('#summaryLanguage').isVisible(),true);
    await manual.locator('#summaryLanguage').evaluate(e=>window.scrollTo(0,e.getBoundingClientRect().top+scrollY-80));
    await manual.screenshot({path:path.join(OUT,'refreshed-french-summary.png'),scale:'css'});
+   assert.ok((await manual.locator('[data-i="pace.tuesday"]').first().innerText()).includes('3:51–3:52/km'));
+   assert.ok((await manual.locator('#gridPlan .gp-row').nth(1).innerText()).includes('3:51–3:52/km'));
    await manual.locator('#refreshPlan').click();
-   await manual.waitForFunction(()=>document.querySelector('#planSource').dataset.sourceState==='saved');
-   assert.equal(await manual.locator('[data-i="s2.p"]').innerText(),revised.payload.version.summary,'A failed later check retains the current summary');
-   assert.equal(await manual.locator('#summaryLanguage').isVisible(),true);
+   await manual.waitForFunction(()=>document.querySelector('#planSource').dataset.sourceState==='unverified');
+   // A later check that cannot be verified REMOVES the plan: it is not retained from the earlier success.
+   assert.equal((await manual.locator('[data-i="s2.p"]').innerText()).trim(),'','A failed later check removes the summary');
+   assert.equal(await manual.locator('#gridPlan .gp-row').count(),0,'A failed later check removes the grid');
+   assert.equal(await manual.locator('#summaryLanguage').isVisible(),false);
   }
-  assert.ok((await manual.locator('[data-i="pace.tuesday"]').first().innerText()).includes('3:51–3:52/km'));
-  assert.ok((await manual.locator('#gridPlan .gp-row').nth(1).innerText()).includes('3:51–3:52/km'));
-  report.cases.push({name:'manual-refresh-'+language,result:'Current summary, cards and grid refreshed together; unmatched French translation uses labeled current English'});await manual.close();
+  if(language==='en'){
+   assert.ok((await manual.locator('[data-i="pace.tuesday"]').first().innerText()).includes('3:51–3:52/km'));
+   assert.ok((await manual.locator('#gridPlan .gp-row').nth(1).innerText()).includes('3:51–3:52/km'));
+  }
+  report.cases.push({name:'manual-refresh-'+language,result:'Current summary, cards and grid refreshed together; unmatched French translation uses labeled current English; a later unverifiable check removes the plan'});await manual.close();
   }
 
-  for(const mode of ['saved','review_required']){
-   const page=await browser.newPage({viewport:{width:390,height:844}});await mock(page,mode);await record(page,mode,390,'en',mode);
-   const before=await page.locator('#gridPlan').innerText();await page.locator('#refreshPlan').click();
-   await page.waitForFunction(state=>document.querySelector('#planSource').dataset.sourceState===state,mode);
-   assert.equal(await page.locator('#gridPlan').innerText(),before);assert.equal(await page.locator('#refreshPlan').isDisabled(),false);
+  // Every state that is not a verified "published" response shows no plan (revoked, awaiting update, unverifiable).
+  for(const [mode,state] of [['unavailable','unavailable'],['review_required','review_required'],['unverified-network','unverified'],['unverified-http500','unverified'],['unverified-malformed','unverified'],['unverified-garbage','unverified'],['unverified-unknown-state','unverified']]){
+   const page=await browser.newPage({viewport:{width:390,height:844}});await mock(page,mode);await recordNoPlan(page,mode,mode,state);
+   await page.locator('#refreshPlan').click();await page.waitForFunction(st=>document.querySelector('#planSource').dataset.sourceState===st,state);
+   assert.equal(await page.locator('#gridPlan .gp-row').count(),0,mode+': still nothing after a retry');
    await page.close();
   }
-  const old=await browser.newPage({viewport:{width:390,height:844}});const earlier=structuredClone(pub);earlier.payload.version.number=4;
-  await old.route(route,r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(earlier)}));
-  await record(old,'older-publication',390,'en','review_required');await old.close();
+  // French wording for the same states
+  for(const [mode,state] of [['unavailable','unavailable'],['unverified-network','unverified']]){
+   const page=await browser.newPage({viewport:{width:390,height:844}});await mock(page,mode);await recordNoPlan(page,'fr-'+mode,mode,state,'fr');await page.close();
+  }
+  // WITHDRAWAL MID-SESSION: the plan is on screen from a verified response; the next check says unavailable; everything disappears.
+  for(const after of ['unavailable','review_required','abort']){
+   const page=await browser.newPage({viewport:{width:390,height:844}});let n=0;
+   await page.route(route,r=>{n++;if(n===1)return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify(pub)});
+     if(after==='abort')return r.abort();return r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({state:after})});});
+   await record(page,'withdrawal-before-'+after,390,'en','live');
+   assert.equal(await page.locator('#gridPlan .gp-row').count(),5);
+   await page.locator('#refreshPlan').click();
+   const expect=after==='abort'?'unverified':after;
+   await page.waitForFunction(st=>document.querySelector('#planSource').dataset.sourceState===st,expect);
+   assert.equal(await page.locator('#gridPlan .gp-row').count(),0,'withdrawal ('+after+') removes the grid');
+   const visible=await page.locator('body').innerText();for(const x of DOSE_STRINGS)assert.ok(!visible.includes(x),'withdrawal ('+after+') removes "'+x+'"');
+   assert.equal((await page.locator('[data-i="s2.p"]').innerText()).trim(),'');
+   report.cases.push({name:'withdrawal-'+after,result:'Verified plan on screen, then removed on the next check'});console.log('PASS withdrawal-'+after);
+   await page.close();
+  }
 
   const nojs=await browser.newPage({viewport:{width:390,height:844},javaScriptEnabled:false});
   await localFiles(nojs);
   await nojs.goto(BASE+'/labs/the-two-curves/',{waitUntil:'domcontentloaded'});
-  assert.equal(await nojs.locator('#gridPlan .gp-row').count(),5);
-  assert.ok((await nojs.locator('#plan').innerText()).includes('3:49–3:52/km'));
-  assert.ok((await nojs.locator('#plan').innerText()).includes('6 × 20 sec relaxed strides'));
+  assert.equal(await nojs.locator('#gridPlan .gp-row').count(),0);
+  const nojsText=await nojs.locator('body').innerText();
+  for(const x of DOSE_STRINGS)assert.ok(!nojsText.includes(x),'no-JS page must not contain plan text "'+x+'"');
+  assert.ok(nojsText.includes('Turn on JavaScript'),'no-JS visitors are told why no plan is shown');
   assert.ok(await nojs.locator('#history').isVisible());assert.equal(await nojs.locator('#refreshPlan').isVisible(),false);
   await nojs.locator('#plan').screenshot({path:path.join(OUT,'no-javascript-plan.png'),scale:'css'});
-  report.cases.push({name:'no-javascript',result:'Full saved block, all work components and historical evidence are readable'});await nojs.close();
+  report.cases.push({name:'no-javascript',result:'No plan content without script; the editorial study and historical evidence stay readable'});await nojs.close();
   const zoom=await browser.newPage({viewport:{width:768,height:1024}});await mock(zoom);await record(zoom,'zoom-base',768,'en');
   await zoom.addStyleTag({content:'body{zoom:2}'});
   await zoom.locator('#plan').evaluate(e=>window.scrollTo(0,e.getBoundingClientRect().top+scrollY));

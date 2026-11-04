@@ -31,6 +31,8 @@ jobs:
           node scripts/studies/build-simon-r2.cjs --refresh-only --publication-file labs/the-two-curves/published-plan.json | tee /tmp/simon-study-qa/build.json
           git diff --exit-code -- labs/the-two-curves/
           node tests/simon-study-r2.cjs /tmp/simon-study-qa/contract.json
+          node tests/study-snapshots-not-served.cjs
+          node tests/revoked-plan-routes-not-served.cjs
           node tests/cream-reading.cjs
       - name: Browser tooling
         run: |
@@ -42,6 +44,7 @@ jobs:
         run: |
           python -m http.server 8765 >/tmp/simon-study-server.log 2>&1 &
           node tests/simon-study-browser.cjs
+          node tests/study-withdrawal-fallback-browser.cjs
       - name: Public access contract
         run: |
           node - <<'NODE'

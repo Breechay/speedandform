@@ -119,6 +119,16 @@
     if(!r.ok) throw Error('Study publication HTTP '+r.status);
     const j=await r.json();return validate(j);
   }
+  /* Like read(), but keeps the three server states apart so the page can tell an explicit withdrawal
+     (unavailable) from an update awaiting approval (review_required). A published response must validate in full;
+     any other state is returned WITHOUT a payload; everything else (HTTP error, bad JSON, unknown state, timeout) throws. */
+  async function readState(signal){
+    const r=await fetch(URL,{method:'POST',headers:{apikey:KEY,'Content-Type':'application/json'},body:'{}',cache:'no-store',signal});
+    if(!r.ok) throw Error('Study publication HTTP '+r.status);
+    const j=await r.json();
+    if(j&&(j.state==='unavailable'||j.state==='review_required')) return {state:j.state,plan:null};
+    return {state:'published',plan:validate(j)};
+  }
   const clock=s=>{s=Math.round(s);return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');};
   function format(str,unit='km'){
     const pace=s=>clock(unit==='km'?s:s*MI);
@@ -133,5 +143,5 @@
       h+=`<div class="gp-tot" role="cell">${w.days.reduce((n,d)=>n+(d.km||0),0)} km<small>planned estimate</small></div></div>`;
     });return h;
   }
-  return {MI,validate,summaryCopy,currentCopy,fromPublication,read,format,fallbackGrid};
+  return {MI,validate,summaryCopy,currentCopy,fromPublication,read,readState,format,fallbackGrid};
 });
