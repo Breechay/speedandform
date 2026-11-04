@@ -57,6 +57,7 @@ with
   )
 select jsonb_build_object(
   'completionId',a.id,'vaultVersionId',a.version_id,
+  'filedAt',a.filed_at,
   'total',count(s.rep_position),
   'hits',count(s.rep_position) filter(where s.hit),
   'cleared',count(s.rep_position)>0
@@ -69,7 +70,7 @@ select jsonb_build_object(
   ) order by s.rep_position) filter(where s.rep_position is not null),'[]'::jsonb)
 )
 from attempt a join target s on s.completion_id=a.id
-group by a.id,a.version_id;
+group by a.id,a.version_id,a.filed_at;
 $$;
 
 revoke all on function coach_performance_private.speed_vault_score_internal(uuid)
@@ -120,14 +121,14 @@ begin
       and (coach_performance_private.speed_vault_score_internal(c.id)->>'cleared')::boolean is true
     order by c.athlete_id,c.filed_at,c.id
   ), visible as (
-    select p.id,p.first_name,p.avatar_path,f.filed_at
+    select p.id,p.first_name,p.avatar_path
     from first_clears f join public.collective_people p on p.athlete_id=f.athlete_id
     where p.visible
-    order by f.filed_at,p.id limit 50
+    order by p.first_name,p.id limit 50
   )
   select coalesce(jsonb_agg(jsonb_build_object(
     'personId',id,'firstName',first_name,'avatarPath',avatar_path
-  ) order by filed_at,id),'[]'::jsonb) into faces from visible;
+  ) order by first_name,id),'[]'::jsonb) into faces from visible;
 
   return faces;
 end;

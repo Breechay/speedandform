@@ -215,6 +215,25 @@ with
         where coalesce(c.vault_session_version_id,cl.vault_version_id,
                        pv.vault_session_version_id,pl.vault_version_id)=v.id
           and c.status in ('completed','partial','changed')
+      ),
+      'history',(
+        select coalesce(jsonb_agg(public.vault_attempt_score(recent.id)
+                                  order by recent.filed_at desc,recent.id desc),'[]'::jsonb)
+        from (
+          select c.id,c.filed_at
+          from public.session_completions c
+          join authorized a on c.athlete_id=a.id
+          left join public.speed_completion_vault_links cl
+            on cl.completion_id=c.id and cl.athlete_id=c.athlete_id
+          left join public.planned_session_versions pv on pv.id=c.planned_session_version_id
+          left join public.speed_plan_vault_links pl
+            on pl.plan_version_id=pv.id and pl.athlete_id=c.athlete_id
+          where coalesce(c.vault_session_version_id,cl.vault_version_id,
+                         pv.vault_session_version_id,pl.vault_version_id)=v.id
+            and c.status in ('completed','partial','changed')
+          order by c.filed_at desc,c.id desc
+          limit 50
+        ) recent
       )
     ) order by s.authored_order),'[]'::jsonb) as value
     from public.vault_sessions s

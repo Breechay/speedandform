@@ -67,6 +67,20 @@ begin
        pg_get_functiondef('public.file_vault_attempt(text,uuid,integer[],text,timestamptz)'::regprocedure)) = 0 then
     raise exception 'Vault filing retry/identity immutability guard is missing';
   end if;
+
+  if position('''history''' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
+     or position('order by recent.filed_at desc,recent.id desc' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
+     or position('''filedAt''' in
+       pg_get_functiondef('coach_performance_private.speed_vault_score_internal(uuid)'::regprocedure)) = 0 then
+    raise exception 'Ordered immutable Vault attempt history projection is missing';
+  end if;
+
+  if position('order by p.first_name,p.id' in
+       pg_get_functiondef('public.vault_cleared_faces(uuid)'::regprocedure)) = 0 then
+    raise exception 'Cleared faces must not be presented as a finish-order leaderboard';
+  end if;
 end;
 $$;
 
