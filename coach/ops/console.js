@@ -2,6 +2,7 @@ import { supabase } from '/private/supabase-client.js';
 import { sendMagicLink, signInWithPassword } from '/private/auth.js';
 import { wholeWeekGuardian } from '/private/whole-week-guardian.mjs';
 import { athleteFeedbackTimeline } from '/private/athlete-feedback-timeline.mjs';
+import { staffSnapshot } from './staff-model.mjs';
 import { addObservation } from '/private/data.js';
 import { AREAS, escapeHtml as e, safeUrl, sourceState, dateLabel, validateBoard, upcomingAppointments } from './model.mjs?v=1';
 import { OPPORTUNITY_CATEGORIES, OPPORTUNITY_STATES, ATHLETIC_LIFE_IDEAS, validateOpportunityFeed, activeOpportunityCount, canApproveOpportunity, canStartOpportunity, opportunityEstimate } from './opportunity-model.mjs?v=1';
@@ -13,7 +14,7 @@ let rosterStory={available:false,athletes:[],error:'Not checked'};
 let athleteBrief={id:null,data:null,strength:null,feedback:null,error:'',loading:false};
 let feedbackReceipt='';
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
-if(['today','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
+if(['today','staff','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
 const closed=i=>['done','cancelled'].includes(i.status);
 const statusName=s=>({queued:'Ready',active:'In progress',waiting:'Waiting',done:'Done',cancelled:'Parked'}[s]||s);
 const sourceName=s=>({live:'Live records',snapshot:'Checked snapshot',stale:'Check again',conflict:'Needs reconciliation',unavailable:'Unavailable',pending:'Pending',unchecked:'Not checked'}[s]||s);
@@ -34,6 +35,17 @@ function todayView(){
   const personal=board.items.filter(i=>i.kind==='context'&&i.area==='training'&&!closed(i));
   const agents=board.items.filter(i=>i.kind==='task'&&i.actor==='agent'&&!closed(i));
   return `<div class="layout"><div><div class="section-head"><h2>The moves that matter</h2><span class="small">At most four</span></div><div>${priorities.length?priorities.map((i,n)=>`<article class="priority"><span class="ordinal">0${n+1}</span><div>${meta(i)}<h3 style="margin-top:10px">${e(i.title)}</h3><p class="finish">${e(i.next_action||i.body)}</p>${i.focus_on&&i.focus_on<board.today?`<p class="small">Carried from ${e(dateLabel(i.focus_on))}. Keep, finish or park it.</p>`:''}${actions(i)}</div></article>`).join(''):'<p class="empty">No priorities have been selected for this day. Choose Today on an open task, or add one below. Nothing is invented to fill the space.</p>'}</div>${agents.length?`<details class="changes"><summary>Agent queue · ${agents.length} open</summary><p class="small">Saved work for the next authorized agent session. This list does not itself run background jobs.</p>${agents.map(itemMarkup).join('')}</details>`:''}</div><aside><section class="side-panel"><div class="section-head"><h2>Next commitments</h2></div>${upcoming.length?upcoming.map(appointmentMarkup).join(''):'<p class="empty">No appointment projection is available for this window. Check Calendar rather than assuming you are free.</p>'}<p class="source-note">${calendar?`Calendar checked ${e(checked(calendar.observed_at))}. ${sourceState(calendar)==='stale'?'This copy needs refreshing.':''}`:'Calendar has not been checked.'} This is a saved projection, not a live free/busy check.</p><a class="ref" href="https://calendar.google.com/calendar/u/0/r" target="_blank" rel="noopener">Open Calendar ↗</a></section>${personal.length?`<section class="side-panel"><h2 style="margin-bottom:18px">My training</h2>${personal.map(itemMarkup).join('')}</section>`:''}<section class="side-panel"><h2>Not another list to finish</h2><p class="small">Waiting stays out of your top four. The rest of life stays visible in All areas. Done means the action happened, not that its calendar slot passed.</p></section></aside></div>`;
+}
+function staffView(){
+  const s=staffSnapshot({...board,sources:board.sources.map(x=>({...x,state:sourceState(x)}))},filingIntegrity,rosterStory);
+  const metric=(label,count,detail,href)=>`<article class="staff-metric"><span class="eyebrow">${e(label)}</span><strong>${count===null?'—':e(count)}</strong><p class="small">${e(detail)}</p>${href?`<a class="ref" href="${e(href)}">Inspect source ↗</a>`:''}</article>`;
+  const record=(label,title,detail,link)=>`<article class="item"><div class="metadata"><span>${e(label)}</span></div><h3>${e(title)}</h3><p class="small">${e(detail)}</p>${link?`<a class="ref" href="${e(link)}">Open record ↗</a>`:''}</article>`;
+  const filingKnown=s.filingExceptions!==null,weekKnown=s.weekExceptions!==null;
+  return `<section class="staff-intro"><p class="eyebrow">Operating staff · source-based</p><h2>Work continues. You stay oriented.</h2><p class="intro">A read-only window into what agents can maintain, what deserves your coaching judgment, and what is genuinely complete. Talk to an agent to act. Nothing on this page automatically changes a plan.</p></section>
+  <div class="staff-metrics">${metric('Agent queue',s.agentQueue.length,'Open operating tasks assigned to an agent.')}${metric('Week exceptions',weekKnown?s.weekExceptions.length:null,weekKnown?'Current authorized athlete stories.':'Roster source unavailable.','/coach/ops/?tab=intelligence')}${metric('Filing exceptions',filingKnown?s.filingExceptions.length:null,filingKnown?'Source-level reconciliation, not device proof.':'Filing source unavailable.','/coach/ops/?tab=sources')}${metric('Coach gates',s.coachQueue.length,'Existing coaching tasks, not generated approvals.','/coach/labs/')}</div>
+  <div class="staff-columns"><section class="panel"><div class="section-head"><h2>For a conversation</h2><span class="small">Your judgment, when useful</span></div>${s.coachQueue.slice(0,6).map(x=>record('Coaching record',x.title,x.summary||x.state,'/coach/labs/')).join('')}${weekKnown?s.weekExceptions.slice(0,6).map(x=>record('Week story',x.name||'Athlete',x.state.replaceAll('_',' '),'/coach/ops/?tab=intelligence')).join(''):record('Source unavailable','Week stories not checked','Do not treat missing evidence as an all-clear.','/coach/ops/?tab=intelligence')}${!s.coachQueue.length&&weekKnown&&!s.weekExceptions.length?'<p class="empty">No coaching gates in these bounded sources. You can still open any athlete story.</p>':''}</section>
+  <section class="panel"><div class="section-head"><h2>Staff is handling</h2><span class="small">Agent-owned work</span></div>${s.agentQueue.slice(0,8).map(x=>record('Agent queue',x.title,x.next_action||x.status)).join('')||'<p class="empty">No agent-owned operating tasks in this workspace. This does not imply agents are running in the background.</p>'}${filingKnown?s.filingExceptions.slice(0,5).map(x=>record('Filing reconciliation',x.first_name||'Athlete',x.feed_state||x.week_state,'/coach/ops/?tab=sources')).join(''):record('Source unavailable','Filing reconciliation not checked','No missing-feed conclusion is possible.','/coach/ops/?tab=sources')}</section></div>
+  <div class="staff-columns"><section class="panel"><h2>Source health</h2>${s.incompleteSources.length?s.incompleteSources.map(x=>record('Recheck source',x.label,x.detail||x.state,'/coach/ops/?tab=sources')).join(''):'<p class="source-note">No stale or unavailable sources flagged in the current board projection. External refresh is separate.</p>'}</section><section class="panel"><h2>Done, with a record</h2>${s.done.map(x=>record('Operating record',x.title,`Closed ${checked(x.updated_at)}`)).join('')||'<p class="empty">No recently completed operating records in this read.</p>'}<p class="source-note">This is not a GitHub deployment log, proof of native app display, or a record of untracked agent actions.</p></section></div>`;
 }
 function areasView(){
   const selected=area==='all'?Object.keys(AREAS):[area];
@@ -137,12 +149,12 @@ function render(){
   if(!board)return;
   $('#gate').hidden=true;$('#workspace').hidden=false;$('#refresh').hidden=false;$('#signout').hidden=false;
   $('#date').textContent=dateLabel(board.today,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  $('#page-title').textContent={today:'Today.',intelligence:'Athlete intelligence.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.'}[tab];
+  $('#page-title').textContent={today:'Today.',staff:'Staff.',intelligence:'Athlete intelligence.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.'}[tab];
   $('#freshness').textContent=`Workspace read ${checked(board.read_at)} ET`;
   $('#waiting-count').textContent=board.items.filter(i=>i.status==='waiting').length+board.coach_tasks.filter(t=>t.state.startsWith('waiting')).length;
   $('#source-count').textContent=board.sources.filter(s=>['stale','conflict','unavailable','pending','unchecked'].includes(sourceState(s))).length||'';
   $('[data-tab][aria-current]')?.removeAttribute('aria-current');$(`[data-tab="${tab}"]`).setAttribute('aria-current','page');
-  $('#view').innerHTML=({today:todayView,intelligence:intelligenceView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView}[tab])();
+  $('#view').innerHTML=({today:todayView,staff:staffView,intelligence:intelligenceView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView}[tab])();
   $('.capture:not(.opportunity-capture)')?.toggleAttribute('hidden',tab==='opportunities');
 }
 async function refresh(){
