@@ -1,9 +1,9 @@
-import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
+import { selfAuditSessionCopy, prescriptionPresentationIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -239,9 +239,7 @@ function doseOf(version) {
   const work = works[0];
   if (!work) return null;
   const unit = work.distance_unit || 'mi';
-  const amount = work.distance != null
-    ? `${Number(work.distance)} ${unit}`
-    : `${Math.round((work.duration_seconds || 0) / 60)} min`;
+  const amount = workMagnitude(work);
   const total = work.shape === 'repetitions' && work.distance != null
     ? Number((work.distance * work.repeat_count).toFixed(2)) : null;
   const line = works.length > 1 ? structureOf(version) : work.shape === 'repetitions'
@@ -263,7 +261,11 @@ function doseOf(version) {
   const proofBearing = Boolean(band);
   const qualifiers = [];
   if (band) qualifiers.push(`${band}/${unit}`);
-  else if (work.rpe_low) qualifiers.push(`RPE ${work.rpe_low}\u2013${work.rpe_high}`);
+  else if (version.rpe_low ?? work.rpe_low) {
+    const low = version.rpe_low ?? work.rpe_low;
+    const high = version.rpe_high ?? work.rpe_high ?? low;
+    qualifiers.push(low === high ? `RPE ${low}` : `RPE ${low}\u2013${high}`);
+  }
   if (work.recovery_seconds != null) {
     qualifiers.push(`${Math.floor(work.recovery_seconds / 60)}:${String(work.recovery_seconds % 60).padStart(2, '0')} ${work.recovery_kind}`);
   } else if (work.recovery_kind === 'equal') {
@@ -1389,6 +1391,7 @@ function partRowHtml(part = {}) {
     <div class="part-fields">
       ${shape === 'repetitions' ? field('Reps', 'repeatCount', part.repeat_count, 'type="number" min="1"') : ''}
       ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
+      <label>Unit<select name="partDistanceUnit">${options([['mi', 'mi'], ['km', 'km']], part.distance_unit || 'mi')}</select></label>
       ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
       ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
       ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
@@ -1442,7 +1445,7 @@ function readParts({ raw = false } = {}) {
       shape,
       repeatCount: shape === 'repetitions' ? number('repeatCount') : null,
       distance: number('distance'),
-      distanceUnit: number('distance') == null ? null : (carried.distance_unit || 'mi'),
+      distanceUnit: number('distance') == null ? null : (at('partDistanceUnit') || carried.distance_unit || 'mi'),
       durationSeconds: minutes == null ? null : Math.round(minutes * 60),
       recoverySeconds: shape === 'repetitions' && at('recovery') ? toSeconds(at('recovery')) : null,
       recoveryKind: shape === 'repetitions' ? (at('recoveryKind') || null) : null,
@@ -1507,7 +1510,7 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
     const current = readParts()[index] || {};
     row.outerHTML = partRowHtml({
       role: current.role, shape: event.target.value, repeat_count: current.repeatCount,
-      distance: current.distance, duration_seconds: current.durationSeconds,
+      distance: current.distance, distance_unit: current.distanceUnit, duration_seconds: current.durationSeconds,
       pace_low_seconds: current.paceLowSeconds, pace_high_seconds: current.paceHighSeconds,
       recovery_seconds: current.recoverySeconds, recovery_kind: current.recoveryKind,
       repeat_minimum: current.repeatMinimum, repeat_ceiling: current.repeatCeiling
@@ -2010,6 +2013,15 @@ sessionForm.addEventListener('submit', async (event) => {
   }
   const complaint = partsComplaint(payload.components || []);
   if (complaint) { status.textContent = complaint; status.className = 'status-message error'; return; }
+  const existingParts = revisingSessionId
+    ? selectedRecord.sessions.find(session => session.id === revisingSessionId)?.currentVersion?.components || []
+    : [];
+  const presentationIssues = prescriptionPresentationIssues(payload.title, payload.components || existingParts);
+  if (presentationIssues.length) {
+    status.textContent = presentationIssues.join(' ');
+    status.className = 'status-message error';
+    return;
+  }
   button.disabled = true; status.textContent = 'Saving.';
   try {
     if (revisingSessionId) await reviseSession(revisingSessionId, payload);
