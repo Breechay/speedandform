@@ -20,12 +20,12 @@ create trigger form_session_title_truth
 create or replace function public.form_guard_track_pace_unit()
 returns trigger language plpgsql security definer
 set search_path='pg_catalog','public' as $$
-declare distance_m numeric; goal_low integer; supported_best numeric;
+declare v_repeat_meters numeric; goal_low integer; supported_best numeric;
 begin
   if new.role <> 'work' or new.distance is null or new.pace_low_seconds is null
     then return new; end if;
-  distance_m := new.distance * case new.distance_unit when 'km' then 1000 else 1609.344 end;
-  if distance_m < 600 then return new; end if;
+  v_repeat_meters := new.distance * case new.distance_unit when 'km' then 1000 else 1609.344 end;
+  if v_repeat_meters < 600 then return new; end if;
 
   -- Strongest calibration is the athlete's own observed 600m+ work. No best
   -- record is required: the goal pace is a fallback for first-time athletes.
@@ -44,18 +44,18 @@ begin
   select t.best_seconds into supported_best
   from public.planned_session_versions v
   join public.athlete_track_stats t on t.athlete_id=v.athlete_id
-     and t.distance_m=round(distance_m)::integer
+     and t.distance_m=round(v_repeat_meters)::integer
   where v.id=new.version_id;
 
   -- If a known best makes this exceptional speed plausible, let it through.
   if supported_best is not null and
-     (new.pace_low_seconds * distance_m / 1609.344) >= supported_best*0.90
+     (new.pace_low_seconds * v_repeat_meters / 1609.344) >= supported_best*0.90
   then return new; end if;
 
   raise exception
     'Track pace unit check: %/mi for %m projects % seconds per rep, far faster than this athlete''s goal pace. Confirm that pace values are seconds per MILE, not per km or rep.',
-    to_char(make_interval(secs=>new.pace_low_seconds),'MI:SS'),round(distance_m),
-    round(new.pace_low_seconds*distance_m/1609.344)
+    to_char(make_interval(secs=>new.pace_low_seconds),'MI:SS'),round(v_repeat_meters),
+    round(new.pace_low_seconds*v_repeat_meters/1609.344)
     using errcode='22023';
 end $$;
 
