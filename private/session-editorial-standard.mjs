@@ -91,7 +91,7 @@ export function prescriptionPresentationIssues(title, components = []) {
     .map(match => Number(match[1]));
   if (!namedMeters.length) return [];
   const workMeters = components.filter(part => part?.role === 'work' && part.distance != null)
-    .map(part => Number(part.distance) * (part.distanceUnit === 'km' ? 1000 : 1609.344));
+    .map(part => Number(part.distance) * ((part.distanceUnit || part.distance_unit) === 'km' ? 1000 : 1609.344));
   if (!workMeters.length) return [];
   return namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
     .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`);
