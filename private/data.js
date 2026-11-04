@@ -1,5 +1,49 @@
 import { supabase } from './supabase-client.js';
 import { deliveryOverviewFor } from './delivery-status.js';
+import { selfAuditSessionCopy, prescriptionPresentationIssues } from './session-editorial-standard.mjs';
+
+// Shared publication boundary: both the Console editor and Labs call these
+// functions. A second writing surface must not bypass the editorial gate.
+async function preflightSessionPublication(payload, previousSessionId = null) {
+  let previous = null;
+  let components = payload.components;
+  if (previousSessionId) {
+    const { data, error } = await supabase.from('planned_session_versions')
+      .select('id,title,intent,details').eq('planned_session_id', previousSessionId)
+      .order('version_number', { ascending: false }).limit(1).maybeSingle();
+    if (error) throw error;
+    if (!data) throw new Error('Publication hold: the session has no current version. Reread the athlete.');
+    previous = data;
+    if (components == null) {
+      const response = await supabase.from('planned_session_components')
+        .select('role,distance,distance_unit').eq('version_id', data.id);
+      if (response.error) throw response.error;
+      components = response.data || [];
+    }
+  }
+  const review = selfAuditSessionCopy(payload, previous);
+  const presentation = prescriptionPresentationIssues(payload.title, components || []);
+  if (!review.ok || presentation.length) {
+    throw new Error('Publication hold: ' + [
+      ...review.issues.map(issue => `${issue.field}: ${issue.message}`), ...presentation
+    ].join(' '));
+  }
+}
+
+async function readbackSessionPublication(sessionId, payload, expectedVersionId = null) {
+  const { data: versions, error } = await supabase.from('planned_session_versions')
+    .select('id,version_number,planned_session_id,title,intent,details,prescribed_distance,distance_unit')
+    .eq('planned_session_id', sessionId).order('version_number', { ascending: false }).limit(1);
+  if (error) throw new Error(`Saved; publication readback failed: ${error.message}`);
+  const latest = versions?.[0];
+  if (!latest || (expectedVersionId && latest.id !== expectedVersionId) ||
+      latest.title !== String(payload.title || '').trim() ||
+      latest.intent !== String(payload.intent || '').trim()) {
+    throw new Error('Saved; publication readback disagrees with the returned version. Reread before retrying; do not duplicate the write.');
+  }
+  return { sessionId, versionId: latest.id, versionNumber: latest.version_number,
+    sourceReadbackVerified: true, athleteFeedVerified: false, nativeDeviceVerified: false };
+}
 
 function result(data, error) {
   if (error) throw error;
@@ -1070,6 +1114,7 @@ export async function activatePublishedGlutePriority() {
 }
 
 export async function authorSession(payload) {
+  await preflightSessionPublication(payload);
   const { data, error } = await supabase.rpc('author_session', {
     p_athlete_id: payload.athleteId,
     p_week_id: payload.weekId,
@@ -1087,7 +1132,7 @@ export async function authorSession(payload) {
     p_details: payload.details || null
   });
   if (error) throw error;
-  return { id: data };
+  return { id: data, publication: await readbackSessionPublication(data, payload) };
 }
 
 // What a session ASKS is authored, and a revision must not leave it stale. If
@@ -1102,6 +1147,7 @@ export async function setSessionAsk(plannedSessionId, checkpointId) {
 }
 
 export async function reviseSession(plannedSessionId, payload) {
+  await preflightSessionPublication(payload, plannedSessionId);
   const { data, error } = await supabase.rpc('revise_session', {
     p_planned_session_id: plannedSessionId,
     p_title: payload.title,
@@ -1116,7 +1162,7 @@ export async function reviseSession(plannedSessionId, payload) {
     p_details: payload.details || null
   });
   if (error) throw error;
-  return { id: data };
+  return { id: data, publication: await readbackSessionPublication(plannedSessionId, payload, data) };
 }
 
 // The editorial queue is intentionally an authenticated coach-scoped RPC.
