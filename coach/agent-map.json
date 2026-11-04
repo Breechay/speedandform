@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "updated_on": "2026-11-04",
+  "name": "FORM Coach Console · Agent Map",
+  "purpose": "Machine-readable orientation for authorized assistants. This file contains no private athlete or owner data and grants no access.",
+  "repository_instruction_paths": ["AGENTS.md", "docs/AGENT_ORIENTATION.md", "coach/AGENT_OPERATIONS.md", "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md"],
+  "public_method": {
+    "human": "/method-bible/",
+    "text": "/method-bible/method.md",
+    "precedence": "Individualized current coach decisions and restrictions outrank generic doctrine examples."
+  },
+  "authentication": {
+    "required": "existing verified FORM coach membership, with additional active owner authorization for personal operations",
+    "never": [
+      "infer identity from an email or repository access",
+      "use a service-role credential in the browser",
+      "bypass Row Level Security or an approval step",
+      "assume an unavailable source means zero records"
+    ]
+  },
+  "navigation": [
+    {
+      "name": "Today",
+      "url": "/coach/ops/",
+      "owns": "operating items, priorities, waiting, source freshness receipts",
+      "read": "operating_console_read from the authorized owner session",
+      "caveat": "Calendar, Finances and email are projections with observed_at and source_as_of; browser refresh does not recheck those external providers."
+    },
+    {
+      "name": "Athletes",
+      "url": "/coach/labs/",
+      "owns": "athlete case-file presentation, observations, private notes and evidence views",
+      "read": "loadCoachBench and loadAthleteRecord under an authorized coach membership",
+      "caveat": "The dossier is a reader and observer, not a second plan database."
+    },
+    {
+      "name": "Programming",
+      "url": "/coach/console/",
+      "deep_link": "/coach/console/?athlete={authorized_slug}",
+      "owns": "session authorship, versioned revisions, coach reads and decisions, coach filing, publication queue",
+      "read": "loadCoachRoster and loadAthleteRecord through the existing authorized client",
+      "caveat": "Drafted, saved, published, externally delivered and native released are separate states."
+    },
+    {
+      "name": "Group sessions",
+      "url": "/coach/miami/",
+      "owns": "shared Thursday/Saturday publication, individualized pace adjustments and Week-story reviews",
+      "caveat": "Saturday mileage remains athlete-specific; a gathering requires an actual hosted run. Preview must be current before publish."
+    },
+    {
+      "name": "Runs",
+      "url": "/coach/runs/",
+      "owns": "hosted run occurrence, guests, attendance, and run photographs",
+      "caveat": "An event invitation or RSVP does not prove attendance or completed training."
+    }
+  ],
+  "source_states": {
+    "live": "fresh read from canonical source; preserve observed timestamp",
+    "snapshot": "checked copy; source_as_of may predate observed_at",
+    "stale": "expired source check; recheck owning provider before using",
+    "conflict": "different sources disagree; reconcile before publishing or acting",
+    "unavailable": "read failed or access missing; never silently substitute zero",
+    "pending": "result not yet verified or published",
+    "unchecked": "no reliable current evidence"
+  },
+  "workflow": [
+    "Read current records, source versions, restrictions and the Method Bible.",
+    "Identify intended capability, skill repetitions, training stimulus, recovery cost and nearby demanding work.",
+    "Show a specific proposed action and its owning system. Coach authorizes meaningful athlete programming decisions.",
+    "Write only through existing authorized owner functions with their version/revision constraints.",
+    "Read back the exact version and athlete-facing Week, and verify feed when a filing should be shared.",
+    "Report verified result, source timestamp, unknowns and any blocked cross-app connection. Never call a draft live."
+  ],
+  "freshness": {
+    "foreground_ui_recheck_after_minutes": 5,
+    "external_provider_rule": "A browser reread of a stored projection does not refresh its source. Recheck the original provider with an authorized connector and update the source receipt.",
+    "failure_behavior": "Show the last successful read timestamp and an explicit stale/error state; preserve existing records."
+  },
+  "method_laws": [
+    "Train to win means follow the plan and progressions; do not race workouts.",
+    "Appropriate effort in the right session, plus strength, mobility and recovery, prepares the athlete for decisive sessions and competitions.",
+    "Glute development is a default priority with individualized dose and medical exceptions.",
+    "Author complete progressions with no invented pending-review gate.",
+    "Keep observations, athlete reports, objective evidence, inference and coach decisions distinct.",
+    "Never automatically overwrite an individual plan with a group practice."
+  ]
+}

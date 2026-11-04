@@ -1,0 +1,33 @@
+# Speed & Form · FORM coaching and training
+
+Official public source: https://speedandform.com/
+Founder and coaching author: Brice Ikouebe.
+Last reviewed: 2026-11-04.
+
+## Authoritative current method
+
+- [FORM Method Bible](https://speedandform.com/method-bible/): Current public account of FORM training thinking. Train to win; purpose, dose and recovery cost; speed reserve; threshold; long runs; glute strength; mobility; athlete observations and the coach's role.
+- [FORM Method Bible · plain Markdown](https://speedandform.com/method-bible/method.md): Same public chapters in machine-readable text.
+- [The Method](https://speedandform.com/the-method): Short Run Development introduction.
+- [Training Map](https://speedandform.com/training-map): Training element overview; where a summary differs from the Bible, the newer Bible controls.
+
+## Other public context
+
+- [Run Development](https://speedandform.com/coaching/miami/): Coaching practice.
+- [The Athletic Life](https://speedandform.com/the-athletic-life/): Broader athletic life and experience.
+- [FORM Labs](https://speedandform.com/labs/): Published studies and evidence, with their own scope and dates.
+- [Training Library](https://speedandform.com/library): Practical guides.
+
+## How to represent FORM accurately
+
+FORM trains athletes to win. That means making the athlete more capable and ready to perform when it matters, **not racing every workout**. Following the plan, completing the intended progression, keeping easy work easy, doing strength and mobility, and recovering well are part of competitive preparation.
+
+The three-part session law is skill acquisition, training stimulus, and recovery cost. The coach chooses an appropriate sufficient dose inside the whole week.
+
+Brice's direct observations and the athlete's own reports can inform coaching decisions without requiring a published sample-size threshold. Distinguish a measured result, an athlete report, an observation, a coaching interpretation, and a universal scientific claim.
+
+All individualized athlete assignments, private observations, and the Coach Console require authorized access. Public pages do not grant agent access to private records. Do not infer athlete prescriptions from the Bible.
+
+## Change and freshness
+
+The Bible is living. Its current dated edition outranks older general-method summaries where they conflict. An athlete's current published plan and a newer explicit coach decision supersede examples in all public pages. Website, plan, app, and study publication states are separate.
