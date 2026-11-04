@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { test } from 'node:test';
-import { sessionEditorialIssues, changedSessionEditorialIssues, weekPreviewEditorialIssues } from './session-editorial-standard.mjs';
+import { sessionEditorialIssues, changedSessionEditorialIssues, weekPreviewEditorialIssues, unstructuredQualityIssue } from './session-editorial-standard.mjs';
 
 test('clean prescribed easy run and strides passes', () => {
   assert.deepEqual(sessionEditorialIssues({
@@ -115,4 +115,71 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
     title: '3 × 800 m controlled',
     preview: '1 mi easy. 3 × 800 m at RPE 6–7, walk 160 m between. 1.5 mi easy.'
   }), []);
+});
+
+test('new-athlete plan rejects vague categories that leaked into Turner\'s Week', () => {
+  const blocked = [
+    'Midweek aerobic · 7 mi',
+    'Threshold control · 6 mi',
+    'Long aerobic · 9 mi',
+    'Easy aerobic · 3 mi',
+    'Recovery aerobic · up to 4 mi',
+    'Aerobic + strides · 5 mi',
+    'Key Session'
+  ];
+  for (const title of blocked) {
+    const issues = sessionEditorialIssues({ title, details: '' });
+    assert.ok(issues.some(issue => issue.field === 'title'), title);
+  }
+  const corrected = [
+    '7 mi easy',
+    'Threshold · 2 × 8–10 min · 6 mi',
+    'Long Run · 9 mi',
+    'Recovery Run · up to 4 mi',
+    '5 mi easy + 4 strides',
+    'Speed · 1000 / 600 / 400 × 2'
+  ];
+  for (const title of corrected) {
+    assert.deepEqual(sessionEditorialIssues({ title, details: '' }), [], title);
+  }
+});
+
+test('new wording is blocked but unchanged legacy copy is not retroactively rewritten', () => {
+  const old = { title: 'Midweek aerobic · 7 mi', details: 'Easy.', intent: '' };
+  assert.deepEqual(changedSessionEditorialIssues(old, old), []);
+  const changed = changedSessionEditorialIssues({ ...old, title: 'Long aerobic · 9 mi' }, old);
+  assert.ok(changed.some(issue => issue.field === 'title'));
+});
+
+test('Turner threshold is exact, lacks orphan dot and uses structured work', () => {
+  const bad = sessionEditorialIssues({
+    title: 'Threshold · 2 × 8–10 min · 6 mi',
+    details: '2 × 8–10 min comfortably hard.'
+  });
+  assert.ok(bad.some(issue => issue.field === 'title' && issue.message.includes('dot')));
+  assert.ok(bad.some(issue => issue.field === 'title' && issue.message.includes('exact work')));
+  assert.ok(sessionEditorialIssues({
+    title: 'Threshold 2 × 10 min · 6 mi',
+    details: 'Run 2 × 8–10 min if feeling good.'
+  }).some(issue => issue.field === 'details' && issue.message.includes('exact work')));
+  assert.ok(weekPreviewEditorialIssues({ preview: '· 2 × 8–10 min · 6 mi' }).length > 0);
+
+  const good = {
+    title: 'Threshold 2 × 10 min · 6 mi',
+    details: 'Cool down easy for the remaining distance.'
+  };
+  assert.deepEqual(sessionEditorialIssues(good), []);
+  assert.deepEqual(weekPreviewEditorialIssues({ preview: '2 × 10 min · 6 mi' }), []);
+  assert.equal(unstructuredQualityIssue({ title: good.title, components: [] })?.field, 'components');
+  assert.equal(unstructuredQualityIssue({ title: good.title, components: [
+    { role: 'warm_up', durationSeconds: 900 },
+    { role: 'work', shape: 'repetitions', repeatCount: 1, durationSeconds: 600, recoverySeconds: 180 },
+    { role: 'work', shape: 'repetitions', repeatCount: 1, durationSeconds: 600 }
+  ] }), null);
+});
+
+test('quality authoring check leaves easy and long runs alone', () => {
+  assert.equal(unstructuredQualityIssue({ title: '7 mi easy', components: [] }), null);
+  assert.equal(unstructuredQualityIssue({ title: 'Long Run · 9 mi', components: [] }), null);
+  assert.equal(unstructuredQualityIssue({ title: 'VO₂ intervals · 1,200m to 200m', components: [] })?.field, 'components');
 });

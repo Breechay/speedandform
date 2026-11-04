@@ -14,6 +14,19 @@ const RULES = [
   [/(?:^|\s)(?:0\.|\.)(?:[1-9]\d*)\s*(?:km|mi|miles?)\b/iu, 'Write short distances in meters, such as 500 m or 800 m. Keep the actual prescribed distance unchanged.']
 ];
 
+// Athlete titles should describe a runnable prescription, not an internal
+// programming label. The full plan may keep richer coaching context privately.
+const VAGUE_TITLES = [
+  [/\bmidweek aerobic\b/iu, 'Write the actual easy-run distance or work, not “midweek aerobic”.'],
+  [/\bthreshold control\b/iu, 'Name the threshold repetitions or duration; “control” is not a dose.'],
+  [/\blong aerobic\b/iu, 'Call this a Long Run and show the distance.'],
+  [/\b(?:easy aerobic|recovery aerobic)\b/iu, 'Use a plain Easy Run or Recovery Run title with the dose.'],
+  [/\baerobic\s*\+\s*strides\b/iu, 'Write the easy distance and number of strides.'],
+  [/^\s*key session\s*$/iu, 'Name the actual work; “key session” is an internal classification.'],
+  [/^threshold\s*·\s*\d.*·\s*\d+(?:\.\d+)?\s*mi\s*$/iu, 'Do not put a dot between Threshold and its dose; Week can show an orphan separator.'],
+  [/\b\d+\s*[×x]\s*\d+\s*[–-]\s*\d+\s*(?:min|sec)\b/iu, 'Commit to an exact work duration per repetition before publishing.']
+];
+
 const SINGLE_PARAGRAPH_LIMIT = 190;
 
 // A strength list's exercise-to-dose separator is useful notation, not prose.
@@ -37,6 +50,9 @@ export function sessionEditorialIssues(copy) {
   }
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
+  for (const [pattern, message] of VAGUE_TITLES) {
+    if (pattern.test(title)) issues.push({ field: 'title', message });
+  }
   if (!title) issues.push({ field: 'title', message: 'Name the session.' });
   if (/\beasy\s*\+\s*strides\b/iu.test(title) && /\b(?:warm[ -]?up)\b/iu.test(details))
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
@@ -44,6 +60,8 @@ export function sessionEditorialIssues(copy) {
     issues.push({ field: 'details', message: 'Keep the athlete focused on executing the session, not submitting commentary.' });
   if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(details))
     issues.push({ field: 'details', message: 'Remove the repeated total-mileage lead-in. Keep the warm-up, work, recovery and cool-down.' });
+  if (/\b\d+\s*[×x]\s*\d+\s*[–-]\s*\d+\s*(?:min|sec)\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Write exact work repetition durations; do not leave an 8–10 minute choice in the instructions.' });
   if (/\bRPE\s*(\d)\s*[–-]\s*\1\b/iu.test(details))
     issues.push({ field: 'details', message: 'Write one RPE number when both ends of a range are the same.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
@@ -58,6 +76,8 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
   const issues = [];
   const text = String(preview ?? '').trim();
   if (!text) return issues;
+  if (/^\s*[·•]\s*|\s*[·•]\s*$/u.test(text))
+    issues.push({ field: 'preview', message: 'Remove leading or trailing separators from the athlete Week headline.' });
   if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
   if (/^\s*\d+(?:\.\d+)?\s*(?:mi|km)\s+(?:running\s+)?total\.\s*(?:warm[ -]?up|run)\b/iu.test(text))
@@ -65,6 +85,23 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
   if (hasStructuredWork && /\b(?:warm[ -]?up|cool[ -]?down)\b/iu.test(text) && /\b(?:warm[ -]?up|cool[ -]?down)\b/iu.test(String(title ?? '')))
     issues.push({ field: 'preview', message: 'Do not repeat structured warm-up or cool-down labels.' });
   return issues;
+}
+
+// A quality day cannot be published with only a prose description of work.
+// Use this in the editor with the *actual* typed components. Missing recovery
+// or ambiguous range still requires a coach to author it; never generate work.
+export function unstructuredQualityIssue({ title, components = [] } = {}) {
+  const value = String(title ?? '');
+  if (!/\b(?:threshold|tempo|intervals?|speed|track|hills?|fartlek)\b/iu.test(value))
+    return null;
+  if (Array.isArray(components) && components.some(part =>
+    part?.role === 'work' && (
+      Number(part.distance) > 0 || Number(part.durationSeconds ?? part.duration_seconds) > 0
+    ))) return null;
+  return {
+    field: 'components',
+    message: 'Quality work needs typed repetitions or duration, effort and recovery before publishing.'
+  };
 }
 
 // Validate changed prose only. Existing legacy copy does not block a safe dose

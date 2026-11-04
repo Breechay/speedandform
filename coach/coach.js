@@ -1,4 +1,4 @@
-import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
+import { selfAuditSessionCopy, unstructuredQualityIssue } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
@@ -2000,6 +2000,16 @@ sessionForm.addEventListener('submit', async (event) => {
   }
   const complaint = partsComplaint(payload.components || []);
   if (complaint) { status.textContent = complaint; status.className = 'status-message error'; return; }
+  // Newly authored or materially changed quality work needs measurable typed anatomy.
+  // Do not invent a dose when touching unrelated copy on an existing legacy session.
+  const structuralIssue = unstructuredQualityIssue({ title: payload.title, components: parts });
+  const workChanged = !revisingSessionId || touched ||
+    payload.title !== originalSessionEditorialCopy?.title;
+  if (structuralIssue && workChanged) {
+    status.textContent = structuralIssue.message;
+    status.className = 'status-message error';
+    return;
+  }
   button.disabled = true; status.textContent = 'Saving.';
   try {
     if (revisingSessionId) await reviseSession(revisingSessionId, payload);

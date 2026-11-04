@@ -2,7 +2,7 @@
 -- Run against the same active plan that the athlete's signed-in Week will request.
 -- This checks data, not the native layout; device screenshots remain separate evidence.
 with current_sessions as (
-  select a.id athlete_id,a.slug,ps.id session_id,ps.scheduled_on,ps.state,
+  select a.id athlete_id,a.slug,ps.id session_id,ps.scheduled_on,ps.state,ps.role,ps.is_key,
          v.id version_id,v.title,v.details,v.intent,v.pace_low,v.pace_high,
          coalesce(g.easy_min_seconds_per_mile,420) easy_floor
   from public.planned_sessions ps
@@ -52,6 +52,41 @@ with current_sessions as (
          'Program shorthand leaked into an athlete title'
   from current_sessions s
   where s.title ~* '(HM durability|durable 10K|conditional A.goal|5K development)'
+  union all
+  select 'COPY','PLACEHOLDER_SESSION_TITLE',s.slug,s.scheduled_on,s.title,
+         'Replace an internal category with a plain title that names the actual work'
+  from current_sessions s
+  where s.title ~* '(midweek aerobic|threshold control|long aerobic|easy aerobic|recovery aerobic|aerobic[[:space:]]*[+][[:space:]]*strides|^[[:space:]]*key session[[:space:]]*$)'
+     or s.title ~* '^threshold[[:space:]]*·[[:space:]]*[0-9].*·[[:space:]]*[0-9]+([.][0-9]+)?[[:space:]]*mi[[:space:]]*$'
+     or s.title ~* '[0-9][[:space:]]*[×x][[:space:]]*[0-9]+[–-][0-9]+[[:space:]]*(min|sec)'
+  union all
+  select 'BLOCK','QUALITY_WORK_NOT_STRUCTURED',s.slug,s.scheduled_on,s.title,
+         'Published quality work has no structured work rows; author the precise repetitions, efforts and recoveries'
+  from current_sessions s
+  where s.scheduled_on < current_date + interval '21 days'
+    and s.title ~* '(threshold|tempo|interval|speed|track|hills|fartlek)'
+    and not exists (
+      select 1 from public.planned_session_components c
+      where c.version_id=s.version_id and c.role='work'
+    )
+  union all
+  select 'COPY','EASY_ROLE_MISLABELED',s.slug,s.scheduled_on,s.title,
+         'An easy run is marked key in the plan; verify the Week category'
+  from current_sessions s
+  where s.role='key' and coalesce(s.is_key,false)
+    and s.title ~* '(^|[^[:alpha:]])easy([^[:alpha:]]|$)'
+    and s.title !~* '(long[[:space:]]+(run|easy)|strides|race[[:space:]]+pace|tempo|threshold|interval)'
+  union all
+  select 'BLOCK','DOUBLE_THRESHOLD_FORM_WEEK',t.slug,t.scheduled_on,t.title,
+         'Tuesday threshold repeats the linked FORM Thursday threshold; use the coach-approved easy or strides Tuesday instead'
+  from current_sessions t
+  join current_sessions th on th.athlete_id=t.athlete_id
+       and th.scheduled_on=t.scheduled_on + 2
+  join public.form_miami_session_links link on link.planned_session_id=th.session_id
+       and link.lane='thursday' and not link.paused
+  where extract(isodow from t.scheduled_on)=2
+    and t.title ~* '(threshold|tempo)'
+    and th.title ~* '(threshold|tempo)'
   union all
   select 'COPY','TRACK_PREVIEW_MISSING',s.slug,s.scheduled_on,s.title,
          'Track workout needs an authored Week preview with sets and rests'
