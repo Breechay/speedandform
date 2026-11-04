@@ -2,7 +2,7 @@
 // layer, not an alternate prescription, injury rule or automatic plan editor.
 const HIGH_RPE = 7;
 
-export function wholeWeekGuardian(brief) {
+export function wholeWeekGuardian(brief, strength = null) {
   const findings = [];
   const athleteId = brief?.athlete?.id || null;
   const sessions = (brief?.upcoming_sessions || []).filter(s => s.state === 'published');
@@ -48,14 +48,29 @@ export function wholeWeekGuardian(brief) {
   else if (brief.current_week.story_current === false) add('week_story_stale', 'agent', 'maintenance',
     'The Week story is stale. Reauthor against the latest published sessions.', [brief.current_week.id]);
 
-  // A receipt proves only that Forge sent a receipt, not that the coming
-  // strength program was fetched or evaluated against run load.
-  add('paired_strength_unverified', 'agent', 'unknown',
+  // This selector is an authorized FORM strength-day projection, limited to
+  // 40 newest records. It does not prove Forge's own live program or completeness.
+  if (strength?.available) {
+    const upcomingDates = [...byDay.keys()].sort();
+    const end = upcomingDates.at(-1) || new Date(brief.read_at).toISOString().slice(0, 10);
+    const start = new Date(brief.read_at).toISOString().slice(0, 10);
+    for (const s of strength.days || []) {
+      if (!s.scheduled_on || s.scheduled_on < start || s.scheduled_on > end) continue;
+      const sameDay = (byDay.get(s.scheduled_on) || []).filter(run => run.is_key || Number(run.rpe_high) >= HIGH_RPE);
+      if (sameDay.length && /(?:glute|lower|leg|squat|posterior|hinge)/iu.test(s.title || '')) {
+        add('lower_strength_on_key_run', 'coach', 'review',
+          `Lower-body strength and a key run share ${s.scheduled_on}; confirm their order, dose and recovery cost.`,
+          [s.id, ...sameDay.map(run => run.id)]);
+      }
+    }
+    add('forge_prescription_not_verified', 'agent', 'unknown',
+      'FORM strength-day records were compared where present; the live Forge program and selector completeness remain unverified.', []);
+  } else add('paired_strength_unverified', 'agent', 'unknown',
     'The coming seven-day Forge strength prescription has not been compared.',
     (brief.forge_receipts || []).map(r => r.id).filter(Boolean).slice(0, 5));
 
   return { schema_version: 1, athlete_id: athleteId, read_at: brief.read_at,
     findings, checks: { day_collisions: 'checked_upcoming_window',
       week_story: brief.current_week ? 'checked_current_week' : 'unknown',
-      paired_strength: 'unknown' } };
+      paired_strength: strength?.available ? 'form_day_projection_only' : 'unknown' } };
 }

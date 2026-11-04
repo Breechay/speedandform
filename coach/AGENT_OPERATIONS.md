@@ -110,6 +110,12 @@ a coach judgment prompt, not an automatic cancellation. Missing paired Forge
 prescriptions stay **unknown** even when recent Forge receipts exist. The
 brief covers the next eight days, not all future block weeks. Do not use its
 absence of findings as an all-clear publication certificate.
+The source comparison now also reads `coach_strength_duration_day_options`
+under the same signed-in coach identity. It may identify same-day key running
+and a named lower/glute FORM strength day, but the bounded selector does not
+confirm a current Forge-native program, complete 7-day strength coverage or
+the exact session load. These remain unverified until the owning Forge
+prescription is available.
 
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
