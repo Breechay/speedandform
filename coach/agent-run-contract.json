@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "model": "one coordinator with bounded specialist duties",
+  "coordinator": "existing Daily Operating Brief and authorized owner task queue",
+  "default_mode": "observe_and_report",
+  "no_new_schedulers": true,
+  "lanes": [
+    {"id":"athlete_steward","reads":["coach_agent_athlete_brief","coach_roster_story_audit","FORM/Forge owning evidence"],"autonomous_actions":["read","compare","draft"],"must_not":["rewrite_plan","change_restriction","invent_progression"],"receipt":"source IDs, evidence dates, proposed change, current Week"},
+    {"id":"filing_feed_reconciler","reads":["coach_filing_integrity_read","collective_work_feed"],"autonomous_actions":["read","detect","recheck"],"conditional_action":"coach_reconcile_filing_post on one eligible known filing only","must_not":["override_opt_out","retroactively_publish_pre_sharing","invent_completion"],"receipt":"completion ID, share eligibility, source post, Week readback, native state"},
+    {"id":"method_curator","reads":["rule-index.json","Method Bible","sourced athlete observations"],"autonomous_actions":["organize","compare","draft_rule_revision"],"must_not":["make_doctrine_official_without_brice","publish_named_private_case"],"receipt":"rule ID, source, date, adoption state"},
+    {"id":"release_guardian","reads":["coach_roster_story_audit","session editorial tests","production deploy receipts"],"autonomous_actions":["read","test","draft_fix"],"must_not":["publish_without_scope","declare_native_verified_without_device"],"receipt":"tested commit, source version, Week story, production and native states"},
+    {"id":"practice_operator","reads":["operating_console_read","source timestamps","authorized commercial connectors"],"autonomous_actions":["read","synthesize","maintain_authorized_internal_task"],"must_not":["spend","book","send_external_message_without_scope"],"receipt":"owner task ID, source age, next action, outcome"}
+  ],
+  "required_receipt_fields":["lane","requested_action","authority","owning_record_ids","source_read_at","source_as_of","action_taken","readback","external_visibility","uncertainty"],
+  "status_semantics":["observed","drafted","saved","published","delivered","native_verified","blocked"],
+  "escalation":"Do not infer missing permissions. Preserve prior values and report stale or blocked sources."
+}
