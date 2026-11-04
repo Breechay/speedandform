@@ -33,6 +33,8 @@ Two **unapplied SQL drafts** under `docs/operations/sql/` now show the intended 
 
 The Intelligence decision cards now make a bounded, authenticated read of `coach_decision_version_links` for the selected athlete's returned decision IDs, including the exact joined prescription version. A missing table, denied read, or identity mismatch remains **unavailable**, not an empty history. This UI is only a consumer: it does not create links or establish a causal outcome. Once the migration and writer are available, test joined FK permissions and the actual returned shape using an authorized coach, an unrelated coach, and an anonymous session.
 
+The agent execution draft now includes an optional exact `athlete_id`, protected by active coach membership when present. The Intelligence view reads at most twelve receipts for the selected athlete, validates each receipt client-side, and explicitly withholds failed identity/proof checks. The browser never infers verification from a closed operating task. **This remains read-only and unavailable until its migration and authorized writer exist.** Test absent table, no entries, cross-athlete reads, bad receipt, saved-without-readback, delivered-without-destination proof, and sign-out during an in-flight read.
+
 Do not put placeholders for these two unfinished backends into the live Staff dashboard. First verify schema and readback in a controlled environment; then add clearly source-typed panels.
 
 ## Release sequence

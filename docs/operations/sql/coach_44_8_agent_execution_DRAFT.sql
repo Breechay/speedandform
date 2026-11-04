@@ -5,6 +5,7 @@ begin;
 create table public.coach_agent_execution_receipts (
   id uuid primary key default gen_random_uuid(),
   owner_id uuid not null default auth.uid() references auth.users(id),
+  athlete_id uuid references public.athletes(id),
   run_id uuid not null,
   idempotency_key text not null check (length(trim(idempotency_key)) between 8 and 200),
   lane text not null check (length(trim(lane)) between 1 and 100),
@@ -29,14 +30,17 @@ create table public.coach_agent_execution_receipts (
     nullif(external_visibility->>'evidence_id','') is not null))
 );
 create index coach_agent_exec_owner_recent on public.coach_agent_execution_receipts(owner_id,created_at desc);
+create index coach_agent_exec_athlete_recent on public.coach_agent_execution_receipts(athlete_id,created_at desc) where athlete_id is not null;
 alter table public.coach_agent_execution_receipts enable row level security;
 revoke all on public.coach_agent_execution_receipts from public,anon,authenticated;
 grant select,insert on public.coach_agent_execution_receipts to authenticated;
 grant all on public.coach_agent_execution_receipts to service_role;
 create policy coach_agent_exec_owner_read on public.coach_agent_execution_receipts
-  for select to authenticated using (owner_id=(select auth.uid()) and public.operating_console_owner());
+  for select to authenticated using (owner_id=(select auth.uid()) and public.operating_console_owner()
+    and (athlete_id is null or public.is_coach_member(athlete_id)));
 create policy coach_agent_exec_owner_insert on public.coach_agent_execution_receipts
-  for insert to authenticated with check (owner_id=(select auth.uid()) and public.operating_console_owner());
+  for insert to authenticated with check (owner_id=(select auth.uid()) and public.operating_console_owner()
+    and (athlete_id is null or public.is_coach_member(athlete_id)));
 
 -- No UPDATE/DELETE policy or grant. Database administrators are separately privileged;
 -- application code must never use privileged credentials to impersonate the coach.

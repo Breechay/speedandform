@@ -5,6 +5,7 @@ import { athleteFeedbackTimeline } from '/private/athlete-feedback-timeline.mjs'
 import { athleteContinuity } from '/private/athlete-continuity.mjs';
 import { decisionOutcomeContinuity } from '/private/decision-outcome-continuity.mjs';
 import { decisionVersionStory } from '/private/decision-version-link.mjs';
+import { athleteAgentTrail } from '/private/athlete-agent-trail.mjs';
 import { staffSnapshot } from './staff-model.mjs';
 import { addObservation } from '/private/data.js';
 import { AREAS, escapeHtml as e, safeUrl, sourceState, dateLabel, validateBoard, upcomingAppointments } from './model.mjs?v=1';
@@ -14,7 +15,7 @@ let board=null,user=null,tab='today',area='all',loading=false,authGeneration=0;
 let opportunities={available:false,items:[],error:'Not checked'};
 let filingIntegrity={available:false,read_at:null,filings:[],error:'Not checked'};
 let rosterStory={available:false,athletes:[],error:'Not checked'};
-let athleteBrief={id:null,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,error:'',loading:false};
+let athleteBrief={id:null,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,agentReceipts:null,error:'',loading:false};
 let feedbackReceipt='';
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
 if(['today','staff','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
@@ -70,7 +71,10 @@ function intelligenceDetail(d){
   const continuityPanel=`<h3 class="split-label">What happened next · bounded context</h3><p class="source-note">Chronology only. Later training does not prove improvement or causality. Approved strength placements remain unchanged until new feedback or evidence warrants revision.</p>${!continuity.available?'<p class="source-note">Continuity source unavailable; no clean history inferred.</p>':continuity.episodes.length?continuity.episodes.map(o=>`<article class="item"><div class="metadata"><span>${e(o.observed_on)}</span><span>${e(o.source.replaceAll('_',' '))}</span></div><p>${e(o.observation)}</p>${o.linked_filings.length?`<p class="small">Explicit linked filings: ${e(o.linked_filings.map(f=>f.id).join(', '))}</p>`:''}<p class="small">${e(o.later_filings.length)} later filing(s) and ${e(o.later_prescriptions.length)} upcoming prescription(s) in the limited source read; their relationship is not established.</p></article>`).join(''):'<p class="source-note">No dated observations in this bounded read.</p>'}<p class="source-note">${e(continuity.limits||'')}</p>`;
   const feedback=athleteBrief.feedback?.available
     ?athleteFeedbackTimeline(athleteBrief.feedback.rows,d.recent_filings||[]):null;
-  const feedbackPanel=`<h3 class="split-label">Feedback continuity</h3>${feedback===null?'<p class="source-note">Historical observations unavailable; do not infer the athlete has given no feedback.</p>':feedback.length?feedback.map(o=>`<article class="item"><div class="metadata"><span class="pill">${e(o.source_label)}</span><span>${e(o.observed_on||'Date unknown')}</span><span>${e(o.facet||'Observation')}</span></div><p>${e(o.observation)}</p>${o.direction?`<p class="small">Recorded direction: ${e(o.direction.replaceAll('_',' '))}</p>`:''}${o.evidence.length?`<p class="small">Linked filings: ${e(o.evidence.map(x=>x.id+(x.state==='reference_not_loaded'?' (outside recent read)':'')).join(', '))}</p>`:''}${o.supersedes?`<p class="small">Supersedes observation ${e(o.supersedes)}</p>`:''}</article>`).join(''):'<p class="source-note">No observations in this bounded historical read.</p>'}`;
+  const feedbackPanelBase=`<h3 class="split-label">Feedback continuity</h3>${feedback===null?'<p class="source-note">Historical observations unavailable; do not infer the athlete has given no feedback.</p>':feedback.length?feedback.map(o=>`<article class="item"><div class="metadata"><span class="pill">${e(o.source_label)}</span><span>${e(o.observed_on||'Date unknown')}</span><span>${e(o.facet||'Observation')}</span></div><p>${e(o.observation)}</p>${o.direction?`<p class="small">Recorded direction: ${e(o.direction.replaceAll('_',' '))}</p>`:''}${o.evidence.length?`<p class="small">Linked filings: ${e(o.evidence.map(x=>x.id+(x.state==='reference_not_loaded'?' (outside recent read)':'')).join(', '))}</p>`:''}${o.supersedes?`<p class="small">Supersedes observation ${e(o.supersedes)}</p>`:''}</article>`).join(''):'<p class="source-note">No observations in this bounded historical read.</p>'}`;
+  const agentTrail=athleteAgentTrail(d.athlete?.id,athleteBrief.agentReceipts?.rows,{available:athleteBrief.agentReceipts?.available===true});
+  const agentPanel=`<h3 class="split-label">Digital staff · execution evidence</h3><p class="source-note">Only independently saved, athlete-linked receipts. Marking an agent task done is not proof of a plan change, delivery or native display.</p>${!agentTrail.available?'<p class="source-note">Execution receipts unavailable (44.8 ledger migration pending).</p>':agentTrail.entries.length?agentTrail.entries.map(r=>`<article class="item"><div class="metadata"><span class="pill">${e(r.status.replaceAll('_',' '))}</span><span>${e(checked(r.created_at))}</span></div><p>${e(r.requested_action)}</p><p class="small">Action: ${e(r.action_taken)}</p><p class="small">Owning records: ${e(r.owning_record_ids.join(', ')||'None recorded')} · Readback: ${e(r.readback_source_id||'Not verified')}</p>${r.destination_evidence_id?`<p class="small">Destination proof: ${e(r.destination_evidence_id)}</p>`:''}<p class="source-note">Uncertainty: ${e(r.uncertainty)}</p></article>`).join(''):'<p class="source-note">No athlete-linked receipts in this bounded authenticated read.</p>'}${agentTrail.available?`<p class="source-note">${e(agentTrail.limits)}${agentTrail.rejected?` ${e(agentTrail.rejected)} record(s) withheld for failed identity or receipt checks.`:''}</p>`:''}`;
+  const feedbackPanel=agentPanel+feedbackPanelBase;
   const capture=`<details class="capture"><summary>Record sourced athlete feedback</summary><form id="athlete-feedback-form"><p class="source-note">Recording for ${e(d.athlete?.display_name||'this athlete')} · ${e(d.athlete?.id||'No athlete ID')}. Keep the original meaning and label whose words these are. A message does not change the training plan.</p><div class="form-grid"><label>Who supplied it?<select name="source" required><option value="athlete_reported">Athlete reported</option><option value="coach_observed">Coach observed</option><option value="system_detected">System detected</option></select></label><label>What is it about?<select name="facet" required><option value="helps">What helps</option><option value="practice">Practice</option><option value="capacity">Capacity</option><option value="body">Body</option><option value="pattern">Pattern</option><option value="aspiration">Aspiration</option><option value="means">What it means</option></select></label><label>Date observed<input type="date" name="observed_on" required></label></div><label>Original observation<textarea name="observation" rows="3" maxlength="2000" required placeholder="Record the athlete's own words, or your separately identified observation."></textarea></label><button class="primary" type="submit">Save to athlete record</button><p class="source-note" role="status">${e(feedbackReceipt)}</p></form></details>`;
   const guardian=wholeWeekGuardian(d,athleteBrief.strength);
   const actionable=guardian.findings.filter(f=>f.severity!=='context');
@@ -294,7 +298,15 @@ $('#view').addEventListener('click',async event=>{
           ?{available:false,error:'Version link source unavailable or identity mismatch'}:{available:true,rows};
       }
     }
-    athleteBrief=error?{id,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,feedback,decisions,versionLinks,error:'',loading:false};
+    let agentReceipts={available:false,error:'Execution source not checked'};
+    if(!error){
+      const response=await supabase.from('coach_agent_execution_receipts')
+        .select('id,athlete_id,created_at,status,lane,requested_action,authority,owning_record_ids,source_read_at,source_as_of,action_taken,readback,external_visibility,uncertainty')
+        .eq('athlete_id',id).order('created_at',{ascending:false}).limit(12);
+      if(generation!==authGeneration)return;
+      agentReceipts=response.error?{available:false,error:'Execution source unavailable'}:{available:true,rows:response.data||[]};
+    }
+    athleteBrief=error?{id,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,agentReceipts:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,feedback,decisions,versionLinks,agentReceipts,error:'',loading:false};
     if(tab==='intelligence')render();return;
   }
   const opportunityButton=event.target.closest('button[data-op-action]');if(opportunityButton){await opportunityAction(opportunityButton);return;}

@@ -8,6 +8,8 @@ const link=fs.readFileSync(new URL('../docs/operations/sql/coach_44_8_decision_v
 test('draft receipt ledger is authenticated, owner-scoped, append-only and idempotent',()=>{
   assert.match(receipt,/unique\(owner_id,idempotency_key\)/i);
   assert.match(receipt,/owner_id=\(select auth\.uid\(\)\)/i);
+  assert.match(receipt,/athlete_id uuid references public\.athletes\(id\)/i);
+  assert.match(receipt,/athlete_id is null or public\.is_coach_member\(athlete_id\)/i);
   assert.match(receipt,/operating_console_owner\(\)/i);
   assert.match(receipt,/enable row level security/i);
   assert.match(receipt,/grant select,insert .* to authenticated/i);
