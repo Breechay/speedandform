@@ -94,6 +94,15 @@ Programming changes require the current weekly story to remain true and a
 whole-week/recovery check. Cross-app FORM/Forge changes require the coupled
 seven-day review. One surface changing does not prove the other updated.
 
+The shared `authorSession` and `reviseSession` data functions now apply the
+copy and track-distance preflight used by the Console to **both** Console and
+Labs. They return a persisted version readback receipt with
+`sourceReadbackVerified=true`, `athleteFeedVerified=false` and
+`nativeDeviceVerified=false`. The readback is deliberately not a whole-week
+approval: reconfirm the Week story, paired Forge load and athlete-facing
+feed independently. If a write succeeded but readback failed, reread first;
+never retry the same author call blindly or it may create a duplicate.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
