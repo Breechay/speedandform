@@ -23,3 +23,11 @@ test('an unavailable link source stays unknown and explicit before/after stay se
   assert.equal(story.before.length,1);
   assert.equal(story.after.length,1);
 });
+test('database link shape preserves exact version identity and joined title',()=>{
+  const story=decisionVersionStory(decision,[{
+    decision_id:'d',planned_session_version_id:'v',role:'after',reason:'Confirmed new speed prescription',
+    planned_session_versions:{planned_session_id:'s',version_number:2,title:'10 × 200m',athlete_id:'athlete'}
+  }],{available:true});
+  assert.deepEqual(story.after.map(x=>[x.version_id,x.planned_session_id,x.version_number,x.title]),
+    [['v','s',2,'10 × 200m']]);
+});

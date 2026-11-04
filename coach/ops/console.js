@@ -4,6 +4,7 @@ import { wholeWeekGuardian } from '/private/whole-week-guardian.mjs';
 import { athleteFeedbackTimeline } from '/private/athlete-feedback-timeline.mjs';
 import { athleteContinuity } from '/private/athlete-continuity.mjs';
 import { decisionOutcomeContinuity } from '/private/decision-outcome-continuity.mjs';
+import { decisionVersionStory } from '/private/decision-version-link.mjs';
 import { staffSnapshot } from './staff-model.mjs';
 import { addObservation } from '/private/data.js';
 import { AREAS, escapeHtml as e, safeUrl, sourceState, dateLabel, validateBoard, upcomingAppointments } from './model.mjs?v=1';
@@ -13,7 +14,7 @@ let board=null,user=null,tab='today',area='all',loading=false,authGeneration=0;
 let opportunities={available:false,items:[],error:'Not checked'};
 let filingIntegrity={available:false,read_at:null,filings:[],error:'Not checked'};
 let rosterStory={available:false,athletes:[],error:'Not checked'};
-let athleteBrief={id:null,data:null,strength:null,feedback:null,decisions:null,error:'',loading:false};
+let athleteBrief={id:null,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,error:'',loading:false};
 let feedbackReceipt='';
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
 if(['today','staff','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
@@ -57,7 +58,14 @@ function coachingView(){return `<h3 class="split-label">Current coach decisions 
 function intelligenceDetail(d){
   const list=(items,make)=>items?.length?items.map(make).join(''):'<p class="empty">No records in this bounded source read. Do not infer none exist elsewhere.</p>';
   const decisionHistory=decisionOutcomeContinuity(athleteBrief.decisions?.rows,d.recent_filings||[],{available:athleteBrief.decisions?.available===true});
-  const decisionPanel=`<h3 class="split-label">Decision → evidence → what followed</h3><p class="source-note">Explicitly linked completion IDs informed the decision. Later filings are shown as context, not proof the decision caused improvement. The current decision schema does not link a specific published prescription version.</p>${!decisionHistory.available?'<p class="source-note">Decision history unavailable; do not infer no decisions exist.</p>':decisionHistory.stories.length?decisionHistory.stories.map(x=>`<article class="item"><div class="metadata"><span>${e(x.effective_on||'Date unknown')}</span><span>${e(x.delivery_state||'State unknown')}</span><span>${e(x.decision_type||'Decision')}</span></div><p>${e(x.athlete_text||'No athlete-facing wording')}</p><p class="small">Rationale: ${e(x.rationale||'Not recorded')}</p><p class="small">Evidence used: ${e(x.input_evidence.length)} explicit completion link(s) · ${e(x.later_filings.length)} subsequent filing(s) in the limited read.</p><p class="source-note">${e(x.outcome)}</p></article>`).join(''):'<p class="source-note">No decisions in this bounded authenticated read.</p>'}`;
+  const versionLine=decisionId=>{
+    const story=decisionVersionStory({id:decisionId},athleteBrief.versionLinks?.rows,{available:athleteBrief.versionLinks?.available===true});
+    if(!story.available)return '<p class="source-note">Exact prescription-version links unavailable (44.8 migration pending).</p>';
+    if(story.unknown)return '<p class="source-note">No explicitly linked version in this bounded read; no change inferred.</p>';
+    const parts=[...story.before,...story.after].map(v=>`${e(v.role)} · ${e(v.title||'Untitled')} · v${e(v.version_number??'?')} · ${e(v.version_id)} · ${e(v.reason)}`);
+    return `<p class="small">Explicit prescription links: ${parts.join(' / ')}</p>`;
+  };
+  const decisionPanel=`<h3 class="split-label">Decision → evidence → what followed</h3><p class="source-note">Explicitly linked completion IDs informed the decision. Later filings are chronological context, not proof of improvement. Version links appear only when separately stored and authorized.</p>${!decisionHistory.available?'<p class="source-note">Decision history unavailable; do not infer no decisions exist.</p>':decisionHistory.stories.length?decisionHistory.stories.map(x=>`<article class="item"><div class="metadata"><span>${e(x.effective_on||'Date unknown')}</span><span>${e(x.delivery_state||'State unknown')}</span><span>${e(x.decision_type||'Decision')}</span></div><p>${e(x.athlete_text||'No athlete-facing wording')}</p><p class="small">Rationale: ${e(x.rationale||'Not recorded')}</p><p class="small">Evidence used: ${e(x.input_evidence.length)} explicit completion link(s) · ${e(x.later_filings.length)} subsequent filing(s) in the limited read.</p>${versionLine(x.decision_id)}<p class="source-note">${e(x.outcome)}</p></article>`).join(''):'<p class="source-note">No decisions in this bounded authenticated read.</p>'}`;
   const continuity=athleteContinuity(d,athleteBrief.feedback?.rows,{feedbackAvailable:athleteBrief.feedback?.available===true});
   const continuityPanel=`<h3 class="split-label">What happened next · bounded context</h3><p class="source-note">Chronology only. Later training does not prove improvement or causality. Approved strength placements remain unchanged until new feedback or evidence warrants revision.</p>${!continuity.available?'<p class="source-note">Continuity source unavailable; no clean history inferred.</p>':continuity.episodes.length?continuity.episodes.map(o=>`<article class="item"><div class="metadata"><span>${e(o.observed_on)}</span><span>${e(o.source.replaceAll('_',' '))}</span></div><p>${e(o.observation)}</p>${o.linked_filings.length?`<p class="small">Explicit linked filings: ${e(o.linked_filings.map(f=>f.id).join(', '))}</p>`:''}<p class="small">${e(o.later_filings.length)} later filing(s) and ${e(o.later_prescriptions.length)} upcoming prescription(s) in the limited source read; their relationship is not established.</p></article>`).join(''):'<p class="source-note">No dated observations in this bounded read.</p>'}<p class="source-note">${e(continuity.limits||'')}</p>`;
   const feedback=athleteBrief.feedback?.available
@@ -272,7 +280,21 @@ $('#view').addEventListener('click',async event=>{
       :{available:true,days:strengthResponse.data.days.map(s=>({id:s.day_id,scheduled_on:s.scheduled_on,title:s.title,emphasis:s.emphasis,exercises:s.exercises,forgeProgramId:s.forge_program_id,forgeDigest:s.forge_program_digest}))};
     const feedback=feedbackResponse.error?{available:false,error:'Observation source unavailable'}:{available:true,rows:feedbackResponse.data||[]};
     const decisions=decisionResponse.error?{available:false,error:'Decision history unavailable'}:{available:true,rows:decisionResponse.data||[]};
-    athleteBrief=error?{id,data:null,strength:null,feedback:null,decisions:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,feedback,decisions,error:'',loading:false};
+    let versionLinks={available:false,error:'Version link source not checked'};
+    if(!error&&decisions.available){
+      const decisionIds=decisions.rows.map(x=>x.id).filter(Boolean);
+      if(!decisionIds.length)versionLinks={available:true,rows:[]};
+      else {
+        const linksResponse=await supabase.from('coach_decision_version_links')
+          .select('decision_id,planned_session_version_id,role,reason,created_at,planned_session_versions(planned_session_id,version_number,title,athlete_id)')
+          .in('decision_id',decisionIds).order('created_at',{ascending:false}).limit(32);
+        if(generation!==authGeneration)return;
+        const rows=linksResponse.data||[];
+        versionLinks=linksResponse.error||rows.some(x=>x.planned_session_versions?.athlete_id!==id)
+          ?{available:false,error:'Version link source unavailable or identity mismatch'}:{available:true,rows};
+      }
+    }
+    athleteBrief=error?{id,data:null,strength:null,feedback:null,decisions:null,versionLinks:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,feedback,decisions,versionLinks,error:'',loading:false};
     if(tab==='intelligence')render();return;
   }
   const opportunityButton=event.target.closest('button[data-op-action]');if(opportunityButton){await opportunityAction(opportunityButton);return;}

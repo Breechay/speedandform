@@ -31,6 +31,8 @@ This integrated branch combines only the files from those five PRs, plus this ha
 
 Two **unapplied SQL drafts** under `docs/operations/sql/` now show the intended tables and RLS boundaries. These are review material, not numbered migrations. Code must regenerate them through the normal CLI workflow, verify actual database grants and policies, and test in a controlled environment before production.
 
+The Intelligence decision cards now make a bounded, authenticated read of `coach_decision_version_links` for the selected athlete's returned decision IDs, including the exact joined prescription version. A missing table, denied read, or identity mismatch remains **unavailable**, not an empty history. This UI is only a consumer: it does not create links or establish a causal outcome. Once the migration and writer are available, test joined FK permissions and the actual returned shape using an authorized coach, an unrelated coach, and an anonymous session.
+
 Do not put placeholders for these two unfinished backends into the live Staff dashboard. First verify schema and readback in a controlled environment; then add clearly source-typed panels.
 
 ## Release sequence

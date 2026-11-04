@@ -17,8 +17,10 @@ export function validateDecisionVersionLink(link, decision, version, session) {
 export function decisionVersionStory(decision, links, {available=false}={}) {
   if (!available || !Array.isArray(links)) return {available:false,before:[],after:[],unknown:true};
   const own=links.filter(x=>x.decision_id===decision?.id && DECISION_VERSION_ROLES.includes(x.role));
-  const shape=x=>({version_id:x.version_id,planned_session_id:x.planned_session_id,
-    version_number:x.version_number,title:x.title,role:x.role,reason:x.reason,
+  const shape=x=>({version_id:x.planned_session_version_id??x.version_id,
+    planned_session_id:x.planned_session_versions?.planned_session_id??x.planned_session_id,
+    version_number:x.planned_session_versions?.version_number??x.version_number,
+    title:x.planned_session_versions?.title??x.title,role:x.role,reason:x.reason,
     linked_at:x.created_at});
   return {available:true,before:own.filter(x=>x.role==='before').map(shape),
     after:own.filter(x=>x.role==='after').map(shape),unknown:own.length===0};
