@@ -18,6 +18,11 @@ current_program as (
    order by d.authored_at desc, d.scheduled_on desc, d.id desc
    limit 1
 ),
+preference as (
+  select coalesce(p.weight_unit,'lb') as weight_unit
+    from authorized a
+    left join public.athlete_strength_preferences p on p.athlete_id=a.id
+),
 authored as (
   select d.id,d.athlete_id,d.forge_program_id,d.scheduled_on,
          d.session_key,d.title,d.exercises,
@@ -80,7 +85,9 @@ lifts as (
     'id',coalesce(nullif(e.elem->>'movement_id',''),nullif(e.elem->>'name',''),'movement-'||e.ordinality),
     'name',coalesce(e.elem->>'name',''),
     'lastLoad',(
-      select round((s.elem->>'weight')::numeric)::integer
+      select round(case when (select weight_unit from preference)='kg'
+                        then (s.elem->>'weight')::numeric/2.2046226218
+                        else (s.elem->>'weight')::numeric end)::integer
         from public.forge_strength_receipts r
         cross join lateral jsonb_array_elements(
           case when jsonb_typeof(r.native_payload->'sets')='array'
@@ -107,7 +114,7 @@ select jsonb_build_object(
   'athleteName',coalesce(a.first_name,'Athlete'),
   'hasProgram',exists(select 1 from authored),
   'programId',(select forge_program_id from current_program),
-  'unit','lb',
+  'unit',(select weight_unit from preference),
   'filedSessions',(select count(*) from positioned where receipt_id is not null),
   'plannedSessions',(select count(*) from authored),
   'nextDate',(select scheduled_on from next_authored),

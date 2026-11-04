@@ -58,6 +58,15 @@ begin
              where table_schema='public' and table_name='athlete_speed_marks') then
     raise exception 'A duplicate speed marks store was introduced';
   end if;
+
+  if position('already belongs to a different Vault version' in
+       pg_get_functiondef('public.file_vault_attempt(text,uuid,integer[],text,timestamptz)'::regprocedure)) = 0
+     or position('already carries different rep times' in
+       pg_get_functiondef('public.file_vault_attempt(text,uuid,integer[],text,timestamptz)'::regprocedure)) = 0
+     or position('athlete_memberships <> 1' in
+       pg_get_functiondef('public.file_vault_attempt(text,uuid,integer[],text,timestamptz)'::regprocedure)) = 0 then
+    raise exception 'Vault filing retry/identity immutability guard is missing';
+  end if;
 end;
 $$;
 
