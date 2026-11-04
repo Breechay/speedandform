@@ -114,7 +114,7 @@ with
           'paceHighSeconds',component.pace_high_seconds
         ) order by component.position),'[]'::jsonb)
         from public.planned_session_components component
-        where component.version_id=v.id
+        where component.version_id=v.id and component.role='work'
       ),'[]'::jsonb),
       'distances',coalesce((
         select jsonb_agg(distinct public.speed_distance_key(
@@ -125,7 +125,7 @@ with
             else null end
         ,component.distance_unit)) filter (where component.distance is not null)
         from public.planned_session_components component
-        where component.version_id=v.id
+        where component.version_id=v.id and component.role='work'
       ),'[]'::jsonb)
     ) as value
     from authorized a
