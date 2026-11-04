@@ -115,7 +115,13 @@ with
     from authorized a
     join public.planned_sessions p on p.athlete_id=a.id
       and p.state='published'
+      and p.role='key'
       and p.scheduled_on >= (now() at time zone 'America/New_York')::date
+      and not exists (
+        select 1 from public.session_completions done
+        where done.planned_session_id=p.id and done.athlete_id=p.athlete_id
+          and done.status in ('completed','partial','changed')
+      )
     join lateral (
       select v.id,v.title,v.vault_session_version_id
       from public.planned_session_versions v
