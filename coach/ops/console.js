@@ -128,6 +128,16 @@ async function refresh(){
   catch(err){if(generation!==authGeneration)return;if(!board){$('#gate').hidden=false;$('#workspace').hidden=true;$('#signout').hidden=false;$('#gate-message').textContent='This account could not open the private operating workspace. Use the authorized coach account, or retry if the connection is unavailable.';}else{message('Refresh failed. The last successfully loaded workspace is still shown. Its source timestamps have not changed.',true);}}
   finally{if(generation===authGeneration){loading=false;$('#refresh').disabled=false;}else if(user){loading=false;queueMicrotask(refresh);}}
 }
+// A browser reread is not a source recheck. External projections retain their
+// own source_as_of and expiry; do not interrupt an editor to repaint the view.
+function refreshIfAged() {
+  if (!user || !board || loading || document.visibilityState !== 'visible') return;
+  if (document.querySelector('dialog[open]') || document.querySelector('form:focus-within')) return;
+  if (Date.now() - Date.parse(board.read_at) < 5 * 60 * 1000) return;
+  refresh();
+}
+document.addEventListener('visibilitychange', refreshIfAged);
+window.setInterval(refreshIfAged, 60 * 1000);
 async function sessionChanged(session){
   const next=session?.user||null;
   if(next?.id===user?.id){if(next&&!board&&!loading)await refresh();return;}

@@ -1,3 +1,34 @@
+## November 4 · Method Bible, agent governance and Coach Console reset
+
+- **Owner direction:** Make FORM's observation-led training doctrine public and
+  machine-discoverable, with an explicit competitive-development distinction:
+  train to win by following the plan and protecting adaptations, not by racing
+  everyday workouts. Keep private athlete reports, consent and prescriptions
+  in their owning systems.
+- **Public source:** `method-bible/method.md`, built as `/method-bible/` with
+  section navigation, readable typography, alternate Markdown, metadata and
+  `llms.txt`/sitemap discovery. The related legacy Method and Training Map
+  statements have been reconciled in source.
+- **Coach source:** Five stable navigation destinations, a scoped light/sans
+  design, athlete search, current-record refresh, links into Programming,
+  `coach/agent-map.json` and `coach/AGENT_OPERATIONS.md`. The future shared
+  authenticated coach projection and per-mutation filing/feed receipts remain
+  **not built**. The private master Bible is separately updated.
+- **Agent policy:** [FORM intelligence architecture](../operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md)
+  defines source owners, evidence/freshness budgets, five specialist duties,
+  readback and action-level approval. Existing scheduled jobs stay in place;
+  no new recurring agent is activated.
+- **Verification/status:** Focused tests and syntax checks passed in local
+  source work; browser screenshots and authenticated end-to-end checks remain
+  outstanding. **Not merged, not deployed, not production-verified** at the
+  time of this record. Live athlete plans, consent, app distribution and
+  backend schemas are unchanged by this batch.
+- **Next:** visual review at desktop/mobile with a signed-in coach; verify
+  actual source/version and feed parity for a safe test; inspect the public
+  article at its final URL; then authorize one release, merge and read back
+  Netlify production separately. First system automation to implement is the
+  event-driven Filing & Feed Reconciler, behind real permissions and receipts.
+
 ## November 2 · Running app page aligned to FORM 44.5
 
 - Brice authorized one public release of the updated Running app page. `/app` is a redirect to the canonical `/form/` product page; update the source page, its share description and its focused tests together.
