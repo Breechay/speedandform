@@ -1990,6 +1990,16 @@ sessionForm.addEventListener('submit', async (event) => {
 
   const parts = readParts();
   const touched = readParts({ raw: true }) !== partsOpenedAs;
+  // A single work piece cannot silently retain the prior session's RPE after
+  // the coach rewrites its dose. The session's explicit RPE is the authority.
+  if (touched && parts.filter(part => part.role === 'work').length === 1
+      && payload.rpeLow != null && payload.rpeHigh != null) {
+    const work = parts.find(part => part.role === 'work');
+    work.rpeLow = payload.rpeLow;
+    work.rpeHigh = payload.rpeHigh;
+    delete work.rpeSource;
+    delete work.rpeDefaultVersion;
+  }
   if (!revisingSessionId || touched) payload.components = parts;
 
   const editorialReview = selfAuditSessionCopy(payload, originalSessionEditorialCopy);
