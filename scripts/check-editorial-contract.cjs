@@ -8,6 +8,12 @@ const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://speedandform.com';
 
 const banned = [
+  // High-confidence founder narration only. Names can be essential in real athlete
+  // profiles, direct communication, signed authorship and contractual credits.
+  ['founder.photos-by', /\bphotos by brice\b/gi],
+  ['founder.sent-to', /\bsent to brice\b/gi],
+  ['founder.tag-review', /\bbrice confirms (?:it|the tag|your tag)\b/gi],
+  ['founder.strength-pitch', /\bstrength, coached by brice\b/gi],
   ['ui.one-click-away', /\bone click away\b/gi],
   ['ui.full-details-remain', /\bfull details remain\b/gi],
   ['ui.editorial-formula', /\bsession,\s*experience,\s*decision\b/gi],
