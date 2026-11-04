@@ -100,6 +100,22 @@ with
       'plannedSessionId',p.id,'plannedVersionId',v.id,
       'vaultVersionId',coalesce(v.vault_session_version_id,vl.vault_version_id),
       'date',p.scheduled_on,'title',v.title,
+      'segments',coalesce((
+        select jsonb_agg(jsonb_build_object(
+          'distanceMeters', case component.distance_unit
+            when 'm' then round(component.distance)::integer
+            when 'km' then round(component.distance*1000)::integer
+            when 'mi' then round(component.distance*1609.344)::integer
+            else null end,
+          'reps',coalesce(component.repeat_target,component.repeat_count,1),
+          'durationSeconds',component.duration_seconds,
+          'recoverySeconds',component.recovery_seconds,
+          'paceLowSeconds',component.pace_low_seconds,
+          'paceHighSeconds',component.pace_high_seconds
+        ) order by component.position),'[]'::jsonb)
+        from public.planned_session_components component
+        where component.version_id=v.id
+      ),'[]'::jsonb),
       'distances',coalesce((
         select jsonb_agg(distinct public.speed_distance_key(
           case component.distance_unit
@@ -146,7 +162,24 @@ with
       'completionId',c.id,'date',c.filed_at::date,'title',v.title,
       'position',pin.position,'isPeak',pin.is_peak,'blockId',pin.block_id,
       'distance',c.actual_distance,'distanceUnit',c.distance_unit,
-      'durationSeconds',c.duration_seconds
+      'durationSeconds',c.duration_seconds,
+      'segments',coalesce((
+        select jsonb_agg(jsonb_build_object(
+          'distanceMeters',round(coalesce(correction.distance_m,
+            case piece.distance_unit
+              when 'm' then piece.distance
+              when 'km' then piece.distance*1000
+              when 'mi' then piece.distance*1609.344
+              else null end
+          ))::integer,
+          'durationMs',round(coalesce(piece.duration_seconds_exact,
+                                      piece.duration_seconds::numeric)*1000)::bigint
+        ) order by piece.position),'[]'::jsonb)
+        from public.session_pieces piece
+        left join public.speed_piece_distance_corrections correction
+          on correction.piece_id=piece.id and correction.athlete_id=c.athlete_id
+        where piece.completion_id=c.id and piece.athlete_id=c.athlete_id and piece.kind='rep'
+      ),'[]'::jsonb)
     ) order by pin.position),'[]'::jsonb) as value
     from authorized a
     join public.athlete_season_pins pin on pin.athlete_id=a.id
