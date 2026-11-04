@@ -1,8 +1,10 @@
 -- One scorer for timer, coach filing, watch and text. Attempt = completion.
 -- The completion references the exact immutable Vault version it attempted.
 
-create or replace function public.vault_attempt_score(p_completion_id uuid)
-returns jsonb language sql stable security invoker
+-- Private calculation can inspect all completions for the faces-only aggregate.
+-- It is not an API. The public wrapper separately checks athlete ownership.
+create or replace function coach_performance_private.speed_vault_score_internal(p_completion_id uuid)
+returns jsonb language sql stable security definer
 set search_path = public, pg_temp as $$
 with
   attempt as (
@@ -15,7 +17,7 @@ with
     left join public.planned_session_versions pv on pv.id=c.planned_session_version_id
     left join public.speed_plan_vault_links pl
       on pl.plan_version_id=pv.id and pl.athlete_id=c.athlete_id
-    where c.id=p_completion_id and public.can_read_athlete(c.athlete_id)
+    where c.id=p_completion_id
       and c.status in ('completed','partial','changed')
       and c.source in ('athlete','form','coach_import')
   ),
@@ -70,6 +72,16 @@ from attempt a join target s on s.completion_id=a.id
 group by a.id,a.version_id;
 $$;
 
+revoke all on function coach_performance_private.speed_vault_score_internal(uuid)
+  from public,anon,authenticated;
+
+create or replace function public.vault_attempt_score(p_completion_id uuid)
+returns jsonb language sql stable security definer
+set search_path = public, pg_temp as $$
+  select coach_performance_private.speed_vault_score_internal(c.id)
+  from public.session_completions c
+  where c.id=p_completion_id and public.can_read_athlete(c.athlete_id);
+$$;
 revoke all on function public.vault_attempt_score(uuid) from public,anon;
 grant execute on function public.vault_attempt_score(uuid) to authenticated;
 
@@ -105,7 +117,7 @@ begin
       on pl.plan_version_id=pv.id and pl.athlete_id=c.athlete_id
     where coalesce(c.vault_session_version_id,cl.vault_version_id,
                    pv.vault_session_version_id,pl.vault_version_id)=p_version_id
-      and (public.vault_attempt_score(c.id)->>'cleared')::boolean is true
+      and (coach_performance_private.speed_vault_score_internal(c.id)->>'cleared')::boolean is true
     order by c.athlete_id,c.filed_at,c.id
   ), visible as (
     select p.id,p.first_name,p.avatar_path,f.filed_at
