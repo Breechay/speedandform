@@ -227,12 +227,18 @@ $('#view').addEventListener('click',async event=>{
     if(!rosterStory.athletes?.some(a=>a.id===id)||athleteBrief.loading)return;
     const generation=authGeneration;
     athleteBrief={id,data:null,error:'',loading:true};render();
+    const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+    const datePart=type=>parts.find(p=>p.type===type)?.value;
+    const todayET=`${datePart('year')}-${datePart('month')}-${datePart('day')}`;
+    const endDate=new Date(`${todayET}T12:00:00Z`);endDate.setUTCDate(endDate.getUTCDate()+7);
     const [{data,error},strengthResponse]=await Promise.all([
       supabase.rpc('coach_agent_athlete_brief',{p_athlete_id:id}),
-      supabase.rpc('coach_strength_duration_day_options',{p_athlete_id:id})
+      supabase.rpc('coach_preview_strength_days',{p_athlete_id:id,p_from:todayET,p_to:endDate.toISOString().slice(0,10)})
     ]);
     if(generation!==authGeneration)return;
-    const strength=strengthResponse.error?{available:false,error:'Strength source unavailable'}:{available:true,days:(strengthResponse.data||[]).map(s=>({id:s.strength_day_id,scheduled_on:s.scheduled_on,title:s.session_title}))};
+    const strength=strengthResponse.error||strengthResponse.data?.athlete_id!==id||!Array.isArray(strengthResponse.data?.days)
+      ?{available:false,error:'Strength source unavailable or identity mismatch'}
+      :{available:true,days:strengthResponse.data.days.map(s=>({id:s.day_id,scheduled_on:s.scheduled_on,title:s.title,emphasis:s.emphasis,exercises:s.exercises,forgeProgramId:s.forge_program_id,forgeDigest:s.forge_program_digest}))};
     athleteBrief=error?{id,data:null,strength:null,error:'The private athlete brief could not be read. Check coach access and retry.',loading:false}:{id,data,strength,error:'',loading:false};
     if(tab==='intelligence')render();return;
   }
