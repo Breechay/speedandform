@@ -278,7 +278,7 @@ $('#view').addEventListener('submit',async ev=>{
       const saved=await addObservation({athleteId,facet:f.elements['facet'].value,
         source:f.elements['source'].value,observation:f.elements['observation'].value,
         observedOn:f.elements['observed_on'].value});
-      feedbackReceipt=`Saved observation ${saved.id} for athlete ${athleteId}. No plan changed.`;
+      feedbackReceipt=`${saved.alreadyPresent?'Already recorded':'Saved observation'} ${saved.id} for athlete ${athleteId}. No plan changed.`;
       const {data,error}=await supabase.from('athlete_observations')
         .select('id,athlete_id,observed_on,created_at,source,facet,observation,direction,supersedes,evidence_completion_ids')
         .eq('athlete_id',athleteId).order('observed_on',{ascending:false})
