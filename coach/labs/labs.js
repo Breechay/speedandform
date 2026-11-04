@@ -23,6 +23,8 @@
 import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
+import { isPublishedPlanSession, visibleHeldCoachSessions } from '/private/coach-bench-live.mjs';
+import { revisedAuthoredTotal } from '/private/session-revision-total.mjs';
 import { authoredMiles, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
@@ -599,10 +601,8 @@ function dossierWeekHtml() {
   const next = weekIndex >= 0 && weekIndex < orderedWeeks.length - 1 ? orderedWeeks[weekIndex + 1] : null;
   const days = WEEK_DAYS.map((name, index) => {
     const date = addDays(week.starts_on, index);
-    const mine = sessions.filter((session) => session.scheduled_on === date && session.state !== 'cancelled');
-    const held = asCoach() ? sessions.filter((session) => session.scheduled_on === date
-      && session.state === 'cancelled' && session.withdrawn_at
-      && !/^superseded by /i.test(session.withdrawn_reason || '')) : [];
+    const mine = sessions.filter((session) => session.scheduled_on === date && isPublishedPlanSession(session));
+    const held = visibleHeldCoachSessions(sessions, date, asCoach());
     return `<div class="ccDay${date === today() ? ' today' : ''}">
       <div class="ccDayName"><span>${escapeHtml(name.slice(0, 3).toUpperCase())}</span><b>${escapeHtml(Number(date.slice(8)))}</b></div>
       ${mine.map((session) => `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
@@ -2474,41 +2474,34 @@ async function keepRevision() {
   const doseField = document.getElementById('rvDose');
   const dose = soleWorkDistance(version);
   let components = null;
-  let total = authoredMiles(version);
+  // The authored total is independent of the typed work. A copy-only revision
+  // does not rewrite anatomy or invent warm-up miles at a fallback pace.
+  let total = revisedAuthoredTotal(version);
   if (dose && doseField) {
     const next = Number(doseField.value);
     if (!(next > 0)) { error.textContent = 'The work needs a distance.'; return; }
-    components = (version.components || []).slice().sort((a, b) => a.position - b.position)
-      .map((part) => {
-        const wire = {
-          role: part.role, shape: part.shape, position: part.position,
-          ...(part.distance != null ? { distance: Number(part.distance), distanceUnit: part.distance_unit } : {}),
-          ...(part.duration_seconds != null ? { durationSeconds: part.duration_seconds } : {}),
-          ...(part.pace_low_seconds != null ? { paceLowSeconds: part.pace_low_seconds } : {}),
-          ...(part.pace_high_seconds != null ? { paceHighSeconds: part.pace_high_seconds } : {}),
-          ...(part.recovery_kind ? { recoveryKind: part.recovery_kind } : {}),
-          ...(part.recovery_seconds != null ? { recoverySeconds: part.recovery_seconds } : {}),
-          ...(part.repeat_count != null ? { repeatCount: part.repeat_count } : {}),
-          // Eligibility travels with the piece. Without this a dose edit would
-          // silently un-eligible the component and the number would only be seen
-          // to be wrong when a rung failed to land.
-          ...(part.counts_toward_mark_id ? { countsTowardMarkId: part.counts_toward_mark_id } : {})
-        };
-        if (part.id === dose.id) wire.distance = next;
-        return wire;
-      });
-    // The total follows the parts. This is the rule the whole 4 September
-    // normalisation existed to establish, and the editor must not be the one
-    // place that breaks it.
-    total = components.reduce((sum, part) => {
-      const reps = part.shape === 'repetitions' ? (part.repeatCount || 1) : 1;
-      if (part.distance != null) {
-        return sum + (part.distanceUnit === 'km' ? part.distance * 0.621371 : part.distance) * reps;
-      }
-      if (part.durationSeconds != null) return sum + (part.durationSeconds * reps) / (part.paceLowSeconds || 525);
-      return sum;
-    }, 0);
-    total = Number(total.toFixed(2));
+    if (Math.abs(next - Number(dose.distance)) > 0.000001) {
+      components = (version.components || []).slice().sort((a, b) => a.position - b.position)
+        .map((part) => {
+          const wire = {
+            role: part.role, shape: part.shape, position: part.position,
+            ...(part.distance != null ? { distance: Number(part.distance), distanceUnit: part.distance_unit } : {}),
+            ...(part.duration_seconds != null ? { durationSeconds: part.duration_seconds } : {}),
+            ...(part.pace_low_seconds != null ? { paceLowSeconds: part.pace_low_seconds } : {}),
+            ...(part.pace_high_seconds != null ? { paceHighSeconds: part.pace_high_seconds } : {}),
+            ...(part.recovery_kind ? { recoveryKind: part.recovery_kind } : {}),
+            ...(part.recovery_seconds != null ? { recoverySeconds: part.recovery_seconds } : {}),
+            ...(part.repeat_count != null ? { repeatCount: part.repeat_count } : {}),
+            // Eligibility travels with the piece. Without this a dose edit would
+            // silently un-eligible the component and the number would only be seen
+            // to be wrong when a rung failed to land.
+            ...(part.counts_toward_mark_id ? { countsTowardMarkId: part.counts_toward_mark_id } : {})
+          };
+          if (part.id === dose.id) wire.distance = next;
+          return wire;
+        });
+      total = revisedAuthoredTotal(version, dose, next);
+    }
   }
 
   const button = document.getElementById('shSave');

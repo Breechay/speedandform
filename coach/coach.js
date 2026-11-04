@@ -1,4 +1,5 @@
 import { selfAuditSessionCopy } from '/private/session-editorial-standard.mjs';
+import { componentPaceLabels } from '/private/session-component-units.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
@@ -1376,6 +1377,7 @@ const clockText = (seconds) => seconds == null || seconds === ''
 
 function partRowHtml(part = {}) {
   const shape = part.shape || 'continuous';
+  const paceLabels = componentPaceLabels(part);
   const options = (list, chosen) => list
     .map(([value, label]) => `<option value="${value}"${String(chosen || '') === value ? ' selected' : ''}>${label}</option>`).join('');
   const field = (label, name, value, extra = '') =>
@@ -1388,10 +1390,10 @@ function partRowHtml(part = {}) {
     </select>
     <div class="part-fields">
       ${shape === 'repetitions' ? field('Reps', 'repeatCount', part.repeat_count, 'type="number" min="1"') : ''}
-      ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
+      ${field(paceLabels.distance, 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
       ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
-      ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
-      ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
+      ${field(paceLabels.fast, 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
+      ${field(paceLabels.slow, 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
       ${shape === 'repetitions' ? field('Recovery', 'recovery', clockText(part.recovery_seconds), 'placeholder="3:00"') : ''}
       ${shape === 'repetitions' ? `<label>Kind<select name="recoveryKind">${options(RECOVERY_KINDS, part.recovery_kind)}</select></label>` : ''}
       ${shape === 'repetitions' ? field('Floor', 'repeatMinimum', part.repeat_minimum, 'type="number" min="1"') : ''}
@@ -1507,7 +1509,7 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
     const current = readParts()[index] || {};
     row.outerHTML = partRowHtml({
       role: current.role, shape: event.target.value, repeat_count: current.repeatCount,
-      distance: current.distance, duration_seconds: current.durationSeconds,
+      distance: current.distance, distance_unit: carriedParts[index]?.distance_unit, duration_seconds: current.durationSeconds,
       pace_low_seconds: current.paceLowSeconds, pace_high_seconds: current.paceHighSeconds,
       recovery_seconds: current.recoverySeconds, recovery_kind: current.recoveryKind,
       repeat_minimum: current.repeatMinimum, repeat_ceiling: current.repeatCeiling
