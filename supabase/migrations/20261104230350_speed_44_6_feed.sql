@@ -5,7 +5,7 @@ create or replace function public.speed_distance_key(p_metres numeric,p_unit tex
 returns integer language sql immutable parallel safe set search_path = public, pg_temp as $$
   select key
     from unnest(array[100,200,300,400,600,800,1000,1609,3000,3219,
-                      4828,5000,6437,10000,16093,21098,42195]) as key
+                      4828,5000,6437,10000,16093,21098,42195]) as candidates(key)
    where p_metres is not null and p_metres > 0
      and abs(p_metres - key) <= key * 0.01
      -- 1600m is not a mile, nor 3km a 2-mile effort. A road-unit mark
