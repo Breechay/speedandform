@@ -3,7 +3,7 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
+import { MONTHS, dayLabel, displayPaceBand, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -256,7 +256,7 @@ function doseOf(version) {
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total work` : null;
-  const band = [work.pace_low, work.pace_high].filter(Boolean).join('\u2013');
+  const band = displayPaceBand(work);
   // A pace band is what makes a session proof bearing. An easy run and a long run
   // are authored against effort, so they are real work and not evidence for this
   // claim, and the outside condition does not apply to them.
@@ -569,7 +569,7 @@ function sessionInspectorHtml(session) {
       ? `${part.repeat_count} \u00d7 ${Number(part.distance)} ${part.distance_unit}`
       : part.distance != null ? `${Number(part.distance)} ${part.distance_unit} continuous`
       : `${Math.round((part.duration_seconds || 0) / 60)} min`;
-    const at = [part.pace_low, part.pace_high].filter(Boolean).join('\u2013');
+    const at = displayPaceBand(part);
     const after = part.recovery_seconds != null
       ? `${clock(part.recovery_seconds)} ${part.recovery_kind}` : '';
     return `<div class="ins-part">
@@ -1390,8 +1390,8 @@ function partRowHtml(part = {}) {
       ${shape === 'repetitions' ? field('Reps', 'repeatCount', part.repeat_count, 'type="number" min="1"') : ''}
       ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
       ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
-      ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
-      ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
+      ${field('Band fast (/mi)', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
+      ${field('Band slow (/mi)', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
       ${shape === 'repetitions' ? field('Recovery', 'recovery', clockText(part.recovery_seconds), 'placeholder="3:00"') : ''}
       ${shape === 'repetitions' ? `<label>Kind<select name="recoveryKind">${options(RECOVERY_KINDS, part.recovery_kind)}</select></label>` : ''}
       ${shape === 'repetitions' ? field('Floor', 'repeatMinimum', part.repeat_minimum, 'type="number" min="1"') : ''}
@@ -1992,7 +1992,21 @@ sessionForm.addEventListener('submit', async (event) => {
   const touched = readParts({ raw: true }) !== partsOpenedAs;
   if (!revisingSessionId || touched) payload.components = parts;
 
-  const editorialReview = selfAuditSessionCopy(payload, originalSessionEditorialCopy);
+  // A new quality workout must have typed work, and a revision must be checked
+  // against its carried anatomy even when the editor's pieces were untouched.
+  const carriedParts = revisingSessionId
+    ? (selectedRecord.sessions.find((entry) => entry.id === revisingSessionId)?.currentVersion?.components || [])
+    : [];
+  const auditParts = payload.components || carriedParts;
+  const isQualityTitle = /^(?:speed|threshold|5k rhythm|intervals?|tempo|track|vo2|hill|fartlek|sprint|strides|mile repeats?|repeats?)\b/iu.test(payload.title);
+  if (!revisingSessionId && isQualityTitle && !auditParts.some((part) => part.role === 'work')) {
+    status.textContent = 'Add the measured work pieces before publishing a Speed or Threshold session.';
+    status.className = 'status-message error';
+    return;
+  }
+  const editorialReview = selfAuditSessionCopy({
+    ...payload, hasStructuredWork: auditParts.some((part) => part.role === 'work')
+  }, originalSessionEditorialCopy);
   if (!editorialReview.ok) {
     status.textContent = editorialReview.issues.map(issue => `${issue.field}: ${issue.message}`).join(' ');
     status.className = 'status-message error';

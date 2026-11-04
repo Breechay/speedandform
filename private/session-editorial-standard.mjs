@@ -46,6 +46,26 @@ export function sessionEditorialIssues(copy) {
     issues.push({ field: 'details', message: 'Remove the repeated total-mileage lead-in. Keep the warm-up, work, recovery and cool-down.' });
   if (/\bRPE\s*(\d)\s*[–-]\s*\1\b/iu.test(details))
     issues.push({ field: 'details', message: 'Write one RPE number when both ends of a range are the same.' });
+  // Do not publish a second prose copy of fully structured interval rows.
+  // The canonical work pieces already carry distance, pace and recovery; copy
+  // must add an execution cue, not retype the set as a publisher summary.
+  if (/^\s*(?:(?:two|three|four|five|six)|[2-9])\s+(?:passes|rounds|sets)\.\s*(?:\d{3,4}\s*m|1\s*k(?:m)?)\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove the repeated pass summary. Keep the targets and recoveries in structured work; write only a concise execution cue.' });
+  if (/\bathlete clock targets are individualized\b/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove internal pace-provenance commentary from athlete instructions.' });
+  // Catch the wider family of duplicate work recaps, not just "Two passes":
+  // "Week: 20 min warm-up; 4 × 1000 m ... 3 min rest; 15 min cool-down"
+  // and "20 min easy. 8 × 200m ... 90 sec rest. 15 min easy."
+  // Those fields belong to typed components; details should carry an execution cue.
+  const structuredWork = Boolean(copy?.hasStructuredWork || copy?.components?.some?.(part =>
+    part?.role === 'work' || part?.kind === 'work'));
+  const repeatedDose = /\b\d{1,2}\s*[×x]\s*\d+(?:[.,]\d+)?\s*(?:m|km|mi|min|s|sec|seconds?|minutes?)\b/iu.test(details);
+  const preparation = /\b(?:warm[ -]?up|cool[ -]?down)\b|^\s*\d{1,2}\s*min(?:utes?)?\s*(?:easy|relaxed)\b|^\s*(?:about\s+)?\d+(?:\.\d+)?\s*(?:mi|km)\s*(?:total|easy)\b/iu.test(details);
+  const recovery = /\b(?:rest|recovery|recover|jog|walk|standing|stand|float|between)\b/iu.test(details);
+  if (structuredWork && repeatedDose && preparation && recovery)
+    issues.push({ field: 'details', message: 'Remove the duplicated structured prescription. Reps, pace, preparation and recovery belong in the workout pieces; keep only an execution cue.' });
+  if (structuredWork && /^\s*Week:\s*\d/iu.test(details))
+    issues.push({ field: 'details', message: 'Remove the publisher Week recap. The structured workout already carries that dose.' });
   if (details.length > SINGLE_PARAGRAPH_LIMIT && !/[\r\n]/u.test(details))
     issues.push({ field: 'details', message: 'Execution is too long. Keep the exact dose in structured work and use one or two short lines.' });
   return issues;
@@ -70,7 +90,7 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
 // Validate changed prose only. Existing legacy copy does not block a safe dose
 // revision, but newly introduced wording must pass before it is saved.
 export function changedSessionEditorialIssues(next, previous = null) {
-  const copy = { title: next?.title, intent: next?.intent, details: next?.details };
+  const copy = { title: next?.title, intent: next?.intent, details: next?.details, hasStructuredWork: next?.hasStructuredWork, components: next?.components };
   const issues = sessionEditorialIssues(copy);
   if (!previous) return issues;
   return issues.filter(issue => String(copy[issue.field] ?? '').trim() !== String(previous[issue.field] ?? '').trim());

@@ -40,6 +40,22 @@ export function titleAlreadySays(title, line) {
   return dose.length > 0 && flatten(title).includes(dose);
 }
 
+// Pace seconds are stored canonically per MILE, regardless of the distance unit
+// used to prescribe a rep. Never label raw pace_low text as /km: that was the
+// Nov 5 coach-console mismatch (5:38/mi was mistakenly shown as 5:38/km).
+export function displayPaceBand(part, unit = part?.distance_unit || 'mi') {
+  const clock = (seconds) => {
+    const rounded = Math.round(seconds / (unit === 'km' ? 1.609344 : 1));
+    return `${Math.floor(rounded / 60)}:${String(rounded % 60).padStart(2, '0')}`;
+  };
+  const pace = (raw, legacy) =>
+    raw == null || !Number.isFinite(Number(raw)) ? legacy : clock(Number(raw));
+  return [
+    pace(part?.pace_low_seconds, part?.pace_low),
+    pace(part?.pace_high_seconds, part?.pace_high)
+  ].filter(Boolean).join('–');
+}
+
 // The structure line, DERIVED from the authored pieces.
 //
 // Brice's library stores a notation string — "15e + 4 × [5 min LT2 / 2 min steady
@@ -72,9 +88,9 @@ export function structureOf(version, { plain = false } = {}) {
   const effort = (part) => {
     if (part.pace_low_seconds == null) return '';
     if (part.pace_low_seconds >= 390 && part.pace_high_seconds <= 405) {
-      return plain ? ' at race pace' : ` @ ${part.pace_low}–${part.pace_high}`;
+      return plain ? ' at race pace' : ` @ ${displayPaceBand(part)}`;
     }
-    return plain ? ' at threshold' : ` @ ${part.pace_low}–${part.pace_high}`;
+    return plain ? ' at threshold' : ` @ ${displayPaceBand(part)}`;
   };
 
   const magnitude = (part) => {
