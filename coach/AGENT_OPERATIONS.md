@@ -103,6 +103,14 @@ approval: reconfirm the Week story, paired Forge load and athlete-facing
 feed independently. If a write succeeded but readback failed, reread first;
 never retry the same author call blindly or it may create a duplicate.
 
+`private/whole-week-guardian.mjs` provides an additional read-only triage of
+the authorized athlete brief in Operations → Athlete intelligence. A stale
+Week story is agent maintenance; same-day/consecutive high-effort running is
+a coach judgment prompt, not an automatic cancellation. Missing paired Forge
+prescriptions stay **unknown** even when recent Forge receipts exist. The
+brief covers the next eight days, not all future block weeks. Do not use its
+absence of findings as an all-clear publication certificate.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
