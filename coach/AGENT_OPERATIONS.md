@@ -10,7 +10,9 @@ rules before any plan or filing changes.
 Read [`rule-index.json`](rule-index.json) for durable rule identifiers and
 [`agent-run-contract.json`](agent-run-contract.json) for specialist boundaries
 and required action receipts. Both are indexes/contracts, not substitute
-authorities or running background workers.
+authorities or running background workers. The staged [execution ledger handoff](../docs/operations/AGENT_EXECUTION_LEDGER_HANDOFF_2026-11.md)
+defines the distinction between agent assignment, a recorded mutation,
+verified readback and delivered/native results. It is not yet a deployed ledger.
 
 ## The console is an interface, not an all-access agent API
 
