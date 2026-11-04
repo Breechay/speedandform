@@ -61,8 +61,10 @@ export function wholeWeekGuardian(brief, strength = null) {
       const lowerBody=/(?:glute|lower|leg|squat|posterior|hinge|deadlift|lunge|hip thrust|step.up|hamstring|calf)/iu
         .test([s.title,s.emphasis,exerciseNames].filter(Boolean).join(' '));
       if (sameDay.length && lowerBody) {
-        add('lower_strength_on_key_run', 'coach', 'review',
-          `Lower-body strength and a key run share ${s.scheduled_on}; confirm their order, dose and recovery cost.`,
+        // Approved strength-day architecture is not a new issue merely
+        // because it overlaps a run. Reassess on new athlete evidence.
+        add('planned_strength_stack', 'agent', 'context',
+          `Published lower-body strength and key running share ${s.scheduled_on}; retained as planned context, not a change request.`,
           [s.id, ...sameDay.map(run => run.id)]);
       }
     }

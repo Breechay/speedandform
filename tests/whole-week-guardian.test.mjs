@@ -34,11 +34,14 @@ test('missing source never becomes an empty clean bill of health', () => {
   assert.equal(output.findings[0].code, 'source_missing');
 });
 
-test('FORM lower-strength overlap is flagged but never called Forge-verified', () => {
+test('approved strength overlap is context, not a repeat coaching escalation', () => {
   const output = wholeWeekGuardian(brief({
     upcoming_sessions: [{ id:'run',version_id:'v',state:'published',scheduled_on:'2026-11-05',is_key:true }]
   }), {available:true,days:[{id:'lift',scheduled_on:'2026-11-05',title:'Strength A',exercises:[{name:'Romanian Deadlift',sets:3,reps:'8'}]}]});
-  assert.equal(output.findings.find(f=>f.code==='lower_strength_on_key_run').owner,'coach');
+  const overlap=output.findings.find(f=>f.code==='planned_strength_stack');
+  assert.equal(overlap.owner,'agent');
+  assert.equal(overlap.severity,'context');
+  assert.equal(output.findings.some(f=>f.code==='lower_strength_on_key_run'),false);
   assert.equal(output.checks.paired_strength,'form_day_projection_only');
   assert.ok(output.findings.some(f=>f.code==='forge_prescription_not_verified'));
 });
