@@ -18,7 +18,8 @@ create or replace function public.speed_settings_keys_guard()
 returns trigger language plpgsql set search_path = public, pg_temp as $$
 declare n integer;
 begin
-  select count(distinct k) into n from unnest(new.distance_keys) as k;
+  select count(distinct item.value) into n
+  from unnest(new.distance_keys) as item(value);
   if n <> cardinality(new.distance_keys) then
     raise exception 'Speed distance keys must be unique';
   end if;
