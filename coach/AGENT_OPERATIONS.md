@@ -29,6 +29,24 @@ and Row Level Security boundaries.
 
 ## Agent read path
 
+The live `coach_filing_integrity_read(p_days)` RPC gives the authorized
+operating owner a bounded source-level filing/post reconciliation. It does
+**not** prove that a Week card or released native FORM feed rendered. Read
+`feed_state` literally: `before_sharing_enabled` is historical work filed
+before sharing was enabled, `sharing_not_enabled` is a missing setting
+that is **not** a recorded opt-out, `opted_out` means do not post, and
+`privacy_conflict` requires immediate attention if a post remains while
+sharing is off. An agent must not silently convert these states into a
+positive publication receipt.
+
+An authorized coach can invoke `coach_reconcile_filing_post(completion_id)`
+**only** for a specific known filing. It acquires locks, checks active
+membership, current and filing-time sharing, and refuses to rewrite results.
+`already_present`, `ineligible` and `no_contemporaneous_sharing` are not
+successfully repaired cards. `source_post_repaired` is only a source receipt;
+rendered feed and Week still require an independent consumer readback. Do
+not batch-run it against historical pre-sharing records.
+
 1. Confirm identity, project and scope before an athlete or owner read.
 2. Read the current canonical plan, effective restrictions, filed results,
    reports and version, plus adjacent week and external strength when relevant.
