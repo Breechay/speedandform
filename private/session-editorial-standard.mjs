@@ -38,6 +38,8 @@ export function sessionEditorialIssues(copy) {
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
   if (!title) issues.push({ field: 'title', message: 'Name the session.' });
+  if (/^(?:controlled|control|key session|mid[ -]?week aerobic|threshold co|workout|quality|speed day|steady|moderate)$/iu.test(title))
+    issues.push({ field: 'title', message: 'Use a session name that tells the athlete what they are doing, such as Intro to Speed or 5 × 800m.' });
   if (/\beasy\s*\+\s*strides\b/iu.test(title) && /\b(?:warm[ -]?up)\b/iu.test(details))
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
   if (/\b(?:note effort|report back|send (?:me|your coach)|at halfway and at the end)\b/iu.test(details))
