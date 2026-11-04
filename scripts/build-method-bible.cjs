@@ -130,7 +130,17 @@ const html = `<!doctype html>
   <meta property="og:description" content="${esc(description)}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:site_name" content="Speed &amp; Form">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:image" content="https://speedandform.com/og/public-the-method-20261006.jpg">
+  <meta property="og:image:secure_url" content="https://speedandform.com/og/public-the-method-20261006.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Speed &amp; Form. FORM Method Bible: Train to Win.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FORM Method Bible · Train to Win">
+  <meta name="twitter:description" content="${esc(description)}">
+  <meta name="twitter:image" content="https://speedandform.com/og/public-the-method-20261006.jpg">
+  <meta name="twitter:image:alt" content="Speed &amp; Form. FORM Method Bible: Train to Win.">
   <script type="application/ld+json">${JSON.stringify(metadata).replace(/</g, '\\u003c')}</script>
 </head>
 <body>

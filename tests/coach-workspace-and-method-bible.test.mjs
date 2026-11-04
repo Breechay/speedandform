@@ -61,6 +61,18 @@ test('Method Bible source, site map and agent discovery agree', () => {
   assert.doesNotMatch(read('training-map.html'), /Speed is not trained directly/);
 });
 
+test('public Method Bible follows discovery and sharing release rules', () => {
+  const html = read('method-bible/index.html');
+  const sitemap = read('sitemap.xml');
+  assert.doesNotMatch(sitemap, /<lastmod>/, 'Sitemap must not invent dates');
+  assert.doesNotMatch(sitemap, /<loc>[^<]*method-bible\/method\.md<\/loc>/,
+    'Sitemap indexes the HTML article; llms.txt owns the plain text route');
+  for (const tag of ['og:image', 'twitter:title', 'twitter:description', 'twitter:image']) {
+    assert.ok(html.includes(tag), `Missing social metadata ${tag}`);
+  }
+  assert.match(html, /https:\/\/speedandform\.com\/og\/public-the-method-20261006\.jpg/);
+});
+
 test('a browser reread never misrepresents an external source refresh', () => {
   const ops = read('coach/ops/console.js');
   assert.match(ops, /function refreshIfAged\(/);
