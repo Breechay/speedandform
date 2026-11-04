@@ -141,6 +141,31 @@ original observation, then returns an observation ID and rechecks history.
 If the post-write history reload fails, retain the saved ID and investigate
 before retrying; no duplicate insert, plan revision, or feed post is implied.
 
+## Conversational feedback capture · November 4 owner rule
+
+Treat athlete observations as possible durable coaching memory, but keep the
+following decision boundary (`private/feedback-capture-policy.mjs`):
+
+- **“File this for Anthony”** (or equally explicit instruction): resolve the
+  exact athlete ID, source, observation date and original words. File through
+  the authorized observation owner and read back. No second approval.
+- **Meaningful comment during a wider conversation:** if identity and source
+  are clear, ask once whether to save it to that athlete's FORM history.
+  Don't interrupt every conversation with a filing question.
+- **Small talk, generic thanks, speculative analysis or already filed text:**
+  leave in conversation. Existing exact same-day/source/facet/text observations
+  are returned as `alreadyPresent` by the shared writer.
+- **Ambiguous athlete, date or attribution, sensitive content, or missing
+  authenticated write access:** ask one narrow clarification or report the
+  connection boundary. Never guess a name-match, impersonate an account, or
+  claim that ChatGPT memory alone is a FORM database receipt.
+
+Raw athlete wording remains `athlete_reported`; the coach's interpretation is
+a separate `coach_observed` record. One favorable message cannot automatically
+justify changing the existing approved glute schedule. The agent may compare
+later results and propose a revision, but it must identify what actually
+changed and whether it helped. This contract is not a background listener.
+
 Before claiming completion, report a readback receipt with the actual
 authoritative record ID/version, time and the destination that was checked.
 Avoid source timestamps in a public repository; record private receipts in
