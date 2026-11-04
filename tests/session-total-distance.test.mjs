@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { authoredMiles, sessionTotalDistance, sessionTotalLabel, structureOf } from '../private/render.js';
+import { authoredMiles, sessionTotalDistance, sessionTotalLabel, structureOf, workMagnitude } from '../private/render.js';
 
 const steadyFinish = (amount, unit, easy, finish) => ({
   prescribed_distance: amount,
@@ -52,4 +52,14 @@ test('a timed warm-up makes a missing total unknowable', () => {
   const version = steadyFinish(null, null, 7, 2);
   version.components.unshift({ role: 'warm_up', duration_seconds: 1200 });
   assert.equal(sessionTotalDistance(version), null);
+});
+
+
+test('short metric track repetitions render in metres', () => {
+  const part = { role: 'work', position: 1, shape: 'repetitions', repeat_count: 10,
+    distance: 0.1, distance_unit: 'km', recovery_seconds: 90, recovery_kind: 'standing' };
+  assert.equal(workMagnitude(part), '100 m');
+  assert.equal(structureOf({ components: [part] }), '10 × 100 m / 1:30 standing');
+  assert.equal(workMagnitude({ ...part, distance: 0.2 }), '200 m');
+  assert.equal(workMagnitude({ ...part, distance: 0.8 }), '800 m');
 });
