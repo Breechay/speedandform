@@ -290,6 +290,8 @@ export function forgeSection(record) {
         <span class="event-type">${escapeHtml(session.sessionName)}</span>
         <p>Week ${escapeHtml(session.planWeekNumber)}${session.durationSeconds ? ` \u00b7 ${escapeHtml(formatDuration(session.durationSeconds))}` : ''}</p>
         <ul>${[...byMovement.values()].map((movement) => `<li><strong>${escapeHtml(movement.name)}</strong> \u2014 ${movement.sets.map((set) => escapeHtml(setLine(set))).join(', ')}</li>`).join('')}</ul>
+        ${Number.isInteger(session.sessionRPE) ? `<p><strong>Effort</strong> ${escapeHtml(session.sessionRPE)} of 10</p>` : ''}
+        ${session.symptoms ? `<p><strong>Sore</strong> ${escapeHtml(session.symptoms)}</p>` : ''}
         ${session.feedback ? `<p>${escapeHtml(session.feedback)}</p>` : ''}
       </article>`;
     }).join('')}</div>
