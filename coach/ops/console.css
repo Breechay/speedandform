@@ -72,6 +72,14 @@ p{line-height:1.58}
 .area-tabs button:hover{background:transparent}
 .area-tabs button.active{background:transparent;box-shadow:inset 0 -2px 0 var(--ink)}
 .area-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,4vw,60px);margin:36px 0}
+.staff-intro{padding:42px 0 26px;max-width:760px}
+.staff-intro h2{font-size:clamp(35px,4vw,58px);margin-top:12px}
+.staff-intro .intro{max-width:68ch;font-size:17px}
+.staff-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:22px 0 45px}
+.staff-metric{border-top:1px solid var(--line);padding-top:17px;min-width:0}
+.staff-metric strong{display:block;font-size:clamp(36px,4vw,58px);font-weight:450;letter-spacing:-.05em;line-height:1.2;margin-top:8px}
+.staff-metric p{max-width:22ch;margin:8px 0}
+.staff-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,5vw,70px);margin:0 0 42px}
 .panel{padding:24px 0 0;background:transparent;border:0;border-top:1px solid var(--line);border-radius:0;min-width:0}
 .item{padding:21px 0;border-top:1px solid var(--line);min-width:0}
 .item:first-child{border-top:0;padding-top:0}
@@ -160,6 +168,7 @@ footer span{flex-basis:100%;font-size:11px}
 .opportunity .actions{margin-top:15px}
 #opportunity-edit-message{color:var(--error)}
 @media(max-width:920px){.layout{gap:34px;grid-template-columns:minmax(0,1.15fr) minmax(250px,.85fr)}.priority h3{font-size:25px}.runway-intro{gap:32px}}
+@media(max-width:720px){.staff-metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.staff-columns{grid-template-columns:1fr;gap:22px}}
 @media(max-width:720px){.shell{width:min(100% - 40px,1280px)}.masthead{min-height:84px;gap:14px}.house-mark{width:62px}.masthead .eyebrow{display:none}.header-actions{gap:6px}.header-actions button{font-size:10px;padding:8px 10px}.day-heading{padding-top:40px;display:block}.day-heading .small{margin-top:18px}.layout{grid-template-columns:1fr;gap:16px;padding-top:30px}.area-grid{grid-template-columns:1fr}.priority{gap:12px;grid-template-columns:28px minmax(0,1fr);padding:25px 0}.priority h3{font-size:26px}.side-panel{padding-top:22px}.source{grid-template-columns:1fr;gap:14px}.form-grid{grid-template-columns:1fr}.tabs{gap:20px}.tabs button{font-size:14px}.panel{padding-top:22px}.gate{padding-top:58px}.gate h1{font-size:clamp(62px,18vw,86px)}.gate form{margin-top:34px;padding-top:24px}dialog{padding:22px}.section-head{flex-wrap:wrap}.intro{font-size:18px}.day-heading h1{font-size:64px}.source .locator{word-break:break-word}.runway-intro{grid-template-columns:1fr;gap:22px}.hat-key{justify-content:flex-start}.runway-grid{grid-template-columns:repeat(12,minmax(215px,1fr));min-width:2820px}.runway-split{grid-template-columns:1fr}.area-tabs{gap:20px}.opportunity-intro{grid-template-columns:1fr;gap:12px}.opportunity-capacity{text-align:left}}
 @media(max-width:390px){.shell{width:calc(100% - 32px)}.header-actions button{padding-inline:8px}.gate h1{font-size:58px}.tabs{gap:18px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
