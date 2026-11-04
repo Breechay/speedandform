@@ -1,0 +1,51 @@
+name: Coach workspace and Method Bible contract
+
+on:
+  pull_request:
+    paths:
+      - 'coach/**'
+      - 'method-bible/**'
+      - 'llms.txt'
+      - 'the-method.html'
+      - 'training-map.html'
+      - 'index.html'
+      - 'sitemap.xml'
+      - 'scripts/build-method-bible.cjs'
+      - 'tests/coach-workspace-and-method-bible.test.mjs'
+      - '.github/workflows/coach-method-contract.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'coach/**'
+      - 'method-bible/**'
+      - 'llms.txt'
+      - 'the-method.html'
+      - 'training-map.html'
+      - 'index.html'
+      - 'sitemap.xml'
+      - 'scripts/build-method-bible.cjs'
+      - 'tests/coach-workspace-and-method-bible.test.mjs'
+      - '.github/workflows/coach-method-contract.yml'
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate coach scripts
+        run: |
+          node --check coach/labs/labs.js
+          node --check coach/ops/console.js
+          node --check scripts/build-method-bible.cjs
+      - name: Coach, operating and public doctrine tests
+        run: |
+          node --test tests/coach-workspace-and-method-bible.test.mjs tests/operating-console.test.mjs tests/coach-invite-surface.test.cjs
+      - name: Check generated article has no source drift
+        run: |
+          node scripts/build-method-bible.cjs
+          git diff --exit-code -- method-bible/index.html
