@@ -185,7 +185,7 @@ with
           'paceLowSeconds',component.pace_low_seconds,
           'paceHighSeconds',component.pace_high_seconds
           ,'paceUnit',coalesce(s.pace_unit,component.distance_unit)
-        ) order by component.position),'[]'::jsonb)
+        ) order by component.position)
         from public.planned_session_components component
         where component.version_id=v.id and component.role='work'
       ),'[]'::jsonb),
@@ -274,7 +274,7 @@ with
           ))::integer,
           'durationMs',round(coalesce(piece.duration_seconds_exact,
                                       piece.duration_seconds::numeric)*1000)::bigint
-        ) order by piece.position),'[]'::jsonb)
+        ) order by piece.position)
         from public.session_pieces piece
         left join public.speed_piece_distance_corrections correction
           on correction.piece_id=piece.id and correction.athlete_id=c.athlete_id

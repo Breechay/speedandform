@@ -19,14 +19,14 @@ select id,
     when 'anthony' then 1000
     when 'adrian' then 42195
     when 'brice' then 1609
-    when 'saul' then 600
+    when 'saul-licona' then 600
     when 'megan-bolan' then 600
     when 'elijah' then 1000
     else 1000
   end
 from public.athletes
 where slug in (
-  'jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul','elijah'
+  'jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul-licona','elijah'
 )
 on conflict (athlete_id) do nothing;
 
@@ -41,7 +41,7 @@ insert into public.athlete_training_tab_access
   (athlete_id,speed_enabled,strength_enabled)
 select id,true,(slug='brice')
 from public.athletes
-where slug in ('jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul','elijah')
+where slug in ('jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul-licona','elijah')
 on conflict (athlete_id) do update set
   speed_enabled=excluded.speed_enabled,
   strength_enabled=excluded.strength_enabled,

@@ -60,7 +60,7 @@ with
       on d.piece_id=p.id and d.athlete_id=a.athlete_id
   ),
   scored as (
-    select t.rep_position,t.distance_m,t.duration_s,t.min_ms,t.max_ms,
+    select t.completion_id,t.rep_position,t.distance_m,t.duration_s,t.min_ms,t.max_ms,
            t.pace_low_s,t.pace_high_s,x.ms as actual_ms,x.pace_seconds as actual_pace_seconds,
            case when t.family='LONG HOLDS' then
              x.pace_seconds is not null and t.pace_low_s is not null
@@ -90,7 +90,7 @@ select jsonb_build_object(
     'hit',coalesce(s.hit,false)
   ) order by s.rep_position) filter(where s.rep_position is not null),'[]'::jsonb)
 )
-from attempt a join target s on s.completion_id=a.id
+from attempt a join scored s on s.completion_id=a.id
 group by a.id,a.version_id,a.filed_at;
 $$;
 

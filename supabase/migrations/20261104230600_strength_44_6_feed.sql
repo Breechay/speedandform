@@ -102,13 +102,13 @@ lifts as (
        where r.athlete_id=p.athlete_id
          and r.program_id=p.forge_program_id
          and r.completed_at is not null
-         and (s.elem->>'movementId')=e.elem->>'movement_id'
-         and s.elem->>'weight' ~ '^[0-9]+([.][0-9]+)?$'
+         and (s.elem->>'movementId')=(e.elem->>'movement_id')
+         and (s.elem->>'weight') ~ '^[0-9]+([.][0-9]+)?$'
        order by r.completed_at desc,(s.elem->>'setIndex')::integer desc
        limit 1
     ),
     'scheme',case when e.elem ? 'sets' and e.elem ? 'reps'
-               then e.elem->>'sets'||' × '||e.elem->>'reps' else null end
+               then (e.elem->>'sets')||' × '||(e.elem->>'reps') else null end
   ) order by e.ordinality),'[]'::jsonb) as value
   from next_authored p
   cross join lateral jsonb_array_elements(
