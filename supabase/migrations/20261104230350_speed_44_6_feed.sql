@@ -23,7 +23,9 @@ set search_path = public, pg_temp as $$
 with
   authorized as (
     select a.id, a.first_name from public.athletes a
+    join public.athlete_training_tab_access access on access.athlete_id=a.id
      where a.id = p_athlete_id and public.can_read_athlete(a.id)
+       and access.speed_enabled
   ),
   settings as (
     select coalesce(s.distance_keys, array[100,200,300,400,600,800,1000]) as keys

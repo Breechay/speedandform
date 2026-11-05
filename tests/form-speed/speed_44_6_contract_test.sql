@@ -49,6 +49,7 @@ begin
     select 1 from pg_class c join pg_namespace n on n.oid=c.relnamespace
     where n.nspname='public' and c.relname in (
       'athlete_speed_settings','athlete_season_pins','vault_sessions',
+      'athlete_training_tab_access',
       'vault_session_versions','speed_piece_distance_corrections',
       'speed_plan_vault_links','speed_completion_vault_links'
     ) and not c.relrowsecurity
@@ -73,6 +74,13 @@ begin
      or position('coalesce(b.best_ms,m.best_ms)' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
     raise exception 'Dated performance measurement fallback is missing';
+  end if;
+
+  if position('athlete_training_tab_access' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
+     or position('''speedEnabled''' in
+       pg_get_functiondef('public.athlete_strength_feed(uuid)'::regprocedure)) = 0 then
+    raise exception 'Database-owned Speed/Strength rollout gate is missing';
   end if;
 
   if position('''history''' in

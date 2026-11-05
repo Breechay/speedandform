@@ -1,5 +1,4 @@
--- Initial display preferences, editable by coach Setup. These are not gates:
--- every other athlete uses the seven-lane default, even with no filed evidence.
+-- Initial display preferences for the approved eight-athlete 44.7 Speed rollout.
 insert into public.athlete_speed_settings (athlete_id,distance_keys)
 select id,
   case slug
@@ -14,7 +13,16 @@ select id,
   end
 from public.athletes
 where slug in (
-  'jose','hope','tinius','brice','sam-reyes','sam-pawlowski',
-  'sohel','turner-goetsch','anthony','megan-bolan','patrick-stowe','adrian'
+  'jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul'
 )
 on conflict (athlete_id) do nothing;
+
+insert into public.athlete_training_tab_access
+  (athlete_id,speed_enabled,strength_enabled)
+select id,true,(slug='brice')
+from public.athletes
+where slug in ('jose','hope','tinius','brice','anthony','megan-bolan','adrian','saul')
+on conflict (athlete_id) do update set
+  speed_enabled=excluded.speed_enabled,
+  strength_enabled=excluded.strength_enabled,
+  updated_at=now();

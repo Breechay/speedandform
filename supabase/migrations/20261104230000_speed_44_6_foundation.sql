@@ -1,6 +1,14 @@
 -- FORM 44.6 · Speed foundation. Additive: no existing filing, plan or mark is rewritten.
--- Speed is a fourth tab for every authenticated athlete at release, including an empty slate.
--- No allowlist, no rankings, and no copied speed-mark store.
+-- Release visibility is data-owned so athlete and Coach Mirror resolve the same tabs.
+-- This gate never deletes or changes underlying plans, completions, or measurements.
+
+create table public.athlete_training_tab_access (
+  athlete_id uuid primary key references public.athletes(id) on delete cascade,
+  speed_enabled boolean not null default false,
+  strength_enabled boolean not null default false,
+  updated_by uuid,
+  updated_at timestamptz not null default now()
+);
 
 create table public.athlete_speed_settings (
   athlete_id uuid primary key references public.athletes(id) on delete cascade,
@@ -213,6 +221,7 @@ create index speed_season_pins_order on public.athlete_season_pins(athlete_id, p
 
 -- Exposed tables are closed by default. No athlete sees another's times.
 alter table public.athlete_speed_settings enable row level security;
+alter table public.athlete_training_tab_access enable row level security;
 alter table public.athlete_season_pins enable row level security;
 alter table public.vault_sessions enable row level security;
 alter table public.vault_session_versions enable row level security;
@@ -226,6 +235,15 @@ create policy speed_settings_coach_insert on public.athlete_speed_settings
   for insert to authenticated with check (
     public.is_coach_member(athlete_id) and updated_by = auth.uid());
 create policy speed_settings_coach_update on public.athlete_speed_settings
+  for update to authenticated using (public.is_coach_member(athlete_id))
+  with check (public.is_coach_member(athlete_id) and updated_by = auth.uid());
+
+create policy training_tab_access_read on public.athlete_training_tab_access
+  for select to authenticated using (public.can_read_athlete(athlete_id));
+create policy training_tab_access_coach_insert on public.athlete_training_tab_access
+  for insert to authenticated with check (
+    public.is_coach_member(athlete_id) and updated_by = auth.uid());
+create policy training_tab_access_coach_update on public.athlete_training_tab_access
   for update to authenticated using (public.is_coach_member(athlete_id))
   with check (public.is_coach_member(athlete_id) and updated_by = auth.uid());
 
@@ -273,15 +291,18 @@ create policy speed_completion_vault_link_coach_insert on public.speed_completio
   for insert to authenticated with check (
     public.is_coach_member(athlete_id) and linked_by = auth.uid());
 
-revoke all on public.athlete_speed_settings, public.athlete_season_pins,
+revoke all on public.athlete_speed_settings, public.athlete_training_tab_access,
+  public.athlete_season_pins,
   public.vault_sessions, public.vault_session_versions,
   public.speed_piece_distance_corrections, public.speed_plan_vault_links,
   public.speed_completion_vault_links from anon;
-grant select on public.athlete_speed_settings, public.athlete_season_pins,
+grant select on public.athlete_speed_settings, public.athlete_training_tab_access,
+  public.athlete_season_pins,
   public.vault_sessions, public.vault_session_versions,
   public.speed_piece_distance_corrections, public.speed_plan_vault_links,
   public.speed_completion_vault_links to authenticated;
-grant insert, update on public.athlete_speed_settings, public.athlete_season_pins,
+grant insert, update on public.athlete_speed_settings, public.athlete_training_tab_access,
+  public.athlete_season_pins,
   public.vault_sessions to authenticated;
 grant delete on public.athlete_season_pins to authenticated;
 grant insert on public.vault_session_versions, public.speed_piece_distance_corrections

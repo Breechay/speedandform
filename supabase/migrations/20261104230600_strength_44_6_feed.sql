@@ -11,6 +11,12 @@ authorized as (
   select a.id, a.first_name from public.athletes a
    where a.id = p_athlete_id and public.can_read_athlete(a.id)
 ),
+access as (
+  select coalesce(g.speed_enabled,false) as speed_enabled,
+         coalesce(g.strength_enabled,false) as strength_enabled
+    from authorized a
+    left join public.athlete_training_tab_access g on g.athlete_id=a.id
+),
 current_program as (
   select d.forge_program_id
     from public.form_training_strength_days d join authorized a on a.id=d.athlete_id
@@ -112,7 +118,9 @@ lifts as (
 select jsonb_build_object(
   'athleteId',a.id,
   'athleteName',coalesce(a.first_name,'Athlete'),
-  'hasProgram',exists(select 1 from authored),
+  'speedEnabled',coalesce((select speed_enabled from access),false),
+  'hasProgram',coalesce((select strength_enabled from access),false)
+               and exists(select 1 from authored),
   'programId',(select forge_program_id from current_program),
   'unit',(select weight_unit from preference),
   'filedSessions',(select count(*) from positioned where receipt_id is not null),
@@ -130,4 +138,4 @@ revoke all on function public.athlete_strength_feed(uuid) from public,anon;
 grant execute on function public.athlete_strength_feed(uuid) to authenticated;
 
 comment on function public.athlete_strength_feed(uuid) is
-  'Read-only 44.6 Strength position. Uses authored strength days and matched canonical receipts; Never advances from calendar date or creates marks. Authorization verified for athlete and coach.';
+  'Read-only 44.7 Strength position and tab rollout. Uses authored strength days and matched canonical receipts; never advances from calendar date or creates marks. Authorization verified for athlete and coach.';
