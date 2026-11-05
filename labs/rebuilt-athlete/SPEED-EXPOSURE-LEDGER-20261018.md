@@ -273,3 +273,61 @@ Brice explicitly reports keeping **all 20 reps at RPE 6–7**, never deliberatel
 **Research boundary:** [Arellano & Kram (2014)](https://pubmed.ncbi.nlm.nih.gov/25031455/) found normal arm swing less energetically costly than several restricted-arm conditions; [Arellano & Kram (2011)](https://pubmed.ncbi.nlm.nih.gov/21316058/) linked natural arm motion with lateral balance. Neither study tested “wider” or more backward arm pulls as a universal improvement. [Li et al. (2026)](https://doi.org/10.3389/fspor.2026.1845590) examined arm-swing modification and whole-body dynamics in **one elite sprinter**; it is hypothesis-generating, not validation of an intervention for this runner or proof that the arms directly pull the body forward.
 
 **Next observation, not a new prescription:** Within already-authorized running, note whether the useful arm rhythm can be recognized and regained **without** tracking another runner, while keeping comfortable shoulder/hand action and the intended effort. If filming a comparable short bout is practical and consented, compare arm travel, torso rotation and leg timing at similar pace; review 24–48-hour lower-leg response after the strength-plus-speed day. Do not deliberately exaggerate arm width, reach behind the body, overstride, increase repetitions or change running/Forge prescriptions on this single session.
+
+## November 5 · FORM Thursday, two rounds of 1K / 600 / 400
+
+**Source and classification:** Original Brice-supplied Garmin Forerunner 965 FIT, activity `24974270656` (`24974270656_ACTIVITY.fit`); signed FORM completion `bcc18c2f-5504-4945-8bc2-d1f87d1fc928`; athlete first-person debrief and same-day follow-up on November 5. This is a completed structured track workout, not a newly authorized future prescription. Season reference: FORM 44.4–44.8.
+
+**Whole recording:** 7,302.29 m (4.54 mi), 31:25.6 Garmin timer time, 56:34.9 elapsed time including pauses. The two recorded warm-up laps total 2,497.23 m / 12:32.9 timer time, and cooldown 760.22 m / 5:09.8. The planned warm-up and cooldown were 20 and 15 minutes respectively; unrecorded drills or movement are unknown. Recovery laps total only brief recorded running, while most of their elapsed time was watch-paused. Do not represent elapsed recoveries as continuous jogs.
+
+### Six work reps, exactly as recorded
+
+| Work rep | FIT timer time | Recorded distance | Pace by rep distance | Prescribed pace /mi |
+| --- | ---: | ---: | ---: | ---: |
+| 1K 1 | 3:28.082 | 1,000 m | 5:34.9/mi | 5:38–5:46 |
+| 600 1 | 2:00.996 | 600 m | 5:24.6/mi | 5:22–5:30 |
+| 400 1 | 1:19.173 | 400 m | 5:18.6/mi | 5:06–5:18 |
+| 1K 2 | 3:25.269 | 1,000 m | 5:30.3/mi | 5:38–5:46 |
+| 600 2 | 2:00.830 | 600 m | 5:24.1/mi | 5:22–5:30 |
+| 400 2 | 1:16.892 | 400 m | 5:09.4/mi | 5:06–5:18 |
+| **Timed work** | **13:31.242** | **4,000 m** | **5:26.4/mi** | Mixed distances |
+
+The first 2,000 m round totaled **6:48.251** and the second **6:42.991**, 5.260 seconds quicker. Corresponding second-round changes were 1K **−2.813 s**, 600 **−0.166 s**, and 400 **−2.281 s**. Both 1Ks were quicker than their prescribed pace range, despite athlete-reported conscious slowing whenever the group ran ahead of targets. This is repeated-speed execution with rests, **not** a measured 2 × 10-minute threshold or a continuous 4 km effort.
+
+### Smoothed time in speed bands, work-only
+
+Original approximately one-second FIT enhanced-speed records were restricted to each of the six active-lap boundaries. An approximately centered **11-sample median** was applied separately within each lap, rejecting samples outside a six-second neighborhood; the result contributes time to the next record, capped at two seconds and the work-lap boundary. Recoveries, warm-up and cooldown are excluded. **798.2 of 811.2 timed work seconds classified**; around **13.0 seconds** near missing/start/end record coverage remain unclassified, not zero-speed work.
+
+| Smoothed sample pace | Classified time |
+| --- | ---: |
+| Faster than 5:30/mi | ~7:14 |
+| 5:30–5:44/mi | ~5:48 |
+| 5:45–5:59/mi | ~0:12 |
+| 6:00–6:14/mi | 0:00 classified |
+| 6:15/mi or slower | ~0:04, near rep transitions |
+| **Classified work samples** | **~13:18** |
+
+Of classified time, approximately **13:14** was faster than 6:00/mi. For comparison, the October 22 session estimated **2:04** faster than 5:30 and **10:49** faster than 6:00, but it had different distances, work volume and recovery structure. These are GPS-smoothed estimates of sampled exposure, not proof of uninterrupted time in each band or a controlled training adaptation.
+
+### Work-lap running mechanics and internal load
+
+Means below use valid moving FIT record samples inside each work lap, **speed at least 2.4 m/s and positive cadence**, excluding pauses and transitions. Garmin cadence cycle fields are doubled (including fractional cadence) to steps/min; decoded step length, stance, vertical oscillation and ratio use their recorded units. Device estimates are not calibrated force or metabolic-efficiency tests.
+
+| Work lap | Cadence | Step length | Contact | Sampled HR |
+| --- | ---: | ---: | ---: | ---: |
+| 1K 1 | ~180 spm | 1.60 m | 206 ms | 157 bpm |
+| 600 1 | ~182 spm | 1.65 m | 201 ms | 154 bpm |
+| 400 1 | ~184 spm | 1.68 m | 198 ms | 151 bpm |
+| 1K 2 | ~181 spm | 1.60 m | 205 ms | 160 bpm |
+| 600 2 | ~183 spm | 1.63 m | 200 ms | 159 bpm |
+| 400 2 | ~185 spm | 1.73 m | 197 ms | 149 bpm |
+
+Across **765 valid moving work records**, cadence averaged about **181 spm**, step length **1.63 m**, ground contact **203 ms**, vertical oscillation **9.67 cm**, vertical ratio **5.93%**, and HR **156 bpm**. Whole-session Garmin mean HR was 135 bpm and maximum 180 bpm; neither is the work-only mean. Lower HR in the short closing 400 cannot establish lower effort because of HR lag. The faster day also changes kinematics: compared with October 22 work-only means (~179 spm, 1.54 m, 213 ms) there is **no matched-pace evidence of improved economy, symmetry or tissue-load tolerance**.
+
+### First-person explanation, cost and next question
+
+Brice says the group made running **definitely easier**. Two steady pacing companions remained through the entire session; other runners helped establish rhythm early. The group watched the prescribed numbers and intentionally slowed whenever ahead. The resulting speeds felt **right and natural**; Brice believes more speed might have been available **if prescribed**, but that speed was not tested. These are athlete observations, not measured internal effort for anyone else, a numeric RPE, or proof that peer presence physiologically lowered cost.
+
+**Same-day response, November 5:** Brice reports **no issues with his legs** and maintaining his intended fueling. Quantities, composition and energy balance are unverified; personal diet details remain in the private athlete record. This is a favorable immediate report, **not** a completed 24–48-hour lower-leg follow-up or medical clearance. Personally identifying peer and dietary details remain in the private coach record attached to the FORM completion, not the public interpretation.
+
+**Read:** A second round at least as quick at every distance, a faster documented 400 m benchmark, and consciously prescribed rather than maximal pace execution. Together with October 26 continuous iRUN rhythm and November 2 short-rep timing, group reference and self-regulated rhythm merit further observation. **Next question:** Can a faster authored pace, or longer continuous work, be inhabited with the same ease, comparable cost and normal later leg response? Do not infer current 5:50–6:10/mi threshold capacity from these broken reps or automatically adjust a program. Preserve the original FIT and completion separately from this study interpretation.
