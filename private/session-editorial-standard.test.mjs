@@ -139,3 +139,26 @@ test('Console exposes component units and syncs single-work RPE on anatomy edits
   assert.match(coachSource, /work\.rpeLow = payload\.rpeLow/);
   assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components \|\| existingParts\)/);
 });
+
+test('long-run Week and filing titles never repeat the weekday', () => {
+  assert.ok(sessionEditorialIssues({
+    title: 'Saturday long · 10 mi', details: '10 mi easy.', intent: 'Build durability.'
+  }).some(issue => issue.field === 'title'));
+  assert.deepEqual(sessionEditorialIssues({
+    title: 'Long run · 10 mi · with FORM', details: '10 mi easy at RPE 2–3.', intent: 'Build durability.'
+  }), []);
+});
+
+test('late miles are separately typed before the feed can render a long-run finish', () => {
+  const title = 'Long run · 11 mi · last 2 steady';
+  const flat = [{ role: 'work', shape: 'continuous', distance: 11, distance_unit: 'mi' }];
+  const structured = [
+    { role: 'work', shape: 'continuous', distance: 9, distance_unit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 2, distance_unit: 'mi' }
+  ];
+  assert.ok(prescriptionPresentationIssues(title, flat).some(issue => issue.includes('separate typed')));
+  assert.deepEqual(prescriptionPresentationIssues(title, structured), []);
+  assert.deepEqual(prescriptionPresentationIssues('Long run · 12 mi', [
+    { role: 'work', shape: 'continuous', distance: 12, distance_unit: 'mi' }
+  ]), []);
+});
