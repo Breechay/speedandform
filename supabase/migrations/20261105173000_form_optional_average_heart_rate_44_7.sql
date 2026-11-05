@@ -173,3 +173,5 @@ GRANT EXECUTE ON FUNCTION public.record_session_correction_from_form(
 
 COMMENT ON COLUMN public.session_completions.average_heart_rate_bpm
   IS 'Optional athlete-reported session average bpm (25–240); no inferred heart-rate zones.';
+-- Ensure PostgREST discovers the new named-argument overload before the 44.7 app ships.
+NOTIFY pgrst, 'reload schema';
