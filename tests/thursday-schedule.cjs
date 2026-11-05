@@ -29,6 +29,9 @@ async function render(rows,now='2026-10-01T00:30:00Z',ok=true){
  r=await render([{...run,meet_at:'2026-10-01T11:00:00Z',starts_at:'2026-10-01T11:15:00Z',meet_name:'Changed track'}]);
  assert.equal(r.nodes.location.textContent,'Changed track');assert.match(r.nodes['thu-when'].textContent,/Meet 7:00 AM · Run 7:15 AM/);
  r=await render([run],'2026-10-02T05:00:00Z');assert.equal(r.nodes['thu-gathering-status'].textContent,'Next gathering not yet published');
+ const next={...run,starts_at:'2026-10-08T10:15:00Z',meet_at:'2026-10-08T10:00:00Z'};
+ r=await render([run,next],'2026-10-01T14:30:00Z');
+ assert.match(r.nodes['thu-eyebrow'].textContent,/October 8/,'After the gathering ends, the public view advances the same day');
  r=await render([]);assert.equal(r.nodes['thu-gathering-status'].textContent,'Next gathering not yet published');
  r=await render([],undefined,false);assert.equal(r.nodes['thu-gathering-status'].textContent,'Could not confirm the next gathering');
  assert.match(r.nodes['thu-time-note'].textContent,/not a confirmed date/);
