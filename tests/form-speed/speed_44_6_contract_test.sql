@@ -76,6 +76,13 @@ begin
     raise exception 'Dated performance measurement fallback is missing';
   end if;
 
+  if position('season_rows' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
+     or position('limit 12' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
+    raise exception 'Canonical structured-session Season fallback is missing';
+  end if;
+
   if position('athlete_training_tab_access' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
      or position('''speedEnabled''' in

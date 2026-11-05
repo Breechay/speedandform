@@ -202,10 +202,37 @@ with
       and r.kind in ('track','long_run','long-run','speed','group')
     order by r.starts_at,r.id limit 1
   ),
+  season_rows as (
+    select c.id,c.athlete_id,c.filed_at,c.actual_distance,c.distance_unit,
+           c.duration_seconds,c.planned_session_version_id,
+           pin.position,pin.is_peak,pin.block_id
+      from authorized a
+      join public.athlete_season_pins pin on pin.athlete_id=a.id
+      join public.session_completions c on c.id=pin.completion_id and c.athlete_id=a.id
+    union all
+    select recent.id,recent.athlete_id,recent.filed_at,recent.actual_distance,
+           recent.distance_unit,recent.duration_seconds,recent.planned_session_version_id,
+           recent.position,false,null::uuid
+      from (
+        select c.id,c.athlete_id,c.filed_at,c.actual_distance,c.distance_unit,
+               c.duration_seconds,c.planned_session_version_id,
+               row_number() over (order by c.filed_at,c.id)::integer as position
+          from authorized a
+          join public.session_completions c on c.athlete_id=a.id
+         where c.status in ('completed','partial','changed')
+           and exists (select 1 from public.session_pieces p
+                        where p.completion_id=c.id and p.athlete_id=c.athlete_id
+                          and p.kind='rep')
+           and not exists (select 1 from public.athlete_season_pins pin
+                            where pin.athlete_id=a.id)
+         order by c.filed_at desc,c.id desc
+         limit 12
+      ) recent
+  ),
   season as (
     select coalesce(jsonb_agg(jsonb_build_object(
       'completionId',c.id,'date',c.filed_at::date,'title',v.title,
-      'position',pin.position,'isPeak',pin.is_peak,'blockId',pin.block_id,
+      'position',c.position,'isPeak',c.is_peak,'blockId',c.block_id,
       'distance',c.actual_distance,'distanceUnit',c.distance_unit,
       'durationSeconds',c.duration_seconds,
       'segments',coalesce((
@@ -225,10 +252,8 @@ with
           on correction.piece_id=piece.id and correction.athlete_id=c.athlete_id
         where piece.completion_id=c.id and piece.athlete_id=c.athlete_id and piece.kind='rep'
       ),'[]'::jsonb)
-    ) order by pin.position),'[]'::jsonb) as value
-    from authorized a
-    join public.athlete_season_pins pin on pin.athlete_id=a.id
-    join public.session_completions c on c.id=pin.completion_id and c.athlete_id=a.id
+    ) order by c.position),'[]'::jsonb) as value
+    from season_rows c
     left join public.planned_session_versions v on v.id=c.planned_session_version_id
   ),
   vault as (
