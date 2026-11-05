@@ -95,7 +95,7 @@ export function prescriptionPresentationIssues(title, components = []) {
     issues.push('Do not repeat Saturday or Sunday in a long-run title; Week already supplies the day.');
   const workParts = components.filter(part => part?.role === 'work' && part.distance != null);
   if (/\b(?:long run|marathon endurance)\b/iu.test(displayTitle)
-      && /\b(?:last|final)\s+\d+(?:\.\d+)?\s*(?:mi|km)\b/iu.test(displayTitle)
+      && /\b(?:last|final)\s+\d+(?:\.\d+)?(?:\s*(?:mi|km))?\s*(?:steady|at\b|fast\b)/iu.test(displayTitle)
       && workParts.length < 2)
     issues.push('A long-run steady/fast finish needs separate typed easy and finish components for Week, filing and feed.');
   const namedMeters = [...displayTitle.matchAll(/\b(\d{2,4})\s*m\b/giu)]
