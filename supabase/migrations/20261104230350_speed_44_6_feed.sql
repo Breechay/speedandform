@@ -1,4 +1,5 @@
--- All Speed numbers come from signed session pieces. No independent marks table.
+-- Speed marks prefer signed session pieces. Existing dated performance measurements
+-- provide a database-backed fallback when no filed rep exists for a lane.
 -- The same invoker-scoped RPC serves the athlete and the read-only Coach Mirror.
 
 create or replace function public.speed_distance_key(p_metres numeric,p_unit text default null)
@@ -82,6 +83,43 @@ with
     from accepted
     order by distance_m, ms asc, filed_at desc, completion_id, position
   ),
+  measurement_candidates as (
+    select case m.measurement_type
+             when 'reported_best_400m_seconds' then 400
+             when 'reported_best_800m_seconds' then 800
+             when 'observed_mean_800m_seconds' then 800
+             when 'reported_best_1k_seconds' then 1000
+             when 'reported_best_mile_seconds' then 1609
+             when 'reported_best_2mile_seconds' then 3219
+             when 'reported_best_5k_seconds' then 5000
+             when 'reported_best_10k_seconds' then 10000
+             when 'reported_best_10mile_seconds' then 16093
+             when 'reported_best_half_seconds' then 21098
+             when 'reported_best_marathon_seconds' then 42195
+           end as distance_m,
+           round(m.value * 1000)::bigint as best_ms,
+           m.measured_at,
+           m.source,
+           case when m.measurement_type like 'reported_best_%' then 1 else 2 end as priority
+      from authorized a
+      join public.athlete_measurements m on m.athlete_id=a.id
+     where m.value > 0
+       and lower(m.unit) in ('s','sec','secs','second','seconds')
+       and m.measurement_type in (
+         'reported_best_400m_seconds','reported_best_800m_seconds',
+         'observed_mean_800m_seconds','reported_best_1k_seconds',
+         'reported_best_mile_seconds','reported_best_2mile_seconds',
+         'reported_best_5k_seconds','reported_best_10k_seconds',
+         'reported_best_10mile_seconds','reported_best_half_seconds',
+         'reported_best_marathon_seconds'
+       )
+  ),
+  measurement_best as (
+    select distinct on (distance_m) distance_m,best_ms,measured_at,source
+      from measurement_candidates
+     where distance_m is not null
+     order by distance_m,priority,best_ms,measured_at desc
+  ),
   keys as (
     select k.key, k.ord from settings s,
          unnest(s.keys) with ordinality as k(key,ord)
@@ -89,11 +127,16 @@ with
   marks as (
     select coalesce(jsonb_agg(jsonb_build_object(
       'distanceMeters',k.key,'heldMs',h.held_ms,'heldReps',h.held_reps,
-      'bestMs',b.best_ms,'completionId',h.completion_id,
+      'bestMs',coalesce(b.best_ms,m.best_ms),'completionId',h.completion_id,
       'bestCompletionId',b.best_completion_id,'filedAt',h.filed_at
+      ,'bestEvidence',case when b.best_ms is not null then 'filed_rep'
+                           when m.best_ms is not null then 'dated_measurement' end
+      ,'bestMeasuredAt',case when b.best_ms is null then m.measured_at end
+      ,'bestSource',case when b.best_ms is null then m.source end
     ) order by k.ord),'[]'::jsonb) as value
     from keys k left join held h on h.distance_m=k.key
                 left join best b on b.distance_m=k.key
+                left join measurement_best m on m.distance_m=k.key
   ),
   next_plan as (
     select jsonb_build_object(
@@ -260,4 +303,4 @@ grant execute on function public.speed_distance_key(numeric,text) to authenticat
 grant execute on function public.athlete_speed_feed(uuid) to authenticated;
 
 comment on function public.athlete_speed_feed(uuid) is
-  'One RLS-scoped Speed feed for athlete and Coach Mirror. Null for unauthorized athlete, open lanes for no evidence. Never reads athlete_measurements.';
+  'One RLS-scoped Speed feed for athlete and Coach Mirror. Filed reps are canonical; dated performance measurements are a truthful best-only fallback.';

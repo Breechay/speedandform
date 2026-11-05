@@ -68,6 +68,13 @@ begin
     raise exception 'Vault filing retry/identity immutability guard is missing';
   end if;
 
+  if position('measurement_candidates' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
+     or position('coalesce(b.best_ms,m.best_ms)' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
+    raise exception 'Dated performance measurement fallback is missing';
+  end if;
+
   if position('''history''' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
      or position('order by recent.filed_at desc,recent.id desc' in
@@ -86,7 +93,7 @@ $$;
 
 -- Live RLS acceptance in an isolated environment must additionally sign in as:
 -- a) athlete with no marks: seven keys, all Held/Best null, shared Next/Vault;
--- b) Hope: private marks and season, none from unsigned measurements;
+-- b) Hope: filed reps preferred, with her dated 800m measurement as best-only fallback;
 -- c) Brice Coach Mirror of Hope: EXACT same athlete_speed_feed bytes;
 -- d) unrelated athlete and anon: no Hope feed, no Hope rep detail;
 -- e) logged-in member: vault_cleared_faces returns faces only;
