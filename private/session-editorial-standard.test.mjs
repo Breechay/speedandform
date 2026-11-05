@@ -140,6 +140,27 @@ test('Console exposes component units and syncs single-work RPE on anatomy edits
   assert.match(coachSource, /prescriptionPresentationIssues\(payload\.title, payload\.components \|\| existingParts\)/);
 });
 
+test('FORM ban rejects 3 × 10-minute run intervals and mile repeats, not strength sets or continuous work', () => {
+  assert.ok(prescriptionPresentationIssues('3 × 10 min steady', [
+    { role: 'work', repeatCount: 3, durationSeconds: 600 }
+  ]).some(issue => issue.includes('3 × 10-minute')));
+  assert.ok(prescriptionPresentationIssues('3 × 1 mi at pace', [
+    { role: 'work', repeat_count: 3, distance: 1, distance_unit: 'mi' }
+  ]).some(issue => issue.includes('mile repeats')));
+  assert.ok(prescriptionPresentationIssues('Mile Repeatability', []).some(issue => issue.includes('mile repeats')));
+  assert.deepEqual(prescriptionPresentationIssues('Tempo · 30 min', [
+    { role: 'work', shape: 'continuous', durationSeconds: 1800 }
+  ]), []);
+  assert.deepEqual(prescriptionPresentationIssues('3 × 1 km controlled', [
+    { role: 'work', repeatCount: 3, distance: 1, distanceUnit: 'km' }
+  ]), []);
+  assert.deepEqual(prescriptionPresentationIssues('Long run · last 1 mi steady', [
+    { role: 'work', shape: 'continuous', distance: 9, distanceUnit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' }
+  ]), []);
+  assert.deepEqual(sessionEditorialIssues({ title: 'Strength', details: 'Bench press — 3 × 10' }), []);
+});
+
 test('long-run Week and filing titles never repeat the weekday', () => {
   assert.ok(sessionEditorialIssues({
     title: 'Saturday long · 10 mi', details: '10 mi easy.', intent: 'Build durability.'
