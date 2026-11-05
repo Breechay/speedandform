@@ -259,10 +259,37 @@ with
   ),
   season as (
     select coalesce(jsonb_agg(jsonb_build_object(
-      'completionId',c.id,'date',c.filed_at::date,'title',v.title,
+      'completionId',c.id,'date',coalesce((
+        select planned.scheduled_on
+        from public.planned_session_versions version
+        join public.planned_sessions planned on planned.id=version.planned_session_id
+        where version.id=c.planned_session_version_id
+      ),c.filed_at::date),'title',v.title,
       'position',c.position,'isPeak',c.is_peak,'blockId',c.block_id,
-      'distance',c.actual_distance,'distanceUnit',c.distance_unit,
-      'durationSeconds',c.duration_seconds,
+      'distance',case when exists (
+        select 1 from public.session_pieces work
+        where work.completion_id=c.id and work.athlete_id=c.athlete_id and work.kind='rep'
+      ) then (
+        select sum(case work.distance_unit
+          when 'm' then work.distance
+          when 'km' then work.distance*1000
+          when 'mi' then work.distance*1609.344
+          else null end)
+        from public.session_pieces work
+        where work.completion_id=c.id and work.athlete_id=c.athlete_id and work.kind='rep'
+      ) else c.actual_distance end,
+      'distanceUnit',case when exists (
+        select 1 from public.session_pieces work
+        where work.completion_id=c.id and work.athlete_id=c.athlete_id and work.kind='rep'
+      ) then 'm' else c.distance_unit end,
+      'durationSeconds',case when exists (
+        select 1 from public.session_pieces work
+        where work.completion_id=c.id and work.athlete_id=c.athlete_id and work.kind='rep'
+      ) then (
+        select sum(coalesce(work.duration_seconds_exact,work.duration_seconds::numeric))
+        from public.session_pieces work
+        where work.completion_id=c.id and work.athlete_id=c.athlete_id and work.kind='rep'
+      ) else c.duration_seconds end,
       'segments',coalesce((
         select jsonb_agg(jsonb_build_object(
           'distanceMeters',round(coalesce(correction.distance_m,

@@ -7,6 +7,9 @@ const feed = readFileSync(new URL('../../supabase/migrations/20261104230350_spee
 const scoring = readFileSync(new URL('../../supabase/migrations/20261104230300_speed_44_6_scoring.sql', import.meta.url), 'utf8');
 const strength = readFileSync(new URL('../../supabase/migrations/20261104230600_strength_44_6_feed.sql', import.meta.url), 'utf8');
 const quiet = readFileSync(new URL('../../supabase/migrations/20261105043000_quiet_thursday_publication.sql', import.meta.url), 'utf8');
+const rollout = readFileSync(new URL('../../supabase/migrations/20261105170000_form_44_7_exact_tab_rollout.sql', import.meta.url), 'utf8');
+const seasonCorrection = readFileSync(new URL('../../supabase/migrations/20261105172000_speed_season_canonical_dates_and_work_pace.sql', import.meta.url), 'utf8');
+const vaultRead = readFileSync(new URL('../../supabase/migrations/20261105173000_speed_vault_catalogue_entitled_read.sql', import.meta.url), 'utf8');
 
 test('pace denominator comes from the authored plan, not rep distance', () => {
   assert.match(coach, /version\?\.distance_unit \|\| work\.distance_unit/);
@@ -42,4 +45,28 @@ test('nested feed aggregates apply empty-array fallback outside their subquery',
 test('Strength JSON extraction is parenthesized before comparison and formatting', () => {
   assert.match(strength, /\(s\.elem->>'movementId'\)=\(e\.elem->>'movement_id'\)/);
   assert.match(strength, /\(e\.elem->>'sets'\)\|\|' × '\|\|\(e\.elem->>'reps'\)/);
+});
+
+test('44.7 tabs remain a database-backed nine-athlete Speed and Brice-only Strength pilot', () => {
+  for (const slug of ['jose', 'hope', 'tinius', 'brice', 'anthony', 'megan-bolan', 'adrian', 'saul-licona', 'elijah']) {
+    assert.match(rollout, new RegExp(`'${slug}'`));
+  }
+  assert.match(rollout, /v_speed <> 9 or v_strength <> 1/);
+  assert.match(rollout, /strength_enabled = \(athlete\.slug = 'brice'\)/);
+  assert.doesNotMatch(rollout, /tyler-odwin/);
+});
+
+test('Season uses canonical session dates and never substitutes whole-activity pace for filed work', () => {
+  assert.match(feed, /planned\.scheduled_on/);
+  assert.match(feed, /work\.kind='rep'/);
+  assert.match(feed, /sum\(coalesce\(work\.duration_seconds_exact,work\.duration_seconds::numeric\)\)/);
+  assert.match(seasonCorrection, /date projection did not match reviewed source/);
+  assert.match(seasonCorrection, /work-pace projection did not match reviewed source/);
+});
+
+test('Vault RLS exposes the catalogue only to entitled athletes while publication owns launchability', () => {
+  assert.match(vaultRead, /membership\.user_id=auth\.uid\(\)/);
+  assert.match(vaultRead, /access\.speed_enabled/);
+  assert.match(vaultRead, /membership\.status='active'/);
+  assert.doesNotMatch(vaultRead, /update public\.vault_sessions set published=true/);
 });
