@@ -42,6 +42,18 @@ Proposed schema additions, subject to backend review:
 
 Do not create a second training plan, attendance ledger, race registration source or fabricated current-location value. Migration and RLS design require separate tests.
 
+## The FORM compound: service roles, not fictional staff
+
+Borrow professional-team accountability, while keeping one human coaching voice. These are **functional desks**, not claims that separate employees currently exist:
+
+- **Head Coach / Brice:** authors progressions, pace exceptions, strength decisions, signed athlete notes and race choices.
+- **Training Desk:** reconciles current plan versions, filed work, missing evidence, future eight-day schedule and coach-to-athlete readback. Never generates an unapproved completion.
+- **Field Host:** owns Thursday and actual hosted Saturday occurrences, access, invitations and event attendance; a regular or RSVP is not attendance.
+- **Race Desk:** keeps candidate/target/registered status separate, checks official event availability, and tracks logistics only with athlete confirmation.
+- **Season Archivist:** assembles sourced marks, block sheets, photographer consent and signed closeout editions; athletes control what is public.
+
+A single coach may fill all five roles at first. In the UI, surface services as one coherent FORM system, not as pretend staff identities. Assign owning records, audit trails and explicit human approval before delegating a role to software.
+
 ## Training operation
 
 - Individual `training_blocks`, `training_weeks`, `planned_sessions`, latest `planned_session_versions` and typed components remain the only published prescription.
