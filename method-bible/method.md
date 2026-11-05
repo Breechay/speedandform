@@ -135,6 +135,14 @@ The runner's experience matters. Someone may find continuous threshold easier to
 
 **The pace stays. The escapes disappear.** We gradually need fewer breaks to express the same capability.
 
+### Sustained-work selection · November 5, 2026
+
+I no longer prescribe 3 × 10-minute running intervals or repeated one-mile work units in FORM plans. They fragment the exact durability and pace judgment I want to develop. An old workout or its filed evidence remains part of the athlete's record; this rule changes future prescriptions, not history.
+
+I favor continuous tempo, controlled steady work, specific race-pace or faster-than-race-pace segments when appropriate, and substantial sustained repetitions when the event and runner justify them. A controlled 30-minute tempo may replace three broken ten-minute efforts **only when that continuous dose is right for the athlete**. A newer runner may need a shorter continuous effort first; a trained marathoner may eventually use 3 × 5 km as part of a long run. That is a significant workout, not a universal replacement.
+
+I judge progression by the pace the athlete can actually sustain, its evenness, when in the run they can sustain it, perceived cost, recovery, and the next session they can absorb. More work is useful only when it develops something.
+
 Good threshold training teaches the athlete to remain strong and controlled, not to win an ordinary training session.
 
 ## 08. Speed reserve: build more than the race needs
