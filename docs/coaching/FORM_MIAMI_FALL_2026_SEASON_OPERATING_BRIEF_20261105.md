@@ -67,6 +67,7 @@ Verified official dates as of November 5, 2026:
 - Life Time Miami Tropical 5K **January 30, 2027** and full/half **January 31, 2027**; organizer reports general registration sold out and 5K waitlist selection underway. These are **not default assignments**. https://www.themiamimarathon.com/registration/
 - Life Time 305 Half Marathon & 5K **March 7, 2027** in Miami Beach, useful as a potential next-season 5K/half anchor subject to athlete choice and registration. https://www.305halfmarathon.com/
 - NYRR reports January–March 2027 adult races sold out at advance member registration; pursue specific available alternatives individually, not phantom registrations. https://prod.nyrr.org/run/race-registration-launch-timeline
+- NYCRUNS official 2026–27 calendar currently advertises **Big Apple Half (Dec 13)**, **Frozen Penguin 5K (Jan 10)**, **Frozen Pigeon 5K (Jan 16)**, **Central Park Half (Feb 28)** and **Frozen Bonsai 5K (Mar 6)** with `Register` links. These are New York candidate races for Sam P, Elijah, Sohel and Bobby where distance/goal fits; never register or assign without checking current entry availability with the athlete. https://nycruns.com/races
 
 ## Release and service gates
 
