@@ -19,6 +19,8 @@ begin
     ('Tinius 800',array[171200,173100]::bigint[],172200::bigint,171200::bigint),
     ('Saul 600',array[131000,128000,137000,153000,131000]::bigint[],132000::bigint,128000::bigint),
     ('Saul 200',array[53000,38000,36000,43000]::bigint[],39000::bigint,36000::bigint)
+    ,('Megan 600',array[148000,154000,153000,154000,157000]::bigint[],151700::bigint,148000::bigint)
+    ,('Megan 200',array[39000,42000,42000,39000]::bigint[],41000::bigint,39000::bigint)
   ) as fixtures(name,reps,expected_held,expected_best) loop
     n:=cardinality(f.reps);
     select min(item.value) into best_ms from unnest(f.reps) as item(value);
@@ -71,7 +73,7 @@ begin
 
   if position('measurement_candidates' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0
-     or position('coalesce(b.best_ms,m.best_ms)' in
+     or position('least(b.best_ms,m.best_ms)' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
     raise exception 'Dated performance measurement fallback is missing';
   end if;
@@ -81,6 +83,11 @@ begin
      or position('limit 12' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
     raise exception 'Canonical structured-session Season fallback is missing';
+  end if;
+
+  if position('component.pace_low_seconds*1.609344' in
+       pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
+    raise exception 'Next-session pace must convert explicitly for athlete unit preference';
   end if;
 
   if position('athlete_training_tab_access' in

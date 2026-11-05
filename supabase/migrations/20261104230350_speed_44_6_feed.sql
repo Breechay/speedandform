@@ -28,7 +28,9 @@ with
        and access.speed_enabled
   ),
   settings as (
-    select coalesce(s.distance_keys, array[100,200,300,400,600,800,1000]) as keys
+    select coalesce(s.distance_keys, array[100,200,300,400,600,800,1000]) as keys,
+           coalesce(s.default_distance_m,400) as default_distance_m,
+           s.pace_unit
     from authorized a left join public.athlete_speed_settings s on s.athlete_id=a.id
   ),
   pieces as (
@@ -102,6 +104,7 @@ with
            round(m.value * 1000)::bigint as best_ms,
            m.measured_at,
            m.source,
+           m.measurement_type,
            case when m.measurement_type like 'reported_best_%' then 1 else 2 end as priority
       from authorized a
       join public.athlete_measurements m on m.athlete_id=a.id
@@ -117,10 +120,16 @@ with
        )
   ),
   measurement_best as (
-    select distinct on (distance_m) distance_m,best_ms,measured_at,source
+    select distinct on (distance_m) distance_m,best_ms,measured_at,source,measurement_type
       from measurement_candidates
      where distance_m is not null
      order by distance_m,priority,best_ms,measured_at desc
+  ),
+  measurement_average as (
+    select distinct on (distance_m) distance_m,best_ms as held_ms,measured_at,source
+      from measurement_candidates
+     where measurement_type='observed_mean_800m_seconds'
+     order by distance_m,measured_at desc
   ),
   keys as (
     select k.key, k.ord from settings s,
@@ -128,17 +137,33 @@ with
   ),
   marks as (
     select coalesce(jsonb_agg(jsonb_build_object(
-      'distanceMeters',k.key,'heldMs',h.held_ms,'heldReps',h.held_reps,
-      'bestMs',coalesce(b.best_ms,m.best_ms),'completionId',h.completion_id,
+      'distanceMeters',k.key,'heldMs',coalesce(h.held_ms,a.held_ms),'heldReps',h.held_reps,
+      'bestMs',case when b.best_ms is null then m.best_ms
+                    when m.best_ms is null then b.best_ms
+                    else least(b.best_ms,m.best_ms) end,'completionId',h.completion_id,
       'bestCompletionId',b.best_completion_id,'filedAt',h.filed_at
-      ,'bestEvidence',case when b.best_ms is not null then 'filed_rep'
-                           when m.best_ms is not null then 'dated_measurement' end
-      ,'bestMeasuredAt',case when b.best_ms is null then m.measured_at end
-      ,'bestSource',case when b.best_ms is null then m.source end
+      ,'bestEvidence',case when m.best_ms is not null
+                                 and (b.best_ms is null or m.best_ms<b.best_ms)
+                           then 'dated_measurement'
+                           when b.best_ms is not null then 'filed_rep' end
+      ,'bestMeasuredAt',case when m.best_ms is not null
+                                  and (b.best_ms is null or m.best_ms<b.best_ms)
+                             then m.measured_at end
+      ,'bestSource',case when m.best_ms is not null
+                              and (b.best_ms is null or m.best_ms<b.best_ms)
+                         then m.source end
+      ,'isReference',case when h.held_ms is null and a.held_ms is null
+                                and b.best_ms is null and m.best_ms is not null
+                           then true else false end
+      ,'referenceLabel',case when h.held_ms is null and a.held_ms is null
+                                  and b.best_ms is null and m.best_ms is not null
+                             then case when lower(coalesce(m.source,'')) like '%strava%'
+                                       then 'STRAVA BEST' else 'REPORTED BEST' end end
     ) order by k.ord),'[]'::jsonb) as value
     from keys k left join held h on h.distance_m=k.key
                 left join best b on b.distance_m=k.key
                 left join measurement_best m on m.distance_m=k.key
+                left join measurement_average a on a.distance_m=k.key
   ),
   next_plan as (
     select jsonb_build_object(
@@ -155,8 +180,19 @@ with
           'reps',coalesce(component.repeat_target,component.repeat_count,1),
           'durationSeconds',component.duration_seconds,
           'recoverySeconds',component.recovery_seconds,
-          'paceLowSeconds',component.pace_low_seconds,
-          'paceHighSeconds',component.pace_high_seconds
+          'paceLowSeconds',case
+            when s.pace_unit='mi' and component.distance_unit='km'
+              then round(component.pace_low_seconds*1.609344)
+            when s.pace_unit='km' and component.distance_unit='mi'
+              then round(component.pace_low_seconds/1.609344)
+            else component.pace_low_seconds end,
+          'paceHighSeconds',case
+            when s.pace_unit='mi' and component.distance_unit='km'
+              then round(component.pace_high_seconds*1.609344)
+            when s.pace_unit='km' and component.distance_unit='mi'
+              then round(component.pace_high_seconds/1.609344)
+            else component.pace_high_seconds end
+          ,'paceUnit',coalesce(s.pace_unit,component.distance_unit)
         ) order by component.position),'[]'::jsonb)
         from public.planned_session_components component
         where component.version_id=v.id and component.role='work'
@@ -173,7 +209,7 @@ with
         where component.version_id=v.id and component.role='work'
       ),'[]'::jsonb)
     ) as value
-    from authorized a
+    from authorized a cross join settings s
     join public.planned_sessions p on p.athlete_id=a.id
       and p.state='published'
       and p.role='key'
@@ -316,6 +352,7 @@ with
 select jsonb_build_object(
   'athleteId',a.id,'firstName',a.first_name,
   'keys',(select to_jsonb(keys) from settings),
+  'defaultDistanceMeters',(select default_distance_m from settings),
   'marks',(select value from marks),
   'next',coalesce((select value from next_plan),(select value from next_shared)),
   'season',(select value from season),

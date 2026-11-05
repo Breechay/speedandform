@@ -36,6 +36,26 @@ begin
        is distinct from array[131,128,137,153,131,53,38,36,43] then
     raise exception 'Saul Oct 29 rep order no longer matches';
   end if;
+
+  select count(*) into n from public.session_completions c
+  where c.id='1aa35710-0da0-44e3-ae9f-4dc9e98d1a3c'::uuid
+    and c.athlete_id='32b41350-bc14-47ee-8096-0b6acd1edc8c'::uuid
+    and c.planned_session_version_id='3cc9d908-1acd-4915-ade3-eda762b3d263'::uuid
+    and c.filed_at::date='2026-10-29';
+  if n<>1 then raise exception 'Megan Oct 29 evidence no longer matches'; end if;
+
+  select count(*) into n from public.session_pieces p
+  where p.completion_id='1aa35710-0da0-44e3-ae9f-4dc9e98d1a3c'::uuid
+    and p.kind='rep' and p.distance is null;
+  if n not in (0,9) then raise exception 'Megan Oct 29 piece count needs review'; end if;
+
+  if (select array_agg(p.duration_seconds order by p.position)
+      from public.session_pieces p
+      where p.completion_id='1aa35710-0da0-44e3-ae9f-4dc9e98d1a3c'::uuid
+        and p.kind='rep')
+       is distinct from array[148,154,153,154,157,39,42,42,39] then
+    raise exception 'Megan Oct 29 rep order no longer matches';
+  end if;
 end $$;
 
 -- Hope's original coach-imported completion already preserves the WhatsApp /
@@ -65,6 +85,20 @@ from public.session_pieces p
 join public.session_completions c on c.id=p.completion_id and c.athlete_id=p.athlete_id
 where c.id='e264cc00-f342-459a-ba14-f4929a09562a'::uuid
   and c.planned_session_version_id='f7ea8ed6-15a9-45c9-ba02-9197009e63ef'::uuid
+  and p.kind='rep' and p.position between 1 and 9 and p.distance is null
+on conflict (piece_id) do nothing;
+
+-- Megan's matching native filing carries the same authored 5×600m + 4×200m
+-- shape. Preserve her null-distance pieces and append signed corrections.
+insert into public.speed_piece_distance_corrections
+  (athlete_id,piece_id,distance_m,signed_by,source_note)
+select p.athlete_id,p.id,case when p.position<=5 then 600 else 200 end,
+       '79d1520c-7c7c-4cd2-bd31-229a3cc56158'::uuid,
+       'Oct 29 native rep positions matched to coach-authored 5×600m + 4×200m version'
+from public.session_pieces p
+join public.session_completions c on c.id=p.completion_id and c.athlete_id=p.athlete_id
+where c.id='1aa35710-0da0-44e3-ae9f-4dc9e98d1a3c'::uuid
+  and c.planned_session_version_id='3cc9d908-1acd-4915-ade3-eda762b3d263'::uuid
   and p.kind='rep' and p.position between 1 and 9 and p.distance is null
 on conflict (piece_id) do nothing;
 

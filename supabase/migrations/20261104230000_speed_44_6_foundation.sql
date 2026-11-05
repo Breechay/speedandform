@@ -13,9 +13,13 @@ create table public.athlete_training_tab_access (
 create table public.athlete_speed_settings (
   athlete_id uuid primary key references public.athletes(id) on delete cascade,
   distance_keys integer[] not null default array[100,200,300,400,600,800,1000],
+  default_distance_m integer not null default 400,
+  pace_unit text,
   updated_by uuid,
   updated_at timestamptz not null default now(),
   constraint speed_keys_not_empty check (cardinality(distance_keys) between 1 and 12),
+  constraint speed_default_is_visible check (default_distance_m=any(distance_keys)),
+  constraint speed_pace_unit_valid check (pace_unit is null or pace_unit in ('km','mi')),
   constraint speed_keys_allowed check (
     distance_keys <@ array[100,200,300,400,600,800,1000,1609,3000,3219,
                            4828,5000,6437,10000,16093,21098,42195]
