@@ -180,18 +180,10 @@ with
           'reps',coalesce(component.repeat_target,component.repeat_count,1),
           'durationSeconds',component.duration_seconds,
           'recoverySeconds',component.recovery_seconds,
-          'paceLowSeconds',case
-            when s.pace_unit='mi' and component.distance_unit='km'
-              then round(component.pace_low_seconds*1.609344)
-            when s.pace_unit='km' and component.distance_unit='mi'
-              then round(component.pace_low_seconds/1.609344)
-            else component.pace_low_seconds end,
-          'paceHighSeconds',case
-            when s.pace_unit='mi' and component.distance_unit='km'
-              then round(component.pace_high_seconds*1.609344)
-            when s.pace_unit='km' and component.distance_unit='mi'
-              then round(component.pace_high_seconds/1.609344)
-            else component.pace_high_seconds end
+          -- Pace denominator belongs to the athlete's authored plan setting,
+          -- not the rep distance. A 1 km rep may correctly carry a /mi band.
+          'paceLowSeconds',component.pace_low_seconds,
+          'paceHighSeconds',component.pace_high_seconds
           ,'paceUnit',coalesce(s.pace_unit,component.distance_unit)
         ) order by component.position),'[]'::jsonb)
         from public.planned_session_components component
@@ -295,7 +287,9 @@ with
   vault as (
     select coalesce(jsonb_agg(jsonb_build_object(
       'id',s.id,'title',s.title,'family',s.family,
-      'versionId',v.id,'version',v.version_number,'blocks',v.blocks,
+      'versionId',v.id,'version',v.version_number,
+      'launchable',s.published and (s.family='SPEED' or prescribed.plan_version_id is not null),
+      'blocks',coalesce(prescribed.blocks,v.blocks),
       'lastResult',(
         select public.vault_attempt_score(c.id)
         from public.session_completions c
@@ -347,7 +341,24 @@ with
       select v.id,v.version_number,v.blocks from public.vault_session_versions v
       where v.session_id=s.id order by v.version_number desc limit 1
     ) v on true
-    where s.published and exists(select 1 from authorized)
+    left join lateral (
+      select pl.plan_version_id,
+        (select jsonb_agg(jsonb_build_object(
+          'reps',coalesce(component.repeat_target,component.repeat_count,1),
+          'durationSeconds',component.duration_seconds,
+          'recoverySeconds',component.recovery_seconds,
+          'paceLowSeconds',component.pace_low_seconds,
+          'paceHighSeconds',component.pace_high_seconds,
+          'paceUnit','mi'
+        ) order by component.position)
+         from public.planned_session_components component
+         where component.version_id=pl.plan_version_id and component.role='work') as blocks
+      from public.speed_plan_vault_links pl
+      join authorized a on a.id=pl.athlete_id
+      where pl.vault_version_id=v.id
+      order by pl.linked_at desc,pl.plan_version_id desc limit 1
+    ) prescribed on true
+    where exists(select 1 from authorized)
   )
 select jsonb_build_object(
   'athleteId',a.id,'firstName',a.first_name,

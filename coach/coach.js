@@ -238,7 +238,9 @@ function doseOf(version) {
   const works = (version?.components || []).filter((part) => part.role === 'work');
   const work = works[0];
   if (!work) return null;
-  const unit = work.distance_unit || 'mi';
+  // Rep distance and pace denominator are independent. Elijah can run 1 km reps
+  // from a mile-authored plan; that remains 6:13–6:20/mi, never 6:13/km.
+  const unit = version?.distance_unit || work.distance_unit || 'mi';
   const amount = workMagnitude(work);
   const total = work.shape === 'repetitions' && work.distance != null
     ? Number((work.distance * work.repeat_count).toFixed(2)) : null;
@@ -576,7 +578,7 @@ function sessionInspectorHtml(session) {
       ? `${clock(part.recovery_seconds)} ${part.recovery_kind}` : '';
     return `<div class="ins-part">
       <dt>${escapeHtml(String(part.role).replace('_', ' '))}</dt>
-      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(part.distance_unit || 'mi')}</span>` : ''}
+      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(version.distance_unit || part.distance_unit || 'mi')}</span>` : ''}
         ${after ? `<span>${escapeHtml(after)}</span>` : ''}</dd>
     </div>`;
   }).join('');

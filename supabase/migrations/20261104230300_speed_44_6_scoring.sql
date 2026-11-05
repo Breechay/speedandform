@@ -8,7 +8,7 @@ returns jsonb language sql stable security definer
 set search_path = public, pg_temp as $$
 with
   attempt as (
-    select c.id,c.athlete_id,c.filed_at,c.status,c.source,
+    select c.id,c.athlete_id,c.filed_at,c.status,c.source,c.planned_session_version_id,
            coalesce(c.vault_session_version_id,cl.vault_version_id,
                     pv.vault_session_version_id,pl.vault_version_id) as version_id
     from public.session_completions c
@@ -22,15 +22,27 @@ with
       and c.source in ('athlete','form','coach_import')
   ),
   target as (
-    select a.id as completion_id, v.id as version_id, b.ord,rep.rep,
+    select a.id as completion_id, v.id as version_id, s.family, b.ord,rep.rep,
            (b.block->>'distanceMeters')::integer as distance_m,
+           (b.block->>'durationSeconds')::integer as duration_s,
            (b.block->>'targetMinMs')::bigint as min_ms,
            (b.block->>'targetMaxMs')::bigint as max_ms,
+           component.pace_low_seconds as pace_low_s,
+           component.pace_high_seconds as pace_high_s,
            row_number() over (order by b.ord,rep.rep) as rep_position
     from attempt a
     join public.vault_session_versions v on v.id=a.version_id
+    join public.vault_sessions s on s.id=v.session_id
     cross join lateral jsonb_array_elements(v.blocks) with ordinality as b(block,ord)
     cross join lateral generate_series(1,(b.block->>'reps')::integer) as rep(rep)
+    left join lateral (
+      select pc.pace_low_seconds,pc.pace_high_seconds
+      from public.speed_plan_vault_links link
+      join public.planned_session_components pc on pc.version_id=link.plan_version_id
+      where link.athlete_id=a.athlete_id and link.vault_version_id=v.id
+        and pc.role='work'
+      order by pc.position limit 1
+    ) component on true
   ),
   actual as (
     select row_number() over (order by p.position) as rep_position,
@@ -41,18 +53,25 @@ with
                when 'mi' then p.distance*1609.344
                else null end
            ) as distance_m,
-           round(coalesce(p.duration_seconds_exact,p.duration_seconds::numeric)*1000)::bigint as ms
+           round(coalesce(p.duration_seconds_exact,p.duration_seconds::numeric)*1000)::bigint as ms,
+           p.pace_seconds
     from attempt a join public.session_pieces p on p.completion_id=a.id and p.kind='rep'
     left join public.speed_piece_distance_corrections d
       on d.piece_id=p.id and d.athlete_id=a.athlete_id
   ),
   scored as (
-    select t.rep_position,t.distance_m,t.min_ms,t.max_ms,
-           x.ms as actual_ms,
-           (abs(x.distance_m-t.distance_m)<=t.distance_m*0.01 and x.ms is not null
+    select t.rep_position,t.distance_m,t.duration_s,t.min_ms,t.max_ms,
+           t.pace_low_s,t.pace_high_s,x.ms as actual_ms,x.pace_seconds as actual_pace_seconds,
+           case when t.family='LONG HOLDS' then
+             x.pace_seconds is not null and t.pace_low_s is not null
+             and x.pace_seconds between t.pace_low_s and coalesce(t.pace_high_s,t.pace_low_s)
+             and x.ms between (t.duration_s*1000-1000) and (t.duration_s*1000+1000)
+           else
+             abs(x.distance_m-t.distance_m)<=t.distance_m*0.01 and x.ms is not null
              and t.max_ms is not null
              and case when t.min_ms=t.max_ms then x.ms<=t.max_ms
-                      else x.ms between t.min_ms and t.max_ms end) as hit
+                      else x.ms between t.min_ms and t.max_ms end
+           end as hit
     from target t left join actual x on x.rep_position=t.rep_position
   )
 select jsonb_build_object(
@@ -66,7 +85,9 @@ select jsonb_build_object(
   'reps',coalesce(jsonb_agg(jsonb_build_object(
     'position',s.rep_position,'distanceMeters',s.distance_m,
     'targetMinMs',s.min_ms,'targetMaxMs',s.max_ms,
-    'actualMs',s.actual_ms,'hit',coalesce(s.hit,false)
+    'paceLowSeconds',s.pace_low_s,'paceHighSeconds',s.pace_high_s,
+    'actualMs',s.actual_ms,'actualPaceSeconds',s.actual_pace_seconds,
+    'hit',coalesce(s.hit,false)
   ) order by s.rep_position) filter(where s.rep_position is not null),'[]'::jsonb)
 )
 from attempt a join target s on s.completion_id=a.id

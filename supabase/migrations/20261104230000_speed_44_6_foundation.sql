@@ -83,7 +83,7 @@ create trigger speed_pin_athlete_guard
 create table public.vault_sessions (
   id text primary key check (id ~ '^[a-z0-9]+(-[a-z0-9]+)*$'),
   title text not null,
-  family text not null default 'TRACK SESSION',
+  family text not null default 'SPEED' check (family in ('SPEED','LONG HOLDS')),
   authored_order integer not null unique,
   published boolean not null default false,
   created_at timestamptz not null default now()

@@ -85,9 +85,9 @@ begin
     raise exception 'Canonical structured-session Season fallback is missing';
   end if;
 
-  if position('component.pace_low_seconds*1.609344' in
+  if position('''paceLowSeconds'',component.pace_low_seconds' in
        pg_get_functiondef('public.athlete_speed_feed(uuid)'::regprocedure)) = 0 then
-    raise exception 'Next-session pace must convert explicitly for athlete unit preference';
+    raise exception 'Next-session pace denominator must not be inferred from rep distance';
   end if;
 
   if position('athlete_training_tab_access' in
@@ -109,6 +109,24 @@ begin
   if position('order by p.first_name,p.id' in
        pg_get_functiondef('public.vault_cleared_faces(uuid)'::regprocedure)) = 0 then
     raise exception 'Cleared faces must not be presented as a finish-order leaderboard';
+  end if;
+
+  if position('''LONG HOLDS''' in
+       pg_get_functiondef('coach_performance_private.speed_vault_score_internal(uuid)'::regprocedure)) = 0
+     or position('actualPaceSeconds' in
+       pg_get_functiondef('coach_performance_private.speed_vault_score_internal(uuid)'::regprocedure)) = 0 then
+    raise exception 'Long Holds must score actual pace in the athlete-specific authored band';
+  end if;
+
+  if exists (
+    select 1 from public.vault_sessions session
+    where session.published and not exists (
+      select 1 from public.vault_session_versions version
+      join public.speed_plan_vault_links link on link.vault_version_id=version.id
+      where version.session_id=session.id
+    )
+  ) then
+    raise exception 'A design-only Vault session was exposed without a published plan record';
   end if;
 end;
 $$;
