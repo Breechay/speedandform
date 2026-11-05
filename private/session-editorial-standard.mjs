@@ -38,6 +38,8 @@ export function sessionEditorialIssues(copy) {
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
   if (!title) issues.push({ field: 'title', message: 'Name the session.' });
+  if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(title))
+    issues.push({ field: 'title', message: 'The Week already shows the day. Use a purposeful long-run title with the total distance, such as Long run · 10 mi.' });
   if (/\beasy\s*\+\s*strides\b/iu.test(title) && /\b(?:warm[ -]?up)\b/iu.test(details))
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
   if (/\b(?:note effort|report back|send (?:me|your coach)|at halfway and at the end)\b/iu.test(details))
@@ -87,12 +89,21 @@ export function selfAuditSessionCopy(next, previous = null) {
 // typed work. This catches the Console's historic implicit-mi conversion before
 // an athlete sees a 200 m title paired with 0.2 mi repetitions.
 export function prescriptionPresentationIssues(title, components = []) {
-  const namedMeters = [...String(title || '').matchAll(/\b(\d{2,4})\s*m\b/giu)]
+  const displayTitle = String(title || '');
+  const issues = [];
+  if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(displayTitle))
+    issues.push('Do not repeat Saturday or Sunday in a long-run title; Week already supplies the day.');
+  const workParts = components.filter(part => part?.role === 'work' && part.distance != null);
+  if (/\b(?:long run|marathon endurance)\b/iu.test(displayTitle)
+      && /\b(?:last|final)\s+\d+(?:\.\d+)?\s*(?:mi|km)\b/iu.test(displayTitle)
+      && workParts.length < 2)
+    issues.push('A long-run steady/fast finish needs separate typed easy and finish components for Week, filing and feed.');
+  const namedMeters = [...displayTitle.matchAll(/\b(\d{2,4})\s*m\b/giu)]
     .map(match => Number(match[1]));
-  if (!namedMeters.length) return [];
-  const workMeters = components.filter(part => part?.role === 'work' && part.distance != null)
+  if (!namedMeters.length) return issues;
+  const workMeters = workParts
     .map(part => Number(part.distance) * ((part.distanceUnit || part.distance_unit) === 'km' ? 1000 : 1609.344));
-  if (!workMeters.length) return [];
-  return namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
-    .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`);
+  if (!workMeters.length) return issues;
+  return issues.concat(namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
+    .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`));
 }
