@@ -246,7 +246,7 @@ The event changes the question. It does not change my insistence on an individua
 
 The same rep can ask a different question at different distances. Progress only one or two variables at once. A float is slower work that lowers the demand without restoring full ease; it is a genuine step after successful easy recoveries, not an interchangeable label. **Two × 10-minute threshold segments remain available where useful; three × 10-minute running intervals and mile repeats are not future FORM prescriptions.**
 
-The [Cross-Distance Development Thread](../docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [Half-Marathon Session Canon](../docs/coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) are working reference documents. They guide coaching; they do not modify athlete plans by their existence.
+The [Cross-Distance Development Thread](../docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](../docs/coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](../docs/coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) are working reference documents. They guide coaching; they do not modify athlete plans by their existence.
 
 ## 10. Strength belongs in the athlete
 
