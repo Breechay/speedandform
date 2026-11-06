@@ -128,7 +128,18 @@ begin
 
     for source_week in select * from public.training_plan_weeks where version_id=source_version order by week_number loop
       insert into public.training_plan_weeks(plan_id,version_id,week_number,phase,total_distance,intent)
-      values(plan_row.id,destination_version,source_week.week_number,source_week.phase,source_week.total_distance,source_week.intent)
+      values(plan_row.id,destination_version,source_week.week_number,source_week.phase,source_week.total_distance,
+        case
+          when plan_row.slug='race-pace-durability' and source_week.week_number=8
+            then 'Build specific volume without borrowing from Saturday. Keep the long run easy until the eight-mile late dose is absorbed.'
+          when plan_row.slug='race-pace-durability' and source_week.week_number=12
+            then 'Peak the late-race segment without racing in training. The six late miles are the prescribed dose.'
+          when plan_row.slug='simon-ceiling-durability-01' and source_week.week_number=2
+            then 'Extend Tuesday steady intervals. Thursday stays faster only when recovered; keep other runs easy.'
+          when plan_row.slug='simon-ceiling-durability-01' and source_week.week_number=3
+            then 'If last week was controlled, extend Tuesday. Keep Thursday short and the long run easy.'
+          else source_week.intent
+        end)
       returning id into destination_week;
 
       for source_session in select * from public.training_plan_sessions where plan_week_id=source_week.id order by position loop
