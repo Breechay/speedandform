@@ -135,9 +135,11 @@ begin
           when plan_row.slug='race-pace-durability' and source_week.week_number=12
             then 'Peak the late-race segment without racing in training. The six late miles are the prescribed dose.'
           when plan_row.slug='simon-ceiling-durability-01' and source_week.week_number=2
-            then 'Extend Tuesday steady intervals. Thursday stays faster only when recovered; keep other runs easy.'
+            then 'Extend Tuesday steady intervals. Thursday focuses on shorter speed work; keep the other runs easy.'
           when plan_row.slug='simon-ceiling-durability-01' and source_week.week_number=3
-            then 'If last week was controlled, extend Tuesday. Keep Thursday short and the long run easy.'
+            then 'Extend the steady Tuesday effort with control. Keep Thursday short and the long run easy.'
+          when plan_row.slug='simon-ceiling-durability-01' and source_week.week_number=5
+            then 'Arrive fresh for Thursday’s 5K test. Keep the preceding runs easy and make space for recovery afterward.'
           else source_week.intent
         end)
       returning id into destination_week;
