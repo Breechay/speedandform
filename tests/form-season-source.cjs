@@ -6,7 +6,7 @@ const path = require('node:path');
 
 const migrationPath = path.join(
   __dirname, '..', 'supabase', 'migrations',
-  '20261106103912_form_miami_fall_2026_season_source.sql'
+  '20261106110727_form_miami_fall_2026_season_source.sql'
 );
 const sql = fs.readFileSync(migrationPath, 'utf8');
 
