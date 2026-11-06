@@ -7,9 +7,9 @@
 
 ## 1. The objective
 
-**Keep the speed. Move it deeper. Learn to find sustainable rhythm again.**
+**Keep the speed. Move it deeper. Learn to settle at a sustainable pace again.**
 
-Marathon training is not just learning to cover more distance. We develop meaningful pace, the ability to re-access it after accumulated running, and the composure to return to a sustainable rhythm after faster work. The work should callus the mind and body through successive absorbed layers. The defining progression variable may be the *location*, *continuity*, or *repeatability* of pace rather than total long-run mileage.
+Marathon training is not just learning to cover more distance. We develop meaningful pace, the ability to re-access it after accumulated running, and the composure to settle at a sustainable effort after faster work. The work should callus the mind and body through successive absorbed layers. The defining progression variable may be the *location*, *continuity*, or *repeatability* of pace rather than total long-run mileage.
 
 These workouts are tools with different costs and questions. Recording them as favorites does not assign them to an athlete or make each one compulsory in a single program.
 
@@ -19,11 +19,11 @@ These workouts are tools with different costs and questions. Recording them as f
 2. **Minimum substantive marathon-pace dose:** Any newly authored FORM workout **labeled as marathon-pace work contains at least 30 cumulative minutes at actual MP**, or an equivalent substantial distance at the athlete's evidence-based MP. This is a cumulative workout minimum, **not a minimum per repetition**. A 3 × 5K workout meets it; a single 10-minute or 2 × 6-minute MP touch does not. Other types of workouts, including easy, threshold, speed and taper sessions without MP, do not need MP minutes.
 3. **No token MP snippets in the marathon plan:** Older examples such as `25–30 min easy + 2 × 6 min @ MP`, or only `20 min @ MP` as a marathon-pace workout, are superseded for future authoring. Keep historical sessions and evidence unchanged. A taper may omit MP rather than label a tiny dose as meaningful marathon-specific work.
 4. **One principal long-run ask:** A race-pace long run is a hard session for weekly scheduling, even when some sections are easy. Reduce or remove competing quality, account for Forge strength and external work, protect recovery and include step-back weeks.
-5. **Layer, then absorb:** Progress from recognizable rhythm to broken specific exposure, continuity, later placement, and reliable late re-access. Do not increase intensity, duration, frequency and late-run stress together by default. The athlete's response, not the calendar, earns the next layer.
+5. **Layer, then absorb:** Progress from recognizable pace to broken specific exposure, continuity, later placement, and reliable late re-access. Do not increase intensity, duration, frequency and late-run stress together by default. The athlete's response, not the calendar, earns the next layer.
 6. **Fuel every specific long run:** Record the actual fueling product, amount, timing, tolerance and deviations; rehearse race breakfast and fluid use as appropriate. A late collapse with inadequate fuel does not uniquely identify a durability limit.
 7. **Separate levels:** `3 × 10K @ MP` is an **elite-only, exceptional** session family. It is not a standard prescription for José, Hope, or the general FORM marathon program. The coach must separately justify readiness, whole-run burden and recovery before ever selecting it.
 8. **Protect the current authority:** Brice authors assignments. The current published athlete occurrence/version controls execution. No draft canon silently edits José, Hope, or anyone else's plan.
-9. **Continuous rhythm before advanced alternation:** Before using the demanding M03/M04 workout families, develop the athlete toward **60–70 minutes continuous at evidence-based MP** with credible fueling, even pacing and subsequent recovery. Do not equate one completed 60-minute effort with an absorbed adaptation. Shorter substantive MP sessions are building layers toward this prerequisite, not a competing lower standard.
+9. **Continuous pace before advanced alternation:** Before using the demanding M03/M04 workout families, develop the athlete toward **60–70 minutes continuous at evidence-based MP** with credible fueling, even pacing and subsequent recovery. Do not equate one completed 60-minute effort with an absorbed adaptation. Shorter substantive MP sessions are building layers toward this prerequisite, not a competing lower standard.
 10. **From recovery to float:** In substantial broken MP sessions, progress the between-rep transition from a genuine easy-jog reset, to a shorter reset, to a **float**—a clear reduction from MP but **still sustained running demand rather than full recovery**. Floats are active work with a distinct coach-authored pace/effort and duration; they are not free rest or an unmeasured pause. Advance the recovery demand only when the prior version remains stable and absorbable. An easy recovery and a float are different prescriptions and must be recorded distinctly.
 
 These new November 6 choices amend *future workout selection* in the August 12 **FORM Durability and Race Programming Doctrine** and the September 20 **Marathon Durability Plan 03 freeze**. They do not retroactively alter that freeze's observations, study hypotheses, completed sessions, the Closing-10K test or its commercial status. Where an older sample contradicts the new MP minimum, the November 6 rule governs future authoring.
@@ -39,7 +39,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Read:** Effort, movement, ability to maintain conversational running, fueling, 24–72h recovery.  
 **Selection:** Before specific MP progression. Not a weekly mandatory minimum and not an automatic first long run for unprepared athletes.
 
-### M02 · Continuous Marathon Rhythm
+### M02 · Continuous Marathon Pace
 
 **Progression:** 30–45 min continuous MP → 45–55 min continuous MP → **60–70 min continuous MP**, each within a fully authored session with suitable aerobic approach and cooldown. Do not automatically advance on consecutive weeks; stable repetition and step-back may be needed.  
 **MP dose:** At least 30 min in every MP-labeled session; the **60–70 min continuous stage is the advanced-work entry gate**.  
@@ -52,7 +52,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Form:** `3 × 5 km @ MP` embedded in an authored long run, initially with easy-jog recoveries and subsequently with reduced recovery or floats when earned.  
 **MP dose:** 15 km total, approximately 60–65 minutes around the current José/Hope working marathon-pace band; each 5K is approximately 20–22 minutes, and the rule measures *cumulative* MP.  
 **Recovery progression:** (A) genuine easy-jog reset → (B) shorter easy-jog reset with the **same** 3 × 5K dose → (C) coach-defined **float** between 5Ks: slower than MP, but still purposeful aerobic work, so the athlete does not fully recover. Do not invent a universal float pace or change rep pace and recovery demand simultaneously.  
-**Job:** Three substantial marathon-rhythm exposures that gradually require less complete recovery between them.  
+**Job:** Three substantial marathon-pace exposures that gradually require less complete recovery between them.  
 **Read:** Whether re-entry requires more effort, rep evenness, ability to settle quickly, actual float pace/effort, fueling and next-session cost.  
 **Selection:** Advanced athletes **after a stable, recoverable 60–70 min continuous MP exposure**. Do not assume both athletes should receive it on the same date.
 
@@ -60,7 +60,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 
 **Exact FORM starting pattern:** `30 min easy → 30 min MP → 30 min easy → 30 min MP → 30 min easy`.  
 **Total:** 2h30; **60 min MP + 90 min easy**.  
-**Job:** Access marathon pace, leave it without losing composure, and find the same sustainable rhythm again after more accumulated running. The last easy 30 minutes tests whether the athlete can settle and complete the session well, not simply race the final block.  
+**Job:** Access marathon pace, leave it without losing composure, and settle into the same sustainable pace again after more accumulated running. The last easy 30 minutes tests whether the athlete can settle and complete the session well, not simply race the final block.  
 **Read:** Relative cost of the first and second MP blocks, quality of transition back to easy, fueling, whole-run recovery.  
 **Selection:** Advanced high-cost Saturday, **after the 60–70 min continuous MP gate**; *one* major weekly stimulus, not a routine every-week repeat. The initial 30-minute easy blocks remain genuinely easy in this named version. A later **Thirty-Thirty Float** variation may turn selected easy blocks into sustained floats, but that is a materially harder, separately named and approved prescription—not a silent reinterpretation of “easy.” A variation ending with MP is likewise a separate authored workout.
 
@@ -72,11 +72,11 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Read:** Drift and cost relative to earlier continuous MP, fueling and subsequent function.  
 **Selection:** Advanced, after earlier layers; not stacked automatically with M03/M04 in consecutive overloaded weeks.
 
-### M06 · Closing 10K / Find Rhythm Under Cost
+### M06 · Closing 10K / Settle Under Cost
 
-**Existing frozen principal test:** A meaningful late 10K of the appropriate evidenced reserve/rhythm after sufficient prior work, with a short late rise and a return to the prescribed rhythm on Donna-relevant terrain where feasible.  
+**Existing frozen principal test:** A meaningful late 10K of the appropriate evidenced reserve or race-pace capacity after sufficient prior work, with a short late rise and a return to the prescribed pace on Donna-relevant terrain where feasible.  
 **Job:** Test whether useful speed remains available after accumulated cost, while explicitly stopping short of simulating the entire race.  
-**Read:** Late access, effort, rhythm recovery, fueling, conditions, whole-week absorption.  
+**Read:** Late access, effort, recovery of pace control, fueling, conditions, whole-week absorption.  
 **Selection:** Preserve the September 20 Plan 03 test design and its athlete-specific post-Orlando decisions. If this is explicitly an MP workout, the actual MP accumulation must still meet the 30-minute minimum.
 
 ### M07 · Three Ten-Kilometers · Elite Exception
@@ -88,8 +88,8 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 
 ### M08 · Faster, Then Settle · Exploring
 
-**Concept:** A bounded, evidenced faster-than-marathon rhythm precedes an extended sustainable marathon-rhythm section, followed by an explicit recovery assessment.  
-**Job:** Practice moving from an assertive effort into usable marathon rhythm, rather than equating competitiveness with endless acceleration.  
+**Concept:** A bounded, evidenced faster-than-marathon effort precedes an extended sustainable marathon-pace section, followed by an explicit recovery assessment.  
+**Job:** Practice moving from an assertive effort into usable marathon pace, rather than equating competitiveness with endless acceleration.  
 **Status:** **Exploring**, no fixed dose approved. Brice must author exact paces, length, transition, and placement before this becomes a session. It is not to be generated by an agent or added to an athlete plan from this paragraph.
 
 ## 4. How the canon layers across a marathon build
@@ -97,7 +97,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 | Layer | Capability we want | Primary choice | Condition to advance |
 |---|---|---|---|
 | Foundation | Two hours can be run comfortably and absorbed | M01 | Stable movement, fueling practice and normal subsequent training |
-| Establish MP | Continuous marathon rhythm grows from 30–45 to 45–55 min | M02 | Evenness, fueling and recovery |
+| Establish MP | Continuous marathon pace grows from 30–45 to 45–55 min | M02 | Evenness, fueling and recovery |
 | Earn the advanced gate | **60–70 min continuous MP** can be executed and absorbed | M02 | Credible follow-on training; no survival finish |
 | Re-enter with recovery | 3 × 5K MP remains repeatable with easy-jog resets | M03-A | Even reps and adequate recovery |
 | Reduce recovery | Same MP work remains stable after shorter rests, then purposeful floats | M03-B → M03-C | Float remains below MP, with no full reset; next session absorbable |
@@ -117,7 +117,7 @@ This table is a **capability map, not a mandatory consecutive-Saturday calendar*
 
 **Compressed bridge, subject to evidence:**
 
-- **After Orlando:** recover, analyze each race independently, reset the actual MP/rhythm assignment. Preserve all original results.
+- **After Orlando:** recover, analyze each race independently, reset the actual MP and specific-pace assignment. Preserve all original results.
 - **Return and rebuild:** restore normal easy running and the two-hour absorbable foundation; decide when substantive MP returns.
 - **Specific development:** select a suitable M02/M03/M04/M05 sequence according to the athlete, not a universal fixed order. Larger Saturdays reduce competing Thursday and strength stress.
 - **Principal late read:** preserve the Closing-10K experiment, not a full-race simulation.
