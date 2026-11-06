@@ -34,6 +34,16 @@ These are *coaching questions*, not a new state schema, score or calendar gate. 
 
 **Progress one meaningful stressor purposefully.** Do not increase pace, volume, float demand and late placement together merely because a week passed. The athlete's execution and subsequent training, not soreness, establish readiness. Floats are work and must be authored as their own segments; they are not invisible recovery.
 
+### The base is not the warm-up
+
+A quality session that totals about 40 minutes including warm-up, work and cooldown does not replace independent easy-running duration. For a prepared half-marathon group, consider gradually building **standalone 50–60 → 60–75-minute continuous easy** runs, supported by a **75–90-minute absorbable easy long run**; the marathon-specific long-run platform remains two hours comfortably. Short recovery days can and should be shorter. The purpose is to make longer aerobic work feel familiar without making it fast. Specific intensity is an occasional withdrawal from that foundation.
+
+### Two separate ways to develop pace durability
+
+**Continuity:** short sustained work → longer uninterrupted race-pace work → purposeful late placement. **Density:** genuinely easy reset → shorter genuinely easy reset → a separately authored float that reduces effort without fully recovering. The two are related but not identical. Running for 60 minutes with 30 minutes at MP proves an alternating **30-minute cumulative dose**, not an hour continuously at MP.
+
+Continuous `1 mi at race pace / 1 mi easy` alternation is **not a classic mile-repeat workout**. It is one uninterrupted aerobic run with explicit work and easy segments, no stopped recovery, and real total-run cost. Preserve the existing ban on stopped mile-repeat sets and 3 × 10-minute running intervals. The [Aerobic Base to Race-Pace Durability Bridge](FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md) specifies the full half and marathon progression.
+
 ## 3. Brice's half-marathon threshold observation
 
 **Adopted field observation, November 6:** Among Brice's trained, sub-1:30 half-marathon group, stable threshold work has often been approximately **20–30 seconds per mile faster than demonstrated half-marathon capability pace**. Earlier FORM observations described roughly a 30-second-per-mile difference in selected runners. This is firsthand coaching evidence, not an externally validated universal equation or a guaranteed race prediction.
@@ -70,7 +80,7 @@ The **purpose, dose and recovery cost** of every family are recorded. A session 
 ### Explicit exclusions
 
 - No future **3 × 10-minute running intervals**; this ban does not remove allowed 2 × 10-minute work or recorded historical sessions.
-- No future **mile-repeat workouts**. A single continuous mile or a mile split remains legitimate data.
+- No future **classic mile-repeat workouts with full interval reset**. A single continuous mile, a mile split, or a **continuous pace/easy alternating mile** inside one non-stopped run remains legitimate; the alternating workout must use separate typed work and easy segments.
 - No universal numerical conversion from HMP to threshold; use the cohort observation as a calibration question.
 - No compulsory 12-mile continuous HMP ownership test. The existing reusable 5 → 6 → 8-mile HMP asks are context-specific, with later pace work a separate durability question.
 - No marathon-pace-labeled session below **30 cumulative MP minutes**; this rule is for marathon-specific work, not HMP, 10K, 5K or non-MP support.
@@ -83,9 +93,9 @@ The **purpose, dose and recovery cost** of every family are recorded. A session 
 
 **10K:** first establish controlled threshold/10K pace, then sustain longer work, then re-enter race-specific pace after a shorter reset or float, with selected later work that remains recoverable. The same [5K and 10K Session Canon](FORM_5K_10K_SESSION_CANON_20261106.md) gives separately graded threshold, pace and float work.
 
-**Half:** establish repeatable threshold and a 75–90-minute aerobic long-run platform, develop substantial continuous HMP, then progress recovery density and place HMP after prior running. The [Half Marathon Session Canon](FORM_HALF_MARATHON_SESSION_CANON_20261106.md) defines working families. The threshold observation helps calibrate the ceiling; it is not a pace prescription.
+**Half:** establish repeatable threshold and a 75–90-minute aerobic long-run platform, with standalone easy runs growing beyond ordinary short workout duration; use 5/5 or one-mile/easy alternations when needed, build substantial continuous HMP, consider a high-value six-mile continuous check (eight miles selectively), then progress recovery density and place HMP after prior running. The [Half Marathon Session Canon](FORM_HALF_MARATHON_SESSION_CANON_20261106.md) defines working families. The threshold observation helps calibrate the ceiling; it is not a pace prescription.
 
-**Full:** establish two hours comfortably, build continuous MP through 30–45 → 45–55 → 60–70 minutes, then select advanced 3 × 5K with shorter resets/floats or the separate Thirty-Thirty long; progressively preserve pace under more prior work. The [Marathon Session Canon](FORM_MARATHON_SESSION_CANON_20261106.md) remains the owning detailed source.
+**Full:** establish two hours comfortably, use substantive 5/5 MP/easy or one-mile/easy alternations as a bridge when needed, build continuous MP through 30–45 → 45–55 → 60–70 minutes (or use comparable recovered continuous race evidence), then select advanced 3 × 5K with shorter resets/floats or the separate Thirty-Thirty long; progressively preserve pace under more prior work. The [Marathon Session Canon](FORM_MARATHON_SESSION_CANON_20261106.md) remains the owning detailed source.
 
 ## 7. Evidence and staff rules
 
