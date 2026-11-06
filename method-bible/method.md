@@ -202,6 +202,18 @@ By *comfortably* I mean a settled aerobic effort with usable mechanics and pacin
 
 From that foundation, I layer duration, continuity, meaningful steady work, and eventually marathon pace deeper into the run. Each addition earns its recovery cost; race-specific long runs spend the week's quality budget. An athlete's history, restrictions, and recovery still govern the individual dose.
 
+### Substantive marathon pace and the favorite long runs · November 6, 2026
+
+**If I call a workout marathon-pace work, it contains at least 30 cumulative minutes at evidenced marathon pace.** That is the minimum for the full workout, not for each repetition. I can write a purely easy, threshold, speed or taper session without marathon pace; I do not dress up a few short MP minutes as a specific marathon session. This supersedes short historical MP-only sharpening examples for future prescriptions while preserving what athletes actually did.
+
+Three favorite architectures belong in the working canon:
+
+- **Thirty-Thirty:** 30 minutes easy / 30 minutes at MP, alternating for 2h30, beginning and finishing easy. That totals 60 minutes MP and 90 easy; the athlete must find sustainable rhythm twice and settle again afterward.
+- **Three Fives:** 3 × 5K at MP within an authored long run, with genuine easy recoveries, a cumulative 15K of substantial race-rhythm work.
+- **Three Tens:** 3 × 10K at MP—an **elite-only exceptional** session, never a routine progression or a default for FORM marathoners.
+
+I want athletes who can move faster and then find sustainable rhythm, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) records the method, levels, and selection rules; it does not publish an athlete's plan.
+
 ### Race demands change the plan
 
 The 5K needs repeatable speed, aerobic power, efficient fast movement, and speed above race requirement. The 10K needs threshold control and the ability to move among gears. The half marathon asks whether pace remains available after meaningful earlier work. The marathon needs progressively more consequential long-run architecture, fuel practice, and late-session execution. HYROX adds the real cost of stations and transitions; that does not excuse neglecting the runner.
