@@ -165,3 +165,16 @@ Future authoring excludes **3 × 10-minute running intervals** and mile repeats.
 The word **“rhythm”** and plural are prohibited in new authored workout and philosophy copy. Use precision: pace, control, timing, cadence, continuity, or settle. Legacy published content requires an audited versioned copy migration; the prohibition does not authorize blanket SQL updates or athlete-dose changes.
 
 See [Cross-Distance Thread](coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md) and [Half-Marathon Canon](coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md).
+
+
+## November 6, 2026 follow-up · What each pace session actually proves
+
+**Base is its own evidence:** A 40-minute quality session including preparation and cooldown is not evidence of a 60–75-minute standalone easy capacity. Monitor ordinary recoverable easy duration and the longer aerobic platform separately from hard workout duration.
+
+**Continuous alternation is not the old mile-repeat format:** `5 min goal pace / 5 min easy` or `1 mi goal pace / 1 mi easy` within one continuous run tests re-access after a reduced gear. It can precede a substantive continuous segment. Do not classify it as classic stopped mile repeats; do not call its *cumulative* race-pace minutes *uninterrupted* race-pace minutes. A subsequent float is a higher-density working transition, not full rest.
+
+**Half marathon durability:** Keep the selective 5 → 6 → up to 8-mile HMP continuous question available, with full-week recovery constraints and late-run alternatives. An eight-mile pass is not a universal gate. The athlete's actual result, not template completion, determines whether another check adds value.
+
+**Half-to-full evidence transfer:** A recovered Orlando half at clock pace still appropriate for Donna may prove roughly 90 minutes of uninterrupted pace access. That evidence does not independently establish late-marathon pacing, fueling, two-hour easy base, or medical readiness. The winter build should use the race to select a useful new test rather than re-prove what it already revealed.
+
+Detailed source: [Aerobic Base to Race-Pace Durability Bridge](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md). Future work still excludes 3 × 10-minute running intervals and classic stopped mile-repeat workouts; correctly authored continuous pace/easy alternations are allowed.
