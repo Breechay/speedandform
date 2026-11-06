@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_curated_on": "2026-11-05",
+  "last_curated_on": "2026-11-06",
   "purpose": "Locator of current FORM authority, not a replacement method or a parallel prescription database.",
   "rules": [
     {
@@ -106,6 +106,16 @@
       "authority": "method-bible/method.md#sustained-work-selection--november-5-2026",
       "enforcement": "Console and Labs typed session authoring preflight",
       "verification": "private/session-editorial-standard.test.mjs; active published-session audit"
+    },
+    {
+      "id": "FORM-ADAPTATION-014",
+      "title": "Develop speed tolerance without soreness that disables ordinary movement",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#speed-adaptation-without-disabling-soreness--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "all FORM running and coupled Forge strength programming",
+      "enforcement": "coach authoring review; automated preflight proposed, not yet verified",
+      "verification": "whole-week and next-session review; athlete feedback after demanding exposures"
     }
   ]
 }
