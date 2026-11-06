@@ -136,6 +136,16 @@
       "scope": "marathon-specific long-run block entry; athletes below foundation receive preparatory progression",
       "enforcement": "coach-authored readiness and complete-week review; not an automatic first-run prescription",
       "verification": "recent actual long-run evidence, athlete report, recovery and next-session capacity"
+    },
+    {
+      "id": "FORM-MARATHON-017",
+      "title": "Minimum 30 cumulative minutes at MP in any new marathon-pace workout; advanced and elite long-run families",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future FORM marathon-specific session authoring, not historical filings or half-marathon goal-pace work",
+      "enforcement": "coach/Labs session selection review; no automated preflight claimed",
+      "verification": "explicit MP segments sum to >=30 minutes or equivalent distance at evidence-based MP; elite 3 × 10K protected from default assignment; total weekly burden/fueling/recovery reviewed"
     }
   ]
 }
