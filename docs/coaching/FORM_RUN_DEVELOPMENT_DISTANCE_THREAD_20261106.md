@@ -79,9 +79,9 @@ The **purpose, dose and recovery cost** of every family are recorded. A session 
 
 ## 6. A first race-family design sequence
 
-**5K:** first reveal controlled fast movement, then extend repeatability, later compress recovery with a purposeful float if the athlete can still execute. Threshold and easy running support that work; avoid turning every speed session into a maximal race.
+**5K:** first reveal controlled fast movement, then extend repeatability, later compress recovery with a purposeful float if the athlete can still execute. Threshold and easy running support that work; avoid turning every speed session into a maximal race. See the [5K and 10K Session Canon](FORM_5K_10K_SESSION_CANON_20261106.md) for concrete session families.
 
-**10K:** first establish controlled threshold/10K pace, then sustain longer work, then re-enter race-specific pace after a shorter reset or float, with selected later work that remains recoverable.
+**10K:** first establish controlled threshold/10K pace, then sustain longer work, then re-enter race-specific pace after a shorter reset or float, with selected later work that remains recoverable. The same [5K and 10K Session Canon](FORM_5K_10K_SESSION_CANON_20261106.md) gives separately graded threshold, pace and float work.
 
 **Half:** establish repeatable threshold and a 75–90-minute aerobic long-run platform, develop substantial continuous HMP, then progress recovery density and place HMP after prior running. The [Half Marathon Session Canon](FORM_HALF_MARATHON_SESSION_CANON_20261106.md) defines working families. The threshold observation helps calibrate the ceiling; it is not a pace prescription.
 
