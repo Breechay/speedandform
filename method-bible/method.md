@@ -161,7 +161,15 @@ Advanced athletes may need a much larger stimulus; newer runners often need clea
 
 ### Speed adaptation without disabling soreness · November 6, 2026
 
-**We want the muscular adaptations of faster running. We do not need soreness that temporarily interferes with ordinary movement. Build the capacity progressively, with recovery sufficient to absorb the next demanding exposure.**
+> **FORM develops athletes capable of absorbing increasingly demanding work—not athletes who simply tolerate increasingly severe soreness.**
+
+Three programming rules govern the sequence:
+
+1. **Stimulate:** Apply enough demand to produce adaptation.
+2. **Absorb:** Allow sufficient recovery for that stimulus to become useful.
+3. **Progress:** Increase demands as the athlete demonstrates greater capacity.
+
+**Finishing a workout shows execution; recovering and being ready for the next appropriate demand helps demonstrate development.** Judge success across sessions, not by soreness severity or isolated workout completion.
 
 Speed is a mechanical load, not just a pace or cardiovascular effort. Short fast repetitions, accelerations and their total number can impose a high demand on the trunk, hips and lower limbs even when the athlete completes every repetition comfortably. Review the entire sequence: the preceding fast session, subsequent hinge/glute and other strength work, the next speed exposure, and the athlete's recovery response. Do not treat a short rep as inherently a small dose or an already-approved strength placement as proof that cumulative loading is appropriate for every athlete.
 
