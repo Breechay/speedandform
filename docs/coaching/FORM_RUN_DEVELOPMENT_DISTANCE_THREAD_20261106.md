@@ -97,6 +97,12 @@ The **purpose, dose and recovery cost** of every family are recorded. A session 
 
 **Full:** establish two hours comfortably, use substantive 5/5 MP/easy or one-mile/easy alternations as a bridge when needed, build continuous MP through 30–45 → 45–55 → 60–70 minutes (or use comparable recovered continuous race evidence), then select advanced 3 × 5K with shorter resets/floats or the separate Thirty-Thirty long; progressively preserve pace under more prior work. The [Marathon Session Canon](FORM_MARATHON_SESSION_CANON_20261106.md) remains the owning detailed source.
 
+### Six-rep blended specific work and the final meaningful test
+
+A newer FORM candidate family uses **six longer work repetitions** and five 1 km easy transitions, with controlled later progression from marathon toward half pace. The *working interpretation* is three alternative tiers—6 × 2 km, 6 × 3 km or 6 × 4 km—not one enormous compound workout. Six Fours with its easy transitions already totals 29 km before preparation/cooldown and is **exceptional/elite**. The half variant scales to shorter repetitions and selectively HMP → 10K → 5K effort. Workload, pace progression and float density are separate axes; final reps must be well controlled and the week recovered. [Six-Rep Ladder & Final Rehearsal](FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md).
+
+The proposed **90–100-minute continuous MP** workout is a potential **final major rehearsal**, not a universal pass/fail gate or the last literal workout. It must be reconciled with the frozen Donna **Closing-10K** experiment before scheduling. The related half-marathon check is usually a **40–60-minute continuous HMP** exposure or selected late HMP miles, not a near-complete race in training. [Donna First Official Plan Design Brief](FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md) records the sequencing decision still to make.
+
 ## 7. Evidence and staff rules
 
 For a new workout, capture: athlete and objective; phase; actual pace source; current limiter; session family and job; complete warm-up/work/recoveries/cooldown; exact pace/effort, total volume and weekly burden; fueling where relevant; athlete response; next-session cost; version and author. For progressive floats, store each recovery pace/duration and distinguish planned and filed values. Keep coach inference separate from athlete words and measurements.
