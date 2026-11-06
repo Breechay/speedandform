@@ -73,10 +73,10 @@ Both distances develop a higher speed ceiling and sustainable aerobic control. T
 - **Draft architecture:** warm-up; **20 minutes controlled threshold**, then a real easy transition; **3 × 1 km at evidenced 10K pace** with easy jog; cooldown.
 - **Progress:** the quality and stability of the second part matters more than impressive first-part speed. This is a high-cost option, not a routine second workout after another hard threshold day.
 
-### T05 · Float re-entry — 2 × (2 km at 10K pace + 800 m float)
+### T05 · Float re-entry — 2 km / 800 m float / 2 km
 
 - **Question:** Can the athlete change down in pace without fully recovering, then re-enter 10K pace?
-- **Draft architecture:** warm-up; **2 km 10K work / 800 m individually prescribed float / 2 km 10K work / 800 m float**, then cooldown. Keep the final float only if its purpose is explicit; otherwise end with easy running after the last work block.
+- **Draft architecture:** warm-up; **2 km at evidenced 10K pace / 800 m individually prescribed float / 2 km at evidenced 10K pace**, then easy cooldown. That is **4 km at 10K pace with one 800 m float**; the float is a working bridge, not an extra tail after the final repeat.
 - **Prerequisite:** strong T02 or T03 performance, stable continuous threshold and recovered subsequent sessions. This is not a default early-block progression.
 - **Progress:** control float duration/intensity separately from work-pace volume. Never invent a universal float speed or treat it as full recovery.
 
