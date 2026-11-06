@@ -16,6 +16,7 @@ These workouts are tools with different costs and questions. Recording them as f
 ## 2. Adopted rules and source precedence
 
 1. **Marathon-specific entry:** A prepared athlete should already be able to run at least **two hours comfortably** before beginning the marathon-specific long-run build. An athlete below that foundation receives a separate preparatory progression. Comfort means aerobic effort, usable movement, fueling opportunity and recovery sufficient for subsequent planned training; it is not a fixed pace or distance.
+   **Ordinary easy-running base:** The athlete should also be developing absorbable 50–60 → 60–75-minute standalone easy aerobic runs, as appropriate, rather than counting warm-up and cooldown minutes from a 40-minute quality session as sufficient aerobic base. Shorter recovery days still belong.
 2. **Minimum substantive marathon-pace dose:** Any newly authored FORM workout **labeled as marathon-pace work contains at least 30 cumulative minutes at actual MP**, or an equivalent substantial distance at the athlete's evidence-based MP. This is a cumulative workout minimum, **not a minimum per repetition**. A 3 × 5K workout meets it; a single 10-minute or 2 × 6-minute MP touch does not. Other types of workouts, including easy, threshold, speed and taper sessions without MP, do not need MP minutes.
 3. **No token MP snippets in the marathon plan:** Older examples such as `25–30 min easy + 2 × 6 min @ MP`, or only `20 min @ MP` as a marathon-pace workout, are superseded for future authoring. Keep historical sessions and evidence unchanged. A taper may omit MP rather than label a tiny dose as meaningful marathon-specific work.
 4. **One principal long-run ask:** A race-pace long run is a hard session for weekly scheduling, even when some sections are easy. Reduce or remove competing quality, account for Forge strength and external work, protect recovery and include step-back weeks.
@@ -23,7 +24,7 @@ These workouts are tools with different costs and questions. Recording them as f
 6. **Fuel every specific long run:** Record the actual fueling product, amount, timing, tolerance and deviations; rehearse race breakfast and fluid use as appropriate. A late collapse with inadequate fuel does not uniquely identify a durability limit.
 7. **Separate levels:** `3 × 10K @ MP` is an **elite-only, exceptional** session family. It is not a standard prescription for José, Hope, or the general FORM marathon program. The coach must separately justify readiness, whole-run burden and recovery before ever selecting it.
 8. **Protect the current authority:** Brice authors assignments. The current published athlete occurrence/version controls execution. No draft canon silently edits José, Hope, or anyone else's plan.
-9. **Continuous pace before advanced alternation:** Before using the demanding M03/M04 workout families, develop the athlete toward **60–70 minutes continuous at evidence-based MP** with credible fueling, even pacing and subsequent recovery. Do not equate one completed 60-minute effort with an absorbed adaptation. Shorter substantive MP sessions are building layers toward this prerequisite, not a competing lower standard.
+9. **Starter alternation builds continuous pace; advanced alternation tests it:** Short, continuous **MP/easy** alternations such as `5 min MP / 5 min easy`, or `1 mi MP / 1 mi easy`, are *preparatory bridges* toward uninterrupted ownership, **not** M03/M04. The latter demanding families require **60–70 minutes continuous at evidence-based MP**, or comparable current continuous race evidence at the same appropriate pace, *plus* recovered readiness and a complete long-run/fueling review. Do not equate 60 cumulative MP minutes from alternating segments with 60 continuous MP minutes. A valid recovered half-marathon result near 90 minutes at candidate MP can provide that continuity evidence without proving marathon-specific late durability.
 10. **From recovery to float:** In substantial broken MP sessions, progress the between-rep transition from a genuine easy-jog reset, to a shorter reset, to a **float**—a clear reduction from MP but **still sustained running demand rather than full recovery**. Floats are active work with a distinct coach-authored pace/effort and duration; they are not free rest or an unmeasured pause. Advance the recovery demand only when the prior version remains stable and absorbable. An easy recovery and a float are different prescriptions and must be recorded distinctly.
 
 These new November 6 choices amend *future workout selection* in the August 12 **FORM Durability and Race Programming Doctrine** and the September 20 **Marathon Durability Plan 03 freeze**. They do not retroactively alter that freeze's observations, study hypotheses, completed sessions, the Closing-10K test or its commercial status. Where an older sample contradicts the new MP minimum, the November 6 rule governs future authoring.
@@ -39,13 +40,32 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Read:** Effort, movement, ability to maintain conversational running, fueling, 24–72h recovery.  
 **Selection:** Before specific MP progression. Not a weekly mandatory minimum and not an automatic first long run for unprepared athletes.
 
+### M01A · Five/Five · Pace and Easy Bridge
+
+**Form:** `5 min evidenced MP / 5 min genuinely easy × 6` continuously, **30 min MP + 30 min easy**, with full-session warm-up and cooldown added when required.  
+**Job:** Learn to access MP repeatedly without stopping, at an absorbable whole-run dose before demanding late-run structures.  
+**Read:** Actual pace, how the athlete settles into easy, repeated MP execution and next-day recovery.  
+**Selection:** A preparatory alternation *before* the 60–70-minute continuous MP stage; it does not itself meet that stage.
+
+### M01B · One-Mile Pace / One-Mile Easy · Continuous Alternation
+
+**Form:** Alternate `1 mi at evidenced MP / 1 mi genuinely easy` in one uninterrupted run. The total number of MP miles must provide **at least 30 cumulative MP minutes**. For an athlete around 6:50/mi MP, **five MP miles and five easy miles** total around 34 minutes MP inside a substantial 10-mile alternating run, before any added warm-up/cooldown.  
+**Job:** Make changing down from MP and returning to it natural while preserving real aerobic running; this is *not* classic mile repeats with stopped/full-rest intervals.  
+**Progress:** Fewer, longer MP holds such as `2 mi MP / 1 mi easy × 3`, then `3 mi MP / 1 mi easy / 3 mi MP`, or move directly to M02 where supported. Work/easy miles are separate consecutive filed segments, not repeat-counted hard-mile work. Full total and recovery cost determine whether this is suitable; it is **not** a beginner's automatic first MP session.
+
+### M01C · Five/Five Float · Higher-Density Alternative
+
+**Form:** `5 min MP / 5 min coach-defined float × 6`, followed by genuine easy cooldown: **30 min MP + 30 min slower working effort**.  
+**Job:** Re-access MP without fully resting between bouts. A float is materially more demanding than an easy segment, not another spelling for it.  
+**Selection:** Only after M01A with easy transitions is repeatable and recovered. This is a **distinct optional density progression**, not required for the continuity ladder and not the advanced 2h30 Thirty-Thirty session. Define and file the actual float effort and pace; avoid increasing pace, work volume and float cost together.
+
 ### M02 · Continuous Marathon Pace
 
 **Progression:** 30–45 min continuous MP → 45–55 min continuous MP → **60–70 min continuous MP**, each within a fully authored session with suitable aerobic approach and cooldown. Do not automatically advance on consecutive weeks; stable repetition and step-back may be needed.  
 **MP dose:** At least 30 min in every MP-labeled session; the **60–70 min continuous stage is the advanced-work entry gate**.  
 **Job:** First extend the uninterrupted period the athlete can inhabit at evidenced MP, with good pacing, fueling and recoverability, before adding incomplete recoveries or alternating high-cost work.  
 **Read:** Pace stability, absence of an artificial fast finish, perceived cost, fueling, normal subsequent easy-running function and 24–72h response.  
-**Selection:** Essential preparatory progression for M03/M04; it is not satisfied by collecting 60–70 min across broken reps with full rest.
+**Selection:** The default preparatory progression for M03/M04 when the athlete lacks comparable continuous race evidence at the same approved MP. It is not satisfied by collecting 60–70 min across broken reps with full rest; a recovered and relevant 90-minute half-marathon race result may make re-proving the same continuous pace redundant, **but does not remove the separate long-run/fueling/readiness review**.
 
 ### M03 · Three Five-Kilometers
 
@@ -54,7 +74,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Recovery progression:** (A) genuine easy-jog reset → (B) shorter easy-jog reset with the **same** 3 × 5K dose → (C) coach-defined **float** between 5Ks: slower than MP, but still purposeful aerobic work, so the athlete does not fully recover. Do not invent a universal float pace or change rep pace and recovery demand simultaneously.  
 **Job:** Three substantial marathon-pace exposures that gradually require less complete recovery between them.  
 **Read:** Whether re-entry requires more effort, rep evenness, ability to settle quickly, actual float pace/effort, fueling and next-session cost.  
-**Selection:** Advanced athletes **after a stable, recoverable 60–70 min continuous MP exposure**. Do not assume both athletes should receive it on the same date.
+**Selection:** Advanced athletes **after stable, recoverable 60–70 min continuous MP capability or verified comparable continuous race evidence**, plus separate fueling, easy-long-run and whole-week readiness. Do not assume both athletes should receive it on the same date.
 
 ### M04 · Thirty-Thirty · The Alternating Long
 
@@ -62,7 +82,7 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 **Total:** 2h30; **60 min MP + 90 min easy**.  
 **Job:** Access marathon pace, leave it without losing composure, and settle into the same sustainable pace again after more accumulated running. The last easy 30 minutes tests whether the athlete can settle and complete the session well, not simply race the final block.  
 **Read:** Relative cost of the first and second MP blocks, quality of transition back to easy, fueling, whole-run recovery.  
-**Selection:** Advanced high-cost Saturday, **after the 60–70 min continuous MP gate**; *one* major weekly stimulus, not a routine every-week repeat. The initial 30-minute easy blocks remain genuinely easy in this named version. A later **Thirty-Thirty Float** variation may turn selected easy blocks into sustained floats, but that is a materially harder, separately named and approved prescription—not a silent reinterpretation of “easy.” A variation ending with MP is likewise a separate authored workout.
+**Selection:** Advanced high-cost Saturday, **after the 60–70 min continuous MP capability gate (including comparable recovered race evidence when applicable)**; *one* major weekly stimulus, not a routine every-week repeat. The initial 30-minute easy blocks remain genuinely easy in this named version. A later **Thirty-Thirty Float** variation may turn selected easy blocks into sustained floats, but that is a materially harder, separately named and approved prescription—not a silent reinterpretation of “easy.” A variation ending with MP is likewise a separate authored workout.
 
 ### M05 · Late Continuous Access
 
@@ -97,8 +117,10 @@ All prescriptions below are examples for a qualified athlete. Warm-up, cooldown,
 | Layer | Capability we want | Primary choice | Condition to advance |
 |---|---|---|---|
 | Foundation | Two hours can be run comfortably and absorbed | M01 | Stable movement, fueling practice and normal subsequent training |
+| Prepare pace changes | At least 30 cumulative MP minutes inside a continuously run easy/MP alternation | M01A or M01B | Stable pace, easy transitions and absorbed total run |
+| Optional density | Pace remains accessible with a slower working float rather than full ease | M01C after easy-version success | Coach-authored float and next-session recovery; not mandatory |
 | Establish MP | Continuous marathon pace grows from 30–45 to 45–55 min | M02 | Evenness, fueling and recovery |
-| Earn the advanced gate | **60–70 min continuous MP** can be executed and absorbed | M02 | Credible follow-on training; no survival finish |
+| Earn the advanced gate | **60–70 min continuous MP** or comparable verified continuous race evidence is available and recovered | M02, or a relevant race such as a controlled 90-min half | Appropriate current MP still valid; long-run/fueling readiness reviewed separately |
 | Re-enter with recovery | 3 × 5K MP remains repeatable with easy-jog resets | M03-A | Even reps and adequate recovery |
 | Reduce recovery | Same MP work remains stable after shorter rests, then purposeful floats | M03-B → M03-C | Float remains below MP, with no full reset; next session absorbable |
 | Alternate | MP remains available across a 2h30 easy/MP alternation | M04 | Both MP blocks comparable and easy finish truly settles |
@@ -109,16 +131,16 @@ This table is a **capability map, not a mandatory consecutive-Saturday calendar*
 
 ## 5. Donna application: José and Hope · candidate only
 
-**Current verified assignment:** Both are in active Race Pace Durability blocks through the **December 5, 2026 Orlando Half Marathon**. Donna Marathon is **February 7, 2027**, nine weeks later. Working marathon-specific bands from the earlier season brief are approximate and must be re-authored after Orlando; the current app's November goal-pace work is half-marathon work and is **not** automatically the Donna MP band.
+**Current verified assignment:** Both are in active Race Pace Durability blocks through the **December 5, 2026 Orlando Half Marathon**. Donna Marathon is **February 7, 2027**, nine weeks later. Their Orlando HMP may be close to the desired Donna MP *clock pace*; the actual marathon-specific band still requires post-Orlando evidence, effort and recovery review. An anticipated matching pace is a **hypothesis**, not proof that the full marathon can be held there.
 
-**José:** Published November 7 long run is 14 miles with a build toward three miles at current goal pace; November 14 is 14 miles with the final five at current goal pace. M02 is the necessary Donna-specific bridge toward **60–70 min continuous MP**. Only after that is absorbed do M03 easy-reset, short-reset, then float variations become candidates. M04 is a higher-cost option, also gated behind the continuous effort and whole-week readiness. No 3 × 10K default.
+**José:** Published November 7 long run is 14 miles with a build toward three miles at current goal pace; November 14 is 14 miles with the final five at current goal pace. If he completes Orlando at a pace still appropriate for Donna, that ~90-minute race offers strong continuous-pace evidence and can remove the need for a redundant M02 test once recovered. If not, M01A/B to M02 supplies the bridge. M03/M04 remain separate, high-cost durability/fueling questions after a verified two-hour foundation and individual readiness. No 3 × 10K default.
 
-**Hope:** Her published November 7 long run is eight miles easy, with six to ten allowed by feel, after recovery/PT-related interruption. Follow the current authored rebuild and recovery restrictions. No November placement of M03/M04/M05; first verify a comfortable two-hour foundation, suitable speed/race-pace continuity and repeated recovery. Potential Donna options should branch from José's rather than forcing matched group sessions. No 3 × 10K default.
+**Hope:** Her published November 7 long run is eight miles easy, with six to ten allowed by feel, after recovery/PT-related interruption. Follow the current authored rebuild and recovery restrictions. No November placement of M03/M04/M05; first verify a comfortable two-hour foundation, suitable speed/race-pace continuity and repeated recovery. The Orlando race may offer important pace evidence, but it cannot override medical/rebuild limitations or authorize automatic long-run escalation. Her Donna options should branch from José's rather than force matched group sessions. No 3 × 10K default.
 
 **Compressed bridge, subject to evidence:**
 
-- **After Orlando:** recover, analyze each race independently, reset the actual MP and specific-pace assignment. Preserve all original results.
-- **Return and rebuild:** restore normal easy running and the two-hour absorbable foundation; decide when substantive MP returns.
+- **After Orlando:** recover, analyze each race independently (including how hard the half was at the proposed Donna pace), reset actual MP, and decide if the result legitimately fulfills the continuous-pace evidence requirement. Preserve all original results.
+- **Return and rebuild:** restore ordinary 60–75-minute easy running as appropriate and the two-hour absorbable foundation; decide when substantive MP returns. A race result does not replace rebuilding time-on-feet.
 - **Specific development:** select a suitable M02/M03/M04/M05 sequence according to the athlete, not a universal fixed order. Larger Saturdays reduce competing Thursday and strength stress.
 - **Principal late read:** preserve the Closing-10K experiment, not a full-race simulation.
 - **Absorb and taper:** reduce load, keep the relevant capability available, and avoid token MP workouts below the adopted floor.
