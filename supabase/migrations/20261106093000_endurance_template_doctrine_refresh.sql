@@ -87,7 +87,7 @@ begin
       continue;
     end if;
 
-    if plan_row.latest_number <> case plan_row.slug
+    if plan_row.latest_number <> (case plan_row.slug
       when 'anthony-the-long-game-miami-marathon-2027' then 1
       when 'elijah-nov11-half' then 7
       when 'hyrox-run-reserve-franklin-mi-20261026' then 2
@@ -96,7 +96,7 @@ begin
       when 'race-pace-durability-tinius-restart-20260928' then 1
       when 'simon-ceiling-durability-01' then 6
       when 'wesley-amar-miami-half-2027' then 1
-      end then
+      end) then
       raise exception 'Plan % has a newer version; re-audit before applying',plan_row.slug;
     end if;
 
