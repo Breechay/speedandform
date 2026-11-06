@@ -410,3 +410,10 @@ The ordinary easy-running capacity must extend beyond a typical short workout's 
 Our specific progression has **two axes**: longer uninterrupted pace ownership, and less complete recovery between substantial segments. Starter continuous `5 min pace / 5 min easy` or `1 mi pace / 1 mi easy` alternations can bridge toward sustained pace; they are not classic stopped mile-repeat workouts. Later controlled floats are a distinct higher-cost variant, not renamed easy running. Six continuous HMP miles may be a useful selective durability test; eight miles has more cost and is never compulsory.
 
 If an Orlando half result supplies ~90 minutes at clock pace also suitable for Donna MP, it may answer the continuous-pace question without redoing an hour of MP for its own sake. It cannot answer whether the athlete can fuel and sustain the final marathon 10K. These links, progression doses and evidence boundaries are detailed in [Aerobic Base to Race-Pace Durability](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md).
+
+
+### Six-rep blend and rehearsal principle · November 6 continuation
+
+Progress a meaningful last repetition, not just total work. The proposed six-rep family scales **6 × 2/3/4 km** from marathon toward selected half pace, with five 1 km genuinely easy transitions before individually earned floats; **6 × 4 km is an elite/exceptional load**, not an ordinary athlete's next step. The half version scales down and may move HMP → 10K → bounded 5K pace. The compact original notation remains subject to Brice's explicit confirmation.
+
+A final **90–100-minute continuous MP** session is a high-cost candidate *major rehearsal*, not the last workout before race day or an automatic predictor. The official Donna plan must choose how it relates to the frozen Closing-10K study, preserve recovery and taper, and not assume José/Hope need identical work. See [Six-Rep Ladder](coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [Donna Plan Design Brief](coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md).
