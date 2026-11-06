@@ -214,6 +214,14 @@ Three favorite architectures belong in the working canon:
 
 I want athletes who can move faster and then find sustainable rhythm, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) records the method, levels, and selection rules; it does not publish an athlete's plan.
 
+### Continuous first. Then reduce the recovery. · November 6, 2026
+
+Before I incorporate Three Fives or the 2h30 Thirty-Thirty, I want the athlete to own **60–70 minutes continuous at evidenced marathon pace**. We build that from shorter substantive continuous efforts—30–45 minutes, then 45–55, then 60–70—with enough repeatability and recovery to demonstrate a real adaptation. Collecting those minutes across full-reset intervals is not the same question.
+
+In a substantial broken session such as 3 × 5K, the next progression is often *between* the reps: start with genuine easy-jog recovery, shorten that reset after stable execution, then progress to a **float**. A float is a distinct slower-than-MP working rhythm that lets the athlete lower the pace **without fully recovering**. Its intensity and duration are coached and recorded. I want the runner to change gears without escaping the entire demand.
+
+The original 30-easy / 30-MP alternation remains its own session. A harder version substituting float for some easy blocks must be separately authored, not slipped into the same name. Increasing specific volume and recovery demand together requires a reason and sufficient absorption.
+
 ### Race demands change the plan
 
 The 5K needs repeatable speed, aerobic power, efficient fast movement, and speed above race requirement. The 10K needs threshold control and the ability to move among gears. The half marathon asks whether pace remains available after meaningful earlier work. The marathon needs progressively more consequential long-run architecture, fuel practice, and late-session execution. HYROX adds the real cost of stations and transitions; that does not excuse neglecting the runner.
