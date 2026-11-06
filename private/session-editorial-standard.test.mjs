@@ -181,6 +181,21 @@ test('FORM ban rejects 3 × 10-minute run intervals and mile repeats, not streng
   assert.deepEqual(sessionEditorialIssues({ title: 'Strength', details: 'Bench press — 3 × 10' }), []);
 });
 
+test('continuous one-mile pace/easy alternation is not classic stopped mile repeats', () => {
+  const parts = [
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' }
+  ];
+  assert.deepEqual(prescriptionPresentationIssues('Continuous · 1 mi MP / 1 mi easy', parts), []);
+  assert.ok(prescriptionPresentationIssues('3 × 1 mi at race effort', [
+    { role: 'work', repeatCount: 3, distance: 1, distanceUnit: 'mi' }
+  ]).some(issue => issue.includes('mile repeats')));
+});
+
 test('long-run Week and filing titles never repeat the weekday', () => {
   assert.ok(sessionEditorialIssues({
     title: 'Saturday long · 10 mi', details: '10 mi easy.', intent: 'Build durability.'
