@@ -186,6 +186,36 @@
       "scope": "new session title, intent, details, Week preview, coach-authored program and philosophy prose",
       "enforcement": "private/session-editorial-standard.mjs covers session fields and Week-preview/presentation utilities; wider writer integration and legacy cleanup pending",
       "verification": "private/session-editorial-standard.test.mjs targeted regression; legacy published-session audit dated November 6, 2026"
+    },
+    {
+      "id": "FORM-BASE-022",
+      "title": "Develop standalone easy-running duration beyond short quality-session elapsed time",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future running program authoring, particularly half and marathon foundations",
+      "enforcement": "coach/Labs complete-week review; no automatic minimum or daily hard gate",
+      "verification": "compare real continuous easy 50–60 then 60–75-minute capacity, easy long run, 24–72-hour recovery; permit shorter recovery days"
+    },
+    {
+      "id": "FORM-PACE-023",
+      "title": "Allow truly continuous pace/easy mile alternation distinct from banned classic mile repeats",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "half and marathon preparatory pace/easy session authoring",
+      "enforcement": "separate typed pace and easy segments, no stopped or full-rest classic mile sets; maintain ≥30 cumulative MP minutes for MP-specific work",
+      "verification": "private/session-editorial-standard.test.mjs; exact filed sequence and aggregate race-pace duration; do not mistake cumulative for continuous"
+    },
+    {
+      "id": "FORM-TRANSFER-024",
+      "title": "Use evidenced half-marathon pace duration to inform, not automatically approve, marathon-specific work",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "Orlando-to-Donna and analogous half-to-full athlete transitions",
+      "enforcement": "postrace coach evidence, recovery, fueling and long-run review; no automatic athlete plan edit",
+      "verification": "check clock-pace comparability, race effort, uninterrupted duration, two-hour easy capacity and closing-marathon durability separately"
     }
   ]
 }
