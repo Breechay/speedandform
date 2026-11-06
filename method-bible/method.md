@@ -159,6 +159,18 @@ Advanced athletes may need a much larger stimulus; newer runners often need clea
 
 > Build the top end. Then teach the athlete to hold more of it.
 
+### Speed adaptation without disabling soreness · November 6, 2026
+
+**We want the muscular adaptations of faster running. We do not need soreness that temporarily interferes with ordinary movement. Build the capacity progressively, with recovery sufficient to absorb the next demanding exposure.**
+
+Speed is a mechanical load, not just a pace or cardiovascular effort. Short fast repetitions, accelerations and their total number can impose a high demand on the trunk, hips and lower limbs even when the athlete completes every repetition comfortably. Review the entire sequence: the preceding fast session, subsequent hinge/glute and other strength work, the next speed exposure, and the athlete's recovery response. Do not treat a short rep as inherently a small dose or an already-approved strength placement as proof that cumulative loading is appropriate for every athlete.
+
+For each speed prescription, record **purpose, velocity/effort, repetitions and total fast distance, recovery, recent exposure, adjacent strength, next demanding session, and expected recovery cost**. Progress one or a small number of stressors deliberately; allow stable repeated exposure before increasing total fast work or intensity. Use fast 100s or 200s when they serve a specific skill or stimulus, not by default or simply because the athlete can finish them. Preserve an individual athlete's actual preferences, race needs and history.
+
+**Interference with daily function is a review signal, not a desired training outcome:** inability or marked difficulty bending, rising from bed, turning in bed, walking normally or completing ordinary tasks calls for a pause in high-load progression, a direct athlete check, and coach review of the preceding and following training. Persistent, severe or neurologic symptoms warrant appropriate clinical evaluation. Improvement with warm-up or ice, and the athlete's feeling of muscular hardening or remodeling, do not establish tissue diagnosis or prove beneficial adaptation.
+
+The coach decides the individualized change and whether a clinical referral is indicated. Agents identify the signal, preserve athlete wording distinctly from interpretation, review the complete running/Forge week and suggest a reduced or postponed load; they do **not** diagnose, independently rewrite a prescription, or automatically cancel all fast running. Historical completed workouts remain unchanged.
+
 ## 09. Long runs have different jobs
 
 The long run is not always the same easy distance with a larger number.
