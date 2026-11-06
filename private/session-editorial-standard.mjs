@@ -93,6 +93,21 @@ export function prescriptionPresentationIssues(title, components = []) {
   const issues = [];
   if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(displayTitle))
     issues.push('Do not repeat Saturday or Sunday in a long-run title; Week already supplies the day.');
+  // Owner-approved running format law, November 5, 2026. These are training
+  // units, not strength sets or historical recorded mile splits. A single
+  // continuous mile or a one-mile test remains valid.
+  const runningWork = components.filter(part => part?.role === 'work');
+  const hasBrokenTen = runningWork.some(part =>
+    Number(part.repeatCount ?? part.repeat_count ?? 1) === 3
+      && Number(part.durationSeconds ?? part.duration_seconds) === 600);
+  const hasMileRepeats = runningWork.some(part =>
+    Number(part.repeatCount ?? part.repeat_count ?? 1) > 1
+      && Number(part.distance) === 1
+      && String(part.distanceUnit ?? part.distance_unit ?? '').toLowerCase() === 'mi');
+  if (hasBrokenTen || /\b3\s*[×x]\s*10\s*(?:-?\s*min(?:ute)?s?|['’])\b/iu.test(displayTitle))
+    issues.push('FORM running plans do not prescribe 3 × 10-minute intervals. Author a suitable continuous tempo or another purposeful sustained session.');
+  if (hasMileRepeats || /\b(?:[2-9]\s*[×x]\s*1\s*(?:mi|mile)|mile\s+repeats?|mile\s+repeatability|1\s*(?:mi|mile)\s*[×x]\s*[2-9])\b/iu.test(displayTitle))
+    issues.push('FORM running plans do not prescribe mile repeats. Choose a race-specific continuous or sustained session with an athlete-appropriate dose.');
   const workParts = components.filter(part => part?.role === 'work' && part.distance != null);
   if (/\b(?:long run|marathon endurance)\b/iu.test(displayTitle)
       && /\b(?:last|final)\s+\d+(?:\.\d+)?(?:\s*(?:mi|km))?\s*(?:steady|at\b|fast\b)/iu.test(displayTitle)

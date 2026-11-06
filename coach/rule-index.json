@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_curated_on": "2026-11-04",
+  "last_curated_on": "2026-11-05",
   "purpose": "Locator of current FORM authority, not a replacement method or a parallel prescription database.",
   "rules": [
     {
@@ -98,6 +98,14 @@
       "authority": "coach/AGENT_OPERATIONS.md",
       "enforcement": "agent feedback capture decision and authorized observation writer",
       "verification": "tests/feedback-capture-policy.test.mjs"
+    },
+    {
+      "id": "FORM-ENDURANCE-013",
+      "title": "No 3 × 10-minute running intervals or mile repeats; prefer athlete-appropriate sustained work",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#sustained-work-selection--november-5-2026",
+      "enforcement": "Console and Labs typed session authoring preflight",
+      "verification": "private/session-editorial-standard.test.mjs; active published-session audit"
     }
   ]
 }
