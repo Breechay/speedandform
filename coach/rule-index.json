@@ -216,6 +216,46 @@
       "scope": "Orlando-to-Donna and analogous half-to-full athlete transitions",
       "enforcement": "postrace coach evidence, recovery, fueling and long-run review; no automatic athlete plan edit",
       "verification": "check clock-pace comparability, race effort, uninterrupted duration, two-hour easy capacity and closing-marathon durability separately"
+    },
+    {
+      "id": "FORM-SIX-025",
+      "title": "Grade six-rep kilometer session families by total work and five explicit transitions",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "prospective marathon and half session selection, interpretation pending owner confirmation",
+      "enforcement": "coach selection and full-session anatomy review; automated tier progression pending",
+      "verification": "reconcile 6 × 2/3/4 km family, five easy/float transitions, earned pace blend, total running burden; six fours elite-only"
+    },
+    {
+      "id": "FORM-REHEARSAL-026",
+      "title": "Treat 90–100 minutes continuous MP as a conditional final major marathon rehearsal, not a race prediction",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "marathon and scaled half specific rehearsal selection",
+      "enforcement": "coach-authored recovery and taper review; mutually exclusive principal test or dated frozen-study amendment",
+      "verification": "actual evidenced MP/HMP, continuous segment, fueling, opening/closing cost, 24–72-hour recovery and preserved Closing-10K study"
+    },
+    {
+      "id": "FORM-DONNA-027",
+      "title": "Develop first official Donna plan from Orlando evidence while preserving frozen Last 10K authority",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "José/Hope official marathon plan design before any athlete-specific publish",
+      "enforcement": "individual coach authoring, date/version reconciliation and explicit principal test decision",
+      "verification": "Orlando result and recovery, current PT/load restrictions, week-by-week typed sessions, study amendment where required and athlete-visible readback"
+    },
+    {
+      "id": "FORM-CLEANUP-028",
+      "title": "Migrate legacy disallowed vocabulary via contextual versioned coach-authorized revisions",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_LEGACY_VOCABULARY_AUDIT_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future published legacy planned-session wording, 322 active occurrences at the dated audit",
+      "enforcement": "current publisher cannot rewrite authored title/intent/details; protected migration workflow not yet available",
+      "verification": "editorial diff, no-dose-change assertion, full anatomy cloning, per-batch Week readback and zero active-copy audit"
     }
   ]
 }
