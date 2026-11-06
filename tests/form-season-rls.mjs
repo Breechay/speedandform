@@ -8,7 +8,7 @@ import { PGlite } from '@electric-sql/pglite';
 // canonical identity helpers. The live Apple bridge still needs signed-in QA.
 const db = new PGlite();
 const sql = readFileSync(
-  new URL('../supabase/migrations/20261106103912_form_miami_fall_2026_season_source.sql', import.meta.url),
+  new URL('../supabase/migrations/20261106110727_form_miami_fall_2026_season_source.sql', import.meta.url),
   'utf8'
 );
 const A = '10000000-0000-4000-8000-000000000001';
