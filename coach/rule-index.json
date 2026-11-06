@@ -146,6 +146,16 @@
       "scope": "future FORM marathon-specific session authoring, not historical filings or half-marathon goal-pace work",
       "enforcement": "coach/Labs session selection review; no automated preflight claimed",
       "verification": "explicit MP segments sum to >=30 minutes or equivalent distance at evidence-based MP; elite 3 × 10K protected from default assignment; total weekly burden/fueling/recovery reviewed"
+    },
+    {
+      "id": "FORM-MARATHON-018",
+      "title": "Own 60–70 continuous MP before advanced broken/alternating work; progress recoveries toward floats",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "prospective FORM marathon-specific session selection and recovery design",
+      "enforcement": "coach/Labs progression review; automated checks pending",
+      "verification": "document stable 60–70 continuous MP with 24–72h recovery before M03/M04; preserve easy reset → shortened reset → coach-defined float; ensure float is slower than MP but not full recovery"
     }
   ]
 }
