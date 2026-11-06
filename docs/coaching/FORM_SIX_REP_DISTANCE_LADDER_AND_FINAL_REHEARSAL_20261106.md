@@ -4,7 +4,7 @@
 
 ## 1. Interpretation and purpose
 
-Brice proposed **“6 × 4, 3, 2 km”**, moving from marathon toward half-marathon pace, and a scaled half-marathon version moving from half to 10K to 5K pace. **Working interpretation pending Brice's confirmation:** three *alternative* six-repetition tiers—`6 × 2 km`, `6 × 3 km`, and `6 × 4 km`—rather than six complete `4+3+2 km` ladders. A separate single-pass descending `4 km / 3 km / 2 km` progression remains *exploring*, not approved to prescribe from the phrase alone.
+**Confirmed by Brice:** this is a **descending ladder of 4 km → 3 km → 2 km**, repeated or otherwise deliberately structured. The full six-work-leg version is **(4 km → 3 km → 2 km) × 2**. It is **not** six repetitions of each distance, nor three unrelated six-repetition tiers. The marathon version progresses from evidenced MP toward evidenced HMP; a scaled half version progresses from HMP toward 10K and, selectively, 5K pace.
 
 The defining question is **“Can the athlete carry more total event-relevant work and still finish the final segment with control?”** A larger rep count or longer distance is valuable only when the final third does not collapse and the athlete absorbs the session. Different distances and phases use the same grammar but **not the same absolute volume**.
 
@@ -12,15 +12,14 @@ The defining question is **“Can the athlete carry more total event-relevant wo
 
 The athlete begins at **evidenced MP**, with an earned movement toward **evidenced HMP** on selected later repetitions or a bounded closing section. Do not turn every substantial rep into HMP or assume a common fixed offset between the paces. Each of the five *between-rep* transitions begins as **1 km genuinely easy running**, later shortened or upgraded to a coach-defined float only after a matching easy version was stable and absorbed. There is no sixth recovery after the final work rep; the finish is an ordinary cooldown.
 
-| Family | Specific work | Five 1 km easy transitions | Complete repeating block, before warm-up/cooldown | Role |
+| Family | Specific work | Transitions | Block before warm-up/cooldown | Role |
 | --- | ---: | ---: | ---: | --- |
-| **M09-A · Six Twos** | `6 × 2 km` = **12 km** | 5 km | **17 km** | Substantial entry to this family, if aerobic base and existing specific work support it |
-| **M09-B · Six Threes** | `6 × 3 km` = **18 km** | 5 km | **23 km** | Advanced specific volume; increase work length rather than both pace and float density |
-| **M09-C · Six Fours** | `6 × 4 km` = **24 km** | 5 km | **29 km** | **Elite/exceptional** cost, not a normal Donna or general FORM progression |
+| **M09-A · Single descent** | `4 + 3 + 2 km` = **9 km** | 2 × 1 km easy = 2 km | **11 km** | Entry format after substantial existing MP work; not itself a substitute for longer MP durability |
+| **M09-B · Double descent** | `(4 + 3 + 2 km) × 2` = **18 km** | 5 × 1 km easy = 5 km | **23 km** | Advanced race-specific long-run block; only for demonstrably prepared athletes |
 
-The 29 km block in Six Fours already approaches **18 miles before preparation or cooldown**. It is not a routine next rung after Six Threes. For many athletes it should never be selected. Keep the existing `3 × 10 km` MP family elite-only too.
+The full repeated descent already covers **23 km (about 14.3 miles) before preparation or cooldown**; it is a consequential long-run workout, not a default progression. Keep the separate `3 × 10 km` MP family elite-only.
 
-**Pace progression option:** early repetitions at **MP**, later work may approach **HMP** only in the amount the athlete can sustain under control (for example, a bounded closing part of one rep rather than a whole final four kilometers). The second race pace is a new demand, not a reward for finishing the first pace. A full `6 × 2 km` race-pace blend could be costly enough without further intensification. The coach first establishes control at the easier-specific version, then tests *one* deliberate faster closing feature.
+**Pace map:** each 4 km leg starts at evidenced **MP**; the 3 km leg remains at MP or a controlled transition toward HMP; the 2 km leg approaches evidenced **HMP** only when earned. Repeat the sequence at the same bounded paces, not with an obligatory faster second descent. With both 4 km legs at MP, the repeated ladder contains **8 km of MP** before counting any MP portion of the 3 km legs—check actual elapsed MP minutes against the ≥30-minute floor. Start with easy transitions and one descent; earn the double descent separately.
 
 **Recovery density:** `1 km easy` between each → shorter easy distance if purposeful → separately defined `1 km float` or shorter float. A float remains slower than MP but does not yield full recovery. Do **not** introduce HMP closing work, larger work blocks and a float all at once.
 
@@ -32,13 +31,12 @@ The family scales by **intended race stress, time at pace and total work**, not 
 
 | Family | Work and transitions | Pace distribution | Tier |
 | --- | --- | --- | --- |
-| **H13-A · Six Ones** | `6 × 1 km` with **1 km easy between**: 6 km work + 5 km easy | Start with HMP, then selected later reps at evidenced 10K; a 5K-paced closing rep is optional and must be earned | Coach-selectable when specific capacity is ready |
-| **H13-B · Six One-and-a-Halves** | `6 × 1.5 km` + five 1 km easy transitions: 9 km work + 5 km easy | Mostly HMP and selective 10K; avoid treating 1.5 km at 5K pace late as a default | Advanced |
-| **H13-C · Six Twos** | `6 × 2 km` + five 1 km easy transitions: 12 km work + 5 km easy | Predominantly HMP; small controlled change late only if justified | Exceptional, substantial half-specific volume |
+| **H13-A · Short descent** | `(1.5 + 1 + 0.5 km) × 2`: 6 km work + 5 km easy transitions = **11 km** | HMP → evidenced 10K → selectively bounded 5K; maintain control through second descent | Selective entry to the six-leg family |
+| **H13-B · Full half descent** | `(2 + 1.5 + 1 km) × 2`: 9 km work + 5 km easy transitions = **14 km** | HMP → evidenced 10K → selectively bounded 5K; never force 5K pace if it jeopardizes completion | Advanced; only when recovered from the shorter version |
 
 The early `1 km easy` may be long relative to the work; that is permitted when the purpose is to re-access pace after genuine relief. A later `1 km float` is **not** simply the same recovery. Shortening the easy distance is another available progression; preserve enough separation to learn what changed. Do not demand late 5K pace from an athlete who barely held early HMP. Every full rep and transition, total running distance, work pace and next-session cost must be recorded.
 
-**Not a universal ladder:** Many half marathoners should develop more continuous HMP and a selective 6-mile hold rather than progress to all of H13-C. The six-rep blend and uninterrupted HMP measure **different capabilities**. Select the one the athlete's current limiter requires.
+**Not a universal ladder:** Many half marathoners should develop more continuous HMP and a selective 6-mile hold rather than reach the full repeated descent. The descent and uninterrupted HMP measure **different capabilities**. Select the one the athlete's current limiter requires.
 
 ## 4. The signature final major marathon rehearsal
 
@@ -70,6 +68,6 @@ The new family and M10 belong in the **candidate workout library and first offic
 
 ## 7. Record the session, not just its title
 
-Every selected workout must store: event and training stage; precise pace source; `6 × 2/3/4` tier or scaled half tier; all **six work distances and five transitions**; role, duration, distance and effort/pace for each segment; total MP/HMP/10K/5K time separately; longest continuous segment; last-third stability; complete aerobic approach and cooldown; cumulative session and weekly dose; fueling; athlete RPE/report; observed cost and 24–72-hour response; next coach decision. Keep template, issued session, filed work and subsequent interpretation distinct.
+Every selected workout must store: event and training stage; precise pace source; **4→3→2 km** single or double descent (or explicitly scaled half descent); all work distances and **two or five** transitions respectively; role, duration, distance and effort/pace for each segment; total MP/HMP/10K/5K time separately; longest continuous segment; last-third stability; complete aerobic approach and cooldown; cumulative session and weekly dose; fueling; athlete RPE/report; observed cost and 24–72-hour response; next coach decision. Keep template, issued session, filed work and subsequent interpretation distinct.
 
 The FORM coaching authoring vocabulary rule still applies. Classic stopped mile repeats and 3 × 10-minute running intervals remain excluded, while coherent continuous pace/easy alternations are separate allowed session forms. The source-of-truth current athlete version governs what the athlete actually executes.
