@@ -116,6 +116,26 @@
       "scope": "all FORM running and coupled Forge strength programming",
       "enforcement": "coach authoring review; automated preflight proposed, not yet verified",
       "verification": "whole-week and next-session review; athlete feedback after demanding exposures"
+    },
+    {
+      "id": "FORM-PROGRESSION-015",
+      "title": "Callus mind and body through earned, absorbed progression layers",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#callus-the-mind-and-body--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "all FORM running and coupled strength programming",
+      "enforcement": "coach authoring doctrine; no automated gate claimed",
+      "verification": "review layer purpose, actual execution, recovery, next-session readiness and athlete report"
+    },
+    {
+      "id": "FORM-MARATHON-016",
+      "title": "Enter marathon-specific long-run work from an absorbable two-hour foundation",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#marathon-entry-two-hours-comfortably--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "marathon-specific long-run block entry; athletes below foundation receive preparatory progression",
+      "enforcement": "coach-authored readiness and complete-week review; not an automatic first-run prescription",
+      "verification": "recent actual long-run evidence, athlete report, recovery and next-session capacity"
     }
   ]
 }
