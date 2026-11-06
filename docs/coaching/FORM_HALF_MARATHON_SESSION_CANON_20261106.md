@@ -112,9 +112,9 @@ For the trained **sub-1:30 half-marathon group**, Brice has repeatedly observed 
 **Prerequisite:** Stable, absorbed H09 easy alternations and an individualized float definition.  
 **Job:** Practice pace changes without complete recovery. The float is *not* interchangeable with easy and is not required before the athlete progresses continuous HMP. A longer uninterrupted HMP section with easy recovery can be the wiser next step.
 
-### H13 · Six-Rep Kilometer Blend · HMP to 10K to 5K
+### H13 · Descending Kilometer Ladder · HMP to 10K to 5K
 
-**Working tiers:** `6 × 1 km` with **five 1 km easy transitions** (6 km quality + 5 km easy); advanced `6 × 1.5 km` (9 km + 5 km); exceptionally demanding `6 × 2 km` (12 km + 5 km). Each is one family alternative, **not three workouts to complete**.  
+**Confirmed descending pattern scaled to the half:** `(1.5 km → 1 km → 0.5 km) × 2` = **6 km specific work** plus five 1 km easy transitions, or the advanced `(2 km → 1.5 km → 1 km) × 2` = **9 km specific** plus five 1 km easy transitions. These are sequences, **not six identical repetitions**. Start long legs at HMP, intermediate legs at evidenced 10K only when earned, and bound any 5K-paced closing effort.  
 **Pace intent:** Start with evidenced **HMP**, introduce selected later repetitions around evidenced **10K pace**, and only when control is clearly established consider a bounded final exposure toward **5K pace**. The longest advanced reps do **not** automatically finish at 5K pace.  
 **Recovery:** Begin with genuinely easy 1 km transitions, then shorter easy or purposeful floats if separately earned and authored. A float is not a free reset. There are five transitions between six work reps, not a sixth after the final repetition.  
 **Job:** Complete a meaningful final rep with steady mechanics and recover from the total dose, without confusing increasing faster-speed work with continuous HMP ownership. The full family and stronger marathon scale are in [Six-Rep Distance Ladder & Final Rehearsal](FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md).
@@ -134,7 +134,7 @@ For the trained **sub-1:30 half-marathon group**, Brice has repeatedly observed 
 | Is the first specific HMP dose accessible? | H09 five/five with easy transitions | H10 one-mile pace/easy if aerobic base allows | Fewer, longer HMP holds |
 | Can HMP be regained? | H03-A easy jog | H03-B reduced recovery | H03-C purposeful float |
 | Is HMP continuous for a substantial distance? | H02 and 5-mile check | H11 selective six-mile check | Eight only if the additional evidence warrants its cost |
-| Can pace increase across substantial work? | H13-A with easy 1 km transitions | Selective 10K-paced later reps | Bounded 5K-paced close or a larger tier only if truly earned |
+| Can pace increase across substantial work? | H13 shorter repeated descent with easy 1 km transitions | Selective evidenced 10K pace on middle legs | Bounded 5K close or larger descent only if truly earned |
 | Is HMP durable late? | Easy long-run platform | H05 pressure before pace | H06 specific long-run or H04 alternating |
 | Is the capability retained? | Bounded late check | Absorb and sharpen | Race execution |
 
