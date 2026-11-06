@@ -25,14 +25,14 @@
 | 2h comfortable easy | Can the athlete support marathon long work? | Foundation/return, not a high-intensity test |
 | 5 MP / 5 easy × 6; 1mi MP /1mi easy | Can MP be re-entered in one continuous aerobic run? | Preparatory alternative if actual pace-continuity evidence is missing |
 | 30–70 min continuous MP | How long is MP directly owned? | Relevant staged bridge unless Orlando already supplies comparable continuous proof |
-| 6 × 2km MP→selected HMP | Can significant blended work remain controlled through the last rep? | Advanced candidate, with five easy transitions first |
-| 6 × 3km and 6 × 4km | Can larger volume be sustained? | High-cost / elite-only exploration, **not** routine Donna prerequisites |
+| Descending 4→3→2 km single pass | Can meaningful blended work remain controlled through the last leg? | Selective candidate, with two easy 1 km transitions first |
+| Descending (4→3→2 km) × 2 | Can an 18 km MP→selected HMP specific block remain controlled through the final 2 km? | Advanced 23 km block with five easy 1 km transitions, **not** a routine Donna prerequisite |
 | 3 × 5km MP | Can the athlete return to substantial MP with less relief? | Advanced, after continuity and whole-week readiness |
 | 2h30 Thirty-Thirty | Can MP be found twice after accumulating duration? | Advanced alternative, not stacked with the hardest other sessions |
 | Late MP / Closing 10K | Does useful pace remain after prior running? | Existing frozen primary study question; protect its design and evidence |
 | **90–100 min continuous MP** | Can a long uninterrupted specific effort be controlled and fueled? | **Potential final major rehearsal**, only if valuable and absorbable; not the literal final workout |
 
-Do not schedule all of these into a nine-week bridge. The plan chooses **one primary question per major week**, with cheaper surrounding work and recovery. The optional `6 × 4km` family is exceptionally large, and a 90–100-minute MP rehearsal is high cost at a fast marathon pace.
+Do not schedule all of these into a nine-week bridge. The plan chooses **one primary question per major week**, with cheaper surrounding work and recovery. The full double descending ladder is substantial, and a 90–100-minute MP rehearsal is high cost at a fast marathon pace.
 
 ## The key program-design decision: what should the final major test be?
 
@@ -59,7 +59,7 @@ The September 20 Plan 03 freeze protects a **Closing-10K late-access study**. Br
 
 **José:** Prior larger race-pace efforts and long-run history may support a stronger specific question, but review **actual published weeks**, post-Orlando race file and recovery before selecting it. If he proves ~90 minutes at a pace still suitable as Donna MP, prioritize *late* access and fueling over redundant fresh pace testing.
 
-**Hope:** Her recent PT/rebuild interruptions mean the two-hour easy foundation, 24–72h recovery and actual return to regular training must be independently confirmed. She should not inherit José's largest Saturday, 6 × 3/4km session or 90–100 continuous MP by team membership. A reduced rehearsal can be the correct expression of the same FORM principle.
+**Hope:** Her recent PT/rebuild interruptions mean the two-hour easy foundation, 24–72h recovery and actual return to regular training must be independently confirmed. She should not inherit José's largest Saturday, full double descending ladder or 90–100 continuous MP by team membership. A reduced rehearsal can be the correct expression of the same FORM principle.
 
 ## Product, study and app acceptance
 
@@ -72,7 +72,7 @@ The September 20 Plan 03 freeze protects a **Closing-10K late-access study**. Br
 ## Prerequisites for writing the actual dated plan
 
 1. Read each athlete's authoritative future published sessions, filed race-pace work, long-run tolerance, injury/PT/strength restrictions and current race goals.
-2. Confirm whether **“6 × 4, 3, 2km”** means three six-rep tiers or another descending combination.
+2. **Resolved November 6:** **“6 × 4, 3, 2km” means a descending 4→3→2 km sequence, optionally repeated twice** for six work legs, with five 1 km easy transitions. Do not restore the discarded separate-tier interpretation.
 3. Confirm the principal **Closing-10K versus 90–100 MP** question (or athlete-specific branches), with the date and evidence consequences.
 4. Decide the true opening week after Orlando recovery, each athlete's available days, and what supports the main Saturday.
 5. Author complete, versioned sessions and week stories; test all typed work/recoveries and read back the athlete-visible Week before calling anything published.
