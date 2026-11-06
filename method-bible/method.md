@@ -194,6 +194,14 @@ The progression may be more distance, but it may instead be better continuity, a
 
 **Keep the speed. Move it deeper.**
 
+### Marathon entry: two hours comfortably · November 6, 2026
+
+When I open an athlete's **marathon-specific long-run build**, I want a foundation of **at least two hours of comfortable running** already in place. That is the starting platform for marathon work, not a two-hour first-run assignment for an athlete without that base. If two hours is not yet absorbable, I write the preparatory progression first.
+
+By *comfortably* I mean a settled aerobic effort with usable mechanics and pacing judgment, practiced fueling, and recovery that leaves the next planned training available. The athlete need not find it effortless; it should feel familiar and repeatable rather than like survival. I examine the actual run, the athlete's account, any symptoms, and subsequent readiness. Two hours is my coaching entry standard, not a universal physiological threshold, fixed mileage, or weekly minimum regardless of circumstances.
+
+From that foundation, I layer duration, continuity, meaningful steady work, and eventually marathon pace deeper into the run. Each addition earns its recovery cost; race-specific long runs spend the week's quality budget. An athlete's history, restrictions, and recovery still govern the individual dose.
+
 ### Race demands change the plan
 
 The 5K needs repeatable speed, aerobic power, efficient fast movement, and speed above race requirement. The 10K needs threshold control and the ability to move among gears. The half marathon asks whether pace remains available after meaningful earlier work. The marathon needs progressively more consequential long-run architecture, fuel practice, and late-session execution. HYROX adds the real cost of stations and transitions; that does not excuse neglecting the runner.
@@ -247,6 +255,14 @@ I coach those things. **Stop negotiating with yourself** is one of my cues for a
 I want a runner to recognize when a demanding movement becomes organized, almost meditative. The ability to stay with effort and the ability to back off for the right reason are both forms of judgment.
 
 Training to win includes thinking like a competitor without confusing recklessness for courage.
+
+### Callus the mind and body · November 6, 2026
+
+**Callus the mind and body. Layer the work.** That is my progression principle. The body adapts to repeated, purposeful demands. The mind learns to stay with duration, maintain rhythm, make decisions under pressure, and recognize an effort that once felt unfamiliar as something it can inhabit.
+
+I introduce the demand, let the athlete repeat and absorb it, then add the next meaningful layer. A layer may be more time, more continuity, a later portion at pace, or greater composure in the same work. I do not increase every variable together. The next layer is earned by execution, recovery, and readiness—not by a date on the calendar. Step-back weeks are part of the layering.
+
+*Callus* is a teaching image for earned resilience and familiarity. It is never an instruction to push through injury pain or to chase disabling soreness. Mental toughness also means managing effort, fueling, recovering, and knowing when to stop. **Stimulate → Absorb → Progress** applies to the body and to the athlete's confidence and judgment.
 
 ## 14. Every athlete is a living study
 
