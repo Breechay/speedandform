@@ -235,6 +235,29 @@ The continuous 20:01 iRUN segment is the only input. Every ~1-second enhanced-sp
 
 **Current hypothesis, not conclusion:** Rhythmic company, accumulated strength work, fitness and an occasional deliberate attention reset may help Brice sustain a relaxed, faster stride. Without the passing group, a further fade is **unknown**; the measured middle dip alone cannot establish one. He does not want to monitor stride constantly or turn every run into a mechanics drill. A future comparison should ask whether he can notice a modest drift and regain ease during selected runs, including without a pacer, while keeping lower-leg response and effort acceptable. Do not force longer steps or change FORM/Forge prescriptions from this observation.
 
+## October 31 · Miami Tempo, 5 × 8-minute controlled holds
+
+**Source:** Garmin Connect athlete-supplied screenshots, shared November 6 (Overview, Intervals, pace/HR charts and heart-rate zones). **Verification: screenshot-derived lap data, not an imported original FIT.** The activity took place **Saturday, October 31, 2026 at 7:38 AM**, recorded as “Miami - Tempo.” The athlete recalled a roughly 9-mile session with 5 × 8-minute threshold work; the interval screen now confirms that structure. Whether a FIT was sent in an earlier conversation is not established by the currently retrievable study evidence, and no source-file import for this date is documented here.
+
+### Recorded workout
+
+- **Whole outing:** **8.95 miles, 1:12:02 recorded**, **8:03/mi average**, **138 bpm average / 166 bpm maximum**. Garmin labels its primary benefit **Threshold (High Aerobic)**, with **3.8 aerobic / 0.3 anaerobic** training effect. These are watch estimates, not laboratory threshold measurements.
+- **Warm-up:** 10:00, 1.16 mi, 8:38/mi. **Work:** five 8:00 runs, **40:00 and 5.40 mi** from displayed rounded lap distances, approximately **7:24/mi work-only mean**. **Recovery:** four 3:00 intervals (12:00 total), displayed 0.32, 0.30, 0.30 and 0.29 mi. **Cool-down:** 10:02, 1.19 mi, 8:26/mi. Subsegment rounded distances sum to 8.96 mi, versus Garmin's 8.95-mile whole-session total; retain the watch's total.
+  
+| Work rep | Duration | Garmin displayed distance | Displayed average pace |
+| --- | ---: | ---: | ---: |
+| 1 | 8:00 | 1.07 mi | 7:30/mi |
+| 2 | 8:00 | 1.08 mi | 7:24/mi |
+| 3 | 8:00 | 1.08 mi | 7:24/mi |
+| 4 | 8:00 | 1.11 mi | 7:12/mi |
+| 5 | 8:00 | 1.06 mi | 7:34/mi |
+
+**Exposure accounting:** All five work laps averaged faster than the study's 7:42/mi reference. Thus **40:00 of work *in laps whose mean pace* was at or faster than 7:42/mi** is verified. This is **not** 40:00 of measured sample-by-sample residency within that pace band. The 5 × 8-minute structure adds evidence of repeated longer holds and controlled pace access; it does not prove an individually measured lactate threshold, establish complete recovery, or independently dictate next week's training.
+
+**Cardiovascular context:** Garmin-displayed HR zones: Zone 4 (148–166 bpm) **16:01 / 22%**, Zone 3 (130–147) **38:09 / 52%**, Zone 2 (111–129) **17:02 / 23%**, Zone 1 (93–110) **0:22**, Zone 5 **0:00**. These are **whole-session zones including warm-up and recoveries**, not work-only HR. The pace chart visually shows five holds and four recoveries; the maximum pace display of 5:29/mi is not a sustained interval benchmark. Per-rep HR, cadence, step length, ground-contact time, vertical dynamics, original timestamps and seconds-in-pace require the original FIT or equivalent detailed record.
+
+**Continuity note:** This completed Oct 31 session is separate from Oct 26's continuous iRUN effort and Nov 2's 20 × 200 m. It was missing from the current study ledger until the Nov 6 screenshots; there is no evidence in this record proving why a purported earlier FIT attachment was not carried through. Do not omit it from load-stacking reviews, and do not mark it as an athlete-filed FORM completion solely because it appears in this study.
+
 ## November 2 · iRUN 20 × 200 m, external rhythm and farther-back arm pull
 
 **Source:** Original athlete-supplied Garmin Forerunner 965 FIT, activity `24946083222` (`24946083222_ACTIVITY.fit`), and Brice's November 3 first-person debrief. The user-supplied planned session was simply **“with iRUN”**: iRUN chooses its own workout, which FORM does not know beforehand. These **20 × 200 m** are the completed group workout, not a retroactive 20-rep FORM prescription or a new plan for any athlete.
