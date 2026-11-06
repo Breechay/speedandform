@@ -112,6 +112,19 @@ For the trained **sub-1:30 half-marathon group**, Brice has repeatedly observed 
 **Prerequisite:** Stable, absorbed H09 easy alternations and an individualized float definition.  
 **Job:** Practice pace changes without complete recovery. The float is *not* interchangeable with easy and is not required before the athlete progresses continuous HMP. A longer uninterrupted HMP section with easy recovery can be the wiser next step.
 
+### H13 · Six-Rep Kilometer Blend · HMP to 10K to 5K
+
+**Working tiers:** `6 × 1 km` with **five 1 km easy transitions** (6 km quality + 5 km easy); advanced `6 × 1.5 km` (9 km + 5 km); exceptionally demanding `6 × 2 km` (12 km + 5 km). Each is one family alternative, **not three workouts to complete**.  
+**Pace intent:** Start with evidenced **HMP**, introduce selected later repetitions around evidenced **10K pace**, and only when control is clearly established consider a bounded final exposure toward **5K pace**. The longest advanced reps do **not** automatically finish at 5K pace.  
+**Recovery:** Begin with genuinely easy 1 km transitions, then shorter easy or purposeful floats if separately earned and authored. A float is not a free reset. There are five transitions between six work reps, not a sixth after the final repetition.  
+**Job:** Complete a meaningful final rep with steady mechanics and recover from the total dose, without confusing increasing faster-speed work with continuous HMP ownership. The full family and stronger marathon scale are in [Six-Rep Distance Ladder & Final Rehearsal](FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md).
+
+### H14 · Final Continuous Half-Pace Rehearsal
+
+**Form:** Selective **40–60 minutes continuously at evidenced HMP**, often roughly **6–8 miles** for the sub-1:30 group, as an appropriately recoverable *last major specific rehearsal*. The race itself remains the 90-minute endpoint; do not prescribe 90–100 minutes at HMP simply because the marathon equivalent uses 90–100 minutes at MP.  
+**Alternative:** A late 3–5 HMP miles after an aerobic lead-in when late availability adds more information than another fresh continuous HMP pass.  
+**Job:** Examine pace distribution, perceived cost, fueling where useful and 24–72-hour recovery. No mandatory eight-mile gate; no last-week maximal proof attempt. Date it far enough from the event for absorption and taper.
+
 ## 5. Which progression do we choose?
 
 | Question | First exposure | Next layer | Later demand |
@@ -121,10 +134,13 @@ For the trained **sub-1:30 half-marathon group**, Brice has repeatedly observed 
 | Is the first specific HMP dose accessible? | H09 five/five with easy transitions | H10 one-mile pace/easy if aerobic base allows | Fewer, longer HMP holds |
 | Can HMP be regained? | H03-A easy jog | H03-B reduced recovery | H03-C purposeful float |
 | Is HMP continuous for a substantial distance? | H02 and 5-mile check | H11 selective six-mile check | Eight only if the additional evidence warrants its cost |
+| Can pace increase across substantial work? | H13-A with easy 1 km transitions | Selective 10K-paced later reps | Bounded 5K-paced close or a larger tier only if truly earned |
 | Is HMP durable late? | Easy long-run platform | H05 pressure before pace | H06 specific long-run or H04 alternating |
 | Is the capability retained? | Bounded late check | Absorb and sharpen | Race execution |
 
 This is a **decision map, not a calendar**. H04, H05 and H06 are alternatives in a selected high-cost week, not three additional workouts to stack. Fewer running days means even more need to protect the principal ask. The coach may repeat or step back before extending.
+
+H13 and H14 are **also alternatives to other consequential quality sessions**, not add-ons. A large six-rep blend and a 6–8-mile continuous HMP test may answer different questions but should not both be forced into a compressed race build. The current primary limiter determines which is useful.
 
 **Half-to-full transfer:** If José or Hope later completes Orlando at a clock pace that is also plausible Donna MP, the race provides a substantial continuous-pace result (possibly around 90 minutes). It may eliminate the need to re-test 60–70 minutes continuously at that same pace, **after recovery and verification**; it cannot establish late-marathon availability, fueling after two hours, or the final 10K. See [Aerobic Base to Race-Pace Durability](FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md). Current half and later Donna MP remain separately evidenced and authorized.
 
