@@ -156,6 +156,36 @@
       "scope": "prospective FORM marathon-specific session selection and recovery design",
       "enforcement": "coach/Labs progression review; automated checks pending",
       "verification": "document stable 60–70 continuous MP with 24–72h recovery before M03/M04; preserve easy reset → shortened reset → coach-defined float; ensure float is slower than MP but not full recovery"
+    },
+    {
+      "id": "FORM-THRESHOLD-019",
+      "title": "Study the observed 20–30 s/mi threshold-to-half-capability difference without treating it as universal",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#the-observed-thresholdhalf-marathon-relationship--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "sub-1:30 half-marathon coaching cohort observation; individualized assessment only",
+      "enforcement": "coach evidence review; no automatic pace arithmetic",
+      "verification": "compare evidenced half capability, stable threshold session splits, perceived cost and next-session recovery; exceptions recorded"
+    },
+    {
+      "id": "FORM-DISTANCE-020",
+      "title": "One development thread from 5K to marathon with individualized continuous, recovery and late-work progression",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future multi-distance session authorship and half-marathon canon",
+      "enforcement": "coach/Labs method review; automated progression checks pending",
+      "verification": "review event demand, continuous capability, one or two progressive variables, easy-to-float recovery and whole-week cost"
+    },
+    {
+      "id": "FORM-LANGUAGE-021",
+      "title": "Prohibit the owner-disallowed term from new FORM program copy",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#program-vocabulary-rule--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "new session title, intent, details, Week preview, coach-authored program and philosophy prose",
+      "enforcement": "private/session-editorial-standard.mjs covers session fields and Week-preview/presentation utilities; wider writer integration and legacy cleanup pending",
+      "verification": "private/session-editorial-standard.test.mjs targeted regression; legacy published-session audit dated November 6, 2026"
     }
   ]
 }
