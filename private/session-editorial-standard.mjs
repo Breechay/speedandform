@@ -1,7 +1,7 @@
 // Athlete-facing copy gate. Coaching owns the dose; this only checks words.
 const RULES = [
   [/\b(?:not a sprint|no sprinting)\b/iu, 'Remove redundant sprint commentary.'],
-  [/\brun by your own rhyt?hm\b/iu, 'Replace vague rhythm commentary with a usable instruction.'],
+  [/\brhythms?\b/iu, 'Use a precise coaching term such as pace, timing, continuity or control.'],
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],
   [/\b(?:if absorbed|if recovered|if Tuesday absorbed)\b/iu, 'Publish one coached prescription; keep readiness contingencies private.'],
   [/\b(?:joins the cohort|shared team practices|no race entry is assumed)\b/iu, 'Remove internal or administrative narration.'],
@@ -59,6 +59,8 @@ export function sessionEditorialIssues(copy) {
 export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork = false } = {}) {
   const issues = [];
   const text = String(preview ?? '').trim();
+  if (/\brhythms?\b/iu.test(String(title ?? '')) || /\brhythms?\b/iu.test(text))
+    issues.push({ field: 'preview', message: 'Replace the prohibited coaching term with a precise pace, timing, continuity or control instruction.' });
   if (!text) return issues;
   if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
@@ -91,6 +93,8 @@ export function selfAuditSessionCopy(next, previous = null) {
 export function prescriptionPresentationIssues(title, components = []) {
   const displayTitle = String(title || '');
   const issues = [];
+  if (/\brhythms?\b/iu.test(displayTitle))
+    issues.push('Replace the prohibited coaching term in the session title with a precise pace, timing or control term.');
   if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(displayTitle))
     issues.push('Do not repeat Saturday or Sunday in a long-run title; Week already supplies the day.');
   // Owner-approved running format law, November 5, 2026. These are training
