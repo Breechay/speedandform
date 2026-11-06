@@ -178,3 +178,10 @@ See [Cross-Distance Thread](coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_202611
 **Half-to-full evidence transfer:** A recovered Orlando half at clock pace still appropriate for Donna may prove roughly 90 minutes of uninterrupted pace access. That evidence does not independently establish late-marathon pacing, fueling, two-hour easy base, or medical readiness. The winter build should use the race to select a useful new test rather than re-prove what it already revealed.
 
 Detailed source: [Aerobic Base to Race-Pace Durability Bridge](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md). Future work still excludes 3 × 10-minute running intervals and classic stopped mile-repeat workouts; correctly authored continuous pace/easy alternations are allowed.
+
+
+## November 6 continuation · Six-rep progression and the final race-specific question
+
+A `6 × 2/3/4 km` family is currently an **interpretation of Brice's compact notation**, not a verified definition or an athlete assignment. The proposed marathon progression begins at real MP, with bounded later movement toward HMP; the half scale moves HMP toward 10K/5K as appropriate. Five between-rep 1 km **easy** transitions precede shortened easy or purposefully prescribed floats. Total work, rep pace and recovery density must not all become harder together. The 6 × 4 km tier is extraordinary in total volume.
+
+The proposed 90–100-minute continuous MP rehearsal is **a different question from late pace after substantial prior running**. The historical frozen Donna Closing-10K study must be preserved, and any replacement dated as an amendment. A successful uninterrupted effort informs pacing and fueling confidence but does not establish the final marathon 10K. See [Session Family](coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [Official Donna Design Brief](coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md). No result or future athlete plan is implied by recording a favorite workout.
