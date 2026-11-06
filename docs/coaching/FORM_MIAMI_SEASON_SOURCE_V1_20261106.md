@@ -1,6 +1,6 @@
 # FORM Miami Fall 2026 · backend source contract v1
 
-**Owner:** Brice · **Review state:** source-authored, migration **not deployed**, signed-in readback **not run**.
+**Owner:** Brice · **Deployment state (Nov 6, 2026):** season schema **deployed to production Supabase** as migration `20261106110727_form_miami_fall_2026_season_source`; metadata/RLS readback passed. **Signed-in Apple/JWT/PostgREST and iPhone readback not yet run.**
 
 Owning issue: [#509](https://github.com/Breechay/speedandform/issues/509). Native original B Lanes direction is separate from the backend source; 44.7 and 44.8 are one release train, Staff/Coach Console is 44.9.
 
@@ -40,6 +40,8 @@ The migration intentionally creates **no membership rows**. Before a separate en
 4. Record `confirmed_by`, `confirmed_at`, `joined_on` and an explicit `status='active'`; otherwise keep the row absent or pending.
 5. Run signed-in own-account, Apple-alias, Coach Mirror, unrelated-account and withdrawn/opt-out readbacks before marking activated.
 
+Coach Mirror for Brice's **existing assigned roster and future assigned athletes is default-on** through the canonical coach–athlete relationship; no extra per-athlete enable step is required. This grants no access to other coaches' athletes or unrelated profiles. Coach Mirror roster authorization and **explicit season enrollment** remain separate facts.
+
 The source does not change training assignments, race status, Strength entitlements, Collective photo opt-outs or personal performance targets. It does not make a private athlete record public.
 
 ## API / rollout acceptance
@@ -49,6 +51,7 @@ The source does not change training assignments, race status, Strength entitleme
 - **Empty state:** zero private rows means no verified active season membership, not a failed workout, blank calendar or zero progress.
 - **Auth:** existing `is_athlete_member` / `can_read_athlete` preserve canonical Apple linking. No additional SECURITY DEFINER function or app service key.
 - **Test:** run `node tests/form-season-source.cjs` for static calendar/source checks. For an isolated in-memory PostgreSQL RLS integration test, install the pinned optional tool with `npm install --no-save --no-package-lock @electric-sql/pglite@0.5.15` and run `node tests/form-season-rls.mjs`. The latter actually applies this migration and exercises anon, athlete A/B, coach, unauthorized, pending, withdrawal, write-denied and join-date cases using test-only actor helpers. It does **not** replace a Supabase environment's real Apple bridge, Auth JWT, PostgREST or security-advisor checks.
-- **Deploy:** keep backend deployment, migration readback, native branch, App Store distribution and physical iPhone acceptance separately recorded. This PR is not authorization to deploy or bulk enroll.
+- **Production verification (Nov 6):** the live season has the exact 15-week calendar and four phases, all three new tables have RLS, anonymous roles have only published calendar SELECT, authenticated roles have private membership SELECT with actor-scoped policy, the private RPC is executable by authenticated but not anon, and membership count remains **zero**. Existing project-wide security advisor findings did not name the new `form_season*` objects. This metadata verification does **not** prove signed-in end-to-end access.
+- **Release separation:** backend deployed; source migration is tracked in GitHub; season enrollment, native implementation, App Store distribution and physical iPhone acceptance require independent verification.
 
-**Next after backend verification:** original B Lanes night-track animation/native projection, not One Track, with reduced-motion and physical-device QA. Race dots are private to the athlete's season detail; season finale does not require a race.
+**Next native handoff:** original B Lanes night-track animation/native projection, not One Track, with reduced-motion and physical-device QA. Race dots are private to the athlete's season detail; season finale does not require a race. Use the real public calendar now; hold private lane activation until verified enrollment and signed-in access.
