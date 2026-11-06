@@ -115,6 +115,10 @@ Easy running builds the engine, supports repeatable practice, and helps an athle
 
 Ten useful minutes count. Twenty or thirty may be the right dose. More mileage matters when it helps the larger development and can be absorbed. Frequency is valuable because the athlete can practice often without every exposure asking for substantial recovery.
 
+### Easy duration beyond the workout · November 6, 2026
+
+A 40-minute total workout with warm-up and cooldown is not the same evidence as 40 minutes of uninterrupted easy running. A trained half-marathon athlete should also develop ordinary 50–60, then **60–75-minute genuinely easy aerobic runs**, plus an absorbable 75–90-minute easy long-run platform where appropriate. The marathon-specific long run progresses toward two hours comfortably. These are individually earned capabilities, **not minimums on every easy day**. A 25–40-minute recovery run remains valuable; the point is that the athlete's aerobic base must extend beyond brief support around workouts.
+
 ### The trampoline
 
 I describe threshold as the bounce of a trampoline. Easy running builds the legs that support it. The visible height depends on the structure underneath. This is a teaching image, not a literal claim about anatomy.
@@ -220,9 +224,15 @@ Three favorite architectures belong in the working canon:
 
 I want athletes who can move faster and then find a sustainable pace, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) records the method, levels, and selection rules; it does not publish an athlete's plan.
 
-### Continuous first. Then reduce the recovery. · November 6, 2026
+### A bridge into substantial continuous MP · November 6, 2026
 
-Before I incorporate Three Fives or the 2h30 Thirty-Thirty, I want the athlete to own **60–70 minutes continuous at evidenced marathon pace**. We build that from shorter substantive continuous efforts—30–45 minutes, then 45–55, then 60–70—with enough repeatability and recovery to demonstrate a real adaptation. Collecting those minutes across full-reset intervals is not the same question.
+When an athlete needs an intermediate exposure, I can use **5 min MP / 5 min genuinely easy × 6** for 30 cumulative minutes MP across one uninterrupted 60-minute run. Another option is **1 mile MP / 1 mile easy**, alternating continuously without stops; at about 6:50/mi MP, five work miles and five easy miles deliver about 34 minutes MP within a substantial ten-mile run. That is not a classic stopped mile-repeat session. Both require an actual easy-running base, full-session dose, and next-session recovery. Neither proves a full uninterrupted hour at MP. After they are stable, I may extend each continuous segment, reduce easy relief, or use an individually defined float in a **separately named higher-cost workout**. A 5/5 float version has 30 MP minutes plus 30 minutes of working float, not 30 minutes of free rest.
+
+The same idea scales to half-marathon development: 5 HMP / 5 easy, or continuous one-mile HMP/one-mile easy, then longer holds, a selective **five → six → up to eight continuous HMP miles**, and eventually later HMP after preceding running. Six continuous miles is a useful high-information test; eight miles is expensive and never automatic. The [Aerobic Base to Race-Pace Durability Bridge](../docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md) holds the explicit families and interpretation.
+
+### Continuous ownership before advanced alternation · November 6, 2026
+
+Before I incorporate the demanding Three Fives or the 2h30 Thirty-Thirty, I want the athlete to have **60–70 minutes continuous at evidenced marathon pace** or **equivalent verified, recovered continuous race evidence at the same appropriate clock pace**. We build that from shorter sustained efforts—30–45, 45–55, then 60–70 minutes—unless an actual race has already answered that continuity question. Collecting 60 total MP minutes through easy/MP alternations is not the same result. Even a 90-minute half-marathon at candidate MP does not establish full-marathon fueling, the two-hour easy foundation, or pace availability in the closing 10K.
 
 In a substantial broken session such as 3 × 5K, the next progression is often *between* the reps: start with genuine easy-jog recovery, shorten that reset after stable execution, then progress to a **float**. A float is a distinct slower-than-MP working effort that lets the athlete lower the pace **without fully recovering**. Its intensity and duration are coached and recorded. I want the runner to change gears without escaping the entire demand.
 
@@ -245,6 +255,8 @@ The event changes the question. It does not change my insistence on an individua
 - **HYROX and general fitness:** share the movement and aerobic foundation, but include the actual competing demands of stations, strength, and recovery.
 
 The same rep can ask a different question at different distances. Progress only one or two variables at once. A float is slower work that lowers the demand without restoring full ease; it is a genuine step after successful easy recoveries, not an interchangeable label. **Two × 10-minute threshold segments remain available where useful; three × 10-minute running intervals and mile repeats are not future FORM prescriptions.**
+
+José and Hope's Orlando half-marathon pace may overlap with their proposed Donna MP. If either sustains the appropriate pace for about 90 minutes and recovers, that is strong proof of pace availability, not an automatic marathon-ready mark. The postrace build should test whether the pace survives additional time-on-feet and fueling; athlete-specific restrictions remain decisive.
 
 The [Cross-Distance Development Thread](../docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](../docs/coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](../docs/coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) are working reference documents. They guide coaching; they do not modify athlete plans by their existence.
 
