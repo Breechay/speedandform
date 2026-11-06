@@ -401,3 +401,12 @@ For half-marathon development, build continuous threshold and HMP ownership befo
 New FORM authoring must not use the word **“rhythm”** or its plural in athlete-facing programming or coach-authored guidance. Choose accurate alternatives such as pace, timing, cadence, composure or continuity; protect immutable quotations and filed results. New copy is blocked in the session-editorial guard; published legacy copy still needs a separate versioned migration.
 
 Read the [Cross-Distance Development Thread](coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](coaching/FORM_MARATHON_SESSION_CANON_20261106.md). These are philosophy and session-authoring references, not live plan changes.
+
+
+### Aerobic foundation and pace ownership · November 6 follow-up
+
+The ordinary easy-running capacity must extend beyond a typical short workout's elapsed time including preparation and cooldown. Build genuinely easy standalone runs toward 60–75 minutes where appropriate, alongside the half's 75–90-minute easy long-run platform or a prepared marathoner's absorbable two-hour base. A short recovery run remains a legitimate separate purpose.
+
+Our specific progression has **two axes**: longer uninterrupted pace ownership, and less complete recovery between substantial segments. Starter continuous `5 min pace / 5 min easy` or `1 mi pace / 1 mi easy` alternations can bridge toward sustained pace; they are not classic stopped mile-repeat workouts. Later controlled floats are a distinct higher-cost variant, not renamed easy running. Six continuous HMP miles may be a useful selective durability test; eight miles has more cost and is never compulsory.
+
+If an Orlando half result supplies ~90 minutes at clock pace also suitable for Donna MP, it may answer the continuous-pace question without redoing an hour of MP for its own sake. It cannot answer whether the athlete can fuel and sustain the final marathon 10K. These links, progression doses and evidence boundaries are detailed in [Aerobic Base to Race-Pace Durability](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md).
