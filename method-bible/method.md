@@ -26,7 +26,7 @@ I care about becoming capable, not merely checking off an event. If we aim at th
 
 FORM is a method of Run Development, gait retraining where appropriate, athletic development, and authored programming. It is not a workout generator.
 
-I look for ease, rhythm, timing, control, connection, and what is unnecessarily expensive about the way someone moves. I do not search for a textbook runner to impose on every body. I observe the person in front of me and choose the change that matters most.
+I look for ease, coordination, timing, control, connection, and what is unnecessarily expensive about the way someone moves. I do not search for a textbook runner to impose on every body. I observe the person in front of me and choose the change that matters most.
 
 An athlete is more than an aerobic number. Development includes movement skill, a stronger engine, speed and power, durable endurance, glute and hip strength, useful range of motion, and the judgment to apply all of it.
 
@@ -36,7 +36,7 @@ The work also includes their habits, environment, confidence, self-talk, and abi
 
 ### The qualities we develop
 
-- **Movement and skill:** posture, rhythm, arm-and-leg timing, landing, and the ability to repeat useful mechanics.
+- **Movement and skill:** posture, cadence, arm-and-leg timing, landing, and the ability to repeat useful mechanics.
 - **Aerobic capacity:** doing more useful work with a lower relative demand, and recovering for the next exposure.
 - **Speed and power:** having faster movement available than the race immediately demands.
 - **Durability:** keeping form and pace after meaningful work has accumulated.
@@ -71,7 +71,7 @@ Every session must earn its place in the week. I distinguish three questions tha
 
 ### Skill acquisition
 
-What is the athlete learning? Is this repetition helping them feel timing, rhythm, landing, posture, or control? How much high-quality practice is needed for a meaningful lesson?
+What is the athlete learning? Is this repetition helping them feel timing, coordination, landing, posture, or control? How much high-quality practice is needed for a meaningful lesson?
 
 ### Training stimulus
 
@@ -85,7 +85,7 @@ The right dose is the **appropriate sufficient dose**. Not always small. A diffi
 
 **What does another rep buy, and what does it cost?**
 
-During my own 20 × 200 m session, I learned something valuable about arm rhythm and the way running beside others helped me calibrate timing. The learning mattered. That does not mean twenty repetitions was the best dose for acquiring that skill inside an already demanding training week. Next time a shorter practice could preserve the lesson and leave more capacity for the work ahead.
+During my own 20 × 200 m session, I learned something valuable about arm timing and the way running beside others helped me calibrate timing. The learning mattered. That does not mean twenty repetitions was the best dose for acquiring that skill inside an already demanding training week. Next time a shorter practice could preserve the lesson and leave more capacity for the work ahead.
 
 Fatigue is real evidence of cost, not a medal. Finishing a workout does not prove that the intended adaptation has been established.
 
@@ -115,6 +115,10 @@ Easy running builds the engine, supports repeatable practice, and helps an athle
 
 Ten useful minutes count. Twenty or thirty may be the right dose. More mileage matters when it helps the larger development and can be absorbed. Frequency is valuable because the athlete can practice often without every exposure asking for substantial recovery.
 
+### Easy duration beyond the workout · November 6, 2026
+
+A 40-minute total workout with warm-up and cooldown is not the same evidence as 40 minutes of uninterrupted easy running. A trained half-marathon athlete should also develop ordinary 50–60, then **60–75-minute genuinely easy aerobic runs**, plus an absorbable 75–90-minute easy long-run platform where appropriate. The marathon-specific long run progresses toward two hours comfortably. These are individually earned capabilities, **not minimums on every easy day**. A 25–40-minute recovery run remains valuable; the point is that the athlete's aerobic base must extend beyond brief support around workouts.
+
 ### The trampoline
 
 I describe threshold as the bounce of a trampoline. Easy running builds the legs that support it. The visible height depends on the structure underneath. This is a teaching image, not a literal claim about anatomy.
@@ -127,11 +131,11 @@ Withdrawals are not bad. The problem is spending the same recovery twice. **Easy
 
 ## 07. Threshold: learn a pace you can inhabit
 
-Threshold is controlled, sustainable high-end aerobic work, not a race rehearsal disguised as training. I want a runner to enter a demanding rhythm, stay composed, and become able to sustain more work without losing organization.
+Threshold is controlled, sustainable high-end aerobic work, not a race rehearsal disguised as training. I want a runner to enter a demanding pace, stay composed, and become able to sustain more work without losing organization.
 
 Broken repetitions and continuous efforts can train different things. We may grow total time, the longest uninterrupted segment, continuity, density, or how late the work arrives. Faster splits are not the only mark of progress.
 
-The runner's experience matters. Someone may find continuous threshold easier to inhabit and repetitions harder because the restarting disrupts their rhythm. Another may benefit from the breaks. I use what we learn to choose the tool.
+The runner's experience matters. Someone may find continuous threshold easier to inhabit and repetitions harder because the restarting disrupts their continuity. Another may benefit from the breaks. I use what we learn to choose the tool.
 
 **The pace stays. The escapes disappear.** We gradually need fewer breaks to express the same capability.
 
@@ -145,15 +149,21 @@ I judge progression by the pace the athlete can actually sustain, its evenness, 
 
 Good threshold training teaches the athlete to remain strong and controlled, not to win an ordinary training session.
 
+### The observed threshold–half-marathon relationship · November 6, 2026
+
+In my sub-1:30 half-marathon coaching group, I have observed that an athlete's **stable, repeatable threshold-work pace** can sit approximately **20–30 seconds per mile faster** than their *demonstrated half-marathon capability pace*. For illustration, a runner whose evidenced half-marathon capability is 6:50/mi might merit investigation of controlled threshold work around 6:20–6:30/mi. This is a **FORM field observation** from the group, not a universal conversion, a test-derived physiological threshold, a pace mandate, or permission to run beyond what the athlete can actually sustain.
+
+I keep three entries separate: the athlete's race-verified or evidenced half-marathon pace; the pace at which threshold work is consistently controlled and repeatable; and the recovery cost and next-session response. I test the relationship against filed work and adjust the individual's prescription. The difference can narrow, widen, or fail to apply. I do not label every run 20–30 seconds faster than HMP as threshold by definition.
+
 ## 08. Speed reserve: build more than the race needs
 
 **Have more speed to draw from as we build the endurance to sustain it.**
 
-I train speed deliberately. I want the athlete to experience quicker movement, become familiar with it, repeat it with good rhythm, and eventually sustain a greater fraction of that speed for longer.
+I train speed deliberately. I want the athlete to experience quicker movement, become familiar with it, repeat it with controlled mechanics, and eventually sustain a greater fraction of that speed for longer.
 
 That can begin with short, fully controlled 100- or 200-meter exposures and generous recovery. As the athlete develops, it can progress to 400s, 600s, 800s, short work-and-float intervals, longer repetitions, and sustained race-specific work. Those are tools, not a mandatory universal sequence.
 
-Two hundred meters is not one workout. A 200 can teach rhythm, touch speed, sharpen a practiced gear, or create a demanding physical stimulus. Repetition count and rest have to answer which of those jobs we intend.
+Two hundred meters is not one workout. A 200 can teach timing, touch speed, sharpen a practiced gear, or create a demanding physical stimulus. Repetition count and rest have to answer which of those jobs we intend.
 
 Advanced athletes may need a much larger stimulus; newer runners often need clearer repetitions before more repetitions. Training should make them more capable, not merely expose how hard they can push today.
 
@@ -194,11 +204,69 @@ The progression may be more distance, but it may instead be better continuity, a
 
 **Keep the speed. Move it deeper.**
 
+### Marathon entry: two hours comfortably · November 6, 2026
+
+When I open an athlete's **marathon-specific long-run build**, I want a foundation of **at least two hours of comfortable running** already in place. That is the starting platform for marathon work, not a two-hour first-run assignment for an athlete without that base. If two hours is not yet absorbable, I write the preparatory progression first.
+
+By *comfortably* I mean a settled aerobic effort with usable mechanics and pacing judgment, practiced fueling, and recovery that leaves the next planned training available. The athlete need not find it effortless; it should feel familiar and repeatable rather than like survival. I examine the actual run, the athlete's account, any symptoms, and subsequent readiness. Two hours is my coaching entry standard, not a universal physiological threshold, fixed mileage, or weekly minimum regardless of circumstances.
+
+From that foundation, I layer duration, continuity, meaningful steady work, and eventually marathon pace deeper into the run. Each addition earns its recovery cost; race-specific long runs spend the week's quality budget. An athlete's history, restrictions, and recovery still govern the individual dose.
+
+### Substantive marathon pace and the favorite long runs · November 6, 2026
+
+**If I call a workout marathon-pace work, it contains at least 30 cumulative minutes at evidenced marathon pace.** That is the minimum for the full workout, not for each repetition. I can write a purely easy, threshold, speed or taper session without marathon pace; I do not dress up a few short MP minutes as a specific marathon session. This supersedes short historical MP-only sharpening examples for future prescriptions while preserving what athletes actually did.
+
+Three favorite architectures belong in the working canon:
+
+- **Thirty-Thirty:** 30 minutes easy / 30 minutes at MP, alternating for 2h30, beginning and finishing easy. That totals 60 minutes MP and 90 easy; the athlete must find sustainable pace twice and settle again afterward.
+- **Three Fives:** 3 × 5K at MP within an authored long run, with genuine easy recoveries, a cumulative 15K of substantial race-pace work.
+- **Three Tens:** 3 × 10K at MP—an **elite-only exceptional** session, never a routine progression or a default for FORM marathoners.
+
+I want athletes who can move faster and then find a sustainable pace, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) records the method, levels, and selection rules; it does not publish an athlete's plan.
+
+### A bridge into substantial continuous MP · November 6, 2026
+
+When an athlete needs an intermediate exposure, I can use **5 min MP / 5 min genuinely easy × 6** for 30 cumulative minutes MP across one uninterrupted 60-minute run. Another option is **1 mile MP / 1 mile easy**, alternating continuously without stops; at about 6:50/mi MP, five work miles and five easy miles deliver about 34 minutes MP within a substantial ten-mile run. That is not a classic stopped mile-repeat session. Both require an actual easy-running base, full-session dose, and next-session recovery. Neither proves a full uninterrupted hour at MP. After they are stable, I may extend each continuous segment, reduce easy relief, or use an individually defined float in a **separately named higher-cost workout**. A 5/5 float version has 30 MP minutes plus 30 minutes of working float, not 30 minutes of free rest.
+
+The same idea scales to half-marathon development: 5 HMP / 5 easy, or continuous one-mile HMP/one-mile easy, then longer holds, a selective **five → six → up to eight continuous HMP miles**, and eventually later HMP after preceding running. Six continuous miles is a useful high-information test; eight miles is expensive and never automatic. The [Aerobic Base to Race-Pace Durability Bridge](../docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md) holds the explicit families and interpretation.
+
+### Six-rep blended work and the final major rehearsal · November 6, 2026
+
+The **confirmed descending ladder** is **4 km → 3 km → 2 km**; its advanced repeated form is **(4+3+2 km) × 2**, totaling **18 km specific work plus five 1 km easy transitions = 23 km before warm-up/cooldown**. A single pass has 9 km work and two easy transitions. This is not three separate `6×2/3/4 km` tiers. Longer legs begin at evidenced MP and shorter legs may approach HMP when earned; ensure at least 30 cumulative minutes genuinely at MP. The half scale is `(1.5+1+0.5 km) × 2`, advancing selectively to `(2+1.5+1 km) × 2`, with HMP → evidenced 10K → bounded 5K only as earned. Recover with easy running first, then progress to prescribed floats separately from pace and volume.
+
+The proposed final major marathon-specific rehearsal is **90–100 minutes continuously at evidenced MP**, with complete fueling and recovery evidence. At around 6:50/mi that is roughly 13–15 miles *at MP* alone. Its meaningful result is sustainable pacing, fueling and next-session absorption, **not a guaranteed race prediction**. It belongs well before race day, with taper time protected, and cannot simply be added on top of the existing frozen **Closing-10K** study. A corresponding half-marathon rehearsal can be **40–60 minutes continuously at HMP** or bounded late HMP miles; the 90-minute half itself remains the race.
+
+See the [Six-Rep Ladder and Rehearsal](../docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [First Official Donna Plan Design Brief](../docs/coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md). These are prospective coaching designs, not new athlete assignments.
+
+### Continuous ownership before advanced alternation · November 6, 2026
+
+Before I incorporate the demanding Three Fives or the 2h30 Thirty-Thirty, I want the athlete to have **60–70 minutes continuous at evidenced marathon pace** or **equivalent verified, recovered continuous race evidence at the same appropriate clock pace**. We build that from shorter sustained efforts—30–45, 45–55, then 60–70 minutes—unless an actual race has already answered that continuity question. Collecting 60 total MP minutes through easy/MP alternations is not the same result. Even a 90-minute half-marathon at candidate MP does not establish full-marathon fueling, the two-hour easy foundation, or pace availability in the closing 10K.
+
+In a substantial broken session such as 3 × 5K, the next progression is often *between* the reps: start with genuine easy-jog recovery, shorten that reset after stable execution, then progress to a **float**. A float is a distinct slower-than-MP working effort that lets the athlete lower the pace **without fully recovering**. Its intensity and duration are coached and recorded. I want the runner to change gears without escaping the entire demand.
+
+The original 30-easy / 30-MP alternation remains its own session. A harder version substituting float for some easy blocks must be separately authored, not slipped into the same name. Increasing specific volume and recovery demand together requires a reason and sufficient absorption.
+
 ### Race demands change the plan
 
 The 5K needs repeatable speed, aerobic power, efficient fast movement, and speed above race requirement. The 10K needs threshold control and the ability to move among gears. The half marathon asks whether pace remains available after meaningful earlier work. The marathon needs progressively more consequential long-run architecture, fuel practice, and late-session execution. HYROX adds the real cost of stations and transitions; that does not excuse neglecting the runner.
 
 The event changes the question. It does not change my insistence on an individual dose and a coherent week.
+
+### One development thread from 5K through marathon · November 6, 2026
+
+**Build the speed ceiling. Establish sustainable control. Extend continuity. Reduce the escapes. Place the work later. Express it under race demand.** Each distance emphasizes different parts of the same development model; workouts should teach the capability demanded by the race instead of borrowing impressive-looking sessions from another event.
+
+- **5K:** build mechanics and speed reserve, then repeat higher-speed work with truthful recovery and enough aerobic support.
+- **10K:** sustain threshold and race-specific effort for longer, progress the quality of recoveries and ability to change pace without complete reset.
+- **Half marathon:** grow continuous threshold and evidenced HMP ownership, then shorten easy recoveries toward controlled floats, and place meaningful HMP later in longer runs. Early work might be 20–30 minutes continuous threshold or 30–40 minutes continuous HMP as individually earned; later blocks may require greater continuity, density, or late-run expression.
+- **Marathon:** earn a comfortable two-hour aerobic long-run base, continuous 60–70 minutes at evidenced MP before advanced alternations, then use substantial MP blocks, shortened recoveries, floats, and fuelled late-run execution only when earned.
+- **HYROX and general fitness:** share the movement and aerobic foundation, but include the actual competing demands of stations, strength, and recovery.
+
+The same rep can ask a different question at different distances. Progress only one or two variables at once. A float is slower work that lowers the demand without restoring full ease; it is a genuine step after successful easy recoveries, not an interchangeable label. **Two × 10-minute threshold segments remain available where useful; three × 10-minute running intervals and mile repeats are not future FORM prescriptions.**
+
+José and Hope's Orlando half-marathon pace may overlap with their proposed Donna MP. If either sustains the appropriate pace for about 90 minutes and recovers, that is strong proof of pace availability, not an automatic marathon-ready mark. The postrace build should test whether the pace survives additional time-on-feet and fueling; athlete-specific restrictions remain decisive.
+
+The [Cross-Distance Development Thread](../docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](../docs/coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](../docs/coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) are working reference documents. They guide coaching; they do not modify athlete plans by their existence.
 
 ## 10. Strength belongs in the athlete
 
@@ -224,17 +292,17 @@ Yin is one option, not a magical replacement for strength or rehabilitation. The
 
 ## 12. Drills, plyometrics, and teaching movement
 
-FORM will keep building its own curriculum of drills, elastic work, rhythm practice, and plyometrics. Those methods have to be authored and progressed, not assigned wholesale because they sound athletic.
+FORM will keep building its own curriculum of drills, elastic work, cadence practice, and plyometrics. Those methods have to be authored and progressed, not assigned wholesale because they sound athletic.
 
 Each drill needs a purpose, a quality target, a sufficient number of exposures, and a cost. A movement cue should be judged by what it changes in the athlete, not whether it resembles a perfect-looking demonstration.
 
 ### How I teach a cue
 
 1. **DO:** a short action the athlete can execute while moving.
-2. **THINK OF IT LIKE THIS:** a tactile image, rhythm, or analogy.
+2. **THINK OF IT LIKE THIS:** a tactile image, sensory cue, or analogy.
 3. **WHY:** a brief explanation if it makes the action easier to understand.
 
-Sometimes running alongside another athlete gives a rhythm reference. The athlete can borrow that timing and gradually own it. Sometimes moving the arms farther back is an effective feeling for a particular runner. That is a cue to examine, not a claim that every runner should change their arms the same way.
+Sometimes running alongside another athlete gives a timing reference. The athlete can borrow that timing and gradually own it. Sometimes moving the arms farther back is an effective feeling for a particular runner. That is a cue to examine, not a claim that every runner should change their arms the same way.
 
 The athlete carries the cue. The coach carries the model.
 
@@ -247,6 +315,14 @@ I coach those things. **Stop negotiating with yourself** is one of my cues for a
 I want a runner to recognize when a demanding movement becomes organized, almost meditative. The ability to stay with effort and the ability to back off for the right reason are both forms of judgment.
 
 Training to win includes thinking like a competitor without confusing recklessness for courage.
+
+### Callus the mind and body · November 6, 2026
+
+**Callus the mind and body. Layer the work.** That is my progression principle. The body adapts to repeated, purposeful demands. The mind learns to stay with duration, maintain composure, make decisions under pressure, and recognize an effort that once felt unfamiliar as something it can inhabit.
+
+I introduce the demand, let the athlete repeat and absorb it, then add the next meaningful layer. A layer may be more time, more continuity, a later portion at pace, or greater composure in the same work. I do not increase every variable together. The next layer is earned by execution, recovery, and readiness—not by a date on the calendar. Step-back weeks are part of the layering.
+
+*Callus* is a teaching image for earned resilience and familiarity. It is never an instruction to push through injury pain or to chase disabling soreness. Mental toughness also means managing effort, fueling, recovering, and knowing when to stop. **Stimulate → Absorb → Progress** applies to the body and to the athlete's confidence and judgment.
 
 ## 14. Every athlete is a living study
 
@@ -287,6 +363,10 @@ Before writing a plan, I ask:
 13. What observation could change my mind later?
 
 The answer becomes a complete training plan, not a set of impressive cards. When new evidence requires a change, I make it explicitly and preserve the previous version.
+
+### Program vocabulary rule · November 6, 2026
+
+Do not use **“rhythm”** or its plural in new FORM workout titles, intents, execution notes, Week previews, coach-written program language, or public method prose. Choose **pace, timing, cadence, continuity, coordination, composure, control, settle**, or another accurate word. This is an editorial prohibition, not a workout-dose change. Preserve immutable filings and exact historic athlete quotations; already published legacy copy requires a separately verified, versioned editorial migration.
 
 ## 17. How this bible changes
 

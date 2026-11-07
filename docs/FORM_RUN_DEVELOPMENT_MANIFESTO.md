@@ -46,7 +46,7 @@ The first read is not a checklist of textbook faults.
 
 Look for:
 - fluidity;
-- rhythm;
+- coordination;
 - what feels out of tune;
 - where movement looks restricted or unnecessarily effortful;
 - whether the athlete looks like they are fighting the run;
@@ -103,7 +103,7 @@ Small changes are multiplied by thousands of steps.
 Examples Brice watches and coaches include:
 - shoulders held high or tight;
 - restricted arm action when it meaningfully limits the runner;
-- cadence and landing rhythm;
+- cadence and landing timing;
 - hip and single-leg stability;
 - trunk organization;
 - anything that creates visible or reported unnecessary effort.
@@ -112,7 +112,7 @@ Strength can be part of form development. Bulgarian split squats, single-leg RDL
 
 ### Gait retraining
 
-`Gait retraining` is the technical name for the movement-change work already inside Run Development. In FORM, it means deliberately changing a runner's posture, rhythm, mechanics or movement strategy through a useful cue, practice, feedback and repeated exposure until the new pattern can hold under running load.
+`Gait retraining` is the technical name for the movement-change work already inside Run Development. In FORM, it means deliberately changing a runner's posture, timing, mechanics or movement strategy through a useful cue, practice, feedback and repeated exposure until the new pattern can hold under running load.
 
 Keep the terms distinct:
 - **running form** is the runner's movement expression;
@@ -369,7 +369,7 @@ When this manifesto conflicts with older generic coaching language, preserve pro
 <!-- FORM-OBSERVATION-CONTINUITY-20261006 -->
 ## Observation-led programming
 
-**Success is more useful running, not more suffering.** Brice judges progress against the athlete's goal and the changing challenge. The format is part of the question: staying in rhythm and repeatedly regaining it need not feel the same. Preserve the athlete's account, choose a useful adjustment, and review execution plus recovery. One athlete's response improves how we observe the others; it does not automatically become their workout.
+**Success is more useful running, not more suffering.** Brice judges progress against the athlete's goal and the changing challenge. The format is part of the question: maintaining continuous pace and repeatedly settling back into it need not feel the same. Preserve the athlete's account, choose a useful adjustment, and review execution plus recovery. One athlete's response improves how we observe the others; it does not automatically become their workout.
 
 See [FORM observation-led progression](FORM_OBSERVATION_LED_PROGRESSION.md) for the current decision rules, threshold-program lineage and study-specific applications.
 
@@ -388,3 +388,32 @@ A week is easier to coach when the athlete knows what matters most.
 For the current half-marathon studies, Tuesday often owns the first specific question. That is a common pattern, not a universal law. If the main question moves, the protection moves.
 
 Every active athlete should have a lightweight study record using the shared observation grammar. Only the cases with enough evidence, permission and teaching value need a feature Labs story. See [Athlete study operating model](studies/ATHLETE-STUDY-OPERATING-MODEL-20261006.md).
+
+
+## November 6, 2026 · One development thread across distances
+
+The same FORM progression applies to 5K, 10K, half marathon, and marathon while changing emphasis: **raise the speed ceiling; establish sustainable threshold and race-pace control; lengthen continuity; reduce reliance on complete recoveries; place meaningful work later; keep the week absorbable.** The athlete's event determines the dose and test, not the other way around.
+
+The sub-1:30 half-marathon group provides a coach-observed comparison: stable threshold-work pace has sometimes been **20–30 seconds per mile faster than evidenced half-marathon capability pace**. Treat that as a bounded field observation for athlete-by-athlete examination, not a universal calculator or a laboratory threshold determination.
+
+For half-marathon development, build continuous threshold and HMP ownership before progressing HMP repeats from easy recovery toward shortened recovery and controlled floats, then late-run expressions. For marathon development, earn a comfortable two-hour long-run base, 60–70 minutes continuous at evidenced MP, and only then substantial 30-minute alternations or long MP repeats. A future marathon-pace-specific workout requires **at least 30 cumulative minutes at MP**; easy and taper days do not falsely claim to be MP workouts. Preserve the single-week recovery budget.
+
+New FORM authoring must not use the word **“rhythm”** or its plural in athlete-facing programming or coach-authored guidance. Choose accurate alternatives such as pace, timing, cadence, composure or continuity; protect immutable quotations and filed results. New copy is blocked in the session-editorial guard; published legacy copy still needs a separate versioned migration.
+
+Read the [Cross-Distance Development Thread](coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](coaching/FORM_MARATHON_SESSION_CANON_20261106.md). These are philosophy and session-authoring references, not live plan changes.
+
+
+### Aerobic foundation and pace ownership · November 6 follow-up
+
+The ordinary easy-running capacity must extend beyond a typical short workout's elapsed time including preparation and cooldown. Build genuinely easy standalone runs toward 60–75 minutes where appropriate, alongside the half's 75–90-minute easy long-run platform or a prepared marathoner's absorbable two-hour base. A short recovery run remains a legitimate separate purpose.
+
+Our specific progression has **two axes**: longer uninterrupted pace ownership, and less complete recovery between substantial segments. Starter continuous `5 min pace / 5 min easy` or `1 mi pace / 1 mi easy` alternations can bridge toward sustained pace; they are not classic stopped mile-repeat workouts. Later controlled floats are a distinct higher-cost variant, not renamed easy running. Six continuous HMP miles may be a useful selective durability test; eight miles has more cost and is never compulsory.
+
+If an Orlando half result supplies ~90 minutes at clock pace also suitable for Donna MP, it may answer the continuous-pace question without redoing an hour of MP for its own sake. It cannot answer whether the athlete can fuel and sustain the final marathon 10K. These links, progression doses and evidence boundaries are detailed in [Aerobic Base to Race-Pace Durability](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md).
+
+
+### Six-rep blend and rehearsal principle · November 6 continuation
+
+Progress a meaningful final leg, not just total work. Brice confirmed the **descending 4 km → 3 km → 2 km ladder**; an advanced double pass `(4+3+2 km) × 2` totals **18 km work + five 1 km easy transitions = 23 km**, before preparation/cooldown. The half scales to `(1.5+1+0.5 km) × 2` and, selectively, `(2+1.5+1 km) × 2`, moving from HMP toward evidenced 10K and bounded 5K demands. Easy transitions graduate to individualized floats only after actual recovery evidence. The double descent is high cost; it is not a default requirement.
+
+A final **90–100-minute continuous MP** session is a high-cost candidate *major rehearsal*, not the last workout before race day or an automatic predictor. The official Donna plan must choose how it relates to the frozen Closing-10K study, preserve recovery and taper, and not assume José/Hope need identical work. See [Six-Rep Ladder](coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [Donna Plan Design Brief](coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md).

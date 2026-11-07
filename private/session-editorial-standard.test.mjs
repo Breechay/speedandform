@@ -39,6 +39,26 @@ test('a new athlete has the same standard', () => {
   assert.ok(found.length > 0);
 });
 
+test('prohibited vocabulary is rejected in new sessions, previews and typed-title checks', () => {
+  const cases = [
+    { title: 'Race Rhythm', intent: '', details: '' },
+    { title: 'Tempo', intent: 'Find a steady rhythm.', details: '' },
+    { title: 'Tempo', intent: '', details: 'Keep the rhythms steady.' }
+  ];
+  for (const copy of cases)
+    assert.ok(sessionEditorialIssues(copy).some(issue => issue.message.includes('precise coaching term')));
+  assert.ok(weekPreviewEditorialIssues({
+    title: 'Easy', preview: 'Keep your rhythm consistent.'
+  }).some(issue => issue.message.includes('prohibited')));
+  assert.ok(weekPreviewEditorialIssues({
+    title: 'Goal Rhythm', preview: '3 mi at 6:50/mi.'
+  }).some(issue => issue.message.includes('prohibited')));
+  assert.ok(prescriptionPresentationIssues('Speed Rhythm', []).some(issue => issue.includes('prohibited')));
+  const legacy = { title: 'Goal Rhythm', intent: 'Existing words.', details: '3 mi continuous.' };
+  assert.deepEqual(changedSessionEditorialIssues(legacy, legacy), []);
+  assert.ok(changedSessionEditorialIssues({ ...legacy, title: 'Race Rhythm' }, legacy).length);
+});
+
 test('pace ranges retain the typographic en dash', () => {
   assert.deepEqual(sessionEditorialIssues({ title: '4 mi continuous at 6:48–6:52/mi', details: '' }), []);
 });
@@ -119,16 +139,16 @@ test('Week detects redundant mileage without rejecting concise dose', () => {
 
 
 test('a metric track title must agree with the typed component unit', () => {
-  assert.deepEqual(prescriptionPresentationIssues('Speed · 200m rhythm', [
+  assert.deepEqual(prescriptionPresentationIssues('Speed · 200m timing', [
     { role: 'work', distance: 0.2, distanceUnit: 'km' }
   ]), []);
-  assert.ok(prescriptionPresentationIssues('Speed · 200m rhythm', [
+  assert.ok(prescriptionPresentationIssues('Speed · 200m timing', [
     { role: 'work', distance: 0.2, distanceUnit: 'mi' }
   ]).length);
   assert.ok(prescriptionPresentationIssues('Aerobic power · 800m', [
     { role: 'work', distance: 0.5, distanceUnit: 'mi' }
   ]).length);
-  assert.deepEqual(prescriptionPresentationIssues('Rhythm · 1 minute changes', [
+  assert.deepEqual(prescriptionPresentationIssues('Pace · 1 minute changes', [
     { role: 'work', durationSeconds: 60 }
   ]), []);
 });
@@ -159,6 +179,21 @@ test('FORM ban rejects 3 × 10-minute run intervals and mile repeats, not streng
     { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' }
   ]), []);
   assert.deepEqual(sessionEditorialIssues({ title: 'Strength', details: 'Bench press — 3 × 10' }), []);
+});
+
+test('continuous one-mile pace/easy alternation is not classic stopped mile repeats', () => {
+  const parts = [
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'work', shape: 'continuous', distance: 1, distanceUnit: 'mi' },
+    { role: 'recovery', shape: 'continuous', distance: 1, distanceUnit: 'mi' }
+  ];
+  assert.deepEqual(prescriptionPresentationIssues('Continuous · 1 mi MP / 1 mi easy', parts), []);
+  assert.ok(prescriptionPresentationIssues('3 × 1 mi at race effort', [
+    { role: 'work', repeatCount: 3, distance: 1, distanceUnit: 'mi' }
+  ]).some(issue => issue.includes('mile repeats')));
 });
 
 test('long-run Week and filing titles never repeat the weekday', () => {
