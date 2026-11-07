@@ -1,7 +1,7 @@
 // Athlete-facing copy gate. Coaching owns the dose; this only checks words.
 const RULES = [
   [/\b(?:not a sprint|no sprinting)\b/iu, 'Remove redundant sprint commentary.'],
-  [/\brun by your own rhyt?hm\b/iu, 'Replace vague rhythm commentary with a usable instruction.'],
+  [/\brhythms?\b/iu, 'Use a precise coaching term such as pace, timing, continuity or control.'],
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],
   [/\b(?:if absorbed|if recovered|if Tuesday absorbed)\b/iu, 'Publish one coached prescription; keep readiness contingencies private.'],
   [/\b(?:joins the cohort|shared team practices|no race entry is assumed)\b/iu, 'Remove internal or administrative narration.'],
@@ -38,6 +38,8 @@ export function sessionEditorialIssues(copy) {
   const title = String(copy?.title ?? '').trim();
   const details = String(copy?.details ?? '').trim();
   if (!title) issues.push({ field: 'title', message: 'Name the session.' });
+  if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(title))
+    issues.push({ field: 'title', message: 'The Week already shows the day. Use a purposeful long-run title with the total distance, such as Long run · 10 mi.' });
   if (/\beasy\s*\+\s*strides\b/iu.test(title) && /\b(?:warm[ -]?up)\b/iu.test(details))
     issues.push({ field: 'details', message: 'An easy run with strides is not a warm-up. Describe only the actual prescription.' });
   if (/\b(?:note effort|report back|send (?:me|your coach)|at halfway and at the end)\b/iu.test(details))
@@ -57,6 +59,8 @@ export function sessionEditorialIssues(copy) {
 export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork = false } = {}) {
   const issues = [];
   const text = String(preview ?? '').trim();
+  if (/\brhythms?\b/iu.test(String(title ?? '')) || /\brhythms?\b/iu.test(text))
+    issues.push({ field: 'preview', message: 'Replace the prohibited coaching term with a precise pace, timing, continuity or control instruction.' });
   if (!text) return issues;
   if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
@@ -87,12 +91,38 @@ export function selfAuditSessionCopy(next, previous = null) {
 // typed work. This catches the Console's historic implicit-mi conversion before
 // an athlete sees a 200 m title paired with 0.2 mi repetitions.
 export function prescriptionPresentationIssues(title, components = []) {
-  const namedMeters = [...String(title || '').matchAll(/\b(\d{2,4})\s*m\b/giu)]
+  const displayTitle = String(title || '');
+  const issues = [];
+  if (/\brhythms?\b/iu.test(displayTitle))
+    issues.push('Replace the prohibited coaching term in the session title with a precise pace, timing or control term.');
+  if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(displayTitle))
+    issues.push('Do not repeat Saturday or Sunday in a long-run title; Week already supplies the day.');
+  // Owner-approved running format law, November 5, 2026. These are training
+  // units, not strength sets or historical recorded mile splits. A single
+  // continuous mile or a one-mile test remains valid.
+  const runningWork = components.filter(part => part?.role === 'work');
+  const hasBrokenTen = runningWork.some(part =>
+    Number(part.repeatCount ?? part.repeat_count ?? 1) === 3
+      && Number(part.durationSeconds ?? part.duration_seconds) === 600);
+  const hasMileRepeats = runningWork.some(part =>
+    Number(part.repeatCount ?? part.repeat_count ?? 1) > 1
+      && Number(part.distance) === 1
+      && String(part.distanceUnit ?? part.distance_unit ?? '').toLowerCase() === 'mi');
+  if (hasBrokenTen || /\b3\s*[×x]\s*10\s*(?:-?\s*min(?:ute)?s?|['’])\b/iu.test(displayTitle))
+    issues.push('FORM running plans do not prescribe 3 × 10-minute intervals. Author a suitable continuous tempo or another purposeful sustained session.');
+  if (hasMileRepeats || /\b(?:[2-9]\s*[×x]\s*1\s*(?:mi|mile)|mile\s+repeats?|mile\s+repeatability|1\s*(?:mi|mile)\s*[×x]\s*[2-9])\b/iu.test(displayTitle))
+    issues.push('FORM running plans do not prescribe mile repeats. Choose a race-specific continuous or sustained session with an athlete-appropriate dose.');
+  const workParts = components.filter(part => part?.role === 'work' && part.distance != null);
+  if (/\b(?:long run|marathon endurance)\b/iu.test(displayTitle)
+      && /\b(?:last|final)\s+\d+(?:\.\d+)?(?:\s*(?:mi|km))?\s*(?:steady|at\b|fast\b)/iu.test(displayTitle)
+      && workParts.length < 2)
+    issues.push('A long-run steady/fast finish needs separate typed easy and finish components for Week, filing and feed.');
+  const namedMeters = [...displayTitle.matchAll(/\b(\d{2,4})\s*m\b/giu)]
     .map(match => Number(match[1]));
-  if (!namedMeters.length) return [];
-  const workMeters = components.filter(part => part?.role === 'work' && part.distance != null)
+  if (!namedMeters.length) return issues;
+  const workMeters = workParts
     .map(part => Number(part.distance) * ((part.distanceUnit || part.distance_unit) === 'km' ? 1000 : 1609.344));
-  if (!workMeters.length) return [];
-  return namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
-    .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`);
+  if (!workMeters.length) return issues;
+  return issues.concat(namedMeters.filter(target => !workMeters.some(actual => Math.abs(actual - target) <= Math.max(1, target * 0.005)))
+    .map(target => `Title says ${target} m but the work distance is different. Select the component's correct mi/km unit before saving.`));
 }

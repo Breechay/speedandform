@@ -3,6 +3,8 @@
 Owner: Brice. Decision: October 6, 2026.
 Status: shared coaching method; not a universal workout prescription.
 
+**November 4, 2026 binding authoring standard:** [Publish the full progression and deliberately program selected long runs as workouts](coaching/FORM_FULL_PROGRESSION_AND_LONG_RUN_STANDARD_20261104.md). A session or week must not be left pending coach approval merely because future athlete evidence may change the plan. The observation loop below guides responsive revisions when evidence arrives; it does not require scheduled progression reviews.
+
 ## The standard
 
 **Success is more useful running, not more suffering.**
@@ -17,7 +19,7 @@ A familiar short session can remain the right support late in a block. More elab
 
 1. Name the goal and the purpose of this session.
 2. Record the prescription and what actually happened separately.
-3. Preserve the athlete's account: rhythm, pacing decisions, restarting, legs, breathing, confidence and reserve.
+3. Preserve the athlete's account: continuity, pacing decisions, restarting, legs, breathing, confidence and reserve.
 4. Consider competing explanations, including preparation, conditions, total load and session format.
 5. Choose the smallest useful adjustment; write what would make it useful and what would make us change direction.
 6. Review execution and subsequent recovery. Then repeat, extend, shorten, change format or absorb.
@@ -28,7 +30,7 @@ This is FORM's practice with its athletes. It does not prove that the same forma
 
 Broken work and continuous work answer different questions. Recoveries can provide physiological relief while repeated restarting still feels difficult to a particular athlete. Do not presume which format an athlete must experience as harder.
 
-José reports that intervals feel harder for him and that his legs feel heavy when restarting. His six-mile continuous result is relevant supporting context. The current hypothesis is that remaining in rhythm may suit him better during this phase. It is not a diagnosis and does not transfer to the other athletes.
+José reports that intervals feel harder for him and that his legs feel heavy when restarting. His six-mile continuous result is relevant supporting context. The current hypothesis is that maintaining continuous effort may suit him better during this phase. It is not a diagnosis and does not transfer to the other athletes.
 
 The October 13 adjustment changes both format and dose, so a better result cannot isolate a continuity effect. The purpose is better training, not forcing a perfect experiment at the athlete's expense.
 
@@ -42,7 +44,7 @@ A short-to-long progression can change total work, longest uninterrupted bout, n
 
 For the half-marathon studies, eight controlled continuous miles can be meaningful progress. Nine or ten may become later options, not automatic requirements. The goal is a well-executed race, not collecting every possible training distance. An eight-mile result does not guarantee thirteen-point-one; a ten- or twelve-mile near-race effort is not a required price of admission.
 
-Longer running below race effort can support endurance and rhythm. Use **slower than race pace** or **below race effort** when that is intended; do not use the ambiguous phrase 'sub race pace'. Faster-than-race work has a separate purpose and dose.
+Longer running below race effort can support endurance and movement control. Use **slower than race pace** or **below race effort** when that is intended; do not use the ambiguous phrase 'sub race pace'. Faster-than-race work has a separate purpose and dose.
 
 ## Threshold: recover the useful program, not every old sentence
 
@@ -93,7 +95,7 @@ Research context, not validation of this exact ladder:
 
 | Athlete | What transfers | What does not automatically change |
 |---|---|---|
-| José | Listen to his format report; favor a shorter continuous support trial, then review rhythm and recovery. | The historic results and overall race band; no diagnosis or guaranteed eight-mile pass. |
+| José | Listen to his format report; favor a shorter continuous support trial, then review continuity and recovery. | The historic results and overall race band; no diagnosis or guaranteed eight-mile pass. |
 | Hope | Her own readiness and current coach restrictions govern the next session. | No prescription inherited from José; missing running is not work to repay. |
 | Elijah | Judge specific control and recovery within the short Savannah runway. | Current race gate and dose stay intact unless his evidence asks for a change. |
 | Simon | Separate pacing, sustained control, faster-work response and HYROX load. His archived 20+12 is useful history. | Study 003 R4 bands, reduced Thursday dose and separated gates are preserved. |
@@ -150,3 +152,36 @@ HYROX, a race simulation or hard lower-body strength can consume the same second
 The point is not to make Tuesday sacred. The point is to make the **priority of the week legible**.
 
 A skipped or reduced support session creates no debt.
+
+
+## November 6, 2026 · Cross-distance progression and wording
+
+The **Speed Ceiling → Threshold → Endurance** model travels across distance families. The 5K emphasizes speed reserve and aerobic support; the 10K emphasizes controlled threshold and race-specific work; the half marathon emphasizes sustainable HMP and late-run availability; the marathon adds substantial MP blocks, fueling and longer runs. Progress from continuous capability to meaningful broken sessions where the interval structure adds a distinct race demand; progress easy recovery to shortened easy recovery to float only after evidence of absorption.
+
+In Brice's observed sub-1:30 half-marathon group, stable threshold-work pace has sometimes sat **20–30 seconds/mile faster** than observed half-marathon capability pace. The relationship is provisional field evidence, not a universal physiology rule or automatic prescription. Recheck athlete-specific splits, ease, repeatability, recovery, and race performances. The individual's data can contradict the heuristic.
+
+Future authoring excludes **3 × 10-minute running intervals** and mile repeats. **2 × 10-minute** remains available when justified. The threshold examples in the historical sections above document prior thinking and must not override this current restriction. Do not overwrite completed records.
+
+The word **“rhythm”** and plural are prohibited in new authored workout and philosophy copy. Use precision: pace, control, timing, cadence, continuity, or settle. Legacy published content requires an audited versioned copy migration; the prohibition does not authorize blanket SQL updates or athlete-dose changes.
+
+See [Cross-Distance Thread](coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md) and [Half-Marathon Canon](coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md).
+
+
+## November 6, 2026 follow-up · What each pace session actually proves
+
+**Base is its own evidence:** A 40-minute quality session including preparation and cooldown is not evidence of a 60–75-minute standalone easy capacity. Monitor ordinary recoverable easy duration and the longer aerobic platform separately from hard workout duration.
+
+**Continuous alternation is not the old mile-repeat format:** `5 min goal pace / 5 min easy` or `1 mi goal pace / 1 mi easy` within one continuous run tests re-access after a reduced gear. It can precede a substantive continuous segment. Do not classify it as classic stopped mile repeats; do not call its *cumulative* race-pace minutes *uninterrupted* race-pace minutes. A subsequent float is a higher-density working transition, not full rest.
+
+**Half marathon durability:** Keep the selective 5 → 6 → up to 8-mile HMP continuous question available, with full-week recovery constraints and late-run alternatives. An eight-mile pass is not a universal gate. The athlete's actual result, not template completion, determines whether another check adds value.
+
+**Half-to-full evidence transfer:** A recovered Orlando half at clock pace still appropriate for Donna may prove roughly 90 minutes of uninterrupted pace access. That evidence does not independently establish late-marathon pacing, fueling, two-hour easy base, or medical readiness. The winter build should use the race to select a useful new test rather than re-prove what it already revealed.
+
+Detailed source: [Aerobic Base to Race-Pace Durability Bridge](coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md). Future work still excludes 3 × 10-minute running intervals and classic stopped mile-repeat workouts; correctly authored continuous pace/easy alternations are allowed.
+
+
+## November 6 continuation · Six-rep progression and the final race-specific question
+
+Brice confirmed a **descending 4 km → 3 km → 2 km** sequence, not separate `6×2/3/4` tiers. The optional repeated version `(4+3+2 km) × 2` contains six work legs (18 km) and five 1 km genuinely easy transitions (5 km); a single descent uses two transitions. MP → selected HMP is the marathon demand; HMP → evidenced 10K → bounded 5K applies to scaled shorter half descents. Easy transitions precede graduated floats. Total work, pace and transition density must not all increase together.
+
+The proposed 90–100-minute continuous MP rehearsal is **a different question from late pace after substantial prior running**. The historical frozen Donna Closing-10K study must be preserved, and any replacement dated as an amendment. A successful uninterrupted effort informs pacing and fueling confidence but does not establish the final marathon 10K. See [Session Family](coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [Official Donna Design Brief](coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md). No result or future athlete plan is implied by recording a favorite workout.
