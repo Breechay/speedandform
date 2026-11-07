@@ -29,6 +29,10 @@ test('Field v2 retains publication, roster, revocation, and evidence gates', () 
   assert.match(sql, /completion\.athlete_id=p\.athlete_id/i);
   assert.match(sql, /completion\.timing_source is distinct from 'strava'/i);
   assert.match(sql, /piece\.kind='rep'/i);
+  assert.match(
+    sql,
+    /coalesce\(correction\.distance_m::numeric,[\s\S]*?case piece\.distance_unit[\s\S]*?end\)>0/i,
+  );
 });
 
 test('Field v2 is authenticated-only and contains no sensitive response fields', () => {

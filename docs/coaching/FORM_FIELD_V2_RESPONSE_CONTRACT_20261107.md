@@ -44,7 +44,8 @@ Each `rep_splits` element is:
 - `position` is the canonical `session_pieces.position` and determines ordering.
 - `distanceMeters` is an integer. It comes from signed correction evidence first, then the filed piece distance. Missing geometry is not invented.
 - `durationMs` is an integer derived from exact duration when present.
-- `distanceSource` is `signed_correction`, `filed`, or `missing`.
+- `distanceSource` is `signed_correction` or `filed`.
+- A repetition without a positive measured or signed-corrected distance is omitted. It is never returned with `distanceMeters: null`, and no distance is invented.
 - The array contains every eligible work repetition, including 9, 10, 12 or more reps. The RPC does not truncate it.
 - Non-run posts, easy/aggregate-only runs, Strava-timed completions, and posts without trustworthy rep evidence return `[]`.
 
@@ -66,3 +67,14 @@ Until that activation PR lands and passes device verification, native clients re
 - Apply the migration only to an isolated acceptance database, then run `tests/form-speed/field_rep_projection_contract_test.sql`.
 - Independently verify rostered athlete, rostered coach, non-roster, anonymous, opt-out, revoked-post, and 9+ rep cases with signed-in identities.
 - Do not deploy this migration to production from this PR.
+
+### Local signed-in suite
+
+The repository includes synthetic fixtures and real Auth/PostgREST requests so the authorization gate does not require a paid hosted branch:
+
+1. Start an isolated local Supabase stack.
+2. Apply, in order, `tests/form-speed/field_v2_local_fixture.sql`, the Field v2 migration, and `tests/form-speed/field_rep_projection_contract_test.sql`.
+3. Export the local stack's API URL, anonymous key, and service-role key as `FIELD_TEST_API_URL`, `FIELD_TEST_ANON_KEY`, and `FIELD_TEST_SERVICE_ROLE_KEY`.
+4. Run `node --test tests/form-speed/field_v2_local_authorization.test.mjs`.
+
+The suite uses only synthetic identities and verifies anonymous denial, signed-in non-roster isolation, rostered access, existing sharing opt-out, revoked-post exclusion, Strength's empty split array, ordered 9+ rep preservation, signed distance corrections, omission of missing-distance reps, and the response-field allowlist.

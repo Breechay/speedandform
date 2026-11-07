@@ -56,6 +56,10 @@ language sql stable security definer set search_path='' as $function$
         and completion.timing_source is distinct from 'strava'
         and piece.kind='rep'
         and coalesce(piece.duration_seconds_exact,piece.duration_seconds::numeric)>0
+        and coalesce(correction.distance_m::numeric,
+          case piece.distance_unit when 'm' then piece.distance
+            when 'km' then piece.distance*1000
+            when 'mi' then piece.distance*1609.344 else null end)>0
         and (completion.source='coach_import' or exists (
           select 1 from public.planned_session_components work
           where work.version_id=completion.planned_session_version_id
