@@ -67,3 +67,61 @@ test('Console makes block scheduling and dated session publication reachable', (
   assert.match(coach, /payload\.scheduledOn > week\.ends_on/);
   assert.match(coach, /loadAthleteRecord\(selectedId, \{ coach: true, blockId: selectedBlockId \}/);
 });
+
+test('scheduling uses the coach RPC and confirms the nine generated weeks', async () => {
+  const authored = data.split('export async function scheduleTrainingBlock')[1]
+    .split('export async function fileSession')[0];
+  const schedule = new Function('supabase',
+    'return async function scheduleTrainingBlock' + authored)({
+      rpc: async (name, args) => {
+        assert.equal(name, 'schedule_training_block');
+        assert.equal(args.p_total_weeks, 9);
+        assert.equal(args.p_starts_on, '2026-12-07');
+        return { data: 'block-1', error: null };
+      },
+      from: table => ({
+        select() { return this; },
+        eq() { return this; },
+        async maybeSingle() {
+          assert.equal(table, 'training_blocks');
+          return { data: { id: 'block-1', starts_on: '2026-12-07', status: 'scheduled' }, error: null };
+        },
+        async order() {
+          assert.equal(table, 'training_weeks');
+          return { data: Array.from({ length: 9 }, (_, i) => ({ id: 'week-' + i })), error: null };
+        }
+      })
+    });
+  const result = await schedule({
+    athleteId: 'athlete-1', name: 'Donna Marathon', purpose: 'race_build',
+    totalWeeks: 9, startsOn: '2026-12-07', raceOn: '2027-02-07',
+    raceName: 'Donna Marathon', weekStartsOn: 1
+  });
+  assert.equal(result.id, 'block-1');
+  assert.equal(result.sourceReadbackVerified, true);
+  assert.equal(result.athleteFeedVerified, false);
+  assert.equal(result.nativeDeviceVerified, false);
+});
+
+test('the client refuses a second write when publication readback disagrees', async () => {
+  let writes = 0;
+  const authored = data.split('export async function scheduleTrainingBlock')[1]
+    .split('export async function fileSession')[0];
+  const schedule = new Function('supabase',
+    'return async function scheduleTrainingBlock' + authored)({
+      rpc: async () => { writes++; return { data: 'block-1', error: null }; },
+      from: () => ({
+        select() { return this; },
+        eq() { return this; },
+        async maybeSingle() {
+          return { data: { id: 'block-1', starts_on: '2026-12-07', status: 'draft' }, error: null };
+        },
+        async order() { return { data: [], error: null }; }
+      })
+    });
+  await assert.rejects(schedule({
+    athleteId: 'athlete-1', name: 'Donna Marathon', purpose: 'race_build',
+    totalWeeks: 9, startsOn: '2026-12-07', weekStartsOn: 1
+  }), /may have been saved/);
+  assert.equal(writes, 1);
+});
