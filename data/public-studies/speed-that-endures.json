@@ -179,8 +179,8 @@
         "late_goal_mi": 5,
         "pace": "6:48–6:52/mi",
         "partner_last_goal_mi": 2,
-        "status": "planned_pending_coach_review",
-        "review_reason": "November 7's late-pace test was not completed; November 9–15 travel and route conditions need current coach-plan review before keeping or revising the dose."
+        "status": "planned_coach_confirmed_unchanged",
+        "review_reason": "Coach confirmed the November 14 assignment remains unchanged after November 7. The next attempt will aim to control route interruptions, fluid access and fueling so execution can be evaluated more cleanly."
       }
     ],
     "taper": "Nov 21 ten easy; Nov 28 eight easy; no third late-fast long run",
