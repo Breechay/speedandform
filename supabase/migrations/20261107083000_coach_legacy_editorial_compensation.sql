@@ -224,5 +224,5 @@ $$;
 
 REVOKE ALL ON FUNCTION public.coach_legacy_editorial_queue(integer,integer) FROM PUBLIC, anon;
 REVOKE ALL ON FUNCTION public.coach_publish_legacy_editorial_corrections(jsonb) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.coach_legacy_editorial_queue(integer) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.coach_legacy_editorial_queue(integer,integer) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.coach_publish_legacy_editorial_corrections(jsonb) TO authenticated;
