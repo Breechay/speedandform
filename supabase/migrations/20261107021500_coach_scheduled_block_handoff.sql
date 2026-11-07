@@ -89,9 +89,9 @@ revoke all on function public.schedule_training_block(
 grant execute on function public.schedule_training_block(
   uuid,text,text,smallint,date,date,text,text,text,smallint) to authenticated;
 
--- The scheduler runs as the database owner, never as a browser token. It will
+-- The scheduler is private and runs as the database owner, never as a browser token. It will
 -- not promote an incomplete nine-week block or a block overlapping current work.
-create or replace function public.activate_due_training_blocks()
+create or replace function coach_audit_private.activate_due_training_blocks()
 returns integer
 language plpgsql security definer set search_path = public, pg_temp
 as $function$
@@ -141,14 +141,14 @@ begin
 end
 $function$;
 
-revoke all on function public.activate_due_training_blocks() from public, anon, authenticated;
+revoke all on function coach_audit_private.activate_due_training_blocks() from public, anon, authenticated;
 select cron.schedule(
   'form-next-running-block-handoff',
   '15 10 * * *',
-  'select public.activate_due_training_blocks();'
+  'select coach_audit_private.activate_due_training_blocks();'
 );
 
 comment on function public.schedule_training_block is
   'Coach-only future block with generated weeks. Preserves the active plan until dated handoff.';
-comment on function public.activate_due_training_blocks is
+comment on function coach_audit_private.activate_due_training_blocks is
   'Daily activation of fully authored scheduled blocks, without overlapping the previous active block.';
