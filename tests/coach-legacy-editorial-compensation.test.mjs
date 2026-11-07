@@ -69,3 +69,35 @@ test('browser publication stays bounded, reviewed and read back', () => {
   assert.match(ui, /published_version_id/);
   assert.match(ui, /readback\(items, data\?\.published\)/);
 });
+
+
+test('repeated threshold copy uses pacing cues rather than a generic substitute', () => {
+  const old = 'Two 12-minute threshold holds, a longer controlled effort with precise rhythm and no late-race surge.';
+  const reviewed = proposeContextualCopy({
+    original_title: 'Threshold',title:'Threshold',
+    original_intent:old,intent:old.replace('rhythm','effort'),
+    original_details:'',details:''
+  });
+  assert.equal(reviewed.intent,'Two 12-minute threshold holds. Hold controlled pace throughout without a late surge.');
+  assert.deepEqual(reviewed.needsReview, []);
+});
+
+test('repeated half-marathon copy keeps the evidence-specific pace purpose', () => {
+  const old = 'Hold sub-1:30 goal pace continuously with rhythm and manageable effort.';
+  const reviewed = proposeContextualCopy({
+    original_title:'Goal-pace hold',title:'Goal-pace hold',
+    original_intent:old,intent:old.replace('rhythm','effort'),
+    original_details:'',details:''
+  });
+  assert.equal(reviewed.intent,'Hold sub-1:30 goal pace continuously with control and manageable effort.');
+});
+
+test('unmatched contextual passages must still be handled by the coach', () => {
+  const old = 'Find a safe rhythm over the turns and keep it controlled.';
+  const reviewed = proposeContextualCopy({
+    original_title:'Easy corners',title:'Easy corners',
+    original_intent:old,intent:old.replace('rhythm','effort'),
+    original_details:'',details:''
+  });
+  assert.deepEqual(reviewed.needsReview, ['intent']);
+});
