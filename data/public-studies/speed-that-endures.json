@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source_path": "labs/speed-that-endures/index.html",
-  "source_url": "/labs/speed-that-endures/#oct27-jose",
+  "source_url": "/labs/speed-that-endures/#nov7-jose",
   "status": "ongoing",
   "latest_completed": {
     "date": "2026-09-29",
@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "3d06ee3f51c62ac5d8280880babb69a0c3431af9a4af0db9a534b8e72d5a3999",
+  "source_sha256": "c9e731af453513cacc83c80a2fde92ad86e6af46f0fcb526763a47eadea79ec2",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -81,7 +81,35 @@
     "mindset": "He said he still thinks about Brice’s cue, “Stop negotiating with yourself.” The cue is about appropriate effort and reengagement, not overriding pain or a needed training change.",
     "engagement": "José responded positively to the revision and called the continuous threshold a new challenge. This is engagement evidence, not readiness; the recovery gate remains explicit."
   },
-  "latest_jose_result_url": "/labs/speed-that-endures/#oct27-jose",
+  "latest_jose_result_url": "/labs/speed-that-endures/#nov7-jose",
+  "nov7_field_read": {
+    "date": "2026-11-07",
+    "source_type": "coach-supplied Garmin and Strava screenshots plus athlete messages; raw FIT and elapsed stop time not yet verified",
+    "jose": {
+      "prescribed": "14 mi: 11 easy, final 3 at 6:48–6:52/mi",
+      "actual_distance_mi": 12.28,
+      "moving_time": "1:41:21",
+      "average_pace": "8:15/mi",
+      "average_hr_bpm": 164,
+      "miles_1_6_average_pace": "8:21/mi",
+      "miles_7_12_average_pace": "8:11/mi",
+      "late_goal_pace_mi_completed": 0,
+      "athlete_report": "Treadmill-heavy training week, perceived early leg fatigue despite feeling good before the run, intermittent sense that the assignment was attainable, and retained confidence. Athlete reports are not verified causes.",
+      "coach_hypothesis": "Fresh faster-running capacity has not yet transferred reliably to a late fast finish; that remains untested and is confounded by environmental, fluid-access, route and recovery variables.",
+      "assessment": "The prescribed late goal-pace segment was not performed. Heat, limited water, bridge interruptions and early perceived muscular fatigue complicate the interpretation. Full-mile moving splits were fairly steady; this does not contradict the athlete's report of difficulty or establish late race-pace durability.",
+      "source_url": "/labs/speed-that-endures/#nov7-jose"
+    },
+    "hope": {
+      "prescribed": "8 mi easy, with 6–10 mi by feel in the individual return-to-running plan",
+      "actual_distance_mi": 10.02,
+      "total_time": "1:23:56",
+      "average_pace": "8:23/mi",
+      "average_hr_bpm": 162,
+      "assessment": "Endurance exposure completed, not a race-pace test. Follow-up recovery response is not yet verified.",
+      "source_url": "/labs/speed-that-endures/#nov7-hope"
+    },
+    "coach_plan_status": "No revised athlete Week has yet been published and read back through the authenticated coach workflow. The current FORM plan remains authoritative until that occurs."
+  },
   "latest_jose_completion": {
     "date": "2026-10-27",
     "athlete": "José",
@@ -139,7 +167,10 @@
         "easy_mi": 11,
         "late_goal_mi": 3,
         "pace": "6:48–6:52/mi",
-        "status": "planned"
+        "status": "partial_aerobic_completion_no_late_goal_pace",
+        "actual_total_mi": 12.28,
+        "late_goal_pace_mi_completed": 0,
+        "source_url": "/labs/speed-that-endures/#nov7-jose"
       },
       {
         "date": "2026-11-14",
@@ -148,7 +179,8 @@
         "late_goal_mi": 5,
         "pace": "6:48–6:52/mi",
         "partner_last_goal_mi": 2,
-        "status": "planned"
+        "status": "planned_pending_coach_review",
+        "review_reason": "November 7's late-pace test was not completed; November 9–15 travel and route conditions need current coach-plan review before keeping or revising the dose."
       }
     ],
     "taper": "Nov 21 ten easy; Nov 28 eight easy; no third late-fast long run",
