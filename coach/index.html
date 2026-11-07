@@ -8,7 +8,7 @@
   <title>Coach Console · FORM</title>
   <link rel="stylesheet" href="/private/graphite.css?v=44">
   <link rel="stylesheet" href="/athlete/workspace.css?v=2">
-  <link rel="stylesheet" href="/coach/workspace-light.css?v=1">
+  <link rel="stylesheet" href="/coach/workspace-light.css?v=2">
 </head>
 <body class="coach-page coach-page--programming">
   <a class="skip-link" href="#deskMain">Skip to current decision</a>
@@ -302,6 +302,51 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="blockDialog">
+    <form class="dialog-inner" id="blockForm">
+      <div class="dialog-head">
+        <div><p class="eyebrow">Programming</p><h2>Schedule a running block</h2></div>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <p class="field-hint" id="blockExisting"></p>
+      <p class="field-hint">A future block will not replace today's plan. Author and publish the work in every week; the handoff is dated and automatic.</p>
+      <label class="field-label lead">Block name
+        <input class="field-input" name="name" required minlength="3" placeholder="Donna Marathon · Race Build">
+      </label>
+      <div class="form-grid two">
+        <label class="field-label">Purpose
+          <select class="field-select" name="purpose" required>
+            <option value="race_build">Race build</option>
+            <option value="development">Development</option>
+          </select>
+        </label>
+        <label class="field-label">Weeks
+          <input class="field-input" type="number" name="totalWeeks" min="1" max="24" step="1" value="9" required>
+        </label>
+        <label class="field-label">Starts
+          <input class="field-input" type="date" name="startsOn" required>
+        </label>
+        <label class="field-label">Race date
+          <input class="field-input" type="date" name="raceOn">
+        </label>
+        <label class="field-label">Race name
+          <input class="field-input" name="raceName" placeholder="Donna Marathon">
+        </label>
+        <label class="field-label">Place
+          <input class="field-input" name="racePlace" placeholder="Jacksonville, FL">
+        </label>
+      </div>
+      <label class="field-label">What this build is for
+        <textarea class="field-textarea" name="goalStatement" rows="3" placeholder="Build marathon race-pace durability from the athlete's demonstrated running capacity."></textarea>
+      </label>
+      <p class="status-message" id="blockStatus" role="status"></p>
+      <div class="dialog-actions">
+        <button class="button" type="button" data-close-dialog>Cancel</button>
+        <button class="button primary" type="submit">Schedule block <span class="icon-arrow">&rarr;</span></button>
+      </div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="sessionDialog">
     <form class="dialog-inner" id="sessionForm">
       <div class="dialog-head">
@@ -310,7 +355,7 @@
       </div>
 
       <label class="field-label lead">Session
-        <input class="field-input" name="title" required placeholder="6 x 1 mile at race pace">
+        <input class="field-input" name="title" required placeholder="30 min comfortably steady">
       </label>
 
       <div class="form-grid two">
@@ -518,6 +563,6 @@
       <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Publish frozen excerpt <span class="icon-arrow">→</span></button></div>
     </form>
   </dialog>
-  <script type="module" src="/coach/coach.js?v=41"></script>
+  <script type="module" src="/coach/coach.js?v=42"></script>
 </body>
 </html>
