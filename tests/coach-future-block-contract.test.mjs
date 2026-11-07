@@ -25,14 +25,14 @@ test('scheduling is a separate coach-authorized write, never author_block', () =
   assert.match(migration, /status = 'scheduled'/);
   assert.match(migration, /one_scheduled_block_per_athlete_idx/);
   const scheduler = migration.split('function public.schedule_training_block(')[1]
-    .split('function public.activate_due_training_blocks()')[0];
+    .split('function coach_audit_private.activate_due_training_blocks()')[0];
   assert.doesNotMatch(scheduler, /set status = 'complete'/);
   assert.doesNotMatch(data.split('export async function scheduleTrainingBlock')[1]
     .split('export async function fileSession')[0], /rpc\('author_block'/);
 });
 
 test('automatic handoff requires publication in every week and does not overlap', () => {
-  const activation = migration.split('function public.activate_due_training_blocks()')[1];
+  const activation = migration.split('function coach_audit_private.activate_due_training_blocks()')[1];
   assert.match(activation, /s\.state = 'published'/);
   assert.match(activation, /s\.scheduled_on between w\.starts_on and w\.ends_on/);
   assert.match(activation, /weeks_with_work <> candidate\.total_weeks/);
@@ -41,7 +41,7 @@ test('automatic handoff requires publication in every week and does not overlap'
   assert.match(activation, /set status = 'active'/);
   assert.match(activation, /America\/New_York/);
   assert.match(activation, /cron\.schedule/);
-  assert.match(activation, /revoke all on function public\.activate_due_training_blocks\(\) from public, anon, authenticated/);
+  assert.match(activation, /revoke all on function coach_audit_private\.activate_due_training_blocks\(\) from public, anon, authenticated/);
 });
 
 test('coach data selects only the requested active or scheduled block', () => {
