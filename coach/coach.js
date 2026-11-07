@@ -159,7 +159,6 @@ function athleteMenuHtml() {
       <button class="control-item" id="setPassword" type="button">Set a password</button>
       <button class="control-item" id="linkApple" type="button" hidden>Link Apple</button>
       <button class="control-item" id="inviteAthlete" type="button">Invite athlete</button>
-      <button class="control-item" id="newBlock" type="button">Schedule next block</button>
       <button class="control-item" id="newSession" type="button">Add a session</button>
       <button class="control-item" data-console-action="file-run" type="button">File a run</button>
       <button class="control-item" data-console-action="file-strength" type="button">File strength</button>
@@ -893,6 +892,7 @@ function blockPickerHtml() {
         ${escapeHtml(block.name)} · ${block.status === 'scheduled' ? 'Starts ' : 'Current · '}${escapeHtml(formatDate(block.starts_on))}
       </option>`).join('')}
     </select>
+    <button id="newBlock" class="consoleBlockPicker__new" type="button">Schedule next block</button>
     <span class="consoleBlockPicker__note">${selectedRecord.block?.status === 'scheduled'
       ? 'Published work opens to the athlete on the block start date, after the current block.'
       : 'The current athlete plan stays live until the scheduled handoff.'}</span>
