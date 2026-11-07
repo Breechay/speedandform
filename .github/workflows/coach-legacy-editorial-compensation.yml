@@ -1,0 +1,33 @@
+name: Coach legacy editorial compensation
+on:
+  pull_request:
+    paths:
+      - 'coach/editorial/**'
+      - 'coach/index.html'
+      - 'supabase/migrations/*legacy_editorial_compensation.sql'
+      - 'tests/coach-legacy-editorial-compensation.test.mjs'
+      - '.github/workflows/coach-legacy-editorial-compensation.yml'
+  push:
+    branches: [production]
+    paths:
+      - 'coach/editorial/**'
+      - 'coach/index.html'
+      - 'supabase/migrations/*legacy_editorial_compensation.sql'
+      - 'tests/coach-legacy-editorial-compensation.test.mjs'
+      - '.github/workflows/coach-legacy-editorial-compensation.yml'
+permissions:
+  contents: read
+jobs:
+  corrective-publication:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse isolated coach editorial modules
+        run: |
+          node --check coach/editorial/editorial.js
+          node --check coach/editorial/review-rules.mjs
+      - name: Validate review and publication safety contracts
+        run: node --test tests/coach-legacy-editorial-compensation.test.mjs
