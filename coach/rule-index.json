@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_curated_on": "2026-11-04",
+  "last_curated_on": "2026-11-06",
   "purpose": "Locator of current FORM authority, not a replacement method or a parallel prescription database.",
   "rules": [
     {
@@ -98,6 +98,164 @@
       "authority": "coach/AGENT_OPERATIONS.md",
       "enforcement": "agent feedback capture decision and authorized observation writer",
       "verification": "tests/feedback-capture-policy.test.mjs"
+    },
+    {
+      "id": "FORM-ENDURANCE-013",
+      "title": "No 3 × 10-minute running intervals or mile repeats; prefer athlete-appropriate sustained work",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#sustained-work-selection--november-5-2026",
+      "enforcement": "Console and Labs typed session authoring preflight",
+      "verification": "private/session-editorial-standard.test.mjs; active published-session audit"
+    },
+    {
+      "id": "FORM-ADAPTATION-014",
+      "title": "Stimulate → Absorb → Progress: develop capacity to absorb increasingly demanding work",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#speed-adaptation-without-disabling-soreness--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "all FORM running and coupled Forge strength programming",
+      "enforcement": "coach authoring review; automated preflight proposed, not yet verified",
+      "verification": "whole-week and next-session review; athlete feedback after demanding exposures"
+    },
+    {
+      "id": "FORM-PROGRESSION-015",
+      "title": "Callus mind and body through earned, absorbed progression layers",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#callus-the-mind-and-body--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "all FORM running and coupled strength programming",
+      "enforcement": "coach authoring doctrine; no automated gate claimed",
+      "verification": "review layer purpose, actual execution, recovery, next-session readiness and athlete report"
+    },
+    {
+      "id": "FORM-MARATHON-016",
+      "title": "Enter marathon-specific long-run work from an absorbable two-hour foundation",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#marathon-entry-two-hours-comfortably--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "marathon-specific long-run block entry; athletes below foundation receive preparatory progression",
+      "enforcement": "coach-authored readiness and complete-week review; not an automatic first-run prescription",
+      "verification": "recent actual long-run evidence, athlete report, recovery and next-session capacity"
+    },
+    {
+      "id": "FORM-MARATHON-017",
+      "title": "Minimum 30 cumulative minutes at MP in any new marathon-pace workout; advanced and elite long-run families",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future FORM marathon-specific session authoring, not historical filings or half-marathon goal-pace work",
+      "enforcement": "coach/Labs session selection review; no automated preflight claimed",
+      "verification": "explicit MP segments sum to >=30 minutes or equivalent distance at evidence-based MP; elite 3 × 10K protected from default assignment; total weekly burden/fueling/recovery reviewed"
+    },
+    {
+      "id": "FORM-MARATHON-018",
+      "title": "Own 60–70 continuous MP before advanced broken/alternating work; progress recoveries toward floats",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "prospective FORM marathon-specific session selection and recovery design",
+      "enforcement": "coach/Labs progression review; automated checks pending",
+      "verification": "document stable 60–70 continuous MP with 24–72h recovery before M03/M04; preserve easy reset → shortened reset → coach-defined float; ensure float is slower than MP but not full recovery"
+    },
+    {
+      "id": "FORM-THRESHOLD-019",
+      "title": "Study the observed 20–30 s/mi threshold-to-half-capability difference without treating it as universal",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#the-observed-thresholdhalf-marathon-relationship--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "sub-1:30 half-marathon coaching cohort observation; individualized assessment only",
+      "enforcement": "coach evidence review; no automatic pace arithmetic",
+      "verification": "compare evidenced half capability, stable threshold session splits, perceived cost and next-session recovery; exceptions recorded"
+    },
+    {
+      "id": "FORM-DISTANCE-020",
+      "title": "One development thread from 5K to marathon with individualized continuous, recovery and late-work progression",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future multi-distance session authorship and half-marathon canon",
+      "enforcement": "coach/Labs method review; automated progression checks pending",
+      "verification": "review event demand, continuous capability, one or two progressive variables, easy-to-float recovery and whole-week cost"
+    },
+    {
+      "id": "FORM-LANGUAGE-021",
+      "title": "Prohibit the owner-disallowed term from new FORM program copy",
+      "owner": "Brice",
+      "authority": "method-bible/method.md#program-vocabulary-rule--november-6-2026",
+      "effective_date": "2026-11-06",
+      "scope": "new session title, intent, details, Week preview, coach-authored program and philosophy prose",
+      "enforcement": "private/session-editorial-standard.mjs covers session fields and Week-preview/presentation utilities; wider writer integration and legacy cleanup pending",
+      "verification": "private/session-editorial-standard.test.mjs targeted regression; legacy published-session audit dated November 6, 2026"
+    },
+    {
+      "id": "FORM-BASE-022",
+      "title": "Develop standalone easy-running duration beyond short quality-session elapsed time",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future running program authoring, particularly half and marathon foundations",
+      "enforcement": "coach/Labs complete-week review; no automatic minimum or daily hard gate",
+      "verification": "compare real continuous easy 50–60 then 60–75-minute capacity, easy long run, 24–72-hour recovery; permit shorter recovery days"
+    },
+    {
+      "id": "FORM-PACE-023",
+      "title": "Allow truly continuous pace/easy mile alternation distinct from banned classic mile repeats",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "half and marathon preparatory pace/easy session authoring",
+      "enforcement": "separate typed pace and easy segments, no stopped or full-rest classic mile sets; maintain ≥30 cumulative MP minutes for MP-specific work",
+      "verification": "private/session-editorial-standard.test.mjs; exact filed sequence and aggregate race-pace duration; do not mistake cumulative for continuous"
+    },
+    {
+      "id": "FORM-TRANSFER-024",
+      "title": "Use evidenced half-marathon pace duration to inform, not automatically approve, marathon-specific work",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "Orlando-to-Donna and analogous half-to-full athlete transitions",
+      "enforcement": "postrace coach evidence, recovery, fueling and long-run review; no automatic athlete plan edit",
+      "verification": "check clock-pace comparability, race effort, uninterrupted duration, two-hour easy capacity and closing-marathon durability separately"
+    },
+    {
+      "id": "FORM-SIX-025",
+      "title": "Grade descending 4→3→2 km ladder by work total and transition cost",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "confirmed descending marathon and scaled half ladder; prospective athlete selection",
+      "enforcement": "coach selection and full-session anatomy review; no automatic graduation",
+      "verification": "4+3+2 km single descent: 9 km work + 2 km easy; double descent: 18 km work + 5 km easy; half scaled descents; MP floor; floats and faster pace earned separately"
+    },
+    {
+      "id": "FORM-REHEARSAL-026",
+      "title": "Treat 90–100 minutes continuous MP as a conditional final major marathon rehearsal, not a race prediction",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "marathon and scaled half specific rehearsal selection",
+      "enforcement": "coach-authored recovery and taper review; mutually exclusive principal test or dated frozen-study amendment",
+      "verification": "actual evidenced MP/HMP, continuous segment, fueling, opening/closing cost, 24–72-hour recovery and preserved Closing-10K study"
+    },
+    {
+      "id": "FORM-DONNA-027",
+      "title": "Develop first official Donna plan from Orlando evidence while preserving frozen Last 10K authority",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "José/Hope official marathon plan design before any athlete-specific publish",
+      "enforcement": "individual coach authoring, date/version reconciliation and explicit principal test decision",
+      "verification": "Orlando result and recovery, current PT/load restrictions, week-by-week typed sessions, study amendment where required and athlete-visible readback"
+    },
+    {
+      "id": "FORM-CLEANUP-028",
+      "title": "Migrate legacy disallowed vocabulary via contextual versioned coach-authorized revisions",
+      "owner": "Brice",
+      "authority": "docs/coaching/FORM_LEGACY_VOCABULARY_AUDIT_20261106.md",
+      "effective_date": "2026-11-06",
+      "scope": "future published legacy planned-session wording, 322 active occurrences at the dated audit",
+      "enforcement": "current publisher cannot rewrite authored title/intent/details; protected migration workflow not yet available",
+      "verification": "editorial diff, no-dose-change assertion, full anatomy cloning, per-batch Week readback and zero active-copy audit"
     }
   ]
 }
