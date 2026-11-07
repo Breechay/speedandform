@@ -64,7 +64,7 @@
     "source_url": "/labs/speed-that-endures/#rhythm-read",
     "status": "Reusable continuous progression ends at 8 miles in training; athlete-specific late-run race-pace rehearsal and recovery monitoring follow."
   },
-  "source_sha256": "6b6ea0d8f873ba4cbeb130bf3767c692ff058b5c38069052966eaa6b47eb471d",
+  "source_sha256": "c9e731af453513cacc83c80a2fde92ad86e6af46f0fcb526763a47eadea79ec2",
   "previous_support": {
     "date": "2026-10-06",
     "label": "Oct 6",
@@ -94,7 +94,9 @@
       "miles_1_6_average_pace": "8:21/mi",
       "miles_7_12_average_pace": "8:11/mi",
       "late_goal_pace_mi_completed": 0,
-      "assessment": "The prescribed late goal-pace segment was not performed. Heat, limited water and bridge interruptions complicate the interpretation; the moving splits do not show a sustained late slowdown.",
+      "athlete_report": "Treadmill-heavy training week, perceived early leg fatigue despite feeling good before the run, intermittent sense that the assignment was attainable, and retained confidence. Athlete reports are not verified causes.",
+      "coach_hypothesis": "Fresh faster-running capacity has not yet transferred reliably to a late fast finish; that remains untested and is confounded by environmental, fluid-access, route and recovery variables.",
+      "assessment": "The prescribed late goal-pace segment was not performed. Heat, limited water, bridge interruptions and early perceived muscular fatigue complicate the interpretation. Full-mile moving splits were fairly steady; this does not contradict the athlete's report of difficulty or establish late race-pace durability.",
       "source_url": "/labs/speed-that-endures/#nov7-jose"
     },
     "hope": {
@@ -106,7 +108,7 @@
       "assessment": "Endurance exposure completed, not a race-pace test. Follow-up recovery response is not yet verified.",
       "source_url": "/labs/speed-that-endures/#nov7-hope"
     },
-    "coach_plan_status": "No athlete Week revision is authorized or verified by this public study record. The current FORM plan remains authoritative."
+    "coach_plan_status": "No revised athlete Week has yet been published and read back through the authenticated coach workflow. The current FORM plan remains authoritative until that occurs."
   },
   "latest_jose_completion": {
     "date": "2026-10-27",
