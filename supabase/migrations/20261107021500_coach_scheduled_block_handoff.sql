@@ -100,6 +100,7 @@ declare
   activated integer := 0;
   run_day date := (now() at time zone 'America/New_York')::date;
   weeks_with_work integer;
+  changed integer;
 begin
   for candidate in
     select b.id, b.athlete_id, b.starts_on, b.total_weeks
@@ -116,6 +117,7 @@ begin
       join public.planned_sessions s on s.week_id = w.id
        and s.athlete_id = candidate.athlete_id
        and s.state = 'published'
+       and s.scheduled_on between w.starts_on and w.ends_on
      where w.block_id = candidate.id and w.athlete_id = candidate.athlete_id;
     if weeks_with_work <> candidate.total_weeks then continue; end if;
     if exists (
@@ -130,7 +132,8 @@ begin
     update public.training_blocks
        set status = 'active'
      where id = candidate.id and status = 'scheduled';
-    get diagnostics activated = row_count;
+    get diagnostics changed = row_count;
+    activated := activated + changed;
     update public.training_weeks set state = 'in_progress'
      where block_id = candidate.id and week_number = 1;
   end loop;
