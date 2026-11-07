@@ -3,7 +3,7 @@
 -- This intentionally does not DELETE/UPDATE immutable history or change dose.
 -- Review and signed-in coach publication are separate from applying this migration.
 
-CREATE OR REPLACE FUNCTION public.coach_legacy_editorial_queue(p_limit integer DEFAULT 12)
+CREATE OR REPLACE FUNCTION public.coach_legacy_editorial_queue(p_limit integer DEFAULT 12, p_offset integer DEFAULT 0)
 RETURNS jsonb
 LANGUAGE plpgsql SECURITY DEFINER SET search_path = ''
 AS $$
@@ -15,7 +15,8 @@ BEGIN
     OR NOT public.coaching_sync_enabled() THEN
     RAISE EXCEPTION 'Active coaching administrator required' USING ERRCODE = '42501';
   END IF;
-  IF p_limit IS NULL OR p_limit < 1 OR p_limit > 25 THEN
+  IF p_limit IS NULL OR p_limit < 1 OR p_limit > 25
+    OR p_offset IS NULL OR p_offset < 0 OR p_offset > 5000 THEN
     RAISE EXCEPTION 'Queue limit must be between 1 and 25' USING ERRCODE = '22023';
   END IF;
 
@@ -44,7 +45,7 @@ BEGIN
       AND cur.change_reason = 'Owner-approved FORM editorial terminology cleanup; prior version preserved'
       AND public.is_coach_member(s.athlete_id)
     ORDER BY s.scheduled_on, s.id
-    LIMIT p_limit
+    LIMIT p_limit OFFSET p_offset
   )
   SELECT COALESCE(jsonb_agg(jsonb_build_object(
     'session_id', session_id, 'athlete_id', athlete_id,
@@ -58,7 +59,8 @@ BEGIN
   ) ORDER BY scheduled_on, session_id), '[]'::jsonb)
   INTO items FROM candidates;
 
-  RETURN jsonb_build_object('items', items, 'native_device_verified', false);
+  RETURN jsonb_build_object('items', items, 'offset', p_offset,
+    'native_device_verified', false);
 END;
 $$;
 
@@ -220,7 +222,7 @@ BEGIN
 END;
 $$;
 
-REVOKE ALL ON FUNCTION public.coach_legacy_editorial_queue(integer) FROM PUBLIC, anon;
+REVOKE ALL ON FUNCTION public.coach_legacy_editorial_queue(integer,integer) FROM PUBLIC, anon;
 REVOKE ALL ON FUNCTION public.coach_publish_legacy_editorial_corrections(jsonb) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.coach_legacy_editorial_queue(integer) TO authenticated;
 GRANT EXECUTE ON FUNCTION public.coach_publish_legacy_editorial_corrections(jsonb) TO authenticated;
