@@ -1,6 +1,8 @@
 // This file proposes copy for a HUMAN coach to compare to the historical
 // authored wording. It never submits a publish call or alters a workout dose.
 const replacements = Object.freeze([
+  [/\bKeep an easy weekend endurance rhythm\./gi, 'Keep the weekend long run comfortably easy.'],
+  [/\bMaintain an easy running rhythm\./gi, 'Maintain easy running at a conversational pace.'],
   [/\bweekly rhythm\b/gi, 'weekly practice'],
   [/\bswim rhythm\b/gi, 'stroke timing'],
   [/\brunning rhythm\b/gi, 'running pace'],
@@ -11,8 +13,6 @@ const replacements = Object.freeze([
   [/\bcontrolled rhythm\b/gi, 'controlled pace'],
   [/\brepeat your rhythm\b/gi, 'repeat your prescribed pace'],
   [/\bhold the rhythm\b/gi, 'hold the prescribed pace'],
-  [/\bthe rhythm\b/gi, 'the prescribed pace'],
-  [/\byour rhythm\b/gi, 'your pace']
 ]);
 
 const forbidden = /\brhythms?\b/i;
