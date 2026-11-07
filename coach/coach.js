@@ -903,7 +903,9 @@ function heroHtml() {
   const athlete = selectedRecord.athlete;
   const mark = selectedRecord.primaryMark;
   const raceOn = selectedRecord.block?.race_on;
-  const goal = [athlete.goal_label, athlete.target_event, raceOn ? fullDate(raceOn) : '']
+  const goal = (selectedRecord.block?.status === 'scheduled'
+    ? [selectedRecord.block.race_name, raceOn ? fullDate(raceOn) : '']
+    : [athlete.goal_label, athlete.target_event, raceOn ? fullDate(raceOn) : ''])
     .filter(Boolean).join(' · ');
 
   return `<section class="consoleHero">
@@ -1566,6 +1568,7 @@ function openBlockDialog() {
   if (active?.ends_on) {
     const day = new Date(active.ends_on + 'T12:00:00Z');
     day.setUTCDate(day.getUTCDate() + 1);
+    while (day.getUTCDay() !== 1) day.setUTCDate(day.getUTCDate() + 1);
     blockForm.elements.startsOn.value = day.toISOString().slice(0, 10);
   }
   blockDialog.showModal();
@@ -1606,7 +1609,8 @@ function openSession(plannedSessionId = null) {
   sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
   sessionForm.reset();
   revisingSessionId = plannedSessionId;
-  const weeks = selectedRecord.weeks;
+  const weeks = selectedRecord.weeks.slice().sort((a, b) => a.week_number - b.week_number);
+  sessionForm.elements.scheduledOn.required = !plannedSessionId;
   sessionForm.elements.weekId.innerHTML = weeks
     .map((week) => `<option value="${week.id}">Week ${week.week_number}${week.starts_on ? ` · ${escapeHtml(formatDate(week.starts_on))}` : ''}</option>`)
     .join('');
@@ -2060,6 +2064,16 @@ sessionForm.addEventListener('submit', async (event) => {
     rpeHigh: f.rpeHigh.value ? Number(f.rpeHigh.value) : null,
     changeReason: f.changeReason.value.trim() || null
   };
+
+  if (!revisingSessionId) {
+    const week = selectedRecord.weeks.find(week => week.id === payload.weekId);
+    if (!week || !payload.scheduledOn || payload.scheduledOn < week.starts_on ||
+        payload.scheduledOn > week.ends_on) {
+      status.textContent = 'Choose a date inside the selected week. Work without a date cannot reach the athlete.';
+      status.className = 'status-message error';
+      return;
+    }
+  }
 
   // Untouched means untouched: the field is omitted, revise_session carries the
   // previous anatomy forward, and nothing this form cannot express is lost. A new
