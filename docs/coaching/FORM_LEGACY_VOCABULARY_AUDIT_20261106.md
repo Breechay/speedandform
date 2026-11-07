@@ -63,3 +63,15 @@ Readback at the time of the failed rollback showed zero downstream references to
 The candidate solution on `fix/coach-auth-editorial-compensation-20261107` includes an authenticated, stale-version checked, bounded correction RPC, a coach review surface, and regression coverage. The database logic compiled and denied both unauthenticated test calls inside an automatically rolled-back production transaction. **No authenticated positive publication test and no athlete-device acceptance has occurred.** The new correction function has not been released to production from this branch.
 
 For acceptance and incident recording, see `docs/coaching/FORM_EDITORIAL_COMPENSATION_20261107.md` and [#521](https://github.com/Breechay/speedandform/issues/521). Do not close cleanup based on a zero substring count alone.
+
+
+## November 7 signed-in corrective workflow release
+
+The source statement that the new correction function "has not been released" above is a historic snapshot written before the subsequent same-day deployment.
+
+- [PR #534](https://github.com/Breechay/speedandform/pull/534) was merged into production as commit `57b763452809ca47df7ec77e8a8adfa55c75534b`.
+- Supabase migration `coach_legacy_editorial_compensation_20261107` installed the two authenticated, bounded corrective RPCs. Database permission readback: `anon` cannot invoke them, while authenticated coaches are subject to administrator and per-athlete membership checks.
+- Netlify production deployment `6aeed5165994f5f412e38e07` reached ready for the same commit.
+- The dedicated correction workflow CI passed; other repository-wide generated-Bible/styling assertions remain independently unresolved.
+
+**Not yet complete:** Signed-in coach publication of the **322** context-reviewed follow-on session versions, full athlete Week readback, and native verification. The 322 mechanically authored incident versions are still current; no protected history was deleted or overwritten. See [issue #521](https://github.com/Breechay/speedandform/issues/521) and `FORM_EDITORIAL_COMPENSATION_20261107.md` for execution receipts and stop conditions.
