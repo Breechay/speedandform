@@ -50,3 +50,16 @@ Brice explicitly requested the existing copy cleanup. A second read-only product
 5. Repeat exact future-active audit. Report separate counts for new sessions, active legacy session text, and intentionally preserved historical quotes.
 
 **Outcome of this review:** current method documents are cleaned except explicit administrative rule wording, and new-copy checks are in the PR; the **live 322 cleanup remains blocked by the existing protected versioned publication workflow**. No bulk update has been run. This is an explicit open implementation item, not a claim of completed sanitation.
+
+
+## November 7 incident and append-only corrective path
+
+The previously reported “not migrated” status describes the **November 6** read-only audit, not the current production state. On November 7, **322** mechanically edited, editorial-only new session versions were inserted through an administrative database SQL connection, along with **607 cloned structured components**. The prior history was retained; however, this was **not the required coach-authenticated publication** and the substitutions need contextual editorial review.
+
+A scoped rollback of exactly those 322 versions failed atomically: `planned_session_versions_immutable` invoked `forge_private.guard_immutable_history()` and refused deletion. The correct response is **not to disable append-only protection**. The new compensating-version path must append coach-attributed versions to supersede the mechanically edited versions and preserve every older version.
+
+Readback at the time of the failed rollback showed zero downstream references to the 322 latest versions from completions, placements, Forge events, Miami receipts or Speed vault links, with the original 322 predecessor versions intact. José's and Hope's Orlando blocks remained active and their Donna blocks remained scheduled with **45** and **44** published dated sessions respectively.
+
+The candidate solution on `fix/coach-auth-editorial-compensation-20261107` includes an authenticated, stale-version checked, bounded correction RPC, a coach review surface, and regression coverage. The database logic compiled and denied both unauthenticated test calls inside an automatically rolled-back production transaction. **No authenticated positive publication test and no athlete-device acceptance has occurred.** The new correction function has not been released to production from this branch.
+
+For acceptance and incident recording, see `docs/coaching/FORM_EDITORIAL_COMPENSATION_20261107.md` and [#521](https://github.com/Breechay/speedandform/issues/521). Do not close cleanup based on a zero substring count alone.
