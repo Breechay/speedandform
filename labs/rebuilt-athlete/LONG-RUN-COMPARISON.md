@@ -1,6 +1,6 @@
 # Rebuilt Athlete: long-run observations
 
-Updated 2026-10-17 with the Palm Beach seven-mile outing and recovery context. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
+Updated 2026-11-07 with the Venetian nine-mile outing; earlier Palm Beach and other observations remain below. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
 
 **Speed exposure tracker opened October 18:** [15-second pace-band, interval-distance and recovery ledger](SPEED-EXPOSURE-LEDGER-20261018.md) now holds the October 17 road baseline and both October 18 Garmin sessions. Detailed pace-band minutes are pending lap or original FIT evidence; this long-run companion remains the dated outing narrative. The new ledger is observational only and does not update any workout or website.
 
@@ -276,3 +276,27 @@ Original Garmin Forerunner 965 FIT activity **24837024233**: **10.42 mi / 1:28:1
 FIT lap metrics in those final miles: cadence **170 spm**, step length **1.247 / 1.266 m**, ground contact **251.6 / 248.8 ms**. Speed rose at the same time, so this does not establish better economy or fatigue resistance at matched speed. The [Speed Exposure Ledger](SPEED-EXPOSURE-LEDGER-20261018.md#october-24--alo-social-run-plus-late-pace-exposure) preserves smoothed time-in-pace calculation and the full method.
 
 The outing added longer running and faster late work to a week that already contained Oct 22 speed and Oct 23 strength. Next-day tibial/lower-limb and general recovery have not yet been reported. Preserve the unknown. Broader social and hospitality observations are separate from the physical training judgment.
+
+## November 7 · Nine for breakfast with Adrian on the Venetian
+
+**Purpose and company.** Brice ran with Adrian on the Venetian Causeway / Miami Beach route, starting at approximately 7:11 AM. He described being physically worn down by the prior training week, yet was pleased with the pace and used the outing as a coaching comparison with José's separate long run. Company, total distance and run structures were different, so the comparison is a question about training transfer rather than a matched test or ranking of the two runners. There is no fresh first-person report of leg pain, mechanics, exertion RPE or next-day recovery from this outing; those are unknown.
+
+**Strava screenshots supplied November 7:** 9.01 mi, 1:08:35 moving time, 7:37/mi average moving pace, 153 bpm average HR and 112 ft displayed elevation gain. The pace detail displays **1:19:22 elapsed** (about 10:47 longer than moving time) and **8:48/mi elapsed pace**. These moving and elapsed measures are different and must not be interchanged in a comparison with José, whose elapsed time has not yet been verified.
+
+| Mile | Displayed moving pace | Displayed average HR |
+| --- | --- | --- |
+| 1 | 7:53/mi | 126 bpm |
+| 2 | 7:33/mi | 135 bpm |
+| 3 | 7:31/mi | 140 bpm |
+| 4 | 7:37/mi | 139 bpm |
+| 5 | 7:39/mi | 161 bpm |
+| 6 | 7:28/mi | 174 bpm |
+| 7 | 7:31/mi | 172 bpm |
+| 8 | 7:28/mi | 173 bpm |
+| 9 | 7:46/mi | 162 bpm |
+
+**Within-run read.** After a slower opening mile, complete-mile moving paces clustered from 7:28 to 7:46/mi. The displayed HR increased from an average of about 135 bpm in miles 1–4 to about 170 bpm across miles 6–9; the whole-run 153 bpm average conceals that late difference. Neither changing HR nor faster moving pace establishes a specific threshold, economy change or physiological cause. The final 0.01 mile is not included in this full-mile series.
+
+**The coaching comparison is not a personal performance contest.** José completed 12.28 mi at 8:15/mi moving pace on a different route, reported substantial sun/water/bridge interruption costs and did not run the planned three miles at goal pace. Brice's faster nine-mile average does not establish that José lacks aerobic fitness, and a watch-estimated V̇O₂max difference (José reportedly about 56, Brice about 53–54) does not equal a calibrated pace comparison. Brice's actionable hypothesis is to develop more continuous, late fast running within an individualized plan, with recovery and conditions documented. It remains a hypothesis, not an explanation demonstrated by either outing.
+
+**Provenance:** Brice's November 7 Strava screenshots show the map, 9.01-mi summary, nine mile splits and separate moving/elapsed details; his same-day coaching account supplies the prior-week fatigue, Adrian company and comparative question. The raw FIT and next-morning lower-leg status have not been verified. This record changes no FORM plan, calendar, coach filing or live website by itself.
