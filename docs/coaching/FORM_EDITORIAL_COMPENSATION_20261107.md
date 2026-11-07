@@ -33,5 +33,12 @@ Publication **appends** a new coach-attributed session version; it does not dele
 - A bulk or unauthorized SQL correction is not a legitimate publish even if the text displays correctly.
 - The existing `coach_publish_editorial_copy` bulk function may fill blank intentions but must not be used to replace already-authored copy.
 
-## Live status
-The source changes here are a **candidate**, not a claim of production release or remediation completion. The append-only incident versions remain until correctly superseded by new coach-authenticated versions.
+## Live status · November 7 production release
+- [PR #534](https://github.com/Breechay/speedandform/pull/534) merged to `production` at `57b763452809ca47df7ec77e8a8adfa55c75534b`.
+- Supabase migration `coach_legacy_editorial_compensation_20261107` applied. Database readback shows both RPCs are SECURITY DEFINER, `anon` cannot execute them, and `authenticated` can invoke them subject to coach checks.
+- Netlify deployment `6aeed5165994f5f412e38e07` reached `ready` for the same commit.
+- The dedicated `Coach legacy editorial compensation` CI workflow passed. The older broad Coach workspace/Method Bible test retains its two unrelated failures.
+- The review screen is included at `/coach/editorial/`, but no signed-in browser acceptance was completed in this Chat session.
+- **Still open:** all 322 unauthorized incident versions remain current until 322 legitimate, contextually reviewed, coach-authenticated follow-on versions are published. No successful positive authenticated publication or native iPhone acceptance has been claimed.
+
+Issue [#521](https://github.com/Breechay/speedandform/issues/521) owns the remaining execution and final sign-off.
