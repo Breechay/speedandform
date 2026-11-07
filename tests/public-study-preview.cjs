@@ -8,7 +8,7 @@ assert.ok(Date.parse(s.latest_completed.date+'T23:59:59Z')<Date.now(),'Latest mi
 assert.ok(['scheduled','completed'].includes(s.next_distance_ask.state),'Distance ask has an explicit publication state');
 assert.ok(s.next_distance_ask.date>s.latest_completed.date,'Later individual ask remains separate from the paired benchmark');
 if(s.next_distance_ask.state==='completed'){
- const result=s.latest_jose_completion;
+ const result=s.jose_oct20_milestone;
  assert.ok(result,'Completed individual ask requires a sourced result');
  assert.equal(s.next_distance_ask.date,result.date);
  assert.ok(source.includes(s.next_distance_ask.work_time),'Completed ask time must exist in the study');
@@ -29,6 +29,11 @@ assert.equal(s.homepage_feature.distance_mi,8);
 assert.equal(s.homepage_feature.athlete,'José');
 assert.ok(source.includes(s.homepage_feature.work_time),'Featured time exists in the approved study');
 assert.match(s.homepage_feature.next_update,/result is verified/,'Next homepage update waits for verified race evidence');
+assert.equal(s.nov7_field_read.jose.actual_distance_mi,12.28,'José execution keeps the measured partial distance');
+assert.equal(s.nov7_field_read.jose.late_goal_pace_mi_completed,0,'Unperformed late goal pace is not credited');
+assert.equal(s.nov7_field_read.hope.actual_distance_mi,10.02,'Hope endurance result remains individual');
+assert.ok(source.includes(s.nov7_field_read.jose.moving_time),'José result appears in the public study');
+assert.ok(source.includes(s.nov7_field_read.hope.total_time),'Hope result appears in the public study');
 assert.match(home,/href="\/labs\/speed-that-endures\/"/,'Study remains directly accessible');
 assert.ok(source.includes(s.latest_completed.date),'Dated study evidence remains in its owning source');
 assert.ok(run.includes('href="/coaching/apply/"'),'Coaching leads to real separate inquiry');
