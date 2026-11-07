@@ -490,6 +490,10 @@ export async function loadAttentionFor(athleteId) {
   return data || [];
 }
 
+export function publishedCalendarSessions(sessions) {
+  return (sessions || []).filter(session => session.state === 'published' && !session.withdrawn_at);
+}
+
 export async function loadAthleteRecord(athleteId, { coach = false, blockId = null } = {}) {
   const queries = [
     supabase.from('athletes').select('*').eq('id', athleteId).single(),
@@ -610,6 +614,9 @@ export async function loadAthleteRecord(athleteId, { coach = false, blockId = nu
   const weeks = result(weeksResponse.data, weeksResponse.error)
     .filter(week => week.block_id === selectedBlock?.id);
   const blockSessions = sessions.filter(session => weeks.some(week => week.id === session.week_id));
+  // Keep cancelled and replaced versions for completions/history, but never
+  // offer withdrawn prescriptions as current work in the coach calendar.
+  const calendarSessions = publishedCalendarSessions(blockSessions);
   // "Current" is the week in progress, or the one today falls inside — not the
   // highest week number, which becomes week 8 the moment a block is authored ahead.
   const today = new Date().toISOString().slice(0, 10);
@@ -638,12 +645,12 @@ export async function loadAthleteRecord(athleteId, { coach = false, blockId = nu
     nextWeek,
     // Sessions belong to a week. Rendering them unfiltered puts the whole block
     // on one screen the moment more than one week exists.
-    currentSessions: currentWeek ? blockSessions.filter((item) => item.week_id === currentWeek.id) : blockSessions,
+    currentSessions: currentWeek ? calendarSessions.filter((item) => item.week_id === currentWeek.id) : calendarSessions,
     sessionsByWeek: weeks.reduce((map, week) => {
-      map[week.id] = blockSessions.filter((item) => item.week_id === week.id);
+      map[week.id] = calendarSessions.filter((item) => item.week_id === week.id);
       return map;
     }, {}),
-    nextSessions: nextWeek ? blockSessions.filter((item) => item.week_id === nextWeek.id) : [],
+    nextSessions: nextWeek ? calendarSessions.filter((item) => item.week_id === nextWeek.id) : [],
     sessions: blockSessions,
     baselines: result(baselinesResponse.data, baselinesResponse.error),
     measurements: result(measurementsResponse.data, measurementsResponse.error),

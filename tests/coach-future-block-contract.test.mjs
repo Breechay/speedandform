@@ -55,6 +55,23 @@ test('coach data selects only the requested active or scheduled block', () => {
   assert.match(data, /do not duplicate|attempting another write/i);
 });
 
+test('cancelled or withdrawn sessions remain in history but never render as active calendar choices', () => {
+  const helper = data.match(/export function publishedCalendarSessions\(sessions\) \{([\s\S]*?)\n\}/);
+  assert.ok(helper, 'calendar session projector remains explicit');
+  const visible = new Function('sessions', helper[1]);
+  const records = [
+    { id: 'old', state: 'cancelled' },
+    { id: 'revised', state: 'changed' },
+    { id: 'withdrawn', state: 'published', withdrawn_at: '2026-11-01' },
+    { id: 'current', state: 'published' }
+  ];
+  assert.deepEqual(visible(records).map(s => s.id), ['current']);
+  assert.equal(records.length, 4, 'history is retained, not deleted');
+  assert.match(data, /sessions: blockSessions/);
+  assert.match(data, /map\[week.id\] = calendarSessions.filter/);
+  assert.match(data, /currentSessions: currentWeek \? calendarSessions.filter/);
+});
+
 test('Console makes block scheduling and dated session publication reachable', () => {
   assert.match(html, /id="blockDialog"/);
   assert.match(html, /id="blockForm"/);
