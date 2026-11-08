@@ -136,12 +136,14 @@ publisher, regardless of whether a model drafted the text.
   conversation. Wait for Brice's explicit approval of that exact batch before
   inserting or unarchiving messages or scheduling notifications. Never infer
   approval from an earlier request to automate Halo.
-- **No invented headline.** Do not create a poetic, motivational, or editorial
-  title such as "Find the line", "Build the engine", "Quiet speed", "Two strong
-  tens", or "Stay with the rhythm". Halo is a message from a coach, not a
-  campaign. The athlete-facing design should omit the headline entirely. If a
-  required database field temporarily needs a title, use only a literal
-  session/date descriptor internally and do not surface it as a slogan.
+- **Only the approved weekly title.** The exact functional label
+  **"This week’s focus"** is approved for this weekly-note batch. Keep it
+  visually secondary to the body. The native display must whitelist that
+  label and hide all other stored titles, including old decorative slogans
+  like "Find the line", "Build the engine", "Quiet speed", "Two strong tens",
+  and "Stay with the rhythm". A new title category requires Brice's explicit
+  review and corresponding presentation tests. No generated headline may be
+  inferred from the message body.
 - **No filler body.** Name the current, published session and correct pace in
   the athlete's unit; add at most one specific, useful reminder. Do not turn
   unsupported guesses into first-person coaching. If the Week already says
