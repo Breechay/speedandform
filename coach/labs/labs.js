@@ -582,7 +582,7 @@ function dossierRosterHtml(activeSlug) {
           : '';
       return `<button class="ccAthlete${entry.slug === activeSlug ? ' active' : ''}" type="button"
         data-slug="${escapeHtml(entry.slug)}">
-        <span class="ccAvatar">${escapeHtml(initials(entry.first_name))}</span>
+        <span class="ccAvatar"><span class="ccAvatar__initial">${escapeHtml(initials(entry.first_name))}</span><img data-portrait="${escapeHtml(entry.slug)}" alt="" loading="lazy"></span>
         <span><b>${escapeHtml(coachRosterLabel(entry, bench))}</b>${context ? `<small>${escapeHtml(context)}</small>` : ''}</span>
       </button>`;
     }).join('')}</div>
@@ -2099,8 +2099,17 @@ function paint() {
   document.querySelectorAll('[data-portrait]').forEach((img) => {
     const athlete = portraits.get(img.dataset.portrait);
     const url = athlete?.portraitUrl;
-    if (url) { img.setAttribute('src', url); img.classList.add('has-photo'); }
-    else { img.removeAttribute('src'); img.classList.remove('has-photo'); }
+    // Only reveal a portrait after its pixels load. A missing/expired signed
+    // URL must leave the person's initials visible, never a broken image.
+    img.onload = () => { if (img.naturalWidth > 0) img.classList.add('has-photo'); };
+    img.onerror = () => img.classList.remove('has-photo');
+    if (url) {
+      if (img.getAttribute('src') !== url) {
+        img.classList.remove('has-photo');
+        img.setAttribute('src', url);
+      }
+      if (img.complete && img.naturalWidth > 0) img.classList.add('has-photo');
+    } else { img.removeAttribute('src'); img.classList.remove('has-photo'); }
     if (!athlete) return;
     img.style.setProperty('--px', `${athlete.portrait_x ?? 50}%`);
     img.style.setProperty('--py', `${athlete.portrait_y ?? 40}%`);
