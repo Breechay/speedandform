@@ -1,7 +1,7 @@
 /* Shared public navigation. Ink and stone, with the page visible beside the drawer.
    The :target fallback keeps navigation available without JavaScript.
    Photographic editorial treatment; each public destination appears once. */
-.sf-menu{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;text-align:left;font:400 17px/1.5 "Inter Tight",Arial,sans-serif;letter-spacing:normal;text-transform:none}
+.sf-menu{position:fixed;inset:0;z-index:10000;visibility:hidden;pointer-events:none;overflow:hidden;text-align:left;font:400 17px/1.5 "Inter Tight",Arial,sans-serif;letter-spacing:normal;text-transform:none}
 .sf-menu,.sf-menu *{box-sizing:border-box;transition-property:none}
 .sf-menu .sf-menu-group{width:auto;max-width:none;margin:0;background:transparent;border:0;border-top:1px solid rgba(22,25,22,.18);border-radius:0;box-shadow:none}
 .sf-menu .sf-menu-group ul,.sf-menu .sf-menu-group li{margin:0;padding:0;list-style:none;border:0;background:none}
