@@ -207,3 +207,21 @@ export function workMiles(version) {
   });
   return saw ? Number(miles.toFixed(2)) : null;
 }
+
+// The work figure in a session detail is not the entire run. Preserve the
+// coach's distance unit where all work parts are measured in the same unit,
+// and never present a partial (distance + timed) workout as a full work total.
+export function sessionWorkDistanceLabel(version) {
+  const parts = (version?.components || []).filter((part) => part.role === 'work');
+  if (!parts.length || parts.some((part) => part.distance == null
+      || !Number.isFinite(Number(part.distance))
+      || !['mi', 'km'].includes(part.distance_unit))) return '';
+  const units = new Set(parts.map((part) => part.distance_unit));
+  if (units.size > 1) {
+    const miles = workMiles(version);
+    return miles == null ? '' : `${Number(miles.toFixed(2))} mi`;
+  }
+  const amount = parts.reduce((total, part) => total
+    + Number(part.distance) * (part.shape === 'repetitions' ? (part.repeat_count || 1) : 1), 0);
+  return `${Number(amount.toFixed(2))} ${parts[0].distance_unit}`;
+}

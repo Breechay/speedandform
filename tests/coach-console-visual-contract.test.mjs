@@ -124,3 +124,14 @@ test('meetup shows useful details, with published-run selection disclosed when n
   assert.match(miamiClient, /<dl class="meetingFacts">/);
   assert.match(miamiClient, /\$\('runLinkControls'\)\.open = !r/);
 });
+
+test('session drawer distinguishes a measured work dose from an unverified session total', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  assert.match(labs, /version\?\.prescribed_distance != null \? sessionTotalLabel\(version\) : ''/);
+  assert.match(labs, /const workLabel = sessionWorkDistanceLabel\(version\)/);
+  assert.match(labs, /<b>Structured work<\/b>/);
+  assert.match(css, /\.dFigs\{display:flex;[^}]*border-top:1px solid var\(--edge\)/s);
+  assert.match(css, /\.dPart\{[^}]*border-top:1px solid var\(--edge\)/s);
+  assert.match(css, /\.dLab\{font-size:12px;/);
+});

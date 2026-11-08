@@ -25,7 +25,7 @@ import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, file
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
 import { filingVersionContext, filingVersionExplanation } from '/private/filing-version-context.mjs';
-import { authoredMiles, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -2030,8 +2030,10 @@ function drawerHtml(session) {
   const pieces = completion ? (record.pieces || []).filter((piece) => piece.completion_id === completion.id) : [];
   const rung = rungFor(session, record.primaryMark);
   const week = (record.weeks || []).find((item) => item.id === session.week_id);
-  const whole = authoredMiles(version);
-  const work = workMiles(version);
+  // Component distance is only the work dose when warm-up, cool-down or
+  // recovery are timed. Display SESSION only when the author supplied a total.
+  const totalLabel = version?.prescribed_distance != null ? sessionTotalLabel(version) : '';
+  const workLabel = sessionWorkDistanceLabel(version);
   return `<div class="dHead">
       <div>
         <div class="dWhen">${escapeHtml([week ? `Week ${week.week_number}` : null,
@@ -2049,22 +2051,22 @@ function drawerHtml(session) {
       </div>
     </div>
     <div class="dBody">
-      ${whole != null ? `<div class="dFigs">
-        <div><b>SESSION</b><strong>${escapeHtml(Number(whole.toFixed(2)))} mi</strong></div>
-        ${work != null ? `<div><b>WORK</b><strong>${escapeHtml(Number(work.toFixed(2)))} mi</strong></div>` : ''}
+      ${totalLabel || workLabel ? `<div class="dFigs">
+        ${totalLabel ? `<div><b>Session total</b><strong>${escapeHtml(totalLabel)}</strong></div>` : ''}
+        ${workLabel ? `<div><b>Structured work</b><strong>${escapeHtml(workLabel)}</strong></div>` : ''}
       </div>` : ''}
       ${version?.intent ? `<p class="dIntent">${escapeHtml(version.intent)}</p>` : ''}
-      <div class="dLab">${filing?.filed ? 'FILED PRESCRIPTION' : 'ANATOMY'}</div>
+      <div class="dLab">${filing?.filed ? 'Filed prescription' : 'Anatomy'}</div>
       ${anatomyRows(version)}
-      ${version?.details ? `<div class="dLab">DETAILS</div><p class="dText">${escapeHtml(version.details)}</p>` : ''}
-      <div class="dLab">WHAT CAME BACK</div>
+      ${version?.details ? `<div class="dLab">Details</div><p class="dText">${escapeHtml(version.details)}</p>` : ''}
+      <div class="dLab">What came back</div>
       ${completion
         ? `<p class="dText">${escapeHtml(ranLine(completion, pieces) || 'Filed with no measurements.')}</p>
            ${completion.athlete_note ? `<p class="dSaid">“${escapeHtml(completion.athlete_note)}”</p>` : ''}`
         : '<p class="dNone">Nothing filed.</p>'}
       ${asCoach() && filing && filing.state !== 'current'
         ? `<p class="dAudit">${escapeHtml(filingVersionExplanation(filing))}</p>` : ''}
-      ${asCoach() && versions.length > 1 ? `<div class="dLab">REVISIONS</div>
+      ${asCoach() && versions.length > 1 ? `<div class="dLab">Revisions</div>
         <div class="dRevs">${versions.map((item) => `<div class="dRev">
           <b>v${escapeHtml(item.version_number)}</b>
           <span>${escapeHtml(item.change_reason || (item.version_number === 1 ? 'Authored.' : ''))}</span>

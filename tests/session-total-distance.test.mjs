@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { authoredMiles, sessionTotalDistance, sessionTotalLabel, structureOf, workMagnitude } from '../private/render.js';
+import { authoredMiles, sessionTotalDistance, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, workMagnitude } from '../private/render.js';
 
 const steadyFinish = (amount, unit, easy, finish) => ({
   prescribed_distance: amount,
@@ -62,4 +62,30 @@ test('short metric track repetitions render in metres', () => {
   assert.equal(structureOf({ components: [part] }), '10 × 100 m / 1:30 standing');
   assert.equal(workMagnitude({ ...part, distance: 0.2 }), '200 m');
   assert.equal(workMagnitude({ ...part, distance: 0.8 }), '800 m');
+});
+
+test('structured work retains metric units without pretending to be full session mileage', () => {
+  const version = {
+    components: [
+      { role: 'warm_up', duration_seconds: 1200 },
+      { role: 'work', distance: 1, distance_unit: 'km', shape: 'continuous' },
+      { role: 'work', distance: 0.6, distance_unit: 'km', shape: 'continuous' },
+      { role: 'work', distance: 0.4, distance_unit: 'km', shape: 'continuous' },
+      { role: 'work', distance: 1, distance_unit: 'km', shape: 'continuous' },
+      { role: 'work', distance: 0.6, distance_unit: 'km', shape: 'continuous' },
+      { role: 'work', distance: 0.4, distance_unit: 'km', shape: 'continuous' },
+      { role: 'cool_down', duration_seconds: 900 }
+    ]
+  };
+  assert.equal(sessionTotalDistance(version), null);
+  assert.equal(sessionWorkDistanceLabel(version), '4 km');
+});
+
+test('mixed work units convert explicitly, while mixed timed work has no total', () => {
+  const version = steadyFinish(null, null, 1, 1);
+  version.components[0].distance_unit = 'mi';
+  version.components[1].distance_unit = 'km';
+  assert.equal(sessionWorkDistanceLabel(version), '1.62 mi');
+  version.components[1] = { role: 'work', duration_seconds: 180 };
+  assert.equal(sessionWorkDistanceLabel(version), '');
 });
