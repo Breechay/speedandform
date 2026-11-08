@@ -4,7 +4,7 @@ import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAt
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
+import { MONTHS, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -137,7 +137,7 @@ function rosterHtml() {
     return `<button class="consoleAthleteTab${athlete.id === selectedId ? ' consoleAthleteTab--on' : ''}"
       type="button" data-select-athlete="${escapeHtml(athlete.id)}"
       ${athlete.id === selectedId ? 'aria-current="true"' : ''}>
-      <span class="consoleAthleteTab__name">${escapeHtml(athlete.first_name || athlete.display_name)}</span>
+      <span class="consoleAthleteTab__name">${escapeHtml(coachRosterLabel(athlete, roster))}</span>
       <em class="consoleAthleteTab__score">${read ? `${escapeHtml(read.score)}%` : '\u2014'}</em>
       ${waiting ? '<i class="consoleAthleteTab__waiting" aria-label="Waiting on you"></i>' : ''}
       ${publishCount ? `<span class="consoleAthleteTab__draft" aria-label="${publishCount} publication items">Draft ${publishCount}</span>` : ''}
@@ -399,7 +399,7 @@ function blockShapeHtml() {
 
   return `<section class="blockShape" id="blockShape">
     <header class="blockShape-head">
-      <h2 class="blockShape-name">${escapeHtml((athlete.first_name || athlete.display_name || '').toUpperCase())}</h2>
+      <h2 class="blockShape-name">${escapeHtml(coachRosterLabel(athlete, roster))}</h2>
       <p class="blockShape-goal">${escapeHtml(goal.toUpperCase())}</p>
     </header>
     <table class="blockShape-table">
@@ -510,7 +510,8 @@ function workbenchHtml() {
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(sessionReadingTitle(version))}
         ${doubleOn(session.scheduled_on)
-          ? `<i class="consoleWorkRow__double">Double \u00b7 ${escapeHtml(ordinalIn(session) || '')}</i>` : ''}
+          ? `<i class="consoleWorkRow__double">${escapeHtml(filedPerDay[session.scheduled_on])} results filed${ordinalIn(session)
+            ? ` \u00b7 session ${escapeHtml(ordinalIn(session))}` : ''}</i>` : ''}
         ${dose ? `<em>${escapeHtml(dose.shortQualifiers)}</em>` : ''}</span>
     </button>`;
   }).join('');
@@ -939,7 +940,7 @@ function heroHtml() {
   return `<section class="consoleHero">
     <div class="consoleHero__identity">
       <div class="consoleHero__identityHead">
-        <h1 class="consoleHero__name">${escapeHtml(athlete.first_name || athlete.display_name)}</h1>
+        <h1 class="consoleHero__name">${escapeHtml(coachRosterLabel(athlete, roster))}</h1>
         ${athleteMenuHtml()}
       </div>
       ${goal ? `<p class="consoleHero__goal">${escapeHtml(goal)}</p>` : ''}

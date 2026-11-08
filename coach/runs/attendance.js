@@ -63,8 +63,9 @@ export function mountAttendance({ sb, pane, run, onBack }) {
           ${s.editing === r.participant_id
             ? `<input type="text" maxlength="40" data-rename-input value="${esc(r.display_name)}"><button type="button" class="btn" data-save-rename>Save</button><button type="button" class="btn ghost" data-cancel-rename>Cancel</button>`
             : `<span class="who">${esc(r.display_name)}</span><small class="quiet">${r.state === 'expected' ? (r.account_id ? 'Coach confirmed · linked to an account' : 'Coach confirmed') : 'Withdrawn'}</small>
-               ${s.closed ? '' : `<span class="rowActs"><button type="button" class="pill" data-rename>Rename</button>
-               ${r.state === 'expected' ? `${r.account_id ? '' : '<button type="button" class="pill" data-link>Link account</button>'}<button type="button" class="pill" data-withdraw>Withdraw</button>` : '<button type="button" class="pill" data-restore>Restore</button>'}</span>`}`}
+               ${s.closed ? '' : `<details class="attActions"><summary aria-label="Manage ${esc(r.display_name)}">Manage</summary>
+               <span class="rowActs"><button type="button" class="pill" data-rename>Rename</button>
+               ${r.state === 'expected' ? `${r.account_id ? '' : '<button type="button" class="pill" data-link>Link account</button>'}<button type="button" class="pill" data-withdraw>Withdraw</button>` : '<button type="button" class="pill" data-restore>Restore</button>'}</span></details>`}`}
         </li>`).join('') || '<li class="quiet">Nobody yet.</li>'}</ul>
         ${s.closed ? '<p class="quiet">This run is closed. Corrections are made in the attendance record below.</p>' : `
         <form class="addForm" data-add><input type="text" name="name" maxlength="40" placeholder="Add a name" aria-label="Add a name" required><button type="submit" class="btn">Add</button></form>

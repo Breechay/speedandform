@@ -153,6 +153,20 @@ textarea{background:var(--field-2);border:1px solid var(--edge-2);border-radius:
 .att .who{font-weight:560;flex:1 1 140px}
 .att small{flex:1 1 100%;order:3}
 .att .rowActs{display:flex;gap:8px;flex-wrap:wrap}
+.att li:has(.attActions[open]){position:relative;z-index:5}
+.attActions{position:relative;flex:0 0 auto;margin-left:auto}
+.attActions summary{display:flex;align-items:center;min-height:40px;padding:7px 12px;cursor:pointer;
+  color:var(--sec);border:1px solid var(--hair);border-radius:5px;font-size:13px;list-style:none}
+.attActions summary::-webkit-details-marker{display:none}
+.attActions summary::after{content:'⌄';margin-left:9px;font-size:14px}
+.attActions[open] summary{color:var(--text);border-color:var(--edge-2)}
+.attActions[open] .rowActs{position:absolute;right:0;top:calc(100% + 5px);z-index:3;
+  display:flex;flex-direction:column;gap:3px;min-width:158px;padding:6px;
+  background:var(--field);border:1px solid var(--edge-2);border-radius:7px;
+  box-shadow:0 8px 22px #12201916}
+.attActions .pill{width:100%;min-height:40px;text-align:left;border:0;border-radius:3px;padding:8px 11px}
+.attActions .pill:hover,.attActions .pill:focus-visible{background:var(--field-2)}
+.attActions [data-withdraw]{color:var(--muted)}
 .att .rec{display:block;flex:1 1 100%;order:4;color:var(--text);line-height:1.5}
 .att input[type=text],.addForm input{background:none;border:1px solid var(--edge-2);border-radius:12px;padding:10px 12px;min-height:44px;flex:1 1 200px}
 .addForm{display:flex;gap:10px;margin:14px 0 6px;flex-wrap:wrap}

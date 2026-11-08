@@ -1,3 +1,19 @@
+## November 8 · Coach Console second visual pass
+
+After PR #550 reached Netlify production as `fa221642`, the authenticated
+desktop review found remaining aesthetic and functional density issues across
+Athletes, Programming, Group sessions, Runs and Today. The follow-up uses the
+same paper, type and navigation rules: disambiguate duplicate roster names;
+remove empty white-on-cream dossier cards; give a multi-part session and its
+readable detail space; shorten giant identity headers; stop clipping long
+group coaching cues; name actual multiple filings; and reduce repeated Runs
+controls to one accessible Manage disclosure per name. Exact evidence,
+boundaries and acceptance remain in
+[`COACH_CONSOLE_VISUAL_AUDIT_20261108.md`](../operations/COACH_CONSOLE_VISUAL_AUDIT_20261108.md).
+
+**Release boundary:** follow-up source is not yet merged, published or
+visually accepted. Keep the next Netlify build within the existing batch gate.
+
 ## November 8 · Coach Console workbench readability follow-up
 
 - **Observed after the November 8 Console deployment:** A multi-part Thursday

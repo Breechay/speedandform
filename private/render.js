@@ -15,6 +15,25 @@ export function initials(name) {
   return String(name || '').split(/\s+/).map((part) => part[0]).join('').slice(0, 2).toUpperCase();
 }
 
+// A first name is pleasant until two coached athletes share it. Make those
+// identities distinct in every coach roster, without changing roster order or
+// leaking an internal ID. Do not lengthen names that already identify one person.
+export function coachRosterLabel(entry, roster = []) {
+  const first = String(entry?.first_name || entry?.display_name || 'Athlete').trim();
+  const peers = roster.filter((person) => String(person.first_name || person.display_name || '')
+    .trim().toLocaleLowerCase() === first.toLocaleLowerCase());
+  if (peers.length < 2) return first;
+  const full = String(entry?.display_name || '').trim();
+  const sameFull = peers.filter((person) => String(person.display_name || '').trim().toLocaleLowerCase()
+    === full.toLocaleLowerCase());
+  if (full && full.toLocaleLowerCase() !== first.toLocaleLowerCase() && sameFull.length === 1) return full;
+  const slug = String(entry?.slug || '').trim();
+  const parts = slug.split('-').filter(Boolean);
+  const tail = parts[0]?.toLocaleLowerCase() === first.toLocaleLowerCase() ? parts.slice(1) : parts;
+  const readable = tail.map((part) => part.charAt(0).toLocaleUpperCase() + part.slice(1)).join(' ');
+  return readable ? `${full || first}${full && full !== first ? ' ·' : ''} ${readable}` : (full || first);
+}
+
 export const dayLabel = (iso) => {
   const date = new Date(`${iso}T12:00:00`);
   return `${MONTHS[date.getMonth()]} ${date.getDate()}`;

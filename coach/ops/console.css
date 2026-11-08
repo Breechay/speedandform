@@ -24,14 +24,16 @@ button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,s
 .masthead .eyebrow{color:var(--muted)}
 .header-actions{margin-left:auto;display:flex;gap:8px}
 .header-actions button{font:400 11px/1.2 var(--mono);letter-spacing:.02em}
-.day-heading{padding:58px 0 34px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
-.day-heading .eyebrow{margin:0 0 14px;color:var(--muted)}
+.day-heading{padding:26px 0 22px;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.day-heading .eyebrow{margin:0 0 7px;color:var(--muted)}
 h1,h2,h3{font-family:var(--sans);color:var(--ink)}
 h1{font-weight:var(--display-weight);font-size:clamp(58px,6.8vw,92px);letter-spacing:-.05em;line-height:1.01;margin:0;text-wrap:balance}
+.day-heading h1{font-size:clamp(27px,3.2vw,38px);line-height:1.12;letter-spacing:-.035em;font-weight:620}
 h2{font-size:clamp(27px,2.4vw,34px);letter-spacing:-.035em;font-weight:var(--display-weight);line-height:1.12;margin:0;text-wrap:balance}
 h3{font-size:22px;line-height:1.28;letter-spacing:-.02em;font-weight:var(--display-weight);margin:0 0 10px}
 p{line-height:1.58}
 .intro{font-size:clamp(18px,1.6vw,21px);color:var(--muted);max-width:56ch;margin:20px 0 0}
+.day-heading .intro{font-size:15px;line-height:1.5;margin:5px 0 0}
 .small{font-size:13px;line-height:1.65;color:var(--muted)}
 .muted{color:var(--muted)}
 .tabs{display:flex;gap:24px;overflow-x:auto;padding:0;border-bottom:1px solid var(--line);scrollbar-width:none}
