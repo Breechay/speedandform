@@ -4,7 +4,7 @@ import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAt
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
+import { MONTHS, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -508,7 +508,7 @@ function workbenchHtml() {
         ? escapeHtml(dose.weekSummary)
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>${escapeHtml(version.distance_unit || 'mi')}</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
-      <span class="consoleWorkRow__what">${escapeHtml(version.title)}
+      <span class="consoleWorkRow__what">${escapeHtml(sessionReadingTitle(version))}
         ${doubleOn(session.scheduled_on)
           ? `<i class="consoleWorkRow__double">Double \u00b7 ${escapeHtml(ordinalIn(session) || '')}</i>` : ''}
         ${dose ? `<em>${escapeHtml(dose.shortQualifiers)}</em>` : ''}</span>
@@ -563,6 +563,8 @@ function adHocInspectorHtml(completion) {
 
 function sessionInspectorHtml(session) {
   const version = session.currentVersion;
+  const readingTitle = sessionReadingTitle(version);
+  const sourceWasSequence = readingTitle !== String(version.title || '').trim();
   const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
   const sameDay = (selectedRecord.sessions || []).filter((item) =>
     item.scheduled_on === session.scheduled_on && item.currentVersion);
@@ -571,7 +573,7 @@ function sessionInspectorHtml(session) {
   const head = `<p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}${
     filedThatDay > 1 && sameDay.length > 1
       ? ` \u00b7 double, session ${escapeHtml(sameDay.indexOf(session) + 1)} of ${escapeHtml(sameDay.length)}` : ''}</p>
-    <h3 class="ins-what">${escapeHtml(version.title)}${
+    <h3 class="ins-what">${escapeHtml(readingTitle)}${
       selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(version.title || '')
         ? ' <em>outside</em>' : ''}</h3>`;
 
@@ -579,6 +581,7 @@ function sessionInspectorHtml(session) {
   // sending the coach to a different surface to read what happened.
   if (done) return `<div class="inspect">
     ${head}
+    ${sourceWasSequence ? `<p class="ins-detail">${escapeHtml(structureOf(version, { plain: true }) || version.title)}</p>` : ''}
     ${evidenceFactsHtml(done)}
     ${renderCoachReviewChain(selectedRecord, done.id)}
     <div class="ins-actions">
@@ -591,6 +594,7 @@ function sessionInspectorHtml(session) {
 
   const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
   const dose = doseOf(version);
+  const multipleWorkParts = (version.components || []).filter((part) => part.role === 'work').length > 1;
   const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   const parts = version.components || [];
   const anatomy = (parts.length > 1 ? parts : []).map((part) => {
@@ -610,7 +614,7 @@ function sessionInspectorHtml(session) {
 
   return `<div class="inspect">
     ${head}
-    ${dose ? `<p class="ins-dose">${
+    ${dose && !multipleWorkParts ? `<p class="ins-dose">${
       // When the title already says the dose -- "3 x 2 mi at race pace" over a dose
       // line reading "3 x 2 mi" -- repeating it reads as two different facts about
       // the session when it is one fact printed twice. The qualifiers underneath are

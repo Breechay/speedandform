@@ -208,6 +208,23 @@ html:has(.coach-page--programming) { background: #f6f5f1; }
   letter-spacing: 0;
   text-transform: none;
 }
+.coach-page--programming .ins-part dt {
+  font-size: 12.5px;
+  line-height: 1.4;
+  letter-spacing: .025em;
+}
+.coach-page--programming .ins-part dd b {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-part dd span {
+  font-size: 13.5px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .coach-page--programming .ins-detail,
 .coach-page--programming .ins-why {
   max-width: 63ch;

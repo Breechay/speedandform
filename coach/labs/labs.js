@@ -24,7 +24,7 @@ import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
-import { authoredMiles, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -604,7 +604,7 @@ function dossierSessionTileHtml(session) {
   const version = session.currentVersion;
   const count = workParts(version).length;
   const mixed = count > 1;
-  const title = titleOf(session);
+  const title = sessionReadingTitle(version);
   const short = (shortDose(version) || title).replace(/\b(MI|KM|MIN|M)\b/g, (unit) => unit.toLowerCase());
   return `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
     data-session="${escapeHtml(session.id)}"

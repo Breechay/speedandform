@@ -24,6 +24,7 @@ test('long mixed sessions cannot escape the week row or collide with the inspect
   const css = read('private/graphite.css');
   assert.match(coach, /const weekSummary = works\.length > 1 \? `\$\{works\.length\} parts` : shortLine/);
   assert.match(coach, /escapeHtml\(dose\.weekSummary\)/);
+  assert.match(coach, /escapeHtml\(sessionReadingTitle\(version\)\)/);
   const doseSource = coach.match(/function doseOf\(version\) \{[\s\S]*?\n\}\n\n\/\/ The runway/)?.[0]
     .replace(/\n\n\/\/ The runway$/, '');
   assert.ok(doseSource, 'dose formatter is available for direct regression testing');
@@ -48,6 +49,21 @@ test('long mixed sessions cannot escape the week row or collide with the inspect
   assert.match(css, /\.consoleWorkRow__what \{[^}]*overflow-wrap: anywhere/s);
   assert.doesNotMatch(css.match(/\.consoleWorkRow__what \{([^}]*)\}/)?.[1] || '', /white-space: nowrap|text-overflow: ellipsis/);
   assert.match(css, /@media \(max-width: 1100px\)[\s\S]*?\.consoleWorkbench \{ grid-template-columns: minmax\(0, 1fr\)/);
+});
+
+test('an interval transcript stays in structured details, not a giant week title', async () => {
+  const { sessionReadingTitle } = await import('../private/render.js');
+  const components = [{ role: 'work' }, { role: 'work' }, { role: 'work' }];
+  const transcript = '1 × 1 km @ 5:38–5:46 / 2 min jog → 1 × 600 m @ 5:22–5:30 / 1:30 easy → 1 × 400 m';
+  assert.equal(sessionReadingTitle({ title: transcript, components }), 'Interval session');
+  assert.equal(sessionReadingTitle({ title: 'Descending aerobic ladder', components }), 'Descending aerobic ladder');
+  assert.equal(sessionReadingTitle({ title: '4 mi easy', components: [{ role: 'work' }] }), '4 mi easy');
+  const labs = read('coach/labs/labs.js');
+  assert.match(labs, /const title = sessionReadingTitle\(version\)/);
+  assert.match(coach, /sourceWasSequence \? `<p class="ins-detail">/,
+    'completed sessions keep their exact work visible when the heading is shortened');
+  assert.match(coach, /dose && !multipleWorkParts \? `<p class="ins-dose">/,
+    'a selected interval session does not print its full transcript twice above the anatomy');
 });
 
 test('selected session keeps readable, contained text and distinct actions', () => {

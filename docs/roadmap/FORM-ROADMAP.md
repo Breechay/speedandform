@@ -39,6 +39,14 @@
   proportions and paragraph flow still require rendered acceptance after release.
 - No training content, athlete history, consent, backend fields or native view
   was edited. Visual acceptance for notes and the seven-day strip remains open.
+- Final index review caught another inherited presentation error: some multi-part
+  titles themselves contain every interval, pace and recovery. The Console
+  week, inspector heading and dossier day index now call those an *Interval
+  session* while leaving genuinely named sessions untouched. The inspector's
+  component list remains the complete prescription without a second giant
+  transcript above it. A completed session retains a readable, exact plain
+  sequence under its shortened heading. This is a view-only label, not a change
+  to the stored title or prescribed work.
 
 ## November 4 · Method Bible, agent governance and Coach Console reset
 

@@ -40,6 +40,19 @@ export function titleAlreadySays(title, line) {
   return dose.length > 0 && flatten(title).includes(dose);
 }
 
+// Some legacy authoring paths stored a whole interval sequence as the session
+// title. A week index and a large inspector heading are not places to repeat
+// that sequence: the typed components below already carry every rep and rest.
+// Keep genuinely named sessions unchanged, and keep the source title in data.
+export function sessionReadingTitle(version) {
+  const title = String(version?.title || '').trim() || 'Session';
+  const parts = (version?.components || []).filter((part) => part.role === 'work');
+  if (parts.length < 2) return title;
+  const notation = /(?:\d\s*[×x]\s*\d|@\s*\d+:\d+)/i.test(title);
+  if (notation && (title.includes('→') || title.length > 72)) return 'Interval session';
+  return title;
+}
+
 // The structure line, DERIVED from the authored pieces.
 //
 // Brice's library stores a notation string — "15e + 4 × [5 min LT2 / 2 min steady
