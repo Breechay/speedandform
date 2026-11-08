@@ -3,6 +3,7 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
+import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
@@ -155,7 +156,7 @@ function rosterHtml() {
 function athleteMenuHtml() {
   const account = selectedRecord.adminStatus;
   const notes = selectedRecord.privateNotes.slice(0, 3).map((note) =>
-    `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
+    `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time>${coachNoteReadingHtml(note.body, { createdAt: note.created_at })}</article>`).join('');
   return `<details class="athlete-menu" id="athleteMenu">
     <summary aria-label="Coach only">\u2026</summary>
     <div class="control-menu wide">

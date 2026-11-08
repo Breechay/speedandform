@@ -14,6 +14,18 @@ authorities or running background workers.
 
 ## The console is an interface, not an all-access agent API
 
+### Private notes must read like a coach wrote them
+
+Use ordinary sentences and short paragraphs. State what happened, what is
+known, and what the coach needs to remember. Use dated facts only when they
+matter; a schedule with several dates should be easy to scan. Do not paste an
+agent run ID, pipe-delimited ledger, permission disclaimer or source-path list
+as the opening paragraph. Authorship and creation time are already stored by
+the system. When source provenance matters and has no dedicated field, add a
+short, plain source sentence at the end. A private note is not a substitute for
+the canonical prescription, filing, approval or publication receipt. Historical
+notes are append-only and must not be silently rewritten to make the UI prettier.
+
 An agent with an authorized Supabase connector may use the established
 athlete/coach data owners for relevant reads or explicitly authorized writes.
 An agent with repository access alone has **no** right to athlete or owner

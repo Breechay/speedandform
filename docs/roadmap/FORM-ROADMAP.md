@@ -22,6 +22,24 @@
   keyboard focus and overflow checks remain required; source tests do not
   establish visual acceptance.
 
+### Dossier reading follow-up, same owner review
+
+- The athlete dossier's seven-day strip used `shortDose` to print a complete
+  multi-part interval sequence in one narrow day card. It made six other days
+  artificially tall. A week tile now carries the authored session name and a
+  bounded work-part count; complete sets, paces and recoveries stay in the
+  selected session drawer. Simple days retain their dose in normal-case units.
+- Legacy private notes included agent-style IDs and uninterrupted audit prose.
+  A shared read-only formatter separates recognized record references from the
+  body and divides sentences into readable paragraphs across both dossier
+  readers and the programming menu. Raw append-only notes remain unchanged.
+  The private-notes authoring contract now requires coach-readable sentences.
+- Signed-in source baseline at 1,279px: the narrow Thursday day tile stretched
+  to 339px, and the three-note history block measured 867px tall. New visual
+  proportions and paragraph flow still require rendered acceptance after release.
+- No training content, athlete history, consent, backend fields or native view
+  was edited. Visual acceptance for notes and the seven-day strip remains open.
+
 ## November 4 · Method Bible, agent governance and Coach Console reset
 
 - **Owner direction:** Make FORM's observation-led training doctrine public and

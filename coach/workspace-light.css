@@ -480,6 +480,29 @@ body.coach-page--athletes:has(.ccApp) {
   border: 1px solid #dce5da;
   border-left: 3px solid var(--coach-accent);
   color: var(--coach-ink);
+  min-height: 62px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.coach-page--athletes .ccSession__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.coach-page--athletes .ccSession__meta {
+  color: var(--coach-secondary);
+  font-size: 12.5px;
+  line-height: 1.4;
 }
 .coach-page--athletes .ccSession.quality { border-left-color: #aa6c39; }
 .coach-page--athletes .ccSession.long { border-left-color: #6b83a7; }
@@ -530,10 +553,55 @@ body.coach-page--athletes:has(.ccApp) {
 .coach-page--athletes .ccNotes header span,
 .coach-page--athletes .ccNoteShortcut,
 .coach-page--athletes #ccNoteStatus { color: var(--coach-secondary); }
-.coach-page--athletes .ccNoteHistory p { color: var(--coach-ink); }
+.coach-page--athletes .ccNotes header span { font-size: 13px; letter-spacing: 0; }
+.coach-page--athletes .ccNoteHistory { gap: 0; margin-top: 18px; }
+.coach-page--athletes .ccNoteHistory article {
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 20px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--coach-line);
+}
+.coach-page--athletes .ccNoteHistory article:first-child { padding-top: 6px; }
+.coach-page--athletes .ccNoteHistory article:last-child { border-bottom: 0; }
+.coach-page--athletes .ccNoteHistory time {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.coach-page--athletes .ccNoteEntry { min-width: 0; }
+.coach-page .coachNoteProse p {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--coach-ink);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0;
+  text-transform: none;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.coach-page .coachNoteProse p + p { margin-top: 14px; }
+.coach-page .coachNoteReference {
+  margin: 16px 0 0;
+  max-width: 64ch;
+  color: var(--coach-secondary);
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.coach-page .coachNoteReference code { font: inherit; }
+.coach-page--athletes .privateNote time { font-size: 13px; letter-spacing: 0; }
+.coach-page--athletes .privateNote .coachNoteProse { margin-top: 8px; }
+.coach-page--programming .private-note .coachNoteProse p { font-size: 14px; }
+.coach-page--programming .private-note .coachNoteReference { font-size: 12px; }
 .coach-page--athletes #ccNoteBody {
   color: var(--coach-ink);
   caret-color: var(--coach-accent);
+  font-size: 16px;
+}
+@media (max-width: 620px) {
+  .coach-page--athletes .ccNoteHistory article { grid-template-columns: minmax(0, 1fr); gap: 9px; }
 }
 .coach-page--athletes #ccNoteBody::placeholder { color: #7d8b83; }
 .coach-page--athletes #ccNoteForm button {

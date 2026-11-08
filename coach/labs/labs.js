@@ -23,6 +23,7 @@
 import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/auth.js';
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
+import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
 import { authoredMiles, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
@@ -555,7 +556,7 @@ function privateNotesHtml() {
     ${notes.length
       ? `<div class="privateNotes">${notes.map((note) => `<article class="privateNote">
           <time datetime="${escapeHtml(note.created_at)}">${escapeHtml(dayLabel(note.created_at.slice(0, 10)))}</time>
-          <p>${escapeHtml(note.body)}</p>
+          ${coachNoteReadingHtml(note.body, { createdAt: note.created_at })}
         </article>`).join('')}</div>`
       : `<p class="empty section">No private notes. These stay with the coach and are never shown to the athlete.</p>`}`;
 }
@@ -596,6 +597,23 @@ function coachWorkspaceNav() {
   </nav>`;
 }
 
+// The seven-day row is an index, not the workout reader. Six interval parts
+// must never print their entire sequence into a single 1/7-width day. The
+// selected session drawer continues to show the exact stored anatomy.
+function dossierSessionTileHtml(session) {
+  const version = session.currentVersion;
+  const count = workParts(version).length;
+  const mixed = count > 1;
+  const title = titleOf(session);
+  const short = (shortDose(version) || title).replace(/\b(MI|KM|MIN|M)\b/g, (unit) => unit.toLowerCase());
+  return `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
+    data-session="${escapeHtml(session.id)}"
+    aria-label="${escapeHtml(mixed ? `${title}, ${count} work parts. Open session details` : `${short}. Open session details`)}">
+    <span class="ccSession__title">${escapeHtml(mixed ? title : short)}</span>
+    ${mixed ? `<span class="ccSession__meta">${count} work parts</span>` : ''}
+  </button>`;
+}
+
 function dossierWeekHtml() {
   const orderedWeeks = (record.weeks || []).slice().sort((a, b) => a.starts_on.localeCompare(b.starts_on));
   const week = orderedWeeks.find((item) => item.id === dossierWeekId) || record.currentWeek;
@@ -618,8 +636,7 @@ function dossierWeekHtml() {
       && !/^superseded by /i.test(session.withdrawn_reason || '')) : [];
     return `<div class="ccDay${date === today() ? ' today' : ''}">
       <div class="ccDayName"><span>${escapeHtml(name.slice(0, 3).toUpperCase())}</span><b>${escapeHtml(Number(date.slice(8)))}</b></div>
-      ${mine.map((session) => `<button class="ccSession ${escapeHtml(characterOf(session))}" type="button"
-        data-session="${escapeHtml(session.id)}"><span>${escapeHtml(shortDose(session.currentVersion) || titleOf(session))}</span></button>`).join('')}
+      ${mine.map(dossierSessionTileHtml).join('')}
       ${held.length ? `<span class="ccHeld" title="${escapeHtml(held[0].withdrawn_reason || 'Coach withdrawal')}">Coach hold</span>` : ''}
     </div>`;
   }).join('');
@@ -737,9 +754,9 @@ function dossierNotesHtml() {
   return `<section class="ccCard ccNotes">
     <header><h2>Notes</h2><span>Private to coaches</span></header>
     ${notes.length ? `<div class="ccNoteHistory">${notes.slice(0, 3).map((note) => `<article><time>${
-      escapeHtml(dayLabel(note.created_at.slice(0, 10)))}</time><p>${escapeHtml(note.body)}</p></article>`).join('')}</div>` : ''}
+      escapeHtml(dayLabel(note.created_at.slice(0, 10)))}</time><div class="ccNoteEntry">${coachNoteReadingHtml(note.body, { createdAt: note.created_at })}</div></article>`).join('')}</div>` : ''}
     <form id="ccNoteForm"><label class="srOnly" for="ccNoteBody">New private note</label>
-      <textarea id="ccNoteBody" rows="1" placeholder="Add note…"></textarea>
+      <textarea id="ccNoteBody" rows="2" placeholder="What happened, and what should you remember?"></textarea>
       <div><span id="ccNoteStatus" aria-live="polite"></span>
         <span class="ccNoteShortcut">⌘ Enter</span><button type="submit">Add note</button></div></form>
   </section>`;
