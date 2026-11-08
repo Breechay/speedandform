@@ -24,6 +24,7 @@ import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
+import { filingVersionContext, filingVersionExplanation } from '/private/filing-version-context.mjs';
 import { authoredMiles, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
@@ -442,6 +443,7 @@ function evidenceHtml() {
   }
   const pieces = (record.pieces || []).filter((piece) => piece.completion_id === completion.id);
   const session = (record.sessions || []).find((item) => item.id === completion.planned_session_id) || null;
+  const filedVersion = filingVersionContext(session, completion).filed;
   const facts = [];
   const said = [completion.felt, completion.athlete_note].filter(Boolean).join(' ');
   if (said) facts.push(`<div class="fact"><div class="src a">ATHLETE</div><p>${escapeHtml(said)}</p></div>`);
@@ -454,7 +456,7 @@ function evidenceHtml() {
     });
 
   return `<div class="hRow"><div class="h">LATEST EVIDENCE</div></div>
-    <div class="evHead"><div class="evWork">${escapeHtml(session ? titleOf(session) : 'Unattached run')}</div>
+    <div class="evHead"><div class="evWork">${escapeHtml(filedVersion?.title || (session ? titleOf(session) : 'Unattached run'))}</div>
       <div class="evDate">${escapeHtml(dayLabel(completion.filed_at.slice(0, 10)).toUpperCase())}</div></div>
     <div class="evSplits">${escapeHtml(splitsLine(completion, pieces))}</div>
     ${facts.length ? `<div class="facts">${facts.join('')}</div>` : '<p class="empty">Filed with no words against it.</p>'}`;
@@ -2019,29 +2021,12 @@ function soleWorkDistance(version) {
   return workParts(version).length === 1 && parts.length === 1 ? parts[0] : null;
 }
 
-// An audit condition, not a coaching warning.
-//
-// Six sessions on the record carry a current prescription written after their
-// evidence was filed — RPE and band backfills on 25 to 28 August, all of them
-// legitimate appends. Nothing was mutated and the evidence is not invalid; the
-// version history already says exactly what happened. But a reader looking at
-// the prescription beside the filing deserves to know the order they arrived in.
-//
-// It lives here and nowhere else. On the bench or the resting matrix it would
-// read as a fault with the athlete, which it is not. The Revise guard prevents
-// the condition from being created again.
-function revisedAfterFiling(session, completion) {
-  if (!completion) return false;
-  const version = session.currentVersion;
-  if (!version?.created_at || (version.version_number ?? 1) < 2) return false;
-  return version.created_at > completion.filed_at;
-}
-
 function drawerHtml(session) {
   if (!session) return '';
-  const version = session.currentVersion;
   const versions = (session.versions || []).slice().sort((a, b) => b.version_number - a.version_number);
   const completion = (record.completions || []).find((item) => item.planned_session_id === session.id) || null;
+  const filing = completion ? filingVersionContext(session, completion) : null;
+  const version = filing?.filed || session.currentVersion;
   const pieces = completion ? (record.pieces || []).filter((piece) => piece.completion_id === completion.id) : [];
   const rung = rungFor(session, record.primaryMark);
   const week = (record.weeks || []).find((item) => item.id === session.week_id);
@@ -2051,7 +2036,7 @@ function drawerHtml(session) {
       <div>
         <div class="dWhen">${escapeHtml([week ? `Week ${week.week_number}` : null,
           session.scheduled_on ? dayLabel(session.scheduled_on) : session.day_label].filter(Boolean).join(' · '))}</div>
-        <h2>${escapeHtml(titleOf(session))}</h2>
+        <h2>${escapeHtml(filing?.filed?.title || titleOf(session))}</h2>
         ${rung ? '<div class="dRung">Moves what you own</div>' : ''}
       </div>
       <div class="dActs">
@@ -2069,7 +2054,7 @@ function drawerHtml(session) {
         ${work != null ? `<div><b>WORK</b><strong>${escapeHtml(Number(work.toFixed(2)))} mi</strong></div>` : ''}
       </div>` : ''}
       ${version?.intent ? `<p class="dIntent">${escapeHtml(version.intent)}</p>` : ''}
-      <div class="dLab">ANATOMY</div>
+      <div class="dLab">${filing?.filed ? 'FILED PRESCRIPTION' : 'ANATOMY'}</div>
       ${anatomyRows(version)}
       ${version?.details ? `<div class="dLab">DETAILS</div><p class="dText">${escapeHtml(version.details)}</p>` : ''}
       <div class="dLab">WHAT CAME BACK</div>
@@ -2077,7 +2062,8 @@ function drawerHtml(session) {
         ? `<p class="dText">${escapeHtml(ranLine(completion, pieces) || 'Filed with no measurements.')}</p>
            ${completion.athlete_note ? `<p class="dSaid">“${escapeHtml(completion.athlete_note)}”</p>` : ''}`
         : '<p class="dNone">Nothing filed.</p>'}
-      ${asCoach() && revisedAfterFiling(session, completion) ? `<div class="dAudit">Prescription revised after filing</div>` : ''}
+      ${asCoach() && filing && filing.state !== 'current'
+        ? `<p class="dAudit">${escapeHtml(filingVersionExplanation(filing))}</p>` : ''}
       ${asCoach() && versions.length > 1 ? `<div class="dLab">REVISIONS</div>
         <div class="dRevs">${versions.map((item) => `<div class="dRev">
           <b>v${escapeHtml(item.version_number)}</b>

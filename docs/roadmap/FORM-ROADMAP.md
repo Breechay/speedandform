@@ -1,3 +1,15 @@
+## November 8 · Filed prescription version integrity
+
+The live Sohel November 5 record revealed a four-200m filing pinned to an
+earlier prescription even though the current plan asks for ten 100m repeats.
+Neither can be assumed to be the performed workout without the athlete's
+device evidence. Coach and Athlete dossier readers must use the **filed**
+version for evidence interpretation and explain a mismatch, retaining both
+records. The web read-only guard is in
+[`FILED_PRESCRIPTION_VERSION_GUARD_20261108.md`](../operations/FILED_PRESCRIPTION_VERSION_GUARD_20261108.md).
+Native refresh/acknowledgement belongs to the existing iOS integration stream;
+no retrospective repin or automatic evidence write is approved.
+
 ## November 8 · Coach Console second visual pass
 
 After PR #550 reached Netlify production as `fa221642`, the authenticated

@@ -4,6 +4,7 @@ import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAt
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
+import { filingVersionContext, filingVersionExplanation } from '/private/filing-version-context.mjs';
 import { MONTHS, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
@@ -564,9 +565,11 @@ function adHocInspectorHtml(completion) {
 
 function sessionInspectorHtml(session) {
   const version = session.currentVersion;
-  const readingTitle = sessionReadingTitle(version);
-  const sourceWasSequence = readingTitle !== String(version.title || '').trim();
   const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
+  const filingVersion = done ? filingVersionContext(session, done) : null;
+  const readingVersion = filingVersion?.filed || version;
+  const readingTitle = sessionReadingTitle(readingVersion);
+  const sourceWasSequence = readingTitle !== String(readingVersion.title || '').trim();
   const sameDay = (selectedRecord.sessions || []).filter((item) =>
     item.scheduled_on === session.scheduled_on && item.currentVersion);
   const filedThatDay = (selectedRecord.completions || []).filter((item) =>
@@ -575,14 +578,16 @@ function sessionInspectorHtml(session) {
     filedThatDay > 1 && sameDay.length > 1
       ? ` \u00b7 double, session ${escapeHtml(sameDay.indexOf(session) + 1)} of ${escapeHtml(sameDay.length)}` : ''}</p>
     <h3 class="ins-what">${escapeHtml(readingTitle)}${
-      selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(version.title || '')
+      selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(readingVersion.title || '')
         ? ' <em>outside</em>' : ''}</h3>`;
 
   // Once a session is filed the same inspector becomes the evidence, rather than
   // sending the coach to a different surface to read what happened.
   if (done) return `<div class="inspect">
     ${head}
-    ${sourceWasSequence ? `<p class="ins-detail">${escapeHtml(structureOf(version, { plain: true }) || version.title)}</p>` : ''}
+    ${filingVersion && filingVersion.state !== 'current'
+      ? `<p class="ins-audit">${escapeHtml(filingVersionExplanation(filingVersion))}</p>` : ''}
+    ${sourceWasSequence ? `<p class="ins-detail">${escapeHtml(structureOf(readingVersion, { plain: true }) || readingVersion.title)}</p>` : ''}
     ${evidenceFactsHtml(done)}
     ${renderCoachReviewChain(selectedRecord, done.id)}
     <div class="ins-actions">
@@ -663,7 +668,9 @@ function evidenceFactsHtml(completion) {
 
   // The authored prescription behind this filing, when there is one.
   const session = (selectedRecord.sessions || []).find((item) => item.id === completion.planned_session_id);
-  const work = (session?.currentVersion?.components || []).find((part) => part.role === 'work');
+  const filing = filingVersionContext(session, completion);
+  const prescribedParts = filing.filed?.components || (filing.state === 'unverified' ? session?.currentVersion?.components : []) || [];
+  const work = prescribedParts.find((part) => part.role === 'work');
   const askedBand = [work?.pace_low, work?.pace_high].filter(Boolean).join('\u2013');
   const askedRecovery = work?.recovery_seconds != null
     ? `${clock(work.recovery_seconds)} ${work.recovery_kind}`
@@ -1336,8 +1343,9 @@ function openReviewNext(completionId) {
   const evidenceIds = chain.read?.completionIds?.length ? chain.read.completionIds : [completionId];
   reviewNextForm.elements.completionIds.innerHTML = (selectedRecord.completions || []).map((item) => {
     const session = (selectedRecord.sessions || []).find((candidate) => candidate.id === item.planned_session_id);
+    const filedVersion = filingVersionContext(session, item).filed;
     const selected = evidenceIds.includes(item.id) ? ' selected' : '';
-    return `<option value="${escapeHtml(item.id)}"${selected}>${escapeHtml(formatDate(item.filed_at))} · ${escapeHtml(session?.currentVersion?.title || item.status)}</option>`;
+    return `<option value="${escapeHtml(item.id)}"${selected}>${escapeHtml(formatDate(item.filed_at))} · ${escapeHtml(filedVersion?.title || session?.currentVersion?.title || item.status)}</option>`;
   }).join('');
 
   const nextSessions = liveSessionsForReview(completion);
@@ -1357,8 +1365,9 @@ function openReviewNext(completionId) {
   reviewNextForm.elements.readDeliveredWording.readOnly = Boolean(chain.read);
 
   const session = (selectedRecord.sessions || []).find((item) => item.id === completion.planned_session_id);
+  const filedVersion = filingVersionContext(session, completion).filed;
   document.getElementById('reviewNextContext').textContent =
-    `${selectedRecord.athlete.first_name || selectedRecord.athlete.display_name} · ${session?.currentVersion?.title || 'filed evidence'}`;
+    `${selectedRecord.athlete.first_name || selectedRecord.athlete.display_name} · ${filedVersion?.title || session?.currentVersion?.title || 'filed evidence'}`;
   document.getElementById('reviewNextStatus').textContent = '';
   toggleReviewNextDelivery();
   reviewNextDialog.showModal();
@@ -1381,8 +1390,9 @@ function openCoaching(objectType = 'direction', subjectId = '') {
   coachingForm.elements.plannedSessionId.innerHTML = selectedRecord.sessions.map((session) => `<option value="${session.id}">${escapeHtml(session.day_label)} · ${escapeHtml(session.currentVersion?.title || 'Session')}</option>`).join('');
   coachingForm.elements.completionIds.innerHTML = selectedRecord.completions.map((completion) => {
     const session = selectedRecord.sessions.find((item) => item.id === completion.planned_session_id);
+    const filedVersion = filingVersionContext(session, completion).filed;
     const distance = completion.actual_distance ? ` · ${completion.actual_distance} ${completion.distance_unit || ''}` : '';
-    return `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(session?.currentVersion?.title || completion.status)}${escapeHtml(distance)}</option>`;
+    return `<option value="${completion.id}">${escapeHtml(formatDate(completion.filed_at))} · ${escapeHtml(filedVersion?.title || session?.currentVersion?.title || completion.status)}${escapeHtml(distance)}</option>`;
   }).join('') || '<option value="" disabled>Nothing logged yet</option>';
   // Preselect what the situation pointed at, so the coach is not re-finding it.
   if (subjectId) {
