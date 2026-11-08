@@ -1,0 +1,163 @@
+/* FORM / Sleep. A field-manual article with one dark sleep-stage instrument. */
+[data-form-reading] body { background:#f4f2ec; color:#0b0b0b; padding-bottom:0; }
+[data-form-reading] .sleep-topbar {
+  width:min(1140px,calc(100% - 2 * clamp(22px,5vw,76px)));
+  margin-inline:auto; min-height:84px; padding:16px 0;
+  display:flex; align-items:center; justify-content:space-between;
+}
+[data-form-reading] .sleep-topbar .nav-home { min-height:44px; }
+.sleep-back { color:#494949; text-decoration:none; font:500 13px/1.4 var(--reading-sans); border-bottom:1px solid #858585; }
+.sleep-skip { position:absolute; left:16px; top:-90px; z-index:100; background:#fff; color:#111; padding:12px; }
+.sleep-skip:focus { top:10px; }
+[data-form-reading] .sleep-page {
+  width:min(1100px,calc(100% - 2 * clamp(22px,5vw,76px)));
+  max-width:none; padding:0; margin-inline:auto; border:0;
+}
+.sleep-opening { padding:68px 0 70px; }
+.sleep-kicker, .sleep-label { font:600 12px/1.5 var(--reading-mono); letter-spacing:.025em; text-transform:uppercase; }
+.sleep-kicker { color:#5f5d58; margin:0 0 24px; }
+[data-form-reading] .sleep-opening h1 {
+  font:450 clamp(56px,9.1vw,132px)/.94 var(--reading-display);
+  letter-spacing:-.058em; max-width:1050px; color:#0b0b0b; margin:0 0 30px;
+}
+.sleep-intro { max-width:650px; margin:0; font:400 clamp(19px,2.2vw,24px)/1.48 var(--reading-sans); letter-spacing:-.015em; color:#333; }
+.sleep-jump { display:flex; flex-wrap:wrap; gap:8px 25px; padding-top:46px; margin-top:52px; border-top:1px solid #bebcb6; }
+.sleep-jump a { text-decoration:none; color:#333; font:500 14px/1.5 var(--reading-sans); border-bottom:1px solid #777; min-height:28px; }
+.sleep-jump a:hover,.sleep-back:hover { color:#000; border-color:#000; }
+.sleep-night { background:#111; color:#f4f2ec; border-radius:18px; padding:clamp(26px,5vw,68px); }
+.sleep-night-head { display:grid; grid-template-columns:1.2fr .8fr; gap:40px; align-items:end; padding-bottom:34px; border-bottom:1px solid #424242; }
+.sleep-night .sleep-label { color:#c5c5c2; margin-bottom:15px; }
+.sleep-night-head h2 { font:450 clamp(45px,6vw,78px)/1.02 var(--reading-display); letter-spacing:-.052em; margin:0; color:#fff; }
+.sleep-night-head p:last-child { max-width:400px; margin:0; color:#d5d4d0; font:400 18px/1.56 var(--reading-sans); }
+.sleep-night-pattern { margin:38px 0 36px; }
+.sleep-night-labels { display:flex; justify-content:space-between; gap:20px; margin:0 0 20px 100px; color:#bcbcb9; font:500 12px/1.4 var(--reading-mono); }
+.sleep-pattern-row { display:grid; grid-template-columns:80px 1fr; gap:20px; align-items:center; margin-bottom:13px; }
+.sleep-pattern-name { color:#e8e8e5; font:500 14px/1.2 var(--reading-sans); }
+.sleep-pattern-track { position:relative; display:grid; grid-template-columns:repeat(16,minmax(0,1fr)); align-items:center; gap:5px; height:22px; }
+.sleep-pattern-track i { height:100%; display:block; border-radius:2px; }
+.light-pattern i { background:#aab0b6; }
+.light-pattern i:nth-child(1) { grid-column:1 / span 1; }
+.light-pattern i:nth-child(2) { grid-column:5 / span 1; }
+.light-pattern i:nth-child(3) { grid-column:7 / span 1; }
+.light-pattern i:nth-child(4) { grid-column:10 / span 1; }
+.light-pattern i:nth-child(5) { grid-column:13 / span 1; }
+.deep-pattern i { background:#497db6; }
+.deep-pattern i:nth-child(1) { grid-column:2 / span 3; }
+.deep-pattern i:nth-child(2) { grid-column:8 / span 2; }
+.rem-pattern i { background:#a88bcf; }
+.rem-pattern i:nth-child(1) { grid-column:6 / span 1; }
+.rem-pattern i:nth-child(2) { grid-column:11 / span 2; }
+.rem-pattern i:nth-child(3) { grid-column:14 / span 3; }
+.sleep-pattern-note { max-width:690px; color:#bcbcb9; font:400 14px/1.6 var(--reading-sans); margin:20px 0 0; }
+.sleep-stage-list { border-top:1px solid #424242; }
+.sleep-stage { display:grid; grid-template-columns:180px 1fr; gap:44px; align-items:start; padding:35px 0; border-bottom:1px solid #424242; }
+.sleep-stage-mark { width:156px; min-height:145px; border-radius:14px; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; padding:20px; }
+.sleep-stage-mark span { font:600 13px/1.2 var(--reading-mono); letter-spacing:.03em; }
+.sleep-stage-mark strong { font:500 30px/1 var(--reading-display); letter-spacing:-.035em; }
+.sleep-stage-light { background:#22272c; color:#c8d1da; }
+.sleep-stage-deep { background:#152337; color:#81b0e8; }
+.sleep-stage-rem { background:#251d31; color:#c1a2e9; }
+.sleep-stage h3 { font:500 clamp(24px,3vw,34px)/1.14 var(--reading-display); letter-spacing:-.035em; margin:2px 0 15px; color:#fff; }
+.sleep-stage p { font:400 18px/1.59 var(--reading-sans); color:#d4d4d0; max-width:640px; margin:0 0 10px; }
+.sleep-stage .sleep-stage-take { color:#f4f2ec; font-weight:600; margin-top:14px; }
+.sleep-evidence-inline { color:#bcbcb9; font:400 13px/1.6 var(--reading-sans); margin:25px 0 0; }
+.sleep-evidence-inline a { color:#eae9e4; text-decoration:underline; text-underline-offset:3px; }
+.sleep-plain { padding:clamp(76px,9vw,130px) 0; max-width:830px; }
+.sleep-plain .sleep-label, .sleep-experiment-heading .sleep-label, .sleep-care .sleep-label { color:#5d5c57; margin:0 0 18px; }
+.sleep-plain h2,.sleep-experiment-heading h2,.sleep-care h2 { font:450 clamp(44px,6vw,76px)/1.05 var(--reading-display); letter-spacing:-.05em; color:#0b0b0b; margin:0 0 30px; }
+.sleep-plain p { color:#303030; font:400 clamp(18px,2vw,21px)/1.62 var(--reading-sans); margin:0 0 18px; max-width:670px; }
+.sleep-training { border-top:1px solid #bbb9b3; }
+.sleep-training-row { display:grid; grid-template-columns:minmax(260px,.86fr) minmax(0,1.14fr); gap:clamp(30px,6vw,100px); padding:68px 0 74px; border-bottom:1px solid #bbb9b3; scroll-margin-top:40px; }
+.sleep-training-name span { display:block; font:600 12px/1.4 var(--reading-mono); color:#62615a; margin-bottom:25px; }
+.sleep-training-name h2 { font:450 clamp(36px,4.2vw,56px)/1.09 var(--reading-display); letter-spacing:-.045em; margin:0; color:#0b0b0b; }
+.sleep-training-row p { font:400 18px/1.66 var(--reading-sans); color:#343434; margin:0 0 19px; }
+.sleep-training-row .sleep-action { margin:26px 0 0; border-left:3px solid #111; padding-left:20px; color:#191919; }
+.sleep-hormone { margin:30px 0; padding:24px 0 4px; border-top:1px solid #c6c4be; border-bottom:1px solid #c6c4be; }
+.sleep-hormone h3 { font:600 23px/1.2 var(--reading-display); letter-spacing:-.024em; margin:0 0 13px; }
+.sleep-experiments { margin:110px 0; background:#e8e6df; border-radius:16px; padding:clamp(24px,5.5vw,70px); }
+.sleep-experiment-heading { max-width:800px; }
+.sleep-experiment-heading h2 { margin-bottom:18px; }
+.sleep-experiment-heading > p:last-child { font:400 19px/1.6 var(--reading-sans); max-width:670px; color:#343434; margin:0 0 35px; }
+.sleep-experiment-list { border-top:1px solid #aeaca5; }
+.sleep-experiment { border-bottom:1px solid #aeaca5; }
+.sleep-experiment summary { display:grid; grid-template-columns:36px 1fr 22px; gap:18px; align-items:center; min-height:84px; cursor:pointer; list-style:none; font:550 clamp(19px,2.1vw,24px)/1.22 var(--reading-display); letter-spacing:-.018em; padding:18px 0; }
+.sleep-experiment summary::-webkit-details-marker { display:none; }
+.sleep-experiment summary:hover { color:#4b4b4b; }
+.sleep-experiment-num { font:600 16px/1 var(--reading-mono); color:#575650; }
+.sleep-experiment-sign { width:18px; height:18px; position:relative; }
+.sleep-experiment-sign::before,.sleep-experiment-sign::after { content:""; position:absolute; background:#111; left:2px; top:8px; width:14px; height:1.5px; }
+.sleep-experiment-sign::after { transform:rotate(90deg); transition:transform .2s ease; }
+.sleep-experiment[open] .sleep-experiment-sign::after { transform:rotate(0deg); }
+.sleep-experiment-body { max-width:690px; margin:0 0 28px 54px; padding-right:32px; }
+.sleep-experiment-body p { font:400 18px/1.62 var(--reading-sans); color:#333; margin:0 0 11px; }
+.sleep-experiment-body .sleep-measure { font-size:15px; font-weight:550; color:#4c4b47; }
+.sleep-check { margin-top:44px; padding-top:26px; border-top:1px solid #aeaca5; max-width:740px; }
+.sleep-check h3 { font:600 26px/1.2 var(--reading-display); letter-spacing:-.02em; margin:0 0 18px; }
+.sleep-check p { color:#2f2f2f; font:400 18px/1.6 var(--reading-sans); margin:0 0 16px; }
+.sleep-care { max-width:790px; padding:0 0 95px; }
+.sleep-care h2 { font-size:clamp(38px,4.4vw,58px); margin-bottom:23px; }
+.sleep-care p { font:400 18px/1.62 var(--reading-sans); color:#333; margin:0 0 16px; }
+.sleep-footer { padding:48px 0 65px; border-top:1px solid #bbb9b3; }
+.sleep-sources { max-width:830px; }
+.sleep-sources h2 { font:600 22px/1.3 var(--reading-display); margin:0 0 22px; }
+.sleep-sources ol { list-style:decimal; padding-left:21px; margin:0; }
+.sleep-sources li { font:400 15px/1.55 var(--reading-sans); color:#51514c; padding-left:6px; margin:0 0 11px; }
+.sleep-sources a { color:#222; text-decoration:underline; text-underline-offset:3px; }
+.sleep-related { display:flex; flex-wrap:wrap; gap:12px 30px; padding-top:36px; margin-top:48px; border-top:1px solid #bbb9b3; }
+.sleep-related a { color:#111; font:550 15px/1.6 var(--reading-sans); text-decoration:none; border-bottom:1px solid #777; }
+@media (max-width:780px) {
+  .sleep-opening { padding:45px 0 55px; }
+  .sleep-night-head { grid-template-columns:1fr; gap:16px; }
+  .sleep-stage { grid-template-columns:118px 1fr; gap:23px; }
+  .sleep-stage-mark { width:116px; min-height:130px; padding:14px; }
+  .sleep-stage-mark strong { font-size:26px; }
+  .sleep-training-row { grid-template-columns:1fr; gap:24px; padding:50px 0; }
+}
+@media (max-width:520px) {
+  .sleep-back { font-size:12px; }
+  [data-form-reading] .sleep-opening h1 { font-size:clamp(49px,13vw,69px); }
+  .sleep-intro { font-size:19px; }
+  .sleep-jump { margin-top:35px; padding-top:28px; gap:8px 20px; }
+  .sleep-jump a { font-size:13px; }
+  .sleep-night { border-radius:12px; margin-inline:-8px; padding:26px 20px; }
+  .sleep-night-head h2 { font-size:49px; }
+  .sleep-night-head p:last-child { font-size:17px; }
+  .sleep-night-labels { margin-left:60px; font-size:10px; }
+  .sleep-pattern-row { grid-template-columns:47px 1fr; gap:12px; }
+  .sleep-pattern-name { font-size:12px; }
+  .sleep-pattern-track { gap:3px; height:18px; }
+  .sleep-stage { display:block; padding:30px 0; }
+  .sleep-stage-mark { flex-direction:row; width:auto; min-height:0; max-width:210px; align-items:center; margin-bottom:22px; gap:24px; }
+  .sleep-stage h3 { font-size:28px; }
+  .sleep-stage p { font-size:17px; }
+  .sleep-plain { padding:74px 0; }
+  .sleep-plain h2,.sleep-experiment-heading h2 { font-size:47px; }
+  .sleep-training-name h2 { font-size:43px; }
+  .sleep-training-row p { font-size:17px; }
+  .sleep-experiments { margin:70px -8px; padding:30px 20px; border-radius:12px; }
+  .sleep-experiment summary { grid-template-columns:25px 1fr 20px; gap:10px; font-size:19px; }
+  .sleep-experiment-body { margin-left:35px; padding-right:0; }
+  .sleep-experiment-body p,.sleep-check p { font-size:17px; }
+  .sleep-care { padding-bottom:65px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .sleep-experiment-sign::after { transition:none; }
+  * { scroll-behavior:auto !important; }
+}
+@media print {
+  [data-form-reading] body { background:#fff; color:#000; }
+  .sleep-topbar,.sleep-jump,.sf-menu,.sf-menu-toggle,.sleep-related { display:none !important; }
+  [data-form-reading] .sleep-page { width:100%; }
+  .sleep-opening { padding:0 0 25px; }
+  .sleep-opening h1 { font-size:42px !important; }
+  .sleep-night { color:#000; background:#fff; padding:20px 0; border-radius:0; }
+  .sleep-night * { color:#000 !important; }
+  .sleep-night-pattern,.sleep-evidence-inline { display:none; }
+  .sleep-stage { break-inside:avoid; }
+  .sleep-stage-mark { background:#eee !important; }
+  .sleep-plain,.sleep-training-row,.sleep-experiments { padding:26px 0; margin:0; }
+  .sleep-experiments { background:#fff; }
+  .sleep-experiment { break-inside:avoid; }
+  .sleep-experiment:not([open]) .sleep-experiment-body { display:block; }
+  .sleep-footer { padding-top:25px; }
+}

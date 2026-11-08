@@ -1,3 +1,10 @@
+## November 8 · Sleep as part of training: public field guide
+
+- **Scope:** Reauthor `/sleep` as a visual, plain-English reference that athletes can read without a coaching call: light, deep and REM sleep; running and strength adaptation; growth hormone without testosterone promises; the relational effects of short sleep; six selectable seven-night experiments. The visual stage pattern is schematic and includes no private athlete sleep metrics.
+- **Discovery:** Update the owning search record and question synonyms; regenerate the public `/search` index and `/library` navigation. The existing `/sleep` canonical and sitemap route stay stable. Add Article structured data and primary research links.
+- **Evidence and source QA:** `tests/sleep-education.cjs`, `tests/discovery-current.cjs`, `tests/running-library.cjs`, `tests/cream-reading.cjs`, `tests/editorial-contract.cjs`, `tests/public-copy-law.cjs`, and `scripts/check-editorial-contract.cjs` pass on November 8. The general discovery test still rejects an existing `/athletes/` entry also present on base; the shared-menu test encounters an existing menu-less `/method-bible/` page. These were not expanded into this content change.
+- **Status:** Source authoring and local checks only. **Not merged or deployed**; production page remains as it was. Next: review source PR, complete browser visual QA when the browser runtime is available, obtain explicit one-release authorization, then verify the exact live `/sleep`, `/search` and `/library` routes and mobile presentation.
+
 ## November 4 · Method Bible, agent governance and Coach Console reset
 
 - **Owner direction:** Make FORM's observation-led training doctrine public and

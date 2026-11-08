@@ -87,6 +87,7 @@ const questions={
  '/running-terms':['what is vo2max','what is running economy','what is lactate','what does 3 x 6 mean','what are running terms'],
  '/training-principles':['how does running training work','how do i improve as a runner'],
  '/recovery':['why am i always tired after running','should i run or rest','how do i recover from running'],
+ '/sleep':['why does sleep matter for runners','does sleep help build muscle','how much sleep do athletes need','what is rem sleep','what is deep sleep','what does light sleep do','is too much rem sleep bad','how do i improve sleep quality','why does sleep affect testosterone','how does sleep affect relationships','how should i sleep after a hard workout','sleep hygiene for athletes','sleep and strength training','why am i tired after a bad night'],
  '/anti-rotation':['what is anti rotation','core exercises for runners','how do i keep my trunk steady'],
  '/strength-activation':['how should i warm up before running','warm up routine'],
  '/strength-routine':['what strength exercises should runners do'],
