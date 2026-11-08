@@ -1,8 +1,8 @@
--- Review-only season projection, following the already-applied display-unit RPC.
+-- Applied in production as migration 20261108235525_speed_record_season_speedwork.
 -- Extends only the existing athlete_speed_record_v1 result. Does not replay
 -- Tinius' setting update, alter tables, grant access, or enable Field v2.
 -- Read access remains gated by can_read_athlete and Speed tab entitlement.
--- Reconcile #555 migration history before deploying.
+-- Supersedes the earlier review-only migration filename.
 
 CREATE OR REPLACE FUNCTION public.athlete_speed_record_v1(p_athlete_id uuid)
  RETURNS jsonb
