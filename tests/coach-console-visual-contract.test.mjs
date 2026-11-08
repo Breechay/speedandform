@@ -35,13 +35,15 @@ test('long mixed sessions cannot escape the week row or collide with the inspect
     { primaryMark: null }
   );
   const mixed = doseOf({ components: [
-    { role: 'work', shape: 'repetitions', repeat_count: 1, distance: 1, distance_unit: 'km' },
+    { role: 'work', shape: 'repetitions', repeat_count: 1, distance: 1, distance_unit: 'km', pace_low: '5:38', pace_high: '5:46', recovery_seconds: 120, recovery_kind: 'jog' },
     { role: 'work', shape: 'repetitions', repeat_count: 1, distance: 600, distance_unit: 'm' },
     { role: 'work', shape: 'repetitions', repeat_count: 1, distance: 400, distance_unit: 'm' }
   ] });
   assert.equal(mixed.weekSummary, '3 parts');
   assert.match(mixed.shortLine, /1 × 1 km @ 5:38/,
     'the complete source prescription remains available to the inspector');
+  assert.equal(mixed.shortQualifiers, '5:38–5:46/km · 2:00 jog',
+    'the week index does not repeat the complete multi-part anatomy');
   assert.match(css, /\.consoleWorkbench \{\s*display: grid; grid-template-columns: minmax\(0, 1\.15fr\) minmax\(0, \.85fr\)/);
   assert.match(css, /\.consoleWorkRow__what \{[^}]*overflow-wrap: anywhere/s);
   assert.doesNotMatch(css.match(/\.consoleWorkRow__what \{([^}]*)\}/)?.[1] || '', /white-space: nowrap|text-overflow: ellipsis/);

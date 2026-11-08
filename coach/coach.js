@@ -294,7 +294,9 @@ function doseOf(version) {
   // whichever headline is missing it, and never to both.
   const shapeWord = work.shape === 'continuous' ? 'continuous' : null;
   const shortQualifiers = works.length > 1
-    ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
+    // The row title identifies the mixed session; the inspector owns its full
+    // anatomy. Reprinting six reps here turns a navigation row into a paragraph.
+    ? qualifiers.filter((item) => item !== totalLine).slice(0, 2)
     : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
   const runwaySummary = works.length > 1
     ? `${works.length} work segments`

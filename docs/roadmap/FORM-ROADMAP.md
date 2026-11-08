@@ -6,7 +6,9 @@
   labels also weakened the reading order. This is a presentation defect, not a
   reason to edit any athlete's plan.
 - **Source correction:** The week navigation shows a bounded count for mixed
-  prescriptions; the full exact workout remains in its title and inspector.
+  prescriptions and avoids repeating the entire anatomy in its qualifiers;
+  the row retains the authored title and key pace/recovery, while the full
+  exact workout remains in the inspector.
   The workbench uses columns with explicit zero minimums, natural title wrapping,
   a tablet stacking breakpoint, a smaller sentence-case inspector heading,
   readable body/qualifiers and distinct 42px action targets. A selected row uses
