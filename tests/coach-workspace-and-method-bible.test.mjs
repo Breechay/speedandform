@@ -46,6 +46,8 @@ test('the public Method Bible is rendered static HTML with a complete anchor ind
   assert.match(generated, /application\/ld\+json/);
   assert.match(generated, /rel="canonical" href="https:\/\/speedandform\.com\/method-bible\/"/);
   assert.match(generated, /rel="alternate" type="text\/markdown"/);
+  assert.doesNotMatch(source, /\]\(\.\.\/docs\//, 'Private coaching-document links must not leak into public source');
+  assert.doesNotMatch(generated, /\]\(\.\.\/docs\//, 'Unsupported relative Markdown links must not become page-width overflow');
 });
 
 test('Method Bible source, site map and agent discovery agree', () => {
