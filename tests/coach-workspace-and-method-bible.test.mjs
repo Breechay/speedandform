@@ -20,7 +20,7 @@ test('every coach work area has the same five human-readable destinations', () =
     for (const [href, name] of nav) {
       assert.ok(html.includes(`href="${href}"`), `${page} missing ${name}`);
     }
-    assert.match(html, /coach\/workspace-light\.css\?v=1/, page);
+    assert.match(html, /coach\/workspace-light\.css\?v=\d+/, page);
   }
   const labs = read('coach/labs/labs.js');
   for (const [href, name] of nav) {

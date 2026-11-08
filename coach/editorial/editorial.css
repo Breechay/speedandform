@@ -1,0 +1,39 @@
+/* FORM coach editorial · focused, near-black proofing surface. */
+body.editorial-page{background:#141618;color:#f1eee7;min-height:100vh;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Helvetica Neue",sans-serif}
+.editorial-page *{box-sizing:border-box}
+.editorial-header{display:flex;justify-content:space-between;gap:2rem;align-items:center;padding:1.4rem clamp(1.2rem,5vw,5rem);border-bottom:1px solid #383a3b;background:#141618}
+.editorial-header a{color:#e7e5df;text-decoration:none}
+.editorial-brand{display:flex;gap:1rem;align-items:baseline;letter-spacing:.1em}
+.editorial-brand span{font-size:1.35rem;font-weight:750}.editorial-brand small{font-size:.62rem;color:#9b9d9c;letter-spacing:.18em}
+.editorial-header nav{display:flex;gap:1.4rem;font-size:.82rem}
+#editorialApp{max-width:1300px;margin:auto;padding:clamp(1.2rem,4vw,4rem)}
+.editorial-kicker{font-size:.72rem;letter-spacing:.16em;color:#a1a8a9;text-transform:uppercase;font-weight:600}
+.editorial-hero h1{font-size:clamp(2rem,4.3vw,4.2rem);letter-spacing:-.055em;line-height:1.02;margin:.7rem 0 1.2rem;max-width:780px;font-weight:500}
+.editorial-hero p{line-height:1.65;max-width:750px;color:#b7bcbb;font-size:.95rem}
+.editorial-toolbar{position:sticky;top:0;background:#141618ee;backdrop-filter:blur(18px);z-index:5;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 0;border-top:1px solid #5558;border-bottom:1px solid #5558;margin:2.3rem 0 1.2rem}
+.editorial-status{font-size:.86rem;color:#aeb6b5}
+.editorial-status[data-error=true]{color:#f6b59e}
+.editorial-actions{display:flex;align-items:center;gap:.7rem}
+.editorial-page button{cursor:pointer;border:1px solid #696d6c;background:transparent;color:#f4f1ec;padding:.72rem 1rem;border-radius:3px;font:inherit;font-size:.83rem}
+.editorial-page button:disabled{opacity:.35;cursor:default}
+.editorial-page button.primary{border-color:#f1eee7;background:#eae6de;color:#141618;font-weight:700}
+.editorial-page button:focus-visible,.editorial-page textarea:focus-visible,.editorial-page input:focus-visible{outline:2px solid #eae6de;outline-offset:3px}
+.editorial-entry{border-bottom:1px solid #454949;padding:2rem 0 2.5rem}
+.editorial-entry-heading{display:flex;align-items:start;justify-content:space-between;gap:1.2rem}
+.editorial-person{color:#b1b9b8;letter-spacing:.12em;font-size:.65rem;text-transform:uppercase}
+.editorial-entry h2{font-size:1.8rem;line-height:1.15;letter-spacing:-.035em;margin:.45rem 0 .4rem;font-weight:500}
+.editorial-date{color:#939e9d;font-size:.78rem}
+.editorial-entry label.select{display:flex;align-items:center;gap:.55rem;color:#e8e4dd;font-size:.8rem}
+.editorial-entry input[type=checkbox]{width:1.2rem;height:1.2rem;accent-color:#eae6de}
+.editorial-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:1.6rem}
+.editorial-grid label{display:block;color:#b1b6b4;font-size:.73rem;letter-spacing:.025em}
+.editorial-grid label span{display:block;margin-bottom:.48rem}
+.editorial-grid textarea{width:100%;border:1px solid #4a5050;background:#1e2123;color:#eeeae3;border-radius:3px;min-height:4.5rem;padding:.9rem;resize:vertical;line-height:1.5;font:inherit;font-size:.87rem;letter-spacing:normal}
+.editorial-grid label[data-wide]{grid-column:1/-1}
+.editorial-entry details{margin-top:1.3rem;color:#aab3b1;border-top:1px solid #333738;padding-top:1rem;font-size:.83rem}
+.editorial-entry summary{cursor:pointer}.editorial-compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.editorial-compare h3{font-size:.75rem;font-weight:600;color:#eee9e1}
+.editorial-compare pre{white-space:pre-wrap;word-break:break-word;line-height:1.55;font-size:.76rem;color:#b6bfbd;font-family:inherit}
+.editorial-note{font-size:.75rem;color:#9ca6a4;padding-top:.8rem}
+.editorial-empty{padding:2rem 0;color:#b7bfbd}
+@media(max-width:720px){.editorial-header{align-items:flex-start}.editorial-header nav{flex-wrap:wrap;justify-content:flex-end}.editorial-grid,.editorial-compare{grid-template-columns:1fr}.editorial-toolbar{flex-direction:column;align-items:stretch}.editorial-actions{justify-content:space-between}}
