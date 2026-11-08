@@ -2,7 +2,7 @@
 
 The Speed Record v1 tables and authenticated `athlete_speed_record_v1(uuid)` RPC were activated independently in Supabase project `pbgsjjegycacodiltbhn` via applied migration `20261108204337`. **Field v2 remains disabled**: `collective_work_feed_v2(uuid)` is absent, and no Field v2 source migration was deployed.
 
-This branch records the exact migrations already applied to production. It is **not** a request to redeploy them. Reconcile Supabase migration history before merging or replaying them.
+This branch now records the applied production versions. The display-unit migration is `20261108215420`; the season projection was applied as `20261108235525`. Older draft filenames `20261108212647`, `20261108215600`, and `20261108230700` were removed from this review branch because their effects were already folded into the applied versions or superseded. Do not replay applied migrations.
 
 ## Season-wide schedule and design acceptance (review addition)
 
@@ -26,7 +26,7 @@ The Nov 8 roster audit of the published plans identified **114 eligible key spee
 
 Exclude easy-only sessions, races, and race-week events; include fast finishes where the actual title specifies meaningful faster work. This is a read-only projection, not a training-plan edit. In particular, Sohel's revised Nov 5 100 m prescription must never inherit his earlier filed 200 m result: completion evidence stays bound to its filed version.
 
-**Release condition:** the 20261108230700 season migration is currently staged on this PR, not live. Earlier migrations in this PR overlap migrations already applied under different versions in Supabase history. Reconcile that history and verify authorized athlete/coach reads, denied unauthenticated and unauthorized reads, exact-version filing provenance, 11 roster counts, and Debug/Release plus signed-in device before considering a production release.
+**Live backend status (2026-11-08):** the season projection was activated as migration `20261108235525_speed_record_season_speedwork`. An authenticated coach read returned all 114 season sessions across the 11 Speed-enabled athletes with the expected per-athlete counts. Tinius's authenticated athlete read returned 12 season sessions while retaining 3 curated benchmarks; the same athlete cannot read Brice's record. The RPC is SECURITY INVOKER, denied to `anon` for EXECUTE, and null without a signed-in principal. No plans or results were modified. **Still required before native release:** physical-iPhone Speed and Coach Mirror acceptance, Debug and Release build checks, and existing native CI repair.
 
 ## Pilot curation
 
