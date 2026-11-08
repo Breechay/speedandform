@@ -4,6 +4,30 @@ The Speed Record v1 tables and authenticated `athlete_speed_record_v1(uuid)` RPC
 
 This branch records the exact migrations already applied to production. It is **not** a request to redeploy them. Reconcile Supabase migration history before merging or replaying them.
 
+## Season-wide schedule and design acceptance (review addition)
+
+The season rail is sourced from each athlete's **published, active training block**. It must not be limited to the 33 pilot benchmark identities. All sessions are individual and version-pinned. A pending result has no fabricated split, time, or pace. The iOS review branch draws only the first filed interval when a session is tapped, with the elapsed clock time inside the original elongated oval. The oval moves counterclockwise from the upper-right straight. The navigation is two rows with a fine underline.
+
+The Nov 8 roster audit of the published plans identified **114 eligible key speed / goal-pace sessions across the 11 Speed-enabled athletes**:
+
+| Athlete | Season speedwork sessions | Selection rule |
+| --- | ---: | --- |
+| Anthony | 12 | Thursday keys, Nov 5–Jan 21 |
+| Brice | 12 | Thursday keys, Nov 5–Jan 21 |
+| Megan | 10 | Thursday keys, Nov 5–Jan 21 |
+| Patrick | 5 | Thursday keys, Nov 5–Dec 3 |
+| Saul | 11 | Thursday keys, Nov 5–Jan 14 |
+| Sohel | 7 | His Thursday speed progression, Nov 5–Dec 17 |
+| Tinius | 12 | Thursday keys, Nov 5–Jan 21 |
+| Turner | 11 | Thursday keys, Nov 5–Jan 21 |
+| Elijah | 10 | His Tuesday intervals and tempo, Oct 6–Dec 8 |
+| Hope | 11 | Orlando race-pace, faster sessions and the Oct 17 finish, Oct 6–Dec 1 |
+| José | 13 | Orlando pace durability and the Nov 7/14 fast-finish long runs, Oct 6–Dec 1 |
+
+Exclude easy-only sessions, races, and race-week events; include fast finishes where the actual title specifies meaningful faster work. This is a read-only projection, not a training-plan edit. In particular, Sohel's revised Nov 5 100 m prescription must never inherit his earlier filed 200 m result: completion evidence stays bound to its filed version.
+
+**Release condition:** the 20261108230700 season migration is currently staged on this PR, not live. Earlier migrations in this PR overlap migrations already applied under different versions in Supabase history. Reconcile that history and verify authorized athlete/coach reads, denied unauthenticated and unauthorized reads, exact-version filing provenance, 11 roster counts, and Debug/Release plus signed-in device before considering a production release.
+
 ## Pilot curation
 
 - Exactly 11 athletes with `speed_enabled`; 33 explicit benchmark identities, each matched to an active training block, a published session, and its newest immutable published version.
