@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "last_curated_on": "2026-11-06",
+  "last_curated_on": "2026-11-08",
   "purpose": "Locator of current FORM authority, not a replacement method or a parallel prescription database.",
   "rules": [
     {
@@ -45,11 +45,13 @@
     },
     {
       "id": "FORM-PRESENTATION-006",
-      "title": "Publish concise athlete-specific workouts with consistent units",
+      "title": "Show the workout once; preserve only athlete-specific execution cues",
       "owner": "FORM Coaching",
       "authority": "private/session-editorial-standard.mjs",
-      "enforcement": "coach editor checks and typed database constraints",
-      "verification": "private/session-editorial-standard.test.mjs"
+      "enforcement": "Coach editor copy audit and typed-work preview review; direct SQL/native paths remain a known gap",
+      "verification": "private/session-editorial-standard.test.mjs and signed-in athlete Week readback",
+      "effective_date": "2026-11-08",
+      "scope": "FORM Week, full running prescriptions, coach-authored edits and plan previews"
     },
     {
       "id": "FORM-ARITHMETIC-007",
