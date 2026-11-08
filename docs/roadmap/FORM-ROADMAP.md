@@ -1,3 +1,25 @@
+## November 8 · Coach Console workbench readability follow-up
+
+- **Observed after the November 8 Console deployment:** A multi-part Thursday
+  prescription expanded the week-row dose column across the inspector, visibly
+  crossing the selected session's buttons. Long titles and small supporting
+  labels also weakened the reading order. This is a presentation defect, not a
+  reason to edit any athlete's plan.
+- **Source correction:** The week navigation shows a bounded count for mixed
+  prescriptions; the full exact workout remains in its title and inspector.
+  The workbench uses columns with explicit zero minimums, natural title wrapping,
+  a tablet stacking breakpoint, a smaller sentence-case inspector heading,
+  readable body/qualifiers and distinct 42px action targets. A selected row uses
+  a side accent rather than a four-sided card outline.
+- **Evidence:** 59 focused Console, coach publication, filing, future-block,
+  invitation, editorial and session-distance source tests pass. The test
+  exercises a three-part interval string like the reported overflow. No
+  prescription, backend, auth, native build or athlete record was changed.
+- **Release gate:** Source candidate only until review/merge and an exact
+  production deploy receipt. Live desktop/tablet/phone/200%-zoom screenshots,
+  keyboard focus and overflow checks remain required; source tests do not
+  establish visual acceptance.
+
 ## November 4 · Method Bible, agent governance and Coach Console reset
 
 - **Owner direction:** Make FORM's observation-led training doctrine public and

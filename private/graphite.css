@@ -2049,11 +2049,12 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 
 /* 5 · The workbench. The chosen week, and the session under it. */
 .consoleWorkbench {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(380px, 1fr);
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr);
   gap: clamp(24px, 2.6vw, 36px); min-height: 320px; padding: 26px 8px 0;
 }
 .consoleWorkbench__week { min-width: 0; }
 .consoleWorkbench__inspector { min-width: 0; border-left: 1px solid var(--console-edge); padding-left: clamp(20px, 2.4vw, 34px); }
+.consoleWorkbench__inspector .inspect { min-width: 0; }
 .consoleWorkbench__head {
   margin: 0 0 6px; font-family: var(--condensed); font-size: 12px; letter-spacing: .12em;
   text-transform: uppercase; color: var(--console-muted);
@@ -2061,7 +2062,7 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 .consoleWorkbench__head span { margin-left: 10px; color: var(--console-secondary); }
 .consoleWorkbench__empty { margin: 0; font-size: 13px; color: var(--console-muted); }
 .consoleWorkRow {
-  display: grid; grid-template-columns: 72px 92px minmax(0, 1fr); align-items: baseline; gap: 16px;
+  display: grid; grid-template-columns: 72px 112px minmax(0, 1fr); align-items: start; gap: 16px;
   width: 100%; padding: 15px 10px; background: none; border: 0;
   border-top: 1px solid var(--console-edge); cursor: pointer; text-align: left;
   font-family: var(--condensed);
@@ -2073,19 +2074,19 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   display: block; margin-top: 3px; font-style: normal; letter-spacing: .06em;
 }
 .consoleWorkRow__dose {
-  font-size: 26px; font-weight: 700; letter-spacing: .02em;
+  min-width: 0; font-size: 23px; line-height: 1.2; font-weight: 700; letter-spacing: 0;
   color: var(--console-text); font-variant-numeric: tabular-nums;
 }
 .consoleWorkRow__dose i {
   font-style: normal; font-size: 12px; font-weight: 500; color: var(--console-muted); margin-left: 4px;
 }
 .consoleWorkRow__what {
-  font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: var(--console-secondary);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  min-width: 0; font-size: 16px; line-height: 1.4; font-weight: 540; letter-spacing: 0;
+  text-transform: none; color: var(--console-secondary); overflow-wrap: anywhere;
 }
 .consoleWorkRow:hover { background: var(--console-surface); }
 .consoleWorkRow--done .consoleWorkRow__what { color: var(--console-text); }
-.consoleWorkRow--on { background: var(--console-surface); box-shadow: inset 0 0 0 1px var(--console-lime); }
+.consoleWorkRow--on { background: var(--console-raised); box-shadow: inset 3px 0 0 var(--console-lime); }
 
 /* Laptop density. The bands all fit at 1536 wide; below that the hero has to
    give the runway and the workbench their room back. */
@@ -2098,6 +2099,12 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .consoleWorkRow { padding: 12px 10px; }
 }
 
+/* Stack before either reading column becomes cramped at laptop/tablet widths. */
+@media (max-width: 1100px) {
+  .consoleWorkbench { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .consoleWorkbench__inspector { border-left: 0; border-top: 1px solid var(--console-edge); padding: 24px 0 0; }
+}
+
 /* 9 · Below 760px the bands stack and the two horizontal instruments scroll.
    Week columns keep their width so the dates stay legible. */
 @media (max-width: 760px) {
@@ -2108,7 +2115,7 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   .consoleRunway { grid-auto-columns: minmax(132px, 1fr); }
   .consoleWorkbench { grid-template-columns: 1fr; gap: 22px; padding: 22px 0 0; }
   .consoleWorkbench__inspector { border-left: 0; border-top: 1px solid var(--console-edge); padding: 22px 0 0; }
-  .consoleWorkRow { grid-template-columns: 64px 80px minmax(0, 1fr); gap: 12px; padding: 13px 0; }
+  .consoleWorkRow { grid-template-columns: 64px 88px minmax(0, 1fr); gap: 12px; padding: 13px 6px; }
 }
 
 /* The dose, not the total. A runway cell says what the session is before it says
@@ -2124,8 +2131,8 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 @media (max-width: 1400px) { .consoleWeek { min-height: 126px; } }
 
 .consoleWorkRow__what em {
-  display: block; margin-top: 4px; font-style: normal; font-size: 10.5px;
-  letter-spacing: .07em; color: var(--console-muted);
+  display: block; margin-top: 5px; font-style: normal; font-size: 13px; line-height: 1.4;
+  letter-spacing: 0; color: var(--console-secondary);
 }
 .consoleWorkRow--adhoc .consoleWorkRow__what { color: var(--console-muted); }
 .consoleWorkRow--adhoc .consoleWorkRow__what em { color: var(--console-coral); }
@@ -2181,13 +2188,8 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   text-transform: uppercase; color: var(--console-lime);
 }
 
-/* The dose column holds one line. "9 mi continuous" wrapping into the title
-   beside it was the crowding. */
-.consoleWorkRow { grid-template-columns: 72px minmax(92px, auto) minmax(0, 1fr); }
-.consoleWorkRow__dose { white-space: nowrap; }
-@media (max-width: 760px) {
-  .consoleWorkRow { grid-template-columns: 64px minmax(74px, auto) minmax(0, 1fr); }
-}
+/* A bounded dose column must never grow to the length of an interval string. */
+.consoleWorkRow__dose { overflow-wrap: anywhere; }
 
 /* A double is two sessions on one day. Said, never merged. */
 .consoleWorkRow__double {

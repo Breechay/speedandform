@@ -158,6 +158,98 @@ html:has(.coach-page--programming) { background: #f6f5f1; }
 .coach-page--programming .consoleRungLine em {
   color: var(--coach-accent);
 }
+/* Week and session form one reading surface. Long mixed sessions wrap inside
+   their own column; the inspector leads with a readable title, not a shout. */
+.coach-page--programming .consoleWorkbench__head {
+  font-family: var(--coach-font);
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+.coach-page--programming .consoleWorkRow__day {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: .02em;
+}
+.coach-page--programming .consoleWorkRow__dose i {
+  font-size: 13px;
+}
+.coach-page--programming .consoleWorkRow__what {
+  color: var(--coach-ink);
+}
+.coach-page--programming .consoleWorkRow--on {
+  background: #e8eee8;
+}
+.coach-page--programming .ins-when {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: .025em;
+  color: var(--coach-secondary);
+}
+.coach-page--programming .ins-what {
+  max-width: 32ch;
+  margin-top: 12px;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.17;
+  font-weight: 670;
+  letter-spacing: -.025em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-dose b {
+  font-size: clamp(20px, 2vw, 25px);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-dose span {
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-detail,
+.coach-page--programming .ins-why {
+  max-width: 63ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--coach-secondary);
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-actions {
+  gap: 8px;
+  margin-top: 24px;
+}
+.coach-page--programming .ins-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid var(--coach-line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--coach-ink);
+  font-family: var(--coach-font);
+  font-size: 13px;
+  font-weight: 620;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-actions button:hover {
+  background: var(--coach-paper-deep);
+  color: var(--coach-ink);
+}
+.coach-page--programming .ins-actions button[data-file] {
+  background: var(--coach-accent);
+  border-color: var(--coach-accent);
+  color: #fff;
+}
+.coach-page--programming .ins-actions button[data-file]:hover {
+  background: #155642;
+  color: #fff;
+}
 .coach-page--programming .dialog { background: var(--coach-paper); border-radius: 7px; }
 .coach-page--programming .dialog::backdrop { background: #1c29266e; }
 .coach-page--programming .dialog .field-label { color: var(--coach-secondary); font-size: 12px; line-height: 1.35; letter-spacing: .02em; }

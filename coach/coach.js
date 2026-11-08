@@ -259,6 +259,10 @@ function doseOf(version) {
   const shortLine = works.length > 1
     ? (sessionTotalLabel(version) || structureOf(version))
     : work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
+  // The week list is a navigation index. A mixed workout's structure can be a
+  // full sentence (with paces and recoveries), which must not become the width
+  // of its numeric column. The title and inspector retain the full prescription.
+  const weekSummary = works.length > 1 ? `${works.length} parts` : shortLine;
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total work` : null;
@@ -299,7 +303,7 @@ function doseOf(version) {
     ? (sessionTotalLabel(version) || 'Mixed-pace session')
     : qualifiers.filter((item) => item !== totalLine).slice(0, 2).join(' · ');
   return {
-    line, shortLine, work, proofBearing, totalLine,
+    line, shortLine, weekSummary, work, proofBearing, totalLine,
     runwaySummary, runwayContext,
     qualifiers: qualifiers.join(' \u00b7 '),
     shortQualifiers: shortQualifiers.join(' \u00b7 ')
@@ -498,7 +502,7 @@ function workbenchHtml() {
       type="button" data-session="${escapeHtml(session.id)}">
       <span class="consoleWorkRow__day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
       <span class="consoleWorkRow__dose">${dose
-        ? escapeHtml(dose.shortLine)
+        ? escapeHtml(dose.weekSummary)
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>${escapeHtml(version.distance_unit || 'mi')}</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
       <span class="consoleWorkRow__what">${escapeHtml(version.title)}
