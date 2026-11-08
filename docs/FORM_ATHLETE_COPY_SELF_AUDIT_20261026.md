@@ -27,6 +27,17 @@ This applies to Week, Plan, Coach Console, Plan Exchange, HYROX, strength instru
 - Do not lead with `4 mi running total.` when the session title and structured work already establish the total. Start with the warm-up and work.
 - Write `RPE 6`, not `RPE 6–6`. Exercise list rows such as `Bench press — 4 × 8` are valid; a long prose sentence joined by an em dash is not.
 
+## Prescription economy · November 8, 2026
+
+**Show the work once. Keep only a cue that changes its execution.** This is a FORM-wide athlete-facing writing rule, not a change to coaching dose.
+
+- **Week:** Let the title and typed components carry distance, pace, time, sets, strides, recoveries, warm-up and cooldown. Do not repeat their numbers in a paragraph. A basic easy run needs no accompanying essay; a short pace cap may remain when it is not structured.
+- **Full session:** Preserve necessary setup, safety, fueling, route, weather and race instructions. Use one short, direct cue when grounded in this athlete's actual experience. José's recurring late starts and sun complaints justify *Start early to avoid the heat*; his November 14 long run also merits route, water and familiar fueling. These cues are useful, not filler.
+- **No running-company prescriptions:** Do not add “solo,” “partner,” “independently paced,” or an assumed group to the session title or directions. The coach prescribes the workout, not who runs beside the athlete. If an actual partnered strength drill needs another person, state the genuine exercise requirement instead.
+- **No doubled commentary:** Remove phrases that merely restate the structure or nag about obvious exclusions. Keep a genuinely important limit only when the athlete's known risk or an approved coaching decision makes it necessary.
+- **Race day:** Show a compact Week summary. Keep start time, breakfast timing, warm-up, splits, fluid and fueling specifics in the full race session or a separate race guide when needed. Never delete execution-critical detail merely to shorten a card.
+- **History and ownership:** Do not rewrite completed or cancelled athlete records for this editorial rule. Audit future published copies against the latest structured version. Make any correction as a copy-only, authenticated, append-only coach revision, then reconfirm the Week story and verify signed-in athlete readback. No silent load, pace or race-plan change.
+
 ## Two levels of copy
 
 - **Week card:** Title, actual work, distance/splits/RPE/recovery and short warm-up/cool-down labels. Do not repeat `Drills + 4 strides` or `4 relaxed strides after the warm-up` above fully structured speed sets. `weekPreviewEditorialIssues` checks this presentation noise when its renderer supplies `hasStructuredWork: true`.
