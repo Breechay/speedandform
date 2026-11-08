@@ -124,3 +124,37 @@ Before shipping a sentence on any coaching surface:
 3. Does removing it lose information? If not — cut it.
 
 Most sentences do not survive. That is the correct rate.
+
+
+## 7. Halo messages are Brice's words, not assistant output
+
+This rule is binding on every Halo message, coach note, cohort campaign and backend
+publisher, regardless of whether a model drafted the text.
+
+- **Drafting is not publication.** A request to prepare messages does not approve
+  any specific wording. Show the exact body for each named recipient in the
+  conversation. Wait for Brice's explicit approval of that exact batch before
+  inserting or unarchiving messages or scheduling notifications. Never infer
+  approval from an earlier request to automate Halo.
+- **No invented headline.** Do not create a poetic, motivational, or editorial
+  title such as "Find the line", "Build the engine", "Quiet speed", "Two strong
+  tens", or "Stay with the rhythm". Halo is a message from a coach, not a
+  campaign. The athlete-facing design should omit the headline entirely. If a
+  required database field temporarily needs a title, use only a literal
+  session/date descriptor internally and do not surface it as a slogan.
+- **No filler body.** Name the current, published session and correct pace in
+  the athlete's unit; add at most one specific, useful reminder. Do not turn
+  unsupported guesses into first-person coaching. If the Week already says
+  everything and Brice has nothing else to add, send nothing.
+- **Check before asking to send.** Verify recipient identity/entitlement,
+  published session version, repetitions, duration/distance, recoveries, pace
+  range and units against Week, Filing and Speed. Record any mismatch as a
+  blocker; never smooth it over with copy.
+- **Check after sending.** Read back the exact message and recipients from the
+  authoritative live source. Never claim delivery from a local draft or a
+  successful write alone. If Brice retracts a batch, archive its exact keys
+  and verify zero active rows; do not automatically substitute new copy.
+
+The November 8, 2026 cohort and Saturday notes were retracted after unapproved
+model-written headlines were published under Brice's identity. Do not repeat
+that workflow. All replacement copy must be presented to Brice first.
