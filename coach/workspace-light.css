@@ -10,6 +10,10 @@
   font-display: swap;
 }
 
+/* The coach shell is paper from the first painted frame, not only after an
+ * authenticated Dossier has replaced the loading state. The old Labs workflow
+ * sheet used to leave navy in the html viewport and behind modal surfaces. */
+html:has(body.coach-page) { background: #f6f5f1; color-scheme: light; }
 body.coach-page {
   --coach-paper: #f6f5f1;
   --coach-paper-deep: #eeeee8;
@@ -27,6 +31,10 @@ body.coach-page {
   --coach-editor-field: #eeeee8;
   --coach-editor-font-size: 16px;
   --coach-editor-line: #aebbb2;
+  background: var(--coach-paper);
+  color: var(--coach-ink);
+  color-scheme: light;
+  min-height: 100vh;
   font-family: var(--coach-font);
 }
 body.coach-page button,
@@ -398,6 +406,17 @@ body.coach-page--athletes:has(.ccApp) {
   color: var(--coach-ink);
   overflow: auto;
 }
+body.coach-page--athletes:has(.loading) {
+  background: var(--coach-paper);
+  color: var(--coach-ink);
+}
+.coach-page--athletes .loading {
+  background: var(--coach-paper);
+  color: var(--coach-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: .015em;
+}
 .coach-page--athletes .ccApp {
   grid-template-columns: 248px minmax(0, 1fr);
   gap: 26px;
@@ -445,7 +464,7 @@ body.coach-page--athletes:has(.ccApp) {
   letter-spacing: .12em;
 }
 .coach-page--athletes .ccRailLabel span { color: #77867e; }
-.coach-page--athletes .ccAthlete { min-height: 60px; padding: 9px; }
+.coach-page--athletes .ccAthlete { min-height: 60px; padding: 9px; grid-template-columns: 40px minmax(0, 1fr); }
 .coach-page--athletes .ccAthlete:hover { background: #f4f7f2; }
 .coach-page--athletes .ccAthlete.active {
   background: var(--coach-accent-soft);
@@ -457,7 +476,9 @@ body.coach-page--athletes:has(.ccApp) {
   background: #e8ede7;
   color: #3a6255;
   border: 1px solid #d6e0d8;
+  border-radius: 50%;
 }
+.coach-page--athletes .ccAvatar { width: 40px; height: 40px; }
 .coach-page--athletes .ccAthlete.active .ccAvatar {
   background: #d2e6da;
   color: #19523f;
@@ -780,6 +801,82 @@ body.coach-page--athletes:has(.ccApp) {
   background: #fff;
   color: var(--coach-ink);
 }
+
+/* The Dossier's filing editor and whole-week calendar are part of the light
+ * Console too; they must not retain the older midnight-blue modal skin. */
+.coach-page--athletes .sheet,
+.coach-page--athletes .plPanel,
+.coach-page--athletes .notePanel {
+  background: var(--coach-paper);
+  color: var(--coach-ink);
+  border-color: var(--coach-line);
+  box-shadow: 0 24px 65px #1c29261b;
+}
+.coach-page--athletes .shHead,
+.coach-page--athletes .shFoot,
+.coach-page--athletes .plActs,
+.coach-page--athletes .noteList { border-color: var(--coach-line); }
+.coach-page--athletes .shKind,
+.coach-page--athletes .act,
+.coach-page--athletes .noteActs button { color: var(--coach-accent); }
+.coach-page--athletes .shSub,
+.coach-page--athletes .shNote,
+.coach-page--athletes .shClose,
+.coach-page--athletes .plHint,
+.coach-page--athletes .plNote,
+.coach-page--athletes .plVal,
+.coach-page--athletes .plActs button,
+.coach-page--athletes .notePanel p,
+.coach-page--athletes .noteItem b { color: var(--coach-secondary); }
+.coach-page--athletes .f label,
+.coach-page--athletes .plField label { color: var(--coach-secondary); font-size: 12px; letter-spacing: .02em; }
+.coach-page--athletes .f input,
+.coach-page--athletes .f select,
+.coach-page--athletes .f textarea,
+.coach-page--athletes .plField select,
+.coach-page--athletes .plPick,
+.coach-page--athletes .notePanel select,
+.coach-page--athletes .notePanel textarea {
+  background: var(--coach-editor-field);
+  color: var(--coach-ink);
+  border-color: var(--coach-line);
+  font-size: 15px;
+}
+.coach-page--athletes .plOut { background: var(--coach-paper-deep); color: var(--coach-secondary); border-color: var(--coach-line); }
+.coach-page--athletes .btn { background: var(--coach-accent); color: #fff; }
+.coach-page--athletes .btn.ghost { background: transparent; color: var(--coach-secondary); border-color: var(--coach-line); }
+.coach-page--athletes .act { border-color: #b7d5c4; font-size: 12px; }
+.coach-page--athletes .ccOpsDialog {
+  background: var(--coach-paper);
+  color: var(--coach-ink);
+  border: 1px solid var(--coach-line);
+  box-shadow: 0 25px 75px #1c29262b;
+}
+.coach-page--athletes .ccOpsDialog::backdrop { background: #1c292660; }
+.coach-page--athletes .ccOpsDialogHead p,
+.coach-page--athletes .ccOpsCalendarDate,
+.coach-page--athletes .ccOpsCalendarAllWeek span,
+.coach-page--athletes .ccOpsCalendarEvent time,
+.coach-page--athletes .ccOpsCalendarEvent span,
+.coach-page--athletes .ccOpsCalendarEvent small,
+.coach-page--athletes .ccOpsCalendarEmpty,
+.coach-page--athletes .ccOpsCalendarLegend { color: var(--coach-secondary); font-size: 12px; letter-spacing: 0; }
+.coach-page--athletes .ccOpsDialogTools button { background: var(--coach-paper-deep); color: var(--coach-ink); }
+.coach-page--athletes .ccOpsCalendarAllWeek span { background: var(--coach-paper-deep); }
+.coach-page--athletes .ccOpsCalendarDay {
+  background: transparent;
+  border-top: 1px solid var(--coach-line);
+  border-radius: 0;
+}
+.coach-page--athletes .ccOpsCalendarEvent {
+  background: #eff3ed;
+  border-left-color: var(--coach-accent);
+}
+.coach-page--athletes .ccOpsCalendarEvent[data-source="google"] { background: #edf3f3; border-left-color: #6e94a1; }
+.coach-page--athletes .ccOpsCalendarEvent b { color: var(--coach-ink); font-size: 14px; }
+.coach-page--athletes .ccOpsCalendarLegend i { background: var(--coach-accent); }
+.coach-page--athletes .ccConsistencyChoices button.on { background: var(--coach-accent); color: #fff; }
+.coach-page--athletes .ccConsistencyFact { color: var(--coach-secondary); font-size: 12px; }
 
 /* Other coach-facing work areas use the same paper and ink, but retain
  * their specialized forms and permissions.

@@ -66,6 +66,62 @@ test('an interval transcript stays in structured details, not a giant week title
     'a selected interval session does not print its full transcript twice above the anatomy');
 });
 
+test('session drawer distinguishes a measured work dose from an unverified session total', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  assert.match(labs, /version\?\.prescribed_distance != null \? sessionTotalLabel\(version\) : ''/);
+  assert.match(labs, /const workLabel = sessionWorkDistanceLabel\(version\)/);
+  assert.match(labs, /<b>Structured work<\/b>/);
+  assert.match(css, /\.dFigs\{display:flex;[^}]*border-top:1px solid var\(--edge\)/s);
+  assert.match(css, /\.dPart\{[^}]*border-top:1px solid var\(--edge\)/s);
+  assert.match(css, /\.dLab\{font-size:12px;/);
+});
+
+test('filing display flags implausible duration instead of calculating impossible pace', () => {
+  const labs = read('coach/labs/labs.js');
+  assert.match(labs, /completionPaceReading\(completion\)/);
+  assert.match(labs, /Recorded duration \$\{clock\(completion\.duration_seconds\)\}/);
+  assert.match(labs, /needs review\./);
+});
+
+test('light session reader never reintroduces dark-on-dark blocks or tiny technical statuses', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  const figures = css.match(/\.dFigs\{([^}]*)\}/)?.[1] || '';
+  const parts = css.match(/\.dPart\{([^}]*)\}/)?.[1] || '';
+  assert.doesNotMatch(figures + parts, /background\s*:\s*var\(--band-2\)/);
+  assert.match(labs, /workMagnitude\(\{ \.\.\.part, duration_seconds: null \}\)/);
+  assert.match(labs, /why: 'Filed'/);
+  assert.doesNotMatch(labs, /Filed — history is not revised/);
+  assert.match(css, /\.dLocked\{font-size:12px;/);
+});
+
+test('athlete roster renders signed portraits with a visible initials fallback', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  assert.match(labs, /class="ccAvatar"[^>]*><span class="ccAvatar__initial">/);
+  assert.match(labs, /<img data-portrait="\$\{escapeHtml\(entry\.slug\)\}" alt="" loading="lazy">/);
+  assert.match(labs, /img\.onload = \(\) => \{ if \(img\.naturalWidth > 0\) img\.classList\.add\('has-photo'\)/);
+  assert.match(labs, /img\.onerror = \(\) => img\.classList\.remove\('has-photo'\)/);
+  assert.match(css, /\.ccAvatar img\.has-photo\{display:block\}/);
+});
+
+test('coach loading, editor and calendar surfaces cannot inherit the navy palette', () => {
+  const shell = read('coach/workspace-light.css');
+  const workflow = read('coach/labs/console-workflow.css');
+  const labsCss = read('coach/labs/labs.css');
+  assert.match(shell, /html:has\(body\.coach-page\) \{ background: #f6f5f1;/);
+  assert.match(shell, /body\.coach-page--athletes:has\(\.loading\)/);
+  assert.match(shell, /\.coach-page--athletes \.sheet,/);
+  assert.match(shell, /\.coach-page--athletes \.ccOpsDialog \{/);
+  assert.match(workflow, /html,\s*body \{\s*background: #f6f5f1;/);
+  assert.doesNotMatch(labsCss.match(/body:has\(\.loading\)\{([^}]*)\}/)?.[1] || '', /#080d1a|#0b1326|#091020/);
+  for (const page of ['coach/index.html', 'coach/ops/index.html', 'coach/runs/index.html',
+    'coach/miami/index.html', 'coach/labs/index.html']) {
+    assert.match(read(page), /\/coach\/workspace-light\.css\?v=8/);
+  }
+});
+
 test('same-name athletes stay identifiable in both coach rosters and headings', async () => {
   const { coachRosterLabel } = await import('../private/render.js');
   const people = [
@@ -123,34 +179,4 @@ test('meetup shows useful details, with published-run selection disclosed when n
   assert.match(miami, /id="runLinkControls"/);
   assert.match(miamiClient, /<dl class="meetingFacts">/);
   assert.match(miamiClient, /\$\('runLinkControls'\)\.open = !r/);
-});
-
-test('session drawer distinguishes a measured work dose from an unverified session total', () => {
-  const labs = read('coach/labs/labs.js');
-  const css = read('coach/labs/labs.css');
-  assert.match(labs, /version\?\.prescribed_distance != null \? sessionTotalLabel\(version\) : ''/);
-  assert.match(labs, /const workLabel = sessionWorkDistanceLabel\(version\)/);
-  assert.match(labs, /<b>Structured work<\/b>/);
-  assert.match(css, /\.dFigs\{display:flex;[^}]*border-top:1px solid var\(--edge\)/s);
-  assert.match(css, /\.dPart\{[^}]*border-top:1px solid var\(--edge\)/s);
-  assert.match(css, /\.dLab\{font-size:12px;/);
-});
-
-test('filing display flags implausible duration instead of calculating impossible pace', () => {
-  const labs = read('coach/labs/labs.js');
-  assert.match(labs, /completionPaceReading\(completion\)/);
-  assert.match(labs, /Recorded duration \$\{clock\(completion\.duration_seconds\)\}/);
-  assert.match(labs, /needs review\./);
-});
-
-test('light session reader never reintroduces dark-on-dark blocks or tiny technical statuses', () => {
-  const labs = read('coach/labs/labs.js');
-  const css = read('coach/labs/labs.css');
-  const figures = css.match(/\.dFigs\{([^}]*)\}/)?.[1] || '';
-  const parts = css.match(/\.dPart\{([^}]*)\}/)?.[1] || '';
-  assert.doesNotMatch(figures + parts, /background\s*:\s*var\(--band-2\)/);
-  assert.match(labs, /workMagnitude\(\{ \.\.\.part, duration_seconds: null \}\)/);
-  assert.match(labs, /why: 'Filed'/);
-  assert.doesNotMatch(labs, /Filed — history is not revised/);
-  assert.match(css, /\.dLocked\{font-size:12px;/);
 });

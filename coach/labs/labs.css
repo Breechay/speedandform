@@ -926,11 +926,8 @@ body:has(.view.planv){overflow:auto}
 /* ── Coach Console dossier ────────────────────────────────────────────────
    The reference file supplies the composition, not its storage model. Every
    value in this shell still comes from private/data.js. */
-body:has(.ccApp){overflow:auto;background:
-  radial-gradient(ellipse 850px 560px at 68% -5%,#214a8738,transparent 72%),
-  linear-gradient(140deg,#080d1a,#0b1326 65%,#091020);color:#f2f4ff}
-body:has(.loading){background:radial-gradient(ellipse 850px 560px at 68% -5%,#214a8738,transparent 72%),
-  linear-gradient(140deg,#080d1a,#0b1326 65%,#091020)}
+body:has(.ccApp){overflow:auto;background:#f6f5f1;color:#1c2926}
+body:has(.loading){background:#f6f5f1;color:#1c2926}
 body:has(.loading)>.mark,body:has(.loading)>.stamp,body:has(.loading)>.viewAs,
 body:has(.loading)>.navSet,body:has(.loading)>.plToggle,body:has(.loading)>.grain{display:none!important}
 body:has(.ccApp)>.mark,body:has(.ccApp)>.stamp,body:has(.ccApp)>.viewAs,
@@ -955,6 +952,11 @@ body:has(.ccApp)>.navSet,body:has(.ccApp)>.plToggle,body:has(.ccApp)>.grain{disp
   border:1px solid #8098d318;color:#aebde4;overflow:hidden}
 .ccAvatar{width:35px;height:38px;border-radius:9px;font-size:11px}.ccAthlete.active .ccAvatar{color:#e7e3ff;
   background:linear-gradient(145deg,#625caa77,#334e814d);border-color:#a394ef40}
+.ccAvatar{position:relative;width:38px;height:38px;border-radius:50%;font-size:13px;flex:0 0 auto}
+.ccAvatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  object-position:var(--px,50%) var(--py,40%);transform:scale(var(--pz,1));
+  transform-origin:var(--px,50%) var(--py,40%);display:none}
+.ccAvatar img.has-photo{display:block}
 .ccAthlete>span:last-child{min-width:0}.ccAthlete b{display:block;font-size:14px;font-weight:600;color:#e9edf9}
 .ccAthlete small{display:block;margin-top:2px;color:#9baccc;font-size:11px;line-height:1.35;white-space:normal}
 .ccRailFoot{margin-top:auto;padding:28px 7px 0;display:grid;gap:4px}.ccRailFoot button{padding:7px 4px;color:#8297b8;font-size:12px}
