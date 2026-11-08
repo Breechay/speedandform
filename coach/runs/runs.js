@@ -22,7 +22,7 @@
 
 import { getAccessContext, authErrorMessage } from '/private/auth.js';
 import { supabase as sb } from '/private/supabase-client.js';
-import { mountAttendance } from '/coach/runs/attendance.js';
+import { mountAttendance } from '/coach/runs/attendance.js?v=2';
 
 const ZONE = 'America/New_York';
 const DRAFTS = 'collective-gallery-drafts';

@@ -24,7 +24,7 @@ import { authErrorMessage, getAccessContext, rememberWorkspace } from '/private/
 import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, fileForAthlete, loadAthleteRecord, loadAttentionFor, loadCoachBench, loadConsolePreferences, reviseSession, rungFor, saveConsolePreferences, savePortrait, setExceptionStatus, setSessionAsk } from '/private/data.js?v=4';
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
-import { authoredMiles, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -581,7 +581,7 @@ function dossierRosterHtml(activeSlug) {
       return `<button class="ccAthlete${entry.slug === activeSlug ? ' active' : ''}" type="button"
         data-slug="${escapeHtml(entry.slug)}">
         <span class="ccAvatar">${escapeHtml(initials(entry.first_name))}</span>
-        <span><b>${escapeHtml(entry.first_name)}</b>${context ? `<small>${escapeHtml(context)}</small>` : ''}</span>
+        <span><b>${escapeHtml(coachRosterLabel(entry, bench))}</b>${context ? `<small>${escapeHtml(context)}</small>` : ''}</span>
       </button>`;
     }).join('')}</div>
   </aside>`;
@@ -778,7 +778,7 @@ function athleteHtml() {
       ${coachWorkspaceNav()}
       <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(athlete.first_name))}</span>
         ${showConsolePortrait ? `<img data-portrait="${escapeHtml(athlete.slug)}" alt="">` : ''}</div>
-        <div><h1>${escapeHtml(athlete.first_name)}</h1><p>${escapeHtml(raceLine(athlete, record.block))}</p></div>
+        <div><h1>${escapeHtml(coachRosterLabel(athlete, bench))}</h1><p>${escapeHtml(raceLine(athlete, record.block))}</p></div>
         <div class="ccRecordTools"><span id="ccRecordFreshness">Read ${new Date(lastRecordReadAt).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}</span><button type="button" data-refresh-record>Refresh record</button><a href="/method-bible/" target="_blank" rel="noopener noreferrer">Method ↗</a></div>
       </header>
       <div class="ccPanelGrid">${dossierWeekHtml()}${athleteInstrumentHtml()}${dossierNotesHtml()}${dossierMediaHtml()}</div>
@@ -795,7 +795,7 @@ function dossierLoadingHtml(entry) {
     <div class="ccWorkspace"><div class="ccContent">
       ${coachWorkspaceNav()}
       <header class="ccMast"><div class="ccMastAvatar"><span>${escapeHtml(initials(entry.first_name))}</span></div>
-        <div><h1>${escapeHtml(entry.first_name)}</h1><p>Opening record</p></div>
+        <div><h1>${escapeHtml(coachRosterLabel(entry, bench))}</h1><p>Opening record</p></div>
       </header>
       <div class="ccPanelGrid" aria-label="Opening ${escapeHtml(entry.first_name)}'s record">
         <section class="ccCard ccLoadWeek"><i></i><div class="ccLoadDays">${'<span></span>'.repeat(7)}</div></section>
@@ -2197,7 +2197,7 @@ function bindPhotoLab() {
     toggle.setAttribute('aria-expanded', String(on));
     if (on) {
       PL.who.innerHTML = bench.slice().sort(benchOrder)
-        .map((entry) => `<option value="${escapeHtml(entry.slug)}">${escapeHtml(entry.first_name)}</option>`).join('');
+        .map((entry) => `<option value="${escapeHtml(entry.slug)}">${escapeHtml(coachRosterLabel(entry, bench))}</option>`).join('');
       plFile = null; plCrop = null; plSync();
     }
   };

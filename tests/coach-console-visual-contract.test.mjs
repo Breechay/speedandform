@@ -66,6 +66,43 @@ test('an interval transcript stays in structured details, not a giant week title
     'a selected interval session does not print its full transcript twice above the anatomy');
 });
 
+test('same-name athletes stay identifiable in both coach rosters and headings', async () => {
+  const { coachRosterLabel } = await import('../private/render.js');
+  const people = [
+    { first_name: 'Sam', display_name: 'Sam Jordan', slug: 'sam-jordan' },
+    { first_name: 'Sam', display_name: 'Sam Morris', slug: 'sam-morris' },
+    { first_name: 'Tyler', display_name: 'Tyler', slug: 'tyler' },
+    { first_name: 'Tyler', display_name: 'Tyler', slug: 'tyler-odwin' },
+    { first_name: 'Hope', display_name: 'Hope Williams', slug: 'hope' }
+  ];
+  assert.equal(coachRosterLabel(people[0], people), 'Sam Jordan');
+  assert.equal(coachRosterLabel(people[1], people), 'Sam Morris');
+  assert.equal(coachRosterLabel(people[3], people), 'Tyler Odwin');
+  assert.equal(coachRosterLabel(people[4], people), 'Hope');
+  assert.match(coach, /consoleAthleteTab__name">\$\{escapeHtml\(coachRosterLabel\(athlete, roster\)\)\}/);
+  assert.match(read('coach/labs/labs.js'), /escapeHtml\(coachRosterLabel\(entry, bench\)\)/);
+});
+
+test('filing counts do not leave a dangling double marker', () => {
+  assert.match(coach, /results filed/);
+  assert.doesNotMatch(coach, /Double \\u00b7 \$\{escapeHtml\(ordinalIn\(session\) \|\| ''\)\}/);
+});
+
+test('coach surfaces give prose room and remove decorative card stacking', () => {
+  const group = read('coach/miami/index.html');
+  const ops = read('coach/ops/console.css');
+  const run = read('coach/runs/attendance.js');
+  const runCss = read('coach/runs/runs.css');
+  assert.match(group, /WHAT WE ARE DOING<textarea name="intent"[^>]*rows="2"/);
+  assert.match(group, /SETUP \/ CUES<textarea name="details"[^>]*rows="3"/);
+  assert.match(shared, /\.coach-page--athletes \.ccCard \{\s*background: transparent;/);
+  assert.match(shared, /\.coach-page--programming \.consoleHero__name \{[^}]*text-transform: none;/s);
+  assert.match(shared, /@media \(max-width: 760px\) \{[\s\S]*?\.coach-page--programming \.consoleHero \{\s*grid-template-columns: minmax\(0, 1fr\)/);
+  assert.match(ops, /\.day-heading h1\{font-size:clamp\(27px,3\.2vw,38px\)/);
+  assert.match(run, /<details class="attActions"><summary aria-label="Manage/);
+  assert.match(runCss, /\.attActions\[open\] \.rowActs\{/);
+});
+
 test('selected session keeps readable, contained text and distinct actions', () => {
   assert.match(shared, /\.coach-page--programming \.ins-what \{[^}]*text-transform: none;[^}]*overflow-wrap: anywhere/s);
   assert.match(shared, /\.coach-page--programming \.ins-detail,[\s\S]*?font-size: 16px/);
