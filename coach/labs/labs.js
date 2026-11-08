@@ -25,7 +25,7 @@ import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, file
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
 import { filingVersionContext, filingVersionExplanation } from '/private/filing-version-context.mjs';
-import { authoredMiles, coachRosterLabel, completionPaceReading, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, coachRosterLabel, completionPaceReading, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, titleAlreadySays, workMagnitude, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -1962,7 +1962,7 @@ function anatomyRows(version) {
   return `<div class="dParts">${parts.map((part) => {
     const reps = part.shape === 'repetitions' ? (part.repeat_count || 1) : 1;
     const magnitude = part.distance != null
-      ? `${Number(part.distance)} ${part.distance_unit || 'mi'}`
+      ? workMagnitude({ ...part, duration_seconds: null })
       : part.duration_seconds != null ? clockOf(part.duration_seconds) : '—';
     const band = bandOf(part);
     const rest = part.recovery_seconds
@@ -2006,7 +2006,7 @@ function fileable(session) {
 function revisable(session) {
   if (session.state === 'cancelled') return { can: false, why: 'Cancelled' };
   const filed = (record.completions || []).some((item) => item.planned_session_id === session.id);
-  if (filed) return { can: false, why: 'Filed — history is not revised' };
+  if (filed) return { can: false, why: 'Filed' };
   if (!session.scheduled_on) return { can: false, why: 'No date' };
   if (session.scheduled_on < today()) return { can: false, why: 'Past' };
   return { can: true, why: '' };
@@ -2056,7 +2056,7 @@ function drawerHtml(session) {
         ${workLabel ? `<div><b>Structured work</b><strong>${escapeHtml(workLabel)}</strong></div>` : ''}
       </div>` : ''}
       ${version?.intent ? `<p class="dIntent">${escapeHtml(version.intent)}</p>` : ''}
-      <div class="dLab">${filing?.filed ? 'Filed prescription' : 'Anatomy'}</div>
+      <div class="dLab">${filing?.filed ? 'Filed prescription' : 'Workout breakdown'}</div>
       ${anatomyRows(version)}
       ${version?.details ? `<div class="dLab">Details</div><p class="dText">${escapeHtml(version.details)}</p>` : ''}
       <div class="dLab">What came back</div>
