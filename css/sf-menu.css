@@ -10,6 +10,12 @@ html:not(.sf-menu-enhanced) .sf-menu:target,.sf-menu.is-open,.sf-menu.is-closing
 .sf-menu-panel{box-sizing:border-box;position:absolute;top:0;right:0;bottom:0;width:min(460px,75%);display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain;padding:env(safe-area-inset-top,0px) max(20px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px));background:#eeede8;color:#0B0B0B;box-shadow:-12px 0 48px rgba(0,0,0,.12);font-family:"Inter Tight",Arial,sans-serif;transform:translateX(100%);transition:transform .38s var(--ease,cubic-bezier(.22,.61,.36,1))}
 html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-scrim,.sf-menu.is-open .sf-menu-scrim{opacity:1}
 html:not(.sf-menu-enhanced) .sf-menu:target .sf-menu-panel,.sf-menu.is-open .sf-menu-panel{transform:none}
+/* Entering display:none -> block needs an explicit starting state so the
+   cinematic slide and the underlying page's settled scroll position survive. */
+@starting-style{
+  .sf-menu.is-open .sf-menu-panel{transform:translateX(100%)}
+  .sf-menu.is-open .sf-menu-scrim{opacity:0}
+}
 .sf-menu-top{position:sticky;top:0;z-index:2;display:flex;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:0 12px;min-height:56px;flex:none;background:#eeede8;padding:0 4px}
 .sf-menu-close{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:44px;min-height:44px;padding:10px 0 10px 14px;color:#0B0B0B;font:400 11px/1.2 "JetBrains Mono",ui-monospace,monospace;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer}
 .sf-menu-close::after{content:"×";font:300 25px/1 Arial,sans-serif}
