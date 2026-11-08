@@ -490,7 +490,11 @@ export async function loadAttentionFor(athleteId) {
   return data || [];
 }
 
-export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
+export function publishedCalendarSessions(sessions) {
+  return (sessions || []).filter(session => session.state === 'published' && !session.withdrawn_at);
+}
+
+export async function loadAthleteRecord(athleteId, { coach = false, blockId = null } = {}) {
   const queries = [
     supabase.from('athletes').select('*').eq('id', athleteId).single(),
     supabase.from('training_blocks').select('*').eq('athlete_id', athleteId).eq('status', 'active').maybeSingle(),
@@ -598,7 +602,21 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
   }));
 
   const task = taskResponse?.data || null;
-  const weeks = result(weeksResponse.data, weeksResponse.error);
+  const { data: availableBlocks, error: blockListError } = await supabase.from('training_blocks')
+    .select('*').eq('athlete_id', athleteId).in('status', ['active', 'scheduled'])
+    .order('starts_on', { ascending: true });
+  if (blockListError) throw blockListError;
+  if (blockId && !coach) throw new Error('Only a signed-in coach can inspect a future block.');
+  const selectedBlock = blockId
+    ? (availableBlocks || []).find(block => block.id === blockId)
+    : blockResponse.data;
+  if (blockId && !selectedBlock) throw new Error('The requested block is unavailable to this coach.');
+  const weeks = result(weeksResponse.data, weeksResponse.error)
+    .filter(week => week.block_id === selectedBlock?.id);
+  const blockSessions = sessions.filter(session => weeks.some(week => week.id === session.week_id));
+  // Keep cancelled and replaced versions for completions/history, but never
+  // offer withdrawn prescriptions as current work in the coach calendar.
+  const calendarSessions = publishedCalendarSessions(blockSessions);
   // "Current" is the week in progress, or the one today falls inside — not the
   // highest week number, which becomes week 8 the moment a block is authored ahead.
   const today = new Date().toISOString().slice(0, 10);
@@ -620,19 +638,20 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
 
   return {
     athlete: signedAthlete,
-    block: blockResponse.data,
+    block: selectedBlock,
+    availableBlocks: availableBlocks || [],
     weeks,
     currentWeek,
     nextWeek,
     // Sessions belong to a week. Rendering them unfiltered puts the whole block
     // on one screen the moment more than one week exists.
-    currentSessions: currentWeek ? sessions.filter((item) => item.week_id === currentWeek.id) : sessions,
+    currentSessions: currentWeek ? calendarSessions.filter((item) => item.week_id === currentWeek.id) : calendarSessions,
     sessionsByWeek: weeks.reduce((map, week) => {
-      map[week.id] = sessions.filter((item) => item.week_id === week.id);
+      map[week.id] = calendarSessions.filter((item) => item.week_id === week.id);
       return map;
     }, {}),
-    nextSessions: nextWeek ? sessions.filter((item) => item.week_id === nextWeek.id) : [],
-    sessions,
+    nextSessions: nextWeek ? calendarSessions.filter((item) => item.week_id === nextWeek.id) : [],
+    sessions: blockSessions,
     baselines: result(baselinesResponse.data, baselinesResponse.error),
     measurements: result(measurementsResponse.data, measurementsResponse.error),
     completions: result(completionsResponse.data, completionsResponse.error),
@@ -674,6 +693,45 @@ export async function loadAthleteRecord(athleteId, { coach = false } = {}) {
     adminStatus: adminResponse?.data || null,
     forgeReceipts: coach && !forgeReceiptsResponse?.error ? result(forgeReceiptsResponse?.data, null) : []
   };
+}
+
+// A future block is a published coach-authored container, not a replacement
+// for the currently active plan. Dated activation is handled by the database.
+export async function scheduleTrainingBlock(payload) {
+  if (!payload?.athleteId || !payload?.name?.trim() || !payload?.startsOn ||
+      !Number.isInteger(payload?.totalWeeks) || payload.totalWeeks < 1 || payload.totalWeeks > 24) {
+    throw new Error('Select an athlete, name, start date, and 1–24 weeks.');
+  }
+  const { data: blockId, error } = await supabase.rpc('schedule_training_block', {
+    p_athlete_id: payload.athleteId,
+    p_name: payload.name.trim(),
+    p_purpose: payload.purpose,
+    p_total_weeks: payload.totalWeeks,
+    p_starts_on: payload.startsOn,
+    p_race_on: payload.raceOn || null,
+    p_race_name: payload.raceName?.trim() || null,
+    p_race_place: payload.racePlace?.trim() || null,
+    p_goal_statement: payload.goalStatement?.trim() || null,
+    p_week_starts_on: payload.weekStartsOn
+  });
+  if (error) throw error;
+  // A write can succeed even when its response/readback fails. Never retry it
+  // blindly; the duplicate guard protects the previous active block.
+  const [blockResponse, weekResponse] = await Promise.all([
+    supabase.from('training_blocks').select('id,athlete_id,status,name,starts_on,total_weeks')
+      .eq('id', blockId).eq('athlete_id', payload.athleteId).maybeSingle(),
+    supabase.from('training_weeks').select('id,block_id,week_number,starts_on')
+      .eq('block_id', blockId).eq('athlete_id', payload.athleteId)
+      .order('week_number')
+  ]);
+  if (blockResponse.error || weekResponse.error ||
+      blockResponse.data?.status !== 'scheduled' ||
+      blockResponse.data?.starts_on !== payload.startsOn ||
+      weekResponse.data?.length !== payload.totalWeeks) {
+    throw new Error('The block may have been saved, but verification was incomplete. Reload the athlete before attempting another write.');
+  }
+  return { id: blockId, block: blockResponse.data, weeks: weekResponse.data,
+    sourceReadbackVerified: true, athleteFeedVerified: false, nativeDeviceVerified: false };
 }
 
 export async function fileSession(payload, evidenceFile = null) {

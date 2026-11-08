@@ -1858,11 +1858,19 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
 /* 2 · Athlete tabs. This band selects an athlete. It carries no numerals, no
    ladder and no editing: the whole tab is the target. */
 .consoleAthleteTabs {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr);
-  min-height: 72px; border-bottom: 1px solid var(--console-edge);
+  display: flex; overflow-x: auto; overscroll-behavior-inline: contain;
+  scrollbar-width: thin; min-height: 60px;
+  border-bottom: 1px solid var(--console-edge);
 }
+.consoleRosterFind { display: flex; align-items: center; gap: 20px; padding: 12px 8px 4px; }
+.consoleRosterFind label { flex: none; color: var(--console-secondary); font-family: var(--condensed); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+.consoleRosterFind label span { color: var(--console-muted); margin-left: 5px; }
+.consoleRosterFind input { width: min(300px, 100%); min-width: 0; border: 1px solid var(--console-edge); border-radius: 4px; background: var(--console-surface); color: var(--console-text); padding: 9px 12px; font: inherit; font-size: 13px; }
+.consoleRosterFind input:focus-visible { outline: 2px solid var(--console-lime); outline-offset: 2px; }
+.consoleAthleteTabs__empty { padding: 12px; color: var(--console-muted); }
 .consoleAthleteTab {
-  display: flex; align-items: center; gap: 12px; padding: 0 18px;
+  display: flex; align-items: center; gap: 9px; padding: 0 16px;
+  flex: 0 0 auto; min-width: 132px; max-width: 190px;
   background: none; border: 0; border-bottom: 2px solid transparent;
   cursor: pointer; text-align: left; min-width: 0;
 }
@@ -1998,7 +2006,7 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   border-bottom: 1px solid var(--console-edge); padding: 0 0 4px;
 }
 .consoleRunway {
-  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(88px, 1fr);
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(132px, 1fr);
   min-width: 100%;
 }
 .consoleWeek {
@@ -2020,8 +2028,9 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   color: var(--console-lime); min-height: 1em;
 }
 .consoleWeek__key {
-  font-size: 17px; font-weight: 700; letter-spacing: .02em;
+  font-size: 15px; line-height: 1.25; font-weight: 700; letter-spacing: .01em;
   color: var(--console-text); font-variant-numeric: tabular-nums; min-height: 1em;
+  overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
 }
 .consoleWeek__race {
   font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
@@ -2093,10 +2102,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
    Week columns keep their width so the dates stay legible. */
 @media (max-width: 760px) {
   .coachConsole { padding: 0 14px 44px; }
-  .consoleAthleteTabs { grid-auto-columns: minmax(150px, 1fr); overflow-x: auto; }
+  .consoleAthleteTab { min-width: 146px; }
   .consoleHero { grid-template-columns: 1fr; gap: 26px; min-height: 0; padding: 22px 0 20px; }
   .consoleHero__name { font-size: clamp(42px, 13vw, 62px); }
-  .consoleRunway { grid-auto-columns: minmax(96px, 1fr); }
+  .consoleRunway { grid-auto-columns: minmax(132px, 1fr); }
   .consoleWorkbench { grid-template-columns: 1fr; gap: 22px; padding: 22px 0 0; }
   .consoleWorkbench__inspector { border-left: 0; border-top: 1px solid var(--console-edge); padding: 22px 0 0; }
   .consoleWorkRow { grid-template-columns: 64px 80px minmax(0, 1fr); gap: 12px; padding: 13px 0; }
@@ -2109,9 +2118,10 @@ select[multiple].field-select option { padding: 5px 6px; border-radius: 6px; }
   font-family: var(--condensed); font-size: 9.5px; line-height: 1.45;
   letter-spacing: .06em; text-transform: uppercase; color: var(--console-muted);
   min-height: 2.9em;
+  overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;
 }
-.consoleWeek { min-height: 158px; }
-@media (max-width: 1400px) { .consoleWeek { min-height: 146px; } }
+.consoleWeek { min-height: 130px; }
+@media (max-width: 1400px) { .consoleWeek { min-height: 126px; } }
 
 .consoleWorkRow__what em {
   display: block; margin-top: 4px; font-style: normal; font-size: 10.5px;

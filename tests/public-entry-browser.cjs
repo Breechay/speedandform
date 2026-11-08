@@ -70,9 +70,12 @@ const mime={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs'
         if(state.root>state.viewport+1){
           const offenders=await page.evaluate(()=>[...document.body.querySelectorAll('*')]
             .map(el=>({el,r:el.getBoundingClientRect()}))
-            .filter(x=>x.r.width>0 && (x.r.right>innerWidth+2 || x.r.left < -2))
+            .filter(x=>x.r.width>0 && (x.r.right>innerWidth+2 || x.r.left < -2)
+              && !x.el.closest('.sf-menu'))
+            .sort((a,b)=>b.r.right-a.r.right)
             .slice(0,12).map(x=>({tag:x.el.tagName,className:String(x.el.className).slice(0,110),
-              left:Math.round(x.r.left),right:Math.round(x.r.right),text:(x.el.textContent||'').trim().slice(0,45)})));
+              left:Math.round(x.r.left),right:Math.round(x.r.right),width:Math.round(x.r.width),
+              text:(x.el.textContent||'').trim().slice(0,45)})));
           report.issues.push({type:'horizontal-overflow',route,width,state,offenders});
         }
         if(route==='/'){

@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
@@ -44,6 +44,8 @@ const publicationQueueDialog = document.getElementById('publicationQueueDialog')
 const editorialDialog = document.getElementById('editorialDialog');
 const inviteDialog = document.getElementById('inviteDialog');
 const inviteForm = document.getElementById('inviteForm');
+const blockDialog = document.getElementById('blockDialog');
+const blockForm = document.getElementById('blockForm');
 const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
 const fileDialog = document.getElementById('fileDialog');
@@ -69,7 +71,9 @@ let reviewNextExistingReadId = null;
 let revisingSessionId = null;
 let originalSessionEditorialCopy = null;
 let roster = [];
+let rosterQuery = '';
 let selectedId = null;
+let selectedBlockId = null;
 let selectedRecord = null;
 let shownWeekId = null;
 let shownSessionId = null;
@@ -141,7 +145,11 @@ function rosterHtml() {
   const order = attentionOrder
     ? roster.slice().sort((a, b) => (standingConfidence(a.id, a.mark?.id)?.score ?? -1) - (standingConfidence(b.id, b.mark?.id)?.score ?? -1))
     : roster;
-  return order.map(tab).join('');
+  const query = rosterQuery.trim().toLocaleLowerCase();
+  const visible = query ? order.filter((athlete) =>
+    [athlete.display_name, athlete.first_name, athlete.slug].some((value) =>
+      String(value || '').toLocaleLowerCase().includes(query))) : order;
+  return visible.map(tab).join('') || '<p class="consoleAthleteTabs__empty">No matching athletes</p>';
 }
 
 function athleteMenuHtml() {
@@ -284,8 +292,15 @@ function doseOf(version) {
   const shortQualifiers = works.length > 1
     ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
     : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
+  const runwaySummary = works.length > 1
+    ? `${works.length} work segments`
+    : shortLine;
+  const runwayContext = works.length > 1
+    ? (sessionTotalLabel(version) || 'Mixed-pace session')
+    : qualifiers.filter((item) => item !== totalLine).slice(0, 2).join(' · ');
   return {
     line, shortLine, work, proofBearing, totalLine,
+    runwaySummary, runwayContext,
     qualifiers: qualifiers.join(' \u00b7 '),
     shortQualifiers: shortQualifiers.join(' \u00b7 ')
   };
@@ -412,6 +427,11 @@ function runwayHtml() {
     const dose = (selectedRecord.sessionsByWeek?.[week.id] || [])
       .map((session) => doseOf(session.currentVersion))
       .filter((item) => item && item.proofBearing)[0] || null;
+    // The runway is navigation, not a second prescription inspector. A mixed
+    // workout can be six or more components; rendering its entire sequence in
+    // fifteen narrow columns created a wall of text taller than the viewport.
+    const summary = dose?.runwaySummary || '';
+    const context = dose?.runwayContext || '';
     return `<button class="consoleWeek${isToday ? ' consoleWeek--today' : ''}${isShown ? ' consoleWeek--shown' : ''}"
       type="button" data-week="${escapeHtml(week.id)}"
       aria-current="${isShown ? 'true' : 'false'}"
@@ -419,8 +439,8 @@ function runwayHtml() {
       <span class="consoleWeek__no">W${escapeHtml(week.week_number)}</span>
       <span class="consoleWeek__when">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</span>
       <span class="consoleWeek__now">${isToday ? 'current week' : ''}</span>
-      <span class="consoleWeek__key">${dose ? escapeHtml(dose.line) : ''}</span>
-      <span class="consoleWeek__how">${dose ? escapeHtml(dose.qualifiers) : ''}</span>
+      <span class="consoleWeek__key">${escapeHtml(summary)}</span>
+      <span class="consoleWeek__how">${escapeHtml(context)}</span>
       <span class="consoleWeek__race">${raceWeek && week.id === raceWeek.id ? 'race' : ''}</span>
     </button>`;
   }).join('');
@@ -877,11 +897,32 @@ const fullDate = (iso) => {
   return `${MONTHS[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
 };
 
+function blockPickerHtml() {
+  const blocks = (selectedRecord.availableBlocks || [])
+    .slice().sort((a, b) => String(a.starts_on).localeCompare(String(b.starts_on)));
+  if (!blocks.length) return '';
+  return `<div class="consoleBlockPicker">
+    <label class="consoleBlockPicker__label" for="blockPicker">Programming block</label>
+    <select id="blockPicker" class="consoleBlockPicker__select" aria-label="Choose a running block">
+      ${blocks.map((block) => `<option value="${escapeHtml(block.id)}"
+        ${block.id === selectedRecord.block?.id ? 'selected' : ''}>
+        ${escapeHtml(block.name)} · ${block.status === 'scheduled' ? 'Starts ' : 'Current · '}${escapeHtml(formatDate(block.starts_on))}
+      </option>`).join('')}
+    </select>
+    <button id="newBlock" class="consoleBlockPicker__new" type="button">Schedule next block</button>
+    <span class="consoleBlockPicker__note">${selectedRecord.block?.status === 'scheduled'
+      ? 'Published work opens to the athlete on the block start date, after the current block.'
+      : 'The current athlete plan stays live until the scheduled handoff.'}</span>
+  </div>`;
+}
+
 function heroHtml() {
   const athlete = selectedRecord.athlete;
   const mark = selectedRecord.primaryMark;
   const raceOn = selectedRecord.block?.race_on;
-  const goal = [athlete.goal_label, athlete.target_event, raceOn ? fullDate(raceOn) : '']
+  const goal = (selectedRecord.block?.status === 'scheduled'
+    ? [selectedRecord.block.race_name, raceOn ? fullDate(raceOn) : '']
+    : [athlete.goal_label, athlete.target_event, raceOn ? fullDate(raceOn) : ''])
     .filter(Boolean).join(' · ');
 
   return `<section class="consoleHero">
@@ -891,6 +932,7 @@ function heroHtml() {
         ${athleteMenuHtml()}
       </div>
       ${goal ? `<p class="consoleHero__goal">${escapeHtml(goal)}</p>` : ''}
+      ${blockPickerHtml()}
       ${currentRungHtml()}
       ${mark?.evidence_surface_requirement === 'outdoor'
         // A condition on whether evidence counts, said in words beside the goal.
@@ -906,6 +948,9 @@ function heroHtml() {
 // left the page shape that put the work below the fold.
 function deskHtml() {
   return `<div class="coachConsole" id="deskMain">
+    <div class="consoleRosterFind"><label for="athleteQuickFind">Athletes <span>${roster.length}</span></label>
+      <input id="athleteQuickFind" type="search" autocomplete="off" placeholder="Find an athlete" value="${escapeHtml(rosterQuery)}" aria-controls="squadStrip">
+    </div>
     <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
     ${heroHtml()}
     ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
@@ -951,6 +996,17 @@ function paintSquad() {
   squadContainer.innerHTML = rosterHtml();
   squadContainer.querySelectorAll('[data-select-athlete]').forEach((button) =>
     button.addEventListener('click', () => selectAthlete(button.dataset.selectAthlete)));
+  // Keep the current athlete identifiable even when the roster grows beyond a
+  // single screen. Horizontal movement must never jump the whole page.
+  const active = squadContainer.querySelector('.consoleAthleteTab--on');
+  if (active && !rosterQuery) {
+    const left = active.offsetLeft - squadContainer.offsetLeft;
+    const right = left + active.offsetWidth;
+    if (left < squadContainer.scrollLeft) squadContainer.scrollLeft = Math.max(0, left - 12);
+    else if (right > squadContainer.scrollLeft + squadContainer.clientWidth) {
+      squadContainer.scrollLeft = right - squadContainer.clientWidth + 12;
+    }
+  }
   const toggle = document.getElementById('orderToggle');
   if (toggle) toggle.textContent = attentionOrder ? 'needs attention' : 'roster';
   const publicationButton = document.getElementById('publicationQueueToggle');
@@ -1141,6 +1197,10 @@ document.getElementById('publishEditorial')?.addEventListener('click', async () 
 
 function bindDesk() {
   paintSquad();
+  document.getElementById('athleteQuickFind')?.addEventListener('input', (event) => {
+    rosterQuery = event.target.value;
+    paintSquad();
+  });
   paintRails();
   revealShownWeek();
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
@@ -1179,6 +1239,12 @@ function bindDesk() {
   document.getElementById('openLadder')?.addEventListener('click', openLadder);
   document.getElementById('reviewLadder')?.addEventListener('click', openLadder);
   document.getElementById('newSession')?.addEventListener('click', () => openSession(null));
+  document.getElementById('newBlock')?.addEventListener('click', openBlockDialog);
+  document.getElementById('blockPicker')?.addEventListener('change', (event) => {
+    const next = event.target.value;
+    selectAthlete(selectedId, next === selectedRecord.availableBlocks.find(block => block.status === 'active')?.id
+      ? null : next);
+  });
   document.getElementById('inviteAthlete')?.addEventListener('click', () => {
     inviteForm.reset();
     document.getElementById('inviteContext').textContent = 'Invite ' + (selectedRecord.athlete.display_name || selectedRecord.athlete.first_name);
@@ -1215,11 +1281,12 @@ function bindDesk() {
   document.getElementById('shareExcerpt')?.addEventListener('click', openShare);
 }
 
-async function selectAthlete(athleteId) {
+async function selectAthlete(athleteId, blockId = null) {
   selectedId = athleteId;
+  selectedBlockId = blockId;
   shownWeekId = null;
   app.innerHTML = '<div class="loading" aria-label="Loading athlete"></div>';
-  selectedRecord = await loadAthleteRecord(athleteId, { coach: true });
+  selectedRecord = await loadAthleteRecord(athleteId, { coach: true, blockId: selectedBlockId });
   const rosterEntry = roster.find((entry) => entry.id === athleteId);
   selectedRecord.attention = rosterEntry?.attention || await loadAttentionFor(athleteId);
   selectedRecord.deliveryOverview = rosterEntry?.deliveryOverview || null;
@@ -1520,11 +1587,65 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
 });
 document.getElementById('sessionParts').addEventListener('input', markPartsState);
 
+function openBlockDialog() {
+  blockForm.reset();
+  const active = (selectedRecord.availableBlocks || []).find(block => block.status === 'active');
+  const scheduled = (selectedRecord.availableBlocks || []).find(block => block.status === 'scheduled');
+  const status = document.getElementById('blockStatus');
+  status.textContent = scheduled
+    ? 'A next block is already scheduled. Choose it from Programming to author its weeks.'
+    : '';
+  blockForm.querySelector('button[type="submit"]').disabled = Boolean(scheduled);
+  const info = document.getElementById('blockExisting');
+  info.textContent = active
+    ? `Current: ${active.name}. It ends ${formatDate(active.ends_on)} and remains the athlete's plan until handoff.`
+    : 'This will be the athlete’s next dated training block.';
+  if (active?.ends_on) {
+    const day = new Date(active.ends_on + 'T12:00:00Z');
+    day.setUTCDate(day.getUTCDate() + 1);
+    while (day.getUTCDay() !== 1) day.setUTCDate(day.getUTCDate() + 1);
+    blockForm.elements.startsOn.value = day.toISOString().slice(0, 10);
+  }
+  blockDialog.showModal();
+}
+
+blockForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('blockStatus');
+  const button = blockForm.querySelector('button[type="submit"]');
+  const f = blockForm.elements;
+  button.disabled = true;
+  status.textContent = 'Scheduling the block and checking all generated weeks…';
+  try {
+    const startsOn = f.startsOn.value;
+    const weekday = new Date(startsOn + 'T12:00:00Z').getUTCDay() || 7;
+    const result = await scheduleTrainingBlock({
+      athleteId: selectedId,
+      name: f.name.value.trim(),
+      purpose: f.purpose.value,
+      totalWeeks: Number(f.totalWeeks.value),
+      startsOn,
+      raceOn: f.raceOn.value || null,
+      raceName: f.raceName.value,
+      racePlace: f.racePlace.value,
+      goalStatement: f.goalStatement.value,
+      weekStartsOn: weekday
+    });
+    blockDialog.close();
+    await selectAthlete(selectedId, result.id);
+  } catch (error) {
+    status.textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+
 function openSession(plannedSessionId = null) {
   sessionForm.elements.dayLabel.querySelectorAll('option[data-existing-day]').forEach(option => option.remove());
   sessionForm.reset();
   revisingSessionId = plannedSessionId;
-  const weeks = selectedRecord.weeks;
+  const weeks = selectedRecord.weeks.slice().sort((a, b) => a.week_number - b.week_number);
+  sessionForm.elements.scheduledOn.required = !plannedSessionId;
   sessionForm.elements.weekId.innerHTML = weeks
     .map((week) => `<option value="${week.id}">Week ${week.week_number}${week.starts_on ? ` · ${escapeHtml(formatDate(week.starts_on))}` : ''}</option>`)
     .join('');
@@ -1979,6 +2100,16 @@ sessionForm.addEventListener('submit', async (event) => {
     changeReason: f.changeReason.value.trim() || null
   };
 
+  if (!revisingSessionId) {
+    const week = selectedRecord.weeks.find(week => week.id === payload.weekId);
+    if (!week || !payload.scheduledOn || payload.scheduledOn < week.starts_on ||
+        payload.scheduledOn > week.ends_on) {
+      status.textContent = 'Choose a date inside the selected week. Work without a date cannot reach the athlete.';
+      status.className = 'status-message error';
+      return;
+    }
+  }
+
   // Untouched means untouched: the field is omitted, revise_session carries the
   // previous anatomy forward, and nothing this form cannot express is lost. A new
   // session has nothing to carry, so what is on screen is what it gets.
@@ -2226,7 +2357,7 @@ shareForm.addEventListener('submit', async (event) => {
 });
 
 async function refreshSelected(animate = false) {
-  const access = await getAccessContext(); roster = await loadCoachRoster(access.coachMemberships); selectedRecord = await loadAthleteRecord(selectedId, { coach: true });
+  const access = await getAccessContext(); roster = await loadCoachRoster(access.coachMemberships); selectedRecord = await loadAthleteRecord(selectedId, { coach: true, blockId: selectedBlockId });
   const rosterEntry = roster.find((entry) => entry.id === selectedId);
   selectedRecord.attention = rosterEntry?.attention || [];
   selectedRecord.publicationQueue = rosterEntry?.publicationQueue || [];

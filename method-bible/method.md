@@ -222,13 +222,13 @@ Three favorite architectures belong in the working canon:
 - **Three Fives:** 3 × 5K at MP within an authored long run, with genuine easy recoveries, a cumulative 15K of substantial race-pace work.
 - **Three Tens:** 3 × 10K at MP—an **elite-only exceptional** session, never a routine progression or a default for FORM marathoners.
 
-I want athletes who can move faster and then find a sustainable pace, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) records the method, levels, and selection rules; it does not publish an athlete's plan.
+I want athletes who can move faster and then find a sustainable pace, who can leave MP and re-access it later. I also want them able to absorb the session and return to training. The hardest long run owns the week's main cost. Each family needs athlete-specific total work, fueling, recovery, and a reason for its placement. The detailed selection rules belong in the private coaching references; they are not an athlete's published plan.
 
 ### A bridge into substantial continuous MP · November 6, 2026
 
 When an athlete needs an intermediate exposure, I can use **5 min MP / 5 min genuinely easy × 6** for 30 cumulative minutes MP across one uninterrupted 60-minute run. Another option is **1 mile MP / 1 mile easy**, alternating continuously without stops; at about 6:50/mi MP, five work miles and five easy miles deliver about 34 minutes MP within a substantial ten-mile run. That is not a classic stopped mile-repeat session. Both require an actual easy-running base, full-session dose, and next-session recovery. Neither proves a full uninterrupted hour at MP. After they are stable, I may extend each continuous segment, reduce easy relief, or use an individually defined float in a **separately named higher-cost workout**. A 5/5 float version has 30 MP minutes plus 30 minutes of working float, not 30 minutes of free rest.
 
-The same idea scales to half-marathon development: 5 HMP / 5 easy, or continuous one-mile HMP/one-mile easy, then longer holds, a selective **five → six → up to eight continuous HMP miles**, and eventually later HMP after preceding running. Six continuous miles is a useful high-information test; eight miles is expensive and never automatic. The [Aerobic Base to Race-Pace Durability Bridge](../docs/coaching/FORM_AEROBIC_BASE_RACE_PACE_DURABILITY_BRIDGE_20261106.md) holds the explicit families and interpretation.
+The same idea scales to half-marathon development: 5 HMP / 5 easy, or continuous one-mile HMP/one-mile easy, then longer continuous segments, a selective **five → six → up to eight continuous HMP miles**, and eventually later HMP after preceding running. Six continuous miles is a useful high-information test; eight miles is expensive and never automatic. The athlete's own record determines which progression fits.
 
 ### Six-rep blended work and the final major rehearsal · November 6, 2026
 
@@ -236,7 +236,7 @@ The **confirmed descending ladder** is **4 km → 3 km → 2 km**; its advanced 
 
 The proposed final major marathon-specific rehearsal is **90–100 minutes continuously at evidenced MP**, with complete fueling and recovery evidence. At around 6:50/mi that is roughly 13–15 miles *at MP* alone. Its meaningful result is sustainable pacing, fueling and next-session absorption, **not a guaranteed race prediction**. It belongs well before race day, with taper time protected, and cannot simply be added on top of the existing frozen **Closing-10K** study. A corresponding half-marathon rehearsal can be **40–60 minutes continuously at HMP** or bounded late HMP miles; the 90-minute half itself remains the race.
 
-See the [Six-Rep Ladder and Rehearsal](../docs/coaching/FORM_SIX_REP_DISTANCE_LADDER_AND_FINAL_REHEARSAL_20261106.md) and [First Official Donna Plan Design Brief](../docs/coaching/FORM_DONNA_FIRST_OFFICIAL_MARATHON_PLAN_DESIGN_BRIEF_20261106.md). These are prospective coaching designs, not new athlete assignments.
+These are prospective coaching designs, not new athlete assignments.
 
 ### Continuous ownership before advanced alternation · November 6, 2026
 
@@ -266,7 +266,7 @@ The same rep can ask a different question at different distances. Progress only 
 
 José and Hope's Orlando half-marathon pace may overlap with their proposed Donna MP. If either sustains the appropriate pace for about 90 minutes and recovers, that is strong proof of pace availability, not an automatic marathon-ready mark. The postrace build should test whether the pace survives additional time-on-feet and fueling; athlete-specific restrictions remain decisive.
 
-The [Cross-Distance Development Thread](../docs/coaching/FORM_RUN_DEVELOPMENT_DISTANCE_THREAD_20261106.md), [5K and 10K Session Canon](../docs/coaching/FORM_5K_10K_SESSION_CANON_20261106.md), [Half-Marathon Session Canon](../docs/coaching/FORM_HALF_MARATHON_SESSION_CANON_20261106.md), and [Marathon Session Canon](../docs/coaching/FORM_MARATHON_SESSION_CANON_20261106.md) are working reference documents. They guide coaching; they do not modify athlete plans by their existence.
+The detailed 5K, 10K, half-marathon and marathon references guide coaching; they do not modify athlete plans by their existence.
 
 ## 10. Strength belongs in the athlete
 
