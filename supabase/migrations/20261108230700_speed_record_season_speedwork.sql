@@ -1,27 +1,8 @@
--- Review-only migration: expand Speed Record v1 for each authorized athlete's active
--- block. Published key-session work, race-specific efforts and fast-finish long runs
--- are read dynamically; easy long runs/races are excluded. This is an additive JSON
--- contract change and preserves the existing 11-pilot curated benchmark identities.
--- No Field v2, no new grants, and no new table access.
--- This migration must not be replayed over an unreconciled history from #555.
-
--- Speed Record display units are distinct from authored plan pace units.
--- Existing pace_unit is used by the legacy feed without numeric conversion;
--- changing it could mislabel stored per-mile prescription values.
-alter table public.athlete_speed_settings
-  add column if not exists speed_record_pace_unit text
-  check (speed_record_pace_unit in ('mi','km'));
-
-comment on column public.athlete_speed_settings.speed_record_pace_unit is
-  'Preferred display unit for athlete_speed_record_v1. Source pace_seconds remain per mile; clients convert display values.';
-
-update public.athlete_speed_settings as target
-set speed_record_pace_unit='km', updated_at=now()
-where target.athlete_id='a1eb15b4-3e91-4b45-a11a-b2e8af9708af'
-  and exists (
-    select 1 from public.athletes a
-    where a.id=target.athlete_id and a.first_name='Tinius'
-  );
+-- Review-only season projection, following the already-applied display-unit RPC.
+-- Extends only the existing athlete_speed_record_v1 result. Does not replay
+-- Tinius' setting update, alter tables, grant access, or enable Field v2.
+-- Read access remains gated by can_read_athlete and Speed tab entitlement.
+-- Reconcile #555 migration history before deploying.
 
 CREATE OR REPLACE FUNCTION public.athlete_speed_record_v1(p_athlete_id uuid)
  RETURNS jsonb
