@@ -261,6 +261,17 @@ html:has(.coach-page--programming) { background: #f6f5f1; }
   color: var(--coach-secondary);
   overflow-wrap: anywhere;
 }
+.coach-page--programming .ins-audit {
+  max-width: 68ch;
+  margin: 18px 0;
+  padding: 5px 0 5px 15px;
+  border-left: 3px solid #ae7950;
+  color: var(--coach-ink);
+  font-size: 15px;
+  line-height: 1.55;
+  text-transform: none;
+  letter-spacing: 0;
+}
 .coach-page--programming .ins-actions {
   gap: 8px;
   margin-top: 24px;
@@ -509,6 +520,18 @@ body.coach-page--athletes:has(.ccApp) {
 }
 .coach-page--athletes .ccDay:last-child { border-right: 0; }
 .coach-page--athletes .ccSession:hover { background: var(--coach-accent-soft); }
+.coach-page--athletes .dAudit {
+  max-width: 70ch;
+  padding: 5px 0 5px 15px;
+  background: transparent;
+  border-left: 3px solid #ae7950;
+  color: var(--coach-ink);
+  font-size: 15px;
+  font-weight: 450;
+  line-height: 1.55;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .coach-page--athletes .ccFunctional,
 .coach-page--athletes .ccConsistency,
 .coach-page--athletes .ccPhysique,
