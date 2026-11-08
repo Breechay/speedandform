@@ -21,6 +21,22 @@ active_block as (
   select b.* from public.training_blocks b join authorized a on a.id=b.athlete_id
   where b.status='active' order by b.starts_on desc nulls last,b.created_at desc,b.id limit 1
 ),
+-- Thursday speedwork begins with the verified 5 November published session.
+-- Race-specific athletes retain their individually authored key workouts.
+thursday_cohort as (
+  select 1 as member
+  from active_block block
+  join public.training_weeks w on w.block_id=block.id and w.athlete_id=block.athlete_id
+  join public.planned_sessions p on p.week_id=w.id and p.athlete_id=block.athlete_id
+  where p.state='published' and p.role='key'
+    and p.scheduled_on=date '2026-11-05'
+    and exists (
+      select 1 from public.planned_session_versions v
+      join public.planned_session_components work on work.version_id=v.id and work.role='work'
+      where v.planned_session_id=p.id and v.athlete_id=p.athlete_id
+    )
+  limit 1
+),
 benchmarks as (
   select mark.* from public.athlete_speed_record_benchmarks mark
   join active_block block on block.id=mark.block_id and block.athlete_id=mark.athlete_id
@@ -177,9 +193,17 @@ season_plan as (
       where work.version_id=v.id and work.role='work'
     )
     and (
-      coalesce(v.title,'') !~* '(long run|marathon|aerobic run|easy[[:space:]]*\+[[:space:]]*strides|(^|[^a-z])easy([^a-z]|$))'
+      (exists (select 1 from thursday_cohort)
+       and p.scheduled_on >= date '2026-11-05'
+       and extract(isodow from p.scheduled_on)=4)
+      or (not exists (select 1 from thursday_cohort)
+       and p.scheduled_on >= date '2026-10-01')
+    )
+    and (
+      coalesce(v.title,'') !~* '(long run|marathon|aerobic run|easy[[:space:]]*\+[[:space:]]*strides|(^|[^a-z])easy([^a-z]|$)|race$)'
       or coalesce(v.title,'') ~* '(goal pace|race pace|fast finish|steady finish|last [0-9]+|build to [0-9]+)'
     )
+    and coalesce(v.title,'') !~* '(Half Marathon$|Marathon · sub-|calibration race$)'
 ),
 season_rows as (
   select plan.*,coalesce(segments.value,'[]'::jsonb) as segments,
