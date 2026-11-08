@@ -57,3 +57,19 @@ of Manage and week controls, and confirmation that every affected form shows
 the full value. Chrome's current extension surface did not honor a temporary
 mobile viewport override; static breakpoint checks are not mobile-device
 acceptance. Keep the Netlify release batched; do not start a build per edit.
+
+## Operating-source follow-up before the evening batch
+
+A read-only query of the owning `operating_items` register found 57 records in
+active, queued or waiting status. Six still-open tasks carry October focus
+dates, while no open task is explicitly focused on November 8. Some records
+also contain elapsed due/review dates. The evidence does not establish whether
+their underlying work actually happened; none were automatically closed,
+rescheduled or suppressed. The Today screen now labels older candidates as
+items to review, not a fresh selection by the owner. This is a presentation
+correction and preserves the existing four-item limit and source query.
+
+The source audit also found that the narrower-screen Today heading retained a
+64px override from its previous design. The follow-up fixes that specific
+breakpoint and adds regression coverage; physical narrow-screen acceptance is
+still needed after deployment.

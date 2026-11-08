@@ -11,8 +11,19 @@ controls to one accessible Manage disclosure per name. Exact evidence,
 boundaries and acceptance remain in
 [`COACH_CONSOLE_VISUAL_AUDIT_20261108.md`](../operations/COACH_CONSOLE_VISUAL_AUDIT_20261108.md).
 
-**Release boundary:** follow-up source is not yet merged, published or
-visually accepted. Keep the next Netlify build within the existing batch gate.
+**Release boundary:** PR #551 merged to `main` as `227e5a72` after all 17
+GitHub checks passed. Production and signed-in device acceptance remain
+separate; keep the next Netlify build within the existing batch gate.
+
+### November 8 · Today source-reconciliation presentation
+
+- A read-only owner-source audit found no November 8 explicit selections and
+  several October-dated open candidates. The bounded Today read mixes these
+  because overdue tasks also qualify for its four-item list.
+- Label the list honestly as selected today, mixed, or earlier open tasks.
+  Preserve the underlying statuses, due dates, source evidence and four-item
+  bound. Mobile Today heading scale must also stay restrained at 720px and
+  below. Further action on old statuses needs actual owning-source evidence.
 
 ## November 8 · Coach Console workbench readability follow-up
 
