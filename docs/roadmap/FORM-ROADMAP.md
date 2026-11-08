@@ -1,3 +1,53 @@
+## November 8 · Coach Console workbench readability follow-up
+
+- **Observed after the November 8 Console deployment:** A multi-part Thursday
+  prescription expanded the week-row dose column across the inspector, visibly
+  crossing the selected session's buttons. Long titles and small supporting
+  labels also weakened the reading order. This is a presentation defect, not a
+  reason to edit any athlete's plan.
+- **Source correction:** The week navigation shows a bounded count for mixed
+  prescriptions and avoids repeating the entire anatomy in its qualifiers;
+  the row retains the authored title and key pace/recovery, while the full
+  exact workout remains in the inspector.
+  The workbench uses columns with explicit zero minimums, natural title wrapping,
+  a tablet stacking breakpoint, a smaller sentence-case inspector heading,
+  readable body/qualifiers and distinct 42px action targets. A selected row uses
+  a side accent rather than a four-sided card outline.
+- **Evidence:** 59 focused Console, coach publication, filing, future-block,
+  invitation, editorial and session-distance source tests pass. The test
+  exercises a three-part interval string like the reported overflow. No
+  prescription, backend, auth, native build or athlete record was changed.
+- **Release gate:** Source candidate only until review/merge and an exact
+  production deploy receipt. Live desktop/tablet/phone/200%-zoom screenshots,
+  keyboard focus and overflow checks remain required; source tests do not
+  establish visual acceptance.
+
+### Dossier reading follow-up, same owner review
+
+- The athlete dossier's seven-day strip used `shortDose` to print a complete
+  multi-part interval sequence in one narrow day card. It made six other days
+  artificially tall. A week tile now carries the authored session name and a
+  bounded work-part count; complete sets, paces and recoveries stay in the
+  selected session drawer. Simple days retain their dose in normal-case units.
+- Legacy private notes included agent-style IDs and uninterrupted audit prose.
+  A shared read-only formatter separates recognized record references from the
+  body and divides sentences into readable paragraphs across both dossier
+  readers and the programming menu. Raw append-only notes remain unchanged.
+  The private-notes authoring contract now requires coach-readable sentences.
+- Signed-in source baseline at 1,279px: the narrow Thursday day tile stretched
+  to 339px, and the three-note history block measured 867px tall. New visual
+  proportions and paragraph flow still require rendered acceptance after release.
+- No training content, athlete history, consent, backend fields or native view
+  was edited. Visual acceptance for notes and the seven-day strip remains open.
+- Final index review caught another inherited presentation error: some multi-part
+  titles themselves contain every interval, pace and recovery. The Console
+  week, inspector heading and dossier day index now call those an *Interval
+  session* while leaving genuinely named sessions untouched. The inspector's
+  component list remains the complete prescription without a second giant
+  transcript above it. A completed session retains a readable, exact plain
+  sequence under its shortened heading. This is a view-only label, not a change
+  to the stored title or prescribed work.
+
 ## November 4 · Method Bible, agent governance and Coach Console reset
 
 - **Owner direction:** Make FORM's observation-led training doctrine public and

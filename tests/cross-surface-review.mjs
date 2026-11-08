@@ -60,7 +60,7 @@ for (const [name, page] of [['athlete',athletePage],['record',recordPage]]) {
 }
 // The Coach Console can advance its cache key independently when new authoring
 // controls ship. The athlete and record readers retain their stable key.
-has(coachPage, /\/private\/graphite\.css\?v=4[34]/, 'coach refreshes its changed shared stylesheet');
+has(coachPage, /\/private\/graphite\.css\?v=45/, 'coach refreshes its changed shared stylesheet');
 has(callbackPage, /\/auth\/record-callback\/callback\.css\?v=1/, 'callback uses its house paper-room stylesheet');
 lacks(callbackPage, /\/private\/graphite\.css/, 'callback no longer inherits the old graphite room');
 has(athletePage, /\/athlete\/workspace\.css\?v=2/, 'athlete refreshes workspace CSS');

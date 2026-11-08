@@ -3,7 +3,8 @@ import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorksp
 import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
-import { MONTHS, dayLabel, initials, rangeLabel, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
+import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
+import { MONTHS, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, structureOf, titleAlreadySays, workMagnitude } from '/private/render.js';
 import { loadStrengthFallback } from '/athlete/strength-fallback.js';
 import { renderDeliveryOverview, renderCoachAthletePreview } from '/coach/delivery-view.js';
 import { renderCoachReviewChain } from '/coach/review-chain-view.js';
@@ -155,7 +156,7 @@ function rosterHtml() {
 function athleteMenuHtml() {
   const account = selectedRecord.adminStatus;
   const notes = selectedRecord.privateNotes.slice(0, 3).map((note) =>
-    `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time><p>${escapeHtml(note.body)}</p></article>`).join('');
+    `<article class="private-note"><time>${new Date(note.created_at).toLocaleDateString()}</time>${coachNoteReadingHtml(note.body, { createdAt: note.created_at })}</article>`).join('');
   return `<details class="athlete-menu" id="athleteMenu">
     <summary aria-label="Coach only">\u2026</summary>
     <div class="control-menu wide">
@@ -259,6 +260,10 @@ function doseOf(version) {
   const shortLine = works.length > 1
     ? (sessionTotalLabel(version) || structureOf(version))
     : work.shape === 'repetitions' ? `${work.repeat_count} \u00d7 ${amount}` : amount;
+  // The week list is a navigation index. A mixed workout's structure can be a
+  // full sentence (with paces and recoveries), which must not become the width
+  // of its numeric column. The title and inspector retain the full prescription.
+  const weekSummary = works.length > 1 ? `${works.length} parts` : shortLine;
   // Four reps of a mile is four miles of work and one mile held. The total is
   // said so nobody reads it as the other thing, and it is never proof on its own.
   const totalLine = total != null ? `${total} ${unit} total work` : null;
@@ -290,7 +295,9 @@ function doseOf(version) {
   // whichever headline is missing it, and never to both.
   const shapeWord = work.shape === 'continuous' ? 'continuous' : null;
   const shortQualifiers = works.length > 1
-    ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
+    // The row title identifies the mixed session; the inspector owns its full
+    // anatomy. Reprinting six reps here turns a navigation row into a paragraph.
+    ? qualifiers.filter((item) => item !== totalLine).slice(0, 2)
     : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
   const runwaySummary = works.length > 1
     ? `${works.length} work segments`
@@ -299,7 +306,7 @@ function doseOf(version) {
     ? (sessionTotalLabel(version) || 'Mixed-pace session')
     : qualifiers.filter((item) => item !== totalLine).slice(0, 2).join(' · ');
   return {
-    line, shortLine, work, proofBearing, totalLine,
+    line, shortLine, weekSummary, work, proofBearing, totalLine,
     runwaySummary, runwayContext,
     qualifiers: qualifiers.join(' \u00b7 '),
     shortQualifiers: shortQualifiers.join(' \u00b7 ')
@@ -498,10 +505,10 @@ function workbenchHtml() {
       type="button" data-session="${escapeHtml(session.id)}">
       <span class="consoleWorkRow__day">${escapeHtml(String(session.day_label).slice(0, 3))}<em>${escapeHtml(session.scheduled_on ? dayLabel(session.scheduled_on) : '')}</em></span>
       <span class="consoleWorkRow__dose">${dose
-        ? escapeHtml(dose.shortLine)
+        ? escapeHtml(dose.weekSummary)
         : version.prescribed_distance ? `${escapeHtml(Number(version.prescribed_distance))}<i>${escapeHtml(version.distance_unit || 'mi')}</i>`
         : version.prescribed_duration_minutes ? `${escapeHtml(version.prescribed_duration_minutes)}<i>min</i>` : ''}</span>
-      <span class="consoleWorkRow__what">${escapeHtml(version.title)}
+      <span class="consoleWorkRow__what">${escapeHtml(sessionReadingTitle(version))}
         ${doubleOn(session.scheduled_on)
           ? `<i class="consoleWorkRow__double">Double \u00b7 ${escapeHtml(ordinalIn(session) || '')}</i>` : ''}
         ${dose ? `<em>${escapeHtml(dose.shortQualifiers)}</em>` : ''}</span>
@@ -556,6 +563,8 @@ function adHocInspectorHtml(completion) {
 
 function sessionInspectorHtml(session) {
   const version = session.currentVersion;
+  const readingTitle = sessionReadingTitle(version);
+  const sourceWasSequence = readingTitle !== String(version.title || '').trim();
   const done = (selectedRecord.completions || []).find((item) => item.planned_session_id === session.id);
   const sameDay = (selectedRecord.sessions || []).filter((item) =>
     item.scheduled_on === session.scheduled_on && item.currentVersion);
@@ -564,7 +573,7 @@ function sessionInspectorHtml(session) {
   const head = `<p class="ins-when">${escapeHtml(session.day_label)}${session.scheduled_on ? ` \u00b7 ${escapeHtml(dayLabel(session.scheduled_on))}` : ''}${
     filedThatDay > 1 && sameDay.length > 1
       ? ` \u00b7 double, session ${escapeHtml(sameDay.indexOf(session) + 1)} of ${escapeHtml(sameDay.length)}` : ''}</p>
-    <h3 class="ins-what">${escapeHtml(version.title)}${
+    <h3 class="ins-what">${escapeHtml(readingTitle)}${
       selectedRecord.primaryMark?.evidence_surface_requirement === 'outdoor' && /race pace/i.test(version.title || '')
         ? ' <em>outside</em>' : ''}</h3>`;
 
@@ -572,6 +581,7 @@ function sessionInspectorHtml(session) {
   // sending the coach to a different surface to read what happened.
   if (done) return `<div class="inspect">
     ${head}
+    ${sourceWasSequence ? `<p class="ins-detail">${escapeHtml(structureOf(version, { plain: true }) || version.title)}</p>` : ''}
     ${evidenceFactsHtml(done)}
     ${renderCoachReviewChain(selectedRecord, done.id)}
     <div class="ins-actions">
@@ -584,6 +594,7 @@ function sessionInspectorHtml(session) {
 
   const band = [version.pace_low, version.pace_high].filter(Boolean).join('\u2013');
   const dose = doseOf(version);
+  const multipleWorkParts = (version.components || []).filter((part) => part.role === 'work').length > 1;
   const clock = (seconds) => `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   const parts = version.components || [];
   const anatomy = (parts.length > 1 ? parts : []).map((part) => {
@@ -603,7 +614,7 @@ function sessionInspectorHtml(session) {
 
   return `<div class="inspect">
     ${head}
-    ${dose ? `<p class="ins-dose">${
+    ${dose && !multipleWorkParts ? `<p class="ins-dose">${
       // When the title already says the dose -- "3 x 2 mi at race pace" over a dose
       // line reading "3 x 2 mi" -- repeating it reads as two different facts about
       // the session when it is one fact printed twice. The qualifiers underneath are

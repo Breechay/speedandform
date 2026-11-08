@@ -158,6 +158,115 @@ html:has(.coach-page--programming) { background: #f6f5f1; }
 .coach-page--programming .consoleRungLine em {
   color: var(--coach-accent);
 }
+/* Week and session form one reading surface. Long mixed sessions wrap inside
+   their own column; the inspector leads with a readable title, not a shout. */
+.coach-page--programming .consoleWorkbench__head {
+  font-family: var(--coach-font);
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+.coach-page--programming .consoleWorkRow__day {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: .02em;
+}
+.coach-page--programming .consoleWorkRow__dose i {
+  font-size: 13px;
+}
+.coach-page--programming .consoleWorkRow__what {
+  color: var(--coach-ink);
+}
+.coach-page--programming .consoleWorkRow--on {
+  background: #e8eee8;
+}
+.coach-page--programming .ins-when {
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: .025em;
+  color: var(--coach-secondary);
+}
+.coach-page--programming .ins-what {
+  max-width: 32ch;
+  margin-top: 12px;
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.17;
+  font-weight: 670;
+  letter-spacing: -.025em;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-dose b {
+  font-size: clamp(20px, 2vw, 25px);
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-dose span {
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-part dt {
+  font-size: 12.5px;
+  line-height: 1.4;
+  letter-spacing: .025em;
+}
+.coach-page--programming .ins-part dd b {
+  font-size: 16px;
+  font-weight: 650;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-part dd span {
+  font-size: 13.5px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-detail,
+.coach-page--programming .ins-why {
+  max-width: 63ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--coach-secondary);
+  overflow-wrap: anywhere;
+}
+.coach-page--programming .ins-actions {
+  gap: 8px;
+  margin-top: 24px;
+}
+.coach-page--programming .ins-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 13px;
+  border: 1px solid var(--coach-line);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--coach-ink);
+  font-family: var(--coach-font);
+  font-size: 13px;
+  font-weight: 620;
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.coach-page--programming .ins-actions button:hover {
+  background: var(--coach-paper-deep);
+  color: var(--coach-ink);
+}
+.coach-page--programming .ins-actions button[data-file] {
+  background: var(--coach-accent);
+  border-color: var(--coach-accent);
+  color: #fff;
+}
+.coach-page--programming .ins-actions button[data-file]:hover {
+  background: #155642;
+  color: #fff;
+}
 .coach-page--programming .dialog { background: var(--coach-paper); border-radius: 7px; }
 .coach-page--programming .dialog::backdrop { background: #1c29266e; }
 .coach-page--programming .dialog .field-label { color: var(--coach-secondary); font-size: 12px; line-height: 1.35; letter-spacing: .02em; }
@@ -388,6 +497,29 @@ body.coach-page--athletes:has(.ccApp) {
   border: 1px solid #dce5da;
   border-left: 3px solid var(--coach-accent);
   color: var(--coach-ink);
+  min-height: 62px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.coach-page--athletes .ccSession__title {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+.coach-page--athletes .ccSession__meta {
+  color: var(--coach-secondary);
+  font-size: 12.5px;
+  line-height: 1.4;
 }
 .coach-page--athletes .ccSession.quality { border-left-color: #aa6c39; }
 .coach-page--athletes .ccSession.long { border-left-color: #6b83a7; }
@@ -438,10 +570,55 @@ body.coach-page--athletes:has(.ccApp) {
 .coach-page--athletes .ccNotes header span,
 .coach-page--athletes .ccNoteShortcut,
 .coach-page--athletes #ccNoteStatus { color: var(--coach-secondary); }
-.coach-page--athletes .ccNoteHistory p { color: var(--coach-ink); }
+.coach-page--athletes .ccNotes header span { font-size: 13px; letter-spacing: 0; }
+.coach-page--athletes .ccNoteHistory { gap: 0; margin-top: 18px; }
+.coach-page--athletes .ccNoteHistory article {
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 20px;
+  padding: 19px 0;
+  border-bottom: 1px solid var(--coach-line);
+}
+.coach-page--athletes .ccNoteHistory article:first-child { padding-top: 6px; }
+.coach-page--athletes .ccNoteHistory article:last-child { border-bottom: 0; }
+.coach-page--athletes .ccNoteHistory time {
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.coach-page--athletes .ccNoteEntry { min-width: 0; }
+.coach-page .coachNoteProse p {
+  margin: 0;
+  max-width: 64ch;
+  color: var(--coach-ink);
+  font-size: 16px;
+  line-height: 1.65;
+  letter-spacing: 0;
+  text-transform: none;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+.coach-page .coachNoteProse p + p { margin-top: 14px; }
+.coach-page .coachNoteReference {
+  margin: 16px 0 0;
+  max-width: 64ch;
+  color: var(--coach-secondary);
+  font-size: 12.5px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.coach-page .coachNoteReference code { font: inherit; }
+.coach-page--athletes .privateNote time { font-size: 13px; letter-spacing: 0; }
+.coach-page--athletes .privateNote .coachNoteProse { margin-top: 8px; }
+.coach-page--programming .private-note .coachNoteProse p { font-size: 14px; }
+.coach-page--programming .private-note .coachNoteReference { font-size: 12px; }
 .coach-page--athletes #ccNoteBody {
   color: var(--coach-ink);
   caret-color: var(--coach-accent);
+  font-size: 16px;
+}
+@media (max-width: 620px) {
+  .coach-page--athletes .ccNoteHistory article { grid-template-columns: minmax(0, 1fr); gap: 9px; }
 }
 .coach-page--athletes #ccNoteBody::placeholder { color: #7d8b83; }
 .coach-page--athletes #ccNoteForm button {
