@@ -142,3 +142,15 @@ test('filing display flags implausible duration instead of calculating impossibl
   assert.match(labs, /Recorded duration \$\{clock\(completion\.duration_seconds\)\}/);
   assert.match(labs, /needs review\./);
 });
+
+test('light session reader never reintroduces dark-on-dark blocks or tiny technical statuses', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  const figures = css.match(/\.dFigs\{([^}]*)\}/)?.[1] || '';
+  const parts = css.match(/\.dPart\{([^}]*)\}/)?.[1] || '';
+  assert.doesNotMatch(figures + parts, /background\s*:\s*var\(--band-2\)/);
+  assert.match(labs, /workMagnitude\(\{ \.\.\.part, duration_seconds: null \}\)/);
+  assert.match(labs, /why: 'Filed'/);
+  assert.doesNotMatch(labs, /Filed — history is not revised/);
+  assert.match(css, /\.dLocked\{font-size:12px;/);
+});
