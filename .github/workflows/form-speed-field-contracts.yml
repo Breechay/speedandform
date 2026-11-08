@@ -1,0 +1,58 @@
+name: FORM Speed Record and Field v2 isolated contracts
+
+on:
+  pull_request:
+    paths:
+      - 'supabase/migrations/20261106130000_speed_filed_rep_integrity.sql'
+      - 'supabase/migrations/20261106133000_collective_work_feed_v2_rep_splits.sql'
+      - 'supabase/migrations/20261107100000_speed_record_v1.sql'
+      - 'tests/form-speed/**'
+      - '.github/workflows/form-speed-field-contracts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run additive Field and Speed source guards
+        run: |
+          node --test tests/form-speed/field_rep_projection_source.test.mjs
+          node tests/form-speed/speed_record_v1_source.test.mjs
+
+  speed-record-postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: local-only-test
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: '5432'
+      PGUSER: postgres
+      PGPASSWORD: local-only-test
+      PGDATABASE: postgres
+      PGOPTIONS: '-c client_min_messages=warning'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare isolated authenticated and anon roles
+        run: psql -v ON_ERROR_STOP=1 -c 'create role authenticated nologin; create role anon nologin;'
+      - name: Build synthetic authorization fixture
+        run: psql -v ON_ERROR_STOP=1 -f tests/form-speed/speed_record_v1_local_fixture.sql
+      - name: Compile Speed Record migration in disposable Postgres
+        run: psql -v ON_ERROR_STOP=1 -f supabase/migrations/20261107100000_speed_record_v1.sql
+      - name: Exercise coach, athlete, outsider, anon and projection cases
+        run: psql -v ON_ERROR_STOP=1 -f tests/form-speed/speed_record_v1_local_authorization.sql
