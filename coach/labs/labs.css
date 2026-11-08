@@ -768,26 +768,26 @@ body:has(.view.planv){overflow:auto}
 .drawer.on{transform:none}
 .dHead{padding:24px 26px 18px;border-bottom:1px solid var(--edge);display:flex;
   align-items:flex-start;justify-content:space-between;gap:14px}
-.dWhen{font-size:9.5px;letter-spacing:.18em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.dWhen{font-size:12px;letter-spacing:.035em;color:var(--secondary);font-weight:500}
 .dHead h2{font-family:var(--serif);font-weight:400;font-size:25px;letter-spacing:-.012em;
   margin:9px 0 0;line-height:1.15}
-.dRung{margin-top:9px;font-size:9.5px;letter-spacing:.14em;color:var(--lime);font-weight:600;
-  text-transform:uppercase}
+.dRung{margin-top:9px;font-size:12px;letter-spacing:.01em;color:var(--lime);font-weight:600}
 .dClose{font-size:22px;color:var(--secondary);line-height:1;padding:0 4px}
 .dClose:hover{color:var(--text)}
 .dBody{padding:20px 26px 40px;overflow-y:auto;flex:1}
-.dFigs{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:18px}
-.dFigs div{background:var(--band-2);padding:13px 15px}
-.dFigs b{display:block;font-size:9px;letter-spacing:.17em;color:var(--muted);font-weight:600}
-.dFigs strong{display:block;font-family:var(--serif);font-weight:400;font-size:25px;margin-top:6px;
+.dFigs{display:flex;gap:26px;flex-wrap:wrap;border-top:1px solid var(--edge);border-bottom:1px solid var(--edge);
+  padding:15px 0;margin-bottom:18px}
+.dFigs div{min-width:0}
+.dFigs b{display:block;font-size:12px;letter-spacing:.01em;color:var(--secondary);font-weight:500}
+.dFigs strong{display:block;font-family:var(--serif);font-weight:400;font-size:25px;margin-top:4px;
   letter-spacing:-.015em;font-variant-numeric:tabular-nums}
 .dIntent{margin:0 0 20px;font-size:14px;line-height:1.55;color:var(--text)}
-.dLab{font-size:9.5px;letter-spacing:.18em;color:var(--muted);font-weight:600;margin:22px 0 10px}
+.dLab{font-size:12px;letter-spacing:.02em;color:var(--secondary);font-weight:600;margin:22px 0 10px}
 .dLab:first-of-type{margin-top:0}
-.dParts{display:flex;flex-direction:column;gap:1px}
-.dPart{display:grid;grid-template-columns:82px 1fr;gap:4px 14px;background:var(--band-2);
-  padding:11px 14px;align-items:baseline}
-.dPart b{font-size:9px;letter-spacing:.14em;color:var(--muted);font-weight:600;text-transform:uppercase}
+.dParts{display:flex;flex-direction:column}
+.dPart{display:grid;grid-template-columns:82px 1fr;gap:4px 14px;border-top:1px solid var(--edge);
+  padding:12px 0;align-items:baseline}
+.dPart b{font-size:12px;letter-spacing:.01em;color:var(--secondary);font-weight:500;text-transform:capitalize}
 .dPart span{font-size:14px;font-variant-numeric:tabular-nums}
 .dPart em{grid-column:2;font-style:normal;font-size:11.5px;color:var(--secondary);
   font-variant-numeric:tabular-nums}
