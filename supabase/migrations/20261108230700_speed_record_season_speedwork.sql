@@ -232,12 +232,14 @@ season_rows as (
     from public.session_completions completion
     where completion.planned_session_id=plan.id
       and completion.athlete_id=plan.athlete_id
+      and completion.planned_session_version_id=plan.version_id
       and completion.status in ('completed','partial','changed')
   ) attempts on true
   left join lateral (
     select completion.* from public.session_completions completion
     where completion.planned_session_id=plan.id
       and completion.athlete_id=plan.athlete_id
+      and completion.planned_session_version_id=plan.version_id
       and completion.status in ('completed','partial','changed')
     order by completion.filed_at desc nulls last,completion.updated_at desc,completion.id desc
     limit 1
