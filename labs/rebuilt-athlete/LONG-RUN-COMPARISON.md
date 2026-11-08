@@ -1,6 +1,6 @@
 # Rebuilt Athlete: long-run observations
 
-Updated 2026-11-07 with the Venetian nine-mile outing; earlier Palm Beach and other observations remain below. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
+Updated 2026-11-08 with the recovery/base outing and next-morning response to the Venetian nine miles; earlier observations remain below. Subject: Brice Ikouebe. This is a dated observation and evidence record, not a ranking or a new training prescription. The existing filename is retained for continuity.
 
 **Speed exposure tracker opened October 18:** [15-second pace-band, interval-distance and recovery ledger](SPEED-EXPOSURE-LEDGER-20261018.md) now holds the October 17 road baseline and both October 18 Garmin sessions. Detailed pace-band minutes are pending lap or original FIT evidence; this long-run companion remains the dated outing narrative. The new ledger is observational only and does not update any workout or website.
 
@@ -300,3 +300,23 @@ The outing added longer running and faster late work to a week that already cont
 **The coaching comparison is not a personal performance contest.** José completed 12.28 mi at 8:15/mi moving pace on a different route, reported substantial sun/water/bridge interruption costs and did not run the planned three miles at goal pace. Brice's faster nine-mile average does not establish that José lacks aerobic fitness, and a watch-estimated V̇O₂max difference (José reportedly about 56, Brice about 53–54) does not equal a calibrated pace comparison. Brice's actionable hypothesis is to develop more continuous, late fast running within an individualized plan, with recovery and conditions documented. It remains a hypothesis, not an explanation demonstrated by either outing.
 
 **Provenance:** Brice's November 7 Strava screenshots show the map, 9.01-mi summary, nine mile splits and separate moving/elapsed details; his same-day coaching account supplies the prior-week fatigue, Adrian company and comparative question. The raw FIT and next-morning lower-leg status have not been verified. This record changes no FORM plan, calendar, coach filing or live website by itself.
+
+## November 8 · Recovery and Base along the Venetian, after Saturday's nine
+
+**Purpose and response.** Brice deliberately chose a low-heart-rate recovery run the morning after the November 7 nine-mile outing and after a 70-minute elliptical session on November 6. He reports his legs felt perfectly fine, the earlier quadratus-lumborum-area tightness had eased, and what remained felt like upper-glute muscle soreness. He said he finished **feeling rejuvenated** and regarded the recovery run as well executed. The location and cause of the residual soreness are not established by these reports; neither tissue healing nor a diagnosis is inferred. On November 8 he was considering upper-body strength and a lighter Monday rather than adding more lower-body load.
+
+**Recorded execution, not the original prescription:** Sunday November 8, start 6:38 AM Eastern; **6.20 mi in 1:03:55 moving/timer time**, **10:18/mi average**, **122 bpm average / 140 bpm maximum**; Garmin Forerunner 965 activity **25008557022**. The connected Garmin summary records 9.98 km and 22 m ascent; Strava displays 72 ft gain, consistent after rounding. The watch/Strava title was *Recovery & Base <130bpm*, and the shoes displayed were Brooks Adrenaline GTS. The existing live FORM Sunday session was an **optional 20–30-minute recovery session**; this 63:55 execution exceeded that duration. Preserve prescribed and performed doses separately and file the actual completion as changed, not as if 63:55 had been prescribed.
+
+| Mile | Strava displayed pace | Displayed average HR |
+| --- | --- | --- |
+| 1 | 11:16/mi | 115 bpm |
+| 2 | 10:24/mi | 120 bpm |
+| 3 | 10:21/mi | 124 bpm |
+| 4 | 9:52/mi | 124 bpm |
+| 5 | 10:31/mi | 123 bpm |
+| 6 | 9:47/mi | 124 bpm |
+| final 0.2 | 8:41/mi | 133 bpm |
+
+**Interpretation.** The full-mile paces generally rose without a matching sustained rise in displayed HR after the opening mile. This is consistent with *controlled effort during this outing*, not evidence from a matched test of improved economy or an individually verified Zone 2 boundary. The final partial was faster but is not a full-mile benchmark. Garmin's October 12–November 8 *Low Aerobic Shortage* graphic is a rolling training-load categorization, not proof that this individual run was insufficient or a reason to add tomorrow's mileage. Connected November 8 recovery context: 8.27 hours sleep, score 87, HRV night average 55 ms and low recorded stress. These are device metrics and do not replace the athlete's felt recovery.
+
+**Source and publication boundary.** Garmin Forerunner 965 connected daily/activity summary, November 8 Strava overview and split screenshots (IMG_1341, IMG_1339, IMG_1340) and Brice's first-person reports on November 8. No original FIT-detail lap inspection was completed in this review; the lap rows are screenshot-derived. The live FORM Sunday optional session and the prior Saturday coach-import completion were read back separately; a study edit is not proof that Sunday's completion has been filed or reached the Collective feed. Do not change Monday or Thursday prescription from this evidence record alone.
