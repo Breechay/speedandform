@@ -47,6 +47,7 @@ const js=read('js/sf-menu.js');assert.ok(js.includes('Escape')&&js.includes('Tab
 assert.match(read('css/sf-menu.css'),/\.sf-menu\{[^}]*overflow:hidden/,'Closed off-canvas panel must not widen the public page');
 assert.match(read('css/sf-menu.css'),/\.sf-menu\{display:none;/,'Closed drawer must be removed from layout and scroll geometry');
 assert.match(read('css/sf-menu.css'),/\.sf-menu\.is-open,\.sf-menu\.is-closing\{display:block;/,'Open and closing drawers must remain rendered');
+assert.match(read('css/sf-menu.css'),/html\.sf-menu-locked,html\.sf-menu-locked body\{overflow:hidden\}/,'Scroll lock must preserve the active page scroll container');
 // A public menu destination must not loop under Netlify's normalized trailing slashes.
 const redirectLines=read('_redirects').split(/\r?\n/).filter(line=>line.trim()&&!/^\s*#/.test(line));
 for(const route of ['/athletes','/athletes/']){
