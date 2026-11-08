@@ -21,6 +21,12 @@ body.coach-page {
   --coach-accent-soft: #e5f0e9;
   --coach-warn: #a44f38;
   --coach-font: "FORM Inter Tight", "Inter Tight", Inter, Arial, sans-serif;
+  /* Reused by every coach editor: measured text, paper rather than white cards,
+     clear fields and a single boundary between working sections. */
+  --coach-editor-width: 920px;
+  --coach-editor-field: #eeeee8;
+  --coach-editor-font-size: 16px;
+  --coach-editor-line: #aebbb2;
   font-family: var(--coach-font);
 }
 body.coach-page button,
@@ -152,8 +158,22 @@ html:has(.coach-page--programming) { background: #f6f5f1; }
 .coach-page--programming .consoleRungLine em {
   color: var(--coach-accent);
 }
-.coach-page--programming .dialog { background: #fff; }
+.coach-page--programming .dialog { background: var(--coach-paper); border-radius: 7px; }
 .coach-page--programming .dialog::backdrop { background: #1c29266e; }
+.coach-page--programming .dialog .field-label { color: var(--coach-secondary); font-size: 12px; line-height: 1.35; letter-spacing: .02em; }
+.coach-page--programming .dialog .field-input,
+.coach-page--programming .dialog .field-select,
+.coach-page--programming .dialog .field-textarea {
+  background: var(--coach-editor-field); color: var(--coach-ink);
+  border: 1px solid transparent; border-bottom: 1px solid var(--coach-editor-line);
+  border-radius: 3px; font-size: var(--coach-editor-font-size);
+  line-height: 1.4; min-height: 44px;
+}
+.coach-page--programming .dialog .field-input:focus,
+.coach-page--programming .dialog .field-select:focus,
+.coach-page--programming .dialog .field-textarea:focus {
+  border-bottom-color: var(--coach-accent); background: #e8eee7;
+}
 .coach-page--programming.auth-only .app-shell {
   background: radial-gradient(850px 450px at 14% 12%, #dfebe2, transparent 70%), var(--coach-paper);
 }
@@ -650,6 +670,66 @@ body.coach-page--miami {
   border-radius: 12px;
 }
 .coach-page--miami .story h3 small { color: var(--coach-secondary); }
+
+/* A working editor, not a full-width white-card form. Keep reading lines
+   measured and let the paper itself carry the layout. */
+.coach-page--miami main { max-width: var(--coach-editor-width); }
+.coach-page--miami .pane-heading { margin-bottom: 18px; }
+.coach-page--miami .pane-heading h2 { font-size: clamp(23px, 2.4vw, 30px); line-height: 1.1; font-weight: 610; letter-spacing: -.035em; }
+.coach-page--miami .pane { padding-block: 24px 32px; }
+.coach-page--miami form label,
+.coach-page--miami .run-link label,
+.coach-page--miami .manage-grid label {
+  font-size: 12px; line-height: 1.3; letter-spacing: .045em; font-weight: 650;
+}
+.coach-page--miami input,
+.coach-page--miami select,
+.coach-page--miami textarea,
+.coach-page--miami .date-label input {
+  background: var(--coach-editor-field); border: 1px solid transparent;
+  border-bottom: 1px solid var(--coach-editor-line); border-radius: 3px;
+  font-size: var(--coach-editor-font-size); line-height: 1.4; font-weight: 520;
+  padding: 12px 13px; min-height: 46px;
+}
+.coach-page--miami input:focus,
+.coach-page--miami select:focus,
+.coach-page--miami textarea:focus { background: #e8eee7; border-bottom-color: var(--coach-accent); }
+.coach-page--miami .set { background: #eeeee8; border-radius: 3px; }
+.coach-page--miami .story-list { gap: 0; margin-top: 20px; }
+.coach-page--miami .story {
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  align-items: start; column-gap: 22px; row-gap: 12px;
+  background: transparent; border: 0; border-top: 1px solid var(--coach-line);
+  border-radius: 0; padding: 22px 2px 16px;
+}
+.coach-page--miami .story h3 { grid-column: 1 / -1; font-size: 21px; margin: 0; }
+.coach-page--miami .story label { min-width: 0; margin-bottom: 0; }
+.coach-page--miami .story textarea { min-height: 72px; resize: vertical; }
+.coach-page--miami .meeting { max-width: 690px; }
+.coach-page--miami .meeting h3 { font-size: 21px; line-height: 1.25; margin: 0 0 16px; font-weight: 660; }
+.coach-page--miami .meetingFacts { display: grid; grid-template-columns: minmax(130px, .75fr) minmax(0, 1.5fr); gap: 24px; margin: 0 0 12px; }
+.coach-page--miami .meetingFacts div { min-width: 0; }
+.coach-page--miami .meetingFacts dt { font-size: 12px; color: var(--coach-secondary); margin-bottom: 5px; }
+.coach-page--miami .meetingFacts dd { margin: 0; font-size: 16px; line-height: 1.5; font-weight: 550; }
+.coach-page--miami .meetingFacts dd span { display: block; color: var(--coach-secondary); font-size: 14px; font-weight: 450; }
+.coach-page--miami .meeting .hint { margin: 12px 0 0; }
+.coach-page--miami .run-connection { max-width: 690px; margin-top: 18px; }
+.coach-page--miami .run-connection > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-size: 14px; font-weight: 620; color: var(--coach-accent); }
+.coach-page--miami .run-connection > summary:focus-visible { outline: 2px solid var(--coach-accent); outline-offset: 2px; }
+.coach-page--miami .run-link { max-width: 690px; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; margin-top: 22px; }
+.coach-page--miami .run-link label { width: 100%; min-width: 0; }
+.coach-page--miami #runSelect { width: 100%; }
+.coach-page--miami .publicationPreview { background: transparent; border: 0; border-left: 3px solid var(--coach-accent); border-radius: 0; padding: 7px 0 7px 17px; }
+.coach-page--miami .publicationPreview details { border-top-color: var(--coach-line); }
+.coach-page--miami .publicationPreview__top span { color: var(--coach-accent); }
+.coach-page--miami .publicationPreview > p, .coach-page--miami .publicationPreview details p { color: var(--coach-secondary); }
+.coach-page--miami .publicationPreview summary { color: var(--coach-ink); }
+@media (max-width: 720px) {
+  .coach-page--miami .story { grid-template-columns: 1fr; }
+  .coach-page--miami .story h3 { grid-column: 1; }
+  .coach-page--miami .meetingFacts { grid-template-columns: 1fr; gap: 10px; }
+  .coach-page--miami .run-link { grid-template-columns: 1fr; }
+}
 
 @media (max-width: 1100px) {
   .coach-page--programming .consoleTopbar { flex-wrap: wrap; }

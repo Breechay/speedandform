@@ -166,7 +166,13 @@ async function loadWeekStories(){
 function meetingContent(){
   const r=preview.run;
   $('runState').textContent=r?r.status.toUpperCase():'NO MEETUP';
-  $('meeting').innerHTML=r?`<div class="meeting"><h3>${safe(r.title)}</h3><p>${safe(fmt(r.starts_at))} · ${safe(r.meet_name)}</p><p>${safe(r.meet_address)}</p><p class="hint">Attendance is owned by the existing Who’s in RSVP on <a href="/runs/">Runs</a>.</p></div>`
+  // Most weeks already have their hosted occurrence linked. Keep the chooser
+  // available without making a large native select the focus of the section.
+  $('runLinkControls').open = !r;
+  $('meeting').innerHTML=r?`<div class="meeting"><h3>${safe(r.title)}</h3>
+    <dl class="meetingFacts"><div><dt>When</dt><dd>${safe(fmt(r.starts_at))}</dd></div>
+    <div><dt>Where</dt><dd>${safe(r.meet_name)}<span>${safe(r.meet_address)}</span></dd></div></dl>
+    <p class="hint">Attendance and RSVPs are managed in <a href="/runs/">Runs</a>.</p></div>`
     :`<p class="no-meetup">No FORM ${isThursday()?'Thursday':'Saturday'} meetup is linked here for this date.</p><p class="hint">${isThursday()?'The track workout remains in each athlete’s Week.':'Everyone still has their own prescribed distance. A meetup is optional.'}</p>`;
   const choices=runs.filter((x)=>x.kind===(isThursday()?'track':'long_run')&&x.status==='scheduled'&&zdate(x.starts_at)===$('date').value);
   $('runSelect').innerHTML=`<option value="">Choose a published ${isThursday()?'track':'long run'} occurrence</option>`+choices.map((x)=>`<option value="${safe(x.id)}">${safe(x.title)} · ${safe(fmt(x.starts_at))}</option>`).join('');
@@ -222,7 +228,7 @@ $('magic').addEventListener('click',async()=>{const f=new FormData($('signin'));
 document.querySelectorAll('[data-lane]').forEach((b)=>b.addEventListener('click',async()=>{lane=b.dataset.lane;document.querySelectorAll('[data-lane]').forEach((v)=>v.setAttribute('aria-pressed',String(v===b)));$('date').value=near(isThursday()?4:6);editorLoadedKey='';try{await load();}catch(e){say(e.message,true);}}));
 $('date').value=near(4);
 $('date').addEventListener('change',async()=>{editorLoadedKey='';try{await load();}catch(e){say(e.message,true);}});
-$('workoutForm').addEventListener('input',()=>{prepared=null;$('publish').disabled=true;});
+$('workoutForm').addEventListener('input',()=>{prepared=null;$('publish').disabled=true;$('previewSummary').hidden=true;});
 $('addSet').addEventListener('click',()=>{$('sets').insertAdjacentHTML('beforeend',setRow());prepared=null;$('publish').disabled=true;});
 $('sets').addEventListener('click',(e)=>{if(e.target.closest('.remove')){e.target.closest('.set').remove();prepared=null;$('publish').disabled=true;}});
 $('preview').addEventListener('click',async()=>{
@@ -237,8 +243,13 @@ $('preview').addEventListener('click',async()=>{
       const athlete=roster.find((r)=>r.athlete_id===id);
       return `${athlete?.name||'Athlete'} ${seconds>=0?'+':''}${Math.round(seconds*600/1609.344)}s/600m`;
     });
-    say(`Ready to update ${names.length} Weeks: ${names.join(', ')}. Paced athletes receive the reference band${adjusted.length?`; individual adjustments: ${adjusted.join(', ')}`:''}. Effort-mode athletes receive the same sets without clock targets.`);
-  }catch(err){prepared=null;$('publish').disabled=true;say(err.message,true);}
+    $('previewSummary').innerHTML = `<div class="publicationPreview__top"><strong>${names.length} linked Weeks</strong><span>Ready for review</span></div>
+      <p>Paced athletes keep their individual targets. Effort-mode athletes receive the same sets without clock targets.</p>
+      <details><summary>Affected athletes · ${names.length}</summary><p>${names.map(safe).join(' · ')}</p></details>
+      ${adjusted.length?`<details><summary>Individual pace adjustments · ${adjusted.length}</summary><p>${adjusted.map(safe).join(' · ')}</p></details>`:''}`;
+    $('previewSummary').hidden=false;
+    say('Preview ready. Review the affected athletes, then publish.');
+  }catch(err){prepared=null;$('publish').disabled=true;$('previewSummary').hidden=true;say(err.message,true);}
 });
 function confirmWeekPublication(count){
   const dialog=$('publishConfirm');

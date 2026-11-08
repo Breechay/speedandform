@@ -69,6 +69,7 @@ let reviewNextExistingReadId = null;
 let revisingSessionId = null;
 let originalSessionEditorialCopy = null;
 let roster = [];
+let rosterQuery = '';
 let selectedId = null;
 let selectedRecord = null;
 let shownWeekId = null;
@@ -141,7 +142,11 @@ function rosterHtml() {
   const order = attentionOrder
     ? roster.slice().sort((a, b) => (standingConfidence(a.id, a.mark?.id)?.score ?? -1) - (standingConfidence(b.id, b.mark?.id)?.score ?? -1))
     : roster;
-  return order.map(tab).join('');
+  const query = rosterQuery.trim().toLocaleLowerCase();
+  const visible = query ? order.filter((athlete) =>
+    [athlete.display_name, athlete.first_name, athlete.slug].some((value) =>
+      String(value || '').toLocaleLowerCase().includes(query))) : order;
+  return visible.map(tab).join('') || '<p class="consoleAthleteTabs__empty">No matching athletes</p>';
 }
 
 function athleteMenuHtml() {
@@ -284,8 +289,15 @@ function doseOf(version) {
   const shortQualifiers = works.length > 1
     ? [structureOf(version), ...qualifiers.filter((item) => item !== totalLine)]
     : shapeWord ? [shapeWord, ...qualifiers] : qualifiers;
+  const runwaySummary = works.length > 1
+    ? `${works.length} work segments`
+    : shortLine;
+  const runwayContext = works.length > 1
+    ? (sessionTotalLabel(version) || 'Mixed-pace session')
+    : qualifiers.filter((item) => item !== totalLine).slice(0, 2).join(' · ');
   return {
     line, shortLine, work, proofBearing, totalLine,
+    runwaySummary, runwayContext,
     qualifiers: qualifiers.join(' \u00b7 '),
     shortQualifiers: shortQualifiers.join(' \u00b7 ')
   };
@@ -412,6 +424,11 @@ function runwayHtml() {
     const dose = (selectedRecord.sessionsByWeek?.[week.id] || [])
       .map((session) => doseOf(session.currentVersion))
       .filter((item) => item && item.proofBearing)[0] || null;
+    // The runway is navigation, not a second prescription inspector. A mixed
+    // workout can be six or more components; rendering its entire sequence in
+    // fifteen narrow columns created a wall of text taller than the viewport.
+    const summary = dose?.runwaySummary || '';
+    const context = dose?.runwayContext || '';
     return `<button class="consoleWeek${isToday ? ' consoleWeek--today' : ''}${isShown ? ' consoleWeek--shown' : ''}"
       type="button" data-week="${escapeHtml(week.id)}"
       aria-current="${isShown ? 'true' : 'false'}"
@@ -419,8 +436,8 @@ function runwayHtml() {
       <span class="consoleWeek__no">W${escapeHtml(week.week_number)}</span>
       <span class="consoleWeek__when">${escapeHtml(rangeLabel(week.starts_on, week.ends_on))}</span>
       <span class="consoleWeek__now">${isToday ? 'current week' : ''}</span>
-      <span class="consoleWeek__key">${dose ? escapeHtml(dose.line) : ''}</span>
-      <span class="consoleWeek__how">${dose ? escapeHtml(dose.qualifiers) : ''}</span>
+      <span class="consoleWeek__key">${escapeHtml(summary)}</span>
+      <span class="consoleWeek__how">${escapeHtml(context)}</span>
       <span class="consoleWeek__race">${raceWeek && week.id === raceWeek.id ? 'race' : ''}</span>
     </button>`;
   }).join('');
@@ -906,6 +923,9 @@ function heroHtml() {
 // left the page shape that put the work below the fold.
 function deskHtml() {
   return `<div class="coachConsole" id="deskMain">
+    <div class="consoleRosterFind"><label for="athleteQuickFind">Athletes <span>${roster.length}</span></label>
+      <input id="athleteQuickFind" type="search" autocomplete="off" placeholder="Find an athlete" value="${escapeHtml(rosterQuery)}" aria-controls="squadStrip">
+    </div>
     <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
     ${heroHtml()}
     ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
@@ -951,6 +971,17 @@ function paintSquad() {
   squadContainer.innerHTML = rosterHtml();
   squadContainer.querySelectorAll('[data-select-athlete]').forEach((button) =>
     button.addEventListener('click', () => selectAthlete(button.dataset.selectAthlete)));
+  // Keep the current athlete identifiable even when the roster grows beyond a
+  // single screen. Horizontal movement must never jump the whole page.
+  const active = squadContainer.querySelector('.consoleAthleteTab--on');
+  if (active && !rosterQuery) {
+    const left = active.offsetLeft - squadContainer.offsetLeft;
+    const right = left + active.offsetWidth;
+    if (left < squadContainer.scrollLeft) squadContainer.scrollLeft = Math.max(0, left - 12);
+    else if (right > squadContainer.scrollLeft + squadContainer.clientWidth) {
+      squadContainer.scrollLeft = right - squadContainer.clientWidth + 12;
+    }
+  }
   const toggle = document.getElementById('orderToggle');
   if (toggle) toggle.textContent = attentionOrder ? 'needs attention' : 'roster';
   const publicationButton = document.getElementById('publicationQueueToggle');
@@ -1141,6 +1172,10 @@ document.getElementById('publishEditorial')?.addEventListener('click', async () 
 
 function bindDesk() {
   paintSquad();
+  document.getElementById('athleteQuickFind')?.addEventListener('input', (event) => {
+    rosterQuery = event.target.value;
+    paintSquad();
+  });
   paintRails();
   revealShownWeek();
   app.querySelectorAll('[data-week]').forEach((button) => button.addEventListener('click', () => {
