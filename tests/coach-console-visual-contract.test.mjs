@@ -135,3 +135,10 @@ test('session drawer distinguishes a measured work dose from an unverified sessi
   assert.match(css, /\.dPart\{[^}]*border-top:1px solid var\(--edge\)/s);
   assert.match(css, /\.dLab\{font-size:12px;/);
 });
+
+test('filing display flags implausible duration instead of calculating impossible pace', () => {
+  const labs = read('coach/labs/labs.js');
+  assert.match(labs, /completionPaceReading\(completion\)/);
+  assert.match(labs, /Recorded duration \$\{clock\(completion\.duration_seconds\)\}/);
+  assert.match(labs, /needs review\./);
+});

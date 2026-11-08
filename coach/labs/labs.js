@@ -25,7 +25,7 @@ import { addAthleteMeasurement, addObservation, addPrivateNote, createRead, file
 import { escapeHtml } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
 import { filingVersionContext, filingVersionExplanation } from '/private/filing-version-context.mjs';
-import { authoredMiles, coachRosterLabel, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
+import { authoredMiles, coachRosterLabel, completionPaceReading, dayLabel, initials, rangeLabel, sessionReadingTitle, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, titleAlreadySays, workMiles } from '/private/render.js';
 
 const app = document.getElementById('app');
 const nav = document.getElementById('nav');
@@ -1141,9 +1141,8 @@ function compactRan(completion, pieces) {
     const mean = reps.reduce((sum, piece) => sum + piece.pace_seconds, 0) / reps.length;
     return `✓ ${clock(mean)} avg`;
   }
-  if (completion.actual_distance && completion.duration_seconds) {
-    return `✓ ${clock(Number(completion.duration_seconds) / Number(completion.actual_distance))}`;
-  }
+  const paceReading = completionPaceReading(completion);
+  if (paceReading.secondsPerUnit != null) return `✓ ${clock(paceReading.secondsPerUnit)}/${paceReading.unit}`;
   if (completion.rpe != null) return `✓ RPE ${completion.rpe}`;
   return '✓';
 }
@@ -1155,14 +1154,15 @@ function ranLine(completion, pieces) {
   if (completion.actual_distance != null) {
     bits.push(`${Number(completion.actual_distance)} ${completion.distance_unit || 'mi'}`);
   }
-  if (completion.actual_distance && completion.duration_seconds) {
-    bits.push(`${clock(Number(completion.duration_seconds) / Number(completion.actual_distance))}/mi`);
-  }
+  const paceReading = completionPaceReading(completion);
+  if (paceReading.secondsPerUnit != null) bits.push(`${clock(paceReading.secondsPerUnit)}/${paceReading.unit}`);
   if (completion.rpe != null) bits.push(`RPE ${completion.rpe}`);
   if (completion.surface === 'treadmill') bits.push('treadmill');
   const splits = pieces.filter((piece) => piece.kind === 'rep' && piece.pace_seconds != null)
     .sort((a, b) => a.position - b.position).map((piece) => clock(piece.pace_seconds));
-  return [bits.join(' · '), splits.join(' · ')].filter(Boolean).join(' — ');
+  const warning = paceReading.needsReview
+    ? `Recorded duration ${clock(completion.duration_seconds)} for ${Number(completion.actual_distance)} ${paceReading.unit} needs review.` : '';
+  return [bits.join(' · '), splits.join(' · '), warning].filter(Boolean).join(' — ');
 }
 
 // A CELL IS A WORKOUT, NOT A FILENAME.

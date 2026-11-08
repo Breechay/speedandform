@@ -225,3 +225,21 @@ export function sessionWorkDistanceLabel(version) {
     + Number(part.distance) * (part.shape === 'repetitions' ? (part.repeat_count || 1) : 1), 0);
   return `${Number(amount.toFixed(2))} ${parts[0].distance_unit}`;
 }
+
+// A filed total and a duration may disagree. Preserve both values but do not
+// turn an impossible ratio into a plausible-looking performance headline.
+// The 2:00/mi floor is below a plausible all-out sprint pace, let alone a
+// complete run, and catches malformed durations without re-writing evidence.
+export function completionPaceReading(completion) {
+  const seconds = Number(completion?.duration_seconds);
+  const distance = Number(completion?.actual_distance);
+  const unit = completion?.distance_unit || 'mi';
+  if (!['mi', 'km'].includes(unit) || !Number.isFinite(seconds)
+      || !Number.isFinite(distance) || seconds <= 0 || distance <= 0) {
+    return { secondsPerUnit: null, unit, needsReview: false };
+  }
+  const secondsPerUnit = seconds / distance;
+  const secondsPerMile = unit === 'km' ? secondsPerUnit * 1.609344 : secondsPerUnit;
+  if (secondsPerMile < 120) return { secondsPerUnit: null, unit, needsReview: true };
+  return { secondsPerUnit, unit, needsReview: false };
+}

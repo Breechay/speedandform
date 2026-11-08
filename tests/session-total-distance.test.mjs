@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { authoredMiles, sessionTotalDistance, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, workMagnitude } from '../private/render.js';
+import { authoredMiles, completionPaceReading, sessionTotalDistance, sessionTotalLabel, sessionWorkDistanceLabel, structureOf, workMagnitude } from '../private/render.js';
 
 const steadyFinish = (amount, unit, easy, finish) => ({
   prescribed_distance: amount,
@@ -88,4 +88,13 @@ test('mixed work units convert explicitly, while mixed timed work has no total',
   assert.equal(sessionWorkDistanceLabel(version), '1.62 mi');
   version.components[1] = { role: 'work', duration_seconds: 180 };
   assert.equal(sessionWorkDistanceLabel(version), '');
+});
+
+test('Sohel’s malformed filed duration is retained but not displayed as 0:43 per mile', () => {
+  assert.deepEqual(completionPaceReading({ actual_distance: 4, distance_unit: 'mi', duration_seconds: 173 }),
+    { secondsPerUnit: null, unit: 'mi', needsReview: true });
+  assert.deepEqual(completionPaceReading({ actual_distance: 4, distance_unit: 'mi', duration_seconds: 2400 }),
+    { secondsPerUnit: 600, unit: 'mi', needsReview: false });
+  assert.deepEqual(completionPaceReading({ actual_distance: 10, distance_unit: 'km', duration_seconds: 3000 }),
+    { secondsPerUnit: 300, unit: 'km', needsReview: false });
 });
