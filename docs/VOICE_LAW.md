@@ -158,3 +158,32 @@ publisher, regardless of whether a model drafted the text.
 The November 8, 2026 cohort and Saturday notes were retracted after unapproved
 model-written headlines were published under Brice's identity. Do not repeat
 that workflow. All replacement copy must be presented to Brice first.
+
+
+### Halo line-edit gate: delete the extra sentence
+
+Brice's November 8 review established a narrower rule than "short and plain":
+**each additional sentence must contain information he specifically wants the
+athlete to act on.** A correct sentence can still be unnecessary.
+
+Before seeking approval, remove:
+- Generic closers about being rested, feeling ready, finding a rhythm, or not
+  treating a workout as a race. These are not athlete-specific coaching.
+- A reminder about another session merely to show the writer looked at the
+  schedule. Mention another day only when Brice identifies a real conflict.
+- Another athlete's name or a training partner unless coordination itself
+  changes the instruction.
+- Explanations of a known problem after the action is already clear. Prefer
+  "Start early. Bring water." over a paragraph about previous heat complaints.
+- A note that only duplicates the Week. If nothing else needs saying, **send
+  no Halo message**, even if the athlete is in the entitled cohort.
+
+When Brice has named a real recurring behavior, keep the direct instruction.
+"Stop skipping your long runs" is useful; a vague reminder to save something
+for Saturday is not a substitute. Do not invent such behavior for other
+athletes.
+
+Pace units follow the **athlete's preference**, independently of repetition
+distance. For example, a workout written as 1 km repeats can still show its
+pace in min/mi. Convert verified pace targets accurately; never quietly
+change the prescription. Do not add a decorative opening or sign-off.
