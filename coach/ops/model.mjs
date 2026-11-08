@@ -14,6 +14,15 @@ export function priorityCandidates(items,today) {
     .sort((a,b)=>Number(b.focus_on===today)-Number(a.focus_on===today)||a.priority-b.priority||(a.due_on||'9999').localeCompare(b.due_on||'9999')||(a.created_at||'').localeCompare(b.created_at||''))
     .slice(0,4);
 }
+// A past-due task is not a decision to focus on it today. Keep the legacy
+// candidate read intact, but distinguish deliberate selections in the UI.
+export function groupTodayPriorities(items, today) {
+  const selected = [], earlier = [];
+  for (const item of items || []) {
+    (item.focus_on === today ? selected : earlier).push(item);
+  }
+  return { selected, earlier };
+}
 export function validateBoard(data) {
   if (!data || data.schema_version!==1 || !/^\d{4}-\d{2}-\d{2}$/.test(data.today||'')) throw new Error('Unsupported console response.');
   for (const key of ['items','priorities','sources','athletes','decisions','coach_tasks','coach_todos','appointments','changes']) if (!Array.isArray(data[key])) throw new Error('Incomplete console response.');

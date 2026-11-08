@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {priorityCandidates,sourceState,escapeHtml,safeUrl,validateBoard,dateLabel,upcomingAppointments} from '../coach/ops/model.mjs';
+import {priorityCandidates,groupTodayPriorities,sourceState,escapeHtml,safeUrl,validateBoard,dateLabel,upcomingAppointments} from '../coach/ops/model.mjs';
 const day='2026-09-30';
 const base={id:'a',kind:'task',actor:'brice',status:'queued',priority:20,focus_on:day,created_at:'2026-09-30T00:00:00Z'};
 test('at most four ready owner actions, not waiting or agent work',()=>{
@@ -14,6 +14,18 @@ test('future focus and undated backlog do not become invented priorities',()=>{
 });
 test('today selection takes precedence and unfinished prior selection remains visible',()=>{
  assert.deepEqual(priorityCandidates([{...base,id:'old',focus_on:'2026-09-29',priority:1},{...base,id:'today',priority:90}],day).map(i=>i.id),['today','old']);
+});
+test('overdue tasks never masquerade as explicitly selected today',()=>{
+ const chosen={...base,id:'chosen',focus_on:day};
+ const old={...base,id:'overdue',focus_on:null,due_on:'2026-09-20'};
+ const grouped=groupTodayPriorities([chosen,old],day);
+ assert.deepEqual(grouped.selected.map(i=>i.id),['chosen']);
+ assert.deepEqual(grouped.earlier.map(i=>i.id),['overdue']);
+ const js=fs.readFileSync(new URL('../coach/ops/console.js',import.meta.url),'utf8');
+ assert.match(js,/Older open tasks to review/);
+ assert.match(js,/None selected today/);
+ const css=fs.readFileSync(new URL('../coach/ops/console.css',import.meta.url),'utf8');
+ assert.doesNotMatch(css,/\.day-heading h1\{font-size:64px\}/);
 });
 test('missing, expired, conflicting and pending sources are not live',()=>{
  const now=Date.parse('2026-09-30T14:00:00Z');
