@@ -45,6 +45,8 @@ for(const file of files){
 for(const file of ['coach/index.html','coach/ops/index.html','athlete/index.html','athletes/index.html','auth/app-signin/index.html','record/index.html','forge-app/index.html','forge-sculpt/train/index.html','plans/devin-week-01/index.html','labs/devin/index.html','plans/race-pace-durability/thanks/index.html','plans/race-pace-durability/access/index.html'])assert.ok(!files.includes(file),'Execution/private route remains outside menu projection: '+file);
 const js=read('js/sf-menu.js');assert.ok(js.includes('Escape')&&js.includes('Tab')&&js.includes('inert'),'Keyboard and modal isolation remain supported');
 assert.match(read('css/sf-menu.css'),/\.sf-menu\{[^}]*overflow:hidden/,'Closed off-canvas panel must not widen the public page');
+assert.match(read('css/sf-menu.css'),/\.sf-menu\{display:none;/,'Closed drawer must be removed from layout and scroll geometry');
+assert.match(read('css/sf-menu.css'),/\.sf-menu\.is-open,\.sf-menu\.is-closing\{display:block;/,'Open and closing drawers must remain rendered');
 // A public menu destination must not loop under Netlify's normalized trailing slashes.
 const redirectLines=read('_redirects').split(/\r?\n/).filter(line=>line.trim()&&!/^\s*#/.test(line));
 for(const route of ['/athletes','/athletes/']){

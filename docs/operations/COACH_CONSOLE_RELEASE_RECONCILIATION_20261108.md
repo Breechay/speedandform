@@ -22,7 +22,7 @@
 - Public study-preview and public-copy contract checks: passed.
 - Configured Netlify build command completed (0 hard integrity errors; existing link/font warnings remain).
 - Corrected two stale test assumptions: one truncated scheduler SQL before the cron registration, and the other demanded the old CSS cache version.
-- GitHub's first Chromium public-entry run found a closed off-canvas menu extending horizontal scroll on the Method Bible at narrow widths. The shared drawer now clips its translated panel inside the fixed viewport; a static menu guard was added. Browser recheck remains required before release.
+- GitHub's first Chromium public-entry run found a closed off-canvas menu extending horizontal scroll on the Method Bible at narrow widths. Clipping alone proved insufficient: a follow-up browser run with page content separated from menu descendants showed no offscreen page elements, isolating the hidden drawer's scroll geometry. The closed drawer is now `display:none`, with visible open/closing states and a static menu guard. Browser recheck remains required before release.
 - Existing `miami-community-schedule.cjs` `sf-brand-name` assertion fails against an unchanged public page; it is not a console regression.
 
 ## Release state and remaining acceptance
