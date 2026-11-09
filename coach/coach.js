@@ -1,6 +1,7 @@
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorSession, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorSession, canAuthorCoachAthletes, createCoachAthlete, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
+import { existingAthleteMatch, normalizeNewAthlete } from '/private/athlete-onboarding.mjs';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
@@ -46,6 +47,8 @@ const publicationQueueDialog = document.getElementById('publicationQueueDialog')
 const editorialDialog = document.getElementById('editorialDialog');
 const inviteDialog = document.getElementById('inviteDialog');
 const inviteForm = document.getElementById('inviteForm');
+const newAthleteDialog = document.getElementById('newAthleteDialog');
+const newAthleteForm = document.getElementById('newAthleteForm');
 const blockDialog = document.getElementById('blockDialog');
 const blockForm = document.getElementById('blockForm');
 const sessionDialog = document.getElementById('sessionDialog');
@@ -86,6 +89,8 @@ let attentionOrder = false;
 let editorialReview = null;
 let editorialOverrides = {};
 let copyAuditWarning = '';
+let athleteCreationAllowed = false;
+let onboardingNotice = '';
 
 async function authView() {
   document.body.classList.add('auth-only');
@@ -94,6 +99,25 @@ async function authView() {
 
 function pendingView(email) {
   app.innerHTML = `<section class="auth-page"><div class="auth-card"><p class="eyebrow">Signed in</p><h1>No coach assignment yet.</h1><p>${escapeHtml(email)} is authenticated, but this account has not been assigned to the roster.</p></div></section>`;
+}
+
+function emptyCoachRosterView() {
+  app.innerHTML = `<section class="auth-page"><div class="auth-card">
+    <h1>Start your athlete roster</h1>
+    <p>Create a private athlete record, then author the first training block from their Programming page.</p>
+    <button class="button primary" id="createAthlete" type="button">Add athlete</button>
+  </div></section>`;
+  bindCreateAthleteButton();
+}
+
+function bindCreateAthleteButton() {
+  document.getElementById('createAthlete')?.addEventListener('click', () => {
+    newAthleteForm.reset();
+    document.getElementById('newAthleteStatus').textContent = '';
+    newAthleteForm.querySelector('button[type="submit"]').disabled = false;
+    newAthleteDialog.showModal();
+    newAthleteForm.elements.displayName.focus();
+  });
 }
 
 
@@ -969,7 +993,9 @@ function deskHtml() {
   return `<div class="coachConsole" id="deskMain">
     <div class="consoleRosterFind"><label for="athleteQuickFind">Athletes <span>${roster.length}</span></label>
       <input id="athleteQuickFind" type="search" autocomplete="off" placeholder="Find an athlete" value="${escapeHtml(rosterQuery)}" aria-controls="squadStrip">
+      ${athleteCreationAllowed ? '<button class="consoleAddAthlete" id="createAthlete" type="button">Add athlete</button>' : ''}
     </div>
+    ${onboardingNotice ? `<p class="consoleOnboardingNotice" role="status">${escapeHtml(onboardingNotice)}</p>` : ''}
     <nav class="consoleAthleteTabs" id="squadStrip" aria-label="Athletes"></nav>
     ${heroHtml()}
     ${renderDeliveryOverview(selectedRecord.deliveryOverview)}
@@ -1216,6 +1242,7 @@ document.getElementById('publishEditorial')?.addEventListener('click', async () 
 
 function bindDesk() {
   paintSquad();
+  bindCreateAthleteButton();
   document.getElementById('athleteQuickFind')?.addEventListener('input', (event) => {
     rosterQuery = event.target.value;
     paintSquad();
@@ -2101,6 +2128,55 @@ inviteForm.addEventListener('submit', async (event) => {
   } finally { button.disabled = false; }
 });
 
+newAthleteForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const status = document.getElementById('newAthleteStatus');
+  const button = newAthleteForm.querySelector('button[type="submit"]');
+  const fields = newAthleteForm.elements;
+  let authorAttempted = false;
+  try {
+    const payload = normalizeNewAthlete({
+      displayName: fields.displayName.value, firstName: fields.firstName.value,
+      email: fields.email.value, programName: fields.programName.value,
+      accountLabel: fields.accountLabel.value, targetEvent: fields.targetEvent.value,
+      goalLabel: fields.goalLabel.value
+    });
+    const existing = existingAthleteMatch(roster, payload);
+    if (existing) throw new Error('That athlete is already in the roster. Select their existing profile.');
+    button.disabled = true;
+    status.textContent = 'Creating the private record and checking coach access…';
+    authorAttempted = true;
+    const created = await createCoachAthlete(payload, roster);
+
+    let inviteProblem = null;
+    if (created.email) {
+      status.textContent = 'Athlete saved. Reserving access for the verified email…';
+      try {
+        const invite = await createAthleteInvite(created.id, created.email);
+        if (invite?.athlete_id !== created.id || invite?.email !== created.email) {
+          throw new Error('The access reservation did not match this athlete and email.');
+        }
+      } catch (error) { inviteProblem = error.message; }
+    }
+
+    const access = await getAccessContext();
+    roster = await loadCoachRoster(access.coachMemberships);
+    if (!roster.some(athlete => athlete.id === created.id)) {
+      throw new Error('The athlete was saved, but the updated coach roster is not yet visible. Reload before trying again.');
+    }
+    onboardingNotice = inviteProblem
+      ? `Private profile saved and verified. Access reservation needs attention: ${inviteProblem}. Open Invite athlete to retry.`
+      : `Private profile saved and verified.${created.email ? ' Sign-in access reserved; no email sent.' : ' No email linked yet.'} Author the training block and verify the athlete-facing Week before sharing it.`;
+    newAthleteDialog.close();
+    await selectAthlete(created.id);
+  } catch (error) {
+    status.textContent = authorAttempted
+      ? `${error.message} Check the roster before trying to create another profile.`
+      : error.message;
+    if (!authorAttempted) button.disabled = false;
+  }
+});
+
 sessionForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   const status = document.getElementById('sessionStatus');
@@ -2398,10 +2474,18 @@ async function boot() {
     const email = access.session.user.email || '';
     userEmail.textContent = email;
     document.getElementById('userInitials').textContent = (email[0] || 'B').toUpperCase();
-    if (!access.coachMemberships.length && access.athleteMemberships.length) { window.location.replace('/athlete/'); return; }
-    if (!access.coachMemberships.length) { pendingView(access.session.user.email || 'This account'); return; }
+    // The signed-in administrator check only controls visibility. The RPC
+    // authoring endpoint must enforce the same permission independently.
+    athleteCreationAllowed = await canAuthorCoachAthletes().catch(() => false);
+    if (!access.coachMemberships.length && !athleteCreationAllowed && access.athleteMemberships.length) {
+      window.location.replace('/athlete/'); return;
+    }
+    if (!access.coachMemberships.length && !athleteCreationAllowed) {
+      pendingView(access.session.user.email || 'This account'); return;
+    }
     rememberWorkspace('coach');
     roster = await loadCoachRoster(access.coachMemberships);
+    if (!roster.length && athleteCreationAllowed) { emptyCoachRosterView(); return; }
     const requested = new URLSearchParams(location.search).get('athlete');
     selectedId = roster.find((athlete) => athlete.slug === requested)?.id || roster[0]?.id;
     await selectAthlete(selectedId);

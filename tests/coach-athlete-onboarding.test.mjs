@@ -1,0 +1,73 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { athleteSlug, existingAthleteMatch, normalizeNewAthlete } from '../private/athlete-onboarding.mjs';
+
+const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+
+test('new athlete identity is normalized without modifying an existing athlete', () => {
+  const created = normalizeNewAthlete({
+    displayName: '  José   Runner  ', firstName: ' José ',
+    email: ' JOSERUNNER@example.com ', programName: 'Run Development',
+    accountLabel: 'Coached athlete', targetEvent: 'City Half'
+  });
+  assert.equal(athleteSlug('José Runner'), 'jose-runner');
+  assert.equal(created.displayName, 'José Runner');
+  assert.equal(created.firstName, 'José');
+  assert.equal(created.slug, 'jose-runner');
+  assert.equal(created.email, 'joserunner@example.com');
+  assert.equal(created.targetEvent, 'City Half');
+  assert.equal(created.goalLabel, null);
+});
+
+test('same first name is okay; exact full-name or slug collision is not', () => {
+  const roster = [
+    { slug: 'alex', display_name: 'Alex' },
+    { slug: 'alex-smith', display_name: 'Alex Smith' }
+  ];
+  const second = normalizeNewAthlete({ displayName: 'Alex Brown', firstName: 'Alex',
+    programName: 'Run Development', accountLabel: 'Coached athlete' });
+  assert.equal(existingAthleteMatch(roster, second), null);
+  assert.equal(existingAthleteMatch(roster, { ...second, slug: 'alex-smith' }), roster[1]);
+  assert.equal(existingAthleteMatch(roster, { ...second, displayName: ' ALEX SMITH ' }), roster[1]);
+});
+
+test('new athlete validation refuses incomplete identity and malformed optional email', () => {
+  const base = { displayName: 'Sam Rivera', firstName: 'Sam', programName: 'Run Development', accountLabel: 'Coached athlete' };
+  assert.throws(() => normalizeNewAthlete({ ...base, displayName: '??' }), /valid athlete record|full name/);
+  assert.throws(() => normalizeNewAthlete({ ...base, email: 'not-an-email' }), /verified email/);
+  assert.throws(() => normalizeNewAthlete({ ...base, programName: '' }), /program/);
+});
+
+test('coach console exposes the writer but keeps access and athlete publication separate', () => {
+  const html = read('coach/index.html');
+  const js = read('coach/coach.js');
+  const data = read('private/data.js');
+  assert.match(html, /id="newAthleteDialog"/);
+  for (const name of ['displayName', 'firstName', 'email', 'programName', 'accountLabel', 'targetEvent', 'goalLabel']) {
+    assert.match(html, new RegExp(`name="${name}"`));
+  }
+  assert.match(js, /athleteCreationAllowed \? '<button class="consoleAddAthlete"/);
+  assert.match(js, /await canAuthorCoachAthletes\(\)/);
+  assert.match(js, /await createCoachAthlete\(payload, roster\)/);
+  assert.match(js, /await createAthleteInvite\(created\.id, created\.email\)/);
+  assert.match(js, /await loadCoachRoster\(access\.coachMemberships\)/);
+  assert.match(js, /await selectAthlete\(created\.id\)/);
+  assert.match(js, /function emptyCoachRosterView\(\)/);
+  assert.match(js, /if \(!roster\.length && athleteCreationAllowed\)/);
+  assert.match(data, /supabase\.rpc\('author_athlete'/);
+  assert.match(data, /sourceReadbackVerified: true, invitationReserved: false/);
+  assert.doesNotMatch(data.slice(data.indexOf('export async function createCoachAthlete'), data.indexOf('export async function createAthleteInvite')),
+    /signUp|inviteUserByEmail|sendMagicLink|coaching-email-signin/);
+});
+
+test('protected writer atomically adds the logged-in administrator and refuses duplicates', () => {
+  const sql = read('supabase/migrations/20261109190000_restore_coach_athlete_authoring.sql');
+  assert.match(sql, /security definer set search_path = ''/i);
+  assert.match(sql, /acting_coach uuid := \(select auth\.uid\(\)\)/);
+  assert.match(sql, /not public\.is_active_coaching_administrator\(acting_coach\)/);
+  assert.match(sql, /where slug = normalized_slug[\s\S]*?= lower\(normalized_name\)/);
+  assert.match(sql, /insert into public\.athlete_memberships[\s\S]*?values \(created, acting_coach, 'coach', 'active'\)/);
+  assert.match(sql, /grant execute on function public\.author_athlete[\s\S]*?to authenticated/);
+  assert.doesNotMatch(sql, /grant execute[\s\S]*?to anon/);
+});
