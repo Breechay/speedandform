@@ -225,6 +225,7 @@ season_compatible_versions as (
   join public.planned_session_versions candidate
     on candidate.planned_session_id=plan.id
    and candidate.athlete_id=plan.athlete_id
+   and candidate.title is not distinct from plan.title
   where coalesce((
       select jsonb_agg(jsonb_build_object(
         'position',work.position,
