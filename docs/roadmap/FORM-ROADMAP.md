@@ -9,13 +9,15 @@
   replacement checks the actual signed-in protected administrator, refuses
   duplicate identities, and creates only a private athlete and coach
   membership. Optional verified email uses the existing access reservation,
-  with an independent receipt and visible partial-failure handling.
+  with an independent receipt and visible partial-failure handling. A separate
+  coach-scoped first-block writer generates dated weeks because the existing
+  future handoff does not support a first block beginning this week.
 - **Acceptance:** Client validation, duplicate/same-first-name tests,
   signed-in permission gate, source readback contract, and existing Console
   visual and Method checks. Tests are local and cannot establish a working
   production migration, mobile portrait, Week, Speed, Season, or invite delivery.
 - **Next:** Review and release backend before the UI in an approved batch.
-  Then create the athlete through the signed-in console and verify the roster,
+  Then create the athlete and first block through the signed-in console and verify the roster,
   portrait, current Week, dated group links, race entry, native feed, and actual
   invitation delivery through the existing onboarding gate. No athlete record,
   database migration, email, or production deployment has occurred in this

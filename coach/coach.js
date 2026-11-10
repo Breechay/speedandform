@@ -1,7 +1,7 @@
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorSession, canAuthorCoachAthletes, createCoachAthlete, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
-import { existingAthleteMatch, normalizeNewAthlete } from '/private/athlete-onboarding.mjs';
+import { activatePublishedGlutePriority, addPrivateNote, authorInitialTrainingBlock, authorSession, canAuthorCoachAthletes, createCoachAthlete, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
+import { existingAthleteMatch, newYorkWeekMonday, normalizeNewAthlete } from '/private/athlete-onboarding.mjs';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
 import { coachNoteReadingHtml } from '/private/coach-note-reading.mjs';
@@ -943,7 +943,12 @@ const fullDate = (iso) => {
 function blockPickerHtml() {
   const blocks = (selectedRecord.availableBlocks || [])
     .slice().sort((a, b) => String(a.starts_on).localeCompare(String(b.starts_on)));
-  if (!blocks.length) return '';
+  if (!blocks.length) return `<div class="consoleBlockPicker consoleBlockPicker--empty">
+    <span class="consoleBlockPicker__label">Programming block</span>
+    <span>No block yet</span>
+    <button id="newBlock" class="consoleBlockPicker__new" type="button">Start first block</button>
+    <span class="consoleBlockPicker__note">Create the dated weeks, then author their sessions before inviting the athlete into the app.</span>
+  </div>`;
   return `<div class="consoleBlockPicker">
     <label class="consoleBlockPicker__label" for="blockPicker">Programming block</label>
     <select id="blockPicker" class="consoleBlockPicker__select" aria-label="Choose a running block">
@@ -1638,6 +1643,7 @@ document.getElementById('sessionParts').addEventListener('input', markPartsState
 
 function openBlockDialog() {
   blockForm.reset();
+  const isFirstBlock = !(selectedRecord.availableBlocks || []).length;
   const active = (selectedRecord.availableBlocks || []).find(block => block.status === 'active');
   const scheduled = (selectedRecord.availableBlocks || []).find(block => block.status === 'scheduled');
   const status = document.getElementById('blockStatus');
@@ -1648,7 +1654,15 @@ function openBlockDialog() {
   const info = document.getElementById('blockExisting');
   info.textContent = active
     ? `Current: ${active.name}. It ends ${formatDate(active.ends_on)} and remains the athlete's plan until handoff.`
-    : 'This will be the athlete’s next dated training block.';
+    : isFirstBlock ? 'The first block can start this week. Its sessions must still be authored.'
+      : 'This will be the athlete’s next dated training block.';
+  document.getElementById('blockDialogHeading').textContent = isFirstBlock ? 'Start the first running block' : 'Schedule a running block';
+  document.getElementById('blockHandoffNote').textContent = isFirstBlock
+    ? 'This creates a private week-by-week calendar, not a published training plan. Author and check the workouts before athlete delivery.'
+    : 'A future block will not replace today’s plan. Author and publish the work in every week; the handoff is dated and automatic.';
+  if (isFirstBlock) {
+    blockForm.elements.startsOn.value = newYorkWeekMonday();
+  }
   if (active?.ends_on) {
     const day = new Date(active.ends_on + 'T12:00:00Z');
     day.setUTCDate(day.getUTCDate() + 1);
@@ -1668,7 +1682,7 @@ blockForm.addEventListener('submit', async (event) => {
   try {
     const startsOn = f.startsOn.value;
     const weekday = new Date(startsOn + 'T12:00:00Z').getUTCDay() || 7;
-    const result = await scheduleTrainingBlock({
+    const payload = {
       athleteId: selectedId,
       name: f.name.value.trim(),
       purpose: f.purpose.value,
@@ -1679,7 +1693,10 @@ blockForm.addEventListener('submit', async (event) => {
       racePlace: f.racePlace.value,
       goalStatement: f.goalStatement.value,
       weekStartsOn: weekday
-    });
+    };
+    const result = !(selectedRecord.availableBlocks || []).length
+      ? await authorInitialTrainingBlock(payload)
+      : await scheduleTrainingBlock(payload);
     blockDialog.close();
     await selectAthlete(selectedId, result.id);
   } catch (error) {

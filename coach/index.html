@@ -307,11 +307,11 @@
   <dialog class="dialog" id="blockDialog">
     <form class="dialog-inner" id="blockForm">
       <div class="dialog-head">
-        <div><p class="eyebrow">Programming</p><h2>Schedule a running block</h2></div>
+        <div><p class="eyebrow">Programming</p><h2 id="blockDialogHeading">Schedule a running block</h2></div>
         <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
       </div>
       <p class="field-hint" id="blockExisting"></p>
-      <p class="field-hint">A future block will not replace today's plan. Author and publish the work in every week; the handoff is dated and automatic.</p>
+      <p class="field-hint" id="blockHandoffNote">A future block will not replace today's plan. Author and publish the work in every week; the handoff is dated and automatic.</p>
       <label class="field-label lead">Block name
         <input class="field-input" name="name" required minlength="3" placeholder="Donna Marathon · Race Build">
       </label>

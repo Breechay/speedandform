@@ -698,6 +698,39 @@ export async function loadAthleteRecord(athleteId, { coach = false, blockId = nu
 
 // A future block is a published coach-authored container, not a replacement
 // for the currently active plan. Dated activation is handled by the database.
+export async function authorInitialTrainingBlock(payload) {
+  if (!payload?.athleteId || !payload?.name?.trim() || !payload?.startsOn ||
+      !Number.isInteger(payload?.totalWeeks) || payload.totalWeeks < 1 || payload.totalWeeks > 24) {
+    throw new Error('Choose the athlete, name, start date, and 1–24 weeks for their first block.');
+  }
+  const { data: blockId, error } = await supabase.rpc('author_initial_training_block', {
+    p_athlete_id: payload.athleteId,
+    p_name: payload.name.trim(),
+    p_purpose: payload.purpose,
+    p_total_weeks: payload.totalWeeks,
+    p_starts_on: payload.startsOn,
+    p_race_on: payload.raceOn || null,
+    p_race_name: payload.raceName?.trim() || null,
+    p_race_place: payload.racePlace?.trim() || null,
+    p_goal_statement: payload.goalStatement?.trim() || null,
+    p_week_starts_on: payload.weekStartsOn
+  });
+  if (error) throw error;
+  const [block, weeks] = await Promise.all([
+    supabase.from('training_blocks').select('id,athlete_id,status,name,starts_on,total_weeks')
+      .eq('id', blockId).eq('athlete_id', payload.athleteId).maybeSingle(),
+    supabase.from('training_weeks').select('id,week_number,starts_on')
+      .eq('block_id', blockId).eq('athlete_id', payload.athleteId).order('week_number')
+  ]);
+  if (block.error || weeks.error || !['active', 'scheduled'].includes(block.data?.status) ||
+      block.data?.starts_on !== payload.startsOn || weeks.data?.length !== payload.totalWeeks ||
+      weeks.data?.[0]?.week_number !== 1) {
+    throw new Error('The first block may be saved, but its dated weeks were not fully verified. Reload before trying again.');
+  }
+  return { id: blockId, block: block.data, weeks: weeks.data,
+    sourceReadbackVerified: true, athleteFeedVerified: false, nativeDeviceVerified: false };
+}
+
 export async function scheduleTrainingBlock(payload) {
   if (!payload?.athleteId || !payload?.name?.trim() || !payload?.startsOn ||
       !Number.isInteger(payload?.totalWeeks) || payload.totalWeeks < 1 || payload.totalWeeks > 24) {

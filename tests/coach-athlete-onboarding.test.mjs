@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { athleteSlug, existingAthleteMatch, normalizeNewAthlete } from '../private/athlete-onboarding.mjs';
+import { athleteSlug, existingAthleteMatch, newYorkWeekMonday, normalizeNewAthlete } from '../private/athlete-onboarding.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
@@ -39,6 +39,12 @@ test('new athlete validation refuses incomplete identity and malformed optional 
   assert.throws(() => normalizeNewAthlete({ ...base, programName: '' }), /program/);
 });
 
+test('first-week anchor respects New York, even after midnight UTC', () => {
+  assert.equal(newYorkWeekMonday(new Date('2026-11-09T22:00:00Z')), '2026-11-09');
+  assert.equal(newYorkWeekMonday(new Date('2026-11-10T02:00:00Z')), '2026-11-09');
+  assert.equal(newYorkWeekMonday(new Date('2026-11-08T20:00:00Z')), '2026-11-02');
+});
+
 test('coach console exposes the writer but keeps access and athlete publication separate', () => {
   const html = read('coach/index.html');
   const js = read('coach/coach.js');
@@ -55,7 +61,11 @@ test('coach console exposes the writer but keeps access and athlete publication 
   assert.match(js, /await selectAthlete\(created\.id\)/);
   assert.match(js, /function emptyCoachRosterView\(\)/);
   assert.match(js, /if \(!roster\.length && athleteCreationAllowed\)/);
+  assert.match(js, /Start first block/);
+  assert.match(js, /await authorInitialTrainingBlock\(payload\)/);
+  assert.match(js, /newYorkWeekMonday\(\)/);
   assert.match(data, /supabase\.rpc\('author_athlete'/);
+  assert.match(data, /supabase\.rpc\('author_initial_training_block'/);
   assert.match(data, /sourceReadbackVerified: true, invitationReserved: false/);
   assert.doesNotMatch(data.slice(data.indexOf('export async function createCoachAthlete'), data.indexOf('export async function createAthleteInvite')),
     /signUp|inviteUserByEmail|sendMagicLink|coaching-email-signin/);
@@ -69,5 +79,9 @@ test('protected writer atomically adds the logged-in administrator and refuses d
   assert.match(sql, /where slug = normalized_slug[\s\S]*?= lower\(normalized_name\)/);
   assert.match(sql, /insert into public\.athlete_memberships[\s\S]*?values \(created, acting_coach, 'coach', 'active'\)/);
   assert.match(sql, /grant execute on function public\.author_athlete[\s\S]*?to authenticated/);
-  assert.doesNotMatch(sql, /grant execute[\s\S]*?to anon/);
+  assert.doesNotMatch(sql, /grant execute[^;]*to anon/i);
+  assert.match(sql, /create or replace function public\.author_initial_training_block/);
+  assert.match(sql, /not public\.is_coach_member\(p_athlete_id\)/);
+  assert.match(sql, /if exists \(select 1 from public\.training_blocks where athlete_id = p_athlete_id\)/);
+  assert.match(sql, /'coach_authored'/);
 });
