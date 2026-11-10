@@ -1,0 +1,49 @@
+/* The private identity action belongs beside the roster search. It doesn't
+   turn athlete navigation tabs into editing controls. */
+.coach-page--programming .consoleRosterFind { flex-wrap: wrap; gap: 10px 16px; }
+.coach-page--programming .consoleRosterFind input { font-size: 15px; min-height: 42px; }
+.coach-page--programming .consoleAddAthlete {
+  min-height: 42px;
+  margin-left: auto;
+  padding: 9px 16px;
+  border: 1px solid var(--coach-accent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--coach-accent);
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.coach-page--programming .consoleAddAthlete:hover,
+.coach-page--programming .consoleAddAthlete:focus-visible {
+  background: var(--coach-accent-soft);
+}
+.coach-page--programming .consoleOnboardingNotice {
+  max-width: 720px;
+  margin: 9px 8px 16px;
+  padding: 12px 15px;
+  border-left: 3px solid var(--coach-accent);
+  border-radius: 3px;
+  background: var(--coach-accent-soft);
+  color: var(--coach-ink);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.coach-page--programming #newAthleteDialog { width: min(680px, calc(100% - 28px)); }
+.coach-page--programming #newAthleteDialog .dialog-inner { padding: 26px; }
+.coach-page--programming #newAthleteDialog .form-grid { gap: 14px; }
+.coach-page--programming #newAthleteDialog .form-grid.two { margin-top: 0; }
+.coach-page--programming #newAthleteDialog .dialog-head + .dialog-note { margin-top: 14px; }
+.coach-page--programming #newAthleteDialog .newAthletePrivacyNote {
+  margin-top: 18px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.coach-page--programming #newAthleteDialog .field-label { font-size: 14px; }
+@media (max-width: 620px) {
+  .coach-page--programming .consoleRosterFind label { width: 100%; }
+  .coach-page--programming .consoleRosterFind input { flex: 1 1 170px; width: auto; }
+  .coach-page--programming #newAthleteDialog .form-grid.two { grid-template-columns: 1fr; }
+  .coach-page--programming #newAthleteDialog .dialog-inner { padding: 20px 16px; }
+}

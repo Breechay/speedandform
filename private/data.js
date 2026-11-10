@@ -1,6 +1,7 @@
 import { supabase } from './supabase-client.js';
 import { deliveryOverviewFor } from './delivery-status.js';
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from './session-editorial-standard.mjs';
+import { normalizeNewAthlete, existingAthleteMatch } from './athlete-onboarding.mjs';
 
 // Shared publication boundary: both the Console editor and Labs call these
 // functions. A second writing surface must not bypass the editorial gate.
@@ -697,6 +698,39 @@ export async function loadAthleteRecord(athleteId, { coach = false, blockId = nu
 
 // A future block is a published coach-authored container, not a replacement
 // for the currently active plan. Dated activation is handled by the database.
+export async function authorInitialTrainingBlock(payload) {
+  if (!payload?.athleteId || !payload?.name?.trim() || !payload?.startsOn ||
+      !Number.isInteger(payload?.totalWeeks) || payload.totalWeeks < 1 || payload.totalWeeks > 24) {
+    throw new Error('Choose the athlete, name, start date, and 1–24 weeks for their first block.');
+  }
+  const { data: blockId, error } = await supabase.rpc('author_initial_training_block', {
+    p_athlete_id: payload.athleteId,
+    p_name: payload.name.trim(),
+    p_purpose: payload.purpose,
+    p_total_weeks: payload.totalWeeks,
+    p_starts_on: payload.startsOn,
+    p_race_on: payload.raceOn || null,
+    p_race_name: payload.raceName?.trim() || null,
+    p_race_place: payload.racePlace?.trim() || null,
+    p_goal_statement: payload.goalStatement?.trim() || null,
+    p_week_starts_on: payload.weekStartsOn
+  });
+  if (error) throw error;
+  const [block, weeks] = await Promise.all([
+    supabase.from('training_blocks').select('id,athlete_id,status,name,starts_on,total_weeks')
+      .eq('id', blockId).eq('athlete_id', payload.athleteId).maybeSingle(),
+    supabase.from('training_weeks').select('id,week_number,starts_on')
+      .eq('block_id', blockId).eq('athlete_id', payload.athleteId).order('week_number')
+  ]);
+  if (block.error || weeks.error || !['active', 'scheduled'].includes(block.data?.status) ||
+      block.data?.starts_on !== payload.startsOn || weeks.data?.length !== payload.totalWeeks ||
+      weeks.data?.[0]?.week_number !== 1) {
+    throw new Error('The first block may be saved, but its dated weeks were not fully verified. Reload before trying again.');
+  }
+  return { id: blockId, block: block.data, weeks: weeks.data,
+    sourceReadbackVerified: true, athleteFeedVerified: false, nativeDeviceVerified: false };
+}
+
 export async function scheduleTrainingBlock(payload) {
   if (!payload?.athleteId || !payload?.name?.trim() || !payload?.startsOn ||
       !Number.isInteger(payload?.totalWeeks) || payload.totalWeeks < 1 || payload.totalWeeks > 24) {
@@ -1119,6 +1153,53 @@ export async function changeEmail(nextEmail, returnTo = '/athlete/') {
 // typed structure. Those are different statements and the RPC keeps them apart.
 // Create or reuse an access reservation through the authenticated, coach-scoped RPC.
 // This is not an Auth user, a claimed membership, or an email delivery receipt.
+export async function canAuthorCoachAthletes() {
+  // Omit p_user_id: the server checks the signed-in identity, never an ID
+  // supplied by this page. The writer independently repeats the same guard.
+  const { data, error } = await supabase.rpc('is_active_coaching_administrator');
+  if (error) throw error;
+  return data === true;
+}
+
+export async function createCoachAthlete(payload, currentRoster = []) {
+  const athlete = normalizeNewAthlete(payload);
+  const duplicate = existingAthleteMatch(currentRoster, athlete);
+  if (duplicate) {
+    throw new Error(`An athlete named ${duplicate.display_name || duplicate.slug} is already in your roster. Open their record instead.`);
+  }
+  const { data: { user }, error: userError } = await supabase.auth.getUser();
+  if (userError) throw userError;
+  if (!user) throw new Error('Sign in with your coach account before adding an athlete.');
+
+  const { data: id, error } = await supabase.rpc('author_athlete', {
+    p_slug: athlete.slug,
+    p_display_name: athlete.displayName,
+    p_first_name: athlete.firstName,
+    p_program_name: athlete.programName,
+    p_account_label: athlete.accountLabel,
+    p_target_event: athlete.targetEvent,
+    p_goal_label: athlete.goalLabel,
+    p_delivery: 'app'
+  });
+  if (error) throw error;
+  // The author RPC creates a coach membership in the same transaction.
+  // Confirm both records under this actual session before claiming success.
+  const [profile, membership] = await Promise.all([
+    supabase.from('athletes').select('id,slug,display_name,first_name')
+      .eq('id', id).maybeSingle(),
+    supabase.from('athlete_memberships').select('athlete_id,user_id,role,status')
+      .eq('athlete_id', id).eq('user_id', user.id).eq('role', 'coach').maybeSingle()
+  ]);
+  if (profile.error || membership.error || profile.data?.slug !== athlete.slug ||
+      profile.data?.display_name !== athlete.displayName ||
+      membership.data?.status !== 'active') {
+    throw new Error('The athlete may have been created, but the coach record could not be verified. Reload the roster before trying again.');
+  }
+  return { id, slug: athlete.slug, email: athlete.email,
+    sourceReadbackVerified: true, invitationReserved: false,
+    planPublished: false, nativeDeviceVerified: false };
+}
+
 export async function createAthleteInvite(athleteId, email) {
   const normalized = String(email || '').trim().toLowerCase();
   if (!athleteId || !/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(normalized)) {
