@@ -73,7 +73,12 @@ test('coach console exposes the writer but keeps access and athlete publication 
 
 test('protected writer atomically adds the logged-in administrator and refuses duplicates', () => {
   const sql = read('supabase/migrations/20261109190000_restore_coach_athlete_authoring.sql');
-  assert.match(sql, /security definer set search_path = ''/i);
+  assert.match(sql, /create policy athletes_insert_protected_admin[\s\S]*?to authenticated/);
+  assert.match(sql, /create policy memberships_insert_protected_admin[\s\S]*?user_id = auth\.uid\(\) and role = 'coach'/);
+  assert.match(sql, /security invoker set search_path = ''/i);
+  assert.doesNotMatch(sql, /security definer/i);
+  assert.match(sql, /created uuid := pg_catalog\.gen_random_uuid\(\)/);
+  assert.doesNotMatch(sql, /returning id into created/i);
   assert.match(sql, /acting_coach uuid := \(select auth\.uid\(\)\)/);
   assert.match(sql, /not public\.is_active_coaching_administrator\(acting_coach\)/);
   assert.match(sql, /where slug = normalized_slug[\s\S]*?= lower\(normalized_name\)/);

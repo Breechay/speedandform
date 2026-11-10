@@ -5,9 +5,9 @@
   neither `athletes` nor `athlete_memberships` allows ordinary authenticated
   inserts, so merely restoring a button would still fail.
 - **Prepared fix:** A coach-side Add athlete dialog calls the original
-  `author_athlete` identity owner. A narrowly guarded `SECURITY DEFINER`
-  replacement checks the actual signed-in protected administrator, refuses
-  duplicate identities, and creates only a private athlete and coach
+  `author_athlete` identity owner. Narrow new INSERT policies and a
+  `SECURITY INVOKER` writer check the actual signed-in protected administrator,
+  refuse duplicate identities, and create only a private athlete and coach
   membership. Optional verified email uses the existing access reservation,
   with an independent receipt and visible partial-failure handling. A separate
   coach-scoped first-block writer generates dated weeks because the existing

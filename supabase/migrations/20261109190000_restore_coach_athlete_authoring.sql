@@ -1,8 +1,17 @@
 -- Restore the private new-athlete writer used by the Programming console.
--- The original function was SECURITY INVOKER, while athletes and memberships
--- deliberately have no authenticated INSERT policies. As a result, the old
--- function could not create its very first membership. Keep both writes in
--- one transaction behind the existing protected-administrator guard.
+-- The original function was SECURITY INVOKER, but athletes and memberships
+-- lacked INSERT policies. Keep Row Level Security as the writer's boundary.
+
+create policy athletes_insert_protected_admin on public.athletes
+  for insert to authenticated
+  with check (auth.uid() is not null and public.is_active_coaching_administrator(auth.uid()));
+
+create policy memberships_insert_protected_admin on public.athlete_memberships
+  for insert to authenticated
+  with check (
+    user_id = auth.uid() and role = 'coach' and status = 'active'
+    and public.is_active_coaching_administrator(auth.uid())
+  );
 
 create or replace function public.author_athlete(
   p_slug text, p_display_name text, p_first_name text,
@@ -11,9 +20,9 @@ create or replace function public.author_athlete(
   p_delivery text default 'app',
   p_goal_seconds integer default null, p_target_pace_seconds integer default null
 ) returns uuid
-language plpgsql security definer set search_path = '' as $function$
+language plpgsql security invoker set search_path = '' as $function$
 declare
-  created uuid;
+  created uuid := pg_catalog.gen_random_uuid();
   acting_coach uuid := (select auth.uid());
   normalized_slug text := lower(btrim(p_slug));
   normalized_name text := regexp_replace(btrim(coalesce(p_display_name, '')), '[[:space:]]+', ' ', 'g');
@@ -40,14 +49,14 @@ begin
   end if;
 
   insert into public.athletes (
-    slug, display_name, first_name, home_surface, target_event, goal_label,
+    id, slug, display_name, first_name, home_surface, target_event, goal_label,
     program_name, account_label, delivery, goal_seconds, target_pace_seconds
   ) values (
-    normalized_slug, normalized_name, btrim(p_first_name), 'form',
+    created, normalized_slug, normalized_name, btrim(p_first_name), 'form',
     nullif(btrim(p_target_event), ''), nullif(btrim(p_goal_label), ''),
     btrim(p_program_name), btrim(p_account_label), p_delivery,
     p_goal_seconds, p_target_pace_seconds
-  ) returning id into created;
+  );
 
   insert into public.athlete_memberships (athlete_id, user_id, role, status)
   values (created, acting_coach, 'coach', 'active');
@@ -73,7 +82,7 @@ create or replace function public.author_initial_training_block(
   p_race_place text default null, p_goal_statement text default null,
   p_week_starts_on smallint default 1
 ) returns uuid
-language plpgsql security definer set search_path = '' as $function$
+language plpgsql security invoker set search_path = '' as $function$
 declare
   acting_coach uuid := (select auth.uid());
   new_block uuid;
