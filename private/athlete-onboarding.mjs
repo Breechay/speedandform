@@ -2,6 +2,14 @@
 // and athlete-facing release are separate operations with separate receipts.
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export function normalizeInviteEmail(email) {
+  const normalized = String(email || '').trim().toLowerCase();
+  if (!normalized || normalized.length > 254 || !EMAIL.test(normalized)) {
+    throw new Error('Enter the athlete’s verified email address.');
+  }
+  return normalized;
+}
+
 export function athleteSlug(displayName) {
   return String(displayName || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
     .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
