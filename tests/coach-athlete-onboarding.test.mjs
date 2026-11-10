@@ -5,6 +5,14 @@ import { athleteSlug, existingAthleteMatch, newYorkWeekMonday, normalizeNewAthle
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 
+test('portrait editor is available on a selected coach dossier and opens for that athlete', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  assert.match(labs, /plToggle'\)\.hidden = !asCoach\(\) \|\| view !== 'athlete'/);
+  assert.match(labs, /PL\.who\.value = record\.athlete\.slug/);
+  assert.match(css, /body:has\(\.ccApp\)>\.plToggle:not\(\[hidden\]\)\{display:block!important/);
+});
+
 test('invite email accepts a valid address and rejects malformed or oversized addresses', () => {
   assert.equal(normalizeInviteEmail('  AnthonyKugaCheer@gmail.com  '), 'anthonykugacheer@gmail.com');
   assert.throws(() => normalizeInviteEmail('anthony@localhost'), /verified email/);

@@ -932,6 +932,10 @@ body:has(.loading)>.mark,body:has(.loading)>.stamp,body:has(.loading)>.viewAs,
 body:has(.loading)>.navSet,body:has(.loading)>.plToggle,body:has(.loading)>.grain{display:none!important}
 body:has(.ccApp)>.mark,body:has(.ccApp)>.stamp,body:has(.ccApp)>.viewAs,
 body:has(.ccApp)>.navSet,body:has(.ccApp)>.plToggle,body:has(.ccApp)>.grain{display:none!important}
+/* The portrait editor is available only on the selected coach athlete dossier.
+   Keep its launcher visible in the new light console while [hidden] wins elsewhere. */
+body:has(.ccApp)>.plToggle:not([hidden]){display:block!important;background:#f6f5f1;color:#1c2926;border-color:#b9c7c2}
+body:has(.ccApp)>.plToggle[hidden]{display:none!important}
 .srOnly{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
   clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .ccApp{min-height:100vh;height:auto!important;display:grid!important;grid-template-columns:218px minmax(0,1fr);

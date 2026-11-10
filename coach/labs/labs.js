@@ -2195,6 +2195,11 @@ function bindPhotoLab() {
     if (on) {
       PL.who.innerHTML = bench.slice().sort(benchOrder)
         .map((entry) => `<option value="${escapeHtml(entry.slug)}">${escapeHtml(coachRosterLabel(entry, bench))}</option>`).join('');
+      // The new Athletes console opens the portrait editor for the athlete in
+      // view, never the first person alphabetically.
+      if (record?.athlete?.slug && bench.some((entry) => entry.slug === record.athlete.slug)) {
+        PL.who.value = record.athlete.slug;
+      }
       plFile = null; plCrop = null; plSync();
     }
   };
@@ -2740,11 +2745,9 @@ function markNav(view, slug) {
   nav.querySelectorAll('button').forEach((button) => {
     button.hidden = !asCoach() && button.dataset.nav !== 'plan';
   });
-  // Photo Lab crops a portrait against the real bench column — that is what the
-  // panel says and what the six stored values are for. It was appearing on every
-  // coach surface, so the Plan carried a control that belongs to a different
-  // screen. It lives on the bench.
-  document.getElementById('plToggle').hidden = true;
+  // Portrait editing belongs to the coach's selected athlete dossier. Keep it
+  // out of brief, plan, and athlete-facing surfaces.
+  document.getElementById('plToggle').hidden = !asCoach() || view !== 'athlete';
   nav.querySelectorAll('button').forEach((button) => button.classList.remove('on'));
   const which = view === 'brief' ? 'brief'
     : (view === 'plan' || view === 'week') ? 'plan' : null;
