@@ -1,9 +1,28 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { athleteSlug, existingAthleteMatch, newYorkWeekMonday, normalizeNewAthlete } from '../private/athlete-onboarding.mjs';
+import { athleteSlug, existingAthleteMatch, newYorkWeekMonday, normalizeNewAthlete, normalizeInviteEmail } from '../private/athlete-onboarding.mjs';
 
 const read = path => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
+
+test('portrait editor is available on a selected coach dossier and opens for that athlete', () => {
+  const labs = read('coach/labs/labs.js');
+  const css = read('coach/labs/labs.css');
+  assert.match(labs, /plToggle'\)\.hidden = !asCoach\(\) \|\| view !== 'athlete'/);
+  assert.match(labs, /PL\.who\.value = record\.athlete\.slug/);
+  assert.match(css, /body:has\(\.ccApp\)>\.plToggle:not\(\[hidden\]\)\{display:block!important/);
+});
+
+test('invite email accepts a valid address and rejects malformed or oversized addresses', () => {
+  assert.equal(normalizeInviteEmail('  AnthonyKugaCheer@gmail.com  '), 'anthonykugacheer@gmail.com');
+  assert.throws(() => normalizeInviteEmail('anthony@localhost'), /verified email/);
+  assert.throws(() => normalizeInviteEmail('anthony@ example.com'), /verified email/);
+  assert.throws(() => normalizeInviteEmail('a'.repeat(255) + '@example.com'), /verified email/);
+  const data = read('private/data.js');
+  const invite = data.split('export async function createAthleteInvite')[1].split('export async function')[0];
+  assert.match(invite, /normalizeInviteEmail\(email\)/);
+  assert.doesNotMatch(invite, /\\\\s/);
+});
 
 test('new athlete identity is normalized without modifying an existing athlete', () => {
   const created = normalizeNewAthlete({

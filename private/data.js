@@ -1,7 +1,7 @@
 import { supabase } from './supabase-client.js';
 import { deliveryOverviewFor } from './delivery-status.js';
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from './session-editorial-standard.mjs';
-import { normalizeNewAthlete, existingAthleteMatch } from './athlete-onboarding.mjs';
+import { normalizeNewAthlete, existingAthleteMatch, normalizeInviteEmail } from './athlete-onboarding.mjs';
 
 // Shared publication boundary: both the Console editor and Labs call these
 // functions. A second writing surface must not bypass the editorial gate.
@@ -1201,10 +1201,10 @@ export async function createCoachAthlete(payload, currentRoster = []) {
 }
 
 export async function createAthleteInvite(athleteId, email) {
-  const normalized = String(email || '').trim().toLowerCase();
-  if (!athleteId || !/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(normalized)) {
+  if (!athleteId) {
     throw new Error('Enter the athlete’s verified email address.');
   }
+  const normalized = normalizeInviteEmail(email);
   const { data, error } = await supabase.rpc('coach_invite_create', {
     p_athlete_id: athleteId,
     p_email: normalized
