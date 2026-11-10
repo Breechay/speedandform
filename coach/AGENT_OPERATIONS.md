@@ -1,6 +1,9 @@
 # FORM Coach Console · authorized agent operations
 
 Read `coach/agent-map.json` for routes, owners and the short operational schema.
+Read [`FORM_AGENT_CONNECTION.md`](FORM_AGENT_CONNECTION.md) for Brice's rapid
+coach-data execution rule and the one-athlete cross-surface reconciliation
+(Dossier stories, Halo drafts/sent messages, Speed, Forge, FORM evaluation).
 Read the public [Method Bible](../method-bible/method.md) when discussing FORM
 training theory. Then read the existing coaching and publication standards in
 `AGENTS.md`, `docs/operations/CONSOLE-CONTRACT.md`,
@@ -202,6 +205,17 @@ A safe agent mutation path should support preview, explicit owner approval,
 idempotent commit and readback, with audit history and role-scoped access.
 
 This file is a documented contract, not a claim those integrations are live.
+
+**November 10 connector development:** `supabase/functions/form-coach-agent/`
+stages a coach-OAuth MCP read/preview/commit path and private receipts. It is
+**not live merely because the code exists**. When installed and tested, an
+authorized agent may do Brice's requested backend writes without navigating
+the Console, but it must read back the canonical version *and* reconcile
+the Dossier Week story, focus revision, existing Halo weekly message, notes,
+Speed, Forge and FORM evaluation progress. Never leave a stale weekly Halo
+focus after changing training. Do not create duplicate focus messages or
+silently rewrite history if an athlete already opened a note. Match the coach's
+speed of execution while reporting the actual athlete-app visibility state.
 
 ## Rule maintenance
 

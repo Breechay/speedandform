@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f4f2ec">
+  <title>Connect a coach tool · FORM</title>
+  <link rel="stylesheet" href="/coach/oauth/consent/style.css">
+</head>
+<body>
+  <main class="shell" id="main">
+    <a class="brand" href="/coach/">FORM <span>Coach access</span></a>
+    <section class="panel">
+      <h1>Connect a coaching tool.</h1>
+      <p id="status" role="status">Checking your FORM account and this request.</p>
+      <div id="signIn" hidden>
+        <form id="signInForm">
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password"></label>
+          <button type="submit">Sign in</button>
+        </form>
+        <button class="secondary" id="emailLink" type="button">Send a sign-in link instead</button>
+      </div>
+      <div id="consent" hidden>
+        <p class="application" id="applicationName"></p>
+        <p>This tool is requesting access to your FORM coaching records. It can read athlete training and, when you explicitly authorize a change, revise the existing versioned prescription. It cannot turn a database change into proof that an iPhone has displayed it.</p>
+        <p class="permissions">Requested access: <span id="scopes"></span></p>
+        <div class="actions">
+          <button class="secondary" id="deny" type="button">Don't connect</button>
+          <button id="approve" type="button">Connect this tool</button>
+        </div>
+      </div>
+    </section>
+    <footer>Only an authorized FORM coach can approve access. You can revoke the connection in FORM's authentication settings.</footer>
+  </main>
+  <script type="module" src="/coach/oauth/consent/consent.js"></script>
+</body>
+</html>

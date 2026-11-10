@@ -1,5 +1,16 @@
 # Start here: Speed & Form
 
+> **FORM coach agent integration · November 10, 2026:** Read
+> [FORM Agent Connection](coach/FORM_AGENT_CONNECTION.md) before implementing
+> or using an assistant-backed athlete edit. Brice expects authorized backend
+> changes to be executed promptly and checked on the athlete's app, with one
+> canonical identity connecting Week prescriptions, Dossier stories, Halo
+> draft/sent weekly focus, coach notes, Speed results, Forge and Brice's FORM
+> evaluation/filing-earned point system. A workout change requires reconciling
+> those linked records; never leave the Halo focus stale or create duplicate
+> focus messages. Keep source save and native release evidence separate. The
+> staged MCP tool is not live until Auth, migration and device QA are complete.
+
 > **FORM intelligence system · November 4, 2026:** Read
 > [the current architecture](docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md),
 > [coach agent contract](coach/AGENT_OPERATIONS.md) and
