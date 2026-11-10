@@ -407,6 +407,29 @@
     </form>
   </dialog>
 
+  <dialog class="dialog" id="rescheduleDialog">
+    <form class="dialog-inner" id="rescheduleForm">
+      <div class="dialog-head">
+        <h2 id="rescheduleContext">Move session</h2>
+        <button class="dialog-close" type="button" data-close-dialog aria-label="Close">&times;</button>
+      </div>
+      <p id="rescheduleCurrent" class="field-hint"></p>
+      <label class="field-label lead">New date
+        <input class="field-input" name="targetDate" type="date" required>
+      </label>
+      <label class="field-label">If a run on that date is replaced
+        <select class="field-select" name="withdrawSessionId"><option value="">Keep other sessions</option></select>
+        <span class="field-hint">The replaced, unfiled run is withdrawn with an audit reason, not deleted.</span>
+      </label>
+      <label class="field-label">Why move it?
+        <textarea class="field-textarea" name="reason" required minlength="12" placeholder="Move the long run to Saturday, rest Sunday."></textarea>
+      </label>
+      <p class="field-hint">After the move, review this week's athlete-facing story. The schedule change makes the old story due for reconfirmation.</p>
+      <p class="status-message" id="rescheduleStatus" role="status"></p>
+      <div class="dialog-actions"><button class="button" type="button" data-close-dialog>Cancel</button><button class="button primary" type="submit">Move session</button></div>
+    </form>
+  </dialog>
+
   <dialog class="dialog" id="fileDialog">
     <form class="dialog-inner" id="fileForm">
       <div class="dialog-head">

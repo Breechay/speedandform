@@ -1325,6 +1325,26 @@ export async function reviseSession(plannedSessionId, payload) {
   return { id: data, publication: await readbackSessionPublication(plannedSessionId, payload, data) };
 }
 
+// A date move keeps the authored session/version and creates a separate audit
+// entry. The optional redundant run is withdrawn transactionally, never deleted.
+export async function rescheduleSession(sessionId, expectedDate, targetDate, reason, withdrawSessionId = null) {
+  const { data, error } = await supabase.rpc('coach_reschedule_planned_session', {
+    p_session_id: sessionId,
+    p_expected_date: expectedDate,
+    p_target_date: targetDate,
+    p_reason: reason,
+    p_withdraw_session_id: withdrawSessionId
+  });
+  if (error) throw error;
+  const { data: rows, error: readError } = await supabase.from('planned_sessions')
+    .select('id,scheduled_on,day_label,state').in('id', [sessionId, withdrawSessionId].filter(Boolean));
+  if (readError || !rows?.some(row => row.id === sessionId && row.scheduled_on === targetDate && row.state === 'published') ||
+      (withdrawSessionId && !rows.some(row => row.id === withdrawSessionId && row.state === 'cancelled'))) {
+    throw new Error('Rescheduling may have saved, but source readback failed. Refresh before retrying.');
+  }
+  return { ...data, sourceReadbackVerified: true, athleteFeedVerified: false, nativeDeviceVerified: false };
+}
+
 // The editorial queue is intentionally an authenticated coach-scoped RPC.
 // Never directly select internal draft tables from the athlete browser token.
 export async function loadCoachCopyReview() {
