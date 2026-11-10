@@ -1,6 +1,6 @@
 import { selfAuditSessionCopy, prescriptionPresentationIssues } from '/private/session-editorial-standard.mjs';
 import { bindAccountSecurity, authErrorMessage, getAccessContext, rememberWorkspace, renderDoorway, signOut } from '/private/auth.js';
-import { activatePublishedGlutePriority, addPrivateNote, authorInitialTrainingBlock, authorSession, canAuthorCoachAthletes, createCoachAthlete, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
+import { activatePublishedGlutePriority, addPrivateNote, authorInitialTrainingBlock, authorSession, canAuthorCoachAthletes, createCoachAthlete, createAthleteInvite, decideConfidence, proofCoverage, setConfidence, setEstablishedProofState, createDirection, createRead, editFiledSession, fileForAthlete, fileCoachStrengthDuration, loadCoachStrengthDays, judgeClaim, moveCheckpoint, loadAthleteRecord, loadAttentionFor, loadCoachRoster, loadCoachCopyReview, publishCoachEditorialCopy, publishRecordExcerpt, publishReviewAndDirection, rescheduleSession, resolveCoachTask, reviseSession, scheduleTrainingBlock } from '/private/data.js';
 import { existingAthleteMatch, newYorkWeekMonday, normalizeNewAthlete } from '/private/athlete-onboarding.mjs';
 import { buildEditorialProposal, STRENGTH_EMPHASIS, suggestRunIntent, validateAthleteCopy } from '/private/editorial-copy.js';
 import { directionWords, escapeHtml, formatDate } from '/private/record.js';
@@ -53,6 +53,9 @@ const blockDialog = document.getElementById('blockDialog');
 const blockForm = document.getElementById('blockForm');
 const sessionDialog = document.getElementById('sessionDialog');
 const sessionForm = document.getElementById('sessionForm');
+const rescheduleDialog = document.getElementById('rescheduleDialog');
+const rescheduleForm = document.getElementById('rescheduleForm');
+let reschedulingSessionId = null;
 const fileDialog = document.getElementById('fileDialog');
 const fileForm = document.getElementById('fileForm');
 const strengthFileDialog = document.getElementById('strengthFileDialog');
@@ -662,6 +665,7 @@ function sessionInspectorHtml(session) {
       version.change_reason ? ` \u00b7 ${escapeHtml(version.change_reason)}` : ''}</p>` : ''}
     <div class="ins-actions">
       <button type="button" data-revise="${escapeHtml(session.id)}">MODIFY SESSION</button>
+      <button type="button" data-reschedule="${escapeHtml(session.id)}">MOVE DAY</button>
       <button type="button" data-file="${escapeHtml(session.id)}">FILE RESULT</button>
       <button type="button" data-write="direction" data-subject="${escapeHtml(session.id)}">ADD INSTRUCTIONS</button>
     </div>
@@ -1322,6 +1326,8 @@ function bindDesk() {
   // Revise and file from the session itself, so the coach never re-finds it.
   app.querySelectorAll('[data-revise]').forEach((button) =>
     button.addEventListener('click', () => openSession(button.dataset.revise)));
+  app.querySelectorAll('[data-reschedule]').forEach((button) =>
+    button.addEventListener('click', () => openReschedule(button.dataset.reschedule)));
   app.querySelectorAll('[data-file]').forEach((button) =>
     button.addEventListener('click', () => openFile(button.dataset.file)));
   app.querySelectorAll('[data-correct]').forEach((button) =>
@@ -1764,6 +1770,64 @@ function openSession(plannedSessionId = null) {
   document.getElementById('sessionStatus').textContent = '';
   sessionDialog.showModal();
 }
+
+function openReschedule(sessionId) {
+  const session = selectedRecord.sessions.find(item => item.id === sessionId);
+  const week = selectedRecord.weeks.find(item => item.id === session?.week_id);
+  if (!session || !week || (selectedRecord.completions || []).some(item => item.planned_session_id === sessionId)) return;
+  reschedulingSessionId = sessionId;
+  rescheduleForm.reset();
+  document.getElementById('rescheduleContext').textContent = `Move ${session.currentVersion?.title || 'session'}`;
+  document.getElementById('rescheduleCurrent').textContent = `Currently ${formatDate(session.scheduled_on)}. Keep this session and its workout history.`;
+  const date = rescheduleForm.elements.targetDate;
+  date.value = session.scheduled_on;
+  date.min = week.starts_on;
+  date.max = week.ends_on;
+  document.getElementById('rescheduleStatus').textContent = '';
+  updateRescheduleReplacements();
+  rescheduleDialog.showModal();
+}
+
+function updateRescheduleReplacements() {
+  const source = selectedRecord.sessions.find(item => item.id === reschedulingSessionId);
+  const targetDate = rescheduleForm.elements.targetDate.value;
+  const candidates = (selectedRecord.sessions || []).filter(item =>
+    item.id !== source?.id && item.athlete_id === source?.athlete_id
+    && item.week_id === source?.week_id && item.scheduled_on === targetDate
+    && item.state === 'published' && !item.withdrawn_at
+    && !(selectedRecord.completions || []).some(done => done.planned_session_id === item.id));
+  rescheduleForm.elements.withdrawSessionId.innerHTML = '<option value="">Keep other sessions</option>' +
+    candidates.map(item => `<option value="${escapeHtml(item.id)}">Withdraw ${escapeHtml(item.currentVersion?.title || 'run')} (${escapeHtml(item.currentVersion?.prescribed_distance || '?')} ${escapeHtml(item.currentVersion?.distance_unit || 'mi')})</option>`).join('');
+}
+
+rescheduleForm.elements.targetDate.addEventListener('change', updateRescheduleReplacements);
+rescheduleForm.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  const source = selectedRecord.sessions.find(item => item.id === reschedulingSessionId);
+  const target = rescheduleForm.elements.targetDate.value;
+  const reason = rescheduleForm.elements.reason.value.trim();
+  const replacement = rescheduleForm.elements.withdrawSessionId.value || null;
+  const status = document.getElementById('rescheduleStatus');
+  const button = rescheduleForm.querySelector('[type="submit"]');
+  if (!source || !target || target === source.scheduled_on || reason.length < 12) {
+    status.textContent = 'Choose a different date and explain the move.';
+    status.className = 'status-message error';
+    return;
+  }
+  button.disabled = true;
+  status.textContent = 'Saving the move and its history.';
+  status.className = 'status-message';
+  try {
+    await rescheduleSession(source.id, source.scheduled_on, target, reason, replacement);
+    rescheduleDialog.close();
+    await refreshSelected(true);
+  } catch (error) {
+    status.textContent = error.message;
+    status.className = 'status-message error';
+  } finally {
+    button.disabled = false;
+  }
+});
 
 function secondsToClock(seconds) {
   const value = Math.round(seconds);
