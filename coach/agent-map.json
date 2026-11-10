@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-04",
+  "updated_on": "2026-11-10",
   "name": "FORM Coach Console · Agent Map",
   "purpose": "Machine-readable orientation for authorized assistants. This file contains no private athlete or owner data and grants no access.",
-  "repository_instruction_paths": ["AGENTS.md", "docs/AGENT_ORIENTATION.md", "coach/AGENT_OPERATIONS.md", "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md"],
+  "repository_instruction_paths": ["AGENTS.md", "docs/AGENT_ORIENTATION.md", "coach/AGENT_OPERATIONS.md", "coach/FORM_AGENT_CONNECTION.md", "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md"],
   "public_method": {
     "human": "/method-bible/",
     "text": "/method-bible/method.md",
@@ -17,6 +17,14 @@
       "bypass Row Level Security or an approval step",
       "assume an unavailable source means zero records"
     ]
+  },
+  "agent_connector": {
+    "status": "staged_not_deployed",
+    "url_path": "/functions/v1/form-coach-agent",
+    "consent_path": "/coach/oauth/consent/",
+    "auth": "Supabase OAuth 2.1 signed-in active FORM coach identity, RLS and RPC membership guards",
+    "tools": ["get_athlete_training_window", "get_athlete_coaching_context", "get_coach_roster_story_audit", "preview_session_revision", "commit_session_revision", "get_session_revision_receipt", "preview_week_story_revision", "commit_week_story_revision", "preview_athlete_focus_revision", "commit_athlete_focus_revision", "preview_halo_focus_revision", "commit_halo_focus_revision"],
+    "activation_required": "migration, OAuth settings, consent deployment, Edge Function deployment, signed-in role isolation, native consumer QA and ChatGPT installation"
   },
   "navigation": [
     {
@@ -69,6 +77,8 @@
     "Show a specific proposed action and its owning system. Coach authorizes meaningful athlete programming decisions.",
     "Write only through existing authorized owner functions with their version/revision constraints.",
     "Read back the exact version and athlete-facing Week, and verify feed when a filing should be shared.",
+    "Reconcile one athlete across Dossier Week story, focus revision, existing Halo draft/approved/sent message, coach notes, Speed benchmark links, Forge and FORM evaluation earned points. Never leave Halo weekly copy stale or create duplicate messages.",
+    "Remote data saved with valid coach permissions should show promptly on the athlete's compatible app refresh; troubleshoot client cache/release separately from authoring. Do not deploy each small code edit.",
     "Report verified result, source timestamp, unknowns and any blocked cross-app connection. Never call a draft live."
   ],
   "freshness": {
