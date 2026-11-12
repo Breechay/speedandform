@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["L5VBZ7L4U2.com.speedandform.app"],
+        "components": [
+          { "/": "/workout/*", "comment": "FORM Open Speed: a shared workout opens in FORM" },
+          { "/": "/run/*", "comment": "A FORM run opens in Run with FORM" }
+        ]
+      }
+    ]
+  }
+}
