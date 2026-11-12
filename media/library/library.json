@@ -732,13 +732,13 @@
       "tone": "color",
       "people": "1",
       "orientation": "landscape",
-      "width": 1514,
-      "height": 1427,
+      "width": 2779,
+      "height": 2518,
       "focal": {
-        "x": 0.5,
-        "y": 0.4
+        "x": 0.42,
+        "y": 0.22
       },
-      "alt": "An athlete in sunglasses with a loaded barbell across his shoulders at an outdoor beach gym, palms behind.",
+      "alt": "An athlete in sunglasses squats with a loaded barbell across his shoulders at an outdoor beach gym, palms behind.",
       "uses": [
         "strength",
         "card",
@@ -750,8 +750,46 @@
         "2400": "/media/library/beach-gym-barbell-2400.webp"
       },
       "source": {
-        "supplied": "2026-10-13",
-        "sha256": "caf9f2b3b864acdac06ac1aa0f451a856362943e9de0b59b01b4213aff0fa98c"
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "replaces": "2026-10-13 crop",
+        "sha256": "7a3776362dea692c0d3922ee48951c7928794058840fd9a592348d3ac6e4029b"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "beach-gym-squat-palms",
+      "title": "Under the bar",
+      "kind": "strength",
+      "captured": null,
+      "setting": "outdoor beach gym",
+      "light": "bright sun",
+      "tone": "color",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 2301,
+      "height": 2640,
+      "focal": {
+        "x": 0.42,
+        "y": 0.25
+      },
+      "alt": "An athlete in sunglasses braces under a loaded barbell at an outdoor beach gym, palm trees and blue sky behind.",
+      "uses": [
+        "strength",
+        "card",
+        "story",
+        "hero-portrait"
+      ],
+      "files": {
+        "600": "/media/library/beach-gym-squat-palms-600.webp",
+        "1200": "/media/library/beach-gym-squat-palms-1200.webp",
+        "2400": "/media/library/beach-gym-squat-palms-2400.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "sha256": "b5f964effa5afe02e8c02f32ce0b57ef213dd77ea2a63cd9a46fcf085778fb8a"
       },
       "tags": [],
       "used_on": []
