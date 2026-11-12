@@ -155,6 +155,9 @@
 /session                 /people/                    302
 /session/                /people/                    302
 /session/*               /session/template.html      200
+/workout                 /workout/template.html      200
+/workout/                /workout/template.html      200
+/workout/*               /workout/template.html      200
 /plan-speed-emergence   /plans/                    301!
 
 # Interactive homepage mockup (does not replace production index)
