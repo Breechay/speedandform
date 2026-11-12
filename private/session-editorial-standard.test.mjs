@@ -218,3 +218,28 @@ test('late miles are separately typed before the feed can render a long-run fini
     { role: 'work', shape: 'continuous', distance: 12, distance_unit: 'mi' }
   ]), []);
 });
+
+
+test('running-company labels are removed but useful early-start logistics remain', () => {
+  const labels = [
+    { title: 'Long run · 14 mi', details: 'First three miles solo, final two with a steady partner.' },
+    { title: '4 mi continuous at goal pace', details: 'Run 4 mi independently paced.' },
+    { title: 'Solo long run · 14 mi', details: 'Use familiar fuel.' }
+  ];
+  for (const copy of labels)
+    assert.ok(sessionEditorialIssues(copy).some(issue => issue.message.includes('pacing-company')), JSON.stringify(copy));
+  assert.ok(weekPreviewEditorialIssues({
+    title: '14 mi · last 5 at goal pace',
+    preview: 'First three miles solo, final two with a steady partner.',
+    hasStructuredWork: true
+  }).some(issue => issue.message.includes('pacing-company')));
+  assert.ok(prescriptionPresentationIssues('Solo long run · 14 mi', []).some(issue => issue.includes('pacing-company')));
+  assert.deepEqual(sessionEditorialIssues({
+    title: '14 mi · last 5 at goal pace',
+    details: 'Start early to avoid the heat. Use an uninterrupted route, water, and familiar fuel.'
+  }), []);
+  assert.deepEqual(sessionEditorialIssues({
+    title: 'Strength · partner medicine-ball toss',
+    details: '3 × 10 passes.'
+  }), []);
+});
