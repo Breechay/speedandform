@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Tonight at the track · FORM | Speed &amp; Form</title>
-<meta name="description" content="Tonight's session from our Thursday track in Miami. Run it in FORM and keep your times.">
-<link rel="canonical" href="https://speedandform.com/tonight">
+<title>Thursday at the track · FORM | Speed &amp; Form</title>
+<meta name="description" content="This Thursday's session from our track in Miami. Run it in FORM and keep your times.">
+<link rel="canonical" href="https://speedandform.com/this-thursday">
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#0B0B0B">
-<meta property="og:title" content="Tonight at the track">
-<meta property="og:description" content="Run tonight's session in FORM. Keep your times. Free.">
+<meta property="og:title" content="Thursday at the track">
+<meta property="og:description" content="Run Thursday's session in FORM. Keep your times. Free.">
 <meta property="og:image" content="https://speedandform.com/media/library/bw-lead-runner-1200.webp">
-<meta name="apple-itunes-app" content="app-id=6761313085, app-argument=https://speedandform.com/tonight">
+<meta name="apple-itunes-app" content="app-id=6761313085, app-argument=https://speedandform.com/this-thursday">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" href="/assets/site/fonts/inter-tight-latin-variable.woff2" crossorigin>
@@ -25,14 +25,23 @@ a{color:#F4F2EC}
 </style>
 </head>
 <body>
-<main><h1>Tonight at the track.</h1><p id="note">Finding tonight's session…</p></main>
+<main><h1>Thursday at the track.</h1><p id="note">Finding Thursday's session…</p></main>
 <script>
 (function () {
   'use strict';
-  // Someone with FORM never lands here: the link opens the app. Everyone else goes straight to tonight's session page.
+  // Someone with FORM never lands here: the link opens the app. Everyone else goes straight to Thursday's session page.
   var SUPA = 'https://pbgsjjegycacodiltbhn.supabase.co';
   var KEY = 'sb_publishable_5Dg5TUvnh2mEo-zCYAbgmw_WHNXKDqj';
   function go(path) { window.location.replace(path); }
+  // Counts the scan, once per browser, with a random id kept on this device. No name, no cookie for anyone else.
+  try {
+    var device = localStorage.getItem('form.open.device');
+    if (!device && window.crypto && crypto.randomUUID) { device = crypto.randomUUID(); localStorage.setItem('form.open.device', device); }
+    if (device) {
+      fetch(SUPA + '/rest/v1/rpc/form_open_ping', { method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ p_device: device, p_name: 'code_opened' }), credentials: 'omit', keepalive: true }).catch(function () {});
+    }
+  } catch (e) {}
   var done = false;
   setTimeout(function () { if (!done) { done = true; go('/workout/'); } }, 6000);
   fetch(SUPA + '/rest/v1/rpc/form_thursday_tonight', { method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' },
