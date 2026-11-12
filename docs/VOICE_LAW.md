@@ -124,3 +124,68 @@ Before shipping a sentence on any coaching surface:
 3. Does removing it lose information? If not — cut it.
 
 Most sentences do not survive. That is the correct rate.
+
+
+## 7. Halo messages are Brice's words, not assistant output
+
+This rule is binding on every Halo message, coach note, cohort campaign and backend
+publisher, regardless of whether a model drafted the text.
+
+- **Drafting is not publication.** A request to prepare messages does not approve
+  any specific wording. Show the exact body for each named recipient in the
+  conversation. Wait for Brice's explicit approval of that exact batch before
+  inserting or unarchiving messages or scheduling notifications. Never infer
+  approval from an earlier request to automate Halo.
+- **Only the approved weekly title.** The exact functional label
+  **"This week’s focus"** is approved for this weekly-note batch. Keep it
+  visually secondary to the body. The native display must whitelist that
+  label and hide all other stored titles, including old decorative slogans
+  like "Find the line", "Build the engine", "Quiet speed", "Two strong tens",
+  and "Stay with the rhythm". A new title category requires Brice's explicit
+  review and corresponding presentation tests. No generated headline may be
+  inferred from the message body.
+- **No filler body.** Name the current, published session and correct pace in
+  the athlete's unit; add at most one specific, useful reminder. Do not turn
+  unsupported guesses into first-person coaching. If the Week already says
+  everything and Brice has nothing else to add, send nothing.
+- **Check before asking to send.** Verify recipient identity/entitlement,
+  published session version, repetitions, duration/distance, recoveries, pace
+  range and units against Week, Filing and Speed. Record any mismatch as a
+  blocker; never smooth it over with copy.
+- **Check after sending.** Read back the exact message and recipients from the
+  authoritative live source. Never claim delivery from a local draft or a
+  successful write alone. If Brice retracts a batch, archive its exact keys
+  and verify zero active rows; do not automatically substitute new copy.
+
+The November 8, 2026 cohort and Saturday notes were retracted after unapproved
+model-written headlines were published under Brice's identity. Do not repeat
+that workflow. All replacement copy must be presented to Brice first.
+
+
+### Halo line-edit gate: delete the extra sentence
+
+Brice's November 8 review established a narrower rule than "short and plain":
+**each additional sentence must contain information he specifically wants the
+athlete to act on.** A correct sentence can still be unnecessary.
+
+Before seeking approval, remove:
+- Generic closers about being rested, feeling ready, finding a rhythm, or not
+  treating a workout as a race. These are not athlete-specific coaching.
+- A reminder about another session merely to show the writer looked at the
+  schedule. Mention another day only when Brice identifies a real conflict.
+- Another athlete's name or a training partner unless coordination itself
+  changes the instruction.
+- Explanations of a known problem after the action is already clear. Prefer
+  "Start early. Bring water." over a paragraph about previous heat complaints.
+- A note that only duplicates the Week. If nothing else needs saying, **send
+  no Halo message**, even if the athlete is in the entitled cohort.
+
+When Brice has named a real recurring behavior, keep the direct instruction.
+"Stop skipping your long runs" is useful; a vague reminder to save something
+for Saturday is not a substitute. Do not invent such behavior for other
+athletes.
+
+Pace units follow the **athlete's preference**, independently of repetition
+distance. For example, a workout written as 1 km repeats can still show its
+pace in min/mi. Convert verified pace targets accurately; never quietly
+change the prescription. Do not add a decorative opening or sign-off.
