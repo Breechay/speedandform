@@ -2,10 +2,22 @@
   "applinks": {
     "details": [
       {
-        "appIDs": ["L5VBZ7L4U2.com.speedandform.app"],
+        "appIDs": [
+          "L5VBZ7L4U2.com.speedandform.app"
+        ],
         "components": [
-          { "/": "/workout/*", "comment": "FORM Open Speed: a shared workout opens in FORM" },
-          { "/": "/run/*", "comment": "A FORM run opens in Run with FORM" }
+          {
+            "/": "/workout/*",
+            "comment": "FORM Open Speed: a shared workout opens in FORM"
+          },
+          {
+            "/": "/tonight",
+            "comment": "The Thursday code: this Thursday's session opens in FORM"
+          },
+          {
+            "/": "/run/*",
+            "comment": "A FORM run opens in Run with FORM"
+          }
         ]
       }
     ]

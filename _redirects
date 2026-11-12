@@ -155,6 +155,7 @@
 /session                 /people/                    302
 /session/                /people/                    302
 /session/*               /session/template.html      200
+/tonight                 /tonight/index.html         200
 /workout                 /workout/template.html      200
 /workout/                /workout/template.html      200
 /workout/*               /workout/template.html      200
