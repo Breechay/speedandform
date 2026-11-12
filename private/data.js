@@ -55,6 +55,26 @@ function result(data, error) {
 // The coach bench asks for every version of every session it shows, so the
 // list grows each time a session is revised until the request is refused
 // (400) and the console cannot open. Ask in batches and join the rows.
+// Supabase's API caps a single read (normally 1,000 rows). An athlete's
+// version history can exceed that cap, and ordering every component by position
+// then silently dropping the tail hides the final stages of published workouts.
+// Page complete histories with a stable tie-breaker before assembling sessions.
+const ATHLETE_HISTORY_PAGE = 500;
+async function selectCompleteAthleteHistory(table, athleteId, orderColumn, ascending = true) {
+  const rows = [];
+  for (let start = 0; ; start += ATHLETE_HISTORY_PAGE) {
+    const { data, error } = await supabase.from(table).select('*')
+      .eq('athlete_id', athleteId)
+      .order(orderColumn, { ascending })
+      .order('id', { ascending: true })
+      .range(start, start + ATHLETE_HISTORY_PAGE - 1);
+    if (error) return { data: null, error };
+    rows.push(...(data || []));
+    if (!data || data.length < ATHLETE_HISTORY_PAGE) break;
+  }
+  return { data: rows, error: null };
+}
+
 const IN_BATCH = 100;
 async function selectIn(table, column, ids, orderColumn, ascending = true) {
   const rows = [];
@@ -501,8 +521,8 @@ export async function loadAthleteRecord(athleteId, { coach = false, blockId = nu
     supabase.from('training_blocks').select('*').eq('athlete_id', athleteId).eq('status', 'active').maybeSingle(),
     supabase.from('training_weeks').select('*').eq('athlete_id', athleteId).order('week_number', { ascending: false }),
     supabase.from('planned_sessions').select('*').eq('athlete_id', athleteId).order('position'),
-    supabase.from('planned_session_versions').select('*').eq('athlete_id', athleteId).order('version_number', { ascending: false }),
-    supabase.from('planned_session_components').select('*').eq('athlete_id', athleteId).order('position'),
+    selectCompleteAthleteHistory('planned_session_versions', athleteId, 'version_number', false),
+    selectCompleteAthleteHistory('planned_session_components', athleteId, 'position'),
     supabase.from('athlete_baselines').select('*').eq('athlete_id', athleteId).order('captured_at', { ascending: false }),
     supabase.from('athlete_measurements').select('*').eq('athlete_id', athleteId)
       .order('measured_at', { ascending: false }).order('created_at', { ascending: false }),
