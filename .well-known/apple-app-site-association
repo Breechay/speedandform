@@ -11,8 +11,12 @@
             "comment": "FORM Open Speed: a shared workout opens in FORM"
           },
           {
-            "/": "/tonight",
+            "/": "/this-thursday",
             "comment": "The Thursday code: this Thursday's session opens in FORM"
+          },
+          {
+            "/": "/tonight",
+            "comment": "Earlier name for the Thursday code"
           },
           {
             "/": "/run/*",
