@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-10-21",
+  "updated": "2026-11-12",
   "owner": "Brice (Speed & Form)",
   "consent": "Brice confirmed on Oct 13, 2026 that he holds consent from everyone photographed. Names are never stored here: who is in a photo lives in the database (collective_person_tags), where hiding a profile or removing a tag takes effect everywhere.",
   "how_to_use": [
@@ -1831,6 +1831,654 @@
       "used_on": [
         "/photos/"
       ]
+    },
+    {
+      "id": "arrival-smile-bw",
+      "title": "Arriving at the track",
+      "kind": "track",
+      "captured": null,
+      "setting": "track walkway",
+      "light": "afternoon",
+      "tone": "black and white",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1500,
+      "focal": {
+        "x": 0.45,
+        "y": 0.16
+      },
+      "alt": "A runner in a cap and backpack walks onto the track smiling.",
+      "uses": [
+        "story",
+        "card",
+        "community",
+        "hero-portrait"
+      ],
+      "files": {
+        "600": "/media/library/arrival-smile-bw-600.webp",
+        "1200": "/media/library/arrival-smile-bw-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "b360c2e279acd3f6367e95c3b3b075fb200b62cc18c36861e22a7182dc099e8a",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "after-session-fence-bw",
+      "title": "After the session",
+      "kind": "track",
+      "captured": null,
+      "setting": "track fence",
+      "light": "evening",
+      "tone": "black and white",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1500,
+      "focal": {
+        "x": 0.85,
+        "y": 0.18
+      },
+      "alt": "A runner walks off along the track fence after the session, looking ahead.",
+      "uses": [
+        "story",
+        "card",
+        "essay"
+      ],
+      "files": {
+        "600": "/media/library/after-session-fence-bw-600.webp",
+        "1200": "/media/library/after-session-fence-bw-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "40a6beb3c55f7d0e31cd4d5267d589889a372f0f205b22bfd177ee3f6e34b442",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bench-laces-bw",
+      "title": "Laces before the work",
+      "kind": "track",
+      "captured": null,
+      "setting": "bench by the bleachers",
+      "light": "overcast",
+      "tone": "black and white",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 1200,
+      "height": 1500,
+      "focal": {
+        "x": 0.4,
+        "y": 0.62
+      },
+      "alt": "A runner sits on the bench by the bleachers tying his shoes, a bottle and bag beside him.",
+      "uses": [
+        "hero-portrait",
+        "story",
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/bench-laces-bw-600.webp",
+        "1200": "/media/library/bench-laces-bw-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "6de530ba53b2bf3391f559c03dce057e60684148914f3eadc3cb43a5dccd957e",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "waterfront-mobility-group",
+      "title": "Mobility on the waterfront",
+      "kind": "mobility",
+      "captured": null,
+      "setting": "waterfront plaza",
+      "light": "midday sun",
+      "tone": "color",
+      "people": "group",
+      "orientation": "square",
+      "width": 1309,
+      "height": 1294,
+      "focal": {
+        "x": 0.55,
+        "y": 0.45
+      },
+      "alt": "A group on mats under palms by the bay, hands behind their heads, the causeway behind them.",
+      "uses": [
+        "community",
+        "essay",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/waterfront-mobility-group-600.webp",
+        "1200": "/media/library/waterfront-mobility-group-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "f09ebb790114c29768e65aa8f46b82f5dad31b0d366a8669361cd1417ad42674",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "marathon-medals-pair",
+      "title": "Two marathon medals",
+      "kind": "race",
+      "captured": null,
+      "setting": "race finish area",
+      "light": "morning sun",
+      "tone": "color",
+      "people": "2",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1548,
+      "focal": {
+        "x": 0.42,
+        "y": 0.24
+      },
+      "alt": "Two runners celebrate with their marathon medals at the finish, one flexing, both smiling.",
+      "uses": [
+        "community",
+        "story",
+        "card"
+      ],
+      "files": {
+        "600": "/media/library/marathon-medals-pair-600.webp",
+        "1200": "/media/library/marathon-medals-pair-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "7b3274c3f3440d85fc8e9733a6498482c04cc1e377e9aa6421fe1e61fe559de1",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "waterfront-twist-smile",
+      "title": "A twist and a grin",
+      "kind": "mobility",
+      "captured": null,
+      "setting": "waterfront plaza",
+      "light": "midday sun",
+      "tone": "color",
+      "people": "1 and a class",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1618,
+      "focal": {
+        "x": 0.62,
+        "y": 0.38
+      },
+      "alt": "A runner holds a standing twist on his mat by the bay and smiles at the camera.",
+      "uses": [
+        "community",
+        "card",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/waterfront-twist-smile-600.webp",
+        "1200": "/media/library/waterfront-twist-smile-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "8926f0d225a290fe07a31824effebdfb8e93fc31f371aa0d4ba34cb4200410e3",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "waterfront-chair-twist",
+      "title": "Chair twist",
+      "kind": "mobility",
+      "captured": null,
+      "setting": "waterfront plaza",
+      "light": "midday sun",
+      "tone": "color",
+      "people": "2",
+      "orientation": "square",
+      "width": 1320,
+      "height": 1273,
+      "focal": {
+        "x": 0.42,
+        "y": 0.38
+      },
+      "alt": "Two people hold a deep chair twist side by side on mats, palms behind them.",
+      "uses": [
+        "essay",
+        "card",
+        "strength"
+      ],
+      "files": {
+        "600": "/media/library/waterfront-chair-twist-600.webp",
+        "1200": "/media/library/waterfront-chair-twist-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "c9b63e1909900168beccf99a37da938a94cf15251e79b3d8d5f40eb5c0b1bc2a",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "sunset-six-field",
+      "title": "Six on the field at sunset",
+      "kind": "track",
+      "captured": null,
+      "setting": "infield turf",
+      "light": "sunset",
+      "tone": "color",
+      "people": "6",
+      "orientation": "square",
+      "width": 1256,
+      "height": 1306,
+      "focal": {
+        "x": 0.5,
+        "y": 0.4
+      },
+      "alt": "Six runners pose together on the infield at sunset, the track behind them.",
+      "uses": [
+        "community",
+        "card",
+        "story",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/sunset-six-field-600.webp",
+        "1200": "/media/library/sunset-six-field-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "c0cc844e156d49f5aeedac7328736e03ca6bec476ef0bd6a5e582e251b32dfb1",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "underpass-warmup-bw",
+      "title": "Warm-up under the building",
+      "kind": "long run",
+      "captured": null,
+      "setting": "street under a building",
+      "light": "night",
+      "tone": "black and white",
+      "people": "9",
+      "orientation": "portrait",
+      "width": 1320,
+      "height": 1938,
+      "focal": {
+        "x": 0.5,
+        "y": 0.62
+      },
+      "alt": "Runners warm up and stretch in silhouette under a lit building before a night run.",
+      "uses": [
+        "hero-portrait",
+        "story",
+        "essay",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/underpass-warmup-bw-600.webp",
+        "1200": "/media/library/underpass-warmup-bw-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "ef94f7c054881ba94dad2529a802cab4c7d3205dd0a49eb1858503b20f85aa97",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "night-crosswalk-group",
+      "title": "The group after a night run",
+      "kind": "long run",
+      "captured": null,
+      "setting": "city crosswalk",
+      "light": "night",
+      "tone": "color",
+      "people": "group",
+      "orientation": "square",
+      "width": 1320,
+      "height": 1259,
+      "focal": {
+        "x": 0.5,
+        "y": 0.5
+      },
+      "alt": "The whole group stands together on a crosswalk at night after the run.",
+      "uses": [
+        "community",
+        "card",
+        "essay",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/night-crosswalk-group-600.webp",
+        "1200": "/media/library/night-crosswalk-group-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "camera roll",
+        "sha256": "c14f69662c944e687e37d77c5bb3398d6c33b1a8ac8558b83fcd199cb9f23ad9",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "bikes-overhead-pair",
+      "title": "Bikes overhead",
+      "kind": "social",
+      "captured": null,
+      "setting": "beach path",
+      "light": "midday sun",
+      "tone": "color",
+      "people": "2",
+      "orientation": "landscape",
+      "width": 1303,
+      "height": 911,
+      "focal": {
+        "x": 0.5,
+        "y": 0.35
+      },
+      "alt": "Two riders hold their bikes over their shoulders on a sunny beach path and flex for the camera.",
+      "uses": [
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/bikes-overhead-pair-600.webp",
+        "1200": "/media/library/bikes-overhead-pair-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "7c821fc731f3a615de8470d174c7358aaa264c812f762ab5341eb8ac57f6c4ba",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "street-5k-three",
+      "title": "Street 5K",
+      "kind": "race",
+      "captured": null,
+      "setting": "city street",
+      "light": "morning",
+      "tone": "color",
+      "people": "3",
+      "orientation": "square",
+      "width": 1307,
+      "height": 1292,
+      "focal": {
+        "x": 0.6,
+        "y": 0.4
+      },
+      "alt": "Three runners with race bibs stride down a city street during a 5K.",
+      "uses": [
+        "essay",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/street-5k-three-600.webp",
+        "1200": "/media/library/street-5k-three-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "52582a7e91550f71019e369a24131bb7d732ce6e961bf1c52ebf7e85c05d279e",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "track-three-sprint",
+      "title": "Three across the lanes",
+      "kind": "track",
+      "captured": null,
+      "setting": "track straight",
+      "light": "bright overcast",
+      "tone": "color",
+      "people": "3",
+      "orientation": "square",
+      "width": 1320,
+      "height": 1281,
+      "focal": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "alt": "Three runners sprint toward the camera side by side down the track lanes.",
+      "uses": [
+        "card",
+        "essay",
+        "story",
+        "ad"
+      ],
+      "files": {
+        "600": "/media/library/track-three-sprint-600.webp",
+        "1200": "/media/library/track-three-sprint-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "092daa878a934d348807244c8b933702738063c1997dd739cc0591ac036cb5e2",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "field-drill-pair",
+      "title": "Drills on the field",
+      "kind": "track",
+      "captured": null,
+      "setting": "infield turf",
+      "light": "bright sun",
+      "tone": "color",
+      "people": "2",
+      "orientation": "landscape",
+      "width": 1320,
+      "height": 1104,
+      "focal": {
+        "x": 0.55,
+        "y": 0.28
+      },
+      "alt": "Two athletes drive out of a start during drills on the field.",
+      "uses": [
+        "card",
+        "essay",
+        "story"
+      ],
+      "files": {
+        "600": "/media/library/field-drill-pair-600.webp",
+        "1200": "/media/library/field-drill-pair-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "aadf23c9588bc6efb4a7fb1814c5ffdeda4cbcc5496fb874c770f173458a9828",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "samples-three",
+      "title": "Three with samples",
+      "kind": "social",
+      "captured": null,
+      "setting": "park",
+      "light": "daylight",
+      "tone": "color",
+      "people": "3",
+      "orientation": "landscape",
+      "width": 1320,
+      "height": 843,
+      "focal": {
+        "x": 0.5,
+        "y": 0.3
+      },
+      "alt": "Three friends hold up small bags of loose-leaf samples and laugh in a park.",
+      "uses": [
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/samples-three-600.webp",
+        "1200": "/media/library/samples-three-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "4e87ed088b617d158b9d9152829ecece6fb1070cd3ab27be562f7fe84a420e02",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "waterfront-side-stretch",
+      "title": "Side reach on the waterfront",
+      "kind": "mobility",
+      "captured": null,
+      "setting": "waterfront plaza",
+      "light": "midday sun",
+      "tone": "color",
+      "people": "class",
+      "orientation": "landscape",
+      "width": 1306,
+      "height": 840,
+      "focal": {
+        "x": 0.6,
+        "y": 0.45
+      },
+      "alt": "A class reaches into a side stretch on mats along the bay, eyes closed.",
+      "uses": [
+        "essay",
+        "card",
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/waterfront-side-stretch-600.webp",
+        "1200": "/media/library/waterfront-side-stretch-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "212fb6fa4e58b3a5c8c93c411eb518c0613bceecdea912b3ab05f173baf05980",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "green-shirts-pair",
+      "title": "Two in green",
+      "kind": "social",
+      "captured": null,
+      "setting": "wooden fence",
+      "light": "daylight",
+      "tone": "color",
+      "people": "2",
+      "orientation": "portrait",
+      "width": 757,
+      "height": 994,
+      "focal": {
+        "x": 0.5,
+        "y": 0.2
+      },
+      "alt": "Two friends in matching green shirts lean on a wooden fence, smiling.",
+      "uses": [
+        "community"
+      ],
+      "files": {
+        "600": "/media/library/green-shirts-pair-600.webp",
+        "1200": "/media/library/green-shirts-pair-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "2b75542b731df4f128a6fdf2d7192c26a5829f062749d40f6720b56703d7f9d8",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
+    },
+    {
+      "id": "triathlon-beach-exit",
+      "title": "Out of the water",
+      "kind": "race",
+      "captured": null,
+      "setting": "beach transition",
+      "light": "overcast",
+      "tone": "color",
+      "people": "1",
+      "orientation": "portrait",
+      "width": 1172,
+      "height": 1713,
+      "focal": {
+        "x": 0.5,
+        "y": 0.18
+      },
+      "alt": "A triathlete runs barefoot up from the beach into transition.",
+      "uses": [
+        "story",
+        "card",
+        "essay",
+        "hero-portrait"
+      ],
+      "files": {
+        "600": "/media/library/triathlon-beach-exit-600.webp",
+        "1200": "/media/library/triathlon-beach-exit-1200.webp"
+      },
+      "source": {
+        "supplied": "2026-11-12",
+        "by": "Brice",
+        "from": "instagram archive",
+        "sha256": "9901ab8143ca0f31b2781735606d23c7f9347cb738c9f018dcd79e81a9515c4d",
+        "largest": "1200 (supplied below 2400)"
+      },
+      "tags": [],
+      "used_on": []
     }
   ]
 }
