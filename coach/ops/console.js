@@ -100,18 +100,23 @@ function filingIntegrityView(){
 let compoundRoutes = null;
 let compoundLoading = false;
 let compoundError = false;
+let compoundLights = null;
 
 async function loadCompoundRoutes() {
   if (compoundLoading) return;
   compoundLoading = true;
   try {
-    const response = await fetch('/coach/compound-routing.json');
+    const [response, pass] = await Promise.all([
+      fetch('/coach/compound-routing.json', { cache: 'no-store' }),
+      supabase.rpc('coach_pass', {}),
+    ]);
     if (!response.ok) throw new Error('Routing directory unavailable');
     const routes = await response.json();
     if (![routes.jobs, routes.surfaces, routes.cadence, routes.references].every(Array.isArray)) {
       throw new Error('Incomplete routing directory');
     }
     compoundRoutes = routes;
+    compoundLights = pass.error ? null : pass.data;
     compoundError = false;
   } catch {
     compoundError = true;
@@ -121,23 +126,36 @@ async function loadCompoundRoutes() {
   }
 }
 
+// The Pass: one light per surface, from coach_pass. Running needs nothing; Watch, the owner looks today; Stopped, nothing
+// new reaches that athlete there until it is fixed.
+function compoundLightsView() {
+  if (!compoundLights) return '<p class="source-note">The lights could not be read. The directory below still routes the work.</p>';
+  const names = { running: 'Running', watch: 'Watch', stopped: 'Stopped' };
+  const rows = compoundLights.lights.map(l => `<article class="item"><div class="metadata"><b>${e(l.surface)}</b><span>${e(l.owner)}</span><span class="pill ${l.state === 'running' ? '' : 'warning'}">${e(names[l.state] || l.state)}</span></div><p>${e(l.line)}</p></article>`).join('');
+  const open = compoundLights.lights.filter(l => l.state !== 'running').length;
+  return `<section class="panel"><div class="section-head"><h2>The Pass</h2><span class="pill ${open ? 'warning' : ''}">${open ? `${open} to look at` : 'All running'}</span></div><p class="source-note">Read ${e(checked(compoundLights.checked_at))}.</p>${rows}</section>`;
+}
+
 function compoundView() {
   if (!compoundRoutes) {
     if (compoundError) return '<p role="status">The routing directory could not be loaded.</p><button type="button" id="retry-routes">Try again</button>';
     void loadCompoundRoutes();
     return '<p role="status">Loading the routing directory…</p>';
   }
-  const { jobs, surfaces, cadence, references, edition } = compoundRoutes;
+  const { jobs, surfaces, cadence, references, edition, rules = [] } = compoundRoutes;
   const link = (label, url) => `<a class="ref" href="${e(url)}">${e(label)}</a>`;
+  const ruleRows = rules.map(r => `<li><strong>${e(r.rule)}</strong> · ${e(r.line)}</li>`).join('');
   const jobRows = jobs.map(job => {
     const owned = surfaces.filter(s => s.job === job.job).map(s =>
-      `<li><strong>${e(s.surface)}</strong> · ${e(s.tab)}<br>${e(s.source)}<br>${e(s.when)}. Check: ${e(s.check)}</li>`).join('');
+      `<li><strong>${e(s.surface)}</strong> · ${e(s.tab)}<br>${e(s.source)}<br>${e(s.when)}. Check: ${e(s.check)}${s.done_when ? `<br>Done when: ${e(s.done_when)}` : ''}</li>`).join('');
     return `<details class="source"><summary><strong>${e(job.job)}</strong> · ${e(job.who)}</summary>
       <p>${e(job.owns)}</p><p>Hand off to ${e(job.handoff)}.</p><p>Outside this role: ${e(job.limit)}.</p>
       ${owned ? `<ul>${owned}</ul>` : ''}${link('Open workspace', job.workspace)}</details>`;
   }).join('');
   const events = cadence.map(c => `<li><strong>${e(c.when)}</strong> · ${e(c.owner)}<br>${e(c.action)}<br>Read back: ${e(c.receipt)}</li>`).join('');
-  return `<p class="source-note">Routing directory · ${e(edition)}. Open the owning workspace for current work.</p>
+  return `${compoundLightsView()}
+    ${ruleRows ? `<section class="panel"><h2>Rules</h2><ul>${ruleRows}</ul></section>` : ''}
+    <p class="source-note">Routing directory · ${e(edition)}. Open the owning workspace for current work.</p>
     <div class="source-list">${jobRows}</div><details class="source"><summary>When work changes hands</summary><ul>${events}</ul></details>
     <h3>Sources and repositories</h3><ul>${references.map(([label,url]) => `<li>${link(label,url)}</li>`).join('')}</ul>`;
 }
