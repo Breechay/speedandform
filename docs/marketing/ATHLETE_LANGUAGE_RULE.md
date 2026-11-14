@@ -6,6 +6,10 @@
 
 Read `docs/FORM_RUN_DEVELOPMENT_MANIFESTO.md` before writing identity or philosophy copy for Run Development or FORM coaching.
 
+## Athlete-first attribution · October 19, 2026
+
+**People are the subject. FORM is the platform. The founder is not the narrator.** For athlete-facing screens, copy, events, albums and studies, don't insert founder-name credits, review explanations or repeated sign-offs that don't help an athlete understand or act. The athlete, work, image and factual context lead. Keep necessary accountability, real individual profiles, consent/approval status and required attribution. See the [canonical publication contract](../editorial/PUBLICATION_CONTRACT.md#athlete-first-attribution--october-19-2026). This is an internal copy check, not a tagline.
+
 ## Core assumption
 
 Do not assume a good or experienced runner knows training language.
