@@ -1,0 +1,366 @@
+{
+  "edition": "2026-11-14",
+  "authority": "Brice approves athlete-facing decisions. Route exceptions through the existing private queue. The current owner record and authorized readback determine status.",
+  "jobs": [
+    {
+      "job": "Head Coach",
+      "who": "Brice",
+      "owns": "Goals, gaps, every athlete-facing yes, Halo, FROM B. marks",
+      "handoff": "Plan Author with the call; Voice with the words",
+      "limit": "SQL, builds",
+      "lane": null,
+      "workspace": "/coach/ops/"
+    },
+    {
+      "job": "Plan Author",
+      "who": "Claude",
+      "owns": "Sessions, weeks, versions, Thursday board, start-in-the-week-they-join",
+      "handoff": "Voice (story), Strength Coach (paired read)",
+      "limit": "Evaluation, feed",
+      "lane": "athlete_steward",
+      "workspace": "/coach/console/"
+    },
+    {
+      "job": "Voice",
+      "who": "Claude",
+      "owns": "Week stories, Today lines, notes, all athlete copy",
+      "handoff": "Data Steward (review mark)",
+      "limit": "Prescriptions",
+      "lane": "athlete_steward",
+      "workspace": "/coach/console/"
+    },
+    {
+      "job": "Evaluator",
+      "who": "Brice decides, Claude drafts",
+      "owns": "Evaluation revisions, pace marks, the gap",
+      "handoff": "Voice, Race Desk",
+      "limit": "Session copy",
+      "lane": "athlete_steward",
+      "workspace": "/coach/labs/"
+    },
+    {
+      "job": "Filing Clerk",
+      "who": "Athletes; Claude for anyone who cannot",
+      "owns": "Filings linked to their session or race",
+      "handoff": "Athlete Care (notes), Community Editor (group runs)",
+      "limit": "Splits and times the athlete did not run",
+      "lane": "filing_feed_reconciler",
+      "workspace": "/coach/console/"
+    },
+    {
+      "job": "Athlete Care",
+      "who": "Claude",
+      "owns": "Signals: open, watch check-ins, change strength, close",
+      "handoff": "Strength Coach, Voice, Head Coach (worse)",
+      "limit": "Diagnosis. Pain that changes a stride goes to Brice",
+      "lane": "athlete_steward",
+      "workspace": "/coach/labs/"
+    },
+    {
+      "job": "Strength Coach",
+      "who": "Claude, under Brice",
+      "owns": "Strength days and program weeks",
+      "handoff": "Plan Author (paired read)",
+      "limit": "Running sessions",
+      "lane": "athlete_steward",
+      "workspace": "/coach/console/"
+    },
+    {
+      "job": "Race Desk",
+      "who": "Claude",
+      "owns": "Race plans, race links, results",
+      "handoff": "Community Editor",
+      "limit": "Goal times Brice has not set",
+      "lane": "practice_operator",
+      "workspace": "/coach/labs/"
+    },
+    {
+      "job": "Community Editor",
+      "who": "Claude",
+      "owns": "Feed, journeys, the Long Runs record, race on the feed",
+      "handoff": "Publisher (images)",
+      "limit": "Private notes, soreness, anything from a signal",
+      "lane": "practice_operator",
+      "workspace": "/coach/runs/"
+    },
+    {
+      "job": "Data Steward",
+      "who": "Claude",
+      "owns": "Migrations recorded, guards, weekly audits (stories, stale signals, drift)",
+      "handoff": "Builder (schema), Voice (stale copy)",
+      "limit": "Athlete copy itself",
+      "lane": "filing_feed_reconciler",
+      "workspace": "/coach/ops/?tab=sources"
+    },
+    {
+      "job": "Builder",
+      "who": "Code on the Mac",
+      "owns": "Builds, compile fixes, install on Brice's phone",
+      "handoff": "Head Coach (his own use first)",
+      "limit": "Beta, App Store, build numbers, the fingerprint file",
+      "lane": "release_guardian",
+      "workspace": "https://github.com/Breechay/FORM-iOS"
+    },
+    {
+      "job": "Publisher",
+      "who": "Brice approves",
+      "owns": "Site deploys, avatars, public pages",
+      "handoff": "Community Editor",
+      "limit": "Private context in Part I",
+      "lane": "practice_operator",
+      "workspace": "https://github.com/Breechay/speedandform"
+    }
+  ],
+  "surfaces": [
+    {
+      "surface": "Week: the days and sessions",
+      "job": "Plan Author",
+      "source": "planned_sessions → planned_session_versions → components",
+      "when": "A session or phase changes",
+      "check": "Paired FORM+Forge read · Thursday shared-edit guard · individual block guard",
+      "tab": "Runs"
+    },
+    {
+      "surface": "THIS WEEK story",
+      "job": "Voice",
+      "source": "training_weeks.intent / matters_because",
+      "when": "Every plan change, in the same sitting",
+      "check": "Review mark in week_story_reviews · intent ≤100, why ≤125 · no em dash, semicolon or \" if \"",
+      "tab": "Runs · session page"
+    },
+    {
+      "surface": "Session page (tap a day)",
+      "job": "Plan Author",
+      "source": "Latest session version + day-ahead preview (week line, B.'s why, the week's days)",
+      "when": "With the session",
+      "check": "Title has no dose · structured RPE · pace from pace_marks",
+      "tab": "Runs"
+    },
+    {
+      "surface": "Today line",
+      "job": "Voice",
+      "source": "form_today_lines, picked by form_today_line",
+      "when": "Weekly; signal lines with their signal",
+      "check": "Lines tied to a signal retire when it is gone",
+      "tab": "FORM · black card"
+    },
+    {
+      "surface": "Black card: season, paces, today",
+      "job": "Evaluator",
+      "source": "form_personal (season, pace_marks, today)",
+      "when": "After a key session moves a pace",
+      "check": "Paces in the athlete's own unit",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Phase words on the black card",
+      "job": "Voice",
+      "source": "form_notes phase.*",
+      "when": "When a phase starts",
+      "check": "starts_on dates the change",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Brice Evaluation",
+      "job": "Evaluator",
+      "source": "athlete_evaluation_revisions",
+      "when": "After a key session that moves a point, at most monthly",
+      "check": "Published revision only · no internal words",
+      "tab": "FORM"
+    },
+    {
+      "surface": "FROM B. marks",
+      "job": "Head Coach",
+      "source": "Marks on filings",
+      "when": "When Brice reads a filing",
+      "check": "SNAPSHOT: never edited later",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Checking in (signal card)",
+      "job": "Athlete Care",
+      "source": "athlete_signals, form_signals",
+      "when": "On a report; the app asks every 3 days",
+      "check": "Stale scan after it is gone",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Your race (race plan)",
+      "job": "Race Desk",
+      "source": "form_race_plans, form_race_plan",
+      "when": "21 days out, revised after the last key session",
+      "check": "Every proof line points to a real filing",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Strength tab",
+      "job": "Strength Coach",
+      "source": "form_training_strength_days, form_strength_program_weeks",
+      "when": "Program week turns; a signal changes a day",
+      "check": "Paired read of the running week · lower body never on Thursday",
+      "tab": "Strength"
+    },
+    {
+      "surface": "Feed post after a run",
+      "job": "Filing Clerk",
+      "source": "session_completions → publish_completion trigger",
+      "when": "Every filing",
+      "check": "Title from the linked version",
+      "tab": "Feed"
+    },
+    {
+      "surface": "Long run journey + FORM Long Runs record",
+      "job": "Community Editor",
+      "source": "form_journeys + each runner's filing",
+      "when": "Same day as the group run",
+      "check": "Lines keep the run, not the soreness",
+      "tab": "Runs"
+    },
+    {
+      "surface": "Thursday board",
+      "job": "Plan Author",
+      "source": "form_miami_publications, form_miami_session_links",
+      "when": "Weekly",
+      "check": "Shared version must match the group unless paused",
+      "tab": "Speed"
+    },
+    {
+      "surface": "Avatars and portraits",
+      "job": "Publisher",
+      "source": "speedandform assets/athletes + collective_people.avatar_path",
+      "when": "New athlete or new photo",
+      "check": "Consent on file · new filename for a new image",
+      "tab": "Everywhere"
+    },
+    {
+      "surface": "Halo messages",
+      "job": "Head Coach",
+      "source": "Halo",
+      "when": "When Brice writes",
+      "check": "Brice's own words only",
+      "tab": "FORM"
+    },
+    {
+      "surface": "Coach YOUR EYE",
+      "job": "Head Coach",
+      "source": "coach_needs_you, coach_signals, story audit, filings",
+      "when": "Live",
+      "check": "Mirror shows, never acts",
+      "tab": "Coach"
+    },
+    {
+      "surface": "speedandform.com studies",
+      "job": "Publisher",
+      "source": "speedandform repo",
+      "when": "When a study moves",
+      "check": "Live values come from the record, not page copy",
+      "tab": "Site"
+    }
+  ],
+  "cadence": [
+    {
+      "when": "Every filing",
+      "owner": "Filing Clerk",
+      "action": "Link it to its session or race; the feed posts itself",
+      "receipt": "session_completions"
+    },
+    {
+      "when": "Every filing with a note",
+      "owner": "Athlete Care",
+      "action": "Pain or soreness in the note opens a signal the same day",
+      "receipt": "athlete_signals"
+    },
+    {
+      "when": "Every key session filed",
+      "owner": "Evaluator",
+      "action": "Does it move a point or a pace? Revise or leave it",
+      "receipt": "athlete_evaluation_revisions, pace_marks"
+    },
+    {
+      "when": "Every plan change",
+      "owner": "Plan Author → Voice → Strength Coach",
+      "action": "Change the version, reauthor the story, mark it reviewed, read the other app's week",
+      "receipt": "planned_session_versions, week_story_reviews"
+    },
+    {
+      "when": "Every 3 days per signal",
+      "owner": "The app",
+      "action": "Asks the athlete: Worse, Same, Better, Gone",
+      "receipt": "athlete_signal_checks"
+    },
+    {
+      "when": "Daily",
+      "owner": "Head Coach",
+      "action": "Read YOUR EYE: replies, filings, signals, quiet athletes",
+      "receipt": "Coach tab"
+    },
+    {
+      "when": "Daily",
+      "owner": "Athlete Care",
+      "action": "Worse or no answer for 3 days: tell Brice; gone: run the stale scan",
+      "receipt": "coach_signals"
+    },
+    {
+      "when": "Saturday, after the group run",
+      "owner": "Community Editor",
+      "action": "Write the journey: title, place, one line per runner",
+      "receipt": "form_journeys"
+    },
+    {
+      "when": "Sunday",
+      "owner": "Voice",
+      "action": "Next week's stories and Today lines, read against open signals",
+      "receipt": "training_weeks, form_today_lines"
+    },
+    {
+      "when": "Sunday",
+      "owner": "Data Steward",
+      "action": "Audits: story freshness, stale signal mentions, drift between app, mirror and site",
+      "receipt": "coach_audit_private"
+    },
+    {
+      "when": "21 and 7 days before a race",
+      "owner": "Race Desk",
+      "action": "Write the plan, then revise it after the last key session",
+      "receipt": "form_race_plans"
+    },
+    {
+      "when": "New athlete",
+      "owner": "Plan Author + Publisher",
+      "action": "Plan starts in the week they join, avatar live, code issued, race on the feed",
+      "receipt": "training_blocks, collective_people"
+    },
+    {
+      "when": "After a build lands",
+      "owner": "Builder → Head Coach",
+      "action": "Brice lives with it for a day or two before anyone else gets it",
+      "receipt": "His phone"
+    }
+  ],
+  "references": [
+    [
+      "Compound · Athlete & Race Desk",
+      "https://github.com/Breechay/speedandform/issues/500"
+    ],
+    [
+      "Operating Console · source receipts",
+      "/coach/ops/?tab=sources"
+    ],
+    [
+      "Brice-OS · milestones",
+      "https://github.com/Breechay/brice-os/blob/main/MILESTONES.csv"
+    ],
+    [
+      "FORM and Forge · native builds",
+      "https://github.com/Breechay/FORM-iOS"
+    ],
+    [
+      "Web, console and migrations",
+      "https://github.com/Breechay/speedandform"
+    ],
+    [
+      "Agent permissions and receipts",
+      "/coach/agent-run-contract.json"
+    ]
+  ]
+}

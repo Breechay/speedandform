@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
-  "updated_on": "2026-11-04",
+  "updated_on": "2026-11-14",
+  "compound_routing": {"directory":"/coach/compound-routing.json","console":"/coach/ops/?tab=compound","contract":"/coach/agent-run-contract.json","use":"Resolve job, trigger, owning record, handoff and destination before acting. Use existing private receipts for actual work. The directory records responsibilities only."},
   "name": "FORM Coach Console · Agent Map",
   "purpose": "Machine-readable orientation for authorized assistants. This file contains no private athlete or owner data and grants no access.",
   "repository_instruction_paths": ["AGENTS.md", "docs/AGENT_ORIENTATION.md", "coach/AGENT_OPERATIONS.md", "docs/operations/FORM_INTELLIGENCE_ARCHITECTURE_20261104.md"],
