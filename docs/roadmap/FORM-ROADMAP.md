@@ -1,3 +1,7 @@
+## November 14 · The Pass
+
+Seven jobs replace twelve: Head Coach, Programming, Athlete Read, Voice, Record, The Pass, Builder. Programming owns run and lift together, so the paired read happens inside one job. The Compound tab opens on The Pass: one light per surface from `coach_pass` (Running, Watch, Stopped), then seven rules (one owner, one voice, readback, stop the line, hand-off note, the record wins, Brice first). Each surface now says when it is done.
+
 ## November 14 · Compound job routing
 
 The Operating Console and coach agent map read the same routing directory for 12 jobs, 18 surfaces and 13 handoffs. Open `/coach/ops/?tab=compound` for the owning workspace and receipt for each trigger. The directory carries no athlete records or current build status. Pending release and signed-in production readback.
