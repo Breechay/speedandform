@@ -1,3 +1,7 @@
+## November 14 · Compound job routing
+
+The Operating Console and coach agent map read the same routing directory for 12 jobs, 18 surfaces and 13 handoffs. Open `/coach/ops/?tab=compound` for the owning workspace and receipt for each trigger. The directory carries no athlete records or current build status. Pending release and signed-in production readback.
+
 ## November 9 · Restore private athlete creation
 
 - **Cause:** The Programming roster no longer exposed an Add athlete action.
