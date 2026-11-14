@@ -13,7 +13,7 @@ let rosterStory={available:false,athletes:[],error:'Not checked'};
 let athleteBrief={id:null,data:null,strength:null,feedback:null,error:'',loading:false};
 let feedbackReceipt='';
 const requestedTab=new URLSearchParams(window.location.search).get('tab');
-if(['today','intelligence','runway','areas','opportunities','waiting','sources'].includes(requestedTab))tab=requestedTab;
+if(['today','intelligence','runway','areas','opportunities','waiting','sources','compound'].includes(requestedTab))tab=requestedTab;
 const closed=i=>['done','cancelled'].includes(i.status);
 const statusName=s=>({queued:'Ready',active:'In progress',waiting:'Waiting',done:'Done',cancelled:'Parked'}[s]||s);
 const sourceName=s=>({live:'Live records',snapshot:'Checked snapshot',stale:'Check again',conflict:'Needs reconciliation',unavailable:'Unavailable',pending:'Pending',unchecked:'Not checked'}[s]||s);
@@ -97,6 +97,55 @@ function filingIntegrityView(){
   const labels={source_post_present:'Post in source · verify rendered feed',opted_out:'Sharing off · do not post',privacy_conflict:'Sharing off but source post remains · urgent',before_sharing_enabled:'Filed before sharing began · no retroactive post',no_linked_account:'No active athlete account',sharing_not_enabled:'Sharing not enabled',post_revoked:'Source post revoked',missing_source_post:'Eligible source post missing',unmatched_filing:'Unmatched filing'};
   return `<section class="panel"><div class="section-head"><h2>Filing & feed reconciliation</h2><span class="pill ${attention.length?'warning':''}">${attention.length} to inspect / ${entries.length} recent</span></div><p class="source-note">Owner records checked ${e(checked(filingIntegrity.read_at))}. A completion row proves the canonical filing, not the app Week rendering. A source post is not proof the card survived feed filtering or appeared on a device. Respect opted-out accounts.</p>${attention.length?attention.slice(0,35).map(f=>`<article class="item"><div class="metadata"><b>${e(f.first_name||'Athlete')}</b><span>${e(checked(f.filed_at))}</span><span class="pill warning">${e(labels[f.feed_state]||f.feed_state)}</span></div><p class="small">${e(f.week_state==='unmatched_filing'?'No planned session linked; inspect the athlete Week.':'Canonical completion recorded; athlete-facing Week readback still required.')} Source filing ${e(f.completion_id)}.</p><a class="ref" href="/coach/labs/">Inspect athlete record ↗</a></article>`).join(''):'<p class="empty">No source-level filing exceptions in this window. Week rendering and native feed visibility have not been verified.</p>'}</section>`;
 }
+let compoundRoutes = null;
+let compoundLoading = false;
+let compoundError = false;
+
+async function loadCompoundRoutes() {
+  if (compoundLoading) return;
+  compoundLoading = true;
+  try {
+    const response = await fetch('/coach/compound-routing.json');
+    if (!response.ok) throw new Error('Routing directory unavailable');
+    const routes = await response.json();
+    if (![routes.jobs, routes.surfaces, routes.cadence, routes.references].every(Array.isArray)) {
+      throw new Error('Incomplete routing directory');
+    }
+    compoundRoutes = routes;
+    compoundError = false;
+  } catch {
+    compoundError = true;
+  } finally {
+    compoundLoading = false;
+    if (board && tab === 'compound') render();
+  }
+}
+
+function compoundView() {
+  if (!compoundRoutes) {
+    if (compoundError) return '<p role="status">The routing directory could not be loaded.</p><button type="button" id="retry-routes">Try again</button>';
+    void loadCompoundRoutes();
+    return '<p role="status">Loading the routing directory…</p>';
+  }
+  const { jobs, surfaces, cadence, references, edition } = compoundRoutes;
+  const link = (label, url) => `<a class="ref" href="${e(url)}">${e(label)}</a>`;
+  const jobRows = jobs.map(job => {
+    const owned = surfaces.filter(s => s.job === job.job).map(s =>
+      `<li><strong>${e(s.surface)}</strong> · ${e(s.tab)}<br>${e(s.source)}<br>${e(s.when)}. Check: ${e(s.check)}</li>`).join('');
+    return `<details class="source"><summary><strong>${e(job.job)}</strong> · ${e(job.who)}</summary>
+      <p>${e(job.owns)}</p><p>Hand off to ${e(job.handoff)}.</p><p>Outside this role: ${e(job.limit)}.</p>
+      ${owned ? `<ul>${owned}</ul>` : ''}${link('Open workspace', job.workspace)}</details>`;
+  }).join('');
+  const events = cadence.map(c => `<li><strong>${e(c.when)}</strong> · ${e(c.owner)}<br>${e(c.action)}<br>Read back: ${e(c.receipt)}</li>`).join('');
+  return `<p class="source-note">Routing directory · ${e(edition)}. Open the owning workspace for current work.</p>
+    <div class="source-list">${jobRows}</div><details class="source"><summary>When work changes hands</summary><ul>${events}</ul></details>
+    <h3>Sources and repositories</h3><ul>${references.map(([label,url]) => `<li>${link(label,url)}</li>`).join('')}</ul>`;
+}
+
+$('#view').addEventListener('click', event => {
+  if (event.target.closest('#retry-routes')) void loadCompoundRoutes();
+});
+
 function sourcesView(){return `<p class="intro" style="margin:26px 0">Know what is live, what was checked and what is still unresolved.</p>${filingIntegrityView()}<div class="source-list">${board.sources.map(s=>{const st=sourceState(s);return `<article class="source"><div><h3>${e(s.label)}</h3><span class="pill ${['stale','conflict','unavailable','pending','unchecked'].includes(st)?'warning':''}">${e(sourceName(st))}</span></div><div><p><b>Owns:</b> ${e(s.authority)}</p><p>${e(s.detail)}</p><p class="small">Checked ${e(checked(s.observed_at))}.${s.source_as_of?` Source data through ${e(checked(s.source_as_of))}.`:' Source data-as-of is not supplied.'}</p><p class="locator">${e(s.locator)}</p></div></article>`;}).join('')}</div><section class="panel"><h2>The write-through rule</h2><p>Change the owning record first. Read it back. Record the receipt here. The brief reads this same workspace, plus fresh evidence from its original connectors. A link or a saved note never proves every destination synchronized.</p><p class="source-note">FORM decisions and coaching tasks are read live. Calendar, Finances, GitHub, Gmail and wearable checks are refreshed by authorized connector work, not by this browser's Refresh button. No bank token, private record or service-role key is embedded in this site.</p></section><details class="changes"><summary>Recent saved changes</summary><ul>${board.changes.map(c=>`<li>${e(c.title||c.label||'Operating record')} · ${e(c.status?statusName(c.status):c.operation.toLowerCase())}<br><span class="small">${e(checked(c.changed_at))} · revision ${e(c.revision||'1')}</span></li>`).join('')}</ul></details>`;}
 function opportunityCard(o){
   const task=board.items.find(i=>i.item_key===`athletic-life-${o.id}`);
@@ -140,13 +189,13 @@ function render(){
   if(!board)return;
   $('#gate').hidden=true;$('#workspace').hidden=false;$('#refresh').hidden=false;$('#signout').hidden=false;
   $('#date').textContent=dateLabel(board.today,{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  $('#page-title').textContent={today:'Today.',intelligence:'Athlete intelligence.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.'}[tab];
+  $('#page-title').textContent={today:'Today.',intelligence:'Athlete intelligence.',runway:'Runway.',areas:'Everything has a place.',waiting:'Waiting.',sources:'What is current?',opportunities:'Opportunities.',compound:'Who runs what?'}[tab];
   $('#freshness').textContent=`Workspace read ${checked(board.read_at)} ET`;
   $('#waiting-count').textContent=board.items.filter(i=>i.status==='waiting').length+board.coach_tasks.filter(t=>t.state.startsWith('waiting')).length;
   $('#source-count').textContent=board.sources.filter(s=>['stale','conflict','unavailable','pending','unchecked'].includes(sourceState(s))).length||'';
   $('[data-tab][aria-current]')?.removeAttribute('aria-current');$(`[data-tab="${tab}"]`).setAttribute('aria-current','page');
-  $('#view').innerHTML=({today:todayView,intelligence:intelligenceView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView}[tab])();
-  $('.capture:not(.opportunity-capture)')?.toggleAttribute('hidden',tab==='opportunities');
+  $('#view').innerHTML=({today:todayView,intelligence:intelligenceView,runway:runwayView,areas:areasView,waiting:waitingView,sources:sourcesView,opportunities:opportunitiesView,compound:compoundView}[tab])();
+  $('.capture:not(.opportunity-capture)')?.toggleAttribute('hidden',['opportunities','compound'].includes(tab));
 }
 async function refresh(){
   if(loading||!user)return;loading=true;$('#refresh').disabled=true;
