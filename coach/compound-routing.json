@@ -1,5 +1,5 @@
 {
-  "edition": "2026-11-14 · v2",
+  "edition": "2026-11-14 · v3",
   "authority": "Brice approves athlete-facing decisions. Route exceptions through the existing private queue. The current owner record and authorized readback determine status.",
   "rules": [
     {
@@ -276,6 +276,16 @@
       "light": null
     },
     {
+      "surface": "Going long (plans and company)",
+      "job": "Record",
+      "source": "form_long_plans, form_long_plan_joins, form_long_lines",
+      "when": "Anyone shares a plan; Brice shares what runners tell him",
+      "check": "Plans stay tentative and notify no one · B. lines go only to the runners named, or to everyone going long",
+      "done_when": "Plan shows on Runs; joiners show on it",
+      "tab": "Runs",
+      "light": null
+    },
+    {
       "surface": "speedandform.com studies",
       "job": "Voice",
       "source": "speedandform repo",
@@ -358,6 +368,12 @@
       "owner": "Programming + Record",
       "action": "Plan starts in the week they join; avatar live, code issued, race on the feed",
       "receipt": "training_blocks, collective_people"
+    },
+    {
+      "when": "Thursday to Saturday",
+      "owner": "Record → Head Coach",
+      "action": "Share the long runs people mention to Brice; Brice introduces who fits or asks the group",
+      "receipt": "form_long_plans, form_long_lines"
     },
     {
       "when": "After a build lands",
