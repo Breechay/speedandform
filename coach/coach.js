@@ -275,7 +275,9 @@ function doseOf(version) {
   const works = (version?.components || []).filter((part) => part.role === 'work');
   const work = works[0];
   if (!work) return null;
-  const unit = work.distance_unit || 'mi';
+  // Rep distance and pace denominator are independent. Elijah can run 1 km reps
+  // from a mile-authored plan; that remains 6:13–6:20/mi, never 6:13/km.
+  const unit = version?.distance_unit || work.distance_unit || 'mi';
   const amount = workMagnitude(work);
   const total = work.shape === 'repetitions' && work.distance != null
     ? Number((work.distance * work.repeat_count).toFixed(2)) : null;
@@ -640,7 +642,7 @@ function sessionInspectorHtml(session) {
       ? `${clock(part.recovery_seconds)} ${part.recovery_kind}` : '';
     return `<div class="ins-part">
       <dt>${escapeHtml(String(part.role).replace('_', ' '))}</dt>
-      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(part.distance_unit || 'mi')}</span>` : ''}
+      <dd><b>${escapeHtml(what)}</b>${at ? `<span>${escapeHtml(at)}/${escapeHtml(version.distance_unit || part.distance_unit || 'mi')}</span>` : ''}
         ${after ? `<span>${escapeHtml(after)}</span>` : ''}</dd>
     </div>`;
   }).join('');
@@ -1503,6 +1505,15 @@ let partsOpenedAs = '';
 const clockText = (seconds) => seconds == null || seconds === ''
   ? '' : `${Math.floor(seconds / 60)}:${String(Math.round(seconds % 60)).padStart(2, '0')}`;
 
+// Pace seconds are canonical seconds per mile in Postgres. The editor renders
+// and accepts the athlete/session denominator without changing that storage
+// contract (for example Simon's 370 sec/mi renders as 3:50/km).
+const canonicalPaceSecondsToDisplay = (seconds, unit) => seconds == null ? null
+  : Math.round(unit === 'km' ? Number(seconds) / 1.609344 : Number(seconds));
+const displayPaceSecondsToCanonical = (seconds, unit) => seconds == null ? null
+  : Math.round(unit === 'km' ? Number(seconds) * 1.609344 : Number(seconds));
+let renderedPaceUnit = 'mi';
+
 function partRowHtml(part = {}) {
   const shape = part.shape || 'continuous';
   const options = (list, chosen) => list
@@ -1520,8 +1531,8 @@ function partRowHtml(part = {}) {
       ${field('Distance', 'distance', part.distance == null ? '' : Number(part.distance), 'type="number" step="0.01" min="0"')}
       <label>Unit<select name="partDistanceUnit">${options([['mi', 'mi'], ['km', 'km']], part.distance_unit || 'mi')}</select></label>
       ${field('Minutes', 'durationMinutes', part.duration_seconds == null ? '' : Number((part.duration_seconds / 60).toFixed(2)), 'type="number" step="0.01" min="0"')}
-      ${field('Band fast', 'paceLow', clockText(part.pace_low_seconds), 'placeholder="6:30"')}
-      ${field('Band slow', 'paceHigh', clockText(part.pace_high_seconds), 'placeholder="6:45"')}
+      ${field('Band fast', 'paceLow', clockText(canonicalPaceSecondsToDisplay(part.pace_low_seconds, renderedPaceUnit)), 'placeholder="6:30"')}
+      ${field('Band slow', 'paceHigh', clockText(canonicalPaceSecondsToDisplay(part.pace_high_seconds, renderedPaceUnit)), 'placeholder="6:45"')}
       ${shape === 'repetitions' ? field('Recovery', 'recovery', clockText(part.recovery_seconds), 'placeholder="3:00"') : ''}
       ${shape === 'repetitions' ? `<label>Kind<select name="recoveryKind">${options(RECOVERY_KINDS, part.recovery_kind)}</select></label>` : ''}
       ${shape === 'repetitions' ? field('Floor', 'repeatMinimum', part.repeat_minimum, 'type="number" min="1"') : ''}
@@ -1537,6 +1548,7 @@ const CARRIED = ['rpe_source', 'rpe_default_version', 'rpe_low', 'rpe_high', 're
 let carriedParts = [];
 
 function paintParts(parts) {
+  renderedPaceUnit = sessionForm.elements.distanceUnit.value === 'km' ? 'km' : 'mi';
   carriedParts = parts.map((part) => {
     const kept = {};
     CARRIED.forEach((key) => { if (part[key] != null) kept[key] = part[key]; });
@@ -1576,8 +1588,8 @@ function readParts({ raw = false } = {}) {
       durationSeconds: minutes == null ? null : Math.round(minutes * 60),
       recoverySeconds: shape === 'repetitions' && at('recovery') ? toSeconds(at('recovery')) : null,
       recoveryKind: shape === 'repetitions' ? (at('recoveryKind') || null) : null,
-      paceLowSeconds: at('paceLow') ? toSeconds(at('paceLow')) : null,
-      paceHighSeconds: at('paceHigh') ? toSeconds(at('paceHigh')) : null,
+      paceLowSeconds: at('paceLow') ? displayPaceSecondsToCanonical(toSeconds(at('paceLow')), renderedPaceUnit) : null,
+      paceHighSeconds: at('paceHigh') ? displayPaceSecondsToCanonical(toSeconds(at('paceHigh')), renderedPaceUnit) : null,
       rpeLow: carried.rpe_low ?? null,
       rpeHigh: carried.rpe_high ?? null,
       rpeSource: carried.rpe_source ?? null,
@@ -1646,6 +1658,20 @@ document.getElementById('sessionParts').addEventListener('change', (event) => {
   markPartsState();
 });
 document.getElementById('sessionParts').addEventListener('input', markPartsState);
+sessionForm.elements.distanceUnit.addEventListener('change', () => {
+  const next = sessionForm.elements.distanceUnit.value === 'km' ? 'km' : 'mi';
+  if (next === renderedPaceUnit) return;
+  document.querySelectorAll('#partsRows [data-part]').forEach((row) => {
+    ['paceLow', 'paceHigh'].forEach((name) => {
+      const input = row.querySelector(`[name="${name}"]`);
+      if (!input?.value.trim()) return;
+      const canonical = displayPaceSecondsToCanonical(toSeconds(input.value), renderedPaceUnit);
+      input.value = clockText(canonicalPaceSecondsToDisplay(canonical, next));
+    });
+  });
+  renderedPaceUnit = next;
+  markPartsState();
+});
 
 function openBlockDialog() {
   blockForm.reset();
