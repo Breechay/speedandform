@@ -106,7 +106,7 @@ const metadata = {
   author: { '@type': 'Person', name: 'Brice Ikouebe', url: 'https://speedandform.com/' },
   publisher: { '@type': 'Organization', name: 'Speed & Form', url: 'https://speedandform.com/' },
   datePublished: '2026-11-04',
-  dateModified: '2026-11-04',
+  dateModified: '2026-11-16',
   inLanguage: 'en-US',
   about: ['Athletic development', 'Run development', 'Speed training', 'Strength training', 'Training methodology'],
   isAccessibleForFree: true
@@ -149,7 +149,7 @@ const html = `<!doctype html>
   <a class="home-mark" href="/" aria-label="Speed and Form home"><img src="/assets/brand/kit/emblem/sf-emblem-ink.svg" width="88" height="35" alt=""></a>
   <nav aria-label="Reading and coaching"><a href="/the-method">The Method</a><a href="/training-map">Training Map</a><a href="/library">Library</a><a href="/coaching/miami/">Train with FORM ↗</a></nav>
 </header>
-<div class="hero" id="top"><div class="hero-rule"></div><div class="hero-meta"><span>FORM / RUN DEVELOPMENT</span><span>A living method · Edition 01 · November 2026</span></div>
+<div class="hero" id="top"><div class="hero-rule"></div><div class="hero-meta"><span>FORM / RUN DEVELOPMENT</span><span>A living method · Edition 02 · November 2026</span></div>
   <h1>THE METHOD<br><em>BIBLE.</em></h1>
   <div class="hero-bottom"><p>Train to win.<br><span>Build the athlete.</span></p>
   <div class="hero-intro">${intro}</div></div>
