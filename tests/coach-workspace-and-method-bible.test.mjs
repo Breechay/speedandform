@@ -35,8 +35,8 @@ test('the public Method Bible is rendered static HTML with a complete anchor ind
   const source = read('method-bible/method.md');
   const htmlSections = [...generated.matchAll(/<section class="chapter" id="([^"]+)"/g)].map((m) => m[1]);
   const tocLinks = [...generated.matchAll(/<a href="#([^"]+)"><span>/g)].map((m) => m[1]);
-  assert.equal(htmlSections.length, 17);
-  assert.equal(new Set(htmlSections).size, 17);
+  assert.equal(htmlSections.length, 20);
+  assert.equal(new Set(htmlSections).size, 20);
   for (const id of htmlSections) assert.ok(tocLinks.includes(id), `TOC missing ${id}`);
   assert.match(source, /Training to win is not racing the workouts/);
   assert.match(source, /strength, mobility, nourishment, sleep/);

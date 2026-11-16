@@ -1,8 +1,33 @@
 # FORM — The Method Bible
 
-Brice Ikouebe · Speed & Form · Public edition 01 · November 4, 2026
+Brice Ikouebe · Speed & Form · Public edition 02 · November 16, 2026
 
 This is how I think about developing athletes. It is a living coaching method: the principles I use to observe, teach, program, interpret, and change my mind. The private athlete record always owns the actual prescription.
+
+## 00. The method in twenty lines
+
+Everything below expands these lines. Where a line and a chapter differ, the chapter is the fuller statement.
+
+1. Train for abnormal results, not normal ones. Hard, never hard for its own sake.
+2. Athletes think they are training for the conservative goal and land well past it.
+3. Every athlete has one most important gap. The week is built to close it.
+4. Fresh legs for key sessions. How an athlete runs them tells me how confident to be.
+5. Not everyone needs many running days. Easy runs are for shakeout, drills and being out.
+6. Easy is the athlete's own zone 2 effort. Endurance comes from a lot of easy running.
+7. Long runs build time on feet, then progressively faster finishes.
+8. Athletes with the same goal, threshold, top speed and limiter can share one week.
+9. A block that starts mid-week starts that week, and that week repeats the next.
+10. Threshold buys race pace: stable threshold sits about 20 to 30 seconds per mile faster than the half-marathon pace it supports.
+11. Late in a block, threshold can be traded for race-pace miles when holding race pace is the limiter. Threshold returns after the race.
+12. Paces are in minutes per mile unless the athlete runs in kilometers.
+13. Almost everyone strength trains, and runners train glutes twice a week. Strength and HYROX athletes are made into disciplined runners.
+14. Coach the whole life: training, food and recovery, fitted to the person.
+15. Carbs around and after hard sessions, from a source the athlete enjoys. Fuel for training is not the enemy.
+16. Check and cue form, but never fix what is not costing anything.
+17. The work is good; execution is the problem to solve. Remove friction from real life.
+18. Grade the week honestly. A miss counts, and the real number moves people more than a flattering one.
+19. Several short weeks in a row mean the plan changes: remove a session, move one, or check in.
+20. Coach self-starters. The work rewards the athlete who shows up and files it.
 
 ## 01. Train to win
 
@@ -105,6 +130,12 @@ I sometimes stack demanding work deliberately to preserve genuine easy days afte
 
 The athlete does not get extra credit for turning easy running into threshold, or training through exhaustion to feel dedicated. Eating, sleeping, showing up prepared, and staying consistent are part of the competitive plan. The purpose is to **stack useful adaptations**, not collapse after isolated big days.
 
+### Fresh legs and shared weeks
+
+Key sessions get fresh legs. How an athlete runs them tells me how confident to be, so nothing hard sits the day before. Not everyone needs many running days; extra easy runs are for shakeout, drills and being out, not for filling a quota.
+
+Athletes with the same goal, threshold, top speed and limiter can share one week, with personal paces inside it. A block that starts mid-week starts that week, and that week repeats the next.
+
 > A clear week is better than seven impressive workout cards.
 
 ## 06. Easy running makes everything else possible
@@ -112,6 +143,8 @@ The athlete does not get extra credit for turning easy running into threshold, o
 Easy running builds the engine, supports repeatable practice, and helps an athlete return to more demanding work. It is not a failed workout or time that must be filled with extra speed.
 
 **Easy is an actual effort, not simply a pace printed on a card.** If a nominal easy pace feels like seven or eight out of ten for the runner today, it is not functioning as easy work. Run the effort. Let the pace appear.
+
+In practice, easy is the athlete's own zone 2 on their watch. The zone is the guide; the effort decides. Endurance comes from a lot of easy running.
 
 Ten useful minutes count. Twenty or thirty may be the right dose. More mileage matters when it helps the larger development and can be absorbed. Frequency is valuable because the athlete can practice often without every exposure asking for substantial recovery.
 
@@ -148,6 +181,10 @@ I favor continuous tempo, controlled steady work, specific race-pace or faster-t
 I judge progression by the pace the athlete can actually sustain, its evenness, when in the run they can sustain it, perceived cost, recovery, and the next session they can absorb. More work is useful only when it develops something.
 
 Good threshold training teaches the athlete to remain strong and controlled, not to win an ordinary training session.
+
+### Trading threshold for race pace · November 16, 2026
+
+Late in a half-marathon block, when holding race pace is the limiter, threshold sessions can become race-pace miles. The athlete practices the exact pace the race asks for. Threshold returns after the race.
 
 ### The observed threshold–half-marathon relationship · November 6, 2026
 
@@ -274,11 +311,17 @@ I always develop the glutes. Glutes and hips are central to my concept of a capa
 
 **Universal priority does not mean identical exercise or dose.** Existing restrictions, readiness, the athlete's experience, and running workload determine how that development happens.
 
+Runners train glutes twice a week. Strength and HYROX athletes are made into disciplined runners: the same easy discipline, the same respect for the key session.
+
 The full frame matters too: hamstrings, calves, feet, quads, trunk, back, shoulders and useful upper-body strength. I want athletes who can produce force, receive it, stay coordinated, and remain capable late in demanding work.
 
 Strength has its own adaptations. It is not only background injury prevention, and it should not be described as inherently opposed to power. But it must be programmed with the running week. A hard lower-body lift can change Thursday speed; a hard Saturday long run can change the value of lifting on Sunday.
 
 For athletes using FORM Running and Forge Strength, I review both the current week and following seven days when making a meaningful adjustment. Each system retains its own training authority. I do not invent a strength prescription inside a running record.
+
+### Fuel and the whole life
+
+I coach the whole life: training, food and recovery, fitted to the person. Carbs go around and after hard sessions, from a source the athlete enjoys. Fuel for training is not the enemy. Sleep and ordinary recovery are part of the plan, not what is left after it.
 
 ## 11. The bow: tension and fluidity
 
@@ -344,23 +387,26 @@ A clean interface is a coaching decision too. Do not repeat the structured presc
 
 Agent assistance is welcome. Agents should read the current sources, surface discrepancies, help me author, and verify actual outcomes. They do not silently replace my decisions or invent missing evidence.
 
+**The app reads; the coach decides.** It names each athlete's gap, grades the week, and proposes changes such as moving a key session off a hard day. Nothing it proposes changes a plan until I accept it. In the athlete's own grade an unfiled session counts as not done. In my reading of the athlete, an unfiled session is unknown, not a failure.
+
 ## 16. The authoring test
 
 Before writing a plan, I ask:
 
 1. Who is this athlete, and what would training to win mean in their actual context?
 2. What do their recent training, words, and movement tell me?
-3. What capability should change first?
-4. Where is glute development, and what other strength is being trained?
-5. Where is useful mobility and fluidity?
-6. Which session matters most this week, and what must stay easy to protect it?
-7. What does the long run do: aerobic support, progression, specific work, or step-back?
-8. Does each demanding repetition buy skill, a stimulus, or a worthwhile lesson?
-9. What outside work consumes the athlete's recovery budget?
-10. Is the progression authored all the way through, including sensible reductions?
-11. Are the pace prescriptions and baseline marks actually attributable?
-12. Will the athlete understand the work, and will filing preserve what happened?
-13. What observation could change my mind later?
+3. What is the one gap, and which session closes it?
+4. What capability should change first?
+5. Where is glute development, and what other strength is being trained?
+6. Where is useful mobility and fluidity?
+7. Which session matters most this week, and what must stay easy to protect it?
+8. What does the long run do: aerobic support, progression, specific work, or step-back?
+9. Does each demanding repetition buy skill, a stimulus, or a worthwhile lesson?
+10. What outside work consumes the athlete's recovery budget?
+11. Is the progression authored all the way through, including sensible reductions?
+12. Are the pace prescriptions and baseline marks actually attributable?
+13. Will the athlete understand the work, and will filing preserve what happened?
+14. What observation could change my mind later?
 
 The answer becomes a complete training plan, not a set of impressive cards. When new evidence requires a change, I make it explicitly and preserve the previous version.
 
@@ -368,13 +414,85 @@ The answer becomes a complete training plan, not a set of impressive cards. When
 
 Do not use **“rhythm”** or its plural in new FORM workout titles, intents, execution notes, Week previews, coach-written program language, or public method prose. Choose **pace, timing, cadence, continuity, coordination, composure, control, settle**, or another accurate word. This is an editorial prohibition, not a workout-dose change. Preserve immutable filings and exact historic athlete quotations; already published legacy copy requires a separately verified, versioned editorial migration.
 
-## 17. How this bible changes
+## 17. Close the gap
+
+Every athlete has one most important gap: easy miles, key sessions, the long run, strength, or a pace not yet owned. The week is built around closing it, and the week's one thing follows it.
+
+I read the gap from the last three full weeks of filed training, not from one good or bad day. When it closes, it gets a quiet acknowledgement and the next gap takes its place. One gap at a time.
+
+### Grade the week
+
+The week has a grade. 100% means everything written was done. Key sessions and the long run count three times as much as an easy run, and a key session earns full credit when its reps land on their paces. Misses count. Athletes chase 100%, and the honest number moves them more than a flattering one.
+
+### When weeks run short
+
+The work is usually good; execution is the problem to solve. Two weeks under 70% means something in real life is in the way. I remove a session, move one, or check in before I add anything. Several short weeks in a row mean the plan changes.
+
+> Close the most important gap. Grade it honestly. Make next week easier to execute.
+
+## 18. Rules for when
+
+The chapters say what I value. These say what to do when. They are my working defaults: they apply unless an athlete's record says otherwise, and I revise them from experience. The app can raise any of them as a proposal; I decide.
+
+### What counts as hard
+
+Threshold or faster work over 10 minutes in total; a speed session with more than about 1 km of fast running; a race-pace hold of 3 miles or more; the long run; heavy lower-body strength. Everything else is easy. Two hard days do not sit back to back unless I stacked them on purpose.
+
+### When a pace steps
+
+Two key sessions in a row with at least 80% of reps on pace: the next step goes live. One session under 60%: hold. Two under 60%: step back one. A session run in heat never counts toward a step back.
+
+### Coming back after time off
+
+Easy running first: one week of easy running for each week off, up to four, before threshold returns. Threshold restarts about 30 seconds per mile slower than the last band the athlete owned and earns its way back by the pace-step rule. Speed comes back before the reps do.
+
+### Soreness and pain
+
+Soreness that eases as the run goes on: train as written and ask again in three days. Pain that worsens while running, changes how the athlete moves, or returns to the same spot twice in a week: the next hard session becomes easy and we talk that day. Interference with daily function pauses high-load progression. Persistent, severe or neurologic symptoms go to a clinician. Agents flag; they do not diagnose.
+
+### Taper
+
+Half marathon: volume down about 40% over the last 10 days. Marathon: down about 40% two weeks out and about 60% in race week. Intensity stays: the key sessions get shorter, not slower. The last hard session is four days out. No heavy legs in race week.
+
+### Heat
+
+When the dew point is above 70°F, hard-session paces slow about 5 seconds per mile for every 5°F above it. Effort governs; the pace on the card is a guide.
+
+### Long run progression
+
+Up at most 1 mile a week, with a step back every fourth week. The faster finish starts once the athlete has held the distance easy twice. Marathon-specific work starts from two comfortable hours.
+
+### Weekly volume
+
+Up at most 10% a week. After a short week, rebuild to the previous level before building past it.
+
+### Recovery weeks
+
+Every fourth week, volume down about 25%. The key session stays, shorter, and the long run steps back the same week.
+
+### A missed key session
+
+Within two days: run it then, if no hard session sits next to it. Later than that: let it go. Never stack it onto the next one.
+
+### Strength by phase
+
+Base: two to three lifts, heavier. Build: two. Specific: two, lighter lower body. Close: one, no heavy legs in race week. Glutes every phase.
+
+### Form cues
+
+One cue a week, chosen from what I saw. It repeats until the athlete owns it. Never cue what is not costing anything.
+
+## 19. How this bible changes
 
 This is a living public account of my method, not a fixed claim of universal scientific truth. I will add field observations, new teaching language, and refined training rules as practice teaches me.
 
 An adopted method should record what prompted it, where it applies, what it helps, and what later revised it. Other coaches and published work can challenge or inform the idea. The athlete's actual response stays central.
 
-**Current edition:** November 4, 2026. The original 22-chapter internal master includes private implementation detail and athlete-specific study context. This public edition describes the method without publishing private athlete records. Current athlete prescriptions always supersede examples here.
+### How new learning gets in
+
+Everything I read, hear and see becomes one line: the source, the takeaway in my words, and the principle or rule it touches. I mark it adopt, test, or set aside. An adopted line becomes a principle or changes a rule here. A tested line runs with one or two athletes first, and its result is recorded. A rule that keeps being set aside gets rewritten.
+
+**Current edition:** Edition 02, November 16, 2026. It joins the public method and the working canon in one document: the twenty lines, the gap and the grade, and the rules for when. Edition 01 was November 4, 2026. The original 22-chapter internal master includes private implementation detail and athlete-specific study context. This public edition describes the method without publishing private athlete records. Current athlete prescriptions always supersede examples here.
 
 For the shorter Run Development introduction, read [The Method](https://speedandform.com/the-method). For the training elements, see the [Training Map](https://speedandform.com/training-map). To work directly with me, visit [Run Development](https://speedandform.com/coaching/miami/).
 
