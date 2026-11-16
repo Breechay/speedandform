@@ -426,7 +426,7 @@ The week has a grade. 100% means everything written was done. Key sessions and t
 
 ### When weeks run short
 
-The work is usually good; execution is the problem to solve. Two weeks under 70% means something in real life is in the way. I remove a session, move one, or check in before I add anything. Several short weeks in a row mean the plan changes. In the three weeks before a race the taper owns the volume, so I check in instead of cutting.
+The work is usually good; execution is the problem to solve. One week under 70% holds the next week at the same volume instead of building; the build resumes after a full week. Two weeks under 70% means something in real life is in the way. I remove a session, move one, or check in before I add anything. Several short weeks in a row mean the plan changes. In the three weeks before a race the taper owns the volume, so I check in instead of cutting.
 
 > Close the most important gap. Grade it honestly. Make next week easier to execute.
 
