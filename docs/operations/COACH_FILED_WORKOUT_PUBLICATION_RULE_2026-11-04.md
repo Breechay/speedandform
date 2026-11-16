@@ -31,3 +31,13 @@ Do not retain consecutive-day quality merely because a group workout already exi
 ## Implementation
 
 Production migration `20261104171818_collective_work_default_on_opt_out_20261104.sql` aligns run, Forge strength, and coach duration publishers with default-on sharing. The athlete's OFF row overrides the default. Server publication is idempotent by source receipt. No consent check should be added to the coach workflow beyond respecting a deliberate Settings OFF.
+
+## Owner-requested connected-agent filing fallback — November 16, 2026
+
+A direct request from Brice to file his own workout (including a Strava/Garmin screenshot) is authorization to record that workout in his **existing** FORM athlete account. Do not ask him to authorize the same filing a second time.
+
+If the browser/Console is not signed in but the agent has authorized, owner-scoped FORM database access, do not stop solely at a Console authentication failure. Verify Brice's canonical athlete identity and current coach-owner membership, use a scoped maintenance session that invokes FORM's canonical filing function, and record the actual user/coach provenance. Do not create raw completion rows or bypass the canonical validation, completion triggers, sharing preference, or evidence rules. Never substitute another person's identity or create a duplicate athlete.
+
+If this is an unplanned run, add a clearly retrospective dated session/version so the proper workout label appears in the athlete record and work feed, while leaving the already prescribed sessions intact. Deduplicate by athlete, local date, distance, and duration. Record only observed measurements; missing tempo splits, RPE, and other diagnostics stay unknown. Confirm both the saved completion and the signed-in `collective_work_feed()` readback before reporting success.
+
+Data-only filing does **not** authorize a routine production deployment. If verified owner-scoped access or the canonical filing path is actually unavailable, say precisely what prevented the write instead of claiming it was filed.
