@@ -460,11 +460,11 @@ When the dew point is above 70°F, hard-session paces slow about 5 seconds per m
 
 ### Long run progression
 
-Up at most 1 mile a week, with a step back every fourth week. The faster finish starts once the athlete has held the distance easy twice. Marathon-specific work starts from two comfortable hours.
+Up at most 1 mile a week over the recent longest, with a step back every fourth week. The faster finish starts once the athlete has held the distance easy twice. Marathon-specific work starts from two comfortable hours.
 
 ### Weekly volume
 
-Up at most 10% a week. After a short week, rebuild to the previous level before building past it.
+Build about 10% a week at most, measured against the recent high, not last week. Returning to a level already held after a short or recovery week is not a jump. A week more than 30% above the recent high gets a second look.
 
 ### Recovery weeks
 
