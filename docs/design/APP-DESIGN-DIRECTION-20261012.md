@@ -2,6 +2,10 @@
 
 Owner: Brice. Scope: the current supplied Running and Strength design decisions and their website presentation. This is a concise cross-surface authority record, not a replacement native implementation brief or a release receipt.
 
+## October 19 · Athletic world + side-door supersession
+
+The owner approved a tactile **cream left-side door** from the dark Running Week, with a sliver of the Week visible, meaningful visual preview tiles instead of generic ruled navigation, and complete media destinations. This newer scoped rule **supersedes the October 12 Dossier 'plain navigation rows' line only**. Preserve the approved cream ink-bend launch, the dark Week and the same source/privacy gates. See [FORM athletic world standard](FORM_ATHLETIC_WORLD_STANDARD_2026-10.md), the [Running + homepage content model](../product/FORM_ATHLETIC_WORLD_CONTENT_MODEL_2026-10.md) and the native iOS implementation contract. The Group must remain browseable through truthful authorized photos, sessions and evergreen information even when no future run is published. App build, signed-in capture and live behavior remain unverified by this design record.
+
 ## Ownership and precedence
 
 Brice supplied revised app briefs during the website/menu audit and said Claude Code is implementing them. **Claude owns the native work.** Website work may use the approved assets and reconcile its own copy and documentation; it must not create another native implementation stream.
