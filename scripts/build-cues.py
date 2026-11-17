@@ -78,8 +78,11 @@ def build_cue(i, cues):
   <div class="cue-copy">
     <h1>{e(c['name'])}</h1>
     <p class="cue-do">{e(c['do'])}</p>
-    <p class="cue-think">{e(c['think'])}</p>
-    <p class="cue-why">{e(c['why'])}</p>
+    <div class="cue-beats">
+      <section><h2>Picture it</h2><p>{e(c['think'])}</p></section>
+      <section><h2>Try it now</h2><p>{e(c['try'])}</p><p class="cue-feel">{e(c['feel'])}</p></section>
+      <section><h2>Why it works</h2><p>{e(c['why'])}</p></section>
+    </div>
     <p class="cue-practice">{e(DATA['practice'])}</p>
     {app_block('Practice it in the app')}
   </div>
