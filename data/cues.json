@@ -3,6 +3,17 @@
  "practice": "On easy runs, think about it for 30 seconds, three times. In hard workouts, use it on the last rep. It is yours when it still holds in the last ten minutes of your long run.",
  "cues": [
   {
+   "slug": "poker-face",
+   "name": "Poker face",
+   "image": "poker-face",
+   "do": "Hard pace, easy face. Eyes soft and ahead, jaw loose.",
+   "think": "Pretend someone is filming you on the hardest rep. Make it look like an easy jog.",
+   "why": "A tight face tightens your neck, shoulders and hands, and that costs energy. A calm face keeps all of it loose.",
+   "alt": "A runner at speed with a relaxed face, a faint dotted line running from his eyes to a point far ahead on the ground.",
+   "try": "On your next fast stretch, let your jaw drop a little and look far down the road, not at your feet.",
+   "feel": "Fast legs, quiet face."
+  },
+  {
    "slug": "long-neck",
    "name": "Long neck",
    "image": "long-neck",
@@ -80,6 +91,17 @@
    "feel": "Your glutes push you along and each step feels easier."
   },
   {
+   "slug": "lean-from-the-ankles",
+   "name": "Lean from the ankles",
+   "image": "lean-from-the-ankles",
+   "do": "Tip your whole body forward a little, from the ankles, not the waist.",
+   "think": "Pretend you are a tall tree starting to tip over. Your legs run to keep up.",
+   "why": "A small lean lets your body weight pull you forward, so your legs push less for the same speed.",
+   "alt": "A runner from the side, one straight line from ankle to hip to shoulder to ear, tipped slightly forward past a faint upright outline of himself.",
+   "try": "Stand tall, feet together. Lean forward until you have to step. Run 50 meters holding that angle.",
+   "feel": "You feel pulled forward, not pushed."
+  },
+  {
    "slug": "tall-spring",
    "name": "Tall spring",
    "image": "tall-spring",
@@ -122,6 +144,17 @@
    "alt": "A runner from the front with both feet landing pointed straight ahead.",
    "try": "Run along a painted line. Each foot lands on its own side of it, toes pointing straight down the line.",
    "feel": "Your knees travel straight ahead, over your toes."
+  },
+  {
+   "slug": "gears",
+   "name": "Gears",
+   "image": "gears",
+   "do": "To go faster, lean a little more and quicken your feet. Never squeeze.",
+   "think": "Speed is a dial, not a switch. Turn it up one click at a time.",
+   "why": "Tensing up to go faster wastes energy and shortens your stride. A bit more lean and quicker steps go faster for free.",
+   "alt": "Three overlapping drawings of one runner, each leaning a little more and striding a little quicker, the last one solid.",
+   "try": "On an easy run, go one click faster for a minute. Nobody watching should see the change.",
+   "feel": "Faster, but it still looks easy."
   }
  ]
 }
