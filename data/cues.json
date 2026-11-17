@@ -1,0 +1,127 @@
+{
+ "source": "FORM form_cues (live app copy, Nov 17 2026). Only cues with a finished drawing are published.",
+ "practice": "On easy runs, think about it for 30 seconds, three times. Then run normally and notice the difference. In hard workouts, use it on the last rep.",
+ "cues": [
+  {
+   "slug": "long-neck",
+   "name": "Long neck",
+   "image": "long-neck",
+   "do": "Keep your chin level. Look at the ground a little way ahead.",
+   "think": "Pretend a string is gently pulling the top of your head up to the sky. Your chin stays level, never up.",
+   "why": "A high chin bends your back and tightens your shoulders. A long neck keeps you tall and makes breathing easy.",
+   "alt": "A runner from the side, tall, with a level chin and eyes a little way ahead.",
+   "try": "Stand with your back on a wall. Touch the wall with the back of your head without lifting your chin. Run at that height.",
+   "feel": "Your neck feels long and your shoulders drop."
+  },
+  {
+   "slug": "quiet-shoulders",
+   "name": "Quiet shoulders",
+   "image": "quiet-shoulders",
+   "do": "Keep your shoulders low and still. Only your arms swing.",
+   "think": "Pretend there is a full cup of water on each shoulder. Don't spill a drop.",
+   "why": "Bouncy shoulders push you up instead of forward, and they make your neck tight.",
+   "alt": "A runner from the front with level, relaxed shoulders while the arms swing.",
+   "try": "Shrug your shoulders up to your ears, then let them fall. Where they land is where they stay.",
+   "feel": "Your neck stays loose, even late in the run."
+  },
+  {
+   "slug": "four-lights",
+   "name": "Four lights",
+   "image": "four-lights",
+   "do": "Keep your shoulders right on top of your hips.",
+   "think": "Pretend you have headlights on your shoulders and tail lights on your hips. Keep all four lights pointing straight ahead, never crossing.",
+   "why": "When your shoulders twist side to side, you waste energy. Facing forward sends all of it forward.",
+   "alt": "A runner from the front, with small lights marking both shoulders and both hips, all square and facing forward.",
+   "try": "Watch yourself run toward a shop window, or film ten seconds from the front. Shoulders and hips face the same way the whole time.",
+   "feel": "Your chest faces forward and your arms swing past your sides, not across your body."
+  },
+  {
+   "slug": "elbows-back",
+   "name": "Elbows back",
+   "image": "elbows-back",
+   "do": "Push your elbows back. Let them swing forward on their own.",
+   "think": "Pretend someone is standing right behind you. Bump them gently with each elbow.",
+   "why": "Your legs copy your arms. Arms that push back push you forward.",
+   "alt": "A runner from the side driving one elbow back behind the body.",
+   "try": "Stand still and swing your arms. Push back firmly and let the forward swing be easy. Notice your legs want to go.",
+   "feel": "The work happens behind you, and your hands stay relaxed."
+  },
+  {
+   "slug": "low-hands",
+   "name": "Low hands",
+   "image": "low-hands",
+   "do": "Keep your hands low, close to your hips.",
+   "think": "Reach for your shorts pockets every time your arm swings back.",
+   "why": "High hands make your shoulders tight. Low, loose hands let your arms help your legs.",
+   "alt": "A runner with loose hands passing low, close to the hips.",
+   "try": "Bend your elbows to about a right angle and swing so your thumbs brush the side of your shorts.",
+   "feel": "Your shoulders sink and your arms feel lighter."
+  },
+  {
+   "slug": "soft-hands",
+   "name": "Soft hands",
+   "image": "soft-hands",
+   "do": "Keep your hands loose, never in a fist.",
+   "think": "Pretend you are holding a potato chip in each hand. Don't break it.",
+   "why": "Tight fists make tight arms and shoulders. Soft hands let the whole upper body relax.",
+   "alt": "A runner from the front with loose, relaxed hands.",
+   "try": "Squeeze a tight fist for five seconds, then open it halfway. Run with the halfway hand.",
+   "feel": "Your forearms and shoulders stay loose."
+  },
+  {
+   "slug": "hips-forward",
+   "name": "Hips forward",
+   "image": "hips-forward",
+   "do": "Run tall with your hips forward, right under your shoulders.",
+   "think": "Pretend a rope is tied to your belt buckle, gently pulling you forward. Your hips go first and your feet follow.",
+   "why": "When your hips sit back, your legs do all the work. Hips forward lets your glutes push you along.",
+   "alt": "A runner from the side, tall, with a thin orange rope pulling forward from the belt buckle.",
+   "try": "Stand tall and lean your whole body forward from the ankles until you have to take a step. That first step is the feeling.",
+   "feel": "Your glutes push you along and each step feels easier."
+  },
+  {
+   "slug": "tall-spring",
+   "name": "Tall spring",
+   "image": "tall-spring",
+   "do": "Run tall, with soft knees.",
+   "think": "Pretend you are a spring standing up tall. Each step squishes it a little, and it pops you forward.",
+   "why": "A tall, springy body stores energy on every step and gives it back. Stiff or slumped, that energy leaks away.",
+   "alt": "A tall runner from the side with a light coil drawn around the standing leg.",
+   "try": "Do 20 small hops on the spot, light and quiet, staying tall. Then start running with the same bounce.",
+   "feel": "Each step feels light, like the ground gives some energy back."
+  },
+  {
+   "slug": "land-under-you",
+   "name": "Land under you",
+   "image": "land-under-you",
+   "do": "Let each foot land right under your hips, not out in front.",
+   "think": "Pretend there is a coin on the ground right under your hips. Step on the coin.",
+   "why": "A foot that lands far in front puts on the brakes. Landing under you keeps you rolling forward.",
+   "alt": "A runner from the side with the front foot landing under the hips, on a small coin.",
+   "try": "Run on the spot for ten seconds. Your feet land right under you. Now drift forward and keep landing there.",
+   "feel": "Your steps get a little shorter, quicker and quieter."
+  },
+  {
+   "slug": "quick-feet",
+   "name": "Quick feet",
+   "image": "quick-feet",
+   "do": "Take light, quick steps. Your feet leave the ground fast.",
+   "think": "Pretend the ground is hot. Touch it and get your foot off fast.",
+   "why": "Quick, light steps spend less time braking and put less pounding on your legs.",
+   "alt": "A runner from the side, one foot barely touching the ground with small heat lines under it.",
+   "try": "Count your right foot for 30 seconds. Then add two or three more steps at the same speed.",
+   "feel": "Lighter, quieter steps, as if you are barely touching the ground."
+  },
+  {
+   "slug": "straight-feet",
+   "name": "Straight feet",
+   "image": "straight-feet",
+   "do": "Point your toes straight ahead when each foot lands.",
+   "think": "Pretend you are running on two train tracks, one for each foot. Keep your toes on the tracks.",
+   "why": "A foot that turns out pushes you sideways. Straight feet push you forward and keep your knees happy.",
+   "alt": "A runner from the front with both feet landing pointed straight ahead.",
+   "try": "Run along a painted line. Each foot lands on its own side of it, toes pointing straight down the line.",
+   "feel": "Your knees travel straight ahead, over your toes."
+  }
+ ]
+}
