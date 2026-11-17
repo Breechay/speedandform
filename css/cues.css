@@ -71,6 +71,8 @@ a{color:inherit}
  .cue-copy h1{font-size:clamp(52px,15vw,76px);margin-bottom:18px}
  .cue-app{flex-wrap:wrap}
  .cue-next a[href="/cues/"]{display:none}
- .cue-next a{font-size:19px}
+ .cue-next{gap:12px}
+ .cue-next a{font-size:17px;gap:6px;white-space:normal;min-width:0}
+ .cue-next a:last-child{text-align:right;justify-content:flex-end}
 }
 @media(prefers-reduced-motion:reduce){.cues-grid img{transition:none}.cues-grid a:hover img{transform:none}}
