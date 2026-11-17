@@ -1,0 +1,72 @@
+/* Form cues (Nov 17, 2026): the public library of Brice's running cues. Bone page, ink type, the drawings carry it. */
+@font-face{font-family:"Inter Tight";src:url("/assets/site/fonts/inter-tight-latin-variable.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root{--ink:#0B0B0B;--graphite:#1A1A1A;--bone:#F4F2EC;--muted:#575c58;--line:rgba(11,11,11,.18)}
+*{box-sizing:border-box}
+html{background:var(--ink);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bone);color:var(--ink);font-family:"Inter Tight",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.cues-shell{width:min(1360px,calc(100% - clamp(40px,6vw,112px)));margin:auto}
+.cues-top{background:var(--ink);color:var(--bone)}
+.cues-top .cues-shell{height:84px;display:flex;align-items:center;justify-content:space-between}
+.cues-top .sf-brand{display:block;width:62px;height:24px;background:url("/assets/brand/kit/emblem/sf-emblem-bone.svg") left center/contain no-repeat}
+.cues-top .sf-menu-toggle{display:inline-flex;width:44px;height:44px;align-items:center;justify-content:flex-end;color:var(--bone)}
+.cues-top .sf-menu-toggle svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.4}
+
+/* Index */
+.cues-head{padding:clamp(64px,8vw,128px) 0 clamp(36px,4vw,64px)}
+.cues-head h1{margin:0;font:450 clamp(64px,9vw,148px)/.9 "Inter Tight",Arial,sans-serif;letter-spacing:-.065em}
+.cues-grid{list-style:none;margin:0 auto;padding:0 0 clamp(48px,6vw,96px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(40px,5vw,84px) clamp(24px,4vw,64px)}
+.cues-grid a{display:grid;grid-template-rows:auto auto auto;text-decoration:none;color:inherit}
+.cues-grid .cues-figure{height:clamp(240px,26vw,380px);display:flex;align-items:flex-end;justify-content:center;border-bottom:1px solid var(--line);padding-bottom:18px}
+.cues-grid img{max-height:100%;max-width:100%;object-fit:contain;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.cues-grid a:hover img{transform:translateY(-6px)}
+.cues-grid strong{margin-top:18px;font:500 clamp(24px,2.2vw,32px)/1.1 "Inter Tight",Arial,sans-serif;letter-spacing:-.03em}
+.cues-grid span{margin-top:8px;max-width:30ch;color:var(--muted);font:400 16px/1.45 "Inter Tight",Arial,sans-serif}
+.cues-grid a:focus-visible{outline:2px solid var(--ink);outline-offset:6px}
+
+/* Rows: the app and the pain map */
+.cues-rows{padding:0 0 clamp(80px,9vw,140px)}
+.cues-rows a{display:grid;grid-template-columns:minmax(0,1fr) 34px;gap:7px 18px;align-items:center;min-height:104px;padding:20px 0;border-top:1px solid var(--line);text-decoration:none;color:inherit}
+.cues-rows a:last-child{border-bottom:1px solid var(--line)}
+.cues-rows strong{font:450 clamp(25px,2.4vw,34px)/1.1 "Inter Tight",Arial,sans-serif;letter-spacing:-.025em}
+.cues-rows span{grid-column:1;color:var(--muted);font:400 15px/1.5 "Inter Tight",Arial,sans-serif}
+.cues-rows svg,.cue-next svg,.cue-app-get svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.3}
+.cues-rows svg{grid-column:2;grid-row:1/3;justify-self:end}
+.cues-rows a:hover strong{text-decoration:underline;text-underline-offset:5px}
+
+/* One cue */
+.cue{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(40px,7vw,120px);align-items:center;padding:clamp(48px,6vw,96px) 0 clamp(56px,7vw,110px)}
+.cue-figure{margin:0;display:flex;justify-content:center;align-items:flex-end;height:min(78vh,820px)}
+.cue-figure img{max-height:100%;max-width:100%;object-fit:contain}
+.cue-copy h1{margin:0 0 28px;font:450 clamp(56px,7vw,112px)/.92 "Inter Tight",Arial,sans-serif;letter-spacing:-.06em}
+.cue-do{margin:0 0 22px;max-width:22ch;font:450 clamp(26px,2.6vw,38px)/1.2 "Inter Tight",Arial,sans-serif;letter-spacing:-.025em}
+.cue-think{margin:0 0 18px;max-width:34ch;font:400 clamp(19px,1.6vw,23px)/1.45 "Inter Tight",Arial,sans-serif}
+.cue-why{margin:0;max-width:38ch;color:var(--muted);font:400 18px/1.5 "Inter Tight",Arial,sans-serif}
+.cue-practice{margin:30px 0 0;padding-top:20px;border-top:1px solid var(--line);max-width:44ch;color:var(--muted);font:400 15px/1.55 "Inter Tight",Arial,sans-serif}
+.cue-app{display:flex;align-items:center;gap:18px;margin-top:34px}
+.cue-app img{width:56px;height:56px;border-radius:13px;box-shadow:0 1px 0 rgba(11,11,11,.08)}
+.cue-app-get{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 22px;border-radius:999px;background:var(--ink);color:var(--bone);text-decoration:none;font:500 16px/1 "Inter Tight",Arial,sans-serif}
+.cue-app-get:hover{background:var(--graphite)}
+.cue-next{display:flex;justify-content:space-between;gap:20px;padding:26px 0 clamp(60px,7vw,100px);border-top:1px solid var(--line)}
+.cue-next a{white-space:nowrap;display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font:450 clamp(20px,1.8vw,26px)/1.2 "Inter Tight",Arial,sans-serif;letter-spacing:-.02em}
+.cue-next a:hover{text-decoration:underline;text-underline-offset:5px}
+
+.cues-foot{background:var(--ink);color:#9ca39d}
+.cues-foot .cues-shell{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;font:500 12px/1.4 "Inter Tight",Arial,sans-serif;letter-spacing:.02em}
+.cues-foot a{text-decoration:none}
+
+@media(max-width:860px){
+ .cues-shell{width:calc(100% - 40px)}
+ .cues-top .cues-shell{height:72px}
+ .cues-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 18px}
+ .cues-grid .cues-figure{height:230px}
+ .cues-grid strong{font-size:22px}
+ .cues-grid span{font-size:14px}
+ .cue{grid-template-columns:1fr;gap:28px;padding-top:28px}
+ .cue-figure{height:52vh;min-height:320px}
+ .cue-copy h1{font-size:clamp(52px,15vw,76px);margin-bottom:18px}
+ .cue-app{flex-wrap:wrap}
+ .cue-next a[href="/cues/"]{display:none}
+ .cue-next a{font-size:19px}
+}
+@media(prefers-reduced-motion:reduce){.cues-grid img{transition:none}.cues-grid a:hover img{transform:none}}
