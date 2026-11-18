@@ -279,11 +279,11 @@ subject = "Your Speed & Form access"
 content_path = "./supabase/templates/invite.html"
 
 [auth.email.template.confirmation]
-subject = "Confirm your Speed & Form email"
+subject = "{{ .Token }} is your Speed & Form code"
 content_path = "./supabase/templates/confirmation.html"
 
 [auth.email.template.magic_link]
-subject = "Your Speed & Form sign-in link"
+subject = "{{ .Token }} is your Speed & Form code"
 content_path = "./supabase/templates/magic_link.html"
 
 [auth.email.template.recovery]
