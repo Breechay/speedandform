@@ -5,12 +5,13 @@
   const board = document.getElementById("fa-preview");
   const caption = document.getElementById("fa-selected-caption");
   const options = Array.from(document.querySelectorAll("[data-choose-theme]"));
-  if (!board || !caption || options.length !== 3) return;
+  if (!board || !caption || options.length !== 4) return;
 
   const captions = {
     quiet: "Bone / Quiet Clay. A lifted chalk card marks the current week.",
     signature: "Clay / Stronger Signature. The current week and primary action fill with clay.",
-    dark: "Charcoal / After Dark. Sunset details sit on raised charcoal; the primary action turns chalk."
+    dark: "Charcoal / After Dark. Sunset details sit on raised charcoal; the primary action turns chalk.",
+    blue: "FORM Paper / Paper Blue. Quiet blue marks the week, filed sessions and focused controls."
   };
   function selectTheme(theme) {
     if (!Object.prototype.hasOwnProperty.call(captions, theme)) return;

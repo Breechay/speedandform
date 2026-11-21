@@ -43,10 +43,12 @@ body.fa-brand { margin:0; background:#0B0B0B; color:#F4F2EC; -webkit-font-smooth
 .fa-orb-quiet { background:#EEECE5; --orb-inner:#F8F6F0; --orb-dot:#974F3E; }
 .fa-orb-signature { background:#EDE9E2; --orb-inner:#F8F6F0; --orb-dot:#974F3E; }
 .fa-orb-dark { background:#242321; --orb-inner:#302E2A; --orb-dot:#E6B58D; }
+.fa-orb-blue { background:#FAF8F4; --orb-inner:#FFFFFF; --orb-dot:#6C91A8; }
 .fa-live-choice { max-width:1500px; margin:0 auto 30px; color:#C2BDB4; min-height:24px; font:400 14px/1.5 Inter,Arial,sans-serif; }
 .fa-preview { --canvas:#EEECE5; --raised:#F8F6F0; --ink:#242321; --secondary:#68635D; --accent:#974F3E; --selection:#E8E1D7; --action:#242321; --action-ink:#F8F6F0; --rule:rgba(36,35,33,.14); --input:#FFFFFF; max-width:1500px; margin:auto; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(12px,2vw,28px); }
 .fa-preview[data-theme="signature"] { --canvas:#EDE9E2; --raised:#F8F6F0; --ink:#242321; --secondary:#68635D; --accent:#974F3E; --selection:#974F3E; --action:#974F3E; --action-ink:#F8F6F0; --rule:rgba(36,35,33,.13); --input:#FFFFFF; }
 .fa-preview[data-theme="dark"] { --canvas:#242321; --raised:#302E2A; --ink:#F8F6F0; --secondary:#C6BEB6; --accent:#E6B58D; --selection:#45362F; --action:#F8F6F0; --action-ink:#242321; --rule:rgba(248,246,240,.19); --input:#393631; }
+.fa-preview[data-theme="blue"] { --canvas:#FAF8F4; --raised:#FFFFFF; --ink:#292B29; --secondary:#777A76; --accent:#6C91A8; --selection:#E1EBEF; --action:#292B29; --action-ink:#FAF8F4; --rule:#E1DFD9; --input:#FFFFFF; }
 .fa-device { background:var(--canvas); color:var(--ink); min-width:0; min-height:680px; border-radius:clamp(19px,2vw,30px); border:6px solid #343331; box-shadow:0 22px 52px rgba(0,0,0,.28); overflow:hidden; transition:background-color .34s ease,color .34s ease; }
 .fa-device-top { display:flex; justify-content:space-between; padding:17px 23px 12px; align-items:center; gap:5px; font:600 10px/1.4 Inter,Arial,sans-serif; border-bottom:1px solid var(--rule); letter-spacing:.02em; }
 .fa-device-top span:nth-child(2) { letter-spacing:.2em; font-size:11px; }
@@ -77,7 +79,7 @@ body.fa-brand { margin:0; background:#0B0B0B; color:#F4F2EC; -webkit-font-smooth
 .fa-dossier-stats strong { font:500 17px/1.35 "Inter Tight",Inter,sans-serif; }
 .fa-dossier-orbs { display:flex; gap:17px; margin:17px 0 24px; }
 .fa-dossier-orbs .fa-theme-orb { width:39px; height:39px; }
-.fa-preview[data-theme="quiet"] .fa-dossier-orbs i:nth-child(1),.fa-preview[data-theme="signature"] .fa-dossier-orbs i:nth-child(2),.fa-preview[data-theme="dark"] .fa-dossier-orbs i:nth-child(3) { outline:2px solid var(--accent); outline-offset:3px; }
+.fa-preview[data-theme="quiet"] .fa-dossier-orbs i:nth-child(1),.fa-preview[data-theme="signature"] .fa-dossier-orbs i:nth-child(2),.fa-preview[data-theme="dark"] .fa-dossier-orbs i:nth-child(3),.fa-preview[data-theme="blue"] .fa-dossier-orbs i:nth-child(4) { outline:2px solid var(--accent); outline-offset:3px; }
 .fa-dossier-focus p,.fa-plan-note p { font:400 15px/1.5 Inter,Arial,sans-serif; margin-top:9px; }
 .fa-plan-list { border-top:1px solid var(--rule); }
 .fa-plan-week { min-height:65px; display:flex; gap:15px; align-items:center; padding:12px 10px; border-bottom:1px solid var(--rule); position:relative; }
@@ -100,6 +102,7 @@ body.fa-brand { margin:0; background:#0B0B0B; color:#F4F2EC; -webkit-font-smooth
 .fa-mark-quiet { border-left:4px solid #974F3E; background:#EEECE5; }
 .fa-mark-signature { background:#974F3E; }
 .fa-mark-dark { background:linear-gradient(90deg,#242321 50%,#E6B58D 50%); }
+.fa-mark-blue { background:linear-gradient(90deg,#FAF8F4 69%,#6C91A8 69%); }
 .fa-distinct-grid h3 { font:510 28px/1.1 "Inter Tight",Inter,sans-serif; letter-spacing:-.03em; margin-bottom:14px; }
 .fa-distinct-grid p { color:#BFBDB8; font:400 16px/1.6 Inter,Arial,sans-serif; max-width:45ch; }
 .fa-footnote { max-width:1500px; margin:35px auto 0!important; color:#A7A49F; font:400 14px/1.5 Inter,Arial,sans-serif; }
@@ -145,3 +148,27 @@ body.fa-brand { margin:0; background:#0B0B0B; color:#F4F2EC; -webkit-font-smooth
 @media(prefers-reduced-motion:reduce) {
   .fa-theme-option,.fa-device,.fa-raised { transition:none!important; }
 }
+
+/* FORM Paper: a quiet in-product journal study, contained within the house's dark brand page. */
+.fa-paper-journal{padding:clamp(65px,8vw,130px) max(5vw,24px);border-block:1px solid rgba(244,242,236,.16)}
+.fa-paper-sheet{background:#FAF8F4;color:#292B29;max-width:730px;margin:0 auto;padding:clamp(22px,4vw,56px);font-family:Inter,Arial,sans-serif}
+.fa-paper-masthead{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;padding-bottom:31px}
+.fa-paper-masthead>div:last-child{text-align:right}
+.fa-paper-masthead strong{display:block;font:400 clamp(23px,4vw,35px)/1.1 "Inter Tight",Inter,Arial,sans-serif;letter-spacing:-.045em}
+.fa-paper-masthead span{font:500 18px/1.2 "Inter Tight",Inter,Arial,sans-serif}
+.fa-paper-masthead small{display:block;color:#777A76;font:400 12px/1.5 Inter,Arial,sans-serif;margin-top:7px}
+.fa-paper-weekrail{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-block:1px solid #E1DFD9}
+.fa-paper-weekrail>span{text-align:center;padding:16px 0 10px;color:#777A76;font:600 10px/1.2 Inter,Arial,sans-serif;letter-spacing:.1em}
+.fa-paper-weekrail b{display:block;font:400 16px/1.3 Inter,Arial,sans-serif;letter-spacing:0;margin-top:7px}
+.fa-paper-weekrail i{display:block;width:4px;height:4px;background:#6C91A8;border-radius:50%;margin:10px auto 0}
+.fa-paper-weekrail>span:nth-child(n+3) i{background:transparent}
+.fa-paper-entry{display:grid;grid-template-columns:56px minmax(0,1fr);gap:20px;padding:27px 0;border-bottom:1px solid #E1DFD9}
+.fa-paper-entry:last-child{border-bottom:0}
+.fa-paper-date strong{display:block;color:#8e8e87;font:300 28px/1 "Inter Tight",Inter,Arial,sans-serif}
+.fa-paper-date span{display:block;font:600 10px/1.5 Inter,Arial,sans-serif;letter-spacing:.12em;margin-top:9px}
+.fa-paper-entry small{display:block;color:#777A76;font:600 10px/1.4 Inter,Arial,sans-serif;letter-spacing:.16em;margin:0 0 8px}
+.fa-paper-entry h3{margin:0 0 8px;font:450 21px/1.2 "Inter Tight",Inter,Arial,sans-serif;letter-spacing:-.03em}
+.fa-paper-entry p{color:#5D605D;font:400 14px/1.5 Inter,Arial,sans-serif;margin:3px 0 0}
+.fa-paper-entry .fa-paper-muted{font-size:12px;color:#92918b;margin-top:11px}
+.fa-paper-cols{display:grid;grid-template-columns:1fr 1fr 60px;gap:8px;margin-top:15px;color:#92918b;font:600 10px/1.2 Inter,Arial,sans-serif;letter-spacing:.12em}
+@media(max-width:590px){.fa-paper-entry{grid-template-columns:42px minmax(0,1fr);gap:12px}.fa-paper-sheet{padding:21px 17px}.fa-paper-masthead strong{font-size:25px}.fa-paper-weekrail>span{font-size:9px}}

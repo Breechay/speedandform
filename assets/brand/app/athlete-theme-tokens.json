@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "FORM Running athlete appearance",
-  "status": "proposed native themes; awaiting Xcode and device approval",
+  "status": "FORM 44 source candidate; pending Xcode and signed-in device acceptance, not distributed",
   "scope": "Speed & Form: Running athlete Dossier, Plan, Week and Filing. Not the public website or Strength app.",
   "base": {
     "bone": "#EEECE5",
@@ -49,13 +49,26 @@
       "actionInk": "#242321",
       "currentWeekTreatment": "warm charcoal inset and hairline; no side marker",
       "filing": "raised charcoal cards, sunset focus, chalk action"
+    },
+    "paperBlue": {
+      "canvas": "#FAF8F4",
+      "raised": "#FFFFFF",
+      "ink": "#292B29",
+      "secondary": "#777A76",
+      "accent": "#6C91A8",
+      "selection": "#E1EBEF",
+      "action": "#292B29",
+      "actionInk": "#FAF8F4",
+      "currentWeekTreatment": "unboxed journal: date-led header, fixed seven-day orientation, receipt-based filing dots",
+      "filing": "warm-white surfaces, restrained blue focus, graphite action"
     }
   },
   "behavior": {
-    "choice": "three circular swatches in athlete Dossier",
+    "choice": "four circular swatches in athlete Dossier",
     "preview": "immediate with reduced-motion fallback",
     "persistence": "on device, not account synchronized",
     "photography": "no theme tint; original full-color or true monochrome",
-    "data": "training prescriptions and private coach data unaffected"
+    "data": "training prescriptions and private coach data unaffected",
+    "journal": "FORM Paper is a presentation language; all current workout truth remains canonical and historical receipts unchanged"
   }
 }
