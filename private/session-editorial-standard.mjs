@@ -1,5 +1,7 @@
 // Athlete-facing copy gate. Coaching owns the dose; this only checks words.
+const RUN_COMPANY_LABEL = /\b(?:solo|independently paced|with (?:a|your) (?:steady |running |pacing )?partner|partner[- ]paced)\b/iu;
 const RULES = [
+  [RUN_COMPANY_LABEL, 'Do not prescribe who accompanies a run. Remove pacing-company labels.'],
   [/\b(?:not a sprint|no sprinting)\b/iu, 'Remove redundant sprint commentary.'],
   [/\brhythms?\b/iu, 'Use a precise coaching term such as pace, timing, continuity or control.'],
   [/\b(?:he|she|they|you)(?:\s+will|\s*\x27ll)?\s+report back\b/iu, 'Remove reporting instructions from the workout.'],
@@ -61,6 +63,8 @@ export function weekPreviewEditorialIssues({ title, preview, hasStructuredWork =
   const text = String(preview ?? '').trim();
   if (/\brhythms?\b/iu.test(String(title ?? '')) || /\brhythms?\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Replace the prohibited coaching term with a precise pace, timing, continuity or control instruction.' });
+  if (RUN_COMPANY_LABEL.test(String(title ?? '')) || RUN_COMPANY_LABEL.test(text))
+    issues.push({ field: 'preview', message: 'Remove pacing-company labels; show only the workout and useful execution cues.' });
   if (!text) return issues;
   if (hasStructuredWork && /\b(?:drills\s*\+\s*\d+\s*strides|\d+\s*(?:relaxed\s+)?strides\s+(?:after|before)\s+the\s+warm[ -]?up)\b/iu.test(text))
     issues.push({ field: 'preview', message: 'Keep drill and stride instructions in the full session when the structured Week card already shows the speed work.' });
@@ -93,6 +97,8 @@ export function selfAuditSessionCopy(next, previous = null) {
 export function prescriptionPresentationIssues(title, components = []) {
   const displayTitle = String(title || '');
   const issues = [];
+  if (RUN_COMPANY_LABEL.test(displayTitle))
+    issues.push('Remove pacing-company labels from running session titles.');
   if (/\brhythms?\b/iu.test(displayTitle))
     issues.push('Replace the prohibited coaching term in the session title with a precise pace, timing or control term.');
   if (/^\s*(?:saturday|sunday)\s+(?:long|aerobic)\b/iu.test(displayTitle))
