@@ -282,6 +282,18 @@ Ease is not a synonym for low effort.
 
 A hard workout can demand a great deal from the athlete and still look organized. FORM distinguishes effort from unnecessary resistance. The desired quality is confidence, connection and control inside the work, not the absence of work.
 
+## Run fast, far — speed that endures
+
+**Brice's coaching belief:** *Run fast, far.* For endurance racing, the goal is not only to acquire speed, but to keep useful speed available after substantial running. The runner should be able to move decisively without losing the ease, rhythm, coordination or judgment that makes the pace sustainable.
+
+This is a development principle, **not** an instruction to make every long run fast, to race in training or to replace the aerobic foundation. An eight-mile continuous race-pace result and three to five race-pace miles late in a long run answer different questions: the first demonstrates sustained access in a relatively fresh state; the second asks whether access survives accumulated duration.
+
+In a **selected** race-specific long run, the miles before the final block are part of the prescription. They may progress from genuinely easy to controlled steady running rather than always remaining uniformly easy. That prior work should create a meaningful but recoverable cost—not threshold fatigue that destroys the quality of the last miles. Set the pace stages relative to the athlete's measured and observed capacities, not a universal number of seconds from goal pace. Preserve control in the final segment; forced, deteriorating mechanics are not success.
+
+The cost belongs to the **whole session and week**. Progress one major variable at a time: length of the run, speed or duration of the preceding work, placement of quality, or length of the late race-pace block. When Saturday becomes a primary race-specific stimulus, reduce or replace other quality, including Thursday support as needed, so the athlete arrives ready and can absorb the work. Fuel appropriately. In the taper, protect freshness and use small pace reminders instead of another development-sized test.
+
+Judge the result from prescribed versus actual splits, the athlete's perceived rhythm and control, relevant heart-rate or mechanics trends when available, and the following recovery. Do not attribute a late fade to one mechanism on appearance alone. **Evidence boundary:** physiological resilience and running-economy durability are real, but an exact easy-to-steady-to-race-pace sequence is FORM coaching judgment to assess in individual athletes, not an experimentally proven universal best workout.
+
 ## The eye and the instrument
 
 Brice describes the first recognition of friction as similar to hearing an out-of-tune instrument. Something stands out before the full explanation is available.
