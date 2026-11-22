@@ -3,7 +3,7 @@ import test from 'node:test';
 import {receive} from '../netlify/functions/garmin-activities.mjs';
 
 const env = { FORM_GARMIN_SOURCE_RANGES:'192.0.2.0/24', GARMIN_PUSH_ENABLED:'true', GARMIN_GATEWAY_TOKEN:'x'.repeat(64), FORM_SUPABASE_PUBLISHABLE_KEY:'fixture' };
-const batch = {activities:[{userId:'test-user', summaryId:'test-run', durationInSeconds:42, latitude:1}]};
+const batch = {activities:[{userId:'test-user', summaryId:'test-run', durationInSeconds:42, activityId:12345678, workoutId:'98765432101234567890', latitude:1}]};
 const post = () => new Request('https://example.test/', {
   method:'POST', headers:{'content-type':'application/json', 'x-forwarded-for':'192.0.2.2', 'cf-connecting-ip':'192.0.2.2'},
   body:JSON.stringify(batch),
@@ -21,7 +21,7 @@ test('acknowledgment follows successful durable RPC and the payload omits coordi
   let release, started;
   const entered = new Promise(resolve => { started = resolve; });
   const pending = receive(post(),{ip},env,async (_, options) => {
-    assert.deepEqual(JSON.parse(options.body).events,[{userId:'test-user',summaryId:'test-run',durationInSeconds:42}]);
+    assert.deepEqual(JSON.parse(options.body).events,[{userId:'test-user',summaryId:'test-run',activityId:'12345678',workoutId:'98765432101234567890',durationInSeconds:42}]);
     assert.equal(options.headers['x-form-gateway'],env.GARMIN_GATEWAY_TOKEN);
     started();
     return new Promise(resolve => { release = resolve; });
