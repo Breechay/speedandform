@@ -1,22 +1,31 @@
-import { BlockList, isIPv4 } from 'node:net';
+import { projectFeed } from '../../garmin-push/selected-feeds.mjs';
+import { BlockList, isIPv4, isIP } from 'node:net';
 
 // Source networks are supplied from the partner portal in runtime configuration.
-function allowed(ip, ranges) {
-  if (!isIPv4(ip ?? '') || !ranges) return false;
+function sourceRejection(ip, ranges) {
+  const family = isIP(ip ?? '');
+  if (!family) return 'missing_client_ip';
+  if (!ranges) return 'missing_source_ranges';
   const sources = new BlockList();
   for (const cidr of ranges.split(',')) {
     const [network, bits, extra] = cidr.trim().split('/');
-    if (extra !== undefined || !isIPv4(network) || !/^(2[0-9]|3[0-2])$/.test(bits ?? '')) return false;
+    if (extra !== undefined || !isIPv4(network) || !/^(2[0-9]|3[0-2])$/.test(bits ?? '')) return 'invalid_source_ranges';
     sources.addSubnet(network, Number(bits), 'ipv4');
   }
-  return sources.check(ip, 'ipv4');
+  return sources.check(ip, family === 4 ? 'ipv4' : 'ipv6') ? null : 'source_outside_ranges';
 }
 
 const respond = status => new Response(null, { status, headers: { 'cache-control': 'no-store' } });
 export async function receive(request, context, env, send) {
-  if (env.GARMIN_PUSH_ENABLED !== 'true') return respond(503);
+  const route = new URL(request.url).pathname.split('/').pop() || 'activities';
+  const lifecycle = ['deregistrations','userPermissionsChange'].includes(route);
+  if ((lifecycle ? env.GARMIN_LIFECYCLE_ENABLED : env.GARMIN_PUSH_ENABLED) !== 'true') return respond(503);
   if (request.method !== 'POST') return respond(405);
-  if (!allowed(context.ip, env.FORM_GARMIN_SOURCE_RANGES)) return respond(403);
+  const reason = sourceRejection(context.ip, env.FORM_GARMIN_SOURCE_RANGES);
+  if (reason) {
+    console.info('garmin_gateway_rejected', reason);
+    return respond(403);
+  }
   if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') return respond(415);
   if (!env.GARMIN_GATEWAY_TOKEN || !env.FORM_SUPABASE_PUBLISHABLE_KEY) return respond(503);
 
@@ -43,9 +52,16 @@ export async function receive(request, context, env, send) {
       }
       return value;
     });
-    if (!batch || Object.keys(batch).length !== 1 || !Array.isArray(batch.activities)
-      || !batch.activities.length || batch.activities.length > 1000) return respond(400);
-    const events = batch.activities.map(item => {
+    if (!batch || Object.keys(batch).length !== 1 || !Object.hasOwn(batch,route) || !Array.isArray(batch[route])
+      || !batch[route].length || batch[route].length > 1000) return respond(400);
+    const events = batch[route].map(item => {
+      if (lifecycle) {
+        if (typeof item?.userId !== 'string' || !item.userId.trim() || item.userId.length > 256) throw Error();
+        if (route === 'deregistrations') return {userId:item.userId};
+        if (!Array.isArray(item.permissions) || !item.permissions.every(p => typeof p === 'string')) throw Error();
+        return {userId:item.userId, permissions:item.permissions};
+      }
+      if (route !== 'activities') return projectFeed(route,item);
       if (!item || ![item.userId, item.summaryId].every(id => typeof id === 'string' && id.trim() && id.length <= 256)) throw Error();
       const event = { userId: item.userId, summaryId: item.summaryId };
       for (const key of ['activityId', 'workoutId']) {
@@ -60,14 +76,15 @@ export async function receive(request, context, env, send) {
       return event;
     });
     try {
-      const result = await send('https://pbgsjjegycacodiltbhn.supabase.co/rest/v1/rpc/form_garmin_receive_activities', {
+      const rpc = lifecycle ? 'form_garmin_lifecycle_v2' : route === 'activities' ? 'form_garmin_receive_activities' : 'form_garmin_receive_selected_v2';
+      const result = await send('https://pbgsjjegycacodiltbhn.supabase.co/rest/v1/rpc/' + rpc, {
         method: 'POST', redirect: 'error', signal: AbortSignal.timeout(15000),
         headers: { 'content-type': 'application/json', apikey: env.FORM_SUPABASE_PUBLISHABLE_KEY, 'x-form-gateway': env.GARMIN_GATEWAY_TOKEN },
-        body: JSON.stringify({ events }),
+        body: JSON.stringify(route === 'activities' ? {events} : {feed:route,events}),
       });
       return respond(result.status === 204 ? 200 : 503);
     } catch { return respond(503); }
   } catch { return respond(400); }
 }
 export default (request, context) => receive(request, context, process.env, fetch);
-export const config = { path: '/integrations/garmin/activities' };
+export const config = { path: ['/integrations/garmin/activities','/integrations/garmin/activityDetails','/integrations/garmin/sleeps','/integrations/garmin/hrv','/integrations/garmin/dailies','/integrations/garmin/userPermissionsChange','/integrations/garmin/deregistrations'] };
