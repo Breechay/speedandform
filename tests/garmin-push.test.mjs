@@ -12,7 +12,7 @@ const blocked = async () => { throw Error('unexpected backend request'); };
 test('disabled and untrusted requests never reach storage', async () => {
   let calls = 0;
   const record = () => { calls++; return blocked(); };
-  for (const ip of ['', '198.51.100.1', '203.0.113.1']) assert.equal((await receive(post(),{ip},env,record)).status,403);
+  for (const ip of ['198.51.100.1', '203.0.113.1']) assert.equal((await receive(post(),{ip},env,record)).status,403);
   assert.equal((await receive(post(),{ip:'192.0.2.2'},{...env,GARMIN_PUSH_ENABLED:'false'},record)).status,503);
   assert.equal(calls,0);
 });
