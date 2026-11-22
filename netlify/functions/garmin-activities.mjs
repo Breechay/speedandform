@@ -12,7 +12,7 @@ function allowed(ip, ranges) {
   return sources.check(ip, 'ipv4');
 }
 
-const respond = status => new Response(null, { status });
+const respond = status => new Response(null, { status, headers: { 'cache-control': 'no-store' } });
 export async function receive(request, context, env, send) {
   if (env.GARMIN_PUSH_ENABLED !== 'true') return respond(503);
   if (request.method !== 'POST') return respond(405);
