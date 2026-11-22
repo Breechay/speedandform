@@ -1,16 +1,18 @@
 import { projectFeed } from '../../garmin-push/selected-feeds.mjs';
-import { BlockList, isIPv4 } from 'node:net';
+import { BlockList, isIPv4, isIP } from 'node:net';
 
 // Source networks are supplied from the partner portal in runtime configuration.
-function allowed(ip, ranges) {
-  if (!isIPv4(ip ?? '') || !ranges) return false;
+function sourceRejection(ip, ranges) {
+  const family = isIP(ip ?? '');
+  if (!family) return 'missing_client_ip';
+  if (!ranges) return 'missing_source_ranges';
   const sources = new BlockList();
   for (const cidr of ranges.split(',')) {
     const [network, bits, extra] = cidr.trim().split('/');
-    if (extra !== undefined || !isIPv4(network) || !/^(2[0-9]|3[0-2])$/.test(bits ?? '')) return false;
+    if (extra !== undefined || !isIPv4(network) || !/^(2[0-9]|3[0-2])$/.test(bits ?? '')) return 'invalid_source_ranges';
     sources.addSubnet(network, Number(bits), 'ipv4');
   }
-  return sources.check(ip, 'ipv4');
+  return sources.check(ip, family === 4 ? 'ipv4' : 'ipv6') ? null : 'source_outside_ranges';
 }
 
 const respond = status => new Response(null, { status, headers: { 'cache-control': 'no-store' } });
@@ -19,7 +21,11 @@ export async function receive(request, context, env, send) {
   const lifecycle = ['deregistrations','userPermissionsChange'].includes(route);
   if ((lifecycle ? env.GARMIN_LIFECYCLE_ENABLED : env.GARMIN_PUSH_ENABLED) !== 'true') return respond(503);
   if (request.method !== 'POST') return respond(405);
-  if (!allowed(context.ip, env.FORM_GARMIN_SOURCE_RANGES)) return respond(403);
+  const reason = sourceRejection(context.ip, env.FORM_GARMIN_SOURCE_RANGES);
+  if (reason) {
+    console.info('garmin_gateway_rejected', reason);
+    return respond(403);
+  }
   if (request.headers.get('content-type')?.split(';')[0].trim().toLowerCase() !== 'application/json') return respond(415);
   if (!env.GARMIN_GATEWAY_TOKEN || !env.FORM_SUPABASE_PUBLISHABLE_KEY) return respond(503);
 
