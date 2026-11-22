@@ -35,12 +35,24 @@ export async function receive(request, context, env, send) {
       }
       chunks.push(value);
     }
-    const batch = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+    const batch = JSON.parse(Buffer.concat(chunks).toString('utf8'), (key, value, context) => {
+      if ((key === 'activityId' || key === 'workoutId') && typeof value === 'number') {
+        if (context?.source && /^[0-9]{1,40}$/.test(context.source)) return context.source;
+        if (!Number.isSafeInteger(value) || value < 0) throw Error();
+        return String(value);
+      }
+      return value;
+    });
     if (!batch || Object.keys(batch).length !== 1 || !Array.isArray(batch.activities)
       || !batch.activities.length || batch.activities.length > 1000) return respond(400);
     const events = batch.activities.map(item => {
       if (!item || ![item.userId, item.summaryId].every(id => typeof id === 'string' && id.trim() && id.length <= 256)) throw Error();
       const event = { userId: item.userId, summaryId: item.summaryId };
+      for (const key of ['activityId', 'workoutId']) {
+        if (item[key] == null) continue;
+        if (typeof item[key] !== 'string' || !/^[A-Za-z0-9_.:-]{1,128}$/.test(item[key])) throw Error();
+        event[key] = item[key];
+      }
       if (typeof item.activityType === 'string' && /^[A-Z_]{1,80}$/.test(item.activityType)) event.activityType = item.activityType;
       for (const field of ['startTimeInSeconds', 'durationInSeconds', 'distanceInMeters']) {
         if (Number.isFinite(item[field]) && item[field] >= 0) event[field] = item[field];
