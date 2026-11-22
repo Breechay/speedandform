@@ -1,8 +1,0 @@
-User-agent: *
-Allow: /
-
-# Rendering resources must remain crawlable.
-Disallow: /tmp/
-Disallow: /dev/
-
-Sitemap: https://speedandform.com/sitemap.xml
