@@ -36,3 +36,9 @@ test('acknowledgment follows successful durable RPC and the payload omits coordi
   for (const status of [401,403,500]) assert.equal((await receive(post(),{ip},env,async()=>new Response(null,{status}))).status,503);
   assert.equal((await receive(post(),{ip},env,blocked)).status,503);
 });
+test('platform IPv4-mapped address is compared against the same IPv4 networks', async()=>{
+ const ok=async()=>new Response(null,{status:204});
+ assert.equal((await receive(post(),{ip:'::ffff:192.0.2.2'},env,ok)).status,200);
+ assert.equal((await receive(post(),{ip:'::ffff:198.51.100.1'},env,ok)).status,403);
+ assert.equal((await receive(post(),{ip:'2001:db8::2'},env,ok)).status,403);
+});
