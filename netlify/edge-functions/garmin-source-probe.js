@@ -45,9 +45,14 @@ export async function receive(request, siteId, env, send) {
         event[key] = item[key];
       }
       if (typeof item.activityType === 'string' && /^[A-Z_]{1,80}$/.test(item.activityType)) event.activityType = item.activityType;
-      for (const field of ['startTimeInSeconds', 'durationInSeconds', 'distanceInMeters']) {
+      for (const field of ['startTimeInSeconds', 'durationInSeconds', 'distanceInMeters',
+        'averageHeartRateInBeatsPerMinute', 'maxHeartRateInBeatsPerMinute', 'averageSpeedInMetersPerSecond', 'totalElevationGainInMeters']) {
         if (Number.isFinite(item[field]) && item[field] >= 0) event[field] = item[field];
       }
+      // Brand rule: data views name the device ("Garmin Forerunner 965"). Plain printable text only.
+      if (typeof item.deviceName === 'string' && /^[\p{L}\p{N} ._()+-]{1,80}$/u.test(item.deviceName)) event.deviceName = item.deviceName;
+      // A manual or web-uploaded activity never files itself.
+      for (const flag of ['manual', 'isWebUpload']) if (typeof item[flag] === 'boolean') event[flag] = item[flag];
       return event;
     });
     try {
