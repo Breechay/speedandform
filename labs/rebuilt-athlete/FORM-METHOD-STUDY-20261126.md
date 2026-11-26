@@ -1,0 +1,28 @@
+# Study 002 · The athlete, the method, the game
+26 November 2026 · Research framing
+
+The injury is the starting condition, not the permanent identity of the study. The subject is now training in FORM to develop speed, threshold, endurance and muscular strength together. The question is whether the method and its software help him make better training decisions and absorb increasingly demanding work. The app is an intervention to evaluate, not an outcome that validates itself.
+
+## Three distinct layers
+- Physical development: pace exposure, longest sustained work, matched-pace HR and effort, mechanics, actual strength sets and loads, and recovery.
+- Training decisions: respect sequence, easy-running speed ceiling, assigned threshold band and recovery format, long-run dose, strength placement, and deliberate changes when recovery calls for them.
+- Product behavior: did the athlete see and use the game's feedback, did it reflect the intended work correctly, and did it change a subsequent decision? Completion, a brick or a level alone is not evidence of adaptation or behavior change.
+
+FORM's governing sequence is stimulate, absorb, progress. Preserve that sequence; no make-up mileage or extra effort to win points. Record exceptions rather than erasing them. A deliberate recovery change can be sound even when a planned session does not count.
+
+## The current rules to test
+Read current athlete-specific prescriptions and canonical game rules before interpreting an activity. As of November 26, FORM's actual easy-running guardrail for Brice is 480 seconds/mile: 8:00/mi or slower. This is a speed ceiling (not a target pace, HR ceiling or universal rule). FORM's aerobic tower rule says work over the ceiling is logged, not counted. Its threshold rule says work outside the band is logged, not counted. Its speed rule values quality reps and full rest; its endurance rule does not reward extra distance beyond the plan. Strength records and the applicable tower rules must be read together, with no inference of repetitions, loads, RIR or clearance from a set count.
+
+These are the rule texts observed in FORM, not a test that every shipped client or scorer enforces them. Verify actual awards, exceptions and receipt matching before saying a rule fired. Skill (week), Mastery (demonstrated capability), Capacity (paired comparisons), Experience (history) are different constructs; assigned or assessed ability must not be mislabeled as demonstrated. The game should reinforce doing the right work, not maximize training stress.
+
+## First observations
+- Nov 23: easy 8.12 mi at 9:54/mi and HR 122; Nov 25: easy 5.02 mi at 9:02/mi and HR 122. Both whole-run averages respect the 8:00/mi guardrail; no sample-level ceiling compliance or awarded brick is inferred. Differences in duration and conditions prevent a matched economy conclusion.
+- Nov 26: three eight-minute efforts at 6:18, 6:12 and 6:17/mi, versus the assigned 6:20–6:30/mi range. Athlete reports work RPE 7, deliberately settling near 6:25 instead of 6:05–6:10 (closer to RPE 8). Watch paused during timed rests instead of the assigned 90-second jog; actual movement during rest unknown. This demonstrates speed access and repeatable mechanics, but the departure remains visible. Do not grant a threshold promotion from this evidence alone or assume how the scorer treated it.
+- Running and strength assignments and completed strength receipts flow from the same FORM record. Compare actual lower-body load and the next hard run, not merely the planned schedule. Record units, repetitions and reserve only when available; duration-only records are separate.
+
+## Weekly review
+For each meaningful decision, record intended dose and sequence (with the applicable version and guardrail), what was actually filed, whether it matched, why a departure occurred if reported, what the app awarded or showed if observed, and the next-day/24–48-hour response if reported. Distinguish absent data from failure. In weekly review, report denominators and coverage: eligible easy receipts with readable pace / eligible receipts, in-band work repetitions / readable repetitions, assigned vs actual order and separation of hard running and lower strength, recovery changes, and observed game feedback vs expected rule. Do not use a single compliance percentage or require a perfect week. Compare changes over time, with matched conditions where feasible.
+
+Questions: Does feedback help keep easy runs easy? Does it discourage making threshold a race? Does it protect the sequence and encourage appropriate recovery, rather than extra sessions? Does the athlete increasingly reproduce speed at lower cost? Does strength development coexist with running progress?
+
+Publish only curated subject data, never private notes verbatim, GPS or other athletes' records. The study is a single-athlete observational case study; it can test plausibility, reveal defects and guide program design. It cannot establish that FORM caused a change or generalize efficacy to other athletes. Keep counterexamples and null observations; no automatic prescription changes or phase promotions. A recommendation returns to FORM for athlete/coach decision. No additional compulsory questionnaire.
