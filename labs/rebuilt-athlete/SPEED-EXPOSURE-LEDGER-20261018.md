@@ -298,6 +298,23 @@ Brice explicitly reports keeping **all 20 reps at RPE 6–7**, never deliberatel
 **Next observation, not a new prescription:** Within already-authorized running, note whether the useful arm rhythm can be recognized and regained **without** tracking another runner, while keeping comfortable shoulder/hand action and the intended effort. If filming a comparable short bout is practical and consented, compare arm travel, torso rotation and leg timing at similar pace; review 24–48-hour lower-leg response after the strength-plus-speed day. Do not deliberately exaggerate arm width, reach behind the body, overstride, increase repetitions or change running/Forge prescriptions on this single session.
 
 
+
+
+## November 5 and 22 · FORM completion backfill (reviewed November 26)
+
+Source: FORM Athlete System, Brice's dated completion receipts and recorded session pieces. The raw original FIT files were not independently reopened during this backfill; the November 22 receipt explicitly documents reconciliation with FIT activity 25162693353. November 5 is a coach import of Garmin splits. Do not treat missing data as zero.
+
+| Date | Work | Exact recorded times (seconds) | Total work | Work distance | Mean work pace |
+| --- | --- | --- | --- | --- | --- |
+| Nov 5 | 1000/600/400 m × 2 | 208.082 / 120.996 / 79.173 / 205.269 / 120.830 / 76.892 | 13:31.2 | 4.00 km | 5:26/mi |
+| Nov 22 | 400/800/1200/800/400 m | 77.527 / 156.107 / 235.989 / 156.065 / 73.627 | 11:39.3 | 3.60 km | 5:13/mi |
+
+- **Nov 5:** 4.54 mi, 31:26 recorded duration; work pace approximately 5:35 / 5:25 / 5:19 / 5:30 / 5:24 / 5:09 per mile. Both sets accelerated over shorter repetitions. No reported RPE, HR, symptom response or recovery duration in receipt.
+- **Nov 22:** 6.411 mi, timer 46:58.287, elapsed 1:03:35.452; HR 140 average, 181 maximum. Work mean HR 132/158/166/159/152; work max HR 167/176/181/179/174. Work pace 5:12 / 5:14 / 5:16 / 5:14 / 4:56 per mile. Elapsed recovery 95.663/139.861/222.192/133.790 s, with watch paused for most of each; actual movement unknown. Athlete described relaxed, repeatable efforts, no forcing and good mechanics; near 5:00/mi would have felt like 8/10 (hypothetical; no actual RPE in FORM receipt). No measured per-rep mechanics supplied.
+- **Interpretation:** November 5 and November 22 demonstrate access to faster broken running. November 26 adds longer repetitions at a slower pace, not a comparable speed test. Recovery, work durations and effort differ. Lap-average pace exposure is not sample-accurate time at instantaneous pace.
+
+For longer and easier runs from the same audit, see [dated running record](LONG-RUN-COMPARISON.md).
+
 ## November 26, 2026 · Speed feels available before its cost settles
 
 Original Garmin activity 25206583542, `25206583542_ACTIVITY.fit`, supplied by the athlete. Work laps (zero-based 3–4, 6–7, 9–10) paired by workout intensity and timer duration. Each pair totals 480 seconds. Pace = timer duration / recorded distance; lap metrics weighted by timer duration. Final-five-minute HR averages 300 one-second samples per rep. Original GPS trace not published.
