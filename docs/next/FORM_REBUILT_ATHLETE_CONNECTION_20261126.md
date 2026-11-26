@@ -1,0 +1,24 @@
+# FORM × The Rebuilt Athlete — connection contract · 26 November 2026
+
+## Implemented in database and website source
+- FORM remains the sole owner of authored plans, versions, placements, receipts and strength records. Study reads and interprets; no independent plan edits.
+- Supabase migration 20261126184231 creates public.rebuilt_athlete_public_snapshot. Single curated published row; RLS and explicit public read-only column grants. No anonymous or authenticated writes. Do not broaden existing private-table permissions. Public data is limited to this study's intended training record.
+- labs/rebuilt-athlete/REFRESH-FORM-SNAPSHOT.sql generates current/next week assignments and 28 days of filed run, aerobic and strength evidence. Preserves publication revocation and previously computed pace exposure.
+- labs/rebuilt-athlete/form-snapshot.js renders the snapshot on the main study, strength-and-speed and speed-exposure pages. No secret key; browser uses the publishable key. Date and stale/unavailable states are visible. Static historical copy is a fallback, not a competing plan.
+- Existing daily Rebuilt Athlete Review automation runs the reviewed refresh SQL and updates evidence ledgers. Sunday deeper review proposes changes; only approved FORM authoring changes prescriptions. No daily website deploy. The site must be released once with the new renderer; Netlify manual production publishing remains intentional.
+
+## Code handoff — next compatible app build, not release blocker
+Do not modify or delay the currently uploading build. Pull this contract from main into a new branch off the current accepted app base. Read AGENTS.md and relevant Garmin, filing and Voice Law instructions. Audit first; use existing canonical surfaces and data models.
+
+1. Evidence completeness. Inspect the actual Garmin activity-details ingress and storage, not merely summary receipts. Determine which consented sources provide time-series pace, timer/pause events, heart rate, power, cadence, running dynamics and laps. Reuse existing retained detail where available. If unavailable, report exactly why; never manufacture samples from lap averages. Keep raw GPS and device payloads private. No historical backfill promise without source access.
+2. Derive compact, versioned per-activity research evidence server-side, linked to the canonical completion; include sampling method, coverage, active timer vs elapsed, recovery gaps, segment type, exact recorded lap duration/distance, work-vs-recovery, pace-band time, matched-pace HR and longest uninterrupted effort. Keep sample-based distribution separate from segment-mean exposure. Exclude paused time; avoid counting whole activity plus its constituent laps. Dedupe Garmin/manual edits and preserve athlete corrections. No new watch integration required if existing authorized data suffices.
+3. Strength evidence audit. Current set records contain weights with no explicit unit and often no actual repetition count. Preserve unknowns in historical rows. Confirm UI and persistence explicitly record actual reps and load unit for future loaded sets; never substitute prescribed reps. If a data contract gap exists, fix with backward-compatible versioned receipts and tests, no automatic historical guesses. Record source/consent; no change to strength scoring.
+4. Optional native entry: only for the study owner, under existing suitable private Tools or Dossier surface, a restrained “My study” link to https://speedandform.com/labs/rebuilt-athlete/. Open the existing website; do not build a parallel planner or generic athlete publication feature. Do not expose the study owner's data to other athlete accounts in the app. Avoid adding another tab.
+5. Tests: existing full suite and both voice checks; add paused timer / irregular sampling / missing details / duplicate merge / correction / unit missing / ownership tests. No regressions to filing, workout transfer, scoring, Strength or Week. No production DB changes outside reviewed migration workflow; no app store upload without the normal release decision.
+
+## Acceptance / remaining work
+- Current plan and actuals update from FORM with no app release or website rebuild after the one-time website deployment.
+- Public payload excludes IDs, routes, private narrative, raw device data and credentials. Revocation hides live snapshot; old published static historical content is separate and requires removal if revoked.
+- Daily task distinguishes a database refresh, repo commit and actual live website publication.
+- Verify anonymous read only and failure/stale rendering; run full website build/voice gates on exact isolated production candidate before manual publish. Do not merge unrelated app work.
+- Deeper Sunday review: exposure, sustained duration, HR/RPE/mechanics at comparable pace, strength progression, recovery and direction. No causal inference from unlike workouts or assumptions about missing recovery.
