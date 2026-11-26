@@ -296,3 +296,43 @@ Brice explicitly reports keeping **all 20 reps at RPE 6–7**, never deliberatel
 **Research boundary:** [Arellano & Kram (2014)](https://pubmed.ncbi.nlm.nih.gov/25031455/) found normal arm swing less energetically costly than several restricted-arm conditions; [Arellano & Kram (2011)](https://pubmed.ncbi.nlm.nih.gov/21316058/) linked natural arm motion with lateral balance. Neither study tested “wider” or more backward arm pulls as a universal improvement. [Li et al. (2026)](https://doi.org/10.3389/fspor.2026.1845590) examined arm-swing modification and whole-body dynamics in **one elite sprinter**; it is hypothesis-generating, not validation of an intervention for this runner or proof that the arms directly pull the body forward.
 
 **Next observation, not a new prescription:** Within already-authorized running, note whether the useful arm rhythm can be recognized and regained **without** tracking another runner, while keeping comfortable shoulder/hand action and the intended effort. If filming a comparable short bout is practical and consented, compare arm travel, torso rotation and leg timing at similar pace; review 24–48-hour lower-leg response after the strength-plus-speed day. Do not deliberately exaggerate arm width, reach behind the body, overstride, increase repetitions or change running/Forge prescriptions on this single session.
+
+
+
+
+## November 5 and 22 · FORM completion backfill (reviewed November 26)
+
+Source: FORM Athlete System, Brice's dated completion receipts and recorded session pieces. The raw original FIT files were not independently reopened during this backfill; the November 22 receipt explicitly documents reconciliation with FIT activity 25162693353. November 5 is a coach import of Garmin splits. Do not treat missing data as zero.
+
+| Date | Work | Exact recorded times (seconds) | Total work | Work distance | Mean work pace |
+| --- | --- | --- | --- | --- | --- |
+| Nov 5 | 1000/600/400 m × 2 | 208.082 / 120.996 / 79.173 / 205.269 / 120.830 / 76.892 | 13:31.2 | 4.00 km | 5:26/mi |
+| Nov 22 | 400/800/1200/800/400 m | 77.527 / 156.107 / 235.989 / 156.065 / 73.627 | 11:39.3 | 3.60 km | 5:13/mi |
+
+- **Nov 5:** 4.54 mi, 31:26 recorded duration; work pace approximately 5:35 / 5:25 / 5:19 / 5:30 / 5:24 / 5:09 per mile. Both sets accelerated over shorter repetitions. No reported RPE, HR, symptom response or recovery duration in receipt.
+- **Nov 22:** 6.411 mi, timer 46:58.287, elapsed 1:03:35.452; HR 140 average, 181 maximum. Work mean HR 132/158/166/159/152; work max HR 167/176/181/179/174. Work pace 5:12 / 5:14 / 5:16 / 5:14 / 4:56 per mile. Elapsed recovery 95.663/139.861/222.192/133.790 s, with watch paused for most of each; actual movement unknown. Athlete described relaxed, repeatable efforts, no forcing and good mechanics; near 5:00/mi would have felt like 8/10 (hypothetical; no actual RPE in FORM receipt). No measured per-rep mechanics supplied.
+- **Interpretation:** November 5 and November 22 demonstrate access to faster broken running. November 26 adds longer repetitions at a slower pace, not a comparable speed test. Recovery, work durations and effort differ. Lap-average pace exposure is not sample-accurate time at instantaneous pace.
+
+For longer and easier runs from the same audit, see [dated running record](LONG-RUN-COMPARISON.md).
+
+## November 26, 2026 · Speed feels available before its cost settles
+
+Original Garmin activity 25206583542, `25206583542_ACTIVITY.fit`, supplied by the athlete. Work laps (zero-based 3–4, 6–7, 9–10) paired by workout intensity and timer duration. Each pair totals 480 seconds. Pace = timer duration / recorded distance; lap metrics weighted by timer duration. Final-five-minute HR averages 300 one-second samples per rep. Original GPS trace not published.
+
+| Rep | Distance | Pace | Avg / max HR | Final 5-min HR | Power | Contact | Step length | Vertical ratio |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 1.268 mi | 6:18/mi | 166 / 177 | 169 | 512 W | 229 ms | 1.44 m | 6.75% |
+| 2 | 1.290 mi | 6:12/mi | 176 / 185 | 182 | 521 W | 225 ms | 1.47 m | 6.62% |
+| 3 | 1.274 mi | 6:17/mi | 179 / 187 | 183 | 512 W | 227 ms | 1.46 m | 6.69% |
+
+Total: 24:00, 3.832 mi at 6:16/mi rounded; whole outing 8.55 mi, 1:00:38 timer, 1:16:32 elapsed. Inter-rep watch pauses: 94 and 102 seconds, with brief active transitions; separate rest timer reported. End-to-next-start sampled HR: 170 to 117, 182 to 125 bpm. Continuous paused HR unavailable; these are not standardized recovery tests; posture cannot be inferred. Watch temperature 77°F average / 86°F max, not ambient air. Garmin aerobic/anaerobic training effect 4.8/3.3; exercise load 467. Vertical oscillation 9.72/9.76/9.75 cm. Left/right balance unknown.
+
+**Athlete's account:** “I was sitting comfortably at around 6:25, the avg work today felt like a 7 6:10 to 6:05 was closer to an 8 I chose to find something that felt comfortable the hr is just a bit behind has been since the comeback but it is getting much better I think just overtime with training the physiological cost will drop.” Perceived comfortable pace is distinct from measured work mean; 6:05–6:10 is an effort observation, not another timed rep. Assigned range reported as 6:20–6:30/mi.
+
+**Observation:** Pace and device-estimated mechanics were repeatable despite rising HR. Rep three retained nearly the same power and pace as rep one. High final-five-minute HR indicates appreciable cardiovascular demand, not a measured lactate threshold. Athlete experience and device readings are distinct evidence.
+
+**Working hypothesis:** The ability to access and repeat faster movement may be returning ahead of the ability to sustain it with lower cardiovascular cost. The athlete expects cost to fall with training. This is testable, not guaranteed. Temperature, warm-up, hydration, fatigue, sensor quality and recovery format remain competing influences. These metrics do not measure oxygen cost, central adaptation, bone healing or symmetry.
+
+**Longitudinal context:** Oct 13: 7:05, 6:40, 6:48 mile repetitions; Oct 22: 17:23 faster work at 5:49/mi in shorter mixed reps; Oct 31: 40 min at 7:24/mi with jog recoveries. Different workouts demonstrate available capacities, not a like-for-like estimate of fitness improvement.
+
+**Next observation:** Compare another already-planned session at similar pace, duration, recovery format and conditions. Track final-five-minute HR, RPE, pace retention, running dynamics and 24–48-hour lower-leg response (pending). Lower HR at comparable output and effort would support the hypothesis; similar or higher HR would leave it open. No new pace assignment, phase promotion or race forecast.
