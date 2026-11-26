@@ -320,3 +320,38 @@ The outing added longer running and faster late work to a week that already cont
 **Interpretation.** The full-mile paces generally rose without a matching sustained rise in displayed HR after the opening mile. This is consistent with *controlled effort during this outing*, not evidence from a matched test of improved economy or an individually verified Zone 2 boundary. The final partial was faster but is not a full-mile benchmark. Garmin's October 12–November 8 *Low Aerobic Shortage* graphic is a rolling training-load categorization, not proof that this individual run was insufficient or a reason to add tomorrow's mileage. Connected November 8 recovery context: 8.27 hours sleep, score 87, HRV night average 55 ms and low recorded stress. These are device metrics and do not replace the athlete's felt recovery.
 
 **Source and publication boundary.** Garmin Forerunner 965 connected daily/activity summary, November 8 Strava overview and split screenshots (IMG_1341, IMG_1339, IMG_1340) and Brice's first-person reports on November 8. No original FIT-detail lap inspection was completed in this review; the lap rows are screenshot-derived. The live FORM Sunday optional session and the prior Saturday coach-import completion were read back separately; a study edit is not proof that Sunday's completion has been filed or reached the Collective feed. Do not change Monday or Thursday prescription from this evidence record alone.
+
+
+## November 14–25 · FORM completion backfill (reviewed November 26)
+
+Source: dated FORM completion receipts for Brice and linked run_mechanics rows where available. All distances in miles; pace derived from filed duration/distance and rounded. These are distinct receipts, not a complete wearable activity export. No new original FIT parsing was performed for these runs.
+
+| Date | Run | Distance | Recorded time | Pace /mi | Average / maximum HR |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Nov 14 | Progressive long run | 12.38 | 1:32:30 | 7:28 | 159 (receipt note) / unknown |
+| Nov 16 | Tempo (athlete classification) | 7.20 | 53:44 | 7:28 | 147 / unknown |
+| Nov 19 | Aerobic long run | 10.24 | 1:21:12 | 7:56 | 136 / 173 |
+| Nov 23 | Zone 2 | 8.12 | 1:20:26 | 9:54 | 122 / 141 |
+| Nov 25 | Easy | 5.02 | 45:23 | 9:02 | 122 / 135 |
+
+**Nov 14:** Mile paces 8:03, 7:49, 7:55, 7:49, 7:48, 7:37, 7:37, 7:28, 7:21, 7:04, 6:48, 6:36; final 0.38 mi at 6:39/mi. Progressive finish during the FORM group run. No recorded RPE or delayed response.
+
+**Nov 16:** Athlete classified the 7.20 mi outing as tempo. Strava moving time and HR reported in the FORM receipt, 112 ft elevation gain noted; no work splits or RPE available. Do not treat whole-run pace as a measured threshold.
+
+**Nov 19:** Mile paces 8:31, 8:28, 8:17, 8:11, 7:55, 7:45, 7:40, 7:22, 7:11, 8:03. Garmin receipt note: HR 157 in mile nine; cadence 168 spm, contact 260 ms, vertical ratio 7.8%; device temperature 77–84°F; aerobic/anaerobic TE 4.0/1.0. No recorded RPE or delayed response.
+
+**Nov 23 and 25:** Two easy outings at the same rounded average HR. Nov 23 Garmin activity 25174571016; Nov 25 coach import. Whole-run mechanics:
+
+| Measure | Nov 23 | Nov 25 |
+| --- | ---: | ---: |
+| Cadence (spm) | 161.4 | 162.4 |
+| Ground contact (ms) | 285.8 | 276.4 |
+| Step length (m) | 1.008 | 1.093 |
+| Vertical ratio (%) | 8.9 | 8.47 |
+| Power (W) | 321 | 350 |
+
+Nov 25 was 52 seconds/mile faster at the same reported mean HR, but also 35 minutes shorter, with different output and unknown matching conditions. An encouraging observation, not proof of improved running economy. Repeat comparable easy outings to test the relationship.
+
+**Separate cross-training · Nov 22:** Elliptical 1:10:24, average HR 124, max 150, Garmin activity 25165475040. No running distance; record separately from mileage. No recorded RPE or delayed response.
+
+The November 5 and 22 speed sessions are in the [speed evidence ledger](SPEED-EXPOSURE-LEDGER-20261018.md). The November 26 run is already filed there. No new training prescription, gate promotion or medical conclusion follows from this backfill.
