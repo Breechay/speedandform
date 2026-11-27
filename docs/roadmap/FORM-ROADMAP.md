@@ -1,3 +1,10 @@
+## November 26 · Rebuilt Athlete fitness growth
+
+- Prepared the September–November pace/HR comparison, dated source data, two charts and a separate conditional outlook in Study 002.
+- Owner requested approximate future estimates. Ranges are assistant judgement for similar eight-minute efforts, not prescriptions or race forecasts; plateau remains possible.
+- Source: existing long-run / speed ledgers and Nov 25–26 Garmin summaries. No new private data, app or training change.
+- Status: branch preparation for the next approved website batch; production unchanged. See `labs/rebuilt-athlete/FITNESS-GROWTH-20261126.md` for tracking method.
+
 ## November 14 · The Pass
 
 Seven jobs replace twelve: Head Coach, Programming, Athlete Read, Voice, Record, The Pass, Builder. Programming owns run and lift together, so the paired read happens inside one job. The Compound tab opens on The Pass: one light per surface from `coach_pass` (Running, Watch, Stopped), then seven rules (one owner, one voice, readback, stop the line, hand-off note, the record wins, Brice first). Each surface now says when it is done.

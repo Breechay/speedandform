@@ -1,0 +1,133 @@
+{
+  "reviewed": "2026-11-26",
+  "scope": "Selected continuous outdoor outings; not a complete Garmin export or matched test",
+  "columns": [
+    "date",
+    "miles",
+    "pace_seconds_per_mile",
+    "average_hr_bpm",
+    "outing",
+    "source"
+  ],
+  "observations": [
+    [
+      "2026-09-25",
+      8.01,
+      518,
+      167,
+      "Long run",
+      "Screenshot"
+    ],
+    [
+      "2026-10-04",
+      10.01,
+      667,
+      140,
+      "Shared / changing pace",
+      "Screenshot"
+    ],
+    [
+      "2026-10-09",
+      10,
+      498,
+      159,
+      "Social long run",
+      "Screenshot"
+    ],
+    [
+      "2026-10-17",
+      7,
+      474,
+      144,
+      "Road run",
+      "Garmin summary / screenshot"
+    ],
+    [
+      "2026-11-14",
+      12.38,
+      448,
+      159,
+      "Progressive long run",
+      "FORM receipt"
+    ],
+    [
+      "2026-11-16",
+      7.2,
+      448,
+      147,
+      "Tempo, athlete classification",
+      "FORM receipt"
+    ],
+    [
+      "2026-11-19",
+      10.24,
+      476,
+      136,
+      "Aerobic long run",
+      "FORM receipt"
+    ],
+    [
+      "2026-11-23",
+      8.12,
+      594,
+      122,
+      "Easy run",
+      "FORM receipt"
+    ],
+    [
+      "2026-11-25",
+      5.02,
+      542,
+      122,
+      "Easy run",
+      "Garmin summary / FORM receipt"
+    ]
+  ],
+  "scenario": {
+    "basis": "Assistant judgement requested by owner; not a statistical model or probability interval",
+    "metric": "Possible repeatable pace for similar 3 x 8-minute work around reported RPE 7, with comparable recovery",
+    "baseline_seconds": 376,
+    "windows": [
+      [
+        "Late Dec 2026\u2013early Jan 2027",
+        370,
+        385
+      ],
+      [
+        "Late Jan\u2013Feb 2027",
+        360,
+        380
+      ],
+      [
+        "Mar\u2013May 2027",
+        350,
+        370
+      ]
+    ],
+    "assumptions": "Consistent training, adequate recovery, no injury interruption. Slower progress or no pace gain remain possible. No prescription changes."
+  },
+  "athlete_hypothesis": {
+    "reported_on": "2026-11-26",
+    "source": "Brice: I usually drop from my own observations about 10 s a week in repeatable long holds work",
+    "rate_seconds_per_mile_per_week": 10,
+    "status": "Athlete observation, not yet established by matched longitudinal sessions",
+    "baseline_seconds": 376,
+    "weeks": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "pace_seconds": [
+      376,
+      366,
+      356,
+      355,
+      355
+    ],
+    "scope": "Illustration of fast regain then slower progress around 5:50\u20135:59/mile. Only first two weeks use 10 seconds/week; later 5:55 center is a drawing convention, not a predicted pace. No permanent ceiling implied.",
+    "plateau_report": "Brice expects gains to slow around his previous level in the 5:50s; historical level is athlete recalled, not independently confirmed in this review",
+    "latest_clarification": "Prior 5:50s level was about two years ago. Reassess when reached; no present plateau or ceiling established."
+  }
+}
