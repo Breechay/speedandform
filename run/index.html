@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Run with FORM | Speed &amp; Form</title>
-<meta name="description" content="Brice's running practice in Miami. Thursdays at Flamingo Park, Saturday long runs, and the FORM app.">
+<meta name="description" content="Brice's running practice in Miami. Tuesdays and Thursdays at Flamingo Park, and the FORM app.">
 <link rel="canonical" href="https://speedandform.com/run">
 <meta name="theme-color" content="#0a0b0c">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -42,8 +42,8 @@ footer a{color:#8c8a84;text-decoration:none}
   <h1>Train with direction.</h1>
   <p class="lead">Brice's running practice. Miami and online.</p>
   <div class="runs">
-   <div class="row" id="thu"><b>THU</b><span>Thursdays · 6:00 AM · Flamingo Park<em>Speed with the group. Open to all.</em></span></div>
-   <div class="row" id="sat"><b>SAT</b><span>Saturdays · Long run · The Labs<em>Easy miles, every pace.</em></span></div>
+   <div class="row" id="tue"><b>TUE</b><span>Tuesdays · 6:15 AM · Flamingo Park<em>From Dec 8. Open to all.</em></span></div>
+   <div class="row" id="thu"><b>THU</b><span>Thursdays · 6:05 AM · Flamingo Park<em>Speed with the group. Open to all.</em></span></div>
   </div>
   <div class="cta"><a class="text" id="text" href="#">Text Brice</a><a class="save" href="/run/brice.vcf">Save contact</a></div>
   <a class="app" id="app" href="https://apps.apple.com/us/app/form-practice/id6761313085">Get the app ›</a>
@@ -51,9 +51,9 @@ footer a{color:#8c8a84;text-decoration:none}
  </div>
 </main>
 <script>
-/* One place to edit. SECOND_LINE: the number Text Brice opens, with country code. OFF: set a day to a message to override it, e.g. OFF.thu = "No run this Thursday." */
+/* One place to edit. SECOND_LINE: the number Text Brice opens, with country code. OFF: set a day to a message to override it, e.g. OFF.tue = "No run this Tuesday." */
 var SECOND_LINE = "+19144260409";
-var OFF = { thu: "", sat: "" };
+var OFF = { tue: "", thu: "" };
 var LINES = {
   shirt: "Hi Brice, saw your shirt at the track.",
   flyer: "Hi Brice, got your flyer.",
@@ -69,7 +69,7 @@ var LINES = {
   else { t.style.display = "none"; }
   var app = document.getElementById("app");
   if (src) app.href += "?ct=" + src;
-  ["thu", "sat"].forEach(function(d){
+  ["tue", "thu"].forEach(function(d){
     if (OFF[d]) { var r = document.getElementById(d); r.classList.add("off"); r.querySelector("span").textContent = OFF[d]; }
   });
 })();
