@@ -12,6 +12,12 @@
     return part('year') + '-' + part('month') + '-' + part('day');
   }
   function time(value) { return new Intl.DateTimeFormat('en-US', {timeZone:zone, hour:'numeric', minute:'2-digit'}).format(new Date(value)); }
+  function hasEnded(run, now) {
+    var authoredEnd = Date.parse((run.group_facts || {}).ends_at || '');
+    var start = Date.parse(run.starts_at);
+    var end = Number.isFinite(authoredEnd) ? authoredEnd : start + 2 * 60 * 60 * 1000;
+    return Number.isFinite(end) && now >= end;
+  }
   function location(name, detail) {
     var link = document.querySelector('.loc-link');
     if (link) { link.textContent = name; link.href = 'https://maps.google.com/?q=' + encodeURIComponent(name + ', ' + detail); }
@@ -64,7 +70,13 @@
     return response.json();
   }).then(function(rows) {
     if (!Array.isArray(rows)) throw new Error('Invalid schedule');
-    var run = rows.find(function(row) { return ['scheduled','cancelled'].includes(row.status) && Number.isFinite(Date.parse(row.starts_at)) && day(row.starts_at) >= today; });
+    var now = Date.now();
+    var run = rows.find(function(row) {
+      return ['scheduled','cancelled'].includes(row.status)
+        && Number.isFinite(Date.parse(row.starts_at))
+        && day(row.starts_at) >= today
+        && !(day(row.starts_at) === today && hasEnded(row, now));
+    });
     if (run) render(run); else fallback('Next gathering not yet published');
   }).catch(function() { fallback('Could not confirm the next gathering'); })
     .finally(function() { clearTimeout(timer); });
