@@ -14,10 +14,11 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#0a0b0c;color:#d9d6cf;font-family:"Inter Tight",-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 main{max-width:520px;margin:0 auto;min-height:100svh}
-.hero{position:relative;height:58svh;min-height:360px;background:url(/assets/run/track-group-bw.webp) center 35%/cover}
+.hero{position:relative;overflow:hidden;height:58svh;min-height:360px;background:url(/assets/run/track-group-bw.webp) center 35%/cover}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,0) 45%,#0a0b0c 100%)}
 .body{padding:0 28px 40px;margin-top:-64px;position:relative}
-.mark{font:700 italic 15px/1 "Inter Tight",sans-serif;letter-spacing:.02em}
+.mark{display:block;width:64px;height:27px;background:#d9d6cf;-webkit-mask:url(/assets/brand/sf-seal.svg) left center/contain no-repeat;mask:url(/assets/brand/sf-seal.svg) left center/contain no-repeat}
+@media (prefers-reduced-motion:no-preference){.rise{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}.r1{animation-delay:.05s}.r2{animation-delay:.12s}.r3{animation-delay:.19s}.r4{animation-delay:.28s}.r5{animation-delay:.38s}@keyframes rise{from{opacity:0;transform:translateY(10px)}}.hero{animation:settle 1.4s ease-out both}@keyframes settle{from{transform:scale(1.04);opacity:.6}}}
 h1{font:500 34px/1.08 "Inter Tight",sans-serif;letter-spacing:-.02em;color:#f1eee8;margin-top:14px}
 .lead{font:400 16px/1.4 "Inter Tight",sans-serif;color:#9a978f;margin-top:8px}
 .runs{margin-top:26px;border-top:.5px solid #2a2c2f}
@@ -38,14 +39,14 @@ footer a{color:#8c8a84;text-decoration:none}
 <main>
  <div class="hero" role="img" aria-label="FORM runners on the Flamingo Park track"></div>
  <div class="body">
-  <div class="mark">SF&nbsp; FORM</div>
-  <h1>Train with direction.</h1>
-  <p class="lead">Brice's running practice. Miami and online.</p>
-  <div class="runs">
+  <span class="mark rise r1" role="img" aria-label="Speed and Form"></span>
+  <h1 class="rise r2">Train with direction.</h1>
+  <p class="lead rise r3">Brice's running practice. Miami and online.</p>
+  <div class="runs rise r4">
    <div class="row" id="tue"><b>TUE</b><span>Tuesdays · 6:15 AM · Flamingo Park<em>From Dec 8. Open to all.</em></span></div>
-   <div class="row" id="thu"><b>THU</b><span>Thursdays · 6:05 AM · Flamingo Park<em>Speed with the group. Open to all.</em></span></div>
+   <div class="row" id="thu"><b>THU</b><span>Thursdays · 6:15 AM · Flamingo Park<em>Speed with the group. Open to all.</em></span></div>
   </div>
-  <div class="cta"><a class="text" id="text" href="#">Text Brice</a><a class="save" href="/run/brice.vcf">Save contact</a></div>
+  <div class="cta rise r5"><a class="text" id="text" href="#">Text Brice</a><a class="save" href="/run/brice.vcf">Save contact</a></div>
   <a class="app" id="app" href="https://apps.apple.com/us/app/form-practice/id6761313085">Get the app ›</a>
   <footer><a href="/">speedandform.com</a></footer>
  </div>
