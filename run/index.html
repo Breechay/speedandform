@@ -14,7 +14,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{background:#F2EFE8;color:#121314;font-family:"Inter Tight",-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 main{max-width:520px;margin:0 auto;min-height:100svh}
-.hero{position:relative;overflow:hidden;height:52svh;min-height:330px;background:url(/assets/run/track-group-bw.webp) center 35%/cover}
+.hero{position:relative;overflow:hidden;height:max(150px,calc(100svh - 440px));max-height:62svh;background:url(/assets/run/track-group-bw.webp) center 35%/cover}
 .hero:after{content:none}
 .body{padding:26px 28px 40px;position:relative}
 .mark{display:block;width:64px;height:27px;background:#121314;-webkit-mask:url(/assets/brand/sf-seal.svg) left center/contain no-repeat;mask:url(/assets/brand/sf-seal.svg) left center/contain no-repeat}
@@ -33,6 +33,7 @@ h1{font:500 34px/1.08 "Inter Tight",sans-serif;letter-spacing:-.02em;color:#1213
 .app{display:block;text-align:center;margin-top:18px;color:#3E6A8E;font:500 15px/1 "Inter Tight",sans-serif;text-decoration:none}
 footer{margin-top:40px;font-size:12px;color:#8C8A84;text-align:center}
 footer a{color:#6E6C67;text-decoration:none}
+@media (max-height:620px){.body{padding-top:18px}h1{font-size:30px;margin-top:10px}.lead{margin-top:6px}.runs{margin-top:18px}.row{padding:10px 0}.app{margin-top:14px}}
 </style>
 </head>
 <body>
